@@ -1,0 +1,16 @@
+unsafePerformIO
+unsafeCoerce
+Debug.Trace
+System.IO.Unsafe
+IORef
+unsafeInterleaveIO
+detect
+forget
+window
+decay
+sliding
+reset
+trigger
+temper
+anneal
+throttle

@@ -1,0 +1,54 @@
+cabal-version:      3.0
+name:               proplang
+version:            0.1.0.0
+synopsis:           proplang (Proposition Language) — typed port, frozen-oracle build
+description:
+  Haskell typed port of proplang per typed-port-spec.md. Phase 1: src/ are
+  signature stubs; test/ and audit/ are the frozen oracle (see CLAUDE.md).
+build-type:         Simple
+extra-doc-files:    CLAUDE.md
+                    design.md
+                    interface.md
+                    typed-port-spec.md
+
+common warnings
+    ghc-options: -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns
+
+library
+    import:           warnings
+    exposed-modules:  PropLang.Belief
+                      PropLang.Syntax
+                      PropLang.Eval
+                      PropLang.Enumerate
+                      PropLang.Host
+    hs-source-dirs:   src
+    -- src depends on base ONLY (frozen-oracle decision: keeps the audit's
+    -- `ghc -isrc` ablation compiles package-DB-free)
+    build-depends:    base >=4.16 && <5
+    default-language: GHC2021
+
+test-suite acceptance
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Acceptance.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , process
+    default-language: GHC2021
+
+test-suite properties
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Properties.hs
+    hs-source-dirs:   test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-quickcheck
+                    , QuickCheck
+    default-language: GHC2021
