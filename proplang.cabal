@@ -52,3 +52,20 @@ test-suite properties
                     , tasty-quickcheck
                     , QuickCheck
     default-language: GHC2021
+
+-- The grammar-hygiene increment oracle (GRAMMAR_HYGIENE_PLAN Q2):
+-- frozen test/ cannot grow, so each increment carries its own suite;
+-- the frozen gate 5 (`cabal test all`) absorbs it automatically.
+test-suite hygiene
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Hygiene.hs
+    hs-source-dirs:   test-hygiene
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

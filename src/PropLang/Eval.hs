@@ -51,10 +51,10 @@ lookupVal :: Idx env t -> Vals env -> t
 lookupVal Z     (v :. _)  = v
 lookupVal (S i) (_ :. vs) = lookupVal i vs
 
--- | Big-step evaluation. Pure and total: a dormant grid index reads 0.0
--- exactly as a dormant feature name does, and the 'Expect' case is
--- discharged by the emptiness of 'PropLang.Syntax.Fn' in the parity
--- phase.
+-- | Big-step evaluation. Pure; total except the recorded Task-1 stub
+-- on 'Expect' (grammar-hygiene increment in flight — the dormant grid
+-- index read below also retires at Task 3, when off-grid constants
+-- become unconstructible).
 evalx :: Expr env t -> Env env -> t
 evalx expr env@(Env feats vals) = case expr of
   C g k      -> fromMaybe 0.0 (gridLookup g k)
@@ -66,7 +66,11 @@ evalx expr env@(Env feats vals) = case expr of
   Push b k   -> push (evalx b env) (evalx k env)
 #endif
   CondE b ev -> cond (evalx b env) (evalx ev env)
-  Expect _ f -> case f of {}
+  -- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): 'Fn' is inhabited now,
+  -- so the parity-phase empty-case discharge is gone; the real
+  -- semantics (FnInd ~> prob, FnUtil ~> expect . applyUtil) land in
+  -- Task 5, and the hygiene suite's group 4 stays red until they do.
+  Expect _ _ -> error "evalx: Expect semantics pending (grammar-hygiene Task 5)"
 #ifndef DROP_ARGMAX
   Argmax o v ->
     -- CL-3: deterministic tie-break by option order; nothing may select

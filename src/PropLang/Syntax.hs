@@ -19,16 +19,20 @@ module PropLang.Syntax
   , Grid, mkGrid, gridName, gridSize, gridLookup
   , Idx(..)
   , Expr(..)
-  , Fn
+  , mkC
+  , Fn(..)
   , Args(..)
   , StdName(..)
   , Util, mkUtil, applyUtil
+  , KnownScope(..)
   , bits
   , featureNames
   ) where
 
+import Data.Kind (Type)
 import Data.List.NonEmpty (NonEmpty, toList)
-import PropLang.Belief (Belief, Bits (..), Evidence, Kernel)
+import Data.Proxy (Proxy (..))
+import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel)
 
 type B = Belief
 type K = Kernel
@@ -94,11 +98,34 @@ data Expr env t where
   -- ExpFam/Carrier/Stats deliberately absent in the parity phase
   -- (CLAUDE.md porting order, step 6).
 
--- | Defunctionalized function syntax (first-order, priced). Uninhabited
--- in the parity phase: no frozen test constructs one, and the evaluator
--- discharges the 'Expect' case by empty match. Constructors (with
--- prices) arrive with the ExpFam basis (porting order, step 6).
-data Fn a
+-- | Defunctionalized function syntax (first-order, priced): the
+-- grammar-hygiene alphabet, exactly the two published expansions of the
+-- reference (a REPORTED alphabet change, GRAMMAR_HYGIENE_PLAN Q1).
+-- 'FnInd' is the indicator of a declared event — probability derived
+-- from prevision (design §3) gets its syntactic witness; 'FnUtil' is a
+-- utility section — the EU contract's expansion. Each costs one FN
+-- choice bit; the opaque value-layer payloads are priced 0, the
+-- recorded parity-scoped convention (Phase 1 report §4.3) — when
+-- events/utilities become latent (CIRL), the payloads become priced
+-- syntax. The CPP flags are the deletion audit's raises-by-type
+-- ablation points, same standard as DROP_PUSH/DROP_ARGMAX.
+data Fn a where
+#ifndef DROP_FNIND
+  FnInd  :: Event a -> Fn a
+#endif
+#ifndef DROP_FNUTIL
+  FnUtil :: Util o a -> o -> Fn a
+#endif
+
+-- | The ONLY constructor of a priced-constant sentence: 'Nothing' off
+-- the grid, so a malformed constant is unconstructible rather than
+-- denoting (amended spec §3; the Get 0.0 convention is dormancy for
+-- names that may appear — a grid index never can).
+--
+-- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): body lands in Task 3
+-- with the match-only pattern for 'C' (plan R1).
+mkC :: Grid -> Ix -> Maybe (Expr env Double)
+mkC = undefined
 
 -- | Typed argument list for 'Call'.
 data Args env ts where
@@ -140,15 +167,30 @@ mkUtil = Util
 applyUtil :: Util a y -> a -> y -> Double
 applyUtil (Util f) = f
 
+-- | Type-level scope size, so 'Var' can be priced as a name mention
+-- (amended spec §3): the pricer reads |scope| from the environment
+-- index, and Argmax bodies get the extended instance for free.
+class KnownScope (env :: [Type]) where
+  scopeLen :: Proxy env -> Int
+
+instance KnownScope '[] where
+  scopeLen _ = 0
+
+instance KnownScope env => KnownScope (t ': env) where
+  scopeLen _ = 1 + scopeLen (Proxy :: Proxy env)
+
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile
--- fact). The model fragment carries the reference prices exactly: one
--- choice bit per two-alternative nonterminal, @log2 n@ per grid mention,
--- the sole-alternative TEST free. The policy fragment is priced one
--- choice bit per verb node and zero per variable mention — unfrozen in
--- the parity phase (no frozen test utters a priced policy sentence), and
--- an alphabet-change report accompanies any future re-pricing.
-bits :: Expr env t -> Bits
+-- fact). Contract (amended spec §3, prefix-decodable): every node pays
+-- its constructor-choice cost log2 nExpr — 'Var' included — plus
+-- content; description length is relative to the generating fragment's
+-- production grammar (model-fragment dl is the enumerator's,
+-- derivation-relative — plan R4).
+--
+-- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): the body below is still
+-- the parity-phase placeholder; the R5 table lands in Task 4 and the
+-- hygiene suite's group 3 stays red until it does.
+bits :: KnownScope env => Expr env t -> Bits
 bits e0 = Bits (go e0)
   where
     go :: Expr env' t' -> Double
