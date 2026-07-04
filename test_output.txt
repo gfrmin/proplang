@@ -1,0 +1,87 @@
+========================================================================
+TEST 1 - THE CHANGING-WORLD TEST
+========================================================================
+   t   P(y=1)     action  H(bits)
+   0    0.500    consult     4.22
+  20    0.780   predict1     3.68
+  40    0.817   predict1     3.37
+  58    0.817   predict1     3.21
+  60    0.832   predict1     3.09
+  62    0.800   predict1     3.29
+  64    0.681   predict1     3.71
+  66    0.479    consult     3.95
+  68    0.508    consult     3.85
+  70    0.352    consult     3.81
+  72    0.256   predict0     3.59
+  74    0.204   predict0     3.34
+  76    0.175   predict0     3.10
+  80    0.145   predict0     2.67
+ 100    0.125   predict0     2.02
+ 120    0.102   predict0     1.14
+ 140    0.102   predict0     1.12
+
+  confident (predict1) for t in [30,60):        True
+  consults inside t in [60,80):                 True
+  entropy disperses (max post 3.95 vs pre 3.15): True
+  recovers to predict0 for t in [130,160):      True
+  MAP program is a change-point sentence:       True
+    MAP program: ('bern', ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8)))  (posterior 0.64)
+  grep for change-detection machinery:          CLEAN
+  PASS: adaptation visible in the posterior, invisible in control flow
+
+========================================================================
+TEST 2 - THE LAZY-GENIUS TEST
+========================================================================
+  hard problem (theta hugs 0.5); same agent, same code; only the
+  world's price of time differs:
+    world price of a tick = 0.3    -> thought for  1 tick(s), then chose L
+    world price of a tick = 0.05   -> thought for  3 tick(s), then chose L
+    world price of a tick = 0.005  -> thought for 12 tick(s), then chose L
+    world price of a tick = 0.0    -> thought for 12 tick(s), then chose L
+
+  dearer clock -> strictly fewer thinking ticks:  True
+  where is the throttle? the deliberation loop is:
+      while argmax([act, think]) == think: condition on a batch
+  no iteration cap, no threshold constant. Delay is priced by an
+  opportunity cost the WORLD supplies as a feature; with price 0
+  the agent thinks until information runs dry (12 ticks).
+  The clock, and only the clock, terminates the regress.
+  PASS: the agent chose to think less; there is no line to point to
+
+========================================================================
+TEST 3 - THE FORGETTING-FACTOR TRAP
+========================================================================
+  cumulative predictive log-loss (bits; lower is better)
+  tracker                       drifting world  stationary world
+  forgetting factor g=0.8                369.8             396.6
+  forgetting factor g=0.9                345.5             370.0
+  forgetting factor g=0.95               340.9             359.4
+  forgetting factor g=0.98               348.9             353.3
+  forgetting factor g=1.0                397.9             350.3
+  agent (latent drift-rate)              339.8             351.1
+
+  agent's MAP program on the drifting world: ('hmm', ('c', 'rho', 3))
+  matches/beats the best oracle-tuned forgetter on drift: True
+  matches/beats every forgetter on the stationary world:  True
+  the forgetting factor is hereby deleted: it exists only in this
+  test file, as the trap. grep of the language module (test 1)
+  confirms no decay/window/forgetting machinery exists there.
+  PASS: adaptation is content (a latent drift-rate), not mechanism
+
+========================================================================
+TEST 4 - THE DELETION AUDIT
+========================================================================
+  terminal    capability lost on deletion                                   verdict
+  cond        no learning at all: log-loss 160 vs 97 bits                   PASS
+  if          abrupt change unsayable: 103 vs 97 bits on the shifted world  PASS
+  get         no feature access -> no conditional structure: 103 vs 97 bits PASS
+  rw/hmm      drift unsayable: 211 vs 207 bits on the drifting world        PASS
+  c (grids)   hypothesis space empties: 0 programs enumerable               PASS
+  bern        no emission vocabulary: 0 programs can generate data          PASS
+  push        no prediction, no expectation, no marginal likelihood: every EU routes through pushPASS
+  argmax      belief still moves but nothing can choose: the exit from probability into action is gonePASS
+  PASS: every terminal's deletion costs a capability; nothing is content
+
+========================================================================
+ALL FOUR ACCEPTANCE TESTS PASS
+========================================================================

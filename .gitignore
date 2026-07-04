@@ -1,0 +1,7 @@
+files.zip
+proplang.tar.xz
+design-1.md
+typed-port-spec-1.md
+dist-newstyle/
+__pycache__/
+*.pyc
