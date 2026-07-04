@@ -122,7 +122,7 @@ if [ -f MANIFEST.sha256 ]; then
 else
     if [ "$PHASE" = "1" ]; then
         echo "MANIFEST.sha256 absent — Phase 1 ends with the human running:"
-        echo '  { find test audit -type f; echo CLAUDE.md; } | sort | xargs sha256sum > MANIFEST.sha256'
+        echo '  { find test audit -type f; echo CLAUDE.md; echo proplang.py; echo tests_acceptance.py; echo test_output.txt; } | sort | xargs sha256sum > MANIFEST.sha256'
         echo "and signing it (review first: PHASE1_REPORT.md)."
         note 6 "PENDING (human signature)"
     else

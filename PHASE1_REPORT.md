@@ -131,6 +131,14 @@ against the stub grammar.
   observed max 0.0025 bits/obs (shifted-world and iid streams) — 8×
   headroom. δ is part of the oracle (no widening in place).
 
+Count note (reviewer item, 2026-07-04): the plan specified **two**
+properties; the suite reports **three** `testProperty` cases because CL-4
+is stated once per `Evidence` constructor — `propCl4Saw` (kernel
+observation, likelihood recovered publicly as
+`lik x = prob (push (point sp x) k) (is osp o)`) and `propCl4Is`
+(declared event ≙ renormalized restriction) — plus `propFineness`.
+Two invariants, three cases; nothing else is in the suite.
+
 ## 4. Under-determination register (dispositions from the approval rulings)
 
 1. **`Argmax` over `NonEmpty o`** (spec §3 sketch said `[o]`): totality-
@@ -186,7 +194,14 @@ To be hashed by the human (everything under): **`test/`** (Acceptance.hs,
 Properties.hs, Streams.hs, Anchors.hs), **`audit/`** (forbidden.txt,
 ablation.sh, ablation/UsePush.hs, ablation/UseArgmax.hs, run-gates.sh,
 strip_comments.py, check_exports.py, belief-exports.txt,
-capture_oracle.py), and **`CLAUDE.md`**.
+capture_oracle.py), **`CLAUDE.md`**, and — reviewer-directed hardening,
+2026-07-04 — the Python oracle itself: **`proplang.py`**,
+**`tests_acceptance.py`**, **`test_output.txt`**. Rationale: the frozen
+`capture_oracle.py` reads those three files; hashing them closes the
+provenance chain (a post-signing edit to `proplang.py` would otherwise
+silently break capture idempotency with no gate noticing). This is a
+strict superset of the protocol's Phase-1 list (`test/`, `audit/`,
+`CLAUDE.md`) — an added constraint, not a protocol change.
 
 `src/` stubs are NOT frozen: Phase 2 owns them, constrained only by what
 the frozen tests utter (the de-facto surface: the Belief export list, the
@@ -208,7 +223,9 @@ the two ablation fixtures `audit/ablation/UsePush.hs` /
 Then sign:
 
 ```
-{ find test audit -type f; echo CLAUDE.md; } | sort | xargs sha256sum > MANIFEST.sha256
+{ find test audit -type f; echo CLAUDE.md; echo proplang.py;
+  echo tests_acceptance.py; echo test_output.txt; } | sort |
+  xargs sha256sum > MANIFEST.sha256
 ```
 
 (and countersign MANIFEST.sha256 by your usual means — e.g. a signed git

@@ -255,7 +255,7 @@ language; moving it is the generator's job in a fuller system.
 
 **Changing world** (θ = 0.9 until t=60, then 0.1). The agent is confident
 (`predict1`) through [30,60); after the shift its predictive collapses
-toward 0.5, meta-entropy re-disperses from 3.09 to 3.95 bits, and `consult`
+toward 0.5, meta-entropy re-disperses from 3.15 (t=59) to a peak of 3.95 bits, and `consult`
 — an ordinary action, utility 0.35 supplied by the world — becomes argmax
 for several ticks; by t=76 it is confidently `predict0`, and the MAP program
 is the exact change-point sentence with τ=60 at posterior 0.64. The test
