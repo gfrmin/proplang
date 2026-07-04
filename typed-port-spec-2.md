@@ -125,18 +125,13 @@ Bit-pricing rides the same structure: `bits :: Expr env t -> Bits` is total
 structural recursion over the GADT, so every constructible sentence has a
 price — "no unpriced sentence exists" is [COMPILE] via totality
 (`-Wincomplete-patterns` as error). Pricing requirements for the policy
-fragment (load-bearing once the fidelity ladder lands): the code must be
-prefix-decodable, so EVERY node pays its constructor-choice cost
-log2(nExpr) with no exemptions — `Var` included — and then its content:
-`Var` adds log2(scope size), a variable mention being a name mention,
-and names never free once there is more than one (same rule as `Get`
-over FEATURE_NAMES). Description length is always relative to the
-generating fragment's production grammar: the same surface tree prices
-differently derived as MODEL versus as EXPR, which is why model-fragment
-anchors are untouched by policy pricing (the two-pricer arrangement,
-Phase 2 R4, is principled coding, not a fudge). `Fn` must be inhabited
-by first-order constructors before any priced policy sentence ships;
-discharging `Expect` by empty case is a parity-phase expedient only.
+fragment (load-bearing once the fidelity ladder lands): verb nodes are
+priced at their genuine alternative counts, and `Var` is priced
+log2(scope size) — a variable mention is a name mention, and names are
+never free once there is more than one (same rule as `Get` over
+FEATURE_NAMES). `Fn` must be inhabited by first-order constructors before
+any priced policy sentence ships; discharging `Expect` by empty case is a
+parity-phase expedient only.
 
 ## 4. The estimator choice, dissolved                    [COMPILE]+[FROZEN]
 
