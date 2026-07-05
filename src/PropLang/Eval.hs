@@ -17,6 +17,9 @@ module PropLang.Eval
   , Env
   , mkEnv
   , evalx
+#ifndef DROP_EXPFAM
+  , bernFast
+#endif
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -30,8 +33,14 @@ import PropLang.Belief (push)
 #ifndef DROP_FNIND
 import PropLang.Belief (prob)
 #endif
+#ifndef DROP_EXPFAM
+import PropLang.Belief (Bits (Bits), fromBits, kernel)
+#endif
 import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
                         StdName (..), Util, applyUtil)
+#ifndef DROP_EXPFAM
+import PropLang.Syntax (Carrier, Stats (..), carrierSpace)
+#endif
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
 -- (interface.md §1: prices, clocks, and echoes are names like any other).
@@ -91,7 +100,14 @@ evalx expr env@(Env feats vals) = case expr of
     in fst (go o0 (val o0) os)
 #endif
 #ifndef DROP_EXPFAM
-  ExpFam {}  -> undefined -- Task-1 stub (generic semantics land at Task 4)
+  -- the generic family (plan Q1): natural parameter in, belief over
+  -- the declared carrier out — weights exp(eta * T(y)), normalized
+  -- over the carrier's points by the only prior source (fromBits
+  -- absorbs the log-partition A(eta) in its normalization)
+  ExpFam sp car st ->
+    kernel sp (carrierSpace car) $ \eta ->
+      fromBits (carrierSpace car)
+        (\y -> Bits (negate (eta * statVal st y) / ln2))
 #endif
   Call sn as -> applyStd sn (evalArgs as env)
 
@@ -107,7 +123,7 @@ applyStd VAct   (b :. u :. acts :. VNil) = vAct b u acts
 applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
   vThink b k ys u acts n price
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
-applyStd (Bern _) (_ :. VNil) = undefined -- Task-1 stub (fast form lands at Task 4)
+applyStd (Bern car) (th :. VNil) = bernFast car th
 #endif
 
 negInf :: Double
@@ -115,6 +131,32 @@ negInf = -1 / 0
 
 sumL :: [Double] -> Double
 sumL = foldl' (+) 0
+
+#ifndef DROP_EXPFAM
+ln2 :: Double
+ln2 = log 2
+
+-- the sufficient statistic's value: first-order syntax, evaluated here
+-- like every other verb (empty case when the STATS alphabet is ablated)
+statVal :: Stats c -> c -> Double
+statVal s = case s of
+#ifndef DROP_SID
+  SId -> realToFrac
+#endif
+
+-- | The Bernoulli fast form of the expfam basis (plan E7): the derived
+-- name's executed semantics, kept literally the reference arithmetic —
+-- CL-4's doctrine at the name layer: the fast path buys speed, never
+-- semantics, and its expfam expansion is the property-enforced
+-- contract (test-expfam group 5). Exported (additively) so the
+-- domain's emission kernel in "PropLang.Enumerate" is this same form —
+-- one arithmetic, no drift. Survives DROP_BERN (the name is sugar;
+-- capability survives its deletion) and dies with the basis (E9).
+bernFast :: Carrier Int -> Double -> Belief Int
+bernFast car th =
+  fromBits (carrierSpace car)
+    (\y -> Bits (negate (logBase 2 (if y == 1 then th else 1 - th))))
+#endif
 
 -- max over acts of the prevision of the utility (the value of acting
 -- now); iteration order and the strict-improvement rule mirror CL-3.
