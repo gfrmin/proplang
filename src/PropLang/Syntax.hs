@@ -290,8 +290,20 @@ instance KnownScope env => KnownScope (t ': env) where
 -- Description length is relative to the generating fragment's
 -- production grammar: this is the POLICY pricer; model-fragment dl is
 -- the enumerator's, charged at derivation (plan R4).
-bits :: forall env t. KnownScope env => Expr env t -> Bits
-bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
+bits :: KnownScope env => Expr env t -> Bits
+bits = bitsAt frozenNameBits
+  where
+    frozenNameBits :: Double
+    frozenNameBits = case featureNames of
+      _ : _ : _ -> logBase 2 (fromIntegral (length featureNames))
+      _         -> 0
+
+-- The shared pricing worker (MEMBRANE_PLAN T1): the whole production
+-- system with the name-mention charge as a parameter — 'bits' and
+-- 'bitsIn' are one arithmetic, one tree, no drift (the E7 doctrine at
+-- the pricer; the membrane oracle pins the identity with ==).
+bitsAt :: forall env t. KnownScope env => Double -> Expr env t -> Bits
+bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
     -- the shipped grammar's written alternative counts, per sort (the
     -- normative production table, spec §3 as amended at the expfam
@@ -338,11 +350,6 @@ bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
     fnB :: Fn a -> Double
     fnB _ = 1
 
-    nameBits :: Double
-    nameBits = case featureNames of
-      _ : _ : _ -> logBase 2 (fromIntegral (length featureNames))
-      _         -> 0
-
     -- a carrier mention is a name mention against the carrier registry
     -- (same written rule as 'nameBits': free while the registry is a
     -- singleton)
@@ -387,9 +394,13 @@ nsNames (Namespace ns) = ns
 nsSize :: Namespace -> Int
 nsSize (Namespace ns) = length ns
 
--- | Namespace-relative pricing (MEMBRANE_PLAN T1): 'bits' with the
--- name-mention term charged against the given namespace instead of the
--- frozen registry; @bitsIn (mkNamespace ("t" :| []))@ must equal 'bits'
--- exactly (the membrane oracle pins the identity).
+-- | Namespace-relative pricing (MEMBRANE_PLAN T1; the namespace law,
+-- spec §3): 'bits' with the name-mention term charged against the
+-- given namespace instead of the frozen registry — @log2 |ns|@ per
+-- mention, 0 bits while the namespace has one name (the frozen worlds'
+-- case, whose prices this leaves untouched: the oracle pins
+-- @bitsIn (mkNamespace ("t" :| [])) == bits@ with ==).
 bitsIn :: KnownScope env => Namespace -> Expr env t -> Bits
-bitsIn _ = bits
+bitsIn ns = bitsAt (case nsSize ns of
+  1 -> 0
+  k -> logBase 2 (fromIntegral k))

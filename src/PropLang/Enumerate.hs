@@ -60,7 +60,7 @@ import PropLang.Syntax (carrierSpace)
 import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), Name,
                         Namespace, StdName (..), Args (..), Stats (..),
                         carrierName, gridName, gridSize, mkC, mkCarrier,
-                        mkGrid)
+                        mkGrid, mkNamespace, nsSize)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -169,9 +169,22 @@ modelBits (MHmm dl _)  = dl
 -- the allowed terminal set. Order and count match the Python reference
 -- (full set: 1169 sentences under the current grids): the constant
 -- Bernoullis, then the walks, then the change-point sentences with the
--- threshold outermost.
+-- threshold outermost. Since the membrane increment this is the
+-- singleton-namespace, no-extra-guards case of 'enumerateModelsIn' —
+-- one generator, one arithmetic, no drift; the frozen anchors keep it
+-- honest and the membrane oracle pins the identity.
 enumerateModels :: [Terminal] -> [Model]
-enumerateModels allowed = consts ++ walks ++ changePoints
+enumerateModels = enumerateModelsIn (mkNamespace ("t" :| [])) []
+
+-- | Namespace-relative enumeration (MEMBRANE_PLAN T1/M1; the namespace
+-- law, spec §3): the model fragment with (a) the name-mention term
+-- inside every guard charged @log2 |ns|@ against the world's declared
+-- namespace, and (b) the guard family extended by the given extra
+-- (name, threshold grid) pairs, in declaration order after the
+-- built-in @("t", tau)@ family.
+enumerateModelsIn :: Namespace -> [(Name, Grid)] -> [Terminal] -> [Model]
+enumerateModelsIn ns extras allowed =
+    consts ++ walks ++ concatMap guardFamily (("t", tauGrid) : extras)
   where
     has t = t `elem` allowed
     -- every constant enters through the grammar's only door; the
@@ -187,14 +200,20 @@ enumerateModels allowed = consts ++ walks ++ changePoints
     --   constant = model bit + mention(theta)
     --   walk     = model bit + rho index (no param-alternative bit,
     --              amended design.md §5)
-    --   change   = model bit + (if bit + guard + two theta mentions),
-    --              guard = (Get bit + singleton namespace) + mention(tau)
+    --   guard    = model bit + (if bit + guard head + two theta
+    --              mentions), head = (Get bit + log2 |ns|) +
+    --              mention(threshold grid) — the frozen dlChange with
+    --              the namespace charge as data (0 while singleton)
     mention g = 1 + logBase 2 (fromIntegral (gridSize g))
-    dlConst, dlWalk, dlChange :: Double
+    nsB :: Double
+    nsB = case nsSize ns of
+      1 -> 0
+      k -> logBase 2 (fromIntegral k)
+    dlConst, dlWalk :: Double
     dlConst  = 1 + mention thetaGrid
     dlWalk   = 1 + logBase 2 (fromIntegral (gridSize rhoGrid))
-    dlChange = 1 + (((1 + ((1 + 0) + mention tauGrid))
-                     + mention thetaGrid) + mention thetaGrid)
+    dlGuard g = 1 + (((1 + ((1 + nsB) + mention g))
+                      + mention thetaGrid) + mention thetaGrid)
     consts =
       [ MBern (Bits dlConst) e
       | has TBern, has TC, e <- thetaCs ]
@@ -202,25 +221,14 @@ enumerateModels allowed = consts ++ walks ++ changePoints
       [ MHmm (Bits dlWalk) e
       | has THmm, has TC, e <- onGrid rhoGrid ]
     -- the reference excludes the diagonal by index (k1 /= k2)
-    changePoints =
-      [ MBern (Bits dlChange) (If (Gt (Get "t") tc) t1 t2)
+    guardFamily (nm, g) =
+      [ MBern (Bits (dlGuard g)) (If (Gt (Get nm) tc) t1 t2)
       | has TBern, has TIf, has TC, has TGet, has TGt
-      , tc <- onGrid tauGrid
+      , tc <- onGrid g
       , (k1, t1) <- indexed thetaCs
       , (k2, t2) <- indexed thetaCs
       , k1 /= k2 ]
     indexed = zip [0 :: Int ..]
-
--- | Namespace-relative enumeration (MEMBRANE_PLAN T1/M1): the same
--- model fragment with (a) the name-mention term inside every guard
--- charged @log2 |ns|@ against the world's declared namespace, and
--- (b) the guard family extended by the given extra (name, threshold
--- grid) pairs, in declaration order after the built-in @("t", tau)@
--- family. The frozen fragment is the special case
--- @enumerateModelsIn (mkNamespace ("t" :| [])) []@ — the membrane
--- oracle pins that identity (renders, description lengths, order).
-enumerateModelsIn :: Namespace -> [(Name, Grid)] -> [Terminal] -> [Model]
-enumerateModelsIn _ _ = enumerateModels
 
 -- ---------------------------------------------------------------------
 -- the demonstration domain
