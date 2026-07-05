@@ -19,6 +19,41 @@ with the builder key throughout; the author countersigns the Task 2
 freeze with a **signed tag** (the scheme's first tag exercise). The
 boundary-queue items 1–4 land in this boundary's author pack.
 
+> **Task 0 rulings (author, 2026-07-05 — verbatim intent, binding on
+> this increment):**
+> - **M1 APPROVED.** The pricing law goes in the pack NORMATIVELY:
+>   description length is namespace-relative; 2^-|program| normalizes
+>   per-world; publishing a name raises every name-mention's cost and
+>   re-weights the prior. A recorded semantic commitment (richer world
+>   = more surprising names), not an implementation detail.
+> - **M2 APPROVED WITH CORRECTION.** `last_action` echoes a STABLE
+>   per-affordance identity (world-owned stable ordering/id), NOT the
+>   mutable published-menu index — otherwise B's growing menu and C's
+>   self-signature collide (the integer's meaning would shift
+>   mid-episode). 0 = none-yet stands.
+> - **M5 APPROVED, load-bearing.** Namespace = Get-mentionable feature
+>   names only; action vocabulary prices through slots/argmax. Keeping
+>   the two priced surfaces separate is what stops a "fourth flow"
+>   entering through the pricing door. A later increment must not
+>   unify them.
+> - **M3/M9 APPROVED**, M9 tightened to a compile fact: the ladder's
+>   depth field arrives as an ADDITIVE constructor/slot at its own
+>   boundary — no dormant Maybe-depth placeholder now.
+> - **M4, M6, M7, M8, M10, Q1–Q5 APPROVED as written.** M6's
+>   structural same-call form for B endorsed as the executable form of
+>   "no special case."
+> - **REQUIRED (group 4 / test C — the ExpFam group-6 lesson):** the
+>   self-signature world must present the `last_action` mention IN
+>   COMPETITION with a plausible non-self hypothesis (a
+>   drift/changepoint story that fits a world where the feature is
+>   exogenous), so the MAP mentioning `last_action` SELECTS
+>   self-explanation over a real alternative rather than uttering the
+>   only available sentence. The competitor is explicit in the oracle.
+> - **Boundary-queue items 1–4 confirmed** for this pack; item 1 (the
+>   red-runner flag-fidelity correction) applies to THIS increment's
+>   runner at Task 1.
+> - Proceed to Task 1; stop at Task 2 for the freeze + signed tag.
+
 ---
 
 ## T1. The namespace hazard (why pricing must be per-world)
