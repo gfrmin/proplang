@@ -162,9 +162,9 @@ groupGeneric = testGroup "generic expfam semantics (normalized exp, plan Q1)"
 propNorm :: Property
 propNorm =
   forAll (choose (-6, 6)) $ \eta ->
-    let total = sum (map snd (top (genericAt eta) 2))
-    in counterexample ("total mass " ++ show total)
-         (abs (total - 1) <= 1e-12)
+    let totalMass = sum (map snd (top (genericAt eta) 2))
+    in counterexample ("total mass " ++ show totalMass)
+         (abs (totalMass - 1) <= 1e-12)
 
 propMono :: Property
 propMono =
