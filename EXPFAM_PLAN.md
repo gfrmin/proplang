@@ -322,6 +322,29 @@ the increment oracle pins both strings.
 
 ## Under-determination register (dispositions proposed; author rules)
 
+> **Task 0 rulings received 2026-07-05:** E1 (T1) APPROVED as (b)+(c) —
+> the amended interface.md is provided and in effect (§4 downgrades the
+> unification to "emissions fully, transitions partially"; rw recorded
+> as the alphabet's one non-expfam member), and the author additionally
+> amends the frozen CLAUDE.md step-6 sentence inside the Task 2 freeze
+> commit (author pack §4): frozen texts may not carry a known-false
+> promise past a boundary where the author can fix them. E2 (T2)
+> APPROVED WITH CONDITION — the production system becomes normative
+> spec text (author pack §1): per-sort alternative tables, declared
+> hole sorts (kernel positions are KER holes, which is what keeps the
+> code Kraft-tight with a 0-bit ExpFam), out-of-fragment GADT terms
+> priced for totality but outside the generative prior; "sort" is a
+> published table, not a knob. E3 APPROVED (author pack §2). E4–E10,
+> E12 APPROVED as proposed; on the record as endorsed precedent:
+> group 7's green-from-start float guardian, group 6 landing the fast
+> path's semantics as oracle before the fast path exists, and
+> "duplicating pins splits custody". E8 (T3) APPROVED — the frozen
+> export list correctly forced the representation debt to be named
+> rather than incurred. E11 EXERCISED FURTHER — interface.md AND
+> design.md join the manifest at Task 2; the re-signing command in
+> author pack §5 supersedes this plan's Task 2 sketch. The pack
+> (expfam-task2-author-pack.md) is the author's freeze worksheet.
+
 1. **E1 — scope of the re-derivation** (= T1): bern fully re-derived;
    rw untouched in code, its expfam claim amended out of interface.md
    §4 by the author (rw stays a named non-expfam combinator of the
