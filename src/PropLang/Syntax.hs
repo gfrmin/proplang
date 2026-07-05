@@ -18,6 +18,7 @@ module PropLang.Syntax
   ( B, K, Ev
   , Name, Ix
   , Grid, mkGrid, gridName, gridSize
+  , Carrier, mkCarrier, carrierName, carrierSize, carrierSpace
   , Idx(..)
   , Expr( Get, If, Gt, Var
 #ifndef DROP_PUSH
@@ -27,21 +28,27 @@ module PropLang.Syntax
 #ifndef DROP_ARGMAX
         , Argmax
 #endif
-        , Call, C )
+        , Call, C
+#ifndef DROP_EXPFAM
+        , ExpFam
+#endif
+        )
   , mkC
   , Fn(..)
+  , Stats(..)
   , Args(..)
   , StdName(..)
   , Util, mkUtil, applyUtil
   , KnownScope(..)
   , bits
   , featureNames
+  , carrierNames
   ) where
 
 import Data.Kind (Type)
 import Data.List.NonEmpty (NonEmpty, toList)
 import Data.Proxy (Proxy (..))
-import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel)
+import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel, Space)
 
 type B = Belief
 type K = Kernel
@@ -83,6 +90,42 @@ gridLookup (Grid _ pts) k
       []    -> Nothing
   | otherwise = Nothing
 
+-- | A declared finite output space for the expfam basis (EXPFAM_PLAN
+-- Q1/E4): 'Grid' generalized — a named finite point set, typed by its
+-- carrier. Abstract; 'mkCarrier' is the constructor. Declarations are
+-- domain data and live in "PropLang.Enumerate", like the grids. A
+-- carrier mention is priced against the 'carrierNames' registry (same
+-- written rule as 'featureNames': 0 bits while the registry is a
+-- singleton).
+data Carrier c = Carrier Name (NonEmpty c)
+
+mkCarrier :: Name -> NonEmpty c -> Carrier c
+mkCarrier = Carrier
+
+carrierName :: Carrier c -> Name
+carrierName (Carrier nm _) = nm
+
+carrierSize :: Carrier c -> Int
+carrierSize (Carrier _ pts) = length pts
+
+-- | The carrier's points as a Space, through the public constructor —
+-- expfam beliefs over a carrier normalize over exactly these points.
+carrierSpace :: Carrier c -> Space c
+carrierSpace = undefined -- Task-1 type-surface stub (oracle group 1 red)
+
+-- | Defunctionalized sufficient-statistic syntax (first-order, priced;
+-- the reported STATS alphabet, EXPFAM_PLAN Q4/E5): sole written member
+-- 'SId', the identity statistic T(y) = y — bern's sufficient statistic
+-- (interface.md §4). Sort-local coding (author pack §1): a STATS
+-- choice costs log2 1 = 0 bits while the alphabet has one member; the
+-- gauss pair (y, y²) is the named continuous-carrier debt and grows
+-- this alphabet by reported change when it lands. The CPP flag is the
+-- deletion audit's ablation point (test-expfam row 'sid').
+data Stats c where
+#ifndef DROP_SID
+  SId :: Real c => Stats c
+#endif
+
 -- | Typed de Bruijn index into the environment.
 data Idx env t where
   Z :: Idx (t ': env) t
@@ -107,8 +150,16 @@ data Expr env t where
   Argmax :: Expr env (NonEmpty o) -> Expr (o ': env) Double -> Expr env o
 #endif
   Call   :: StdName args t -> Args env args -> Expr env t
-  -- ExpFam/Carrier/Stats deliberately absent in the parity phase
-  -- (CLAUDE.md porting order, step 6).
+#ifndef DROP_EXPFAM
+  -- the expfam basis (interface.md §4; EXPFAM_PLAN E3 as ruled): the
+  -- family node IS a kernel from its (single) natural parameter to the
+  -- declared carrier — the parameter arrives where the kernel is
+  -- applied, as the K type says. The Space payload declares the
+  -- kernel's domain (a kernel HAS a domain; declaring it is declared
+  -- structure), priced 0 by the recorded opaque-payload convention.
+  -- KER-sort: 0 constructor bits (sole production, author pack §1).
+  ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double c)
+#endif
 
 -- | Match-only view of a priced constant: grid, index, and the point
 -- VALUE, resolved once at construction time by 'mkC' — the only door
@@ -129,6 +180,9 @@ pattern C g k v <- MkC g k v
              CondE, Expect,
 #ifndef DROP_ARGMAX
              Argmax,
+#endif
+#ifndef DROP_EXPFAM
+             ExpFam,
 #endif
              Call #-}
 
@@ -185,6 +239,19 @@ data StdName args t where
   IsEq   :: Eq a => StdName '[a, a] Bool
   VAct   :: StdName '[B h, Util a h, NonEmpty a] Double
   VThink :: Eq y => StdName '[B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
+#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
+  -- the derived name (EXPFAM_PLAN E6): bern re-derived over the expfam
+  -- basis — a REPORTED alphabet change (STDNAME grows 4 -> 5, author
+  -- pack §1). Belief-valued: the emission distribution at the
+  -- evaluated parameter. The carrier rides as an opaque payload (the
+  -- Fn-payload precedent); its mention is priced by the carrier
+  -- registry at the 'bits' site. Executed semantics is the recorded
+  -- fast form; the expfam expansion is the property-enforced contract
+  -- (E7 — CL-4's doctrine at the name layer). Dies with the basis
+  -- (E9): the flag conjunction is the coupling that keeps "delete
+  -- expfam and nothing can assign likelihood" true at the code level.
+  Bern   :: Carrier Int -> StdName '[Double] (B Int)
+#endif
 
 -- | A utility as an opaque value-layer object (precedent: 'expect',
 -- 'kernel', 'event' all accept host functions at the value layer;
@@ -246,6 +313,9 @@ bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
 #ifndef DROP_ARGMAX
       Argmax o v -> nodeB + go sc o + go (sc + 1) v
 #endif
+#ifndef DROP_EXPFAM
+      ExpFam {}  -> undefined -- Task-1 stub (KER-sort price lands at Task 3)
+#endif
       Call _ as  -> nodeB + stdB + goArgs sc as
 
     goArgs :: Int -> Args env' ts -> Double
@@ -270,3 +340,11 @@ bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
 -- dormant, and priced).
 featureNames :: [Name]
 featureNames = ["t"]
+
+-- | The priced carrier registry (EXPFAM_PLAN E4): a carrier mention
+-- costs @log2 |carrierNames|@ at the mention site — 0 bits while the
+-- registry has one declared carrier, the same written rule as
+-- 'featureNames'. The declarations themselves are domain data in
+-- "PropLang.Enumerate".
+carrierNames :: [Name]
+carrierNames = ["obs"]

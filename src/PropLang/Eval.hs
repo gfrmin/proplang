@@ -90,6 +90,9 @@ evalx expr env@(Env feats vals) = case expr of
           in if cv > bv then go c cv rest else go best bv rest
     in fst (go o0 (val o0) os)
 #endif
+#ifndef DROP_EXPFAM
+  ExpFam {}  -> undefined -- Task-1 stub (generic semantics land at Task 4)
+#endif
   Call sn as -> applyStd sn (evalArgs as env)
 
 evalArgs :: Args env ts -> Env env -> Vals ts
@@ -103,6 +106,9 @@ applyStd IsEq   (x :. y :. VNil)      = x == y
 applyStd VAct   (b :. u :. acts :. VNil) = vAct b u acts
 applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
   vThink b k ys u acts n price
+#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
+applyStd (Bern _) (_ :. VNil) = undefined -- Task-1 stub (fast form lands at Task 4)
+#endif
 
 negInf :: Double
 negInf = -1 / 0

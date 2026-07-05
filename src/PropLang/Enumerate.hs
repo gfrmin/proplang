@@ -22,9 +22,13 @@ module PropLang.Enumerate
   , allTerminals
   , Model
   , renderModel
+  , renderExpr
   , enumerateModels
   , Obs
   , obsSpace, thetaSpace, emit
+#ifndef DROP_CARRIER_OBS
+  , obsCarrier
+#endif
   , Agent
   , mkAgent
   , predictive
@@ -40,8 +44,9 @@ import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         LogProb, Space, cond, fromBits, kernel, logPredict,
                         mkSpace, push, uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), StdName (..),
-                        Args (..), gridName, gridSize, mkC, mkGrid)
+import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), StdName (..),
+                        Args (..), gridName, gridSize, mkC, mkCarrier,
+                        mkGrid)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -93,8 +98,10 @@ renderModel :: Model -> String
 renderModel (MBern _ p) = "('bern', " ++ renderExpr p ++ ")"
 renderModel (MHmm _ e)  = "('hmm', " ++ renderExpr e ++ ")"
 
--- Rendering is total over the grammar; only the model fragment's shapes
--- are ever asserted against the oracle.
+-- | Rendering is total over the grammar; only the model fragment's
+-- shapes are ever asserted against the frozen oracle. Exported since
+-- the expfam increment (additive) so the increment oracle can pin the
+-- new nodes' strings.
 renderExpr :: Expr env t -> String
 renderExpr e0 = case e0 of
   C g k _    -> "('c', '" ++ gridName g ++ "', " ++ show k ++ ")"
@@ -111,6 +118,9 @@ renderExpr e0 = case e0 of
 #ifndef DROP_ARGMAX
   Argmax o v -> "('argmax', " ++ renderExpr o ++ ", " ++ renderExpr v ++ ")"
 #endif
+#ifndef DROP_EXPFAM
+  ExpFam {}  -> undefined -- Task-1 stub (render string lands at Task 3)
+#endif
   Call sn as -> "('call', '" ++ stdNameStr sn ++ "'" ++ renderArgs as ++ ")"
   where
     idxInt :: Idx env' t' -> Int
@@ -124,6 +134,9 @@ renderExpr e0 = case e0 of
     stdNameStr IsEq   = "IsEq"
     stdNameStr VAct   = "VAct"
     stdNameStr VThink = "VThink"
+#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
+    stdNameStr Bern {} = undefined -- Task-1 stub ("bern" lands at Task 3)
+#endif
 
 -- The description length of a hypothesis: its ONLY prior contribution
 -- (design §5), charged at the derivation and stored on the hypothesis
@@ -187,6 +200,17 @@ type Obs = Int
 
 obsSpace :: Space Obs
 obsSpace = mkSpace (0 :| [1])
+
+#ifndef DROP_CARRIER_OBS
+-- | The demonstration domain's declared carrier (EXPFAM_PLAN E4):
+-- domain data like the grids, priced against the Syntax carrier
+-- registry. The CPP flag is the deletion audit's carrier-declaration
+-- ablation point (interface.md test E restricted to the code level:
+-- delete the declaration and no expfam sentence can declare its
+-- output space over observations).
+obsCarrier :: Carrier Obs
+obsCarrier = mkCarrier "obs" (0 :| [1])
+#endif
 
 thetaSpace :: Space Double
 thetaSpace = mkSpace thetaPoints
