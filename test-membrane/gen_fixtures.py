@@ -18,7 +18,7 @@ namespace-relative description lengths of MEMBRANE_PLAN T1/M1:
     mention(g)      = 1 + log2 |g|
     dlConst         = 1 + mention(theta)
     dlWalk          = 1 + log2 |rho|
-    dlGuard(ns, g)  = 1 + ((1 + log2 |ns|) + mention(g))
+    dlGuard(ns, g)  = 1 + (1 + ((1 + log2 |ns|) + mention(g)))
                         + mention(theta) + mention(theta)
 
 Guard families enumerate threshold-outermost, (k1, t1) x (k2, t2) with
@@ -48,7 +48,16 @@ def dl_walk():
 
 
 def dl_guard(ns_size, grid):
-    return (1 + ((1 + LG(ns_size)) + (1 + LG(len(grid))))
+    # Pin provenance (the membrane pre-tag re-open): this is the frozen
+    # tree of dlChange, src/PropLang/Enumerate.hs — model bit + (if bit
+    # + ((Get bit + lg |ns|) + mention grid)) + two theta mentions —
+    # verified against the artifact at fd70162 (modelBits of the first
+    # frozen t-guard = 16.339850002884624). The original omission of
+    # the if bit made every guard prior a uniform factor 2 too
+    # generous; all pinned margins survived the correction (C 0.947082
+    # unchanged, C0 0.635 -> 0.627 same MAP, A 0.4326 -> 0.4323). A pin
+    # is derived from the frozen artifact, never a parallel derivation.
+    return (1 + (1 + ((1 + LG(ns_size)) + (1 + LG(len(grid)))))
             + MENTION_THETA + MENTION_THETA)
 
 

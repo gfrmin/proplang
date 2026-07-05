@@ -37,9 +37,9 @@
 -- discriminates BOTH ways (the ExpFam group-6 lesson): the
 -- self-signature world's MAP is the last_action sentence at posterior
 -- 0.947 while the exogenous control's MAP is the t-changepoint at
--- 0.635 mentioning no echo name; the dormant sentence rides at its
--- prior ratio to 1.5e-15 until its sensor speaks, then lands MAP at
--- 0.433 from a 2.5e-4 prior; the grown affordance's EU clears the
+-- 0.627 mentioning no echo name; the dormant sentence rides at its
+-- prior ratio to 1.4e-15 until its sensor speaks, then lands MAP at
+-- 0.432 from a 1.3e-4 prior; the grown affordance's EU clears the
 -- incumbent by 0.34 the tick it appears.
 module Main (main) where
 
@@ -478,16 +478,23 @@ g6Fragment = testGroup "model fragment: namespace-relative derivation charges"
       length modelsA @?= 1241
       length modelsC @?= 1529
   , testCase "guard sentences pay their namespace and their threshold grid" $ do
+      -- pin provenance (the membrane pre-tag re-open): these literals
+      -- are the frozen tree of dlChange, src/PropLang/Enumerate.hs —
+      -- model bit + (if bit + ((Get bit + lg |ns|) + mention grid)) +
+      -- two theta mentions — verified against the artifact at fd70162
+      -- (modelBits of the first frozen t-guard = 16.339850002884624);
+      -- a pin is derived from the frozen artifact, never from a
+      -- parallel derivation
       if length modelsA <= s2GuardIx 0 1
         then assertFailure "enumeration lacks the s2-guard block"
         else assertApprox "s2-guard dl under a 2-name world" 1e-12
-               (1 + ((1 + 1) + (1 + 0)) + (1 + lg 9) + (1 + lg 9))
+               (1 + (1 + ((1 + 1) + (1 + 0))) + (1 + lg 9) + (1 + lg 9))
                (unBits (modelBits (modelsA !! s2GuardIx 0 1)))
       let laBase = 9 + 8 + 16 * 72 + 3 * 72
       if length modelsC <= laBase
         then assertFailure "enumeration lacks the last_action-guard block"
         else assertApprox "la-guard dl under a 3-name world" 1e-12
-               (1 + ((1 + lg 3) + (1 + 1)) + (1 + lg 9) + (1 + lg 9))
+               (1 + (1 + ((1 + lg 3) + (1 + 1))) + (1 + lg 9) + (1 + lg 9))
                (unBits (modelBits (modelsC !! laBase)))
   , testCase "M1: publishing a name re-prices every mention (across worlds)" $ do
       let tGuardA = unBits (modelBits (modelsA !! 17))

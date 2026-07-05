@@ -114,8 +114,12 @@ Every step-6+ increment follows the recursive two-phase discipline:
    compile-failing oracle proves nothing). The oracle-phase runner
    must be bit-faithful to the future gate conditions — the stanza's
    exact compiler flags and warning set; a red run under weaker flags
-   proves nothing (the ExpFam re-open, 4c7b49d). Existing frozen
-   suites stay green throughout.
+   proves nothing (the ExpFam re-open, 4c7b49d). A pinned literal that
+   must agree with a frozen quantity is derived from the frozen
+   artifact itself, never from a parallel derivation — sanity
+   simulations establish discriminating power, not pin values (the
+   membrane pre-tag re-open). Existing frozen suites stay green
+   throughout.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
