@@ -25,16 +25,23 @@ module PropLang.Enumerate
   , renderExpr
   , enumerateModels
   , Obs
-  , obsSpace, thetaSpace, emit
+  , obsSpace, thetaSpace
 #ifndef DROP_CARRIER_OBS
   , obsCarrier
 #endif
+  -- the scoring layer dies with the basis or with the carrier
+  -- declaration (plan E9): delete expfam — or the declared output
+  -- space — and sentences stay sayable but NOTHING can assign
+  -- likelihood; the agent cannot exist
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+  , emit
   , Agent
   , mkAgent
   , predictive
   , observe
   , agentMeta
   , agentModels
+#endif
   ) where
 
 import Data.List (elemIndex)
@@ -44,6 +51,10 @@ import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         LogProb, Space, cond, fromBits, kernel, logPredict,
                         mkSpace, push, uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+import PropLang.Eval (bernFast)
+import PropLang.Syntax (carrierSpace)
+#endif
 import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), StdName (..),
                         Args (..), Stats (..), carrierName, gridName,
                         gridSize, mkC, mkCarrier, mkGrid)
@@ -221,15 +232,14 @@ obsCarrier = mkCarrier "obs" (0 :| [1])
 thetaSpace :: Space Double
 thetaSpace = mkSpace thetaPoints
 
--- | The Bernoulli emission kernel theta -> Belief over {0,1}, built from
--- the only prior source (description lengths of the two outcomes).
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+-- | The Bernoulli emission kernel theta -> Belief over the declared
+-- obs carrier: since the expfam re-derivation (plan E7/Task 5) this IS
+-- the derived name's fast form spread over the theta grid — one
+-- arithmetic, no drift (test-expfam groups 4 and 7 pin the identity),
+-- and the same float sequence the parity phase shipped.
 emit :: Kernel Double Obs
-emit = kernel thetaSpace obsSpace bernBelief
-
-bernBelief :: Double -> Belief Obs
-bernBelief th =
-  fromBits obsSpace
-    (\y -> Bits (negate (logBase 2 (if y == 1 then th else 1 - th))))
+emit = kernel thetaSpace (carrierSpace obsCarrier) (bernFast obsCarrier)
 
 -- The reflected walk on the theta grid at a grid-priced rate: a
 -- decision-free combinator, total and domain-independent (design §9).
@@ -296,7 +306,7 @@ stepHyp :: Features -> HypState -> (Belief Obs, Obs -> Maybe HypState)
 stepHyp feats h = case h of
   HBern p ->
     let th = evalx p (mkEnv feats VNil)
-    in (bernBelief th, \_ -> Just (HBern p))
+    in (bernFast obsCarrier th, \_ -> Just (HBern p))
   HHmm rho lat ->
     let predLat = push lat (walkKernel rho)
     in ( push predLat emit
@@ -328,3 +338,9 @@ agentMeta (Agent _ _ _ meta) = meta
 
 agentModels :: Agent -> [Model]
 agentModels (Agent ms _ _ _) = ms
+
+#endif
+-- end of the scoring layer (plan E9): everything from 'emit' down
+-- requires the expfam basis and the declared obs carrier; without
+-- them the model fragment still enumerates and renders — sentences
+-- are sayable — but no likelihood can be assigned and no agent built.
