@@ -337,6 +337,15 @@ g3Menu = testGroup "growing menu (B): adopted iff expected utility says so"
                                (PilotEU (utilB 0.9)) 20 0
                                (mkAgent (enumerateModels allTerminals)))
       map ttChoice trs @?= replicate 20 (Fire (mkAffId 1) [])
+  , testCase "menu growth is not namespace growth (M5, ruled at the freeze)" $
+      -- the freeze-review consistency requirement: this increment
+      -- defers mid-episode NAMESPACE growth, so B's mid-episode MENU
+      -- growth is legitimate only because it adds action vocabulary
+      -- (slot-priced) and never a Get-mentionable name — asserted in
+      -- construction: the published feature-name set is the declared
+      -- singleton at every tick, growth tick included
+      assertBool "published feature names == [\"t\"] at every tick"
+        (all (\t -> map fst (wFeats bWorld t) == ["t"]) [0 .. 19])
   ]
 
 -- ---------------------------------------------------------------------
@@ -385,13 +394,17 @@ g4Self = testGroup "self-signature (C): the echo wins only when it should"
       assertBool ("MAP mentions ('get', 'last_action'): " ++ m)
                  (sub "('get', 'last_action')" m)
       assertBool ("MAP posterior > 0.5, got " ++ show p) (p > 0.5)
-  , testCase "C0 control: the exogenous story wins, no echo mention" $ do
+  , testCase "C0 control: the exogenous story wins, BY STRUCTURE" $ do
       (agF, _) <- runOrFail (runMembrane (cWorld shifted160) cEcho cPilot
                                160 0 (mkAgent modelsC))
       (m, _) <- mapOfAgent renderModel
                   (top (agentMeta agF) (length modelsC)) modelsC
-      assertBool ("control MAP mentions ('get', 't'): " ++ m)
-                 (sub "('get', 't')" m)
+      -- freeze-review ruling (the ExpFam group-6 standard): the
+      -- competitor's win is pinned by structure, not by negation — the
+      -- control MAP must BE the changepoint program, and the sanity
+      -- simulation says it is byte-identical to the frozen t1 anchor
+      -- (tau index 11 = 60.0; thetas 0 and 8)
+      m @?= t1MapProgram
       assertBool ("control MAP must not mention last_action: " ++ m)
                  (not (sub "('get', 'last_action')" m))
   ]
