@@ -1,6 +1,7 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE GADTs #-}
+{-# LANGUAGE PatternSynonyms #-}
 
 -- | The grammar as a GADT (typed-port-spec §3): ill-typed sentences are
 -- unrepresentable. Indexed by result type and a typed environment (de
@@ -16,9 +17,17 @@
 module PropLang.Syntax
   ( B, K, Ev
   , Name, Ix
-  , Grid, mkGrid, gridName, gridSize, gridLookup
+  , Grid, mkGrid, gridName, gridSize
   , Idx(..)
-  , Expr(..)
+  , Expr( Get, If, Gt, Var
+#ifndef DROP_PUSH
+        , Push
+#endif
+        , CondE, Expect
+#ifndef DROP_ARGMAX
+        , Argmax
+#endif
+        , Call, C )
   , mkC
   , Fn(..)
   , Args(..)
@@ -40,10 +49,11 @@ type Ev = Evidence
 
 type Name = String
 
--- | Index into a priced grid. Out-of-range mentions are sayable and
--- dormant: the evaluator reads them as 0.0, the same convention as an
--- absent 'Get' name (the Phase 1 report's recorded partiality of @C@ is
--- resolved by total dormancy, not by a runtime error).
+-- | Index into a priced grid. Out-of-range mentions are UNCONSTRUCTIBLE
+-- (amended spec §3): the only door to a priced constant is 'mkC', which
+-- returns 'Nothing' off the grid. The 'Get' 0.0 convention is dormancy
+-- for names that may appear later; a grid index never can, so it gets
+-- no denotation at all.
 type Ix = Int
 
 -- | A priced grid of sayable constants: a named, finite point set whose
@@ -62,8 +72,10 @@ gridName (Grid nm _) = nm
 gridSize :: Grid -> Int
 gridSize (Grid _ pts) = length pts
 
--- | Total point lookup: 'Nothing' off the grid (the evaluator maps it to
--- the dormant 0.0).
+-- Total point lookup: 'Nothing' off the grid. Private since the
+-- grammar-hygiene increment (R7): its only public consumer was the
+-- evaluator's dormant read, retired at Task 3 — it survives as the
+-- validator inside 'mkC'.
 gridLookup :: Grid -> Ix -> Maybe Double
 gridLookup (Grid _ pts) k
   | k >= 0 = case drop k pts of
@@ -81,7 +93,7 @@ data Idx env t where
 -- 'Argmax' ranges over 'NonEmpty' options: a totality-forced deviation
 -- from the spec §3 sketch's @[o]@, approved at Phase 1 review.
 data Expr env t where
-  C      :: Grid -> Ix -> Expr env Double            -- priced constant
+  MkC    :: Grid -> Ix -> Double -> Expr env Double  -- NOT exported: 'mkC' is the only door (R1)
   Get    :: Name -> Expr env Double                  -- absent name ~> 0.0
   If     :: Expr env Bool -> Expr env t -> Expr env t -> Expr env t
   Gt     :: Expr env Double -> Expr env Double -> Expr env Bool
@@ -97,6 +109,28 @@ data Expr env t where
   Call   :: StdName args t -> Args env args -> Expr env t
   -- ExpFam/Carrier/Stats deliberately absent in the parity phase
   -- (CLAUDE.md porting order, step 6).
+
+-- | Match-only view of a priced constant: grid, index, and the point
+-- VALUE, resolved once at construction time by 'mkC' — the only door
+-- (amended spec §3, plan R1). Unidirectional, so a @C@ nobody validated
+-- cannot exist: off-grid constants are unconstructible, and the
+-- evaluator reads the carried value with no lookup, no dormant 0.0, no
+-- error site.
+pattern C :: () => t ~ Double => Grid -> Ix -> Double -> Expr env t
+pattern C g k v <- MkC g k v
+
+-- The shipped grammar for the exhaustiveness checker, with 'C' standing
+-- in for the unexported 'MkC'. The set tracks the CPP ablation flags so
+-- every audited configuration keeps totality as a compile fact.
+{-# COMPLETE C, Get, If, Gt, Var,
+#ifndef DROP_PUSH
+             Push,
+#endif
+             CondE, Expect,
+#ifndef DROP_ARGMAX
+             Argmax,
+#endif
+             Call #-}
 
 -- | Defunctionalized function syntax (first-order, priced): the
 -- grammar-hygiene alphabet, exactly the two published expansions of the
@@ -120,12 +154,10 @@ data Fn a where
 -- | The ONLY constructor of a priced-constant sentence: 'Nothing' off
 -- the grid, so a malformed constant is unconstructible rather than
 -- denoting (amended spec §3; the Get 0.0 convention is dormancy for
--- names that may appear — a grid index never can).
---
--- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): body lands in Task 3
--- with the match-only pattern for 'C' (plan R1).
+-- names that may appear — a grid index never can). The grid point is
+-- resolved here, once, and carried by the sentence.
 mkC :: Grid -> Ix -> Maybe (Expr env Double)
-mkC = undefined
+mkC g k = MkC g k <$> gridLookup g k
 
 -- | Typed argument list for 'Call'.
 data Args env ts where
@@ -194,7 +226,7 @@ bits :: KnownScope env => Expr env t -> Bits
 bits e0 = Bits (go e0)
   where
     go :: Expr env' t' -> Double
-    go (C g _)       = 1 + logBase 2 (fromIntegral (gridSize g))
+    go (MkC g _ _)   = 1 + logBase 2 (fromIntegral (gridSize g))
     go (Get _)       = 1 + nameBits
     go (If c t e)    = 1 + go c + go t + go e
     go (Gt a b)      = go a + go b

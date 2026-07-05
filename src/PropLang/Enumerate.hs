@@ -35,14 +35,13 @@ module PropLang.Enumerate
 
 import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)), nonEmpty, toList)
-import Data.Maybe (fromMaybe)
 
 import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         LogProb, Space, cond, fromBits, kernel, logPredict,
                         mkSpace, push, uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), Ix, StdName (..),
-                        Args (..), bits, gridLookup, gridName, mkGrid)
+import PropLang.Syntax (Expr (..), Grid, Idx (..), StdName (..),
+                        Args (..), bits, gridName, gridSize, mkC, mkGrid)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -77,23 +76,26 @@ rhoGrid   = mkGrid "rho" rhoPoints
 
 -- | A model-fragment sentence (a hypothesis): a Bernoulli emission whose
 -- parameter is a closed sentence of the grammar, or a latent reflected
--- walk at a grid-priced rate. Abstract to consumers.
+-- walk whose rate constant IS the sentence it is (R8 — Python's
+-- @('hmm', ('c', 'rho', k))@ literally): rate value by evaluation,
+-- rendering by match. The walk's description length is charged at the
+-- derivation (design §5), so it rides along. Abstract to consumers.
 data Model
   = MBern (Expr '[] Double)
-  | MHmm Ix
+  | MHmm Bits (Expr '[] Double)
 
 -- | Canonical rendering, byte-identical to the Python reference's repr,
 -- e.g. @"('hmm', ('c', 'rho', 3))"@. The frozen tests assert MAP
 -- programs against these exact strings.
 renderModel :: Model -> String
-renderModel (MBern p) = "('bern', " ++ renderExpr p ++ ")"
-renderModel (MHmm k)  = "('hmm', " ++ renderExpr (C rhoGrid k :: Expr '[] Double) ++ ")"
+renderModel (MBern p)  = "('bern', " ++ renderExpr p ++ ")"
+renderModel (MHmm _ e) = "('hmm', " ++ renderExpr e ++ ")"
 
 -- Rendering is total over the grammar; only the model fragment's shapes
 -- are ever asserted against the oracle.
 renderExpr :: Expr env t -> String
 renderExpr e0 = case e0 of
-  C g k      -> "('c', '" ++ gridName g ++ "', " ++ show k ++ ")"
+  C g k _    -> "('c', '" ++ gridName g ++ "', " ++ show k ++ ")"
   Get nm     -> "('get', '" ++ nm ++ "')"
   If c t e   -> "('if', " ++ renderExpr c ++ ", " ++ renderExpr t ++ ", "
                   ++ renderExpr e ++ ")"
@@ -123,11 +125,12 @@ renderExpr e0 = case e0 of
 
 -- The description length of a hypothesis: its ONLY prior contribution
 -- (design §5). Bernoulli sentences carry the grammar's price; the hmm's
--- rate slot is a bare grid constant (one MODEL choice bit + the grid
--- index — no PARAM-alternative bit, per the amended design.md §5).
+-- dl is charged at the derivation (one MODEL choice bit + the grid
+-- index — no PARAM-alternative bit, per the amended design.md §5) and
+-- stored on the hypothesis.
 modelBits :: Model -> Bits
-modelBits (MBern p) = 1 + bits p
-modelBits (MHmm _)  = Bits (1 + logBase 2 (fromIntegral (length rhoPoints)))
+modelBits (MBern p)   = 1 + bits p
+modelBits (MHmm dl _) = dl
 
 -- | Enumerate the model fragment to depth 1 (the Cromwell frontier) from
 -- the allowed terminal set. Order and count match the Python reference
@@ -138,21 +141,26 @@ enumerateModels :: [Terminal] -> [Model]
 enumerateModels allowed = consts ++ walks ++ changePoints
   where
     has t = t `elem` allowed
-    nTheta = length thetaPoints
-    thetaC k = C thetaGrid k :: Expr '[] Double
+    -- every constant enters through the grammar's only door; the
+    -- index range IS the grid, so completeness is the frozen 1169
+    -- count plus the hygiene dl pins (R8)
+    onGrid g = [ e | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
+    thetaCs = onGrid thetaGrid :: [Expr '[] Double]
     consts =
-      [ MBern (thetaC k)
-      | has TBern, has TC, k <- [0 .. nTheta - 1] ]
+      [ MBern e
+      | has TBern, has TC, e <- thetaCs ]
     walks =
-      [ MHmm k
-      | has THmm, has TC, k <- [0 .. length rhoPoints - 1] ]
+      [ MHmm (Bits (1 + logBase 2 (fromIntegral (gridSize rhoGrid)))) e
+      | has THmm, has TC, e <- onGrid rhoGrid ]
+    -- the reference excludes the diagonal by index (k1 /= k2)
     changePoints =
-      [ MBern (If (Gt (Get "t") (C tauGrid kt)) (thetaC k1) (thetaC k2))
+      [ MBern (If (Gt (Get "t") tc) t1 t2)
       | has TBern, has TIf, has TC, has TGet, has TGt
-      , kt <- [0 .. length tauPoints - 1]
-      , k1 <- [0 .. nTheta - 1]
-      , k2 <- [0 .. nTheta - 1]
+      , tc <- onGrid tauGrid
+      , (k1, t1) <- indexed thetaCs
+      , (k2, t2) <- indexed thetaCs
       , k1 /= k2 ]
+    indexed = zip [0 :: Int ..]
 
 -- ---------------------------------------------------------------------
 -- the demonstration domain
@@ -179,22 +187,28 @@ bernBelief th =
 
 -- The reflected walk on the theta grid at a grid-priced rate: a
 -- decision-free combinator, total and domain-independent (design §9).
+-- Mass is a total function of grid POSITIONS: a point with no position
+-- has mass 0, i.e. infinite description length through 'fromBits' —
+-- the measure's own off-support statement, the same road every
+-- non-neighbor grid point already travels. No error site (R8);
+-- 'kernel' only ever applies 'step' to points of its own space.
 walkKernel :: Double -> Kernel Double Double
 walkKernel rho = kernel thetaSpace thetaSpace step
   where
     pts = toList thetaPoints
     n = length pts
-    at p = fromMaybe (error "walkKernel: point off the theta grid")
-                     (elemIndex p pts)
+    mass (Just i) (Just j) =
+      (if j == i then 1 - rho else 0)
+        + (if j == lo then rho / 2 else 0)
+        + (if j == hi then rho / 2 else 0)
+      where
+        lo = if i > 0 then i - 1 else i + 1
+        hi = if i < n - 1 then i + 1 else i - 1
+    mass _ _ = 0
     step th =
-      let i = at th
-          lo = if i > 0 then i - 1 else i + 1
-          hi = if i < n - 1 then i + 1 else i - 1
-          mass j = (if j == i then 1 - rho else 0)
-                 + (if j == lo then rho / 2 else 0)
-                 + (if j == hi then rho / 2 else 0)
+      let mi = elemIndex th pts
       in fromBits thetaSpace
-           (\p -> Bits (negate (logBase 2 (mass (at p)))))
+           (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
 
 -- ---------------------------------------------------------------------
 -- the agent: a belief over programs, moved only by the verbs
@@ -221,12 +235,12 @@ mkAgent ms = case nonEmpty [0 .. length ms - 1] of
         isp = mkSpace ixs
     in Agent ms (map initHyp ms) isp (fromBits isp (dls !!))
 
+-- The walk's rate is read by evaluating its rate sentence — a closed
+-- constant of the real grammar, so the read is total and the parity
+-- phase's off-grid error site is gone (R8).
 initHyp :: Model -> HypState
-initHyp (MBern p) = HBern p
-initHyp (MHmm k)  =
-  HHmm (fromMaybe (error "initHyp: rho index off the grid")
-                  (gridLookup rhoGrid k))
-       (uniform thetaSpace)
+initHyp (MBern p)  = HBern p
+initHyp (MHmm _ e) = HHmm (evalx e (mkEnv [] VNil)) (uniform thetaSpace)
 
 -- One tick of one hypothesis at the given features: its predictive over
 -- observations, and its absorb continuation (the walk conditions the

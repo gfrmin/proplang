@@ -28,7 +28,7 @@ import PropLang.Belief (Belief, Evidence (Saw), Kernel, LogProb (LogProb),
 import PropLang.Belief (push)
 #endif
 import PropLang.Syntax (Args (..), Expr (..), Idx (..), Name, StdName (..),
-                        Util, applyUtil, gridLookup)
+                        Util, applyUtil)
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
 -- (interface.md §1: prices, clocks, and echoes are names like any other).
@@ -52,12 +52,13 @@ lookupVal Z     (v :. _)  = v
 lookupVal (S i) (_ :. vs) = lookupVal i vs
 
 -- | Big-step evaluation. Pure; total except the recorded Task-1 stub
--- on 'Expect' (grammar-hygiene increment in flight — the dormant grid
--- index read below also retires at Task 3, when off-grid constants
--- become unconstructible).
+-- on 'Expect' (grammar-hygiene increment in flight, semantics land at
+-- Task 5). A priced constant carries its grid point from 'mkC', so the
+-- 'C' case is a field read: no lookup, no dormancy, no error site
+-- (plan R1).
 evalx :: Expr env t -> Env env -> t
 evalx expr env@(Env feats vals) = case expr of
-  C g k      -> fromMaybe 0.0 (gridLookup g k)
+  C _ _ v    -> v
   Get nm     -> fromMaybe 0.0 (lookup nm feats)
   If c t e   -> if evalx c env then evalx t env else evalx e env
   Gt a b     -> evalx a env > evalx b env
