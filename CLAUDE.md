@@ -111,8 +111,11 @@ Every step-6+ increment follows the recursive two-phase discipline:
 2. **Oracle first, runtime-red.** The builder writes the increment
    oracle before any implementation, red against compile-enabling
    type-surface stubs (type surface is oracle-phase work; a
-   compile-failing oracle proves nothing). Existing frozen suites stay
-   green throughout.
+   compile-failing oracle proves nothing). The oracle-phase runner
+   must be bit-faithful to the future gate conditions — the stanza's
+   exact compiler flags and warning set; a red run under weaker flags
+   proves nothing (the ExpFam re-open, 4c7b49d). Existing frozen
+   suites stay green throughout.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
@@ -124,3 +127,9 @@ Every step-6+ increment follows the recursive two-phase discipline:
    verification block run by the human.
 
 The builder never owns a live oracle at the moment it becomes binding.
+
+Custody: the builder signs its own commits with the builder key and
+never touches the author's; a freeze becomes binding when the author
+countersigns the freeze commit with a signed tag from their own
+shell. The tag, not any commit signature, is the attestation of
+author review and approval.

@@ -173,6 +173,22 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > grammar change requiring this table's amendment at a freeze
 > boundary.
 
+> **The namespace law (normative; membrane freeze).** Description
+> length is namespace-relative: a name mention costs
+> log2 |visible namespace| against the WORLD's declared namespace, at
+> both priced sorts (the policy pricer's `Get` term and the model
+> fragment's guard derivations), and 2^(-|program|) normalizes per
+> world. Publishing a name therefore raises every name-mention's cost
+> and re-weights the prior — a richer world makes every sentence about
+> it more surprising. This is a semantic commitment, not an
+> implementation detail. The namespace covers Get-mentionable feature
+> names ONLY (ruling M5, load-bearing): the action vocabulary prices
+> through slot grids and argmax, and keeping the two priced surfaces
+> separate is what stops a fourth flow entering through the pricing
+> door; no later increment may unify them. The frozen worlds are the
+> singleton case (`featureNames = ["t"]`, 0 bits), whose prices this
+> law leaves untouched.
+
 ## 4. The estimator choice, dissolved                    [COMPILE]+[FROZEN]
 
 In the typed grammar there is no myopic special case to write. Deliberation
@@ -200,7 +216,7 @@ Honesty table — the discipline that *remains*, minimized and then frozen:
 | conjugate fast path == generic cond (CL-4) | [PROPERTY] QuickCheck, frozen; types cannot see extensional equality |
 | fineness charged exactly once | [PROPERTY] refine a grid, assert predictive mass invariant within tolerance |
 | adaptation absent from code | [FROZEN] forbidden-token audit + the four acceptance tests, ported verbatim |
-| deletion audit | [FROZEN] per-terminal capability loss, measured; ablation standard (Phase 2, decision 4): a CPP flag removes the constructor AND its evalx/bits/render cases, so all of src compiles ablated and only the frozen fixtures fail — deleting a terminal deletes its semantics, not just its name |
+| deletion audit | [FROZEN] per-terminal capability loss, measured; ablation standard (Phase 2, decision 4; STRENGTHENED at the membrane freeze to the ExpFam E9 as-built): a CPP flag removes the constructor AND everything from its first consumer down — the dependent layer's EXISTENCE, not just its cases — so all of src compiles ablated, only the frozen fixtures fail, and claims like "nothing can assign likelihood, no agent can be built" are literal absences rather than behavioral promises |
 | no test tampering by the builder | protocol, not code: two-phase build with frozen oracle (CLAUDE.md) |
 | alphabet choice, clock, pointer | [RESIDUE] as in design.md §10, unchanged |
 
