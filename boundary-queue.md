@@ -4,6 +4,10 @@ Unfrozen working document. Items here are queued rulings and corrections
 that touch frozen text; per the increment protocol they land only at a
 freeze boundary, only by the author, via that boundary's author pack.
 Queued at the ExpFam increment's acceptance (2026-07-05).
+ALL FOUR ITEMS LANDED at the membrane Task 2 freeze (fd70162,
+2026-07-06): items 1, 2 applied as pack §2/§3; item 3 STRUCK by the
+author (§4 — the T1 record stays in spec §4); item 4 RULED IN (the
+custody paragraph is now CLAUDE.md protocol text). Queue empty.
 
 ## 1. Red-runner flag fidelity → CLAUDE.md increment protocol (author, ruled)
 
