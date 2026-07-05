@@ -64,6 +64,12 @@ g4 = mkGrid "g4" (0.2 :| [0.4, 0.6, 0.8])
 c2 :: Carrier Int
 c2 = mkCarrier "c2" (0 :| [1])
 
+-- the sufficiency discriminator (Task-1 oracle review): a 3-point
+-- carrier, where distinct multisets can share (n, sum T) — the
+-- property that cannot be faked by mere order-invariance
+c3 :: Carrier Int
+c3 = mkCarrier "c3" (0 :| [1, 2])
+
 assertBits :: String -> Double -> Bits -> Assertion
 assertBits name expected (Bits actual) =
   assertBool (name ++ ": expected " ++ show expected ++ " bits, got "
@@ -226,14 +232,85 @@ propExpansion =
 -- group 6: sufficiency — the posterior over an expfam family depends on
 -- a batch only through (n, sum T(y)) (plan E8): the entire semantic
 -- content of any future conjugate fast path, landed as oracle before
--- such a path exists
+-- such a path exists.
+--
+-- As revised at the Task-1 oracle review: on a binary carrier, equal
+-- (n, sum T) forces a permutation, and order-invariance of an iid cond
+-- fold holds for EVERY kernel — vacuous as a license. The license
+-- rests on the 3-point carrier, where distinct multisets share the
+-- statistic ([0,2] vs [1,1]: equal n=2, sum T=2, different data) and
+-- agreement holds BECAUSE the family is exponential. The binary
+-- property is kept, labeled as the permutation case it is.
 -- ---------------------------------------------------------------------
 
 groupSufficiency :: TestTree
 groupSufficiency = testGroup "sufficiency (the fast path's license, plan E8)"
-  [ testProperty "equal (n, sum T) batches yield equal posteriors"
+  [ testCase "the minimal discriminating pair: [0,2] vs [1,1] on c3"
+      minimalPair
+  , testProperty
+      "equal (n, sum T), distinct multisets on c3: equal posteriors"
+      propSufficiency3
+  , testProperty
+      "equal (n, sum T) batches on the binary carrier (permutation case)"
       propSufficiency
   ]
+
+-- the shared harness: prior over an eta grid, generic family kernel
+-- over the given carrier, cond folded over each batch, posteriors
+-- compared through expect at the cross-path tolerance
+sufficiencyCase :: Carrier Int -> [Double] -> [Double] -> [Double]
+                -> [Int] -> [Int] -> Property
+sufficiencyCase car etas pb fv ys1 ys2 =
+  let sp = mkSpace (NE.fromList etas)
+      k = evalx (ExpFam sp car SId :: Expr '[] (K Double Int))
+                (mkEnv [] VNil)
+      idx x = fromMaybe 0 (elemIndex x etas)
+      b0 = fromBits sp (\x -> Bits (pb !! idx x))
+      condFold = foldl (\mb y -> mb >>= \b -> cond b (Saw k y)) . Just
+      f x = fv !! idx x
+  in case (condFold b0 ys1, condFold b0 ys2) of
+       (Just b1, Just b2) ->
+         let lhs = expect b1 f
+             rhs = expect b2 f
+         in counterexample ("posteriors: " ++ show lhs ++ " vs " ++ show rhs)
+              (agrees lhs rhs)
+       _ -> counterexample
+              "cond returned Nothing on full-support expfam evidence" False
+
+minimalPair :: Assertion
+minimalPair = do
+  let etas = [-1, 0.5, 2]
+      sp = mkSpace (NE.fromList etas)
+      k = evalx (ExpFam sp c3 SId :: Expr '[] (K Double Int))
+                (mkEnv [] VNil)
+      idx x = fromMaybe 0 (elemIndex x etas)
+      b0 = fromBits sp (\x -> Bits (1 + fromIntegral (idx x)))
+      condFold = foldl (\mb y -> mb >>= \b -> cond b (Saw k y)) . Just
+  case (condFold b0 [0, 2 :: Int], condFold b0 [1, 1]) of
+    (Just b1, Just b2) ->
+      let lhs = expect b1 id
+          rhs = expect b2 id
+      in assertBool ("posterior means: " ++ show lhs ++ " vs " ++ show rhs)
+           (agrees lhs rhs)
+    _ -> assertFailure "cond returned Nothing on full-support expfam evidence"
+
+propSufficiency3 :: Property
+propSufficiency3 =
+  forAll (chooseInt (2, 5)) $ \n ->
+  forAll (choose (-3, 0)) $ \e0 ->
+  forAll (vectorOf (n - 1) (choose (0.1, 2))) $ \ds ->
+  forAll (vectorOf n (choose (0, 8))) $ \pb ->
+  forAll (chooseInt (1, 3)) $ \n0 ->
+  forAll (chooseInt (0, 3)) $ \n1 ->
+  forAll (chooseInt (1, 3)) $ \n2 ->
+  forAll (vectorOf n (choose (-10, 10))) $ \fv ->
+    let etas = scanl (+) e0 ds        -- n distinct ascending parameters
+        -- distinct multisets, equal (n, sum T): one {0,2} pair traded
+        -- for {1,1} (n0, n2 >= 1 by construction)
+        ys1 = replicate n0 0 ++ replicate n1 1 ++ replicate n2 (2 :: Int)
+        ys2 = replicate (n0 - 1) 0 ++ replicate (n1 + 2) 1
+                ++ replicate (n2 - 1) 2
+    in sufficiencyCase c3 etas pb fv ys1 ys2
 
 propSufficiency :: Property
 propSufficiency =
@@ -244,25 +321,11 @@ propSufficiency =
   forAll (chooseInt (2, 6)) $ \len ->
   forAll (chooseInt (0, 6)) $ \sRaw ->
   forAll (vectorOf n (choose (-10, 10))) $ \fv ->
-    let etas = scanl (+) e0 ds        -- n distinct ascending parameters
-        sp = mkSpace (NE.fromList etas)
-        k = evalx (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs))
-                  (mkEnv [] VNil)
-        idx x = fromMaybe 0 (elemIndex x etas)
-        b0 = fromBits sp (\x -> Bits (pb !! idx x))
+    let etas = scanl (+) e0 ds
         s = sRaw `mod` (len + 1)
-        ys1 = replicate s 1 ++ replicate (len - s) (0 :: Obs)
+        ys1 = replicate s 1 ++ replicate (len - s) (0 :: Int)
         ys2 = reverse ys1             -- same length, same sum T
-        condFold = foldl (\mb y -> mb >>= \b -> cond b (Saw k y)) . Just
-        f x = fv !! idx x
-    in case (condFold b0 ys1, condFold b0 ys2) of
-         (Just b1, Just b2) ->
-           let lhs = expect b1 f
-               rhs = expect b2 f
-           in counterexample ("posteriors: " ++ show lhs ++ " vs " ++ show rhs)
-                (agrees lhs rhs)
-         _ -> counterexample
-                "cond returned Nothing on full-support expfam evidence" False
+    in sufficiencyCase c2 etas pb fv ys1 ys2
 
 -- ---------------------------------------------------------------------
 -- group 7: float guardians (plan group 7; GREEN from the start): the
