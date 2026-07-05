@@ -66,8 +66,18 @@ import PropLang.Syntax (Name)
 #ifndef DROP_SLOT_GRID
 import PropLang.Syntax (Grid)
 #endif
+#if !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
+import Data.List.NonEmpty (toList)
+import PropLang.Syntax (gridSize, mkC)
+#endif
+#if (!defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)) || (!defined(DROP_ECHO) && !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX))
+import PropLang.Eval (Vals (..), evalx, mkEnv)
+#endif
 #if !defined(DROP_ECHO) && !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
-import PropLang.Enumerate (Agent, Obs)
+import Data.Maybe (fromMaybe)
+import PropLang.Belief (LogProb (LogProb), entropyBits, is, prob)
+import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
+                           predictive)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), StdName (..),
                         Util)
 #endif
@@ -132,9 +142,20 @@ internalMenu = InternalFired Think :| []
 -- | The option space of a published menu (§3): every affordance at
 -- every slot-grid point (rightmost slot fastest), then 'internalMenu'.
 -- Slot instantiation enumerates the slot's grid through the grammar's
--- only constant door, so an unpriceable point is unofferable.
+-- only constant door ('mkC' then the real evaluator), so an
+-- unpriceable point is unofferable.
 menuOptions :: [Affordance] -> NonEmpty Choice
-menuOptions _ = internalMenu
+menuOptions affs = case concatMap externals affs of
+  []     -> internalMenu
+  c : cs -> c :| (cs ++ toList internalMenu)
+  where
+    externals (Affordance aid _ slots) = map (Fire aid) (fillings slots)
+    fillings [] = [[]]
+    fillings (Slot nm g : rest) =
+      [ (nm, v) : more | v <- points g, more <- fillings rest ]
+    points g =
+      [ evalx e (mkEnv [] VNil)
+      | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
 #endif
 
 #ifndef DROP_ECHO
@@ -228,6 +249,46 @@ data TickTrace = TickTrace
 -- impossible evidence, total like 'PropLang.Belief.cond'.
 runMembrane :: PureWorld s -> EchoSpec -> Pilot -> Int -> s -> Agent
             -> Maybe (Agent, [TickTrace])
-runMembrane _ _ _ _ _ ag = Just (ag, [])
+runMembrane w spec pilot n s0 ag0 = go 0 s0 ag0 Nothing 0
+  where
+    go t s ag lastC nThink
+      | t >= n = Just (ag, [])
+      | otherwise = do
+          let feats = wFeats w s ++ echoFeatures spec t nThink lastC
+              pr = predictive feats ag
+              p1 = prob pr (is obsSpace 1)
+              h = entropyBits (agentMeta ag)
+              opts =
+#if !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
+                menuOptions (wMenu w s)
+#else
+                internalMenu
+#endif
+              c = interpretPilot pilot feats pr opts
+          (lossBits, ag') <- case wEvidence w s of
+            Nothing -> Just (0, ag)
+            Just y  -> case observe feats y ag of
+              Nothing              -> Nothing
+              Just (LogProb lp, a) -> Just (negate lp / ln2, a)
+          let nThink' = case c of
+                InternalFired _ -> nThink + 1
+#if !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
+                Fire _ _        -> nThink
+#endif
+          (agF, rest) <- go (t + 1) (wStep w s c) ag' (Just c) nThink'
+          Just (agF, TickTrace t p1 h c lossBits : rest)
+
+ln2 :: Double
+ln2 = log 2
+
+-- One pilot decision: the doctrinal argmax-EU program over the whole
+-- option space for 'PilotEU'; the scripted threshold read for the
+-- C-world's explorer; the first-listed option for idle worlds.
+interpretPilot :: Pilot -> Features -> B Obs -> NonEmpty Choice -> Choice
+interpretPilot p feats pr opts = case p of
+  PilotIdle -> let c :| _ = opts in c
+  PilotThreshold nm th a b ->
+    if fromMaybe 0 (lookup nm feats) > th then a else b
+  PilotEU u -> evalx argmaxEU (mkEnv feats (opts :. pr :. u :. VNil))
 #endif
 #endif
