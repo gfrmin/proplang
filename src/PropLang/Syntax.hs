@@ -214,36 +214,49 @@ instance KnownScope env => KnownScope (t ': env) where
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile
 -- fact). Contract (amended spec §3, prefix-decodable): every node pays
--- its constructor-choice cost log2 nExpr — 'Var' included — plus
--- content; description length is relative to the generating fragment's
--- production grammar (model-fragment dl is the enumerator's,
--- derivation-relative — plan R4).
---
--- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): the body below is still
--- the parity-phase placeholder; the R5 table lands in Task 4 and the
--- hygiene suite's group 3 stays red until it does.
-bits :: KnownScope env => Expr env t -> Bits
-bits e0 = Bits (go e0)
+-- its constructor-choice cost @log2 nExpr@ — 'Var' included — plus
+-- content ('Var' adds @log2 |scope|@, read from the type by
+-- 'KnownScope' at the root and tracked through 'Argmax' binders).
+-- Description length is relative to the generating fragment's
+-- production grammar: this is the POLICY pricer; model-fragment dl is
+-- the enumerator's, charged at derivation (plan R4).
+bits :: forall env t. KnownScope env => Expr env t -> Bits
+bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
-    go :: Expr env' t' -> Double
-    go (MkC g _ _)   = 1 + logBase 2 (fromIntegral (gridSize g))
-    go (Get _)       = 1 + nameBits
-    go (If c t e)    = 1 + go c + go t + go e
-    go (Gt a b)      = go a + go b
-    go (Var _)       = 0
-#ifndef DROP_PUSH
-    go (Push a b)    = 1 + go a + go b
-#endif
-    go (CondE a b)   = 1 + go a + go b
-    go (Expect a _)  = 1 + go a
-#ifndef DROP_ARGMAX
-    go (Argmax o v)  = 1 + go o + go v
-#endif
-    go (Call _ as)   = 1 + goArgs as
+    -- the shipped grammar's written alternative counts (plan R2/R5):
+    -- ten EXPR productions, four stdlib names, two Fn members.
+    -- Alphabet data with prices, like grid points; counting is by
+    -- written alternatives, not type-pruned availability.
+    nodeB, stdB :: Double
+    nodeB = logBase 2 10
+    stdB  = logBase 2 4
 
-    goArgs :: Args env' ts -> Double
-    goArgs ANil      = 0
-    goArgs (a :* as) = go a + goArgs as
+    go :: Int -> Expr env' t' -> Double
+    go sc e = case e of
+      MkC g _ _  -> nodeB + logBase 2 (fromIntegral (gridSize g))
+      Get _      -> nodeB + nameBits
+      If c t f   -> nodeB + go sc c + go sc t + go sc f
+      Gt a b     -> nodeB + go sc a + go sc b
+      Var _      -> nodeB + logBase 2 (fromIntegral sc)
+#ifndef DROP_PUSH
+      Push a b   -> nodeB + go sc a + go sc b
+#endif
+      CondE a b  -> nodeB + go sc a + go sc b
+      Expect a f -> nodeB + go sc a + fnB f
+#ifndef DROP_ARGMAX
+      Argmax o v -> nodeB + go sc o + go (sc + 1) v
+#endif
+      Call _ as  -> nodeB + stdB + goArgs sc as
+
+    goArgs :: Int -> Args env' ts -> Double
+    goArgs _  ANil      = 0
+    goArgs sc (a :* as) = go sc a + goArgs sc as
+
+    -- one FN choice bit (log2 2, the two written members — plan Q1);
+    -- the opaque value-layer payloads are priced 0, the recorded
+    -- parity-scoped convention.
+    fnB :: Fn a -> Double
+    fnB _ = 1
 
     nameBits :: Double
     nameBits = case featureNames of

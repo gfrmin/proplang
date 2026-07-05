@@ -41,7 +41,7 @@ import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         mkSpace, push, uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 import PropLang.Syntax (Expr (..), Grid, Idx (..), StdName (..),
-                        Args (..), bits, gridName, gridSize, mkC, mkGrid)
+                        Args (..), gridName, gridSize, mkC, mkGrid)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -78,18 +78,20 @@ rhoGrid   = mkGrid "rho" rhoPoints
 -- parameter is a closed sentence of the grammar, or a latent reflected
 -- walk whose rate constant IS the sentence it is (R8 — Python's
 -- @('hmm', ('c', 'rho', k))@ literally): rate value by evaluation,
--- rendering by match. The walk's description length is charged at the
--- derivation (design §5), so it rides along. Abstract to consumers.
+-- rendering by match. Every hypothesis carries its description length,
+-- charged at the derivation (design §5, plan R4): dl is relative to
+-- the model fragment's own production grammar, not the policy
+-- pricer's. Abstract to consumers.
 data Model
-  = MBern (Expr '[] Double)
+  = MBern Bits (Expr '[] Double)
   | MHmm Bits (Expr '[] Double)
 
 -- | Canonical rendering, byte-identical to the Python reference's repr,
 -- e.g. @"('hmm', ('c', 'rho', 3))"@. The frozen tests assert MAP
 -- programs against these exact strings.
 renderModel :: Model -> String
-renderModel (MBern p)  = "('bern', " ++ renderExpr p ++ ")"
-renderModel (MHmm _ e) = "('hmm', " ++ renderExpr e ++ ")"
+renderModel (MBern _ p) = "('bern', " ++ renderExpr p ++ ")"
+renderModel (MHmm _ e)  = "('hmm', " ++ renderExpr e ++ ")"
 
 -- Rendering is total over the grammar; only the model fragment's shapes
 -- are ever asserted against the oracle.
@@ -124,13 +126,11 @@ renderExpr e0 = case e0 of
     stdNameStr VThink = "VThink"
 
 -- The description length of a hypothesis: its ONLY prior contribution
--- (design §5). Bernoulli sentences carry the grammar's price; the hmm's
--- dl is charged at the derivation (one MODEL choice bit + the grid
--- index — no PARAM-alternative bit, per the amended design.md §5) and
--- stored on the hypothesis.
+-- (design §5), charged at the derivation and stored on the hypothesis
+-- (plan R4).
 modelBits :: Model -> Bits
-modelBits (MBern p)   = 1 + bits p
-modelBits (MHmm dl _) = dl
+modelBits (MBern dl _) = dl
+modelBits (MHmm dl _)  = dl
 
 -- | Enumerate the model fragment to depth 1 (the Cromwell frontier) from
 -- the allowed terminal set. Order and count match the Python reference
@@ -146,15 +146,31 @@ enumerateModels allowed = consts ++ walks ++ changePoints
     -- count plus the hygiene dl pins (R8)
     onGrid g = [ e | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
     thetaCs = onGrid thetaGrid :: [Expr '[] Double]
+    -- description lengths, charged at the derivation choice points
+    -- (design §5; plan R4). The addition trees are term-for-term the
+    -- arithmetic the parity-phase pricer produced — the anchors'
+    -- byte-stability lives in these parentheses:
+    --   mention  = constant-choice bit + grid index
+    --   constant = model bit + mention(theta)
+    --   walk     = model bit + rho index (no param-alternative bit,
+    --              amended design.md §5)
+    --   change   = model bit + (if bit + guard + two theta mentions),
+    --              guard = (Get bit + singleton namespace) + mention(tau)
+    mention g = 1 + logBase 2 (fromIntegral (gridSize g))
+    dlConst, dlWalk, dlChange :: Double
+    dlConst  = 1 + mention thetaGrid
+    dlWalk   = 1 + logBase 2 (fromIntegral (gridSize rhoGrid))
+    dlChange = 1 + (((1 + ((1 + 0) + mention tauGrid))
+                     + mention thetaGrid) + mention thetaGrid)
     consts =
-      [ MBern e
+      [ MBern (Bits dlConst) e
       | has TBern, has TC, e <- thetaCs ]
     walks =
-      [ MHmm (Bits (1 + logBase 2 (fromIntegral (gridSize rhoGrid)))) e
+      [ MHmm (Bits dlWalk) e
       | has THmm, has TC, e <- onGrid rhoGrid ]
     -- the reference excludes the diagonal by index (k1 /= k2)
     changePoints =
-      [ MBern (If (Gt (Get "t") tc) t1 t2)
+      [ MBern (Bits dlChange) (If (Gt (Get "t") tc) t1 t2)
       | has TBern, has TIf, has TC, has TGet, has TGt
       , tc <- onGrid tauGrid
       , (k1, t1) <- indexed thetaCs
@@ -239,8 +255,8 @@ mkAgent ms = case nonEmpty [0 .. length ms - 1] of
 -- constant of the real grammar, so the read is total and the parity
 -- phase's off-grid error site is gone (R8).
 initHyp :: Model -> HypState
-initHyp (MBern p)  = HBern p
-initHyp (MHmm _ e) = HHmm (evalx e (mkEnv [] VNil)) (uniform thetaSpace)
+initHyp (MBern _ p) = HBern p
+initHyp (MHmm _ e)  = HHmm (evalx e (mkEnv [] VNil)) (uniform thetaSpace)
 
 -- One tick of one hypothesis at the given features: its predictive over
 -- observations, and its absorb continuation (the walk conditions the
