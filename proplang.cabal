@@ -69,3 +69,20 @@ test-suite hygiene
                     , QuickCheck
                     , process
     default-language: GHC2021
+
+-- The expfam increment oracle (EXPFAM_PLAN E10): stanza drafted by the
+-- builder in the oracle phase (test-expfam/stanza.cabal.draft), applied
+-- at the Task 2 freeze alongside the manifest re-signing.
+test-suite expfam
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          ExpFam.hs
+    hs-source-dirs:   test-expfam
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

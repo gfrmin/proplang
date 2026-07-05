@@ -83,8 +83,12 @@ cannot catch; that is why it is written down)
    prices; the myopic case must be the ladder's chosen rung, not a branch.
 5. Deletion audit wiring — test 4 green. STOP: this is parity with Python.
 6. Only after parity, in separate reviewed increments: `ExpFam` basis with
-   `bern`/`rw` re-derived as stdlib names, the membrane (interface.md S1-S3),
-   self-features, the full fidelity ladder with acceptance test F.
+   `bern` re-derived as a stdlib name and `rw` recorded as the alphabet's
+   one non-expfam combinator (EXPFAM_PLAN T1; the original "bern/rw
+   re-derived" promise was half-impossible without an anchor re-open and
+   is amended here, at a freeze boundary, by the author), then the
+   membrane (interface.md S1-S3), self-features, the full fidelity ladder
+   with acceptance test F.
 
 ## When to stop and report instead of proceeding
 

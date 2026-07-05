@@ -106,7 +106,13 @@ data Expr env t where
   Expect :: Expr env (B a) -> Fn a -> Expr env Double
   Argmax :: Expr env [o] -> Expr (o ': env) Double -> Expr env o
   Call   :: StdName args t -> Args env args -> Expr env t
-  ExpFam :: Carrier c -> Stats c -> Params env -> Expr env (K Double c)
+  ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double c)
+  -- E3 as ruled: no Params slot until its first consumer (a slot
+  -- with no inhabitant forces the evaluator to invent semantics);
+  -- the node declares its parameter space as an opaque payload
+  -- (priced 0, recorded payload convention) because a kernel HAS a
+  -- domain and declaring it is declared structure. The parameter
+  -- itself arrives where the kernel is applied, as K Double c says.
 
 evalx :: Expr env t -> Env env -> t     -- pure: the type IS the purity claim
 ```
@@ -138,6 +144,35 @@ Phase 2 R4, is principled coding, not a fudge). `Fn` must be inhabited
 by first-order constructors before any priced policy sentence ships;
 discharging `Expect` by empty case is a parity-phase expedient only.
 
+> **The production system (normative; the priced object is this
+> table, not the Haskell encoding).** Description lengths are charged
+> per node against the node's generating sort:
+>
+> | sort | written alternatives | node cost |
+> |---|---|---|
+> | EXPR | C, Get, If, Gt, Var, Push, CondE, Expect, Argmax, Call | log2 10 |
+> | FN | FnInd, FnUtil | 1 bit |
+> | STATS | SId | 0 bits |
+> | KER | ExpFam | 0 bits |
+> | STDNAME | EU, IsEq, VAct, VThink, Bern | log2 5 |
+>
+> Hole sorts are declared by the grammar, not inferred from types:
+> kernel-valued positions (e.g. `Push`'s second child) are KER holes;
+> function-valued positions on `Expect` are FN holes; everything else
+> is an EXPR hole. This is what keeps the code prefix-decodable
+> (Kraft-tight per hole) while `ExpFam` pays 0 constructor bits — a
+> 0-bit alternative alongside the ten EXPR codewords at the same hole
+> would violate Kraft; at a declared KER hole it is the sole codeword.
+> GADT terms outside this published fragment (the Haskell encoding
+> admits, e.g., `Var` at a kernel-typed hole) remain per-node priced
+> for totality of `bits`, but lie outside the generative prior: no
+> enumerator generates them and 2^(-|program|) normalizes over the
+> published fragment only. Growing any sort's alternative count is a
+> reported alphabet change repricing that sort's every mention
+> (written-alternatives convention, R2); adding a sort is a reported
+> grammar change requiring this table's amendment at a freeze
+> boundary.
+
 ## 4. The estimator choice, dissolved                    [COMPILE]+[FROZEN]
 
 In the typed grammar there is no myopic special case to write. Deliberation
@@ -150,6 +185,11 @@ restated for the typed port: the induction base — level-0 estimates taken at
 face value — is [RESIDUE]; no type system removes it, because removing it is
 a computation too. Acceptance test F (ladder honesty) is the [FROZEN] check
 that the ladder actually reproduces test 2's numbers at its price points.
+
+> The emission basis covers emissions fully and transitions partially:
+> the reference `rw` (reflected walk, source-dependent support) is
+> proven non-expfam (EXPFAM_PLAN T1) and remains a primitive
+> combinator — the alphabet residue's one recorded non-expfam member.
 
 ## 5. What types cannot enforce, and what takes over
 
