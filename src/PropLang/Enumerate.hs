@@ -24,6 +24,8 @@ module PropLang.Enumerate
   , renderModel
   , renderExpr
   , enumerateModels
+  , enumerateModelsIn
+  , modelBits
   , Obs
   , obsSpace, thetaSpace
 #ifndef DROP_CARRIER_OBS
@@ -55,9 +57,10 @@ import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 import PropLang.Eval (bernFast)
 import PropLang.Syntax (carrierSpace)
 #endif
-import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), StdName (..),
-                        Args (..), Stats (..), carrierName, gridName,
-                        gridSize, mkC, mkCarrier, mkGrid)
+import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), Name,
+                        Namespace, StdName (..), Args (..), Stats (..),
+                        carrierName, gridName, gridSize, mkC, mkCarrier,
+                        mkGrid)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -207,6 +210,17 @@ enumerateModels allowed = consts ++ walks ++ changePoints
       , (k2, t2) <- indexed thetaCs
       , k1 /= k2 ]
     indexed = zip [0 :: Int ..]
+
+-- | Namespace-relative enumeration (MEMBRANE_PLAN T1/M1): the same
+-- model fragment with (a) the name-mention term inside every guard
+-- charged @log2 |ns|@ against the world's declared namespace, and
+-- (b) the guard family extended by the given extra (name, threshold
+-- grid) pairs, in declaration order after the built-in @("t", tau)@
+-- family. The frozen fragment is the special case
+-- @enumerateModelsIn (mkNamespace ("t" :| [])) []@ — the membrane
+-- oracle pins that identity (renders, description lengths, order).
+enumerateModelsIn :: Namespace -> [(Name, Grid)] -> [Terminal] -> [Model]
+enumerateModelsIn _ _ = enumerateModels
 
 -- ---------------------------------------------------------------------
 -- the demonstration domain

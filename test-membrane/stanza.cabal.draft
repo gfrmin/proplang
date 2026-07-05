@@ -1,0 +1,37 @@
+-- test-membrane/stanza.cabal.draft — the TWO proplang.cabal edits this
+-- increment needs, drafted in the oracle phase (increment protocol;
+-- E10 precedent). proplang.cabal is frozen: both edits land only in
+-- the Task 2 freeze commit, applied by the author's session, and the
+-- manifest re-hash covers them.
+--
+-- Edit 1 — the library stanza's exposed-modules gains the membrane
+-- (a new src module, unlike the expfam increment's in-place edits):
+--
+--     exposed-modules:  PropLang.Belief
+--                       PropLang.Syntax
+--                       PropLang.Eval
+--                       PropLang.Enumerate
+--                       PropLang.Membrane
+--                       PropLang.Host
+--
+-- Edit 2 — the new test-suite stanza, appended after `test-suite
+-- expfam` (gate 5's `cabal test all` absorbs it with no edit to any
+-- frozen audit script). hs-source-dirs includes test/ ONLY for the
+-- frozen Streams and Anchors modules — the parity group pins against
+-- the same anchor constants the acceptance suite uses:
+
+test-suite membrane
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Membrane.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test-membrane, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

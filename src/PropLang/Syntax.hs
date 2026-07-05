@@ -43,6 +43,8 @@ module PropLang.Syntax
   , bits
   , featureNames
   , carrierNames
+  , Namespace, mkNamespace, nsNames, nsSize
+  , bitsIn
   ) where
 
 import Data.Kind (Type)
@@ -364,3 +366,30 @@ featureNames = ["t"]
 -- "PropLang.Enumerate".
 carrierNames :: [Name]
 carrierNames = ["obs"]
+
+-- | A world's visible feature namespace (MEMBRANE_PLAN T1, ruling M1 —
+-- the normative pricing law): description length is namespace-relative;
+-- a name mention costs @log2 |ns|@ against the WORLD's visible
+-- namespace, so publishing a name raises every mention's cost and
+-- re-weights the prior. The namespace is declared per world and covers
+-- the Get-mentionable names only (ruling M5: the action vocabulary
+-- prices through slots and argmax, never through this registry);
+-- 'featureNames' remains the frozen worlds' singleton declaration and
+-- 'bits' remains its pricer. Abstract, like 'Carrier'.
+data Namespace = Namespace (NonEmpty Name)
+
+mkNamespace :: NonEmpty Name -> Namespace
+mkNamespace = Namespace
+
+nsNames :: Namespace -> NonEmpty Name
+nsNames (Namespace ns) = ns
+
+nsSize :: Namespace -> Int
+nsSize (Namespace ns) = length ns
+
+-- | Namespace-relative pricing (MEMBRANE_PLAN T1): 'bits' with the
+-- name-mention term charged against the given namespace instead of the
+-- frozen registry; @bitsIn (mkNamespace ("t" :| []))@ must equal 'bits'
+-- exactly (the membrane oracle pins the identity).
+bitsIn :: KnownScope env => Namespace -> Expr env t -> Bits
+bitsIn _ = bits
