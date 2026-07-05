@@ -45,8 +45,8 @@ import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         mkSpace, push, uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), StdName (..),
-                        Args (..), gridName, gridSize, mkC, mkCarrier,
-                        mkGrid)
+                        Args (..), Stats (..), carrierName, gridName,
+                        gridSize, mkC, mkCarrier, mkGrid)
 
 -- | The model-fragment terminals, for restricted enumeration in the
 -- deletion audit (deleting a terminal = enumerating without it).
@@ -119,7 +119,8 @@ renderExpr e0 = case e0 of
   Argmax o v -> "('argmax', " ++ renderExpr o ++ ", " ++ renderExpr v ++ ")"
 #endif
 #ifndef DROP_EXPFAM
-  ExpFam {}  -> undefined -- Task-1 stub (render string lands at Task 3)
+  ExpFam _ car st -> "('expfam', '" ++ carrierName car ++ "', '"
+                       ++ statsStr st ++ "')"
 #endif
   Call sn as -> "('call', '" ++ stdNameStr sn ++ "'" ++ renderArgs as ++ ")"
   where
@@ -135,7 +136,12 @@ renderExpr e0 = case e0 of
     stdNameStr VAct   = "VAct"
     stdNameStr VThink = "VThink"
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
-    stdNameStr Bern {} = undefined -- Task-1 stub ("bern" lands at Task 3)
+    stdNameStr Bern {} = "bern"
+#endif
+    statsStr :: Stats c' -> String
+    statsStr s = case s of
+#ifndef DROP_SID
+      SId -> "id"
 #endif
 
 -- The description length of a hypothesis: its ONLY prior contribution

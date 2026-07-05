@@ -48,7 +48,8 @@ module PropLang.Syntax
 import Data.Kind (Type)
 import Data.List.NonEmpty (NonEmpty, toList)
 import Data.Proxy (Proxy (..))
-import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel, Space)
+import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel, Space,
+                        mkSpace)
 
 type B = Belief
 type K = Kernel
@@ -111,7 +112,7 @@ carrierSize (Carrier _ pts) = length pts
 -- | The carrier's points as a Space, through the public constructor —
 -- expfam beliefs over a carrier normalize over exactly these points.
 carrierSpace :: Carrier c -> Space c
-carrierSpace = undefined -- Task-1 type-surface stub (oracle group 1 red)
+carrierSpace (Carrier _ pts) = mkSpace pts
 
 -- | Defunctionalized sufficient-statistic syntax (first-order, priced;
 -- the reported STATS alphabet, EXPFAM_PLAN Q4/E5): sole written member
@@ -290,13 +291,17 @@ instance KnownScope env => KnownScope (t ': env) where
 bits :: forall env t. KnownScope env => Expr env t -> Bits
 bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
-    -- the shipped grammar's written alternative counts (plan R2/R5):
-    -- ten EXPR productions, four stdlib names, two Fn members.
-    -- Alphabet data with prices, like grid points; counting is by
-    -- written alternatives, not type-pruned availability.
-    nodeB, stdB :: Double
-    nodeB = logBase 2 10
-    stdB  = logBase 2 4
+    -- the shipped grammar's written alternative counts, per sort (the
+    -- normative production table, spec §3 as amended at the expfam
+    -- freeze): ten EXPR productions, five STDNAME members, two FN
+    -- members, one KER production, one STATS member. Alphabet data
+    -- with prices, like grid points; counting is by written
+    -- alternatives, not type-pruned availability.
+    nodeB, stdB, kerB, statsB :: Double
+    nodeB  = logBase 2 10
+    stdB   = logBase 2 5
+    kerB   = logBase 2 1
+    statsB = logBase 2 1
 
     go :: Int -> Expr env' t' -> Double
     go sc e = case e of
@@ -314,7 +319,10 @@ bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
       Argmax o v -> nodeB + go sc o + go (sc + 1) v
 #endif
 #ifndef DROP_EXPFAM
-      ExpFam {}  -> undefined -- Task-1 stub (KER-sort price lands at Task 3)
+      -- KER-sort (spec §3 production table): sole-codeword constructor
+      -- choice + carrier mention + sole-member stats choice; the
+      -- Space payload is priced 0 (recorded opaque-payload convention)
+      ExpFam {}  -> kerB + carrierB + statsB
 #endif
       Call _ as  -> nodeB + stdB + goArgs sc as
 
@@ -331,6 +339,14 @@ bits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
     nameBits :: Double
     nameBits = case featureNames of
       _ : _ : _ -> logBase 2 (fromIntegral (length featureNames))
+      _         -> 0
+
+    -- a carrier mention is a name mention against the carrier registry
+    -- (same written rule as 'nameBits': free while the registry is a
+    -- singleton)
+    carrierB :: Double
+    carrierB = case carrierNames of
+      _ : _ : _ -> logBase 2 (fromIntegral (length carrierNames))
       _         -> 0
 
 -- | The priced feature namespace: @Get name@ costs
