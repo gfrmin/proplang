@@ -2,8 +2,10 @@
 
 Nothing in this directory is load-bearing; the live texts are at the
 repo root and the frozen ones are hashed in MANIFEST.sha256. Kept for
-provenance (two of these files never entered git history before this
-move).
+provenance. The two seed bundles stay untracked (their contents are
+already in history at `c245c00`); everything else is tracked here —
+`typed-port-spec-1.md` and `design-1.md` enter git history for the
+first time with this move.
 
 | file | what it is | superseded by |
 |---|---|---|
