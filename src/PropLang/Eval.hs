@@ -27,8 +27,11 @@ import PropLang.Belief (Belief, Evidence (Saw), Kernel, LogProb (LogProb),
 #ifndef DROP_PUSH
 import PropLang.Belief (push)
 #endif
-import PropLang.Syntax (Args (..), Expr (..), Idx (..), Name, StdName (..),
-                        Util, applyUtil)
+#ifndef DROP_FNIND
+import PropLang.Belief (prob)
+#endif
+import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
+                        StdName (..), Util, applyUtil)
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
 -- (interface.md §1: prices, clocks, and echoes are names like any other).
@@ -51,11 +54,9 @@ lookupVal :: Idx env t -> Vals env -> t
 lookupVal Z     (v :. _)  = v
 lookupVal (S i) (_ :. vs) = lookupVal i vs
 
--- | Big-step evaluation. Pure; total except the recorded Task-1 stub
--- on 'Expect' (grammar-hygiene increment in flight, semantics land at
--- Task 5). A priced constant carries its grid point from 'mkC', so the
--- 'C' case is a field read: no lookup, no dormancy, no error site
--- (plan R1).
+-- | Big-step evaluation. Pure and total. A priced constant carries its
+-- grid point from 'mkC', so the 'C' case is a field read: no lookup,
+-- no dormancy, no error site (plan R1).
 evalx :: Expr env t -> Env env -> t
 evalx expr env@(Env feats vals) = case expr of
   C _ _ v    -> v
@@ -67,11 +68,15 @@ evalx expr env@(Env feats vals) = case expr of
   Push b k   -> push (evalx b env) (evalx k env)
 #endif
   CondE b ev -> cond (evalx b env) (evalx ev env)
-  -- GRAMMAR-HYGIENE STUB (Task 1, oracle phase): 'Fn' is inhabited now,
-  -- so the parity-phase empty-case discharge is gone; the real
-  -- semantics (FnInd ~> prob, FnUtil ~> expect . applyUtil) land in
-  -- Task 5, and the hygiene suite's group 4 stays red until they do.
-  Expect _ _ -> error "evalx: Expect semantics pending (grammar-hygiene Task 5)"
+  -- the two published expansions (plan Q1): probability derived from
+  -- prevision, and the EU contract's utility section
+  Expect b f -> case f of
+#ifndef DROP_FNIND
+    FnInd e    -> prob (evalx b env) e
+#endif
+#ifndef DROP_FNUTIL
+    FnUtil u o -> expect (evalx b env) (applyUtil u o)
+#endif
 #ifndef DROP_ARGMAX
   Argmax o v ->
     -- CL-3: deterministic tie-break by option order; nothing may select
