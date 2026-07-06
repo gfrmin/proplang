@@ -18,6 +18,30 @@ two-key custody scheme; the author countersigns the Task 2 freeze with
 a signed tag (`ladder-freeze`). At this freeze, per ROADMAP: the
 author's one-line CLAUDE.md porting-order edit naming increments 5–6.
 
+> **Task 0 rulings (author, 2026-07-06 — verbatim intent, binding on
+> this increment):**
+> - **L1 APPROVED: reading (c)**, with two recorded riders. (1) The
+>   macro-act is reconciled with the polling clause as an **option
+>   with declared termination** — firing `think(k)` is one choice
+>   whose k-tick span is declared menu data, not a mid-flight
+>   re-evaluation exemption. (2) Interface.md's test-F sentence is
+>   **AMENDED at the freeze** (author text in the pack) rather than
+>   discharged by a strained reading of "the chosen rung must be the
+>   myopic one." Shallow-first menu order is recorded as **CL-3 at
+>   the menu**.
+> - **L6 CORRECTED.** The F-world's tilt arrives as **declared
+>   pre-episode history folded through `cond` by the host** — never
+>   as a world-supplied belief; `fromBits`/`uniform`/`point` stay the
+>   only prior sources in the system.
+> - **L3 APPROVED**, and the **one-pin-completeness grep** (the claim
+>   that ExpFam.hs:140 is the only stdB-bearing frozen pin) joins the
+>   freeze checklist as a verified command, not an assertion.
+> - **L2, L4, L5, L7–L11 APPROVED as proposed.**
+> - **L12 APPROVED** with the interface.md test-F amendment as item
+>   (5), and **ASCII-only test names canonized** (author text at the
+>   freeze).
+> - Proceed to Task 1; stop at Task 2 with the pack.
+
 ---
 
 ## T1. The rung: three candidate readings, measured before ruling

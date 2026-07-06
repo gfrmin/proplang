@@ -34,6 +34,9 @@ module PropLang.Membrane
   , InternalAct (..)
   , Choice (..)
   , internalMenu
+#ifndef DROP_LADDER
+  , Rung, baseRung, rungDepth, mkRung, ladderRungs
+#endif
 #ifndef DROP_SLOT_GRID
   , Slot (..)
 #ifndef DROP_AFFORDANCE
@@ -63,14 +66,19 @@ import PropLang.Eval (Features)
 #if !defined(DROP_SLOT_GRID) || !defined(DROP_ECHO)
 import PropLang.Syntax (Name)
 #endif
-#ifndef DROP_SLOT_GRID
+#if !defined(DROP_SLOT_GRID) || !defined(DROP_LADDER)
 import PropLang.Syntax (Grid)
+#endif
+#ifndef DROP_LADDER
+import PropLang.Syntax (Ix)
 #endif
 #if !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
 import Data.List.NonEmpty (toList)
+#endif
+#if (!defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)) || !defined(DROP_LADDER)
 import PropLang.Syntax (gridSize, mkC)
 #endif
-#if (!defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)) || (!defined(DROP_ECHO) && !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX))
+#if (!defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)) || (!defined(DROP_ECHO) && !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)) || !defined(DROP_LADDER)
 import PropLang.Eval (Vals (..), evalx, mkEnv)
 #endif
 #if !defined(DROP_ECHO) && !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
@@ -137,6 +145,48 @@ data Choice
 -- first-listed wins) belongs to the world's publication order.
 internalMenu :: NonEmpty Choice
 internalMenu = InternalFired Think :| []
+
+#ifndef DROP_LADDER
+-- | A deliberation rung — the fidelity ladder's own sort (interface.md
+-- section 6; LADDER_PLAN L1/L2 as landed). Depth 1 is the base act, the
+-- membrane's one internal think, spoken here as 'baseRung'; deeper
+-- rungs are grid-priced through the one door. The constructor is NOT
+-- exported: an off-grid rung is unconstructible (the mkC discipline as
+-- a type-only export), and consumers reach a rung only through
+-- 'rungDepth'. The ladder extends the menu by its own sort rather than
+-- by a new 'InternalAct' inhabitant because the frozen membrane
+-- oracle's exhaustive matches sealed 'InternalAct' and 'Choice' against
+-- extension as a compile fact (test-membrane/Membrane.hs choiceName1,
+-- under the stanza's -Werror) — discovered and reported at this
+-- increment's Task 1.
+data Rung = Rung Int
+  deriving (Eq, Show)
+
+-- | Depth 1: the myopic think. Always the menu's first rung —
+-- shallow-first order is CL-3 at the menu (the recorded tie-break).
+baseRung :: Rung
+baseRung = Rung 1
+
+rungDepth :: Rung -> Int
+rungDepth (Rung k) = k
+
+-- | The one door to a deeper rung: an integral grid point >= 2 (depth
+-- 1 already has its one spelling, 'baseRung'), resolved through 'mkC'
+-- and the real evaluator like every priced constant — an unpriceable
+-- depth is unofferable.
+mkRung :: Grid -> Ix -> Maybe Rung
+mkRung g k = do
+  e <- mkC g k
+  let v = evalx e (mkEnv [] VNil)
+      r = round v :: Int
+  if fromIntegral r == v && r >= 2 then Just (Rung r) else Nothing
+
+-- | The rung menu of a depth grid: the base act, then every deeper
+-- grid point in publication order.
+ladderRungs :: Grid -> NonEmpty Rung
+ladderRungs g =
+  baseRung :| [ r | k <- [0 .. gridSize g - 1], Just r <- [mkRung g k] ]
+#endif
 
 #if !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
 -- | The option space of a published menu (§3): every affordance at

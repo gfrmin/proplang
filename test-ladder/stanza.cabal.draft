@@ -1,0 +1,33 @@
+-- test-ladder/stanza.cabal.draft — the cabal edit the Task 2 freeze
+-- commit applies to proplang.cabal (drafted in the oracle phase per
+-- the manifest-covers-build-files convention: cabal edits land only at
+-- freeze boundaries, reviewed with the pack).
+--
+-- ONE edit this increment (the ladder adds no exposed module; its src
+-- surface lives inside PropLang.Membrane and PropLang.Eval):
+--
+-- 1. Append the test-suite stanza below (gate 5 absorbs the new suite
+--    through `cabal test all` with no edit to any frozen audit script).
+--
+-- NOTE the increment's OTHER freeze-commit edits live outside this
+-- file and are enumerated in the pack (LADDER_PLAN L12): the STDNAME
+-- sixth member + its Eval/Syntax cases (drafted in the pack), the
+-- author's one-literal amendment of test-expfam/ExpFam.hs:140
+-- (lg 5 -> lg 6), the author's CLAUDE.md porting-order line, and the
+-- author's interface.md test-F amendment.
+
+test-suite ladder
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Ladder.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test-ladder, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

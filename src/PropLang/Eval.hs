@@ -20,6 +20,9 @@ module PropLang.Eval
 #ifndef DROP_EXPFAM
   , bernFast
 #endif
+#ifndef DROP_LADDER
+  , vThinkK
+#endif
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -184,3 +187,22 @@ vThink b k ys u acts n price = sumL (map branch (grow n [[]])) - price
       in go (lp + l) (cond bb (Saw k y)) rest
     go lp (Just bb) [] = exp lp * vAct bb u acts
     go _  Nothing   _  = 0
+
+#ifndef DROP_LADDER
+-- | The fidelity ladder's rung valuation (interface.md section 6;
+-- LADDER_PLAN L1, reading c — the recorded contract): @Est_0@ is the
+-- value of acting now; @Est_k@ is the next-batch preposterior of
+-- @Est_{k-1}@ minus the tick's price. @Est_1@ is therefore exactly
+-- 'vThink', and @Est_k@ telescopes to the k-batch preposterior of
+-- acting minus @k * price@ — every priced tick a real tick, the
+-- induction base ("unexamined estimates are used as-is") sitting at
+-- @Est_0@ and nowhere else.
+--
+-- Task-1 type-surface STUB: returns 0 until Task 3 lands the one
+-- arithmetic over the 'vThink' base case (the E7 doctrine; the ladder
+-- oracle's identity pins are red against this stub by construction).
+vThinkK :: Eq y
+        => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
+        -> Int -> Double -> Double
+vThinkK _ _ _ _ _ _ _ _ = 0
+#endif
