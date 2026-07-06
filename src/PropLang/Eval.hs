@@ -119,10 +119,11 @@ evalx expr env@(Env feats vals) = case expr of
         (\y -> Bits (negate (eta * statVal st y) / ln2))
 #endif
 #ifndef DROP_USAY
-  -- Task-2 freeze STUB (the prepost precedent): the alphabet fact
-  -- (constructor + pricing) lands at the freeze; the definitional
-  -- semantics land at Task 3. Returns the mute utility until then.
-  USay _ -> mkUtil (\_ _ -> 0)
+  -- the pointer's door (CIRL_PLAN C3 as ruled): the priced utility IS
+  -- its host form — the bridge identity is this definition. The outer
+  -- environment is DISCARDED: utilities are featureless and clockless
+  -- by construction.
+  USay p -> mkUtil (\a h -> evalx p (mkEnv [] (a :. h :. VNil)))
 #endif
   Call sn as -> applyStd sn (evalArgs as env)
 
