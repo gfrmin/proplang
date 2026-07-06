@@ -6,11 +6,22 @@ planning, making the definition of done auditable in place). This
 records the agreed structure, the four sharpenings, the cut list, and
 the definition of done.
 
+**Status (updated 2026-07-06, on the author's instruction):**
+increments 3–5 are COMPLETE, each closed by its author-signed freeze
+tag and recorded in its as-built report — membrane (`membrane-freeze`,
+MEMBRANE_REPORT.md), ladder (`ladder-freeze`, LADDER_REPORT.md),
+preposterior (`prepost-freeze`, PREPOSTERIOR_REPORT.md; its reviewer
+block awaits the author's run). NEXT: increment 6 kickoff, which
+carries the Util type-shape ruling in waiting (below). Then the
+write-up.
+
 ## Structure
 
-- **In flight — membrane** (increment 3, Tasks 3–6): the boundary.
-  Tests A, B, C and E's slot row.
-- **Increment 4 — the fidelity ladder** (interface.md §6; test F).
+- **DONE — membrane** (increment 3, Tasks 3–6): the boundary.
+  Tests A, B, C and E's slot row. Closed on the author's green;
+  record: MEMBRANE_REPORT.md; tag: `membrane-freeze`.
+- **DONE — Increment 4 — the fidelity ladder** (interface.md §6;
+  test F). Record: LADDER_REPORT.md; tag: `ladder-freeze`.
   Closes the myopia commitment: depth is a priced rung argmax buys;
   test 2's 1/3/12/12 reproduce as chosen behavior; a near-zero-price
   world sometimes buys depth and beats fixed myopia. The clock
@@ -20,7 +31,10 @@ the definition of done.
   The depth slot lands as the additive alphabet change reserved by
   membrane ruling M9. At this freeze: one-line author edit naming
   increments 5–6 in CLAUDE.md's porting order.
-- **Increment 5 — action-dependence in the preposterior** (small,
+- **DONE — Increment 5 — action-dependence in the preposterior**
+  (record: PREPOSTERIOR_REPORT.md; tag: `prepost-freeze`; delivered
+  as sharpened — the paired control landed as worlds W/W0, the frozen
+  worker re-based as the degenerate case). As planned (small,
   sharpened): the membrane echo already delivers passive
   action-conditional models (world C's MAP is p(y | last_action));
   the genuine gap is that vThink's kernel is action-independent — a
@@ -30,8 +44,8 @@ the definition of done.
   anticipated: a paired control world (the group-6/C0 pattern) —
   information-gathering beats the myopically-better action iff the
   action-dependent VoI says so, and correctly does not in the control.
-- **Increment 6 — the pointer: utility-as-latent (CIRL), discrete
-  reading only.** Level-1 model uncertainty over grid-priced utility
+- **NEXT — Increment 6 — the pointer: utility-as-latent (CIRL),
+  discrete reading only.** Level-1 model uncertainty over grid-priced utility
   parameters (belief over programs; at most an HHmm-style structural
   latent) — NOT interface.md §4's level-2 latent-name mechanism; the
   latent-names cut stays cut, stated here so it cannot silently
