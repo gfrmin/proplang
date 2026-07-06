@@ -209,7 +209,7 @@ protocol.
 - Haskell port: `bits` in `src/PropLang/Syntax.hs` is the total
   pricing function — grids are priced data, `log2 n` for an n-point
   grid, and no other numeric literal in `src/` steers deliberation
-  (a frozen review gate); `test/Properties.hs` pins "fineness charged
+  (a frozen protocol clause); `test/Properties.hs` pins "fineness charged
   once: predictive mass invariant under grid refinement"; the hygiene
   suite (`test-hygiene/`) froze the policy-fragment prices.
 
