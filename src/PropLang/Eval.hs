@@ -173,24 +173,42 @@ vAct b u = foldl' step negInf
     step bv a = let v = expect b (applyUtil u a) in if v > bv then v else bv
 
 -- Russell–Wefald preposterior value of one more batch of computation:
--- for each length-n outcome sequence (binary-counting order over the
--- given alphabet), fold logPredict BEFORE cond per outcome, weight the
--- post-conditioning value of acting by exp of the summed log marginals;
--- an impossible branch contributes weight 0; the world's price of the
--- tick is subtracted at the end.
+-- the fidelity ladder's depth-1 case. 'vThinkAt' below is the one
+-- arithmetic and this is its rung-1 face (the bitsAt pattern) — at
+-- depth 1 the fold is line-for-line the frozen form: for each
+-- length-n outcome sequence (binary-counting order over the given
+-- alphabet), fold logPredict BEFORE cond per outcome, weight the
+-- post-conditioning value of acting by exp of the summed log
+-- marginals; an impossible branch contributes weight 0; the world's
+-- price of the tick is subtracted at the end.
 vThink :: Eq y
        => Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a -> Int
        -> Double -> Double
-vThink b k ys u acts n price = sumL (map branch (grow n [[]])) - price
+vThink = vThinkAt 1
+
+-- The one deliberation arithmetic (LADDER_PLAN L1, reading c as
+-- ruled), private and unconditional like 'PropLang.Syntax'.bitsAt:
+-- Est_0 is the value of acting now (the induction base, used as-is);
+-- Est_j is the sum over length-n outcome sequences of exp(summed log
+-- marginals) times Est_{j-1} of the conditioned belief, minus the
+-- tick's price — so depth k telescopes to the k-batch preposterior of
+-- acting minus k*price, every priced tick a real tick.
+vThinkAt :: Eq y
+         => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
+         -> Int -> Double -> Double
+vThinkAt d b k ys u acts n price = est d b
   where
+    est j bb | j <= 0    = vAct bb u acts
+             | otherwise =
+                 sumL (map (walk (est (j - 1)) 0 (Just bb)) (grow n [[]]))
+                   - price
     grow m ss | m <= 0    = ss
               | otherwise = grow (m - 1) [s ++ [y] | s <- ss, y <- ys]
-    branch = go 0 (Just b)
-    go lp (Just bb) (y : rest) =
-      let LogProb l = logPredict bb (Saw k y)
-      in go (lp + l) (cond bb (Saw k y)) rest
-    go lp (Just bb) [] = exp lp * vAct bb u acts
-    go _  Nothing   _  = 0
+    walk cont lp (Just bc) (y : rest) =
+      let LogProb l = logPredict bc (Saw k y)
+      in walk cont (lp + l) (cond bc (Saw k y)) rest
+    walk cont lp (Just bc) [] = exp lp * cont bc
+    walk _    _  Nothing   _  = 0
 
 #ifndef DROP_LADDER
 -- | The fidelity ladder's rung valuation (interface.md section 6;
@@ -202,11 +220,11 @@ vThink b k ys u acts n price = sumL (map branch (grow n [[]])) - price
 -- induction base ("unexamined estimates are used as-is") sitting at
 -- @Est_0@ and nowhere else.
 --
--- Task-1 type-surface STUB: returns 0 until Task 3 lands the one
--- arithmetic over the 'vThink' base case (the E7 doctrine; the ladder
--- oracle's identity pins are red against this stub by construction).
+-- The executed semantics IS 'vThinkAt' — one arithmetic with 'vThink'
+-- as its depth-1 face (the E7 doctrine; the ladder oracle pins the
+-- identity with ==).
 vThinkK :: Eq y
         => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
         -> Int -> Double -> Double
-vThinkK _ _ _ _ _ _ _ _ = 0
+vThinkK = vThinkAt
 #endif
