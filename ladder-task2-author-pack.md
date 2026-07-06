@@ -9,6 +9,36 @@ countersign the freeze commit with the `ladder-freeze` signed tag
 
 ---
 
+> **Pack rulings (author, 2026-07-06 — verbatim intent, binding):**
+> - **Section 0 APPROVED** — the sealed-sort placement is a
+>   compile-forced resolution, not the T2 dodge; L2's doctrine
+>   survives by composition; the -1 echo is dormant doctrine for the
+>   driver-wiring increment.
+> - **Edit (7) ADDED**: one sentence to typed-port-spec section 5
+>   (author text) recording the sealed-variant lesson. *Text did not
+>   arrive with the ruling — AWAITING AUTHOR SENTENCE.*
+> - **Section 1(2)**: amend the literal AND the test name.
+> - **Sections 1(4), 1(5)**: approved as drafted.
+> - **Section 2's full-battery one-expected-failure run is recorded
+>   as the standard form of alphabet-change completeness.**
+> - **Custody: UNFILLED** — the ruling's own bracket ("I will tag
+>   from my own shell; paragraph stands" vs "truthful-delegation
+>   amendment in edit (4); tag by fresh delegation") is marked
+>   "author fills this in at the freeze."
+> - With the slots filled: run the section-5 sequence; the freeze
+>   commit carries seven edits; expected 49/49.
+
+> **Dry run (builder, post-rulings — the freeze application is
+> mechanical once the two slots arrive):** all seven edits applied to
+> a scratch copy (edit (7) as a marked placeholder); manifest
+> regenerates at 49 entries, 49/49 verify; the five frozen suites
+> compile under the stanza flags and run GREEN against the applied
+> state (expfam 22/22 under the amended pin and the lg-6 surface);
+> the ladder suite holds its 9/20 red set with the sayable row's
+> failure moving from compile-stage to run-stage as designed (fixture
+> compiles; price pin and worker-identity checks green; verb-vs-VThink
+> and the sentence-driven episode red until Task 3).
+
 ## 0. ITEM FOR EXPLICIT RULING — the sealed-sort deviation from L2
 
 Your L2 ruling approved the rung as an additive `ThinkK` constructor
@@ -115,8 +145,12 @@ ticks, acts, and batch order reproduce everywhere. Proposal:
 > estimate and outperform the fixed-myopia agent — the estimator
 > choice earning its keep by evidence, like everything else here.
 
-**(6) MANIFEST.sha256** — extended and re-signed. Command (test-ladder
-joins the find; everything else unchanged):
+**(7) typed-port-spec.md section 5 — your one sentence** recording the
+sealed-variant lesson (added by pack ruling; text awaited).
+
+**(6) MANIFEST.sha256** — extended and re-signed, applied LAST (after
+edits 1–5 and 7). Command (test-ladder joins the find; everything else
+unchanged):
 
 ```
 { find test test-hygiene test-expfam test-membrane test-ladder audit -type f; \
@@ -127,7 +161,8 @@ joins the find; everything else unchanged):
 ```
 
 Expected: **49 entries** (42 + 7 test-ladder files), with re-hashes of
-proplang.cabal, CLAUDE.md, interface.md, and test-expfam/ExpFam.hs.
+proplang.cabal, CLAUDE.md, interface.md, typed-port-spec.md, and
+test-expfam/ExpFam.hs. Verified by the dry run.
 
 ## 2. One-pin completeness (your ruled checklist item), verified
 
