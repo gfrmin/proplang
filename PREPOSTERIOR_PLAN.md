@@ -21,6 +21,37 @@ kickoff's condition); pins never come from the sim (b7f120e).
 
 ---
 
+> **Task 0 rulings (author, 2026-07-06 — verbatim intent, binding on
+> this increment):**
+> - **P1, P2 APPROVED as stated.** The leaf/interior menu separation
+>   (ds/uD interior, acts/u terminal) noted as understood and
+>   correct; the identity-as-definition is the REQUIRED form; == pins
+>   at the verb layer; the sixth margin run guards the anchors.
+> - **P3 APPROVED** — Chan as the opaque named wrapper beside Util;
+>   the lookup-table alternative correctly rejected; Evidence/Kernel/
+>   Belief/InternalAct untouched. The parity-scoped debt comes due in
+>   the CIRL neighborhood alongside Util's.
+> - **P4 RULED — the verb is VPre.** Signature as proposed.
+> - **P5 APPROVED with a forward ruling recorded:** the amendment set
+>   grows by one frozen price-pin literal per alphabet change
+>   (increment 6 will carry three). Accepted as BOUNDED — the roadmap
+>   terminates at increment 6 — and recorded so it cannot silently
+>   become unbounded: any scope extension beyond the roadmap makes a
+>   single-site frozen alphabet constant a MANDATORY boundary item.
+> - **P6 APPROVED as measured**, including the two stale comment
+>   lines in the author amendment (the test-name precedent).
+> - **P7–P11 APPROVED as proposed.**
+> - **P12: the fixture-proof author text, provided now** for the pack
+>   (CLAUDE.md increment protocol, appended after the pin-provenance
+>   sentence): "A compile-red fixture is proven type-correct against
+>   the drafted future surface before the freeze seals it — its red
+>   must be demonstrated to be the missing constructor, not assumed
+>   (the ladder's Argmax-environment bug, caught by exactly this
+>   proof)." Porting-order needs no touch-up (the ladder freeze
+>   already names increments 5–6).
+> - Proceed to Task 1; stop at Task 2 with the pack. Custody per the
+>   amended paragraph; the tag is `prepost-freeze`.
+
 ## T1. The mechanism, the recursion, and the exact degeneracy identity
 
 The frozen worker (`vThinkAt`, Eval.hs) is the one deliberation

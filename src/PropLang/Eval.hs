@@ -23,6 +23,9 @@ module PropLang.Eval
 #ifndef DROP_LADDER
   , vThinkK
 #endif
+#ifndef DROP_VPRE
+  , vPre
+#endif
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -43,6 +46,9 @@ import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
                         StdName (..), Util, applyUtil)
 #ifndef DROP_EXPFAM
 import PropLang.Syntax (Carrier, Stats (..), carrierSpace)
+#endif
+#ifndef DROP_VPRE
+import PropLang.Syntax (Chan)
 #endif
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
@@ -227,4 +233,25 @@ vThinkK :: Eq y
         => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
         -> Int -> Double -> Double
 vThinkK = vThinkAt
+#endif
+
+#ifndef DROP_VPRE
+-- | The action-dependent preposterior (PREPOSTERIOR_PLAN P1/P4 as
+-- ruled; the verb VPre's executed semantics at the freeze): W_0 is
+-- the frozen leaf — 'vAct' over the terminal menu, the induction base
+-- untouched; W_j takes the best interior decision's immediate
+-- prevision plus the continuation through THAT decision's own
+-- channel, the tick's price outside the max. The frozen worker is the
+-- degenerate case at the mute singleton (constant channel, zero
+-- immediate, unit menu), and at Task 3 'vThinkAt' is re-based as
+-- exactly that application (the bitsAt pattern's third use; the
+-- oracle pins the identity with ==).
+--
+-- Task-1 type-surface STUB: returns 0 until Task 3 lands the one
+-- arithmetic (the oracle's identity and world pins are red against
+-- this stub by construction).
+vPre :: Eq y
+     => Int -> Belief h -> Chan d h y -> [y] -> Util d h -> NonEmpty d
+     -> Util a h -> NonEmpty a -> Int -> Double -> Double
+vPre _ _ _ _ _ _ _ _ _ _ = 0
 #endif

@@ -1,0 +1,33 @@
+-- test-prepost/stanza.cabal.draft — the cabal edit the Task 2 freeze
+-- commit applies to proplang.cabal (drafted in the oracle phase per
+-- the manifest-covers-build-files convention: cabal edits land only at
+-- freeze boundaries, reviewed with the pack).
+--
+-- ONE edit this increment (no exposed-module change; the src surface
+-- lives inside PropLang.Syntax and PropLang.Eval):
+--
+-- 1. Append the test-suite stanza below (gate 5 absorbs the new suite
+--    through `cabal test all` with no edit to any frozen audit script).
+--
+-- The increment's OTHER freeze-commit edits are enumerated in the pack
+-- (PREPOSTERIOR_PLAN P5/P12 as ruled): the STDNAME seventh member +
+-- its Eval/Enumerate cases (drafted in the pack), the author's two
+-- frozen price-pin amendments (test-expfam/ExpFam.hs lg 6 -> lg 7;
+-- test-ladder/fixture/Sayable.hs lg 6 -> lg 7, with the two stale
+-- comment lines), the author's CLAUDE.md fixture-proof sentence, and
+-- the manifest extension.
+
+test-suite prepost
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Prepost.hs
+    other-modules:    Streams
+    hs-source-dirs:   test-prepost, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

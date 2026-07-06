@@ -39,6 +39,9 @@ module PropLang.Syntax
   , Args(..)
   , StdName(..)
   , Util, mkUtil, applyUtil
+#ifndef DROP_VPRE
+  , Chan, mkChan, applyChan
+#endif
   , KnownScope(..)
   , bits
   , featureNames
@@ -281,6 +284,24 @@ mkUtil = Util
 
 applyUtil :: Util a y -> a -> y -> Double
 applyUtil (Util f) = f
+
+#ifndef DROP_VPRE
+-- | An action-indexed evidence channel (PREPOSTERIOR_PLAN P3 as
+-- ruled): the value-layer opaque wrapper, the 'Util' pattern verbatim
+-- — which kernel the world shows depends on which decision fires.
+-- Composition, not widening: 'Evidence' stays the closed variant,
+-- 'Kernel' is untouched, and conditioning still enters only as
+-- evidence. Parity-scoped, recorded: when channels become latent (the
+-- CIRL neighborhood), Chan must become priced syntax — the same debt
+-- 'Util' carries.
+data Chan d h y = Chan (d -> Kernel h y)
+
+mkChan :: (d -> Kernel h y) -> Chan d h y
+mkChan = Chan
+
+applyChan :: Chan d h y -> d -> Kernel h y
+applyChan (Chan f) = f
+#endif
 
 -- | Type-level scope size, so 'Var' can be priced as a name mention
 -- (amended spec §3): the pricer reads |scope| from the environment
