@@ -118,6 +118,12 @@ evalx expr env@(Env feats vals) = case expr of
       fromBits (carrierSpace car)
         (\y -> Bits (negate (eta * statVal st y) / ln2))
 #endif
+#ifndef DROP_USAY
+  -- Task-2 freeze STUB (the prepost precedent): the alphabet fact
+  -- (constructor + pricing) lands at the freeze; the definitional
+  -- semantics land at Task 3. Returns the mute utility until then.
+  USay _ -> mkUtil (\_ _ -> 0)
+#endif
   Call sn as -> applyStd sn (evalArgs as env)
 
 evalArgs :: Args env ts -> Env env -> Vals ts

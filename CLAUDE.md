@@ -90,7 +90,10 @@ cannot catch; that is why it is written down)
    membrane (interface.md S1-S3), self-features, the full fidelity ladder
    with acceptance test F, then action-dependence in vThink's
    preposterior (increment 5) and utility-as-latent under the discrete
-   reading (increment 6, CIRL).
+   reading (increment 6, CIRL). Completed through increment 6 (the
+   pointer). The roadmap terminates here; any further scope binds P5's
+   single-site alphabet-constant clause and requires a new roadmap
+   boundary.
 
 ## When to stop and report instead of proceeding
 

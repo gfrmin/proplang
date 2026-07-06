@@ -139,3 +139,17 @@ test-suite prepost
                     , QuickCheck
                     , process
     default-language: GHC2021
+
+test-suite cirl
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Cirl.hs
+    hs-source-dirs:   test-cirl
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

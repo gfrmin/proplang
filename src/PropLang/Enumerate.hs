@@ -136,6 +136,9 @@ renderExpr e0 = case e0 of
   ExpFam _ car st -> "('expfam', '" ++ carrierName car ++ "', '"
                        ++ statsStr st ++ "')"
 #endif
+#ifndef DROP_USAY
+  USay p     -> "('usay', " ++ renderExpr p ++ ")"
+#endif
   Call sn as -> "('call', '" ++ stdNameStr sn ++ "'" ++ renderArgs as ++ ")"
   where
     idxInt :: Idx env' t' -> Int

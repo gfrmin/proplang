@@ -155,6 +155,7 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > | STATS | SId | 0 bits |
 > | KER | ExpFam | 0 bits |
 > | STDNAME | EU, IsEq, VAct, VThink, Bern, VThinkK, VPre | log2 7 |
+> | UTIL | USay | 0 bits |
 >
 > STDNAME row amended at the prepost freeze to cover both the
 > ladder's VThinkK (missed at that boundary) and VPre — two alphabet
@@ -168,6 +169,12 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > (Kraft-tight per hole) while `ExpFam` pays 0 constructor bits — a
 > 0-bit alternative alongside the ten EXPR codewords at the same hole
 > would violate Kraft; at a declared KER hole it is the sole codeword.
+> Utility-valued positions are declared UTIL holes (KER's sibling):
+> USay is the sole codeword, its payload pricing as EXPR in a
+> two-variable scope. The subprogram is closed by construction —
+> evaluation discards the outer environment — so utilities are
+> featureless and clockless as a definition-level fact, and Get
+> inside a utility is dormant, per-node-priced syntax.
 > GADT terms outside this published fragment (the Haskell encoding
 > admits, e.g., `Var` at a kernel-typed hole) remain per-node priced
 > for totality of `bits`, but lie outside the generative prior: no

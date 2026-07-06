@@ -32,6 +32,9 @@ module PropLang.Syntax
 #ifndef DROP_EXPFAM
         , ExpFam
 #endif
+#ifndef DROP_USAY
+        , USay
+#endif
         )
   , mkC
   , Fn(..)
@@ -166,6 +169,22 @@ data Expr env t where
   -- KER-sort: 0 constructor bits (sole production, author pack §1).
   ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double c)
 #endif
+#ifndef DROP_USAY
+  -- the pointer's door (increment 6, CIRL_PLAN C3 as ruled): the
+  -- priced utility. A NEW SORT (UTIL, spec section 3 table row at this
+  -- increment's freeze): USay is the sole codeword at declared
+  -- utility-valued holes (the ExpFam maneuver — outside EXPR's ten
+  -- written alternatives, 0 constructor bits), its payload priced as
+  -- EXPR in its own two-variable scope. Env convention as ruled:
+  -- Var Z is the option code, Var (S Z) the latent parameter. The
+  -- subprogram is CLOSED — evaluation discards the outer environment —
+  -- so utilities are featureless and clockless as a definition-level
+  -- fact ('Get' inside a utility is dormant, per-node-priced syntax).
+  -- Dies with DROP_USAY: delete the door and no sentence can hold a
+  -- utility; the worlds, the verbs, and the opaque world-data face
+  -- ('mkUtil') all survive.
+  USay :: Expr '[Double, Double] Double -> Expr env (Util Double Double)
+#endif
 
 -- | Match-only view of a priced constant: grid, index, and the point
 -- VALUE, resolved once at construction time by 'mkC' — the only door
@@ -189,6 +208,9 @@ pattern C g k v <- MkC g k v
 #endif
 #ifndef DROP_EXPFAM
              ExpFam,
+#endif
+#ifndef DROP_USAY
+             USay,
 #endif
              Call #-}
 
@@ -359,11 +381,12 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
     -- members, one KER production, one STATS member. Alphabet data
     -- with prices, like grid points; counting is by written
     -- alternatives, not type-pruned availability.
-    nodeB, stdB, kerB, statsB :: Double
+    nodeB, stdB, kerB, statsB, utilB :: Double
     nodeB  = logBase 2 10
     stdB   = logBase 2 7
     kerB   = logBase 2 1
     statsB = logBase 2 1
+    utilB  = logBase 2 1
 
     go :: Int -> Expr env' t' -> Double
     go sc e = case e of
@@ -385,6 +408,12 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
       -- choice + carrier mention + sole-member stats choice; the
       -- Space payload is priced 0 (recorded opaque-payload convention)
       ExpFam {}  -> kerB + carrierB + statsB
+#endif
+#ifndef DROP_USAY
+      -- UTIL-sort (spec section 3 as amended at the cirl freeze):
+      -- sole-codeword constructor choice (0 bits); the payload prices
+      -- as EXPR in its own closed two-variable scope
+      USay p     -> utilB + go 2 p
 #endif
       Call _ as  -> nodeB + stdB + goArgs sc as
 
