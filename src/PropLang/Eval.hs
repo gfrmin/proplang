@@ -43,12 +43,12 @@ import PropLang.Belief (prob)
 import PropLang.Belief (Bits (Bits), fromBits, kernel)
 #endif
 import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
-                        StdName (..), Util, applyUtil)
+                        StdName (..), Util, applyUtil, mkUtil)
 #ifndef DROP_EXPFAM
 import PropLang.Syntax (Carrier, Stats (..), carrierSpace)
 #endif
 #ifndef DROP_VPRE
-import PropLang.Syntax (Chan)
+import PropLang.Syntax (Chan, applyChan)
 #endif
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
@@ -182,43 +182,64 @@ vAct b u = foldl' step negInf
   where
     step bv a = let v = expect b (applyUtil u a) in if v > bv then v else bv
 
+-- The one preposterior arithmetic (PREPOSTERIOR_PLAN P1 as ruled),
+-- private and unconditional like 'PropLang.Syntax'.bitsAt: W_0 is
+-- 'vAct' over the terminal menu (the induction base, used as-is);
+-- W_j is the best interior decision's immediate prevision plus the
+-- continuation through THAT decision's own channel — the same kernel
+-- weighting the length-n outcome sequences (binary-counting order
+-- over the given alphabet, logPredict folded BEFORE cond per outcome,
+-- an impossible branch contributing weight 0) and conditioning the
+-- belief the continuation sees — with the tick's price outside the
+-- max. The mute singleton (constant channel, zero immediate — a
+-- definitional zero, not a steering constant — unit menu) collapses
+-- W_j to the frozen deliberation arithmetic: the immediate prevision
+-- is exactly 0, the singleton max is the identity, and the remaining
+-- fold is line-for-line the pre-increment worker. 'vThinkAt' below IS
+-- that application (identity as definition, P1's required form).
+vPreAt :: Eq y
+       => Int -> Belief h -> (d -> Kernel h y) -> Util d h -> NonEmpty d
+       -> [y] -> Util a h -> NonEmpty a -> Int -> Double -> Double
+vPreAt d b ch uD ds ys u acts n price = est d b
+  where
+    est j bb | j <= 0    = vAct bb u acts
+             | otherwise =
+                 foldl' pick negInf (fmap (branch (est (j - 1)) bb) ds)
+                   - price
+    pick bv v = if v > bv then v else bv
+    branch cont bb dd =
+      expect bb (applyUtil uD dd)
+        + sumL (map (walk (ch dd) cont 0 (Just bb)) (grow n [[]]))
+    grow m ss | m <= 0    = ss
+              | otherwise = grow (m - 1) [s ++ [y] | s <- ss, y <- ys]
+    walk k cont lp (Just bc) (y : rest) =
+      let LogProb l = logPredict bc (Saw k y)
+      in walk k cont (lp + l) (cond bc (Saw k y)) rest
+    walk _ cont lp (Just bc) [] = exp lp * cont bc
+    walk _ _    _  Nothing   _  = 0
+
 -- Russell–Wefald preposterior value of one more batch of computation:
--- the fidelity ladder's depth-1 case. 'vThinkAt' below is the one
--- arithmetic and this is its rung-1 face (the bitsAt pattern) — at
--- depth 1 the fold is line-for-line the frozen form: for each
--- length-n outcome sequence (binary-counting order over the given
--- alphabet), fold logPredict BEFORE cond per outcome, weight the
--- post-conditioning value of acting by exp of the summed log
--- marginals; an impossible branch contributes weight 0; the world's
--- price of the tick is subtracted at the end.
+-- the fidelity ladder's depth-1 case — 'vThinkAt' at depth 1, itself
+-- the mute-singleton face of 'vPreAt' (the bitsAt pattern, twice).
 vThink :: Eq y
        => Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a -> Int
        -> Double -> Double
 vThink = vThinkAt 1
 
--- The one deliberation arithmetic (LADDER_PLAN L1, reading c as
--- ruled), private and unconditional like 'PropLang.Syntax'.bitsAt:
--- Est_0 is the value of acting now (the induction base, used as-is);
--- Est_j is the sum over length-n outcome sequences of exp(summed log
--- marginals) times Est_{j-1} of the conditioned belief, minus the
--- tick's price — so depth k telescopes to the k-batch preposterior of
--- acting minus k*price, every priced tick a real tick.
+-- The action-INDEPENDENT deliberation arithmetic (LADDER_PLAN L1,
+-- reading c as ruled): Est_0 is the value of acting now (the
+-- induction base, used as-is); Est_j is the next-batch preposterior
+-- of Est_{j-1} minus the tick's price — so depth k telescopes to the
+-- k-batch preposterior of acting minus k*price, every priced tick a
+-- real tick. Since the prepost freeze this is DEFINED as 'vPreAt' at
+-- the mute singleton (the increment-5 degeneracy identity, pinned
+-- with == by the frozen oracle): the frozen worker IS the
+-- action-independent case of the action-dependent one.
 vThinkAt :: Eq y
          => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
          -> Int -> Double -> Double
-vThinkAt d b k ys u acts n price = est d b
-  where
-    est j bb | j <= 0    = vAct bb u acts
-             | otherwise =
-                 sumL (map (walk (est (j - 1)) 0 (Just bb)) (grow n [[]]))
-                   - price
-    grow m ss | m <= 0    = ss
-              | otherwise = grow (m - 1) [s ++ [y] | s <- ss, y <- ys]
-    walk cont lp (Just bc) (y : rest) =
-      let LogProb l = logPredict bc (Saw k y)
-      in walk cont (lp + l) (cond bc (Saw k y)) rest
-    walk cont lp (Just bc) [] = exp lp * cont bc
-    walk _    _  Nothing   _  = 0
+vThinkAt d b k ys u acts n price =
+  vPreAt d b (const k) (mkUtil (\_ _ -> 0)) (() :| []) ys u acts n price
 
 #ifndef DROP_LADDER
 -- | The fidelity ladder's rung valuation (interface.md section 6;
@@ -247,15 +268,16 @@ vThinkK = vThinkAt
 -- prevision plus the continuation through THAT decision's own
 -- channel, the tick's price outside the max. The frozen worker is the
 -- degenerate case at the mute singleton (constant channel, zero
--- immediate, unit menu), and at Task 3 'vThinkAt' is re-based as
--- exactly that application (the bitsAt pattern's third use; the
--- oracle pins the identity with ==).
+-- immediate, unit menu), and 'vThinkAt' is re-based as exactly that
+-- application (the bitsAt pattern's third use; the oracle pins the
+-- identity with ==).
 --
--- Task-1 type-surface STUB: returns 0 until Task 3 lands the one
--- arithmetic (the oracle's identity and world pins are red against
--- this stub by construction).
+-- The executed semantics IS 'vPreAt' — the public conditional face of
+-- the one preposterior arithmetic, unwrapping the channel at the
+-- membrane of the sealed value layer.
 vPre :: Eq y
      => Int -> Belief h -> Chan d h y -> [y] -> Util d h -> NonEmpty d
      -> Util a h -> NonEmpty a -> Int -> Double -> Double
-vPre _ _ _ _ _ _ _ _ _ _ = 0
+vPre d b ch ys uD ds u acts n price =
+  vPreAt d b (applyChan ch) uD ds ys u acts n price
 #endif
