@@ -7,7 +7,23 @@ Queued at the ExpFam increment's acceptance (2026-07-05).
 ALL FOUR ITEMS LANDED at the membrane Task 2 freeze (fd70162,
 2026-07-06): items 1, 2 applied as pack §2/§3; item 3 STRUCK by the
 author (§4 — the T1 record stays in spec §4); item 4 RULED IN (the
-custody paragraph is now CLAUDE.md protocol text). Queue empty.
+custody paragraph is now CLAUDE.md protocol text). Queue emptied,
+then re-opened at the CIRL close (below) for the write-up boundary.
+
+## 5. The arithmetic-free boundary → the write-up's honesty section (author, ruled at the CIRL close, 2026-07-06)
+
+CIRL_REPORT §4.2 is bigger than an incident record: **"the policy
+fragment has no arithmetic" is a discovered expressiveness boundary
+of the language** — sayable utilities are comparison-gated step
+tables; linear utilities are unsayable. The write-up must carry it in
+the honesty section with BOTH faces stated: as recorded debt
+(arithmetic nodes are a future reported alphabet change, priced like
+everything else) and as the accidental virtue it proved to be (the
+step form held the control identity at 1.1e-16 where the linear form
+carried one-ulp dust). A limitation found by measurement and recorded
+rather than patched is exactly what the brief's residue discipline
+was for; per the author's ruling it stands "beside the alphabet,
+clock, and pointer as the fourth honest sentence."
 
 ## 1. Red-runner flag fidelity → CLAUDE.md increment protocol (author, ruled)
 

@@ -6,14 +6,18 @@ planning, making the definition of done auditable in place). This
 records the agreed structure, the four sharpenings, the cut list, and
 the definition of done.
 
-**Status (updated 2026-07-06, on the author's instruction):**
-increments 3–5 are COMPLETE, each closed by its author-signed freeze
-tag and recorded in its as-built report — membrane (`membrane-freeze`,
-MEMBRANE_REPORT.md), ladder (`ladder-freeze`, LADDER_REPORT.md),
-preposterior (`prepost-freeze`, PREPOSTERIOR_REPORT.md; its reviewer
-block awaits the author's run). NEXT: increment 6 kickoff, which
-carries the Util type-shape ruling in waiting (below). Then the
-write-up.
+**Status (updated 2026-07-06, on the author's instruction; roadmap
+COMPLETE at the CIRL close):** increments 3–6 are DONE, each closed
+by its author-signed freeze tag, its as-built report, and its
+reviewer-block run — membrane (`membrane-freeze`, MEMBRANE_REPORT.md),
+ladder (`ladder-freeze`, LADDER_REPORT.md), preposterior
+(`prepost-freeze`, PREPOSTERIOR_REPORT.md), pointer (`cirl-freeze`,
+CIRL_REPORT.md). The definition of done (below) is a filled
+checklist: all three residues stand printed at their proven minima.
+NEXT and last: the write-up boundary — the brief and its §12
+checklist join the repo and the manifest; boundary-queue item 5 (the
+arithmetic-free expressiveness boundary, the fourth honest sentence)
+lands in its honesty section.
 
 ## Structure
 
@@ -44,8 +48,11 @@ write-up.
   anticipated: a paired control world (the group-6/C0 pattern) —
   information-gathering beats the myopically-better action iff the
   action-dependent VoI says so, and correctly does not in the control.
-- **NEXT — Increment 6 — the pointer: utility-as-latent (CIRL),
-  discrete reading only.** Level-1 model uncertainty over grid-priced utility
+- **DONE — Increment 6 — the pointer: utility-as-latent (CIRL),
+  discrete reading only** (record: CIRL_REPORT.md; tag: `cirl-freeze`;
+  delivered as planned — asking dies at k=1, listening at k=4, the
+  VoI measured to zero, the whole thing Bayes with no switch in the
+  source to grep for). Level-1 model uncertainty over grid-priced utility
   parameters (belief over programs; at most an HHmm-style structural
   latent) — NOT interface.md §4's level-2 latent-name mechanism; the
   latent-names cut stays cut, stated here so it cannot silently
