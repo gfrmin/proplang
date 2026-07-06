@@ -1,0 +1,33 @@
+-- test-cirl/stanza.cabal.draft — the cabal edit the Task 2 freeze
+-- commit applies to proplang.cabal (drafted in the oracle phase per
+-- the manifest-covers-build-files convention: cabal edits land only at
+-- freeze boundaries, reviewed with the pack).
+--
+-- ONE edit this increment (no exposed-module change; the src surface
+-- is the USay constructor inside PropLang.Syntax with its Eval and
+-- Enumerate cases):
+--
+-- 1. Append the test-suite stanza below (gate 5 absorbs the new suite
+--    through `cabal test all` with no edit to any frozen audit script).
+--
+-- The increment's OTHER freeze-commit edits are enumerated in the pack
+-- (CIRL_PLAN C9/C12 as ruled): the USay constructor + COMPLETE pragma
+-- + export + bits/evalx/renderExpr cases (drafted in the pack), the
+-- author's spec section-3 UTIL row + hole-declaration sentence
+-- (author text 1), the author's CLAUDE.md porting-order completion
+-- sentence (author text 2), and the manifest extension. NO frozen
+-- assertion literal moves — the empty census, a first (CIRL_PLAN T3).
+
+test-suite cirl
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Cirl.hs
+    hs-source-dirs:   test-cirl
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021
