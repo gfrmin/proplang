@@ -8,7 +8,7 @@
 -- surface stays red. Once it compiles, main runs its own assertions:
 --
 --   1. price: a Call VThinkK sentence of eight Var arguments costs
---      node + lg 6 + 8 * (node + lg 8) under the six-member alphabet
+--      node + lg 7 + 8 * (node + lg 8) under the seven-member alphabet
 --      (1e-12) — the pin whose stdB movement the author's one-literal
 --      amendment of the frozen expfam pin accompanies;
 --   2. identity at the syntax layer: the verb at depth 1 == the frozen
@@ -200,9 +200,9 @@ main = do
               (mkEnv [] (b :. emit :. ([0, 1] :: [Obs]) :. stakes :. dirs
                            :. n :. p :. VNil))
   rs <- sequence
-    [ check "price: Call VThinkK = node + lg 6 + eight Var mentions" $
+    [ check "price: Call VThinkK = node + lg 7 + eight Var mentions" $
         abs (unBits (bits priceSentence)
-             - (lg 10 + lg 6 + 8 * (lg 10 + lg 8))) <= 1e-12
+             - (lg 10 + lg 7 + 8 * (lg 10 + lg 8))) <= 1e-12
     , check "identity: the verb at depth 1 == the frozen VThink verb" $
         all (\ (b, p) -> verb (1 :: Int) b 3 p == vt b 3 p)
             [ (b, p) | b <- [u, b3], p <- [0.3, 0.05, 0.005, 0] ]

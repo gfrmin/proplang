@@ -134,10 +134,10 @@ groupPrices = testGroup "prices (sort-local coding, plan E2)"
       let sp = mkSpace (0.5 :| []) :: Space Double
       in assertBits "ExpFam node"
            0 (bits (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs)))
-  , testCase "Call (Bern _) prices node + stdname choice of 6 + param" $
+  , testCase "Call (Bern _) prices node + stdname choice of 7 + param" $
       case mkC g4 1 :: Maybe (Expr '[] Double) of
         Just p  -> assertBits "call bern"
-                     (lg 10 + lg 6 + (lg 10 + lg 4))
+                     (lg 10 + lg 7 + (lg 10 + lg 4))
                      (bits (Call (Bern obsCarrier) (p :* ANil)))
         Nothing -> assertFailure "mkC rejected an in-range index"
   ]

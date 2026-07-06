@@ -135,6 +135,10 @@ applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
 applyStd VThinkK (d :. b :. k :. ys :. u :. acts :. n :. price :. VNil) =
   vThinkK d b k ys u acts n price
 #endif
+#ifndef DROP_VPRE
+applyStd VPre (d :. b :. ch :. ys :. uD :. ds :. u :. acts :. n :. price :. VNil) =
+  vPre d b ch ys uD ds u acts n price
+#endif
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
 applyStd (Bern car) (th :. VNil) = bernFast car th
 #endif

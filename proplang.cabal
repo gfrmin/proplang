@@ -124,3 +124,18 @@ test-suite ladder
                     , QuickCheck
                     , process
     default-language: GHC2021
+
+test-suite prepost
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Prepost.hs
+    other-modules:    Streams
+    hs-source-dirs:   test-prepost, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    default-language: GHC2021

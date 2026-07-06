@@ -6,7 +6,7 @@
 # audit's inversion, used forward: it keeps the pre-freeze tree with
 # every frozen suite green (the five-member alphabet is untouched)
 # while this row alone carries the sayable surface's red. On compile
-# success the fixture RUNS its own assertions (price pin under lg 6,
+# success the fixture RUNS its own assertions (price pin under lg 7,
 # verb/worker identities, the sentence-driven episode against the
 # direction-1 pins) and this row goes green only when they all pass.
 #

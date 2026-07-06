@@ -258,6 +258,20 @@ data StdName args t where
   -- Dies with the ladder (DROP_LADDER), never with the myopic base.
   VThinkK :: Eq y => StdName '[Int, B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
 #endif
+#ifndef DROP_VPRE
+  -- the action-dependent preposterior (increment 5, PREPOSTERIOR_PLAN
+  -- P1/P4 as ruled): a REPORTED alphabet change, STDNAME grows 6 -> 7
+  -- (stdB moves lg 6 -> lg 7; the author's two frozen price-pin
+  -- amendments accompany this member in the same freeze commit).
+  -- Contract: @VPre d b ch ys uD ds u acts n price@ is W_d - W_0 the
+  -- frozen leaf (vAct over the terminal menu, the induction base),
+  -- W_j the best interior decision's immediate prevision plus the
+  -- continuation through ITS OWN channel, price outside the max. The
+  -- frozen VThink chain is the mute-singleton degenerate case (the
+  -- oracle pins == at the verb layer). Dies with DROP_VPRE; the
+  -- myopic base and the fidelity ladder survive.
+  VPre :: Eq y => StdName '[Int, B h, Chan d h y, [y], Util d h, NonEmpty d, Util a h, NonEmpty a, Int, Double] Double
+#endif
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
   -- the derived name (EXPFAM_PLAN E6): bern re-derived over the expfam
   -- basis — a REPORTED alphabet change (STDNAME grows 4 -> 5, author
@@ -340,14 +354,14 @@ bitsAt :: forall env t. KnownScope env => Double -> Expr env t -> Bits
 bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
     -- the shipped grammar's written alternative counts, per sort (the
-    -- normative production table, spec §3 as amended at the expfam
-    -- freeze): ten EXPR productions, six STDNAME members, two FN
+    -- normative production table, spec §3 as amended through the
+    -- prepost freeze): ten EXPR productions, seven STDNAME members, two FN
     -- members, one KER production, one STATS member. Alphabet data
     -- with prices, like grid points; counting is by written
     -- alternatives, not type-pruned availability.
     nodeB, stdB, kerB, statsB :: Double
     nodeB  = logBase 2 10
-    stdB   = logBase 2 6
+    stdB   = logBase 2 7
     kerB   = logBase 2 1
     statsB = logBase 2 1
 

@@ -120,7 +120,11 @@ Every step-6+ increment follows the recursive two-phase discipline:
    must agree with a frozen quantity is derived from the frozen
    artifact itself, never from a parallel derivation — sanity
    simulations establish discriminating power, not pin values (the
-   membrane pre-tag re-open). Existing frozen suites stay green
+   membrane pre-tag re-open). A compile-red fixture is proven
+   type-correct against the drafted future surface before the freeze
+   seals it — its red must be demonstrated to be the missing
+   constructor, not assumed (the ladder's Argmax-environment bug,
+   caught by exactly this proof). Existing frozen suites stay green
    throughout. Increment-oracle test names are ASCII-only (the
    membrane's locale incident, 2026-07-05).
 3. **Author freeze.** The author reviews the oracle and the increment's
