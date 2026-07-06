@@ -242,6 +242,19 @@ data StdName args t where
   IsEq   :: Eq a => StdName '[a, a] Bool
   VAct   :: StdName '[B h, Util a h, NonEmpty a] Double
   VThink :: Eq y => StdName '[B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
+#ifndef DROP_LADDER
+  -- the fidelity ladder's rung valuation (increment 4, LADDER_PLAN L1
+  -- reading c / L3 as ruled): a REPORTED alphabet change, STDNAME
+  -- grows 5 -> 6 (stdB moves lg 5 -> lg 6; the author's one-literal
+  -- amendment of the frozen expfam price pin accompanies this member
+  -- in the same freeze commit). Contract: @VThinkK d b k ys u acts n
+  -- price@ is Est_d - Est_0 the value of acting now (the induction
+  -- base), Est_k the next-batch preposterior of Est_{k-1} minus the
+  -- tick's price - so depth 1 is exactly @VThink@ and depth k
+  -- telescopes to the k-batch preposterior of acting minus k*price.
+  -- Dies with the ladder (DROP_LADDER), never with the myopic base.
+  VThinkK :: Eq y => StdName '[Int, B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
+#endif
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
   -- the derived name (EXPFAM_PLAN E6): bern re-derived over the expfam
   -- basis — a REPORTED alphabet change (STDNAME grows 4 -> 5, author
@@ -307,13 +320,13 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
     -- the shipped grammar's written alternative counts, per sort (the
     -- normative production table, spec §3 as amended at the expfam
-    -- freeze): ten EXPR productions, five STDNAME members, two FN
+    -- freeze): ten EXPR productions, six STDNAME members, two FN
     -- members, one KER production, one STATS member. Alphabet data
     -- with prices, like grid points; counting is by written
     -- alternatives, not type-pruned availability.
     nodeB, stdB, kerB, statsB :: Double
     nodeB  = logBase 2 10
-    stdB   = logBase 2 5
+    stdB   = logBase 2 6
     kerB   = logBase 2 1
     statsB = logBase 2 1
 

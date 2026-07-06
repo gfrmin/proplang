@@ -149,6 +149,9 @@ renderExpr e0 = case e0 of
     stdNameStr IsEq   = "IsEq"
     stdNameStr VAct   = "VAct"
     stdNameStr VThink = "VThink"
+#ifndef DROP_LADDER
+    stdNameStr VThinkK = "VThinkK"
+#endif
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
     stdNameStr Bern {} = "bern"
 #endif

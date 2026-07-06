@@ -88,7 +88,9 @@ cannot catch; that is why it is written down)
    re-derived" promise was half-impossible without an anchor re-open and
    is amended here, at a freeze boundary, by the author), then the
    membrane (interface.md S1-S3), self-features, the full fidelity ladder
-   with acceptance test F.
+   with acceptance test F, then action-dependence in vThink's
+   preposterior (increment 5) and utility-as-latent under the discrete
+   reading (increment 6, CIRL).
 
 ## When to stop and report instead of proceeding
 
@@ -119,7 +121,8 @@ Every step-6+ increment follows the recursive two-phase discipline:
    artifact itself, never from a parallel derivation — sanity
    simulations establish discriminating power, not pin values (the
    membrane pre-tag re-open). Existing frozen suites stay green
-   throughout.
+   throughout. Increment-oracle test names are ASCII-only (the
+   membrane's locale incident, 2026-07-05).
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
@@ -136,4 +139,9 @@ Custody: the builder signs its own commits with the builder key and
 never touches the author's; a freeze becomes binding when the author
 countersigns the freeze commit with a signed tag from their own
 shell. The tag, not any commit signature, is the attestation of
-author review and approval.
+author review and approval. A tag made on delegation is legal only
+when the delegation is fresh, explicit, and per-instance; the builder
+then tags with the BUILDER key and records the delegation verbatim in
+the tag message - the signature truthfully attests builder action
+under recorded instruction and cannot mint an author attestation (the
+membrane precedent).

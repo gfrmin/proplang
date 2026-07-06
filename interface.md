@@ -237,8 +237,10 @@ measured evidence loss. Delete slot grids: affordances unpriceable, menu
 empties.
 
 **F. Ladder honesty.** With the fidelity ladder enabled, re-run the
-lazy-genius world: at test 2's price points the chosen rung must be the
-myopic one and the tick counts must reproduce (1/3/12/12); at prices near
-zero with an adversarial buffer, the agent must sometimes *buy* a deeper
-estimate and outperform the fixed-myopia agent — the estimator choice
-earning its keep by evidence, like everything else here.
+lazy-genius world: at test 2's price points the tick counts and final
+acts must reproduce (1/3/12/12), with the myopic rung chosen wherever
+the clock bites and deeper rungs bought only where fidelity is cheap —
+behavior identical either way; at prices near zero with an adversarial
+buffer, the agent must sometimes *buy* a deeper estimate and outperform
+the fixed-myopia agent — the estimator choice earning its keep by
+evidence, like everything else here.

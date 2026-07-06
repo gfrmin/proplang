@@ -228,6 +228,13 @@ and thereafter read-only; the implementation phase is done when the compiler
 gates (`-Wall -Werror`, no `unsafePerformIO`, no `Debug.Trace` in src/) and
 the frozen suite both pass, with the manifest verified.
 
+A frozen oracle that matches a variant exhaustively seals that variant
+as a compile fact: -Werror incomplete-patterns makes every constructor
+addition an edit to frozen surface, so future extension is by
+composition around the sealed type, never by widening it — discovered
+at the ladder increment, when M9's reserved additive constructor met
+the membrane oracle's frozen match (LADDER pack §0).
+
 ## 6. Module map for the port
 
 ```

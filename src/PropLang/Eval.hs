@@ -125,6 +125,10 @@ applyStd IsEq   (x :. y :. VNil)      = x == y
 applyStd VAct   (b :. u :. acts :. VNil) = vAct b u acts
 applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
   vThink b k ys u acts n price
+#ifndef DROP_LADDER
+applyStd VThinkK (d :. b :. k :. ys :. u :. acts :. n :. price :. VNil) =
+  vThinkK d b k ys u acts n price
+#endif
 #if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
 applyStd (Bern car) (th :. VNil) = bernFast car th
 #endif
