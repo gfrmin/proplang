@@ -1,0 +1,49 @@
+-- test-govhost/stanza.cabal.draft — the cabal edits H's freeze commit
+-- applies to proplang.cabal (drafted in the oracle phase per the
+-- manifest-covers-build-files convention: cabal edits land only at
+-- freeze boundaries, reviewed with the pack).
+--
+-- TWO stanzas this increment (HOSTS_PLAN 2.3/2.10): the wire driver
+-- executable and its oracle suite. Gate 5 (`cabal test all`) absorbs
+-- the suite with no edit to any frozen audit script; the executable
+-- reaches the suite through build-tool-depends (g5's process smoke
+-- finds it on PATH; the oracle-phase red-run supplies GOVHOST_EXE
+-- instead).
+--
+-- The increment's OTHER freeze-commit edits are enumerated in the pack
+-- (HOSTS_PLAN 0.3/2.10 as approved at the re-opening, c65a386):
+-- the P5 single-site production-table constant in PropLang.Syntax
+-- (prodAlternatives exported; bitsAt's five literals re-based,
+-- identity-pinned by the oracle's gP5 group — the ONLY src edit),
+-- extra-doc-files gaining HOSTS_PLAN.md (already committed by the
+-- author) and membrane-wire.md (drafted in the pack), the author's
+-- CLAUDE.md re-opening sentence (author text, R3: binds only by the
+-- author's hand), and the manifest extension + re-sign over
+-- test-govhost/ and host-governor/. Census target: EMPTY — no frozen
+-- assertion literal moves; claimed with the CIRL precedent's
+-- instruments, not asserted.
+
+executable proplang-govhost
+    import:           warnings
+    main-is:          Main.hs
+    other-modules:    Wire
+    hs-source-dirs:   host-governor
+    build-depends:    base
+                    , proplang
+    default-language: GHC2021
+
+test-suite govhost
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          GovHost.hs
+    other-modules:    Wire
+    hs-source-dirs:   test-govhost, host-governor
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    build-tool-depends: proplang:proplang-govhost
+    default-language: GHC2021

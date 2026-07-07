@@ -94,6 +94,13 @@ cannot catch; that is why it is written down)
    pointer). The roadmap terminates here; any further scope binds P5's
    single-site alphabet-constant clause and requires a new roadmap
    boundary.
+   The roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386):
+   increment H (the host driver and the single-site alphabet
+   constant), then A (options-as-data observations), then
+   demand-gated B (the reliability channel), D (the latent-utility
+   pilot), and C (arithmetic, the census-bearing change) — each its
+   own oracle-first freeze, each gated as HOSTS_PLAN section 9
+   records.
 
 ## When to stop and report instead of proceeding
 

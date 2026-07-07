@@ -46,6 +46,7 @@ module PropLang.Syntax
   , Chan, mkChan, applyChan
 #endif
   , KnownScope(..)
+  , ProdTable(..), prodTable
   , bits
   , featureNames
   , carrierNames
@@ -351,6 +352,19 @@ instance KnownScope '[] where
 instance KnownScope env => KnownScope (t ': env) where
   scopeLen _ = 1 + scopeLen (Proxy :: Proxy env)
 
+-- | The normative production table's written alternative counts
+-- (spec §3; HOSTS_PLAN §0.3 — P5's single-site alphabet constant,
+-- landed at the govhost freeze): ONE value, six fields, total by
+-- construction. A count change edits exactly this value plus the
+-- enumerated frozen pins of the changed sort (the P5 forward
+-- ruling's mandatory boundary item); the govhost oracle's gP5 group
+-- pins the identity — 'bits' moves nowhere at the re-base.
+data ProdTable = ProdTable
+  { prodExpr, prodFn, prodStats, prodKer, prodStdName, prodUtil :: Int }
+
+prodTable :: ProdTable
+prodTable = ProdTable 10 2 1 1 7 1
+
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile
 -- fact). Contract (amended spec §3, prefix-decodable): every node pays
@@ -380,13 +394,17 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
     -- prepost freeze): ten EXPR productions, seven STDNAME members, two FN
     -- members, one KER production, one STATS member. Alphabet data
     -- with prices, like grid points; counting is by written
-    -- alternatives, not type-pruned availability.
+    -- alternatives, not type-pruned availability. Read from
+    -- 'prodTable' — the P5 single site — since the govhost freeze.
     nodeB, stdB, kerB, statsB, utilB :: Double
-    nodeB  = logBase 2 10
-    stdB   = logBase 2 7
-    kerB   = logBase 2 1
-    statsB = logBase 2 1
-    utilB  = logBase 2 1
+    nodeB  = lgOf (prodExpr prodTable)
+    stdB   = lgOf (prodStdName prodTable)
+    kerB   = lgOf (prodKer prodTable)
+    statsB = lgOf (prodStats prodTable)
+    utilB  = lgOf (prodUtil prodTable)
+
+    lgOf :: Int -> Double
+    lgOf n = logBase 2 (fromIntegral n)
 
     go :: Int -> Expr env' t' -> Double
     go sc e = case e of
@@ -421,11 +439,13 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
     goArgs _  ANil      = 0
     goArgs sc (a :* as) = go sc a + goArgs sc as
 
-    -- one FN choice bit (log2 2, the two written members — plan Q1);
-    -- the opaque value-layer payloads are priced 0, the recorded
-    -- parity-scoped convention.
+    -- one FN choice bit (log2 2, the two written members — plan Q1;
+    -- the SIXTH price literal, found at the govhost pack, H-9 —
+    -- mandatory under P5's single-site clause); the opaque
+    -- value-layer payloads are priced 0, the recorded parity-scoped
+    -- convention.
     fnB :: Fn a -> Double
-    fnB _ = 1
+    fnB _ = lgOf (prodFn prodTable)
 
     -- a carrier mention is a name mention against the carrier registry
     -- (same written rule as 'nameBits': free while the registry is a

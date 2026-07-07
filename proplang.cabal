@@ -10,6 +10,8 @@ extra-doc-files:    CLAUDE.md
                     design.md
                     interface.md
                     typed-port-spec.md
+                    HOSTS_PLAN.md
+                    membrane-wire.md
 
 common warnings
     ghc-options: -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns
@@ -152,4 +154,34 @@ test-suite cirl
                     , tasty-quickcheck
                     , QuickCheck
                     , process
+    default-language: GHC2021
+
+-- The govhost increment (HOSTS_PLAN boundary H; stanzas drafted in the
+-- oracle phase as test-govhost/stanza.cabal.draft, landed at the
+-- govhost freeze). The wire driver executable is implementation
+-- surface like src/ (ruling H-7: gates, not manifest); the suite
+-- reaches it through build-tool-depends.
+executable proplang-govhost
+    import:           warnings
+    main-is:          Main.hs
+    other-modules:    Wire
+    hs-source-dirs:   host-governor
+    build-depends:    base
+                    , proplang
+    default-language: GHC2021
+
+test-suite govhost
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          GovHost.hs
+    other-modules:    Wire
+    hs-source-dirs:   test-govhost, host-governor
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+                    , process
+    build-tool-depends: proplang:proplang-govhost
     default-language: GHC2021
