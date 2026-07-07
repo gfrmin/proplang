@@ -1,0 +1,18 @@
+# allowed_signers — public keys that sign this repository's commits and tags.
+#
+# Both keys sign under the git identity guy@publicdatamarket.com; git tells
+# them apart by fingerprint (shown by `git tag -v <tag>` and
+# `git log --show-signature`):
+#
+#   author   SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY
+#   builder  SHA256:fPqrWnQhp0Ds+8MkMIDMUZzdRGviyfwt2BjsSaXAmgc  (Claude Code builder)
+#
+# The membrane-freeze and ladder-freeze tags are builder-signed under an
+# explicit author delegation recorded verbatim in each tag message; every
+# other freeze tag is author-signed. To verify signatures in this repo:
+#
+#   git config gpg.ssh.allowedSignersFile allowed_signers
+#   git tag -v writeup-freeze
+#
+guy@publicdatamarket.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPDwevr0dVVkcHMbZhq1jAUti7RIaH0gV+c1KqESg0hJ
+guy@publicdatamarket.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGdQR3h1PLGCgKgf0i3K5sETgdVDByI+P4zvw5OtG/8 proplang-builder (Claude Code builder attestation)
