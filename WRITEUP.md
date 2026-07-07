@@ -449,6 +449,32 @@ project ends with is the one its own failures wrote:
   and the emptiness was recorded *with evidence under three
   instruments*, because an unverified "nothing moved" is exactly the
   kind of green the protocol distrusts.
+- **The §10 erratum**: the closing block's own run exposed the block's
+  four-tag expectation as false — membrane-freeze carries the builder
+  key under its recorded delegation, not the author's key — and its
+  gate line as not runnable verbatim. Repaired at the re-made
+  writeup-freeze. The one sentence of the block drafted from memory
+  instead of derived from the frozen artifacts was the one that went
+  wrong: the pin-provenance rule, confirmed on prose.
+- **The post-close review**: an adversarial sweep of src/, the eight
+  suites, and the audit scripts, run after the close. No smuggled
+  content in src/ — no seeds, no test-aware branches, no steering
+  constants; every literal traced to declared data or the production
+  table. Two paths of the one deliberation arithmetic have no frozen
+  row that can falsify them: the interior-menu max (every vPre call
+  site in the repository passes a singleton interior menu) and the
+  action-dependent recursion above depth 1. The identity pins that
+  once covered such paths (Prepost g1, Ladder g1, Membrane's
+  registry and generator rows, the sayable fixtures' bridge checks)
+  became definitional the moment the rulings' required
+  identity-as-definition landed; the correctness burden migrated to
+  the literal anchors, which hold. The audit scripts' textual checks
+  (gate 1's flag grep, the ablation runners' attribution greps)
+  discriminate only under the pinned toolchain and manifest-frozen
+  cabal file — contained, and named here. Recorded, not patched:
+  the residue discipline applied to the oracle itself. Any future
+  increment under P5's route opens its oracle with these as its
+  first fixtures.
 
 ## 9. The close
 
@@ -481,18 +507,18 @@ is made; closes the write-up boundary and with it the project.
 ```
 export PATH="$HOME/.ghcup/bin:$PATH"
 sha256sum -c MANIFEST.sha256                # expect: 68/68 OK
-env -i PATH HOME LC_ALL=C.UTF-8 sh audit/run-gates.sh --phase 2
+env -i PATH="$PATH" HOME="$HOME" LC_ALL=C.UTF-8 sh audit/run-gates.sh --phase 2
                                             # expect: gates 1-7 PASS, exit 0
 git log --format='%G? %GF %h %s' -- MANIFEST.sha256
-                                            # expect: 12 commits, all G —
-                                            # 6 author-key, 6 builder-key
+                                            # expect: 13 commits, all G —
+                                            # 7 author-key, 6 builder-key
 sh test-writeup/check.sh --close            # expect: every check PASS,
                                             # quote fidelity included
 git tag -v membrane-freeze ladder-freeze prepost-freeze cirl-freeze
                                             # expect: good signatures —
-                                            # ladder's carries its recorded
-                                            # delegation, the others the
-                                            # author's key
+                                            # membrane's and ladder's carry
+                                            # their recorded delegations,
+                                            # the others the author's key
 git tag -v brief-freeze                     # expect: good author-key
                                             # signature — the brief entered
                                             # by the hand that wrote it
