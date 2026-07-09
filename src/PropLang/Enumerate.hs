@@ -53,6 +53,11 @@ module PropLang.Enumerate
   , enumerateUModels
   , verdictKernel
   , latentMarginal
+  , latentName
+  , latentPoints
+  , latentChannel
+  , observeVia
+  , observeCounts
 #endif
 #endif
   ) where
@@ -61,8 +66,9 @@ import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)), nonEmpty, toList)
 
 import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
-                        LogProb, Space, cond, fromBits, kernel, logPredict,
-                        mkSpace, push, uniform)
+                        LogProb (LogProb), Space, cond, fromBits, is,
+                        kernel, logPredict, mkSpace, point, prob, push,
+                        uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
 import PropLang.Eval (bernFast)
@@ -115,6 +121,18 @@ rhoGrid   = mkGrid "rho" rhoPoints
 data Model
   = MBern Bits (Expr '[] Double)
   | MHmm Bits (Expr '[] Double)
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
+  -- the latent-utility sorts (increment D): a utility hypothesis
+  -- carries the DECLARED emission channel it steps through (world
+  -- data, the enumerateUModels argument) and its value space (the
+  -- evaluated grid) — the sentence is still the only content
+  | MUConst Bits (Expr '[] Double) (Kernel Double Obs) (Space Double)
+            (NonEmpty Double) Name
+#ifndef DROP_UWALK
+  | MUWalk Bits (Expr '[] Double) (Kernel Double Obs) (Space Double)
+           (NonEmpty Double) Name
+#endif
+#endif
 
 -- | Canonical rendering, byte-identical to the Python reference's repr,
 -- e.g. @"('hmm', ('c', 'rho', 3))"@. The frozen tests assert MAP
@@ -122,6 +140,12 @@ data Model
 renderModel :: Model -> String
 renderModel (MBern _ p) = "('bern', " ++ renderExpr p ++ ")"
 renderModel (MHmm _ e)  = "('hmm', " ++ renderExpr e ++ ")"
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
+renderModel (MUConst _ e _ _ _ _)  = "('uconst', " ++ renderExpr e ++ ")"
+#ifndef DROP_UWALK
+renderModel (MUWalk _ e _ _ _ _) = "('uwalk', " ++ renderExpr e ++ ")"
+#endif
+#endif
 
 -- | Rendering is total over the grammar; only the model fragment's
 -- shapes are ever asserted against the frozen oracle. Exported since
@@ -184,6 +208,12 @@ renderExpr e0 = case e0 of
 modelBits :: Model -> Bits
 modelBits (MBern dl _) = dl
 modelBits (MHmm dl _)  = dl
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
+modelBits (MUConst dl _ _ _ _ _)  = dl
+#ifndef DROP_UWALK
+modelBits (MUWalk dl _ _ _ _ _) = dl
+#endif
+#endif
 
 -- | Enumerate the model fragment to depth 1 (the Cromwell frontier) from
 -- the allowed terminal set. Order and count match the Python reference
@@ -317,6 +347,15 @@ walkKernel rho = kernel thetaSpace thetaSpace step
 data HypState
   = HBern (Expr '[] Double)
   | HHmm Double (Belief Double)
+#ifndef DROP_UPILOT
+  -- a utility hypothesis's filtered state: the carried channel, the
+  -- value space, and (constant) the value / (walk) rate + latent
+  | HUConst (Kernel Double Obs) (Space Double) Double
+#ifndef DROP_UWALK
+  | HUWalk (Kernel Double Obs) (Space Double) (NonEmpty Double) Double
+           (Belief Double)
+#endif
+#endif
 
 -- | A belief over programs plus per-hypothesis filtered latent state.
 data Agent = Agent [Model] [HypState] (Space Int) (Belief Int)
@@ -339,6 +378,13 @@ mkAgent ms = case nonEmpty [0 .. length ms - 1] of
 initHyp :: Model -> HypState
 initHyp (MBern _ p) = HBern p
 initHyp (MHmm _ e)  = HHmm (evalx e (mkEnv [] VNil)) (uniform thetaSpace)
+#ifndef DROP_UPILOT
+initHyp (MUConst _ e k vs _ _)  = HUConst k vs (evalx e (mkEnv [] VNil))
+#ifndef DROP_UWALK
+initHyp (MUWalk _ e k vs pts _) =
+  HUWalk k vs pts (evalx e (mkEnv [] VNil)) (uniform vs)
+#endif
+#endif
 
 -- One tick of one hypothesis at the given features: its predictive over
 -- observations, and its absorb continuation (the walk conditions the
@@ -353,6 +399,41 @@ stepHyp feats h = case h of
     let predLat = push lat (walkKernel rho)
     in ( push predLat emit
        , \y -> HHmm rho <$> cond predLat (Saw emit y) )
+#ifndef DROP_UPILOT
+  HUConst k vs v ->
+    (push (point vs v) k, \_ -> Just (HUConst k vs v))
+#ifndef DROP_UWALK
+  HUWalk k vs pts rho lat ->
+    let predLat = push lat (walkOn vs pts rho)
+    in ( push predLat k
+       , \y -> HUWalk k vs pts rho <$> cond predLat (Saw k y) )
+#endif
+#endif
+
+#ifndef DROP_UPILOT
+-- The reflected walk generalized onto a declared value grid —
+-- 'walkKernel''s exact mass arithmetic, the space and points supplied
+-- by the utility fragment's enumeration instead of the frozen theta
+-- grid (one shape, two instantiations; the frozen kernel is
+-- untouched).
+walkOn :: Space Double -> NonEmpty Double -> Double -> Kernel Double Double
+walkOn vs vpts rho = kernel vs vs step
+  where
+    pts = toList vpts
+    n = length pts
+    mass (Just i) (Just j) =
+      (if j == i then 1 - rho else 0)
+        + (if j == lo then rho / 2 else 0)
+        + (if j == hi then rho / 2 else 0)
+      where
+        lo = if i > 0 then i - 1 else i + 1
+        hi = if i < n - 1 then i + 1 else i - 1
+    mass _ _ = 0
+    step v =
+      let mi = elemIndex v pts
+      in fromBits vs
+           (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
+#endif
 
 -- | The one-tick-ahead predictive: push of the meta-belief along the
 -- per-hypothesis step kernel at the given features.
@@ -435,8 +516,30 @@ allUFamilies = [UConst]
 -- instance, and the frozen 'emit' is the CIRL worlds' degenerate one
 -- (the degeneracy pins run through exactly that argument).
 enumerateUModels :: Kernel Double Obs -> Grid -> Grid -> [UFamily] -> [Model]
-enumerateUModels _ _ _ _ =
-  error "enumerateUModels: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+enumerateUModels k vg rg fams =
+    [ MUConst (Bits dlUConst) e k vspace vpoints (gridName vg)
+    | UConst <- fams, e <- onGrid vg ]
+#ifndef DROP_UWALK
+    ++ [ MUWalk (Bits dlUWalk) e k vspace vpoints (gridName vg)
+       | UWalk <- fams, e <- onGrid rg ]
+#endif
+  where
+    -- the derivation charges, in the model fragment's own shape
+    -- (enumerateModelsIn's arithmetic, instantiated on the declared
+    -- grids): a constant = sort bit + mention(value grid); a walk =
+    -- sort bit + rate index (no param-alternative bit, the dlWalk
+    -- precedent)
+    onGrid g = [ e | j <- [0 .. gridSize g - 1], Just e <- [mkC g j] ]
+    mention g = 1 + logBase 2 (fromIntegral (gridSize g))
+    dlUConst = 1 + mention vg
+#ifndef DROP_UWALK
+    dlUWalk  = 1 + logBase 2 (fromIntegral (gridSize rg))
+#endif
+    vals = [ evalx e (mkEnv [] VNil) | e <- onGrid vg ]
+    vpoints = case nonEmpty vals of
+      Just ne -> ne
+      Nothing -> error "enumerateUModels: grids are nonempty by construction"
+    vspace = mkSpace vpoints
 
 -- | The tau-marginalised logistic owner over a declared VALUE grid:
 -- a decision-free combinator u -> Belief over verdicts, the finite
@@ -445,15 +548,170 @@ enumerateUModels _ _ _ _ =
 -- space — a kernel without a declared domain is unconstructible,
 -- the mkC discipline at the channel.
 verdictKernel :: Grid -> TauSpec -> Kernel Double Obs
-verdictKernel _ _ =
-  error "verdictKernel: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+verdictKernel vg (TauSpec tg ws) =
+    kernel vspace (carrierSpace obsCarrier)
+           (bernFast obsCarrier . pApprove)
+  where
+    onGrid g = [ e | j <- [0 .. gridSize g - 1], Just e <- [mkC g j] ]
+    taus = [ evalx e (mkEnv [] VNil) | e <- onGrid tg ]
+    wl = toList ws
+    sigma x = 1 / (1 + exp (negate x))
+    pApprove u =
+      sum (zipWith (\w tau -> w * sigma (u / tau)) wl taus) / sum wl
+    vspace = mkSpace $ case nonEmpty [ evalx e (mkEnv [] VNil)
+                                     | e <- onGrid vg ] of
+      Just ne -> ne
+      Nothing -> error "verdictKernel: grids are nonempty by construction"
 
 -- | The meta-mixture readout onto the utility-parameter axis, built
 -- from PUBLIC verbs only (no new Belief export — I1 intact): the
 -- 'agentMeta' analogue for the pointer.
 latentMarginal :: Agent -> Belief Double
-latentMarginal _ =
-  error "latentMarginal: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+latentMarginal (Agent _ hyps isp meta) =
+  case [ vs | h <- hyps, vs <- hypVSpace h ] of
+    vs : _ -> push meta (kernel isp vs (valueBelief . (hyps !!)))
+    []     -> error "latentMarginal: the agent carries no utility hypotheses"
+  where
+    hypVSpace h = case h of
+      HUConst _ vs _ -> [vs]
+#ifndef DROP_UWALK
+      HUWalk _ vs _ _ _ -> [vs]
+#endif
+      _ -> []
+    valueBelief h = case h of
+      HUConst _ vs v -> point vs v
+#ifndef DROP_UWALK
+      HUWalk _ _ _ _ lat -> lat
+#endif
+      _ -> error "latentMarginal: mixed agent (world hypothesis has no value axis)"
+
+-- The declarations a utility agent was BUILT FROM, read back for the
+-- driver (observability of world data, not of belief internals — the
+-- Belief export list is untouched, I1/I2 intact): the value grid's
+-- name (the name-keyed pricing surface, rider 1's upPrice mechanism),
+-- its points, and the carried emission channel. Total on any agent
+-- holding at least one utility hypothesis; the driver never builds
+-- the pair machinery without one.
+firstU :: Agent -> Model
+firstU (Agent ms _ _ _) =
+  case [ m | m@MUConst {} <- ms ] of
+    m : _ -> m
+    []    ->
+#ifndef DROP_UWALK
+      case [ m | m@MUWalk {} <- ms ] of
+        m : _ -> m
+        []    -> error "latent accessors: no utility hypotheses"
+#else
+      error "latent accessors: no utility hypotheses"
+#endif
+
+latentName :: Agent -> Name
+latentName ag = case firstU ag of
+  MUConst _ _ _ _ _ nm -> nm
+#ifndef DROP_UWALK
+  MUWalk _ _ _ _ _ nm  -> nm
+#endif
+  _ -> error "latent accessors: no utility hypotheses"
+
+latentPoints :: Agent -> NonEmpty Double
+latentPoints ag = case firstU ag of
+  MUConst _ _ _ _ pts _ -> pts
+#ifndef DROP_UWALK
+  MUWalk _ _ _ _ pts _  -> pts
+#endif
+  _ -> error "latent accessors: no utility hypotheses"
+
+latentChannel :: Agent -> Kernel Double Obs
+latentChannel ag = case firstU ag of
+  MUConst _ _ k _ _ _ -> k
+#ifndef DROP_UWALK
+  MUWalk _ _ k _ _ _  -> k
+#endif
+  _ -> error "latent accessors: no utility hypotheses"
+
+-- | The count-collapsed warm verb (wire v2's @observe_counts@; the
+-- second review's budget ruling): per-hypothesis likelihood
+-- EXPONENTIATION from (n1, n0) — each hypothesis's predictive is
+-- computed ONCE and its log-likelihood scaled by the counts, folded
+-- into the meta-belief through one synthetic evidence (a kernel
+-- whose emission probability at the observed token IS the max-scaled
+-- collapsed likelihood — public verbs only, the Belief export list
+-- untouched). EXACT for exchangeable (iid-emission) hypotheses; for
+-- state-carrying ones (hmm / UWalk) this IS the declared
+-- warm-flattening approximation — the latent is NOT advanced per
+-- collapsed tick, printed rather than smuggled. O(hypotheses), not
+-- O(ticks). The optional kernel routes the collapse through a
+-- supplied emission (the outcome channel), 'observeVia''s
+-- discipline.
+observeCounts :: Maybe (Kernel Double Obs) -> Features -> Int -> Int
+              -> Agent -> Maybe (LogProb, Agent)
+observeCounts mk feats n1 n0 (Agent ms hyps isp meta) = do
+  let predOf h = case mk of
+        Nothing -> fst (stepHyp feats h)
+        Just kv -> case h of
+          HBern p ->
+            push (point thetaSpace (evalx p (mkEnv feats VNil))) kv
+          HHmm rho lat -> push (push lat (walkKernel rho)) kv
+          HUConst _ vs v -> push (point vs v) kv
+#ifndef DROP_UWALK
+          HUWalk _ vs pts rho lat -> push (push lat (walkOn vs pts rho)) kv
+#endif
+      preds = map predOf hyps
+      logL pd =
+        let p1 = prob pd (is obsSpace 1)
+            p0 = prob pd (is obsSpace 0)
+            lg1 = if p1 > 0 then log p1 else negInfD
+            lg0 = if p0 > 0 then log p0 else negInfD
+            term n l = if n == 0 then 0 else fromIntegral n * l
+        in term n1 lg1 + term n0 lg0
+      lls = map logL preds
+      m = maximum lls
+      scaled = [ if m > negInfD then exp (ll - m) else 0 | ll <- lls ]
+      synthSp = mkSpace (True :| [False])
+      synth = kernel isp synthSp $ \i ->
+        let l = scaled !! i
+        in fromBits synthSp
+             (\b -> Bits (negate (logBase 2 (if b then l else 1 - l))))
+      ev = Saw synth True
+      LogProb lp = logPredict meta ev
+  meta' <- cond meta ev
+  pure (LogProb (lp + m), Agent ms hyps isp meta')
+  where
+    negInfD = -1 / 0
+
+-- | 'observe' through a SUPPLIED emission (the outcome channel's
+-- verb, HOSTS_D_PACK §8: outcome ticks condition the pointer through
+-- their own declared kernel, not the hypothesis's carried one). Each
+-- hypothesis's current latent belief is pushed through the given
+-- kernel for its predictive; walks advance their latent exactly as in
+-- 'stepHyp' — one evidence flow, a different declared channel.
+observeVia :: Kernel Double Obs -> Features -> Obs -> Agent
+           -> Maybe (LogProb, Agent)
+observeVia kv feats y (Agent ms hyps isp meta) = do
+  let stepped = map via hyps
+      preds = map fst stepped
+      ev = Saw (kernel isp obsSpace (preds !!)) y
+      lp = logPredict meta ev
+  meta' <- cond meta ev
+  hyps' <- traverse (\(_, absorb) -> absorb y) stepped
+  pure (lp, Agent ms hyps' isp meta')
+  where
+    via h = case h of
+      HBern p ->
+        let th = evalx p (mkEnv feats VNil)
+        in (push (point thetaSpace th) kv, \_ -> Just (HBern p))
+      HHmm rho lat ->
+        let predLat = push lat (walkKernel rho)
+        in ( push predLat kv
+           , \o -> HHmm rho <$> cond predLat (Saw kv o) )
+      HUConst k vs v ->
+        (push (point vs v) kv, \_ -> Just (HUConst k vs v))
+#ifndef DROP_UWALK
+      HUWalk k vs pts rho lat ->
+        let predLat = push lat (walkOn vs pts rho)
+        in ( push predLat kv
+           , \o -> HUWalk k vs pts rho <$> cond predLat (Saw kv o) )
+#endif
 
 #endif
 #endif
