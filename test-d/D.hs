@@ -757,9 +757,31 @@ tauSpecD = case mkTauSpec (mkGrid "tau" (0.5 :| [1, 2]))
   Just s  -> s
   Nothing -> error "covering spec must construct"
 
+-- the payload's fixture grids (priced data, like every fixture grid)
+dCodeGrid, dStakeGrid :: Grid
+dCodeGrid  = mkGrid "code" (1 :| [3, 4])
+dStakeGrid = mkGrid "stake" ((-1) :| [0, 1])
+
+dC :: Grid -> Int -> Expr '[Double, Double] Double
+dC g j = case mkC g j of
+  Just e  -> e
+  Nothing -> error "fixture grid constant must construct"
+
+-- the stake payload (r2 repair, author-delegated 2026-07-09; the
+-- original Var (S Z) was action-degenerate, making information about
+-- ubar worthless everywhere — stop report #2): proceed (code 1) pays
+-- +1 if ubar > 0.5 else -1; every other action 0. Sayable: If / Gt /
+-- Call IsEq / Var / grid constants only.
+pilotSaid :: Expr '[Double, Double] Double
+pilotSaid = If (Call IsEq (Var Z :* dC dCodeGrid 0 :* ANil))
+               (If (Gt (Var (S Z)) (dC uGridD 4))
+                   (dC dStakeGrid 2)
+                   (dC dStakeGrid 0))
+               (dC dStakeGrid 1)
+
 pilotD :: UPilot
 pilotD = UPilot
-  { upSaid    = Var (S Z)
+  { upSaid    = pilotSaid
   , upVerdict = mkChan (\d -> if abs (d - 3) < 0.5
                                 then verdictKernel uGridD tauSpecD
                                 else noiseC)
@@ -932,14 +954,19 @@ gDriver = testGroup "gDriver the driver buys the right information (RED)"
         Just (_, _, _, _, tt) ->
           utChoice tt @?= Fire (mkAffId 4) []
   , testCase "world-bound: the fired choice is the verdict-ask (id 3)" $ do
+      -- r2 repair (author-delegated): the pointer is fed ONE approving
+      -- verdict (the near-boundary belief a single verdict can flip —
+      -- a fresh pointer cannot be, the tau-mixture's likelihood ratio
+      -- is <= 1.43/tick) and the known exchange rate is small (0.01);
+      -- prototype-verified margin 0.043 (stop report #2, section 3)
       let askSharp = mkAgent (enumerateUModels
                                 (kernel askSpace (carrierSpace obsCarrier)
                                         (\_ -> point (carrierSpace obsCarrier) 0))
-                                (mkGrid "theta_ask" (0.1 :| []))
+                                (mkGrid "theta_ask" (0.01 :| []))
                                 rhoUGrid [UConst])
       case membraneTickU (scriptWorld menuD) noEcho pilotD
              (UTickState 0 0 Nothing) [(0, Nothing)]
-             worldAgent0 (pointerAgent0 :| [askSharp]) of
+             worldAgent0 (sharpen 1 pointerAgent0 :| [askSharp]) of
         Nothing -> assertFailure "tick died"
         Just (_, _, _, _, tt) ->
           utChoice tt @?= Fire (mkAffId 3) []
