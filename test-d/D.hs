@@ -21,7 +21,8 @@
 --   expected value is derived from FROZEN artifacts — never a
 --   parallel simulation):
 --     gDegeneracy  UConst-only reproduces the CIRL belief/value facts
---     gHeadline    the falsifiable VoI floor under UWalk
+--     gHeadline    the drift edge over the static twin (r1 re-scope;
+--                  the original k=12 floor fell — stop report)
 --     gConsult     the re-opened consult window at the t=60 flip
 --     gTauMix      verdictKernel == the independent finite tau-mixture
 --     gLedger      the O1 pin family (per-latent agents untouched by
@@ -75,7 +76,7 @@ import PropLang.Enumerate (Agent, Model, Obs, TauSpec, UFamily (..),
                            latentMarginal, mkAgent, mkTauSpec, observe,
                            obsCarrier, obsSpace, renderModel, thetaSpace,
                            verdictKernel)
-import PropLang.Eval (bernFast, vPre, vThinkK)
+import PropLang.Eval (bernFast, vPre)
 import PropLang.Membrane (Affordance (..), Choice (..), Pilot (..),
                           PureWorld (..), UPilot (..), UTickState (..),
                           UTickTrace (..), baseRung, membraneTickU,
@@ -574,11 +575,14 @@ voiB b = marginB b chanW - marginB b chanC
 e2u1 :: Belief Double -> Double
 e2u1 b = expect b (applyUtil uTermC TProceed)
 
-contVia :: Kernel Double Obs -> Belief Double -> Double
-contVia k b = vThinkK 1 b k ([0, 1] :: [Obs]) uTermC termsC 3 0
-
+-- listening: COPIED from the frozen test-cirl/Cirl.hs:138-139 (the
+-- copy-not-reconstruct rule, adopted at the r1 re-open — the
+-- original transcription here conflated this predicate with the
+-- value-decomposition pin's shape and was repaired under the
+-- author's delegated ruling, 2026-07-09): after the agent defers
+-- and the human presses three times, does the terminal act flip?
 obeysB :: Belief Double -> Bool
-obeysB b = contVia emit b > e2u1 b + contVia noiseC b
+obeysB b = e2u1 (condBatch emit b [0, 0, 0]) <= 0
 
 -- the actual side: the new surface (RED through the stubs)
 uAgent0 :: [UFamily] -> Agent
@@ -623,25 +627,29 @@ gDegeneracy = testGroup "gDegeneracy UConst-only == the frozen CIRL facts (RED)"
   ]
 
 -- ---------------------------------------------------------------------
--- gHeadline — THE falsifiable pin (RED; HOSTS_PLAN 6.3, author-ruled)
---
--- With UWalk enumerated (drift sayable), the posterior never fully
--- concentrates and deference retains value: VoI(k=12) >= 1e-6 — a
--- conservative floor, but FALSIFIABLE (the static twin sits at
--- <= 1e-12, six orders below). If the floor is wrong the oracle
--- catches it, and that is a result too.
+-- gHeadline — the drift edge over the static twin (RE-SCOPED at the
+-- r1 re-open, author's delegated ruling 2026-07-09; the original
+-- k=12 floor was unsatisfiable — through this composition BOTH
+-- families' VoI dies at k=4, measured in the Task-3 stop report;
+-- drift's re-opened-deference mechanism is gConsult's flip pins).
+-- Both rows' expected sides were verified BY EXECUTION against the
+-- landed implementation before this re-freeze (the satisfiability
+-- rule, adopted at the same re-open): drift VoI 0.1226 / 0.0293 /
+-- 0.0080 vs static 0.1222 / 0.0289 / 0.0077 at k = 1 / 2 / 3; both
+-- exactly 0 at k = 12.
 -- ---------------------------------------------------------------------
 
 gHeadline :: TestTree
-gHeadline = testGroup "gHeadline the VoI floor under sayable drift (RED)"
-  [ testCase "drift: VoI(k=12) >= 1e-6 (the floor)" $ do
+gHeadline = testGroup "gHeadline the drift edge over the static twin (r1)"
+  [ testCase "drift VoI strictly exceeds static at k in {1,2,3}" $
+      forM_ [1, 2, 3] $ \k -> do
+        let lmDrift = latentMarginal (feed k (repeat 1) (uAgent0 allUFamilies))
+        assertBool ("k=" ++ show k)
+          (voiB lmDrift > voiB (lmConst k))
+  , testCase "both families' VoI is dead at k=12 (<= 1e-12)" $ do
       let lmDrift = latentMarginal (feed 12 (repeat 1) (uAgent0 allUFamilies))
-      assertBool "floor" (voiB lmDrift >= 1e-6)
-  , testCase "the paired static world: VoI(k=12) <= 1e-12" $
-      assertBool "static death" (voiB (lmConst 12) <= 1e-12)
-  , testCase "the gap is the drift's doing (strict)" $ do
-      let lmDrift = latentMarginal (feed 12 (repeat 1) (uAgent0 allUFamilies))
-      assertBool "drift > static" (voiB lmDrift > voiB (lmConst 12))
+      assertBool "drift"  (voiB lmDrift <= 1e-12)
+      assertBool "static" (voiB (lmConst 12) <= 1e-12)
   ]
 
 -- ---------------------------------------------------------------------
