@@ -165,6 +165,7 @@ executable proplang-govhost
     import:           warnings
     main-is:          Main.hs
     other-modules:    Wire
+                    , WireU
     hs-source-dirs:   host-governor
     build-depends:    base
                     , proplang
