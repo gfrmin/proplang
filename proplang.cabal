@@ -185,3 +185,18 @@ test-suite govhost
                     , process
     build-tool-depends: proplang:proplang-govhost
     default-language: GHC2021
+
+test-suite test-d
+  import:           warnings
+  type:             exitcode-stdio-1.0
+  main-is:          D.hs
+  other-modules:    Wire
+                  , WireU
+  hs-source-dirs:   test-d, host-governor
+  build-depends:    base
+                  , proplang
+                  , tasty
+                  , tasty-hunit
+                  , process
+  build-tool-depends: proplang:proplang-govhost
+  default-language: GHC2021

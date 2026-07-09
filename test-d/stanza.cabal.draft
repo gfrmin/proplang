@@ -1,0 +1,40 @@
+-- test-d/stanza.cabal.draft — the cabal edit D's freeze commit
+-- applies to proplang.cabal (drafted in the oracle phase per the
+-- manifest-covers-build-files convention: cabal edits land only at
+-- freeze boundaries, reviewed with the pack).
+--
+-- ONE stanza this increment (HOSTS_D_PACK sections 10/11): the
+-- test-d oracle suite. Gate 5 (`cabal test all`) absorbs it — the
+-- TENTH suite — with no edit to any frozen audit script. No new
+-- executable: the wire rows drive H's proplang-govhost (whose
+-- latent@1 path lands with D's implementation), reached through the
+-- SAME build-tool-depends; the oracle-phase red-run supplies
+-- GOVHOST_EXE instead.
+--
+-- The increment's OTHER freeze-commit edits are enumerated in the
+-- pack (HOSTS_D_PACK section 11, all author-applied): the CLAUDE.md
+-- porting-order amendment (D before A; D0 subsumed — author text,
+-- R3), the HOSTS_PLAN.md amendments (8.12 resolved, section 9
+-- reordered, section 6's observation space outcome-first), the
+-- membrane-wire.md v2 latent@1 section (or its successor doc), and
+-- the manifest extension + re-sign over test-d/ and the amended
+-- texts. host-governor/WireU.hs stays OUT of the manifest like
+-- Wire.hs (implementation surface, ruling H-7). Census target:
+-- EMPTY — witnessed by gCensus and the nine prior suites staying
+-- green (no frozen assertion literal moves; the src additions are
+-- new sorts, faces and grids behind DROP_UPILOT/DROP_UWALK).
+
+test-suite test-d
+  import:           warnings
+  type:             exitcode-stdio-1.0
+  main-is:          D.hs
+  other-modules:    Wire
+                  , WireU
+  hs-source-dirs:   test-d, host-governor
+  build-depends:    base
+                  , proplang
+                  , tasty
+                  , tasty-hunit
+                  , process
+  build-tool-depends: proplang:proplang-govhost
+  default-language: GHC2021

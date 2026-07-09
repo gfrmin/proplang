@@ -43,6 +43,17 @@ module PropLang.Enumerate
   , observe
   , agentMeta
   , agentModels
+#ifndef DROP_UPILOT
+  -- the latent-utility fragment's type surface (HOSTS_D_PACK Task 1;
+  -- the arithmetic lands only after the author's freeze)
+  , TauSpec
+  , mkTauSpec
+  , UFamily (..)
+  , allUFamilies
+  , enumerateUModels
+  , verdictKernel
+  , latentMarginal
+#endif
 #endif
   ) where
 
@@ -370,6 +381,81 @@ agentMeta (Agent _ _ _ meta) = meta
 agentModels :: Agent -> [Model]
 agentModels (Agent ms _ _ _) = ms
 
+#ifndef DROP_UPILOT
+-- ---------------------------------------------------------------------
+-- the latent-utility fragment (HOSTS_D_PACK §6/§9; increment D).
+-- TYPE SURFACE ONLY at Task 1 (the prepost 2bf6c72 pattern): data
+-- declarations are complete and real, arithmetic bodies are oracle-
+-- phase stubs. The oracle (test-d/) compiles against these and runs
+-- runtime-red; implementation lands only after the author's freeze.
+-- ---------------------------------------------------------------------
+
+-- | The declared owner-response apparatus (R-D9; residue grade III):
+-- a tau grid plus DECLARED prior weights, marginalised inside
+-- 'verdictKernel' and NEVER updated (Armstrong-Mindermann honored by
+-- construction; the demand-gate that could ever change this is the
+-- pack's promotion-proof table, not code). Abstract; built by the
+-- validating constructor only.
+data TauSpec = TauSpec Grid (NonEmpty Double)
+
+-- | The one door into 'TauSpec': the declared weights must cover the
+-- grid exactly (total, like 'mkC' — no partial spec is constructible).
+mkTauSpec :: Grid -> NonEmpty Double -> Maybe TauSpec
+mkTauSpec g ws
+  | length (toList ws) == gridSize g = Just (TauSpec g ws)
+  | otherwise                        = Nothing
+
+-- | The utility fragment's generator sorts (the 'Terminal' analogue,
+-- and the DROP_UWALK restricted-enumeration handle): 'UConst' = "the
+-- utility parameter is grid constant c_k" (the MBern analogue);
+-- 'UWalk' = "it drifts as a reflected walk at grid rate rho_u" (the
+-- MHmm analogue — the hmm move on the pointer, enumerated as CONTENT;
+-- HOSTS_PLAN 6.1).
+data UFamily
+  = UConst
+#ifndef DROP_UWALK
+  | UWalk
+#endif
+  deriving (Eq, Show)
+
+allUFamilies :: [UFamily]
+#ifndef DROP_UWALK
+allUFamilies = [UConst, UWalk]
+#else
+allUFamilies = [UConst]
+#endif
+
+-- | Enumerate the utility fragment over a value grid and a drift-rate
+-- grid from the allowed sorts, returning ordinary priced 'Model'
+-- hypotheses (HOSTS_PLAN 6.2's sketch: 'Model' grows internally at
+-- implementation; dl charged at the derivation like every sentence).
+-- The emission the hypotheses' filtered states step through is the
+-- DECLARED world channel (a kernel value, world data like the grids)
+-- — 'verdictKernel' applied to a declared 'TauSpec' is the canonical
+-- instance, and the frozen 'emit' is the CIRL worlds' degenerate one
+-- (the degeneracy pins run through exactly that argument).
+enumerateUModels :: Kernel Double Obs -> Grid -> Grid -> [UFamily] -> [Model]
+enumerateUModels _ _ _ _ =
+  error "enumerateUModels: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+
+-- | The tau-marginalised logistic owner over a declared VALUE grid:
+-- a decision-free combinator u -> Belief over verdicts, the finite
+-- mixture over the declared tau grid ('rw''s standard: total,
+-- domain-independent). The value grid names the kernel's input
+-- space — a kernel without a declared domain is unconstructible,
+-- the mkC discipline at the channel.
+verdictKernel :: Grid -> TauSpec -> Kernel Double Obs
+verdictKernel _ _ =
+  error "verdictKernel: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+
+-- | The meta-mixture readout onto the utility-parameter axis, built
+-- from PUBLIC verbs only (no new Belief export — I1 intact): the
+-- 'agentMeta' analogue for the pointer.
+latentMarginal :: Agent -> Belief Double
+latentMarginal _ =
+  error "latentMarginal: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+
+#endif
 #endif
 -- end of the scoring layer (plan E9): everything from 'emit' down
 -- requires the expfam basis and the declared obs carrier; without

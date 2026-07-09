@@ -736,10 +736,14 @@ interior menu {ask-owner, act-now, think-deeper} against coded
 terminal menus (`affIdCode`; USay's `Var Z` convention — the coded-
 menu discipline test-cirl already uses).
 
-Two-stream convention (spec text at D): a world-published `stream`
-feature tags each tick; world hypotheses explain report ticks,
-utility hypotheses explain verdict ticks. "Explained" is a role, not
-a type (interface.md §2) — one evidence flow, no fourth flow.
+Stream convention (spec text at D; amended outcome-first at D's
+freeze, 2026-07-09): a world-published `stream` feature tags each
+tick — report | verdict | outcome | comparison. World hypotheses
+explain report ticks; utility hypotheses explain verdict, outcome
+and comparison ticks, each through its declared channel — outcomes
+the primary, responder-free evidence, verdicts the noisy myopic
+proxy (the D doctrine, O3). "Explained" is a role, not a type
+(interface.md §2) — one evidence flow, no fifth flow.
 Multi-latent utilities: per-latent agents under independence
 (life-agent's own v0 exploits exactly this; only means matter for
 one-shot optimise). Coupled folds (MarginReaction) are a NAMED
@@ -931,6 +935,16 @@ Proposed rulings; each is the author's to make.
     either way; the split only moves the deliberative ask one
     boundary earlier if the regret metric earns it.
 
+    RESOLVED at D's freeze (2026-07-09, ruling R-D2): D0 is SKIPPED.
+    The D boundary's ruling 2 retired the governor's declared
+    utility constants, so the world-supplied utility a D0 pilot
+    would run on no longer exists — the stepping stone dissolved
+    under the doctrine, not under budget. The regret metric named
+    above survives as the outcome-scoring discipline of the
+    outcome-scored bench bed (HOSTS_D_PACK section 13 item 4). D
+    proceeds directly to utility-as-latent, and the deliberative ask
+    ships with it.
+
 ---
 
 ## 9. The gated roadmap
@@ -938,13 +952,18 @@ Proposed rulings; each is the author's to make.
 ```
 H (governor host; P5 constant; zero alphabet change)
 └─ may ship and STOP — every later boundary is demand-driven
+D (latent-utility pilot, outcome-grounded; empty census)
+└─ gate: the governor's measured demand (H's grid-ceiling
+   finding; credence and the declared constants retired) —
+   D0 subsumed, R-D2
 A (options-as-data; empty census)
 └─ gate: life-agent differential vs the credence brain
    B? (reliability channel; empty census)
-D (latent-utility pilot, on step tables; empty census)
-└─ gate: measured step-table underfit in D's oracle
    C? (arithmetic; the ladder's ONLY census: 4 literals)
 ```
+
+Reordered at D's freeze (2026-07-09, ruling R-D1): D's demand
+materialized at H, measured; A's has not.
 
 Each boundary is separable — its own oracle directory, red-run,
 ablation, author pack, signed tag, manifest re-sign. Never merge C

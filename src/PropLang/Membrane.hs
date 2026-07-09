@@ -54,6 +54,15 @@ module PropLang.Membrane
   , PureWorld (..)
   , TickTrace (..)
   , runMembrane
+#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE)
+  -- the latent-utility pilot's type surface (HOSTS_D_PACK Task 1;
+  -- the arithmetic lands only after the author's freeze)
+  , UPilot (..)
+  , UTickState (..)
+  , UTickTrace (..)
+  , membraneTickU
+  , runMembraneU
+#endif
 #endif
 #endif
   ) where
@@ -88,6 +97,10 @@ import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
                            predictive)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), StdName (..),
                         Util)
+#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE)
+import PropLang.Belief (Kernel)
+import PropLang.Syntax (Chan)
+#endif
 #endif
 
 -- | World-owned stable affordance identity (ruling M2): the echo speaks
@@ -340,5 +353,84 @@ interpretPilot p feats pr opts = case p of
   PilotThreshold nm th a b ->
     if fromMaybe 0 (lookup nm feats) > th then a else b
   PilotEU u -> evalx argmaxEU (mkEnv feats (opts :. pr :. u :. VNil))
+
+#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE)
+-- ---------------------------------------------------------------------
+-- the latent-utility pilot (HOSTS_D_PACK §6/§8/§9; increment D).
+-- TYPE SURFACE ONLY at Task 1 (the prepost 2bf6c72 pattern): records
+-- complete and real, arithmetic bodies oracle-phase stubs. 'Pilot',
+-- 'runMembrane', 'TickTrace' are untouched — these are SIBLINGS,
+-- recorded honestly, not degenerate faces (HOSTS_PLAN 6.2).
+-- ---------------------------------------------------------------------
+
+-- | The latent-utility pilot: the utility IS priced syntax ('upSaid'
+-- is exactly 'PropLang.Syntax.USay''s payload shape — Var Z the
+-- option code, Var (S Z) the latent parameter); verdicts arrive
+-- through a decision-indexed channel (asking routes to the verdict
+-- kernel, acting to noise); OUTCOME ticks condition the pointer
+-- through their own declared emission ('upOutcome' — O3's
+-- responder-free channel, world data like every kernel here); depth
+-- is bought through the ladder's sort; and the tick price is read as
+-- a FEATURE by name — measured world data, never a declared constant
+-- (rider 1's stratification).
+data UPilot = UPilot
+  { upSaid    :: Expr '[Double, Double] Double
+  , upVerdict :: Chan Double Double Obs
+  , upOutcome :: Kernel Double Obs
+  , upDepth   :: Rung
+  , upPrice   :: Name
+  }
+
+-- | The explicitly threaded per-tick counters (register 8.9 / R-D11,
+-- built in from birth): the wire drives one tick at a time with NO
+-- counter resets; full episodes compose by folding 'membraneTickU'
+-- from @UTickState 0 0 Nothing@ — one function, both drivers.
+data UTickState = UTickState
+  { usT     :: Int
+  , usThink :: Int
+  , usLast  :: Maybe Choice
+  }
+  deriving (Eq, Show)
+
+-- | One tick's public record for the two-agent driver: the world
+-- trace's fields plus the tick's stream tag (report | verdict |
+-- outcome | comparison — §8's one-flow roles), the residual readout,
+-- and the decision's sensitivity across the residual's support.
+-- Observability-only on the wire: no consumer may branch on
+-- 'utResidual' or 'utSensitivity' (consumer discipline, §8).
+data UTickTrace = UTickTrace
+  { utT           :: Int
+  , utStream      :: Name
+  , utP1          :: Double
+  , utEntropy     :: Double
+  , utChoice      :: Choice
+  , utLossBits    :: Double
+  , utResidual    :: Double
+  , utSensitivity :: Bool
+  }
+  deriving (Eq, Show)
+
+-- | The one-tick core, threaded state in and out — the R-D11 answer
+-- to the counter-reset hazard 'runMembrane' n=1 re-entry carries
+-- (membrane-wire.md's "inert under noEcho, silently wrong under
+-- echo"). The utility side is a NonEmpty of PER-LATENT agents — the
+-- pointer first, then the declared residual components in order:
+-- rider 2's product-form independence as the ARCHITECTURE (each
+-- component its own Agent), not an estimated correlation.
+membraneTickU :: PureWorld s -> EchoSpec -> UPilot -> UTickState -> s
+              -> Agent -> NonEmpty Agent
+              -> Maybe (s, UTickState, Agent, NonEmpty Agent, UTickTrace)
+membraneTickU _ _ _ _ _ _ _ =
+  error "membraneTickU: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+
+-- | The episode fold over 'membraneTickU': world agent and per-latent
+-- utility agents threaded together, one evidence flow, streams as
+-- roles (report | verdict | outcome | comparison).
+runMembraneU :: PureWorld s -> EchoSpec -> UPilot -> Int -> s
+             -> Agent -> NonEmpty Agent
+             -> Maybe (Agent, NonEmpty Agent, [UTickTrace])
+runMembraneU _ _ _ _ _ _ _ =
+  error "runMembraneU: unimplemented (oracle phase, HOSTS_D_PACK Task 1)"
+#endif
 #endif
 #endif

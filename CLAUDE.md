@@ -96,11 +96,12 @@ cannot catch; that is why it is written down)
    boundary.
    The roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386):
    increment H (the host driver and the single-site alphabet
-   constant), then A (options-as-data observations), then
-   demand-gated B (the reliability channel), D (the latent-utility
-   pilot), and C (arithmetic, the census-bearing change) — each its
-   own oracle-first freeze, each gated as HOSTS_PLAN section 9
-   records.
+   constant), then D (the latent-utility pilot, outcome-grounded,
+   brought before A by the governor's measured demand; D0 subsumed
+   by ruling R-D2), then A (options-as-data observations), then
+   demand-gated B (the reliability channel), and C (arithmetic, the
+   census-bearing change) — each its own oracle-first freeze, each
+   gated as HOSTS_PLAN section 9 records.
 
 ## When to stop and report instead of proceeding
 

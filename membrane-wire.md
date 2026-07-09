@@ -137,3 +137,135 @@ whose baked assumption (a resolved ask makes the correct act free) is
 register item 8.4: measured by the differential gate, never tuned
 away. Why the ask is myopic at H, and the D0 route past it, is
 HOSTS_PLAN register item 12.
+
+## 6. Utility form latent@1 (v2 — increment D; table@1 remains valid)
+
+The `utility.form` string is the dispatch seam: `table@1` worlds are
+byte-identical to section 5; `latent@1` declares utility as LATENT —
+a priced sentence over (action, outcome-vector) whose residual
+exchange rates are grid-priced hypotheses learned through declared
+channels, never a table of constants. The normative examples in this
+section are test-d's gWire goldens (whitespace added for reading —
+section 1's parser tolerance; the two reply lines are exact canonical
+renders, pinned byte-for-byte by the oracle).
+
+### 6.1 The latent utility block (handshake)
+
+```json
+{"form": "latent@1",
+ "said": ["var", 1],
+ "residuals": [{"name": "theta_ask", "grid": [0.05, 0.1, 0.2, 0.4]},
+               {"name": "theta_bad", "grid": [0.1, 0.5, 1]}],
+ "tau":   {"points": [0.5, 1, 2], "weights": [0.5, 0.3, 0.2]},
+ "price": "tick-price",
+ "gauge": {"zero": "status-quo", "scale": "usd"}}
+```
+
+- `said` is the USay payload as an S-expression, parsed against the
+  priced grammar — a sentence, not a formula hatch: only the frozen
+  alphabet is utterable, and the payload prices like any sentence.
+- `residuals` name the latent exchange-rate components, one priced
+  grid each. Grids are POSITIVE by rule — the charity restriction
+  (admit negative scaling and the sign-flip twin re-enters as an
+  utterable sentence) AND a content commitment (a floor on theta_ask
+  is a substantive prior claim about the owner's annoyance): R-D8,
+  both faces on the record.
+- `tau` is the declared owner-response spec: finite tau points with
+  DECLARED prior weights, marginalised, never updated (R-D9;
+  the tau-u entanglement honored by construction).
+- `price` names the tick-price FEATURE — measured cost as world
+  data, never a declared constant (rider 1; the stratification rule:
+  no channel's operating cost may depend on a latent that channel is
+  a route to).
+- `gauge` is the declared affine gauge, R-D7 as amended: `zero`
+  names the status-quo anchor (u = 0); `scale` names the measured
+  unit whose slope is declared 1 — the accounting layer's dollar
+  term spends the scale. There is NO second anchor: affine freedom
+  is two degrees and both are spent before one could enter.
+
+Reply — v1's shape plus the latent census:
+
+```
+{"ok":true,"proto":1,"models":1241,"namespace_bits":1,"ulatents":3}
+```
+
+`ulatents` counts the per-latent agents: the pointer plus one per
+residual component (here 1 + 2). Product form is architecture, not
+estimation (rider 2, R-D13) — and it is what keeps the model count
+ADDITIVE rather than multiplicative (R-D19).
+
+### 6.2 Streams
+
+Evidence ticks carry an optional `stream` tag —
+`report | verdict | outcome | comparison`; absent means untagged,
+the v1 reading. World hypotheses explain report ticks; utility
+hypotheses explain the other three, each through its declared
+channel — outcomes are the responder-free evidence, verdicts the
+noisy myopic proxy. "Explained" stays a role, not a type: one
+evidence flow.
+
+```json
+{"tick": {"stream": "verdict", "features": {"t": 1, "x": 1}, "evidence": 1}}
+```
+
+Menu items MAY carry a `comparison` payload (the lottery: two acts
+over measured outcomes, one at a declared probability) — elicitation
+as an ordinary priced affordance, bought by argmax exactly when VoI
+justifies it. Its cost is measured units through the accounting
+layer, never theta_ask-denominated (rider 1).
+
+### 6.3 observe_batch and observe_counts (the warm channel)
+
+`observe_batch` — an array of evidence ticks, one reply each. Fixes
+ROUND-TRIPS (H's 39k-tick cost finding), not engine work:
+
+```json
+{"observe_batch": [
+  {"stream": "verdict", "features": {"t": 1}, "evidence": 1},
+  {"stream": "outcome", "features": {"t": 2}, "evidence": 0}]}
+```
+
+`observe_counts` — the count-collapsed warm row. D's budget
+decomposition measured the per-tick cost as ENGINE, not transport
+(6.5 of 8.6 ms/tick on the reference world), so batching alone
+leaves minutes of cold-start replay; counts remove the ticks
+themselves:
+
+```json
+{"observe_counts": {"stream": "verdict",
+                    "features": {"t": 1, "x": 1},
+                    "counts": {"1": 30000, "0": 9314}}}
+```
+
+One reply for the whole collapse. Semantics: per-hypothesis
+likelihood exponentiation — EXACT for exchangeable (iid-emission)
+families; for state-carrying families (hmm / UWalk) it IS the
+declared warm-flattening approximation, printed rather than
+smuggled. O(contexts x grid), not O(ticks): count-collapse the
+exchangeable, replay only the drift-carrying. (The observed-reply
+render for batch rows and the counts reply land with D's
+implementation; they are not golden-pinned.)
+
+### 6.4 The v2 decision reply
+
+```
+{"choice":{"fire":3,"slots":{}},"p1":0.5,"entropy_bits":3.25,"residual_mean":0.42,"sensitivity":true}
+```
+
+Two readouts join v1's: `residual_mean` (the pointer marginal's
+mean through the wire) and `sensitivity` (does the argmax flip
+across the residual's support?). Both are OBSERVABILITY-ONLY —
+consumer discipline, binding: routing to the elicitation affordance
+happens ENGINE-SIDE, by argmax over the declared menu; an adapter
+that branches on these scalars has re-created host-side decision
+forking (HOSTS_PLAN 8.12(b)), and the governor-side tests pin the
+adapter's decide path as a pure choice-relay.
+
+### 6.5 Errors (R-D12)
+
+An unknown stream tag, a gauge violation, or a comparison answer on
+a non-comparison menu item each answer `{"error": "<reason>"}` with
+the agent UNCHANGED — section 3's impossible-evidence discipline,
+unchanged. Unknown object KEYS still parse and drop (section 1);
+an unknown enumerated VALUE in a known key is an error, never a
+silent default.
