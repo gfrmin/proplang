@@ -25,6 +25,7 @@ module PropLang.Enumerate
   , renderExpr
   , enumerateModels
   , enumerateModelsIn
+  , enumerateModelsGrid
   , modelBits
   , Obs
   , obsSpace, thetaSpace
@@ -101,8 +102,7 @@ tauPoints = 5 :| [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
 rhoPoints :: NonEmpty Double
 rhoPoints = 0.01 :| [0.02, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]
 
-thetaGrid, tauGrid, rhoGrid :: Grid
-thetaGrid = mkGrid "theta" thetaPoints
+tauGrid, rhoGrid :: Grid
 tauGrid   = mkGrid "tau" tauPoints
 rhoGrid   = mkGrid "rho" rhoPoints
 
@@ -118,9 +118,13 @@ rhoGrid   = mkGrid "rho" rhoPoints
 -- charged at the derivation (design §5, plan R4): dl is relative to
 -- the model fragment's own production grammar, not the policy
 -- pricer's. Abstract to consumers.
+-- Since boundary E the emission hypotheses carry their value space —
+-- the theta grid as declared world data, the MUConst/MUWalk pattern
+-- (one shape, two instantiations); the walk additionally carries the
+-- point list its reflected steps index.
 data Model
-  = MBern Bits (Expr '[] Double)
-  | MHmm Bits (Expr '[] Double)
+  = MBern Bits (Expr '[] Double) (Space Double)
+  | MHmm Bits (Expr '[] Double) (Space Double) (NonEmpty Double)
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
   -- the latent-utility sorts (increment D): a utility hypothesis
   -- carries the DECLARED emission channel it steps through (world
@@ -138,8 +142,8 @@ data Model
 -- e.g. @"('hmm', ('c', 'rho', 3))"@. The frozen tests assert MAP
 -- programs against these exact strings.
 renderModel :: Model -> String
-renderModel (MBern _ p) = "('bern', " ++ renderExpr p ++ ")"
-renderModel (MHmm _ e)  = "('hmm', " ++ renderExpr e ++ ")"
+renderModel (MBern _ p _)  = "('bern', " ++ renderExpr p ++ ")"
+renderModel (MHmm _ e _ _) = "('hmm', " ++ renderExpr e ++ ")"
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
 renderModel (MUConst _ e _ _ _ _)  = "('uconst', " ++ renderExpr e ++ ")"
 #ifndef DROP_UWALK
@@ -206,8 +210,8 @@ renderExpr e0 = case e0 of
 -- (design §5), charged at the derivation and stored on the hypothesis
 -- (plan R4).
 modelBits :: Model -> Bits
-modelBits (MBern dl _) = dl
-modelBits (MHmm dl _)  = dl
+modelBits (MBern dl _ _)  = dl
+modelBits (MHmm dl _ _ _) = dl
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
 modelBits (MUConst dl _ _ _ _ _)  = dl
 #ifndef DROP_UWALK
@@ -233,15 +237,27 @@ enumerateModels = enumerateModelsIn (mkNamespace ("t" :| [])) []
 -- (name, threshold grid) pairs, in declaration order after the
 -- built-in @("t", tau)@ family.
 enumerateModelsIn :: Namespace -> [(Name, Grid)] -> [Terminal] -> [Model]
-enumerateModelsIn ns extras allowed =
+enumerateModelsIn = enumerateModelsGrid thetaPoints
+
+-- | Emission-grid-relative enumeration (boundary E): the theta grid is
+-- world data like every other grid on the wire, and
+-- 'enumerateModelsIn' is this function at the built-in linear grid —
+-- byte-identical by construction. The grid is priced where it is
+-- mentioned, so a declared grid of another size buys another model
+-- count at another price; the handshake prints what was bought.
+enumerateModelsGrid :: NonEmpty Double -> Namespace -> [(Name, Grid)]
+                    -> [Terminal] -> [Model]
+enumerateModelsGrid egPts ns extras allowed =
     consts ++ walks ++ concatMap guardFamily (("t", tauGrid) : extras)
   where
+    eg = mkGrid "theta" egPts
+    egSpace = mkSpace egPts
     has t = t `elem` allowed
     -- every constant enters through the grammar's only door; the
     -- index range IS the grid, so completeness is the frozen 1169
     -- count plus the hygiene dl pins (R8)
     onGrid g = [ e | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
-    thetaCs = onGrid thetaGrid :: [Expr '[] Double]
+    thetaCs = onGrid eg :: [Expr '[] Double]
     -- description lengths, charged at the derivation choice points
     -- (design §5; plan R4). The addition trees are term-for-term the
     -- arithmetic the parity-phase pricer produced — the anchors'
@@ -260,19 +276,19 @@ enumerateModelsIn ns extras allowed =
       1 -> 0
       k -> logBase 2 (fromIntegral k)
     dlConst, dlWalk :: Double
-    dlConst  = 1 + mention thetaGrid
+    dlConst  = 1 + mention eg
     dlWalk   = 1 + logBase 2 (fromIntegral (gridSize rhoGrid))
     dlGuard g = 1 + (((1 + ((1 + nsB) + mention g))
-                      + mention thetaGrid) + mention thetaGrid)
+                      + mention eg) + mention eg)
     consts =
-      [ MBern (Bits dlConst) e
+      [ MBern (Bits dlConst) e egSpace
       | has TBern, has TC, e <- thetaCs ]
     walks =
-      [ MHmm (Bits dlWalk) e
+      [ MHmm (Bits dlWalk) e egSpace egPts
       | has THmm, has TC, e <- onGrid rhoGrid ]
     -- the reference excludes the diagonal by index (k1 /= k2)
     guardFamily (nm, g) =
-      [ MBern (Bits (dlGuard g)) (If (Gt (Get nm) tc) t1 t2)
+      [ MBern (Bits (dlGuard g)) (If (Gt (Get nm) tc) t1 t2) egSpace
       | has TBern, has TIf, has TC, has TGet, has TGt
       , tc <- onGrid g
       , (k1, t1) <- indexed thetaCs
@@ -313,17 +329,20 @@ thetaSpace = mkSpace thetaPoints
 emit :: Kernel Double Obs
 emit = kernel thetaSpace (carrierSpace obsCarrier) (bernFast obsCarrier)
 
--- The reflected walk on the theta grid at a grid-priced rate: a
+-- The reflected walk on a value grid at a grid-priced rate: a
 -- decision-free combinator, total and domain-independent (design §9).
 -- Mass is a total function of grid POSITIONS: a point with no position
 -- has mass 0, i.e. infinite description length through 'fromBits' —
 -- the measure's own off-support statement, the same road every
 -- non-neighbor grid point already travels. No error site (R8);
--- 'kernel' only ever applies 'step' to points of its own space.
-walkKernel :: Double -> Kernel Double Double
-walkKernel rho = kernel thetaSpace thetaSpace step
+-- 'kernel' only ever applies 'step' to points of its own space. One
+-- shape, every instantiation (boundary E): the hmm family walks on its
+-- carried emission grid exactly as the utility fragment's UWalk walks
+-- on its declared value grid.
+walkOn :: Space Double -> NonEmpty Double -> Double -> Kernel Double Double
+walkOn vs vpts rho = kernel vs vs step
   where
-    pts = toList thetaPoints
+    pts = toList vpts
     n = length pts
     mass (Just i) (Just j) =
       (if j == i then 1 - rho else 0)
@@ -333,20 +352,22 @@ walkKernel rho = kernel thetaSpace thetaSpace step
         lo = if i > 0 then i - 1 else i + 1
         hi = if i < n - 1 then i + 1 else i - 1
     mass _ _ = 0
-    step th =
-      let mi = elemIndex th pts
-      in fromBits thetaSpace
+    step v =
+      let mi = elemIndex v pts
+      in fromBits vs
            (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
 
 -- ---------------------------------------------------------------------
 -- the agent: a belief over programs, moved only by the verbs
 -- ---------------------------------------------------------------------
 
--- Per-hypothesis filtered state: Bernoulli sentences are stateless; a
--- walk carries its rate and its current latent belief.
+-- Per-hypothesis filtered state: Bernoulli sentences are stateless
+-- (their carried value space serves the supplied-kernel verbs); a
+-- walk carries its value space and points, its rate, and its current
+-- latent belief.
 data HypState
-  = HBern (Expr '[] Double)
-  | HHmm Double (Belief Double)
+  = HBern (Space Double) (Expr '[] Double)
+  | HHmm (Space Double) (NonEmpty Double) Double (Belief Double)
 #ifndef DROP_UPILOT
   -- a utility hypothesis's filtered state: the carried channel, the
   -- value space, and (constant) the value / (walk) rate + latent
@@ -376,8 +397,9 @@ mkAgent ms = case nonEmpty [0 .. length ms - 1] of
 -- constant of the real grammar, so the read is total and the parity
 -- phase's off-grid error site is gone (R8).
 initHyp :: Model -> HypState
-initHyp (MBern _ p) = HBern p
-initHyp (MHmm _ e)  = HHmm (evalx e (mkEnv [] VNil)) (uniform thetaSpace)
+initHyp (MBern _ p sp)    = HBern sp p
+initHyp (MHmm _ e sp pts) =
+  HHmm sp pts (evalx e (mkEnv [] VNil)) (uniform sp)
 #ifndef DROP_UPILOT
 initHyp (MUConst _ e k vs _ _)  = HUConst k vs (evalx e (mkEnv [] VNil))
 #ifndef DROP_UWALK
@@ -392,13 +414,13 @@ initHyp (MUWalk _ e k vs pts _) =
 -- reference).
 stepHyp :: Features -> HypState -> (Belief Obs, Obs -> Maybe HypState)
 stepHyp feats h = case h of
-  HBern p ->
+  HBern sp p ->
     let th = evalx p (mkEnv feats VNil)
-    in (bernFast obsCarrier th, \_ -> Just (HBern p))
-  HHmm rho lat ->
-    let predLat = push lat (walkKernel rho)
+    in (bernFast obsCarrier th, \_ -> Just (HBern sp p))
+  HHmm sp pts rho lat ->
+    let predLat = push lat (walkOn sp pts rho)
     in ( push predLat emit
-       , \y -> HHmm rho <$> cond predLat (Saw emit y) )
+       , \y -> HHmm sp pts rho <$> cond predLat (Saw emit y) )
 #ifndef DROP_UPILOT
   HUConst k vs v ->
     (push (point vs v) k, \_ -> Just (HUConst k vs v))
@@ -408,31 +430,6 @@ stepHyp feats h = case h of
     in ( push predLat k
        , \y -> HUWalk k vs pts rho <$> cond predLat (Saw k y) )
 #endif
-#endif
-
-#ifndef DROP_UPILOT
--- The reflected walk generalized onto a declared value grid —
--- 'walkKernel''s exact mass arithmetic, the space and points supplied
--- by the utility fragment's enumeration instead of the frozen theta
--- grid (one shape, two instantiations; the frozen kernel is
--- untouched).
-walkOn :: Space Double -> NonEmpty Double -> Double -> Kernel Double Double
-walkOn vs vpts rho = kernel vs vs step
-  where
-    pts = toList vpts
-    n = length pts
-    mass (Just i) (Just j) =
-      (if j == i then 1 - rho else 0)
-        + (if j == lo then rho / 2 else 0)
-        + (if j == hi then rho / 2 else 0)
-      where
-        lo = if i > 0 then i - 1 else i + 1
-        hi = if i < n - 1 then i + 1 else i - 1
-    mass _ _ = 0
-    step v =
-      let mi = elemIndex v pts
-      in fromBits vs
-           (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
 #endif
 
 -- | The one-tick-ahead predictive: push of the meta-belief along the
@@ -655,9 +652,9 @@ observeCounts mk feats n1 n0 (Agent ms hyps isp meta) = do
   let predOf h = case mk of
         Nothing -> fst (stepHyp feats h)
         Just kv -> case h of
-          HBern p ->
-            push (point thetaSpace (evalx p (mkEnv feats VNil))) kv
-          HHmm rho lat -> push (push lat (walkKernel rho)) kv
+          HBern sp p ->
+            push (point sp (evalx p (mkEnv feats VNil))) kv
+          HHmm sp pts rho lat -> push (push lat (walkOn sp pts rho)) kv
           HUConst _ vs v -> push (point vs v) kv
 #ifndef DROP_UWALK
           HUWalk _ vs pts rho lat -> push (push lat (walkOn vs pts rho)) kv
@@ -703,13 +700,13 @@ observeVia kv feats y (Agent ms hyps isp meta) = do
   pure (lp, Agent ms hyps' isp meta')
   where
     via h = case h of
-      HBern p ->
+      HBern sp p ->
         let th = evalx p (mkEnv feats VNil)
-        in (push (point thetaSpace th) kv, \_ -> Just (HBern p))
-      HHmm rho lat ->
-        let predLat = push lat (walkKernel rho)
+        in (push (point sp th) kv, \_ -> Just (HBern sp p))
+      HHmm sp pts rho lat ->
+        let predLat = push lat (walkOn sp pts rho)
         in ( push predLat kv
-           , \o -> HHmm rho <$> cond predLat (Saw kv o) )
+           , \o -> HHmm sp pts rho <$> cond predLat (Saw kv o) )
       HUConst k vs v ->
         (push (point vs v) kv, \_ -> Just (HUConst k vs v))
 #ifndef DROP_UWALK
