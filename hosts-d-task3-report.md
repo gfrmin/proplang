@@ -80,9 +80,15 @@ signature in this increment is d-freeze itself.
    The `said` S-expr subset implemented covers the frozen goldens
    (["var", i]); richer payload forms are ordinary growth under the
    frozen wire section — unknown forms error, never default.
-5. **The v2 entry point**: Main tries v1 first and the v2 parse only
-   where v1 already errored — v1 lines byte-identical (govhost 40/40
-   is the witness).
+5. **The v2 entry point** *(as amended at the report review — the
+   original parse-fallback wording described the behaviour §7
+   repaired away, and an as-built register must describe the
+   as-built)*: the declared `utility.form` is the dispatch seam.
+   `latent@1` binds the line to the v2 parser; `table@1` or no
+   declared form is v1's, the explicit default — v1 lines
+   byte-identical (govhost 40/40 is the witness); any other declared
+   form fails closed with `unknown-utility-form`, never the other
+   version's semantics.
 
 ## 3. The §5b items (queued by your verdict round, delivered here)
 
@@ -147,9 +153,17 @@ of 3 runs each; bench fixtures scratch, not committed):
 | observe_counts (one line, counts 30000/9314) | **11.4 ms TOTAL** for the same 39,314 ticks (~28,000×) |
 
 The counts row on a drift-carrying stream is the DECLARED flattening
-approximation (the haddock prints it); the collapse is the host's
-choice per segment — exchangeable-safe warm history collapses for
-milliseconds, drift-sensitive spans replay per-tick at 8.26 ms.
+approximation (the haddock prints it). Two consequences the review's
+second pass ordered onto the record: (i) this table quietly retires
+`observe_batch`'s justification — IPC was never the cost, engine
+time was, so a v2 verb froze on a motivating claim falsified within
+its own increment (the R-D21 lesson applied to wire verbs, not just
+pins; registered as R-D23, not re-opened — batch is harmless and may
+earn its keep elsewhere); (ii) the collapse's segmentation is
+DECLARED, not discretionary: collapse the FIXED WARM CORPUS, replay
+everything live per-tick at 8.26 ms — any finer segmentation is
+host-declared data (a printed span list), never a knob tuned by
+feel.
 
 ## 6. What remains (all yours, none building)
 
@@ -190,6 +204,14 @@ milliseconds, drift-sensitive spans replay per-tick at 8.26 ms.
 5. The next boundary, if any, opens under R-D20/R-D21/R-D22's rules —
    and per the roadmap as amended at d-freeze, that is A
    (options-as-data), demand-gated.
+6. **The acceptance-metric interregnum (R-D14), standing.**
+   Agreement-% is retired; the outcome-scored bench (pack §13.4) is
+   future work; §2a's ask-rate prediction is a falsifiable BEHAVIOUR
+   prior, not an acceptance metric — it tells you whether the model
+   behaves as derived, not whether the governor is doing its job.
+   Between here and the bench, the membrane's field performance is
+   unmeasurable by any registered standard. The gap stands in this
+   remains-list until the bench closes it.
 
 ## 7. The report review (2026-07-10): answers and repairs
 
@@ -246,3 +268,15 @@ other version's semantics. Witnessed:
 All gates re-run green after both repairs: ten suites (test-d 48/48,
 govhost 40/40), audit gates 1-7, both red-runs, ablation, manifest
 81/81 — no anchor moved.
+
+**The second pass (same day, before the closure tag).** Three
+orders, all applied in this commit, prose-only (no code, no gate
+touched): §2.5's as-built register corrected — it still described
+the parse-fallback this section had repaired away, and a register
+frozen under the closure tag cannot misdescribe the as-built; the
+`observe_batch` residue registered (R-D23) together with the
+warm-segmentation declaration, both printed in §5; the
+acceptance-metric interregnum placed on the remains-list (§6 item
+6). The author's operative line, recorded: "Fix §2.5, register the
+batch irony and the segmentation declaration, add the interregnum
+line, then tag."
