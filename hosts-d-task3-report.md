@@ -131,6 +131,7 @@ author reading what a pin claims to measure.
 ## 5. Reviewer verification block (run by the author)
 
     export PATH="$HOME/.ghcup/bin:$PATH"
+    export LANG=C.UTF-8             # REQUIRED: see the locale note below
     cabal test all                  # ten suites PASS (test-d 48/48)
     sh audit/run-gates.sh           # gates 1-7 all PASS
     sh test-d/red-run.sh            # 48/48 out-of-cabal, exact flags
@@ -139,6 +140,18 @@ author reading what a pin claims to measure.
     sha256sum -c MANIFEST.sha256    # 81/81
     git log --oneline -5            # the custody trail of section 1
     git verify-tag d-freeze         # your signature (the binding one)
+
+**The locale guard** (the verification review, 2026-07-10): under a
+POSIX/C locale (LANG unset), gate 5 FAILS spuriously — the frozen
+membrane suite prints one non-ASCII test name ("… (§8 A grep)",
+test-membrane/Membrane.hs:556, the very suite whose locale incident
+made the ASCII-only rule that test-d obeys), and GHC's stdout
+encoder rejects the § (`commitBuffer: invalid argument`).
+Reproduced and re-confirmed both ways: POSIX → membrane FAIL,
+C.UTF-8 → all ten suites green. Not an increment-D defect and not
+fixable here — test-membrane/ is manifest-frozen, so the § can only
+change at an author document boundary; until then the block's
+`export LANG=C.UTF-8` line is load-bearing.
 
 **Warm-replay wall-clock, as-built** (the report review's owed
 number — the budget rider's deployment figure, measured through the
