@@ -695,6 +695,8 @@ is inferred, Bayes doing the work (the forgetting-factor trap
 argument, run on the pointer; "there is no forgetting; drift belongs
 in the hypothesis space").
 
+**[Amended at the R-D14 boundary, 2026-07-11: "deference retains value" holds at change points only — the VoI readout measurably dies in stationary stretches (voiB → 0 at k ≥ 4, Task 3); the never-zero floor is withdrawn; the strict drift edge at k ∈ {1,2,3} is the proven residue.]**
+
 ### 6.2 Surface (new sorts + sibling faces; Pilot and runMembrane untouched)
 
 ```haskell

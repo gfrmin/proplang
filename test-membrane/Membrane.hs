@@ -553,7 +553,7 @@ g8Rows = testGroup "deletion rows and grep clauses"
       shellRow "sh" ["test-membrane/ablation.sh", "affordance"]
   , testCase "echo deletes: the self unutterable" $
       shellRow "sh" ["test-membrane/ablation.sh", "echo"]
-  , testCase "no subscription machinery anywhere in src (§8 A grep)" $
+  , testCase "no subscription machinery anywhere in src (S8 A grep)" $
       shellRow "python3" (["audit/strip_comments.py", "--forbidden",
                            "test-membrane/no-subscription.txt"] ++ srcFiles)
   , testCase "the membrane is pure: no IO token (gate-3 mirror)" $

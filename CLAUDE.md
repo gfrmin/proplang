@@ -138,6 +138,21 @@ Every step-6+ increment follows the recursive two-phase discipline:
    caught by exactly this proof). Existing frozen suites stay green
    throughout. Increment-oracle test names are ASCII-only (the
    membrane's locale incident, 2026-07-05).
+   Three rulings from D bind every future increment oracle
+   (R-D20/21/22, canonized here at the R-D14 boundary):
+   copy-not-reconstruct (R-D20-i) — an oracle row claiming a frozen
+   formula copies it byte-wise with file:line provenance, quoted in
+   the pack, reviewable by grep, never re-derived in parallel; the
+   satisfiability-transcript gate (R-D21) — the oracle phase ends
+   only when every runtime-red row's asserted quantity has been
+   executed once against a throwaway prototype realization, recorded
+   as a satisfiability transcript in the author pack, prototypes
+   discarded; a red row without a transcript line cannot freeze; and
+   the delegated-edit re-tag obligation (R-D22) — any delegated
+   freeze-edit obliges an author re-tag WITHIN the increment: the
+   increment does not close until the author's own signed tag covers
+   the oracle as amended; the countersignature is a condition of
+   closure, never a courtesy afterwards.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
