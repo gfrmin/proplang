@@ -19,7 +19,7 @@ import PropLang.Membrane (UTickState (..))
 import Wire (Msg (..), Reply (..), World, buildWorld, parseLine,
              renderReply, step)
 import WireU (MsgU (..), ReplyU (..), WorldU, buildWorldU, countsU,
-              helloReplyU, parseLineU, renderReplyU, stepU)
+              helloFormU, helloReplyU, parseLineU, renderReplyU, stepU)
 
 main :: IO ()
 main = do
@@ -27,24 +27,40 @@ main = do
   input <- getContents
   start (lines input)
 
--- awaiting a valid handshake; a latent@1 utility block routes the
--- process onto the v2 loop (v1 lines are byte-identical to H's
--- driver — the v2 attempt happens only where v1 already errored)
+-- awaiting a valid handshake; the DECLARED utility form is the
+-- dispatch seam (fail-closed, the Task-3 report review's ruling,
+-- 2026-07-10): latent@1
+-- binds the line to the v2 parser, table@1 or no declared form is
+-- v1's — the explicit default, byte-identical to H's driver — and
+-- any other declared form is an error, never the other version's
+-- semantics.
 start :: [String] -> IO ()
 start [] = pure ()
-start (l : ls) = case parseLine l of
-  Right (MHandshake wd) -> case buildWorld wd of
-    Right (w, ag, r) -> putStrLn (renderReply r) >> loop w ag ls
-    Left e           -> putStrLn (renderReply (RError e)) >> start ls
-  Right (MTick _) ->
-    putStrLn (renderReply (RError "expected-handshake")) >> start ls
-  Left e -> case parseLineU l of
-    Right (MUHello wd ld) -> case buildWorldU wd ld of
-      Right (w, wAg, uAgs) ->
-        putStrLn (helloReplyU w)
-          >> loopU w (UTickState 0 0 Nothing) wAg uAgs ls
-      Left e2 -> putStrLn (renderReply (RError e2)) >> start ls
-    _ -> putStrLn (renderReply (RError e)) >> start ls
+start (l : ls) = case helloFormU l of
+  Nothing -> v1Line
+  Just f
+    | f == "latent@1" -> v2Line
+    | f == "table@1"  -> v1Line
+    | otherwise ->
+        putStrLn (renderReply (RError ("unknown-utility-form: " ++ f)))
+          >> start ls
+  where
+    v1Line = case parseLine l of
+      Right (MHandshake wd) -> case buildWorld wd of
+        Right (w, ag, r) -> putStrLn (renderReply r) >> loop w ag ls
+        Left e           -> putStrLn (renderReply (RError e)) >> start ls
+      Right (MTick _) ->
+        putStrLn (renderReply (RError "expected-handshake")) >> start ls
+      Left e -> putStrLn (renderReply (RError e)) >> start ls
+    v2Line = case parseLineU l of
+      Right (MUHello wd ld) -> case buildWorldU wd ld of
+        Right (w, wAg, uAgs) ->
+          putStrLn (helloReplyU w)
+            >> loopU w (UTickState 0 0 Nothing) wAg uAgs ls
+        Left e -> putStrLn (renderReply (RError e)) >> start ls
+      Right _ ->
+        putStrLn (renderReply (RError "expected-handshake")) >> start ls
+      Left e -> putStrLn (renderReply (RError e)) >> start ls
 
 -- the v2 polling loop: threaded tick state (no counter resets,
 -- R-D11); observe_batch folds the one-tick step and answers one

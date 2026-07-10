@@ -125,6 +125,26 @@ WireU sealing observation and the KSV caveat queued for the increment
 report ("additive-field extensibility" is a named candidate for the
 next wire boundary, not a per-increment surprise).
 
+**The Task-3 report review (2026-07-10, post-build).** The author's
+review of the increment report accepted it with conditions: the
+countersignature made a condition of closure and the delegated-edit
+re-tag obligation registered (R-D22); the doctrine consequence of the
+measured VoI death recorded — the deference-floor prose (§6 here, the
+third-review "Fifth" passage, HOSTS_PLAN 6.1) is falsified for the
+VoI readout by voiB → 0 at k ≥ 4 (both families), and its amendment
+is queued to the next document boundary (what stands proven: drift
+re-funds deference at change points + a strict drift edge at
+k ∈ {1,2,3}); the residual defect class R-D21 does not close named in
+the report's post-mortem (a satisfiable pin measuring the wrong
+quantity — only review catches it); the observeCounts evidence-scaling
+question answered by transcript (the verb returns `LogProb (lp + m)`
+— evidence-exact where posterior-exact; report §7); the v2 dispatch
+made fail-closed on the declared `utility.form` (no frozen golden
+pinned the fallback); the as-built warm-replay wall-clock published
+(8.26 ms/tick wire-inclusive; observe_counts collapses 39,314 warm
+ticks to 11.4 ms total); the gDriver ask-rate field prediction stated
+in the report before the field states it.
+
 Companions delivered with this pack:
 
 - the **data audit** (`~/.credence-governor/data-audit/report.md` +
@@ -796,6 +816,7 @@ by the author's hand at the freeze commit, and only if the author adopts it:
 | R-D19 | **independence buys the budget (second review, 2026-07-09)**: rider 2's per-latent product form is ALSO the tractability claim — utility hypotheses are additive (9 + 8 per component beside the world's 3,977), not multiplicative, BECAUSE of the per-latent factoring; the independence declaration and the budget result are one fact with two faces | **RULED as ordered**: recorded so no one later relaxes independence without noticing they have re-multiplied the enumeration; any future joint-enumeration ruling (R-D13's named alternative) re-opens the §10.11 budget measurement in the same breath |
 | R-D20 | **the r1 re-open + two oracle-drafting rules (third review, 2026-07-09)**: Task 3's first execution exposed three defective frozen rows (gDegeneracy's listening predicate mis-transcribed vs Cirl.hs:138; gHeadline's k=12 floor unsatisfiable — both families' VoI dies at k=4 through the voiB composition; full anatomy in hosts-d-task3-stop-report.md). RULED: (i) **copy-not-reconstruct** — an oracle row claiming a frozen formula copies it byte-wise with file:line provenance, quoted in the pack, reviewable by grep; (ii) **satisfiability proof for red pins** — every runtime-red row whose expected side needs unbuilt machinery is executed once against a throwaway prototype before the freeze (discarded; only the boolean recorded): the ladder's compile-red proof extended from types to semantics. §5's fixes applied as recommended | **RULED 2026-07-09, applied under fresh, explicit, per-instance delegation (the membrane precedent — builder key, delegation verbatim in commit and tag d-freeze-r1)**: obeysB repaired to the Cirl formula; gHeadline re-scoped to the measured drift edge (strict at k∈{1,2,3}; both dead at k=12); oracle now 48 rows, both repaired groups verified green by execution before the re-freeze. The rules bind every future increment oracle; canonization into CLAUDE.md's protocol text is a future author freeze-boundary act |
 | R-D21 | **the satisfiability TRANSCRIPT gate + the r2 re-open (fourth review, 2026-07-09)**: after the author's process objection to serial re-opens, the R-D20-ii rule was run against EVERY remaining red row in one pass (stop report #2 §0's table: gLedger executed exact, gO3 executed margin 0.4347, gWire statically consistent, gDriver's two rows unsatisfiable — pilotD's Var (S Z) payload action-degenerate, and a fresh pointer unflippable by one flat verdict), closing D's oracle defect inventory at FIVE rows total. RULED: (i) the transcript gate — the oracle phase ends only when every red row's asserted quantity has been executed once against a prototype realization, recorded as a satisfiability transcript in the author pack; prototypes discarded; a red row without a transcript line cannot freeze; (ii) the gDriver repair as drafted (stake payload sayable via If/Gt/IsEq over fixture grids; world-bound pointer prepped with one verdict; askSharp grid {0.01}; prototype margins 0.043 / tie-by-doctrine) | **RULED 2026-07-09, applied under fresh per-instance delegation (verbatim: "adopt the transcript gate; apply the gDriver repair as drafte"), builder key, tag d-freeze-r2**. CLAUDE.md canonization of the gate rides the same future boundary as R-D20's rules |
+| R-D22 | **the delegated-edit re-tag obligation (the Task-3 report review, 2026-07-10)**: by increment close the binding oracle had been amended three times post-freeze under builder key with one-line verbal delegations, leaving the author's only signature (d-freeze) over a frozen state that no longer existed — the custody invariant ("the builder never owns a live oracle at the moment it becomes binding") satisfied in letter and hollowed in substance, the builder having authored every surviving byte of the repaired rows. RULED: any delegated freeze-edit obliges an author re-tag WITHIN the increment — the increment does not close until the author's own signed tag covers the oracle as amended; the countersignature is a condition of closure, never a courtesy afterwards | **RULED 2026-07-10**; discharged for D by the author's closure tag over the report-review commit; CLAUDE.md canonization rides the same future boundary as R-D20/R-D21 |
 
 ---
 

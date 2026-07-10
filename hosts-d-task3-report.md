@@ -7,6 +7,14 @@ all seven audit gates PASS; ten suites green under cabal; govhost v1
 anchors byte-stable throughout** (no frozen assertion literal moved in
 any of the nine pre-D suites).
 
+*Amended same day under the author's report review (section 7): the
+countersignature made a condition of closure (R-D22), the residual
+defect class named in section 4, the doctrine amendment queued in
+section 6, the field prediction added as 2a, the observeCounts
+evidence-scaling question answered by transcript, the v2 dispatch
+made fail-closed, and the as-built warm-replay wall-clock published
+in section 5. All gates re-run green after the amendments.*
+
 ## 1. The commit history of Task 3 (custody-annotated)
 
 | commit / tag | act |
@@ -35,6 +43,20 @@ signature in this increment is d-freeze itself.
    comparison-payload mechanism; multi-residual pairing folds on the
    FIRST residual (successor scope, HOSTS_PLAN 6.2's coupled-folds
    line).
+
+   **2a. The field prediction this rule implies (stated before the
+   field states it).** The gDriver repair's diagnosis generalises:
+   with the declared τ-owner, a single verdict's likelihood ratio is
+   ≤ 1.43 per tick (the r2 satisfiability analysis, stop report #2
+   §2), so one ask is almost never worth its θ_ask cost except where
+   the pair posterior sits near a decision boundary. The live governor under this utility model will
+   therefore ask RARELY, through the verdict channel, essentially
+   only at boundaries — which is either the product working
+   (surgical interruptions exactly where a human's answer changes
+   the action) or a symptom (τ too noisy at plausible θ). Ask-rate
+   is the governor's most visible behaviour; this expectation is on
+   the record so the field's number confirms or falsifies a stated
+   prior rather than surprising an unstated one.
 2. **Model grew internally** (uconst/uwalk sorts carrying their
    declared channel, value space, points, and grid name); the
    reflected walk generalized onto the value grid as `walkOn` — the
@@ -90,6 +112,16 @@ oracle-phase runner must be bit-faithful to the future gate's build
 declarations too, not only its flags — one sentence for the next
 oracle's red-run author.
 
+One class the transcript gate does NOT close, named so the
+post-mortem is honest about its coverage (the report review): a
+SATISFIABLE pin that measures the wrong quantity. gHeadline's
+original sin was conceptual before it was arithmetic — VoI measured
+on a same-stream static snapshot structurally cannot see drift's
+value, which lives at the flip — and a row like that, given a
+satisfiable expected side, sails through a satisfiability
+transcript. Only review catches it; no gate substitutes for the
+author reading what a pin claims to measure.
+
 ## 5. Reviewer verification block (run by the author)
 
     export PATH="$HOME/.ghcup/bin:$PATH"
@@ -102,15 +134,115 @@ oracle's red-run author.
     git log --oneline -5            # the custody trail of section 1
     git verify-tag d-freeze         # your signature (the binding one)
 
+**Warm-replay wall-clock, as-built** (the report review's owed
+number — the budget rider's deployment figure, measured through the
+built `proplang-govhost` on the 1241-model latent@1 world, minimum
+of 3 runs each; bench fixtures scratch, not committed):
+
+| path | cost |
+|---|---|
+| boot + enumerate (hello only) | 1.6 ms |
+| per-tick lines, wire-inclusive | 8.26 ms/tick → 39,314 warm ticks ≈ 325 s |
+| observe_batch (100/line) | 8.55 ms/tick — engine-dominated; IPC is noise, as the freeze-time decomposition predicted |
+| observe_counts (one line, counts 30000/9314) | **11.4 ms TOTAL** for the same 39,314 ticks (~28,000×) |
+
+The counts row on a drift-carrying stream is the DECLARED flattening
+approximation (the haddock prints it); the collapse is the host's
+choice per segment — exchangeable-safe warm history collapses for
+milliseconds, drift-sensitive spans replay per-tick at 8.26 ms.
+
 ## 6. What remains (all yours, none building)
 
-1. Review this report; if you want your own countersignature over the
-   completed increment (the r-tags are delegated builder
-   attestations), a signed tag from your shell over 677c8ef closes
-   the custody loop in your hand.
-2. Push master + tags to the public repo when you choose.
-3. credence-governor: feat/membrane-adapter push/PR (unchanged,
+1. **The countersignature — a CONDITION of closure, not an option**
+   (the report review superseded this item's original wording). The
+   binding oracle was amended three times post-freeze under builder
+   key with one-line verbal delegations, so by increment close the
+   only author-signed object is the ORIGINAL d-freeze, whose frozen
+   content no longer exists as frozen: the author's signature covers
+   zero bytes of the oracle's surviving repaired rows, and the
+   custody invariant ("the builder never owns a live oracle at the
+   moment it becomes binding") is satisfied in letter and hollowed
+   in substance. A signed tag from your shell over the closure
+   commit is what makes it substantive again — R-D22 (registered)
+   makes this obligatory within any future increment that takes a
+   delegated freeze-edit.
+2. **The doctrine amendment, queued to the next document boundary**
+   (the report review): the deference-floor prose is falsified for
+   the VoI readout by the frozen tests themselves — voiB → 0 at
+   k ≥ 4 for BOTH families (gHeadline's measured table). The
+   overclaiming sentences: HOSTS_D_PACK §6 "a posterior containing
+   'the owner's preferences can change' never fully concentrates, so
+   asking retains value forever" and the third-review "Fifth"
+   passage's "the deference floor never reaches zero"; HOSTS_PLAN
+   6.1's "never fully concentrates, so deference retains value".
+   What the oracle actually proves is weaker and better: drift
+   RE-FUNDS deference at change points (gConsult's resumed
+   deference), plus a strict drift edge at k ∈ {1,2,3}. The frozen
+   prose must not assert a theorem the frozen tests disproved;
+   amendment rides the next author document boundary (frozen texts
+   change only there).
+3. Push master + tags to the public repo when you choose. *(Done
+   2026-07-10 on your instruction — master + d-freeze, r1, r2, r3
+   are public; the report-review commit and your closure tag follow
+   the same route.)*
+4. credence-governor: feat/membrane-adapter push/PR (unchanged,
    non-gating). R-D16 retention policy (standing).
-4. The next boundary, if any, opens under R-D20/R-D21's rules — and
-   per the roadmap as amended at d-freeze, that is A
+5. The next boundary, if any, opens under R-D20/R-D21/R-D22's rules —
+   and per the roadmap as amended at d-freeze, that is A
    (options-as-data), demand-gated.
+
+## 7. The report review (2026-07-10): answers and repairs
+
+The author's review of this report ordered six amendments (sections
+2a, 4, 5, 6 above carry four of them) and asked two technical
+questions. Both are answered here by execution, and both repairs are
+in the same commit as this section — builder key, the author's
+instruction the recorded delegation, R-D22 discharged by the closure
+tag that follows.
+
+**observeCounts is evidence-exact, by transcript, not just by
+reading.** The question: max-scaling is posterior-exact but a
+per-tick rescale corrupts marginal-likelihood readouts unless the
+constant is tracked. The answer: it is tracked — the verb returns
+`LogProb (lp + m)` (Enumerate.hs, the synthetic kernel's max re-added
+per call), and the wire's `loss_bits` renders that corrected value.
+Executed transcript (gate flags, `-isrc`, scratch prototype):
+
+    UConst-only (exchangeable):
+      sequential log-evidence = -31.33279953983475
+      collapsed  log-evidence = -31.332799539834753
+      |diff|                  = 3.552713678800501e-15   [< 1e-12]
+      posterior latent mean (seq, cnt) = (0.44268862288250965,
+                                          0.4426886228825096)
+    UConst+UWalk (drift-carrying; the declared flattening):
+      sequential = -28.551602377151468
+      collapsed  = -30.943596310754316   |diff| = 2.392 nats
+
+The exchangeable collapse is exact in evidence exactly where it is
+exact in posterior; the drift-carrying divergence (2.392 nats here)
+IS the declared flattening approximation itself — it moves evidence
+and posterior together and is printed in the haddock, which now also
+states the scaling-constant fact explicitly. Structure-BMA or any
+prequential-bits consumer can read a counts-collapsed stream with no
+scaling artifact; what it must still respect is the flattening
+declaration on drift-carrying segments.
+
+**The v2 dispatch is now fail-closed on the declared form.** The
+question: parse-fallback (try v1, then v2 where v1 errored) is
+fail-open in principle and misattributes errors in practice (a
+malformed latent@1 hello answered with v1's table@1 complaint). There
+was no reason why not — no frozen golden pins the fallback path (the
+only frozen error golden is tick-time `impossible-evidence`), so the
+seam moved to where it was supposed to be: `helloFormU` reads the
+declared `utility.form` and routes — `latent@1` binds the line to the
+v2 parser, `table@1` or no declared form is v1's (the explicit
+default, byte-identical), any OTHER declared form answers
+`unknown-utility-form: <form>` and can never fall through to the
+other version's semantics. Witnessed:
+
+    {"...form":"latent@2"...}            → {"error":"unknown-utility-form: latent@2"}
+    latent@1 missing its residuals block → {"error":"missing key: residuals"}
+
+All gates re-run green after both repairs: ten suites (test-d 48/48,
+govhost 40/40), audit gates 1-7, both red-runs, ablation, manifest
+81/81 — no anchor moved.

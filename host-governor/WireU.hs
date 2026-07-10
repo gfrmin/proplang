@@ -23,6 +23,7 @@ module WireU
   , ReplyU (..)
   , parseLatentDecl
   , parseLineU
+  , helloFormU
   , renderReplyU
     -- * the v2 driver's pure half
   , WorldU
@@ -231,6 +232,24 @@ parseLineU s = do
       MUBatch <$> (mapM pTaggedTick =<< uArr "observe_batch" b)
     (_, _, _, Just c) -> pCounts c
     _ -> Left "expected a handshake, a tick, observe_batch, or observe_counts"
+
+-- | The dispatch seam (the Task-3 report review's fail-closed
+-- ruling, 2026-07-10): the
+-- DECLARED utility form routes the handshake. A line that names a
+-- form is bound to the parser it named and can never fall through to
+-- the other version's semantics; a line that names none is v1's, the
+-- explicit default. Nothing = no form declared (not hello-shaped, or
+-- a hello without a form string).
+helloFormU :: String -> Maybe String
+helloFormU s = case parseJson s of
+  Left _  -> Nothing
+  Right j -> do
+    JObj kvs  <- Just j
+    _         <- lookup "membrane" kvs
+    JObj wkvs <- lookup "world" kvs
+    JObj ukvs <- lookup "utility" wkvs
+    JStr f    <- lookup "form" ukvs
+    pure f
 
 -- the v1 world block minus its utility table (the latent block
 -- replaces it; wdUtility = [] by construction on this path)

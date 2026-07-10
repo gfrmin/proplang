@@ -639,7 +639,13 @@ latentChannel ag = case firstU ag of
 -- untouched). EXACT for exchangeable (iid-emission) hypotheses; for
 -- state-carrying ones (hmm / UWalk) this IS the declared
 -- warm-flattening approximation — the latent is NOT advanced per
--- collapsed tick, printed rather than smuggled. O(hypotheses), not
+-- collapsed tick, printed rather than smuggled. The returned
+-- 'LogProb' re-adds the max-scaling constant, so the collapsed
+-- EVIDENCE is exact exactly where the posterior is: the rescale is
+-- per-call and tracked, never visible downstream — prequential bits
+-- read off a counts-collapsed stream carry no scaling artifact (the
+-- Task-3 report review's evidence-scaling question, answered by
+-- transcript 2026-07-10). O(hypotheses), not
 -- O(ticks). The optional kernel routes the collapse through a
 -- supplied emission (the outcome channel), 'observeVia''s
 -- discipline.
