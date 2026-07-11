@@ -29,9 +29,10 @@ The brief's own arrangement (§4: "the stdlib may of course name these compositi
 **A2 — rw.** [§8/§9/§12 | DEBT — molecule recorded as an atom | provenance:
 SELF-LICENSED | discharge: boundary K]
 The capability is required and real: drift-sayability is §8's core demand; the guard
-family was in the enumeration and lost (`test/Anchors.hs:100` — MAP on the drifting
-world is `('hmm', ('c','rho',3))`), and the frozen deletion row costs 3.96 bits
-(`test/Anchors.hs:117-118`: 211.05 vs 207.10; asserted `test/Acceptance.hs:364`).
+family competed in the enumeration and the drifting world's MAP went to the walk
+(`test/Anchors.hs:100` — `('hmm', ('c','rho',3))`), and the frozen deletion row
+costs 3.96 bits (`test/Anchors.hs:117-118`: 211.05 vs 207.10; asserted
+`test/Acceptance.hs:364`).
 Two findings against the atom:
 (i) *Unpriced content in one codeword.* `rw` = mix rho (neighbor-step) identity —
 nearest-neighbor topology, symmetric rho/2 split, reflecting boundary
@@ -41,18 +42,38 @@ are unsayable — invisibly. The ExpFam boundary proved rw is not an expfam POIN
 (`EXPFAM_PLAN.md:72-78` — source-dependent hard zeros vs fixed base measure, a real
 obstruction) and recorded it as "the alphabet residue's one non-expfam member"
 (`interface.md:123-128`) — but never asked whether it is a COMPOSITION. It is.
-(ii) *The deletion proof is self-licensed.* Test 3's world IS a reflected
-nearest-neighbor walk on the theta grid at rate 0.2 (`tests_acceptance.py:257-266`,
-seed 5) — the hypothesis family and the world generator are the same process. The row
-proves the capability (§8), not the atom's shape.
+(ii) *The deletion proof is self-licensed in spirit; its letter is corrected here
+(external review, finding 2 — an R-D20-class defect in this register's first
+printing).* Test 3's world is a CLAMPED nearest-neighbor walk on the theta grid at
+rate 0.2: `i = max(0, min(len(grid) - 1, i + rng.choice((-1, 1))))`
+(`tests_acceptance.py:266`, seed 5) — at the edge the outward step self-loops —
+while `rw` REFLECTS: at the edge the full rho mass moves inward
+(`proplang.py:353-357`). The world's process is strictly OUTSIDE the rw family; the
+earlier sentence "test 3's world IS a reflected nearest-neighbor walk" was false as
+written. The verdict stands — the world was authored in the family's image, morally
+self-licensed — and the correction slightly STRENGTHENS the deletion row: the 3.96
+bits were earned on a world the family can only approximate, a sliver of
+generic-capability evidence the first printing did not claim.
 Proposed ruling (the bern precedent): `rw` becomes a stdlib name over utterable,
 individually priced, individually deletion-proven kernel atoms `mix`/`step`/`id`;
 executed path `walkOn` verbatim (anchors byte-stable). Census-bearing (new codewords,
 P5 discipline) ⇒ own boundary K, demand-gated. K's scope INCLUDES authoring
-non-self-licensed worlds, or the atoms' rows inherit this row's offense. The
-reflecting-boundary choice may be derivable (uniform-stationarity defense) — an
-argument to EXECUTE on a prototype, never assert; until its transcript exists the
-sub-row stays OPEN.
+non-self-licensed worlds, or the atoms' rows inherit this row's offense; and — the
+KER sort becoming generative after decomposition — K's census scopes the
+kernel-enumeration frontier, with at least one non-self-licensed world making a
+newly sayable molecule (e.g. asymmetric drift) earn its bits, else the atoms are
+decoration (external review, D2).
+The reflecting-boundary sub-row is CLOSED BY EXECUTION — the row's own
+executed-not-asserted standard, discharged by the external review (2026-07-11),
+verified by detailed balance this session: the uniform-stationarity defense is
+REFUTED. The reflected walk's stationary law is ∝ (1, 2, ..., 2, 1) — half weight at
+the edge points; it is the CLAMPED walk that is uniform-stationary, so the defense,
+executed, vindicates the boundary the language didn't choose. The derivation that
+stands instead: the step atom is UNIFORM OVER THE NEIGHBOR SET — interior points get
+the symmetric rho/2 split, an edge point's singleton neighbor set receives all rho —
+deriving topology, symmetry, and boundary in one decision-free stroke,
+byte-for-byte `walkOn`'s edge case. K's row carries this route, not the
+stationarity one.
 
 **A3 — the model-fragment terminals `if`/`>`/`get`/`c`.** [§9 | CONFORMANT |
 provenance: GENERIC | —]
@@ -77,7 +98,10 @@ coordinates were forced (bits ⇒ base 2, expfam ⇒ log-odds, symmetry ⇒ root
 raw feature axis has no forced origin or scale. The row is permitted to conclude
 open-residue (§11's alphabet residue) — a world-supplied coordinate may be the honest
 end-state, in which case tau thresholds are declared-feature vocabulary (interface
-data) rather than agent-purchasable.
+data) rather than agent-purchasable. Note (external review, D6, ratified): even the
+open-residue endpoint migrates the baked `tauPoints` to a world declaration with the
+frozen grid as default — the declared-guard-grid migration-residue precedent;
+open-residue rules the COORDINATE question, never the baking.
 
 **A6 — the rho grid.** [§5 | DEBT | discharge: rides on K]
 `rhoPoints` baked (`src/PropLang/Enumerate.hs:102-103`) — the walk-rate vocabulary;
@@ -114,7 +138,8 @@ discipline (a fourth verb must be a composition or rejected; these are compositi
 named).
 
 **B2 — the model/policy split.** [§2/§11 | RESIDUE-PRINTED | —]
-Hypotheses can utter only the model fragment (`src/PropLang/Enumerate.hs:118-120`;
+Hypotheses can utter only the model fragment (`src/PropLang/Enumerate.hs:283-296` —
+the `Model` constructors and the enumerator's shapes, the load-bearing evidence;
 `design.md:29-52`); the verbs are utterable in policy sentences only. Lawful today —
 a hypothesis containing argmax is a model of another AGENT, which is §11's named open
 problem (reflective closure against computable peers), registered in F below, not
@@ -189,7 +214,8 @@ interface, not epistemics; normative order = the world's own tie-break commitmen
 (`membrane-wire.md:46-53`).
 
 **E3 — tick price / think row.** [§7 | CONFORMANT] The clock residue: the world
-charges for its own time (`membrane-wire.md:121-140`); measured as a feature, never
+charges for its own time (`membrane-wire.md:131` — the think row's declared H, v1;
+`:176` — v2's `price` naming the tick-price FEATURE); measured as a feature, never
 a constant (`src/PropLang/Membrane.hs:379-381`, quote at `:380` — rider 1's
 stratification).
 
@@ -207,7 +233,7 @@ one wire that genuinely cannot be inferred from its own signal.
 
 **E6 — the refine row (the permission inversion).** [§7 | DEBT | discharge: the
 clock-default ruling at R; fallback retirement at K or D3's boundary, whichever
-first satisfies the byte-stability obligation]
+first satisfies the byte-stability obligation — on the NO branch only, see below]
 "No refine row ⇒ statically-vocabularied agent" is a permission dressed as a price —
 the host gatekeeping what the agent may think about; autonomy switched on by the
 harness author. Ruling recorded: absent prices default to the clock — refine is
@@ -219,6 +245,12 @@ residue; its retirement condition is executable (does refine ever pay under the
 frozen worlds' tick streams? measured, not assumed) and R's byte-stability fixture
 is residue-TAGGED at freeze with that condition in its own register row, so
 retirement is the discharge of a declared obligation, never an oracle amendment.
+Polarity of the license (external review, finding 5): the check licenses retirement
+on NO only — refine never pays ⇒ clock-default replays byte-identically ⇒ clean
+discharge. On YES, retiring the fallback moves live-binary transcripts on frozen
+worlds (goldens in `test-membrane/`, `test-d/`, `test-govhost/`, none carrying this
+fixture's residue tag): that branch is a golden-moving author boundary, or the
+fallback becomes permanent printed residue.
 
 **E7 — the declared grids (guards, slots, latents).** [§9 | CONFORMANT with A5's
 caveat] Parameter vocabularies of declared channels travel with the world;
@@ -244,3 +276,11 @@ non-self-licensed worlds costed in) → change families (opened by the deletion
 method, D3). One-utility-object queued at the author's next frozen-text edit.
 Normative detail: `METAREASONING_PLAN.md`. Nothing above binds until the author's
 boundary sentence; every DEBT row names its discharge; no unowned debt.
+
+External review (2026-07-11, advisory, committed verbatim at
+`reviews/2026-07-11-metareasoning-external-review.md`): open the program, no
+blocking findings — RECOMMEND with amendments (D1–D3), AMEND (D4 guard, D5
+coherence), RATIFY (D6), RECOMMEND with additions (D7), none blocking (D8). Its
+amendments are absorbed in this commit (A2's corrected letter and closed
+stationarity sub-row, A5's migration note, E6's polarity, the citation hygiene in
+A2/B2/E3, and METAREASONING_PLAN §§3, 4, 7, 9.4, 10).

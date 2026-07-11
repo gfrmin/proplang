@@ -120,6 +120,17 @@ posterior after a purchase is byte-identical to the posterior of an agent whose
 enumeration contained the node from tick 0 at the same prior. Purchase ORDER does not
 matter. The growth path affects only when vocabulary is available, never the coherence
 of beliefs over what is owned.
+**What byte-identity means here (external review, D5 — the discipline, not a
+tolerance):** purchase-ORDER independence through ONE canonical scorer — the
+posterior a pure function of (dl, n1, n0) per node, the owned set folded in
+canonical code order, fixed association order, one log-sum-exp. The live
+incremental `cond` path (n1 successive additions with per-tick normalization,
+`Belief.hs:181-182`) cannot be IEEE-754-identical to the scorer's n1 * log theta;
+scorer-vs-incremental agreement is therefore pinned at tolerance (CL-4's 1e-9
+pattern), never byte. If R routes exchangeable families' live posteriors THROUGH
+the scorer (the cleanest reading of finding 5c's sealing), the frozen-world ulp
+question folds into the byte-stability residue tag — the tag then covers the
+ARITHMETIC SEAM, not just refine-availability.
 
 **The walk family is excluded from retro-refinement in R's first increment** (walks are
 not exchangeable; their latent's history is lattice-relative). Walks live on the legacy
@@ -130,13 +141,24 @@ observe_counts verb already prints) is demand-gated future work.
 **The truncation-overconfidence guard (finding 3 — a law of R).** The owned mixture
 renormalizes away unowned prior mass and so systematically OVERSTATES confidence
 relative to the ideal mixture — for a u_wrong = -9 respond/abstain agent, the fatal
-direction. The repair is lawful and constant-free: the unowned region's prior mass is
-a Kraft sum over the generator (computable from the code), and its likelihood is
-bounded by the sup of theta^n1 (1-theta)^n0 over the frontier intervals — closed form
-for Bernoulli. The pessimistic remainder folds into the respond/abstain evaluation:
-under stakes the agent must purchase or abstain — never respond confidently against
-belief that might hide beyond the frontier. This makes "the Cromwell frontier emerges
-from utility" quantitative rather than rhetorical. **The framing that binds the
+direction. The repair is lawful and constant-free, and its pessimism is assigned
+**per frontier interval** (external review, D4 — the binding arithmetic): for each
+frontier interval, mass = that subtree's Kraft sum (computable from the code),
+likelihood ≤ the interval's sup of theta^n1 (1-theta)^n0 (closed form for
+Bernoulli), and utility = the interval's ENDPOINT MINIMUM — E[u|theta] is linear in
+theta for binary outcomes, so the interval minimum is an endpoint evaluation, also
+closed form. The reading this sentence EXCLUDES: a single global worst-case utility
+on the whole remainder. Executed, the global reading blocks `respond` forever at
+every purchase depth (the unowned tail always contains theta -> 1 at sup-likelihood
+1, so the remainder never washes out) — the incumbent latent@1 constant-block
+failure rebuilt as a law, an unpriced throttle in the fatal direction. Under the
+per-interval reading the consequences are the design: a root-only agent under
+stakes correctly cannot respond at any evidence level (it must purchase — that is
+the point, not over-blocking), and release occurs at the first owned rung past the
+stakes threshold p*. The pessimistic remainder folds into the respond/abstain
+evaluation: under stakes the agent must purchase or abstain — never respond
+confidently against belief that might hide beyond the frontier. This makes "the
+Cromwell frontier emerges from utility" quantitative rather than rhetorical. **The framing that binds the
 implementation (brief §6's one currency at two fidelities): the guard IS the
 cheap-fidelity evaluation of the ideal full-mixture argmax, and VOR/purchase is the
 decision to buy the expensive fidelity — one valuation at two fidelities, never a
@@ -161,7 +183,14 @@ monitor.**
   static vocabulary) solely for frozen-world byte-stability, tagged as residue with a
   named retirement boundary (K or the change-family boundary, whichever first
   satisfies the obligation). Its retirement condition is EXECUTABLE: does refine ever
-  pay under the frozen worlds' tick streams — measured, not assumed.
+  pay under the frozen worlds' tick streams — measured, not assumed. **The license is
+  one-sided (external review, finding 5):** NO ⇒ clock-default replays
+  byte-identically, clean discharge; YES ⇒ retirement moves live-binary transcripts
+  on frozen worlds whose goldens carry no residue tag — a golden-moving author
+  boundary, or the fallback stays permanent printed residue.
+- **The always-available refine takes a pinned position in the option order:** CL-3
+  ties break first-listed, so an ever-present internal act needs a DECLARED slot in
+  the fold — ruled at R's freeze, never an accident of construction order.
 
 ## 5. The pricing amendment (single-site, author-ruled)
 
@@ -200,6 +229,21 @@ above the singleton; action-dependent vPreAt above depth 1), gather-fires-iff-VO
 ladder-climbs-through-the-wire, discrimination fixture (flat-p1 register item),
 v1/v2 goldens byte-stable. Distinct from HOSTS_PLAN increment B (inferred-rho family,
 still demand-gated on a reliability-LEARNING shortfall after A).
+Two oracle-wording rulings from the external review (D1, findings 4/6):
+- **Rung-0 faces take the NAKED predictive.** Act-leg byte-identity to the myopic
+  path is achievable by code-path identity (`vPreAt` at depth 0 is `vAct`, the same
+  `expect b (applyUtil u a)` the myopic `argmaxEU` evaluates, under the same
+  strict-improvement first-listed fold) — but only if V does not route terminals
+  through the `pairB` double-pushforward `uChoose` builds unconditionally
+  (`Membrane.hs:543-544`), which re-normalizes and reorders sums even for the
+  degenerate zero residual (`:448-451`). With that stated, any act-leg float
+  difference in the measurement is an implementation bug, never a seam
+  justification.
+- **The seam measurement classifies divergences in advance**, three kinds: act-leg
+  float drift (a bug — must be zero, per the ruling above); think-leg value change
+  without a choice flip (expected, byte-stable transcripts); a think-wins flip (the
+  designed behavior surfacing — a behavioral question for the author, not a
+  numerics failure).
 
 **Boundary R — refinement (rides on V).** `refine` as the second internal act valued by
 V's machinery. New-sort maneuver: `InternalAct` gains `Refine` behind `DROP_REFINE`
@@ -208,10 +252,26 @@ V's machinery. New-sort maneuver: `InternalAct` gains `Refine` behind `DROP_REFI
 - **stakes buy the frontier**: u_wrong = -9 answer world under all-correct evidence —
   the agent purchases up the odds ladder, p1 crosses 0.9, `respond` fires; the SAME
   evidence under governor-scale stakes buys nothing;
-- **coherence**: purchase-path independence (the §3 theorem as a property test);
-- **the unowned-mass guard**: under stakes, `respond` is blocked whenever the
-  pessimistic remainder could flip it — the agent purchases or abstains (finding 3
-  with teeth);
+- **coherence, two fixtures (the §3 discipline)**: (i) purchase-ORDER independence,
+  byte-identical through the canonical scorer; (ii) scorer-vs-incremental agreement
+  at tolerance (CL-4's 1e-9 pattern) — never byte across the arithmetic seam;
+- **the unowned-mass guard (per-interval arithmetic)**: under stakes, `respond` is
+  blocked whenever the per-interval pessimistic remainder — subtree Kraft mass x
+  interval sup-likelihood x interval endpoint-minimum utility — could flip it; the
+  agent purchases or abstains (finding 3 with teeth, §3's binding arithmetic);
+- **guard-release closed-form pin**: owned rungs through the stakes threshold plus
+  all-correct evidence ⇒ `respond` permitted — the release point pinned in closed
+  form; pinned numerals derived at freeze from a prototype under the RULED prefix
+  code (R-D21): the external review's toy-code numbers established discriminating
+  power, not pin values (the membrane pre-tag precedent);
+- **lattice fineness-charged-once**: the augmented mixture's prior masses are exactly
+  the 2^-dl Kraft terms and nothing else — A8's frozen tripwire extended to the
+  frontier;
+- **prefix-freeness / Kraft-computability pin**: the guard's remainder mass is sound
+  only if the ruled code is prefix-free and its subtree sums computable — pinned,
+  not presumed;
+- **the purchase log**: every owned hypothesis printed at purchase (§8's promise as
+  an oracle row, not prose);
 - **recurring-stakes myopia pin**: the declared-limitation fixture — VOR never buys
   when per-tick gain < price < stream value (finding 4);
 - **the adversarial mutation check (increment-local ablation)**: inject a forgetting
@@ -264,8 +324,11 @@ the space and nothing else (the gate-2 export-list discipline extended).
 4. The property that carries the Cromwell theorem is pinned
    representation-independently: **cumulative price along any path to a degenerate
    limit diverges**. The prefix code on (extent, depth) — Elias-gamma vs unary-extent
-   — remains R's one canonical-choice ruling (both constant-free), but the code
-   choice is minor; the divergence property is the statute.
+   — remains R's one canonical-choice ruling (both constant-free); the divergence
+   property is the statute. The code choice is jurisprudentially minor but
+   BEHAVIORALLY load-bearing (external review, D7): unary extent prices log-odds j
+   at ~j bits, Elias-gamma at ~2 log2 j — very different stakes-to-rung economics
+   under the guard. Pinned at the freeze, with this reason stated in the ruling.
 5. **The alphabet law is stated in criterion form: the dyadic lattice in the family's
    NATURAL PARAMETER, or the feature's canonical coordinate** — log-odds is the
    Bernoulli instance, not the law. This makes the tau-grid row of BRIEF_AUDIT.md
@@ -289,3 +352,24 @@ with executable retirement) → §4, §7; the lattice law generalized to criteri
 → §9.5; the residue-tagged byte-stability fixture wording → §7. Companion register:
 `BRIEF_AUDIT.md` (the brief-conformance audit; the onward program V → R → K → change
 families, the latter two opened by the deletion method).
+
+2026-07-11, external review (advisory; adversarial verification with machine access;
+committed verbatim at `reviews/2026-07-11-metareasoning-external-review.md`).
+Verdict: open the program, no blocking findings. Dispositions: RECOMMEND with
+amendments (D1 program/V scope — measure the seam, don't presume it; D2 rw/K; D3
+clock-default); AMEND (D4 the guard, D5 coherence byte-identity); RATIFY (D6 —
+A5/A7 as written, E4 stays QUEUED: promotion would put golden-moving v1/v2
+unification inside a boundary whose oracle promises those goldens byte-stable);
+RECOMMEND with additions (D7 — four fixture rows, the prefix-code note); D8 none.
+Findings absorbed: per-interval guard pessimism (the global reading executed and
+shown to block respond forever) → §3, §7; coherence byte-identity as a canonical-
+scorer discipline, scorer-vs-incremental at tolerance, the residue tag covering the
+arithmetic seam → §3, §7; the retirement license's one-sided polarity + refine's
+pinned tie-break slot → §4; naked-predictive rung-0 faces + the three-way divergence
+taxonomy for V's measurement → §7; the prefix-code economics note → §9.4; the
+uniform-stationarity refutation, the clamped-world correction, and K's
+generative-census scope → BRIEF_AUDIT A2; the tau migration note → BRIEF_AUDIT A5;
+citation hygiene (finding 7) → BRIEF_AUDIT A2/B2/E3. The reviewer's executed
+numbers (guard-release table, stationary distributions) establish discriminating
+power only; every oracle pin derives at freeze from a prototype under the ruled
+code (R-D21).
