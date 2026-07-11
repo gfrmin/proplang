@@ -2,8 +2,22 @@
 
 > Drafted by the builder 2026-07-11, superseding the declared-emission-grid design
 > (boundary E's wire key is DROPPED; its substrate refactor survives, §6). Binds nothing
-> until the author's boundary sentence (Rider R3); rulings R-D20/21/22 bind every oracle
+> until the author's boundary sentence (Rider R3 — entered below, 2026-07-11); rulings R-D20/21/22 bind every oracle
 > below, as canonized in CLAUDE.md at the R-D14 boundary.
+
+## The boundary sentence (the author, 2026-07-11)
+
+> The metareasoning program opens at boundary V: the wire's decision becomes a
+>    single preposterior rule over affordances, within which argmaxEU survives
+>    only as the rung-0 evaluation and think(k) climbs by vThinkK at un-pinned
+>    depth — no new wire key, no new number. The seam is measured, not presumed:
+>    act-leg divergence from the frozen goldens is a bug driven to zero, and a
+>    think-wins flip on any frozen tick returns to me as a behavioral question,
+>    not a numerics failure. V opens oracle-first under §9; R rides on it.
+
+V is OPEN from this commit (Rider R3: the author's hand, the author's words, this
+commit). The oracle work (`test-answerhost/`, §7) proceeds under HOSTS_PLAN
+§0.4/§9; R rides on V; K and the change families remain demand-gated.
 
 ## 0. The principle (the author's directive, 2026-07-11)
 
@@ -113,6 +127,12 @@ not adaptation code. The pure-function discipline is load-bearing twice (finding
 it is what makes purchases time-consistent, and it is the exact condition under which
 the coherence fixture's byte-identity holds — without it the property test reds for
 floating-point-ordering reasons unrelated to the theorem.
+**Declared limitation (author checkpoint, R7): the criterion is aspirational
+until a second family tests it.** R-1 builds only the exchangeable/Bernoulli
+instance; whether the guard/scorer/VOR machinery is truly criterion-shaped — or
+quietly Bernoulli-hard-wired — is validated only when a change family arrives,
+and no R fixture can reveal it (brief §11's masked-hole warning applied to this
+section). R's green suite proves the instance, never the generalization.
 
 **Coherence theorem (the load-bearing claim, a property fixture in R's oracle):** for
 exchangeable hypotheses, buy-then-retro-score equals having-had-it-always — the
@@ -127,10 +147,22 @@ canonical code order, fixed association order, one log-sum-exp. The live
 incremental `cond` path (n1 successive additions with per-tick normalization,
 `Belief.hs:181-182`) cannot be IEEE-754-identical to the scorer's n1 * log theta;
 scorer-vs-incremental agreement is therefore pinned at tolerance (CL-4's 1e-9
-pattern), never byte. If R routes exchangeable families' live posteriors THROUGH
-the scorer (the cleanest reading of finding 5c's sealing), the frozen-world ulp
-question folds into the byte-stability residue tag — the tag then covers the
-ARITHMETIC SEAM, not just refine-availability.
+pattern), never byte. **Ruled at the author checkpoint (2026-07-11): R routes exchangeable
+families' live posteriors THROUGH the canonical scorer** (finding 5c's sealing,
+converted from reading to ruling on counsel's argument — the mutation tripwire
+polices what the scorer computes, so the scorer must be what the agent runs, or
+the strongest anti-smuggling property guards a path the agent doesn't take). The
+ruling's scope is bounded by the freeze: single-scorer-everywhere would move the
+Phase-1 founding anchors in ulps (n1 successive additions are not IEEE-equal to
+n1 * log theta), so the scorer is the canonical live path everywhere the frozen
+goldens do not pin the legacy arithmetic, and the incremental path survives ONLY
+inside the tagged migration residue — where the frozen suites themselves are the
+anti-mutation tripwire (any injected factor moves the pinned anchors and reds
+gate 5). Two paths, both policed, no shadow. The frozen-world ulp question folds
+into the byte-stability residue tag — the tag covers the ARITHMETIC SEAM, not
+just refine-availability. If section 9.2's measured per-tick envelope forbids
+routing-through, that reopens this ruling as a measured perf/constitution trade
+for the author, never a silent fork.
 
 **The walk family is excluded from retro-refinement in R's first increment** (walks are
 not exchangeable; their latent's history is lattice-relative). Walks live on the legacy
@@ -145,9 +177,13 @@ direction. The repair is lawful and constant-free, and its pessimism is assigned
 **per frontier interval** (external review, D4 — the binding arithmetic): for each
 frontier interval, mass = that subtree's Kraft sum (computable from the code),
 likelihood ≤ the interval's sup of theta^n1 (1-theta)^n0 (closed form for
-Bernoulli), and utility = the interval's ENDPOINT MINIMUM — E[u|theta] is linear in
-theta for binary outcomes, so the interval minimum is an endpoint evaluation, also
-closed form. The reading this sentence EXCLUDES: a single global worst-case utility
+Bernoulli), and utility = the interval MINIMUM of the family's E[u] — never a global
+worst-case. That is the LAW (emphasis ruled at the author checkpoint,
+2026-07-11); the ENDPOINT evaluation is the Bernoulli INSTANCE'S computation of
+that minimum, licensed by binary-outcome linearity (E[u|theta] linear in theta,
+so the interval minimum sits at an endpoint — closed form). A non-binary-outcome
+family reopens the instance computation (the minimum may be interior) under the
+same per-interval criterion, without constitutional amendment. The reading this sentence EXCLUDES: a single global worst-case utility
 on the whole remainder. Executed, the global reading blocks `respond` forever at
 every purchase depth (the unowned tail always contains theta -> 1 at sup-likelihood
 1, so the remainder never washes out) — the incumbent latent@1 constant-block
@@ -328,7 +364,11 @@ the space and nothing else (the gate-2 export-list discipline extended).
    property is the statute. The code choice is jurisprudentially minor but
    BEHAVIORALLY load-bearing (external review, D7): unary extent prices log-odds j
    at ~j bits, Elias-gamma at ~2 log2 j — very different stakes-to-rung economics
-   under the guard. Pinned at the freeze, with this reason stated in the ruling.
+   under the guard. Pinned at the freeze, with this reason stated in the ruling —
+   and the ruling sits on R's CRITICAL PATH, not just its freeze: the
+   guard-release fixture's satisfiability transcript (R-D21) needs the RULED
+   code, so the code choice gates the oracle phase itself; ruled deliberately,
+   never carried by "minor" (author checkpoint, 2026-07-11).
 5. **The alphabet law is stated in criterion form: the dyadic lattice in the family's
    NATURAL PARAMETER, or the feature's canonical coordinate** — log-odds is the
    Bernoulli instance, not the law. This makes the tau-grid row of BRIEF_AUDIT.md
@@ -373,3 +413,17 @@ citation hygiene (finding 7) → BRIEF_AUDIT A2/B2/E3. The reviewer's executed
 numbers (guard-release table, stationary distributions) establish discriminating
 power only; every oracle pin derives at freeze from a prototype under the ruled
 code (R-D21).
+
+2026-07-11, the author checkpoint (counsel's decision sheet committed verbatim at
+`reviews/2026-07-11-author-counsel-decision-sheet.md`; builder assessment
+in-session). Rulings: R1 — V OPENED by the boundary sentence at the head of this
+document; R2 — rw/K ratified with the adjacency scope (→ BRIEF_AUDIT A2) and the
+owned-set relativity register question for K; R3 — clock-default ratified,
+"permanent printed residue" consciously accepted as a legitimate terminal state;
+R4 — the guard's law restated with the emphasis inverted (the interval minimum of
+the family's E[u] is the law; endpoint evaluation is the Bernoulli instance) →
+§3; R5 — route-through-the-scorer converted from reading to RULING with the
+freeze-boundary scope → §3; R6 — debt register ratified (A5 with its migration
+obligation, A7 demand-gated, E4 queued as a DEPENDENCY of V's byte-stable
+baseline, not inertia); R7 — the criterion-untested declared limitation → §3, the
+prefix-code critical-path clause → §9.4.

@@ -74,6 +74,17 @@ the symmetric rho/2 split, an edge point's singleton neighbor set receives all r
 deriving topology, symmetry, and boundary in one decision-free stroke,
 byte-for-byte `walkOn`'s edge case. K's row carries this route, not the
 stationarity one.
+Adjacency scope, ruled at the author checkpoint (2026-07-11, counsel's finding):
+the neighbor set presupposes an adjacency structure, so the route's
+decision-freeness is SCOPED — adjacency = the covering relation of the ordered
+vocabulary's canonical order (forced, for a totally ordered carrier, exactly as
+root 1/2 was forced by symmetry; the theta grid is ordered by log-odds).
+Extending the walk decomposition to an UNORDERED carrier reopens adjacency as a
+declared residue, never a free inheritance. K's register also carries the
+owned-set relativity question (builder): under refinement the covering relation
+is relative to the OWNED set, so "step on the owned vocabulary" and "step on the
+legacy grid" are distinguishable kernels — K pins which one the stdlib name `rw`
+denotes.
 
 **A3 — the model-fragment terminals `if`/`>`/`get`/`c`.** [§9 | CONFORMANT |
 provenance: GENERIC | —]
@@ -284,3 +295,12 @@ coherence), RATIFY (D6), RECOMMEND with additions (D7), none blocking (D8). Its
 amendments are absorbed in this commit (A2's corrected letter and closed
 stationarity sub-row, A5's migration note, E6's polarity, the citation hygiene in
 A2/B2/E3, and METAREASONING_PLAN §§3, 4, 7, 9.4, 10).
+
+Author checkpoint (2026-07-11, counsel's decision sheet at
+`reviews/2026-07-11-author-counsel-decision-sheet.md`): V OPENED by the boundary
+sentence (METAREASONING_PLAN.md, head); R2–R6 ratified as amended — the adjacency
+scope added to A2, the guard's interval-minimum emphasis and the
+route-through-the-scorer ruling in METAREASONING_PLAN §3, the criterion-untested
+limitation in §3, the prefix-code critical-path clause in §9.4. E4 stays queued
+as a DEPENDENCY of V's byte-stable measurement baseline; the clock-default's
+"permanent printed residue" accepted as a legitimate terminal state (R3).
