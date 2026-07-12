@@ -295,7 +295,49 @@ costs 3.3 ms and removes two shims. Re-presented, not ruled.
   no frozen anchor can move under either R-C2 outcome.
 - Cost of keeping Neg, stated: lg 19 − lg 18 = **0.0781 bits/node** on every sentence.
 
-### 6.8 What the author now rules, on the numbers
+### 6.8 The substrate question (E7, 2026-07-13): R-C5 — Decimal/MPFR/CReal vs binary64
+
+Raised by the author with specifics (`rounded`/MPFR, `exact-real`/CReal), and the author
+**corrected the builder's first-pass claim**: arbitrary-precision floats DO carry full
+`Floating` with correctly-rounded transcendentals at any precision. That claim survives
+only against Rational/Decimal, where it is demonstrated twice over: `log 2 :: Rational`
+is a TYPE ERROR (no `Floating Rational`), and `1 % 0` CRASHES ("Ratio has zero
+denominator") where `1/0 :: Double` is the *value* `Infinity` — exact types turn IEEE's
+flowing, validatable values into exceptions at every division site. The remaining
+questions were then **executed** (MPFR 4.2.2 via `rounded-1.1.1`, `exact-real-0.12.5.1`,
+GHC 9.10.3; scratch project, discarded):
+
+| | measured |
+|---|---|
+| **E7a — hazard classes vs precision** | MPFR carries NaN, ±∞, AND signed zero, identically at p = 53/128/512: `isNaN (0/0)` True, `1/(negate 0) = -Infinity`, `negate 0` negative-zero, `0−0` not. **Every R-C1 hazard class and the R-C2 sign-of-zero distinction recur verbatim at 512 bits.** The guard question is precision-invariant. |
+| **E7b — the roundtrip cliff** | `exp(log x)/x ≠ 1` at **1498 / 1499 / 1461 of 10,006** sweep points at p = 53/128/512 — the cliff DENSITY is constant in precision; only its epsilon shrinks. The 17 frozen grid values still cliff at p=512 (5 of 17, 3 of them > 1, i.e. L < 0). **Strict L ≥ 0 cliffs at every finite precision.** |
+| **E7c — lse shift-invariance** | Still fails at p=128 (max diff ~2e-37) and p=512 (~1.5e-153); one exactly-representable cell (c=1, p=512) came out equal — a representability fluke, not a law. The §6.5 structure persists at every precision. |
+| **E7d — cost** | The 3-hypothesis posterior loop: **×52 at 128 bits, ×116 at 512** vs Double. The as-built 8.26 ms/tick warm replay and govhost's wall-cost rows are binary64 numbers. |
+| **E7e — CReal comparison** | `exact-real`'s Eq/Ord are APPROXIMATE: at `CReal 64`, `2 == 2 + 2^-100` is **True** and `compare` answers **EQ** for two DISTINCT reals. Termination is bought by lying. CL-3's argmax tie-break and grid membership (`elemIndex`, the `mkC` discipline) become silently unsound. |
+
+What no experiment can change: the executable specification (`proplang.py`) is binary64;
+CLAUDE.md Phase 1 demands its streams **bit-for-bit**; the frozen `Belief.hs` header pins
+ULP-level cross-language agreement; and test-code group 5 pins IEEE-754 facts as oracle
+rows. A substrate migration re-opens the corpus AND the reference — a P5-route boundary,
+never a step-1 shape. Note also: even MPFR at p=53 breaks anchor parity, because MPFR's
+correctly-rounded `exp`/`log` differ from libm's faithful-but-not-correctly-rounded ones.
+
+The strongest pro-MPFR argument, stated and answered: correct rounding is bit-reproducible
+across platforms where libm binary64 is not — and the project's reproducibility is already
+secured by the gate-7 toolchain freeze plus wire-level host conformance (engine contests
+bind to the membrane wire, never GHC artifacts). If cross-platform engine-internal
+reproduction ever becomes a demand, MPFR returns as a boundary proposal with this table as
+its cost sheet. Recorded concession: the prior weights (products of 1/n) and the bern/walk
+likelihoods are exactly rational; a Rational core for that fragment is conceivable and
+dies at ExpFam, entropy, the wire's loss_bits, and step 1's arithmetic.
+
+**R-C5 (the register row): the numeric substrate.** The builder's disposition, on the
+table above: binary64 stands; precision buys smaller epsilons on pathologies the R-C1
+guard turns into typed refusals, at ×52–116 measured cost, against the maximal re-open —
+and the exact alternatives are structurally disqualified (Rational: no transcendentals,
+crash-partiality; CReal: approximate equality). **The author rules.**
+
+### 6.9 What the author now rules, on the numbers
 
 - **R-C1 guard shape** — (i) 5 relocated error shims + 17 frozen sites / 3 files + an honest
   version needs `Kernel` changed too; (ii) a corpus-unobservable check whose only effect is a
@@ -311,3 +353,17 @@ costs 3.3 ms and removes two shims. Re-presented, not ruled.
   keeping Neg costs 0.0781 bits/node and flips **no** strict ordering (§6.7). The basis ruling
   (the IEEE-754 required-op set + pinned-libm transcendentals) remains available as the grounds
   that ends per-operator litigation, now with the measured witness that Neg is not sugar.
+- **R-C5** — the numeric substrate (§6.8): binary64 stands, or a substrate migration is
+  ordered as a P5-route boundary proposal with E7's table as its cost sheet. The exact
+  alternatives (Rational/Decimal, CReal) are structurally disqualified by demonstration;
+  MPFR reproduces every hazard class at every precision at ×52–116 measured cost.
+- **The sink, sharpened by E1's tick-dependence** — validation is per-tick at kernel
+  construction (the `stepHyp` site); a hypothesis whose code fails to denote at an
+  observed tick asserted the impossible there and is refuted permanently (evidence-shaped
+  zero; dormancy is for absent NAMES, never for likelihood failure). Falsifier row queued
+  for group 7: a code ill-formed at t=0 and lawful at t≥1 is dead from tick 0 onward.
+- **The Space-points reader** — `Code`/`Pos` evaluation needs one and the frozen `Belief`
+  export list has none: a one-name gate-2 export amendment (`spacePoints` — `Space` is
+  the point list `mkSpace` was given; nothing sealed leaks) vs point-carrying payloads
+  (changes Code/Pos arities, re-touches oracle rows). The builder's reading is the export
+  amendment; the author rules at the freeze.
