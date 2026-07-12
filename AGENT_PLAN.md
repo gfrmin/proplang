@@ -495,7 +495,8 @@ into `EXPR` beside `Gt`; `Call` has nothing left to call.
 | `SawE :: Eq b => Expr env (K a b) -> Expr env b -> Expr env (Ev a)` | Without it **no program can condition at all.** Today there is **no `Expr env (Ev a)` constructor whatsoever** — `CondE` is unreachable from any sentence. **This is the hole `VThink` papered over.** |
 | `ElimJ` | Without it a conditioned belief cannot be **consumed** by a sentence. |
 | **`Code`** (§2a; replaces `ExpFam` in the KER sort, 1 → 1) | Without it **no enumerated sentence can assign likelihood** — E9's proof, corrected in §5b and now *stronger*, because `Code` is the **sole** route where `rw` used to be a second one. |
-| **`Pos`** (§5b; subsumes `Stats`/`SId`, so the STATS sort deletes) | Without it **`walkOn`'s adjacency is unsayable**: the shipped grids are FP-nonuniform, so adjacency is **not a function of the values**, and the boundary reflection *doubles* a neighbour's mass. |
+| **`Pos`** (§5b) — the POSITION reader | Without it **`walkOn`'s adjacency is unsayable**: the shipped grids are FP-nonuniform, so adjacency is **not a function of the values**, and the boundary reflection *doubles* a neighbour's mass. |
+| **`ToR`** (§5d) — the VALUE reader | Without it **`expfam`'s `η·T(y)` is unsayable**: `T(y)` must be a `Double`, and a *position* cannot supply it. **`ToR`, NOT `Pos`, is what subsumes `Stats`/`SId`.** |
 
 **ARITHMETIC IS REQUIRED. (RE-CORRECTED 2026-07-12 — this reverses the builder's previous
 correction, which was wrong.)**
@@ -573,17 +574,19 @@ Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (K a b)
 --        Space payloads priced 0 — the opaque-payload convention ExpFam already uses
 ```
 
-**`Pos`** — ONE production, TWO problems:
+**`Pos`** — the POSITION reader:
 
 ```haskell
 Pos :: Eq a => Space a -> Expr env a -> Expr env Double   -- position in the DECLARED space
 ```
-- **(i)** `walkOn`'s adjacency. The shipped grids are **FP-nonuniform**
-  (`0.2 + 0.1 = 0.30000000000000004 ≠ 0.3`), so **adjacency is not a function of the values** —
-  and the boundary reflection *doubles* a neighbour's mass, which no value-difference predicate
-  reproduces. It needs `elemIndex`.
-- **(ii)** the carrier → Double reader — which **subsumes `Stats` / `SId`**, so the whole STATS
-  sort deletes.
+`walkOn`'s adjacency. The shipped grids are **FP-nonuniform**
+(`0.2 + 0.1 = 0.30000000000000004 ≠ 0.3`), so **adjacency is not a function of the values** — and
+the boundary reflection *doubles* a neighbour's mass, which no value-difference predicate
+reproduces. It needs `elemIndex`.
+
+> ⚠️ **The first draft of this section claimed `Pos` ALSO "subsumes `Stats`/`SId`, so the whole
+> STATS sort deletes." THAT IS FALSE. See §5d — it is `ToR` that does, and it is a SECOND
+> production.**
 
 ### E9's deletion proof, CORRECTED
 
@@ -602,27 +605,124 @@ law's one live violation) · `ExpFam`, `Stats`, `SId`, `Carrier`, `rw`/`THmm`/`M
 `Model` (§2a — shapes of a code) · `FnInd`, `FnUtil` (subsumed by `Expect`-with-binder) · `USay`
 (utility is an ordinary `Expr`).
 
-### The result: FOUR WHOLE SORTS vanish — and the honest cost is exactly one bit per node
+### The result: FOUR WHOLE SORTS vanish — and the honest cost is +1.07 bits per node
+
+**(Counts CORRECTED 2026-07-12 by §5d. The first draft said EXPR 20 / 21 productions / "exactly
++1.0 bit"; it had missed `ToR`.)**
 
 | sort | today | after | |
 |---|---|---|---|
-| EXPR | 10 | **20** | 9 kept (`Call` drops) + `IsEq` + `SawE` + `ElimJ` + `Pos` + 7 arithmetic |
+| EXPR | 10 | **21** | 9 kept (`Call` drops) + `IsEq` + `SawE` + `ElimJ` + **`Pos`** + **`ToR`** + 7 arithmetic |
 | KER | 1 | **1** | `ExpFam` → `Code` |
 | FN | 2 | **—** | subsumed by `Expect`-with-binder |
 | UTIL | 1 | **—** | utility is an ordinary `Expr` |
 | STDNAME | 7 | **—** | every member proven a composition or a shape |
-| STATS | 1 | **—** | subsumed by `Pos` |
-| **total** | **22 productions, 6 sorts** | **21 productions, 2 sorts** | |
+| STATS | 1 | **—** | subsumed by **`ToR`** (NOT by `Pos` — §5d) |
+| **total** | **22 productions, 6 sorts** | **22 productions, 2 sorts** | |
 
-**`prodExpr` 10 → 20 is exactly `+1.0` bit per node** (`lg 20 − lg 10 = 1`, since 20 = 2 × 10).
-**State it plainly: every sentence in the language gets one bit dearer per node.** That is the
-price of confessing the arithmetic, and **the prior is where it belongs.**
+**`prodExpr` 10 → 21 is `+1.07` bits per node** (`lg 21 − lg 10 = 4.3923 − 3.3219 = 1.0704`).
+*The tidy "exactly +1.0" of the first draft was an artifact of the production I had missed — 20 =
+2 × 10 was a coincidence of the error, and it is recorded here because a number that pretty is
+exactly the kind that stops getting checked.*
+
+**The production count does not fall (22 → 22). The SORT count collapses, 6 → 2.** That is the
+honest headline: the win is **structural, not arithmetic** — four sorts of hand-carved vocabulary
+replaced by one generative likelihood production and the arithmetic that was always being computed
+behind the alphabet's back. **Every sentence gets ~1.07 bits dearer per node**, and **the prior is
+where that belongs.**
 
 Against it: every `Call` stops paying `stdB` (**lg 7 = 2.81 bits**), every `Expect` stops paying
 the FN bit (**1.0**), and the VOI primitives stop being reachable at all. **Real sentences get
 cheaper; vocabulary nobody earned stops being subsidised.** `prodTable` drops from six fields to
 two, and **every price literal in nine test files reprices** — the P5 single-site alphabet
 constant firing exactly as designed.
+
+---
+
+## 5d. STOP AND REPORT — `Pos` does NOT subsume `Stats`/`SId` (builder defect, caught by execution)
+
+**A false claim in this document, found while executing step 1's oracle prototypes, one day after
+the boundary was signed.** It is recorded here rather than quietly patched, because §0's entire
+lesson is that this project's failures are the ones nobody wrote down.
+
+**The claim (§5b, first draft):** *"`Pos` … the carrier → Double reader — which **subsumes
+`Stats`/`SId`**, so the whole STATS sort deletes."*
+
+**The refutation, `src/PropLang/Eval.hs:165-168`, verbatim:**
+
+```haskell
+statVal :: Stats c -> c -> Double
+statVal s = case s of
+  SId -> realToFrac
+```
+
+**`SId` reads the carrier's VALUE. `Pos` reads its POSITION. They are different functions.** They
+agree on every carrier shipped today for exactly one reason —
+
+```haskell
+obsCarrier = mkCarrier "obs" (0 :| [1])          -- Enumerate.hs:317
+```
+
+— **value ≡ index, by coincidence.** And this document's **own OPEN 6** says so: *"That is a
+coincidence of the declarations, **not a theorem** — `mkCarrier "c" (2 :| [5])` separates them
+instantly."* **§5b then leaned on the coincidence anyway, two sections earlier. Both were written
+by the builder, on the same day.** The register caught what the argument did not.
+
+`expfam`'s `η · T(y)` needs `T(y) :: Double`. **A position cannot supply it.** So a **second
+reader is forced**:
+
+```haskell
+ToR :: Real c => Expr env c -> Expr env Double     -- the VALUE reader (realToFrac)
+Pos :: Eq a => Space a -> Expr env a -> Expr env Double   -- the POSITION reader (elemIndex)
+```
+
+**Neither subsumes the other, and both are forced.** They answer different questions: *where is
+this point in its space?* (adjacency — `walkOn`) versus *what is this point's value?* (a statistic
+— `expfam`). **Conflating them is what produced the error.**
+
+### The alternative, executed and REJECTED on evidence
+
+The obvious escape is to make carriers `Space Double`, so `Var Z` is already a `Double` and **no
+coercion production exists to write** — which would keep EXPR at 20 and the tidy `+1.0`. Under
+A3/A4 (*"all we get are features"*, and a feature is `(Name, Double)`) that is arguably the
+*ontologically* right move, and it was tempting.
+
+**It was measured, not argued.** One line — `type Obs = Int` → `type Obs = Double`
+(`Enumerate.hs:304`) — plus two `src/` signature generalisations (`bernFast`, `Bern`, both
+hardcoded to `Int`), and:
+
+| | result |
+|---|---|
+| **gate 1** (`-Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns`) on `src/` | ✅ **clean** |
+| `test/Properties.hs` | ✅ **3/3 pass, unmodified** |
+| **`test-hygiene/Hygiene.hs:143`** | ❌ **HARD BREAK.** `constStake = mkUtil (\() y -> fromIntegral (y :: Obs))` — **requires `Integral Obs`, and `Double` is not `Integral`.** |
+| **`test/Acceptance.hs:112, :243`** | ❌ **BREAK.** `[Int]` streams where `[Obs]` is expected. |
+
+**Both broken suites are ones §8 declares SURVIVORS** — *"inference was always right"*. **The
+Double-carrier route would re-open `test/Acceptance.hs` — the Phase-1 oracle itself — to buy a
+cosmetic production count.** It is rejected. **`ToR` lands.**
+
+### The pins, executed (R-D21 satisfiability transcript for step 1)
+
+All three step-1 rows are **satisfiable and BIT-EXACT against the frozen engine**, against
+throwaway prototypes now discarded:
+
+| pin | vs the frozen artifact | result |
+|---|---|---|
+| **`rw` — THE FALSIFIER** (*"if a code cannot express the reflected walk, stop and report"*) | `walkOn`, 7 values of ρ × 81 cells | **567/567 BIT-EXACT** |
+| **`bern`** | the shipped `emit` kernel | **9/9 BIT-EXACT** |
+| **`expfam`** (with `ToR`) | `ExpFam` eval at η = logit θ | **9/9 BIT-EXACT** |
+| the walk's **hard zero** | non-neighbour cell | `L = Infinity` bits ⇒ weight **exactly 0** |
+| `logBase 2 y` vs `Log y / Log 2` | GHC.Float's own definition | **9/9 BIT-EXACT** ⇒ **the grammar needs no `logBase`** |
+
+> **THE STEP-1 FALSIFIER DOES NOT FIRE. The reflected walk IS a code, bit for bit. T1 is dissolved
+> by execution, not by argument** — and codifying `walkOn` is confirmed to be **a rename, not a
+> re-derivation.**
+
+**Custody (R-D22):** this section is a **delegated freeze-edit** to a document already under the
+author's signed tag (`agent-boundary`, `f46e08c`). **R-D22 therefore obliges an author RE-TAG
+within the increment: the countersignature is a condition of closure, never a courtesy
+afterwards.** The builder has committed it with the builder key and made **no tag.**
 
 ---
 
@@ -892,10 +992,16 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
    likelihood that forces it. **The step-1 oracle confirms the set; the builder does not assert
    it.** (`Neg` is separate from `Sub` only because `0 − x ≠ negate x` at `−0.0` — a real IEEE
    distinction, but the author may rule the sign-of-zero irrelevant and save a production.)
-6. **`Pos`: index or value?** On **every carrier shipped today they coincide**
-   (`obsCarrier = 0 :| [1]`). That is a **coincidence of the declarations, not a theorem** —
-   `mkCarrier "c" (2 :| [5])` separates them instantly. Which one `Pos` returns is a semantic
-   commitment. **The oracle decides; the builder does not.**
+6. **~~`Pos`: index or value?~~ — ✅ ANSWERED BY EXECUTION (§5d), and the answer was BOTH.**
+   This row asked the right question and **the builder ignored his own register**: §5b asserted
+   `Pos` subsumes `Stats`/`SId` while OPEN 6, two sections later, said the coincidence it relied on
+   *"is not a theorem"*. **The oracle prototypes settled it: `SId` is `realToFrac` (`Eval.hs:168`)
+   — a VALUE — and `Pos` is a POSITION. Neither subsumes the other; both are forced.** `ToR` joins
+   the alphabet (EXPR 21). **The `Space Double` escape was executed and REJECTED: it breaks
+   `test-hygiene/Hygiene.hs:143` (`fromIntegral (y :: Obs)` needs `Integral Obs`) and
+   `test/Acceptance.hs` — both declared survivors.**
+   **The lesson, and it is the one worth keeping: a register row is only worth what the argument
+   two sections earlier is checked against.**
 7. **The generator stays open.** The Cromwell frontier is **named open research**
    (`design.md:244`, `WRITEUP.md:414`). This boundary does **not** solve it and does not pretend
    to: the enumerator will produce codes from a **declared, depth-bounded fragment**, and today's
