@@ -35,6 +35,16 @@ module PropLang.Syntax
 #ifndef DROP_USAY
         , USay
 #endif
+#ifndef DROP_CODE
+        , Code
+#endif
+#ifndef DROP_POS
+        , Pos
+#endif
+#ifndef DROP_TOR
+        , ToR
+#endif
+        , Add, Sub, Mul, Div, Log, Exp, Neg
         )
   , mkC
   , Fn(..)
@@ -186,6 +196,61 @@ data Expr env t where
   -- ('mkUtil') all survive.
   USay :: Expr '[Double, Double] Double -> Expr env (Util Double Double)
 #endif
+#ifndef DROP_CODE
+  -- THE likelihood production (AGENT_PLAN §2a, boundary agent-boundary-r1).
+  -- A kernel whose rows are 2^(-L), where L is an ordinary PRICED
+  -- EXPRESSION: the CODE LENGTH of the outcome y (Var Z) in the context x
+  -- (Var (S Z)). The same principle as the prior — 'fromBits'
+  -- (Belief.hs:133) is already "the ONLY place a prior comes from", and by
+  -- KRAFT nothing is more foundational: every distribution IS a code,
+  -- bijectively, so this is a reparameterization and no generality is lost.
+  --
+  -- It is not new behaviour. `walkOn` (Enumerate.hs:342) ALREADY computes
+  -- 2^(-L) through 'fromBits', hard zeros and all — it was written, called a
+  -- special case, and shelved. Executed at the oracle phase: the code form
+  -- reproduces walkOn BIT-FOR-BIT, 567/567 cells (AGENT_PLAN §5d).
+  --
+  -- KER-sort. The Space payloads declare domain and codomain (a kernel HAS
+  -- them; declaring them is declared structure), priced 0 by the recorded
+  -- opaque-payload convention — the ExpFam precedent, verbatim.
+  Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (K a b)
+#endif
+#ifndef DROP_POS
+  -- the POSITION reader (AGENT_PLAN §5d): the position of a point in its
+  -- DECLARED space. `walkOn`'s adjacency is UNSAYABLE without it: the
+  -- shipped grids are FP-nonuniform (0.2 + 0.1 = 0.30000000000000004), so
+  -- adjacency is NOT a function of the values, and the boundary reflection
+  -- doubles a neighbour's mass. Deletion costs the reflected walk.
+  --
+  -- DISTINCT FROM 'ToR', and the distinction is load-bearing: this returns a
+  -- POSITION, that returns a VALUE. They coincide on every carrier shipped
+  -- today only because obsCarrier = mkCarrier "obs" (0 :| [1]) — a
+  -- coincidence of the declarations, not a theorem (§5d).
+  Pos :: Eq a => Space a -> Expr env a -> Expr env Double
+#endif
+#ifndef DROP_TOR
+  -- the VALUE reader (AGENT_PLAN §5d): a carrier point as a Double. THIS —
+  -- not 'Pos' — is what subsumes Stats/SId, since statVal SId = realToFrac
+  -- (Eval.hs:168). expfam's eta * T(y) needs T(y) :: Double, and a POSITION
+  -- cannot supply it. Deletion costs every statistic.
+  ToR :: Real c => Expr env c -> Expr env Double
+#endif
+  -- THE ARITHMETIC (AGENT_PLAN §5). Forced by the LIKELIHOOD, not by
+  -- utility: a code length IS an arithmetic expression, and a Double-valued
+  -- sentence could previously only be nested If/Gt over grid constants —
+  -- piecewise constant. It could not express -log2 theta, nor eta*T(y)/ln2,
+  -- nor walkOn's mass.
+  --
+  -- The engine has been computing every one of these in Haskell, behind the
+  -- alphabet's back, since Phase 2. They are not being ADDED. They are being
+  -- CONFESSED, and their price now enters the prior where it belongs.
+  --
+  -- No 'logBase': logBase 2 y == Log y / Log 2 EXACTLY (GHC.Float's own
+  -- definition), measured bit-exact 9/9 at the oracle phase (§5d).
+  Add, Sub, Mul, Div :: Expr env Double -> Expr env Double -> Expr env Double
+  -- 'Neg' is separate from 'Sub': 0 - x differs from negate x at -0.0, a
+  -- real IEEE-754 distinction, recorded in AGENT_PLAN OPEN 5.
+  Log, Exp, Neg :: Expr env Double -> Expr env Double
 
 -- | Match-only view of a priced constant: grid, index, and the point
 -- VALUE, resolved once at construction time by 'mkC' — the only door
@@ -213,6 +278,16 @@ pattern C g k v <- MkC g k v
 #ifndef DROP_USAY
              USay,
 #endif
+#ifndef DROP_CODE
+             Code,
+#endif
+#ifndef DROP_POS
+             Pos,
+#endif
+#ifndef DROP_TOR
+             ToR,
+#endif
+             Add, Sub, Mul, Div, Log, Exp, Neg,
              Call #-}
 
 -- | Defunctionalized function syntax (first-order, priced): the
@@ -433,6 +508,33 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
       -- as EXPR in its own closed two-variable scope
       USay p     -> utilB + go 2 p
 #endif
+#ifndef DROP_CODE
+      -- KER-sort (AGENT_PLAN §2a): the constructor choice, plus the code
+      -- length's own PRICE as an ordinary EXPR in the body's extended
+      -- scope. Code binds TWO variables (y at Var Z, x at Var (S Z)), so
+      -- the body prices at sc + 2 -- the Argmax binder discipline, twice.
+      -- The Space payloads are priced 0 (the opaque-payload convention).
+      --
+      -- This is where "the alphabet IS the prior" finally reaches the
+      -- likelihood: a structured code is short, an arbitrary code TABLE is
+      -- O(|x|*|y|) bits, and bern beats the table BECAUSE IT IS SHORTER --
+      -- not because we forbade the table (brief §8's method, applied to
+      -- likelihoods for the first time).
+      Code _ _ b -> kerB + go (sc + 2) b
+#endif
+#ifndef DROP_POS
+      Pos _ e'   -> nodeB + go sc e'
+#endif
+#ifndef DROP_TOR
+      ToR e'     -> nodeB + go sc e'
+#endif
+      Add a b    -> nodeB + go sc a + go sc b
+      Sub a b    -> nodeB + go sc a + go sc b
+      Mul a b    -> nodeB + go sc a + go sc b
+      Div a b    -> nodeB + go sc a + go sc b
+      Log a      -> nodeB + go sc a
+      Exp a      -> nodeB + go sc a
+      Neg a      -> nodeB + go sc a
       Call _ as  -> nodeB + stdB + goArgs sc as
 
     goArgs :: Int -> Args env' ts -> Double

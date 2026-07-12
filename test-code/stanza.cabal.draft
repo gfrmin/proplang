@@ -1,0 +1,28 @@
+-- The step-1 increment oracle (AGENT_PLAN, boundary agent-boundary-r1).
+--
+-- Drafted by the BUILDER in the oracle phase; APPLIED BY THE AUTHOR at the
+-- step-1 freeze, alongside the manifest re-signing. This is the recorded
+-- pattern (proplang.cabal:76-78, the expfam increment): proplang.cabal is
+-- manifest-frozen, so the builder never edits it -- the stanza rides on the
+-- author's freeze exactly as the re-priced pins do.
+--
+-- Insert into proplang.cabal after the last test-suite stanza:
+
+test-suite code
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Code.hs
+    hs-source-dirs:   test-code
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+-- The frozen gate 5 (`cabal test all`) absorbs this suite with no edit to
+-- any frozen audit script -- CLAUDE.md's increment protocol, clause 1.
+--
+-- The `warnings` import is load-bearing and NOT a formality: the oracle-phase
+-- runner must be bit-faithful to the future gate conditions -- the stanza's
+-- exact compiler flags and warning set. "A red run under weaker flags proves
+-- nothing" (the ExpFam re-open, 4c7b49d).

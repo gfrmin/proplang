@@ -125,6 +125,38 @@ evalx expr env@(Env feats vals) = case expr of
   -- by construction.
   USay p -> mkUtil (\a h -> evalx p (mkEnv [] (a :. h :. VNil)))
 #endif
+#ifndef DROP_CODE
+  -- ORACLE-PHASE STUB (AGENT_PLAN step 1). The type surface exists so the
+  -- increment oracle COMPILES; the semantics is deliberately absent so the
+  -- oracle is RUNTIME-RED, as CLAUDE.md's increment protocol requires: "the
+  -- builder writes the increment oracle before any implementation, red
+  -- against compile-enabling type-surface stubs".
+  --
+  -- The intended semantics, executed bit-exactly against walkOn / emit /
+  -- ExpFam at the oracle phase (AGENT_PLAN §5d), is:
+  --
+  --   Code dom cod body ->
+  --     kernel dom cod $ \x ->
+  --       fromBits cod $ \y ->
+  --         Bits (evalx body (Env feats (y :. x :. vals)))
+  --
+  -- This stub is REPLACED at implementation. It is not a fallback and must
+  -- never become one.
+  Code {} -> error "PropLang.Eval: Code is oracle-phase surface, not yet implemented"
+#endif
+#ifndef DROP_POS
+  Pos {} -> error "PropLang.Eval: Pos is oracle-phase surface, not yet implemented"
+#endif
+#ifndef DROP_TOR
+  ToR _ -> error "PropLang.Eval: ToR is oracle-phase surface, not yet implemented"
+#endif
+  Add _ _ -> error "PropLang.Eval: Add is oracle-phase surface, not yet implemented"
+  Sub _ _ -> error "PropLang.Eval: Sub is oracle-phase surface, not yet implemented"
+  Mul _ _ -> error "PropLang.Eval: Mul is oracle-phase surface, not yet implemented"
+  Div _ _ -> error "PropLang.Eval: Div is oracle-phase surface, not yet implemented"
+  Log _ -> error "PropLang.Eval: Log is oracle-phase surface, not yet implemented"
+  Exp _ -> error "PropLang.Eval: Exp is oracle-phase surface, not yet implemented"
+  Neg _ -> error "PropLang.Eval: Neg is oracle-phase surface, not yet implemented"
   Call sn as -> applyStd sn (evalArgs as env)
 
 evalArgs :: Args env ts -> Env env -> Vals ts

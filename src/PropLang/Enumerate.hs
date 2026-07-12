@@ -29,6 +29,13 @@ module PropLang.Enumerate
   , modelBits
   , Obs
   , obsSpace, thetaSpace
+  -- the declared grids, exported for the step-1 oracle (AGENT_PLAN, boundary
+  -- agent-boundary-r1). R-D20-i mandates that an oracle row claiming a frozen
+  -- quantity be checked against THE FROZEN ARTIFACT, never against a parallel
+  -- derivation of it — so test-code compares its code form to `walkOn`
+  -- ITSELF, not to a transcription. Exporting is strictly safer than copying:
+  -- no drift is possible.
+  , thetaPoints, rhoPoints
 #ifndef DROP_CARRIER_OBS
   , obsCarrier
 #endif
@@ -38,6 +45,12 @@ module PropLang.Enumerate
   -- likelihood; the agent cannot exist
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
   , emit
+  -- the reflected walk, for the step-1 oracle to compare its code form
+  -- against (R-D20-i). Guarded exactly as its DEFINITION is (:349) — an
+  -- unconditional export made the DROP_CARRIER_OBS ablation fail on
+  -- 'walkOn' instead of 'obsCarrier', breaking the deletion audit's
+  -- attribution check. The audit caught it; that is what it is for.
+  , walkOn
   , Agent
   , mkAgent
   , predictive
@@ -178,6 +191,24 @@ renderExpr e0 = case e0 of
 #ifndef DROP_USAY
   USay p     -> "('usay', " ++ renderExpr p ++ ")"
 #endif
+#ifndef DROP_CODE
+  -- the Space payloads are opaque and priced 0; the RENDERED form carries
+  -- only the code length's body, which is the whole of the content
+  Code _ _ b -> "('code', " ++ renderExpr b ++ ")"
+#endif
+#ifndef DROP_POS
+  Pos _ e'   -> "('pos', " ++ renderExpr e' ++ ")"
+#endif
+#ifndef DROP_TOR
+  ToR e'     -> "('tor', " ++ renderExpr e' ++ ")"
+#endif
+  Add a b    -> "('+', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
+  Sub a b    -> "('-', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
+  Mul a b    -> "('*', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
+  Div a b    -> "('/', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
+  Log a      -> "('log', " ++ renderExpr a ++ ")"
+  Exp a      -> "('exp', " ++ renderExpr a ++ ")"
+  Neg a      -> "('neg', " ++ renderExpr a ++ ")"
   Call sn as -> "('call', '" ++ stdNameStr sn ++ "'" ++ renderArgs as ++ ")"
   where
     idxInt :: Idx env' t' -> Int
