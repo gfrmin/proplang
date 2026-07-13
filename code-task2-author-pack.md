@@ -132,6 +132,13 @@ reached only after the deletions of steps 3 and 9. Prices therefore move **twice
 declared cost of the author's additive-first ruling, and it is recorded rather than smoothed over:
 **an intermediate alphabet is still an alphabet, and it still IS the prior.**
 
+> **CORRECTED at the author's review (2026-07-13, §6.13 item 1):** this row cited "§5b's end
+> state (EXPR 21)" as though the signed plan had always said 21. The signed §5b said **20**;
+> the +1 is `ToR`, and while §5d recorded the *defect* that forced it, OPEN 6's resolution
+> (both readers, two productions) had never been recorded as a **ruling**, and `ToR` carried
+> no deletion proof. Both are now in the frozen plan (§5b's primitivity entry; §9 OPEN 6's
+> ruling clause), at the same tag.
+
 ---
 
 ## 5. Evidence that the audits work
@@ -489,3 +496,47 @@ the six rulings of pack 6.10 enacted; delegated freeze edits reviewed and counte
 
 From that signature, `test-code/` is as frozen as `test/`, and Phase C (implementation)
 begins.
+
+### 6.13 The author's review of the freeze package (2026-07-13) — three items, enacted
+
+The author reviewed §6.10–6.12 and returned three items, one a genuine block, plus
+endorsements for the record. All three are enacted below, inside the same delegation
+window, and the tag now points at the commit that carries them.
+
+**1. `ToR` was an undeclared alphabet change (BLOCK — enacted).** The signed §5b said
+EXPR 20; the +1 is `ToR`. §5d recorded the *defect* (Pos does not subsume Stats/SId),
+and §5b's table carries the count correction — but OPEN 6's resolution ("index or
+value?" → **both, two productions**) had never been recorded as a **ruling**, and `ToR`
+carried no deletion proof — an alphabet member without one, against the law's own
+demand. Enacted: §9 OPEN 6 now carries the ruling clause (the resolution stands as an
+AUTHOR ruling at code-freeze-r0; the 20 → 21 delta is a DECLARED change); §5b's
+primitivity audit gains `ToR`'s entry with the author's one-line proof — **value is not
+derivable from index without a grid-indexing production, just as index is not derivable
+from value on the FP-nonuniform grids** — with test-code group 4 as the executed
+witness; R-C4 above carries the visible correction. (§5b's `Code` signature block was
+also stale against ruling (iii) — the Maybe codomain and the ruled boundary are now
+stated there, flagged here for the review.)
+
+**2. The registers reconciled (enacted).** §9 OPEN 4 and OPEN 5 were still open in the
+frozen plan while §6.10's rulings closed them — a frozen text misdescribing the state,
+the same disease Phase B item 3 corrected in test names. Both rows now carry their
+strikethrough + RULED clauses with the evidence pointers (OPEN 4 → §6.10 items 2–3 and
+the forced boundary; OPEN 5 → item 5 and the [1, 0] lawful pair).
+
+**3. Ruling 4 sharpened by one clause (enacted, queued against step 3).** "Fails to
+denote at an OBSERVED tick" — refutation is conditional on an observation actually
+arriving on the code's channel at that tick; **silence never refutes**. Without the
+clause, construction-time validation would kill hypotheses about intermittent sensors
+for failing to predict an event that never occurred. Now a named obligation at build
+order step 3, beside two falsifier rows: the t=0/t≥1 permanence row (eval half pinned in
+group 7) and the silent-tick survival row.
+
+**Endorsements recorded at the review:** the NaN/−∞-only boundary is forced, not
+preferred (frozen ExpFam computes negative finite L in 4 of 18 cells; strict L ≥ 0 was
+never available). R-C5 is properly closed (E7a kills "precision fixes it" permanently;
+E7e's approximate `Eq` — "termination is bought by lying" — ends the CReal road at
+CL-3's tie-break). And the consonance now recorded at step 3 so nobody later "fixes" it:
+transcript row 5 makes a certainty KERNEL sayable where the old lattice made certain
+PARAMETERS unsayable — no conflict, **Cromwell lives in the mixture, not the member**; a
+dogmatic hypothesis is one contrary observation from a permanent zero, ruling 4 applied
+to itself.

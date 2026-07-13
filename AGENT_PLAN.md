@@ -568,9 +568,13 @@ by the binders) · `SawE`, `ElimJ` (proofs above) · **`Code`** and **`Pos`** an
 **`Code`** — the sole likelihood production (§2a):
 
 ```haskell
-Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (K a b)
+Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (Maybe (K a b))
 --       domain    codomain   the CODE LENGTH of y (Var Z) given x (Var (S Z))
--- eval:  kernel dom cod (\x -> fromBits cod (\y -> Bits (evalx body (y :. x :. vals))))
+-- codomain AMENDED at code-freeze-r0 (R-C1 ruling iii, pack §6.10): a code with a
+-- NaN/−∞ entry or a massless (all-+∞) column DOES NOT DENOTE — Nothing, eagerly, at
+-- eval; every L in [0, +∞] denotes (the frozen ExpFam rows force the boundary).
+-- eval:  validate the dom × cod grid; iff every column is lawful,
+--        Just (kernel dom cod (\x -> fromBits cod (\y -> Bits (evalx body ...))))
 --        Space payloads priced 0 — the opaque-payload convention ExpFam already uses
 ```
 
@@ -587,6 +591,19 @@ reproduces. It needs `elemIndex`.
 > ⚠️ **The first draft of this section claimed `Pos` ALSO "subsumes `Stats`/`SId`, so the whole
 > STATS sort deletes." THAT IS FALSE. See §5d — it is `ToR` that does, and it is a SECOND
 > production.**
+
+**`ToR`** — the VALUE reader (§5d; OPEN 6 **ruled** at code-freeze-r0):
+
+```haskell
+ToR :: Expr env Obs -> Expr env Double    -- realToFrac: the carrier VALUE (SId's workload)
+```
+Entry added at code-freeze-r0 (the author's review, 2026-07-13): the §5d correction
+declared the production but left it out of THIS audit — an alphabet member without a
+deletion proof, against the law's own demand. The proof, one line: **value is not
+derivable from index without a grid-indexing production, just as index is not derivable
+from value on the FP-nonuniform grids** — neither reader constructs the other, and
+`test-code` group 4 pins a carrier where they disagree, by construction. Delete `ToR`
+and `eta * T(y)` is unsayable (§5d's defect returns as a capability loss).
 
 ### E9's deletion proof, CORRECTED
 
@@ -818,6 +835,21 @@ Oracle-first per CLAUDE.md; the builder never owns a live oracle.
    **Pin `observeCounts` to repeated `observe`.** **Tighten CL-4 to `1e-12`** (§2b).
 3. **A hypothesis becomes a sentence.** `Model` → `Expr env (K a Obs)`; `Terminal` → the
    fragment's production table. Delete `Bern`, `THmm`, `Model`, `Terminal`.
+   **Obligation rows, queued at code-freeze-r0 (the author's review, 2026-07-13).** The
+   per-tick refutation ruling (pack §6.10 item 4) binds this step's integration with one
+   clause of precision: **a hypothesis is refuted only at ticks where its code's
+   observation channel actually carried an observation — silence never refutes.**
+   "Asserted the impossible THERE" presupposes a there; construction-time validation on a
+   silent tick must not kill hypotheses about intermittent sensors for failing to predict
+   an event that never occurred. Two falsifier rows for this step's oracle: (a) a code
+   ill-formed at t=0 and lawful at t≥1 is dead from tick 0 onward — the eval half is
+   already pinned (`test-code` group 7); (b) a code whose channel is SILENT at t survives
+   t regardless of denotation there. And the consonance worth recording (the author, same
+   review): `test-code`'s transcript row 5 makes a CERTAINTY KERNEL sayable (hard zeros
+   elsewhere, a P = 1 survivor) where the old lattice made certain *parameters* unsayable
+   — no conflict: **Cromwell lives in the mixture, not the member**; a dogmatic hypothesis
+   is one contrary observation from a permanent zero, which is exactly ruling 4's
+   semantics applied to itself.
 4. **One pricing mechanism, two declared tables.** R4's derivation-relative dl **stands and is
    correct** (`GRAMMAR_HYGIENE_PLAN.md:168`; the builder's "two priors" claim was wrong) — but
    its literals (`dlConst = 1 + mention eg`, …) are `bitsAt` **with a hand-rolled table**. One
@@ -988,18 +1020,23 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
    constructors because the codomains differ (a `Belief` vs a scalar). The builder's reading:
    that is an **encoding artifact, not a fourth verb** — but the prior charges two codewords
    for it, so the author should record which cost was chosen.
-4. **`fromBits` has two unguarded hazards, and §2a makes both reachable.** Today `L` is
-   hardcoded, so neither can fire; under `Code` an arbitrary `L` can.
-   **(a)** `L = +∞` at *every* carrier point ⇒ `mkBelief` ⇒ `Nothing` ⇒
-   `error "fromBits: belief has no mass"` — **a live `error` site, and `fromBits`'s FROZEN
-   signature admits no failure value.** Totality story, or a signature change at this boundary?
-   **(b)** **Negative-infinite / NaN code lengths are entirely unguarded**: `Bits (−1/0)` ⇒
-   weight `+∞` ⇒ `lse` gives `NaN` ⇒ the `z == negInf` test is `False` ⇒ **a silently invalid
-   `Belief` of NaNs.** **There is no `isNaN` check anywhere in `Belief.hs`.**
-5. **The minimal arithmetic set.** §5 lists seven (`Add Sub Mul Div Log Exp Neg`), each with the
-   likelihood that forces it. **The step-1 oracle confirms the set; the builder does not assert
-   it.** (`Neg` is separate from `Sub` only because `0 − x ≠ negate x` at `−0.0` — a real IEEE
-   distinction, but the author may rule the sign-of-zero irrelevant and save a production.)
+4. **~~`fromBits` has two unguarded hazards, and §2a makes both reachable.~~ — ✅ RULED at
+   code-freeze-r0 (pack §6.10 items 2–3, on the §6 evidence program).** Reading (iii):
+   `Code`'s codomain is `Expr env (Maybe (K a b))`, validated eagerly at eval and refused
+   EXACTLY on a NaN/−∞ entry or a massless (all-+∞) column — the partiality lives in the
+   type at the one door where arbitrary arithmetic enters. `fromBits` and `Kernel` stay
+   frozen as shipped; `Belief.hs:101-103` remains a theorem. Every `L` in `[0, +∞]`
+   denotes — hard zeros and negative-by-ulp `L` included, because the frozen ExpFam node
+   itself computes negative `L` in 4 of 18 cells (pack §6.5): **strict L ≥ 0 was never
+   available.** `test-code` group 7 pins both sides of the boundary. *(The original row's
+   text is preserved above the strikethrough date in the pack's §4 R-C1.)*
+5. **~~The minimal arithmetic set.~~ — ✅ RULED at code-freeze-r0 (pack §6.10 item 5).** The
+   step-1 oracle confirms the seven; **`Neg` STAYS** — the sign of zero is measured CONTENT,
+   not sugar: the retire case's premise ("no lawful posterior changes") was falsified by the
+   builder's own experiment (pack §6.6 — a lawful pair differing ONLY in `Neg` vs
+   `Sub`-with-dormancy-zero separates the posterior to `[1, 0]`). Keeping it costs 0.0781
+   bits/node and flips no strict ordering (§6.7). `prodExpr` is **19** at step 1 (this
+   document's intermediate alphabet), on the way to §5b's 21.
 6. **~~`Pos`: index or value?~~ — ✅ ANSWERED BY EXECUTION (§5d), and the answer was BOTH.**
    This row asked the right question and **the builder ignored his own register**: §5b asserted
    `Pos` subsumes `Stats`/`SId` while OPEN 6, two sections later, said the coincidence it relied on
@@ -1010,6 +1047,11 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
    `test/Acceptance.hs` — both declared survivors.**
    **The lesson, and it is the one worth keeping: a register row is only worth what the argument
    two sections earlier is checked against.**
+   **RULED at code-freeze-r0 (the author's review, 2026-07-13): "answered by execution" was an
+   execution note, not a ruling, and an alphabet member had entered without one — the resolution
+   now STANDS AS AN AUTHOR RULING: `Pos` and `ToR` both, two productions; the §5b delta
+   EXPR 20 → 21 is a DECLARED alphabet change; `ToR` carries its deletion proof in §5b's
+   primitivity audit (added at the same review).**
 7. **The generator stays open.** The Cromwell frontier is **named open research**
    (`design.md:244`, `WRITEUP.md:414`). This boundary does **not** solve it and does not pretend
    to: the enumerator will produce codes from a **declared, depth-bounded fragment**, and today's
