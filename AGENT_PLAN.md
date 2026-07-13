@@ -858,8 +858,16 @@ The sentinel and the `price` parameter are never "deleted" — after step 8 ther
 
 ## 8. Frozen corpus
 
-**SURVIVE — inference was always right:** `hygiene`, acceptance test 1, `test/Acceptance.hs`
-entirely.
+**SURVIVE — AMENDED at code-freeze-r0 (R-C3, the author's ruling: never keep incorrect
+information in a frozen boundary; delegation recorded in the freeze commit).** The original
+line here — *"SURVIVE — inference was always right: `hygiene`, acceptance test 1,
+`test/Acceptance.hs` entirely"* — was **measured and is false for all three**
+(pack §4 R-C3): `test/Acceptance.hs` uses `Util` (×5), `EU`/`VAct`/… (×4), `Terminal`;
+`test-hygiene/Hygiene.hs` uses `FnInd` (×21) and the alphabet-constant pins (×6);
+`test-expfam/ExpFam.hs` uses `ExpFam`/`SId`/`Carrier` (×40). **The only genuine survivor
+of the whole re-derivation is `test/Properties.hs`** — the file carrying the `1e-9`
+defect (§2b). The ruled disposition for everything else: **PORT the anchors — they ARE
+the proof.**
 
 **RE-OPENED, minimally and by name** (each is a *frozen text is wrong* report, not a convenience):
 

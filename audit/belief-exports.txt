@@ -1,5 +1,6 @@
 Space
 mkSpace
+spacePoints
 Belief
 Event
 is

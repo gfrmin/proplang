@@ -15,7 +15,7 @@
 -- unit-in-last-place level, orders of magnitude inside the frozen anchor
 -- tolerances.
 module PropLang.Belief
-  ( Space, mkSpace
+  ( Space, mkSpace, spacePoints
   , Belief                      -- abstract: constructor NOT exported
   , Event, is, event            -- host-layer smart constructors
   , Kernel, kernel
@@ -111,6 +111,15 @@ orImpossible _ (Just b) = b
 
 mkSpace :: NonEmpty a -> Space a
 mkSpace = Space . toList
+
+-- | The point list a Space was declared with ('mkSpace''s own argument,
+-- declaration order). Amended into the frozen export list at
+-- code-freeze-r0 (step 1; pack §6.10 item 6, the author's ruling):
+-- 'Code'/'Pos' evaluation enumerates a Space's points, and nothing
+-- sealed leaks — a Space IS its declared points; the WEIGHTS stay
+-- inside this module.
+spacePoints :: Space a -> [a]
+spacePoints (Space pts) = pts
 
 -- | The event "equals x".
 is :: Eq a => Space a -> a -> Event a

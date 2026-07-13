@@ -187,7 +187,7 @@ main = do
   rs <- sequence
     [ check "price: Call VPre = node + lg 7 + ten Var mentions" $
         abs (unBits (bits priceSentence)
-             - (lg 10 + lg 7 + 10 * (lg 10 + lg 10))) <= 1e-12
+             - (lg 19 + lg 7 + 10 * (lg 19 + lg 10))) <= 1e-12
     , check "identity: the verb == the exported worker" $
         all (\ (ch, s, d) -> verbVal ch s d
                == vPre 1 b0 ch ([0, 1] :: [Obs]) (immW s) (d :| [])

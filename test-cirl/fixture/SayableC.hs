@@ -155,11 +155,11 @@ main = do
   rs <- sequence
     [ check "price: USay = 0 sort bits + the two-variable program as EXPR" $
         abs (unBits (bits (USay worth :: Expr '[] (Util Double Double)))
-             - (11 * lg 10 + 2 * lg 2 + 5 * lg 4)) <= 1e-12
+             - (11 * lg 19 + 2 * lg 2 + 5 * lg 4)) <= 1e-12
     , check "price: the off-switch sentence under lg 7 + two said utilities" $
         abs (unBits (bits priceSentence)
-             - (lg 10 + lg 7 + 8 * (lg 10 + lg 8)
-                + 2 * (11 * lg 10 + 2 * lg 2 + 5 * lg 4))) <= 1e-12
+             - (lg 19 + lg 7 + 8 * (lg 19 + lg 8)
+                + 2 * (11 * lg 19 + 2 * lg 2 + 5 * lg 4))) <= 1e-12
     , check "bridge: the said utility == its closed evaluation (exact)" $
         all (\(a, h) -> applyUtil uSaid a h
                           == evalx worth (mkEnv [] (a :. h :. VNil)))

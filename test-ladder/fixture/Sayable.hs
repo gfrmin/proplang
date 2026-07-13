@@ -202,7 +202,7 @@ main = do
   rs <- sequence
     [ check "price: Call VThinkK = node + lg 7 + eight Var mentions" $
         abs (unBits (bits priceSentence)
-             - (lg 10 + lg 7 + 8 * (lg 10 + lg 8))) <= 1e-12
+             - (lg 19 + lg 7 + 8 * (lg 19 + lg 8))) <= 1e-12
     , check "identity: the verb at depth 1 == the frozen VThink verb" $
         all (\ (b, p) -> verb (1 :: Int) b 3 p == vt b 3 p)
             [ (b, p) | b <- [u, b3], p <- [0.3, 0.05, 0.005, 0] ]

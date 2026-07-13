@@ -36,7 +36,10 @@ docstring and becomes a fact about what programs *can be written*.
 
 ```haskell
 module PropLang.Belief
-  ( Space, mkSpace
+  ( Space, mkSpace, spacePoints -- spacePoints: the declared point list
+                                -- (amended at code-freeze-r0, pack §6.10
+                                -- item 6 — Code/Pos evaluation enumerates
+                                -- a Space; the weights stay sealed)
   , Belief                      -- abstract: constructor NOT exported
   , Event, is, event            -- host-layer smart constructors
   , Kernel, kernel

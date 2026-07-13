@@ -435,3 +435,57 @@ Every exact-value assertion in the group (the hard zero, the survivor's full mas
 posterior pair) is satisfied **bit-exactly** — `+0.0` and `1.0` on the nose, no tolerance
 anywhere. The refusal rows refuse; both per-tick verdicts land as ruled; both lawful-pair
 sides denote and their posterior is the measured `[1, 0]` of §6.6.
+
+### 6.12 Phase B, executed under the recorded delegation (2026-07-13) — the freeze awaits your tag
+
+Delegation of record: the author's custody ruling for this increment's freeze edits —
+**"Delegate to builder + you re-tag"** — plus §6.10's freeze-item delta (items 5–6). Per
+R-D22 the increment does not close until your own signed tag covers the oracle as amended.
+**Nothing below is binding until that tag exists.**
+
+The ledger, item by item (every edit adjudicated by the engine on a scratch copy FIRST,
+then applied to the repo verbatim):
+
+1. **Stanza applied** — `test-suite code` → `proplang.cabal`, from the draft, with the
+   delegation noted in the stanza comment.
+2. **`prodTable`** — `ProdTable 10 2 1 1 7 1` → **`ProdTable 19 2 1 2 7 1`** (the P5
+   single site, `Syntax.hs`).
+3. **EXPR pins re-priced** — **47 nodeB occurrences moved `lg 10` → `lg 19`** across 8
+   suites + 3 sayable fixtures (assertions AND test-name strings — a frozen name that
+   misdescribes its assertion is R-C3's disease). The one classified exception:
+   `SayableP.hs:190`'s per-Var **scope mention stays `lg 10`** (ten Vars each price
+   nodeB + lg 10-scope; the assertion now reads `10 * (lg 19 + lg 10)` and the engine
+   confirms it to 1e-12).
+4. **FINDING — §3's enumeration was INCOMPLETE.** The "39 `lg 10` hits" enumeration
+   missed the **KER sort's own pins**: three rows asserting *"ExpFam node prices at 0
+   (every choice forced)"* — written as the literal `0`, invisible to any lg-grep
+   (`test-expfam/ExpFam.hs:133`, `test-govhost/GovHost.hs:228`, `test-d/D.hs:298`).
+   With `Code` joining the sort the choice is no longer forced; kerB moves lg 1 → lg 2
+   exactly as test-code group 6 declares. Re-priced to `lg 2` with truthful names under
+   the same P5 clause — *"the enumerated frozen pins of the changed sort"* — the sort's
+   enumeration now actually complete. Surfaced here rather than smoothed over: the
+   under-count was the builder's, in this pack's own §3.
+5. **`spacePoints`** (§6.10 item 6) — the function + export in `Belief.hs`, the row in
+   `audit/belief-exports.txt` (22 items), the list in typed-port-spec §2, each carrying
+   the amendment note. Gate 2: **CLEAN**.
+6. **AGENT_PLAN §8** (§6.10 item 6 / R-C3) — the false survivor list replaced by the
+   measured register; the ruled disposition (*PORT the anchors — they ARE the proof*)
+   now stated where the falsehood stood.
+7. **`MANIFEST.sha256`** — 12 rows recomputed, 2 added (`test-code/Code.hs`,
+   `test-code/stanza.cabal.draft`): **83 rows, verifies 83/83.**
+
+Verification at the freeze commit: gates 1–4, 6, 7 **PASS** (gate 2 clean on the amended
+list; ablation attribution intact); gate 5 = the ten pre-existing suites **PASS** and
+`test-code` runs **39/45 runtime-red by design** — group 6 (the price pins) went green
+the moment `prodTable` landed, and the 39 reds are exactly groups 1–5 and 7, each red on
+`PropLang.Eval: ... oracle-phase surface, not yet implemented`.
+
+**Your act, from your own shell** (R-D22; the tag, not any commit signature, is the
+attestation):
+
+    git tag -s code-freeze-r0 -m "step-1 oracle freeze: the likelihood is a code; \
+the six rulings of pack 6.10 enacted; delegated freeze edits reviewed and countersigned" \
+<freeze-commit>
+
+From that signature, `test-code/` is as frozen as `test/`, and Phase C (implementation)
+begins.

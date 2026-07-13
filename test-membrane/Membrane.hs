@@ -424,17 +424,17 @@ propNsPrice =
   forAll (choose (2, 12 :: Int)) $ \k ->
     let ns = mkNamespace ("t" :| ["n" ++ show i | i <- [2 .. k]])
         got = unBits (bitsIn ns (Get "t" :: Expr '[] Double))
-        want = lg 10 + lg (fromIntegral k)
+        want = lg 19 + lg (fromIntegral k)
     in counterexample ("k=" ++ show k ++ " got " ++ show got)
          (abs (got - want) <= 1e-12)
 
 g5Names :: TestTree
 g5Names = testGroup "one namespace: echo names ordinary, prices per world"
-  [ testCase "a 3-name world prices Get at lg 10 + lg 3" $
-      assertApprox "bitsIn nsC (Get last_action)" 1e-12 (lg 10 + lg 3)
+  [ testCase "a 3-name world prices Get at lg 19 + lg 3" $
+      assertApprox "bitsIn nsC (Get last_action)" 1e-12 (lg 19 + lg 3)
         (unBits (bitsIn nsC (Get "last_action" :: Expr '[] Double)))
-  , testCase "a 2-name world prices Get at lg 10 + 1" $
-      assertApprox "bitsIn nsA (Get s2)" 1e-12 (lg 10 + 1)
+  , testCase "a 2-name world prices Get at lg 19 + 1" $
+      assertApprox "bitsIn nsA (Get s2)" 1e-12 (lg 19 + 1)
         (unBits (bitsIn nsA (Get "s2" :: Expr '[] Double)))
   , testProperty "k published names charge lg k at every mention" propNsPrice
   , testCase "the frozen registry is the singleton special case (==)" $ do
@@ -517,7 +517,7 @@ g7SlotPrice = testGroup "slot pricing: the charge sits at the C node"
       case mkC speedGrid 3 of
         Nothing -> assertFailure "mkC refused an on-grid index"
         Just c  -> assertApprox "bits of a speed constant" 1e-12
-                     (lg 10 + lg 4) (unBits (bits (c :: Expr '[] Double)))
+                     (lg 19 + lg 4) (unBits (bits (c :: Expr '[] Double)))
   , testCase "a finer slot grid charges exactly its extra bit" $ do
       let fine = mkGrid "speed8" (0.1 :| [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8])
       case (mkC speedGrid 0, mkC fine 0) of

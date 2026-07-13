@@ -201,3 +201,17 @@ test-suite test-d
                   , process
   build-tool-depends: proplang:proplang-govhost
   default-language: GHC2021
+
+-- the step-1 increment oracle (AGENT_PLAN, boundary agent-boundary-r1);
+-- stanza applied at code-freeze-r0 from test-code/stanza.cabal.draft
+-- under the recorded delegation (pack sections 3 and 6.10)
+test-suite code
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Code.hs
+    hs-source-dirs:   test-code
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

@@ -445,7 +445,7 @@ data ProdTable = ProdTable
   { prodExpr, prodFn, prodStats, prodKer, prodStdName, prodUtil :: Int }
 
 prodTable :: ProdTable
-prodTable = ProdTable 10 2 1 1 7 1
+prodTable = ProdTable 19 2 1 2 7 1
 
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile

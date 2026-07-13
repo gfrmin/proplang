@@ -206,32 +206,32 @@ gP5Grid4 = mkGrid "g4" (1 :| [2, 3, 4])
 
 gP5Table :: TestTree
 gP5Table = testGroup "gP5 single-site constant identity pins"
-  [ testCase "EXPR node cost: Get prices at lg 10 (singleton namespace)" $
+  [ testCase "EXPR node cost: Get prices at lg 19 (singleton namespace)" $
       let Bits v = bits (Get "t" :: Expr '[] Double)
-      in assertApprox "nodeB" 1e-12 (lg 10) v
-  , testCase "EXPR + grid mention: mkC sentence prices at lg 10 + lg 4" $
+      in assertApprox "nodeB" 1e-12 (lg 19) v
+  , testCase "EXPR + grid mention: mkC sentence prices at lg 19 + lg 4" $
       case mkC gP5Grid4 0 of
         Nothing -> assertFailure "mkC: index 0 off a 4-point grid"
         Just e  -> let Bits v = bits (e :: Expr '[] Double)
-                   in assertApprox "nodeB + grid" 1e-12 (lg 10 + lg 4) v
-  , testCase "STDNAME choice: Call IsEq prices at lg 10 + lg 7 + args" $
+                   in assertApprox "nodeB + grid" 1e-12 (lg 19 + lg 4) v
+  , testCase "STDNAME choice: Call IsEq prices at lg 19 + lg 7 + args" $
       let Bits v = bits (Call IsEq (Get "t" :* Get "t" :* ANil)
                            :: Expr '[] Bool)
       in assertApprox "nodeB + stdB + 2 Gets" 1e-12
-           (lg 10 + lg 7 + 2 * lg 10) v
-  , testCase "FN choice: Expect/FnInd prices at 2 lg 10 + 1" $
+           (lg 19 + lg 7 + 2 * lg 19) v
+  , testCase "FN choice: Expect/FnInd prices at 2 lg 19 + 1" $
       let ev = event obsSpace (> 0)
           Bits v = bits (Expect (Var Z) (FnInd ev)
                            :: Expr '[B Obs] Double)
       in assertApprox "nodeB + Var(scope 1) + fnB" 1e-12
-           (2 * lg 10 + 1) v
-  , testCase "KER + STATS + carrier registry: ExpFam node prices at 0" $
+           (2 * lg 19 + 1) v
+  , testCase "KER + STATS + carrier registry: ExpFam node prices at lg 2 (Code joined KER at the step-1 freeze)" $
       let Bits v = bits (ExpFam thetaSpace obsCarrier SId
                            :: Expr '[] (Kernel Double Obs))
-      in assertApprox "kerB + carrierB + statsB" 1e-12 0 v
-  , testCase "UTIL sort: USay (Var Z) prices at 0 + payload (lg 10 + 1)" $
+      in assertApprox "kerB + carrierB + statsB" 1e-12 (lg 2) v
+  , testCase "UTIL sort: USay (Var Z) prices at 0 + payload (lg 19 + 1)" $
       let Bits v = bits (USay (Var Z) :: Expr '[] (Util Double Double))
-      in assertApprox "utilB + scope-2 Var" 1e-12 (lg 10 + 1) v
+      in assertApprox "utilB + scope-2 Var" 1e-12 (lg 19 + 1) v
   ]
 
 -- ---------------------------------------------------------------------

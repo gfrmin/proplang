@@ -119,23 +119,23 @@ groupDlPins = testGroup "model dl pins (derivation-relative, plan R4)"
 groupBits :: TestTree
 groupBits = testGroup "policy prices (amended spec S3; plan R5 as corrected)"
   [ testCase "Get pays its node cost (one feature name: names free)" $
-      assertBits "Get" (lg 10) (bits (Get "t" :: Expr '[] Double))
+      assertBits "Get" (lg 19) (bits (Get "t" :: Expr '[] Double))
   , testCase "a constant pays node + grid index" $
       case mkC g4 0 :: Maybe (Expr '[] Double) of
-        Just e  -> assertBits "mkC-sentence" (lg 10 + lg 4) (bits e)
+        Just e  -> assertBits "mkC-sentence" (lg 19 + lg 4) (bits e)
         Nothing -> assertFailure "mkC rejected an in-range index"
   , testCase "argmax over a variable menu: three nodes, scope-1 name free" $
-      assertBits "Argmax(Var,Get)" (3 * lg 10)
+      assertBits "Argmax(Var,Get)" (3 * lg 19)
         (bits (Argmax (Var Z) (Get "t") :: Expr '[NonEmpty Double] Double))
   , testCase "the inner variable pays its scope" $
-      assertBits "Argmax(Var,Var)" (3 * lg 10 + 1)
+      assertBits "Argmax(Var,Var)" (3 * lg 19 + 1)
         (bits (Argmax (Var Z) (Var Z) :: Expr '[NonEmpty Double] Double))
   , testCase "Expect pays node + child + FN choice bit (FnInd)" $
-      assertBits "Expect/FnInd" (2 * lg 10 + 1)
+      assertBits "Expect/FnInd" (2 * lg 19 + 1)
         (bits (Expect (Var Z) (FnInd (is obsSpace 1))
                :: Expr '[B Obs] Double))
   , testCase "Expect pays node + child + FN choice bit (FnUtil)" $
-      assertBits "Expect/FnUtil" (2 * lg 10 + 1)
+      assertBits "Expect/FnUtil" (2 * lg 19 + 1)
         (bits (Expect (Var Z) (FnUtil constStake ())
                :: Expr '[B Obs] Double))
   ]

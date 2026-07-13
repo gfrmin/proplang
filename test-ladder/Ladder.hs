@@ -354,12 +354,12 @@ g5Prices :: TestTree
 g5Prices = testGroup "prices (menu grid, door, sayable surface)"
   [ testCase "a depth constant prices node + lg grid (1e-12)" $ do
       case mkC depthGrid 0 of
-        Just c  -> assertApprox "lg 10 + lg 2" 1e-12
-                     (lg 10 + lg 2) (unBits (bits (c :: Expr '[] Double)))
+        Just c  -> assertApprox "lg 19 + lg 2" 1e-12
+                     (lg 19 + lg 2) (unBits (bits (c :: Expr '[] Double)))
         Nothing -> assertFailure "mkC rejected an in-range depth index"
       case mkC depthGrid4 0 of
-        Just c  -> assertApprox "lg 10 + lg 3" 1e-12
-                     (lg 10 + lg 3) (unBits (bits (c :: Expr '[] Double)))
+        Just c  -> assertApprox "lg 19 + lg 3" 1e-12
+                     (lg 19 + lg 3) (unBits (bits (c :: Expr '[] Double)))
         Nothing -> assertFailure "mkC rejected an in-range depth index"
   , testCase "grid-size monotonicity at the depth C node" $
       case (mkC depthGrid 0, mkC depthGrid4 0) of

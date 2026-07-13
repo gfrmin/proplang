@@ -130,14 +130,14 @@ groupCarrier = testGroup "Carrier (declared finite output space, plan Q1/E4)"
 
 groupPrices :: TestTree
 groupPrices = testGroup "prices (sort-local coding, plan E2)"
-  [ testCase "the family node prices at 0 bits (every choice forced)" $
+  [ testCase "the family node prices at lg 2 (Code joined the KER sort at the step-1 freeze)" $
       let sp = mkSpace (0.5 :| []) :: Space Double
       in assertBits "ExpFam node"
-           0 (bits (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs)))
+           (lg 2) (bits (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs)))
   , testCase "Call (Bern _) prices node + stdname choice of 7 + param" $
       case mkC g4 1 :: Maybe (Expr '[] Double) of
         Just p  -> assertBits "call bern"
-                     (lg 10 + lg 7 + (lg 10 + lg 4))
+                     (lg 19 + lg 7 + (lg 19 + lg 4))
                      (bits (Call (Bern obsCarrier) (p :* ANil)))
         Nothing -> assertFailure "mkC rejected an in-range index"
   ]
