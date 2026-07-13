@@ -213,7 +213,14 @@ data Expr env t where
   -- KER-sort. The Space payloads declare domain and codomain (a kernel HAS
   -- them; declaring them is declared structure), priced 0 by the recorded
   -- opaque-payload convention — the ExpFam precedent, verbatim.
-  Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (K a b)
+  --
+  -- The Maybe codomain is R-C1 ruling (iii) (pack §6.10, author 2026-07-13):
+  -- a code whose column carries NaN or −∞, or no mass at all, DOES NOT
+  -- DENOTE — the partiality lives in the type, at the one door where
+  -- arbitrary arithmetic enters, and 'fromBits' stays total on what reaches
+  -- it. Elimination is deferred exactly as CondE's is (ElimJ, build-order
+  -- step 9): an unvalidated code cannot feed a verb.
+  Code :: Space a -> Space b -> Expr (b ': a ': env) Double -> Expr env (Maybe (K a b))
 #endif
 #ifndef DROP_POS
   -- the POSITION reader (AGENT_PLAN §5d): the position of a point in its

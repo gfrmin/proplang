@@ -37,6 +37,14 @@
 -- in the author pack (R-D21): each was executed once against a throwaway
 -- prototype, all bit-exact, prototypes discarded.
 --
+-- THE RULED BOUNDARY (pack sec 6.10, author 2026-07-13).  A code DENOTES
+-- through Maybe -- R-C1 ruling (iii): `Code`'s codomain is
+-- `Expr env (Maybe (K a b))`, validated eagerly at eval, refused EXACTLY on
+-- a NaN or -inf entry or a massless (all-+inf) column.  Every L in
+-- [0, +inf] denotes -- hard zeros and negative-by-ulp L included, because
+-- the frozen ExpFam node itself emits negative L (pack sec 6.5).  Group 7
+-- pins the ruling from both sides.
+--
 -- Test names are ASCII-only (the membrane's locale incident, 2026-07-05).
 module Main (main) where
 
@@ -47,7 +55,9 @@ import GHC.Float (castDoubleToWord64)
 import Test.Tasty
 import Test.Tasty.HUnit
 
-import PropLang.Belief (Bits (..), Kernel, Space, is, point, prob, push)
+import PropLang.Belief
+  ( Bits (..), Evidence (..), Kernel, Space
+  , cond, fromBits, is, kernel, mkSpace, point, prob, push )
 import PropLang.Enumerate
   (Obs, emit, obsCarrier, obsSpace, rhoPoints, thetaPoints, thetaSpace, walkOn)
 import PropLang.Eval (Vals (..), evalx, mkEnv)
@@ -63,6 +73,7 @@ main = defaultMain $ testGroup "test-code (step 1: the likelihood is a code)"
   , gReaders     -- Pos vs ToR: the sec 5d defect, pinned as a regression
   , gArith
   , gPrices
+  , gBoundary    -- the R-C1/R-C2 rulings, pinned from both sides (sec 6.10)
   ]
 
 -- ---------------------------------------------------------------------
@@ -82,8 +93,20 @@ main = defaultMain $ testGroup "test-code (step 1: the likelihood is a code)"
 eval0 :: Expr '[] t -> t
 eval0 e = evalx e (mkEnv [] VNil)
 
+-- evaluation at a declared tick: group 7's per-tick rows.  Features arrive
+-- at eval time (Eval.hs `Get`), which is WHY denotation is a per-tick fact.
+evalAt :: [(String, Double)] -> Expr '[] t -> t
+evalAt fs e = evalx e (mkEnv fs VNil)
+
 evalObs :: Expr '[Obs] t -> Obs -> t
 evalObs e o = evalx e (mkEnv [] (o :. VNil))
+
+-- R-C1 ruling (iii): a lawful code that FAILS to denote is an
+-- implementation defect; these rows say so by name instead of pattern-crash
+orRefused :: String -> Maybe k -> IO k
+orRefused what =
+  maybe (assertFailure (what ++ ": lawful code REFUSED to denote"
+                          ++ " (R-C1 boundary defect)")) pure
 
 bitsOf :: Double -> Word64
 bitsOf = castDoubleToWord64
@@ -172,7 +195,7 @@ eqE a b = Call IsEq (a :* b :* ANil)
 -- is what decides bit-exactness.
 -- ---------------------------------------------------------------------
 
-codeWalk :: Int -> Expr env (K Double Double)
+codeWalk :: Int -> Expr env (Maybe (K Double Double))
 codeWalk rhoIx = Code thetaSpace thetaSpace body
   where
     rho = cAt rhoGrid rhoIx
@@ -189,11 +212,13 @@ codeWalk rhoIx = Code thetaSpace thetaSpace body
 gWalk :: TestTree
 gWalk = testGroup "group 1: THE FALSIFIER -- rw IS a code (vs the frozen walkOn)"
   [ testCase ("the reflected walk at rho index " ++ show ix
-              ++ " reproduces walkOn BIT-FOR-BIT (81 cells)") $
+              ++ " reproduces walkOn BIT-FOR-BIT (81 cells)") $ do
+      coded <- orRefused ("codeWalk at rho index " ++ show ix)
+                 (eval0 (codeWalk ix))
       assertKernelBitEq ("walk rho=" ++ show (NE.toList rhoPoints !! ix))
         thetaSpace (NE.toList thetaPoints)
         (walkOn thetaSpace thetaPoints (NE.toList rhoPoints !! ix))
-        (eval0 (codeWalk ix))
+        coded
   | ix <- [0 .. length rhoPoints - 1] ]
 
 -- ---------------------------------------------------------------------
@@ -213,7 +238,9 @@ gBern = testGroup "group 2: bern IS a code (vs the frozen emit kernel)"
   [ testCase ("bern at theta index " ++ show ix ++ " matches emit BIT-FOR-BIT") $ do
       let th     = NE.toList thetaPoints !! ix
           frozen = push (point thetaSpace th) emit
-          coded  = push (point thetaSpace th) (eval0 (codeBernV ix))
+      codedK <- orRefused ("codeBernV at theta index " ++ show ix)
+                  (eval0 (codeBernV ix))
+      let coded = push (point thetaSpace th) codedK
       mapM_ (\o -> assertBitEq ("P(" ++ show o ++ ") at theta=" ++ show th)
                      (prob frozen (is obsSpace o))
                      (prob coded (is obsSpace o)))
@@ -222,7 +249,7 @@ gBern = testGroup "group 2: bern IS a code (vs the frozen emit kernel)"
 
 -- bern's code, reading the carrier through ToR (its VALUE) -- the obs
 -- carrier is {0,1}, so "y == 1" is "ToR y > 0"
-codeBernV :: Int -> Expr env (K Double Obs)
+codeBernV :: Int -> Expr env (Maybe (K Double Obs))
 codeBernV thIx = Code thetaSpace obsSpace body
   where
     th = cAt thetaGrid thIx
@@ -245,7 +272,7 @@ codeBernV thIx = Code thetaSpace obsSpace body
 -- Stats/SId; sec 5d records that it does NOT, and this group is why.
 -- ---------------------------------------------------------------------
 
-codeExpFam :: Int -> Expr env (K Double Obs)
+codeExpFam :: Int -> Expr env (Maybe (K Double Obs))
 codeExpFam etaIx = Code thetaSpace obsSpace body
   where
     eta = cAt etaGrid etaIx
@@ -261,7 +288,9 @@ gExpFam = testGroup "group 3: expfam IS a code (vs the frozen ExpFam node)"
   [ testCase ("expfam at eta index " ++ show ix ++ " matches ExpFam BIT-FOR-BIT") $ do
       let eta    = logit (NE.toList thetaPoints !! ix)
           frozen = push (point thetaSpace eta) (eval0 frozenExpFam)
-          coded  = push (point thetaSpace eta) (eval0 (codeExpFam ix))
+      codedK <- orRefused ("codeExpFam at eta index " ++ show ix)
+                  (eval0 (codeExpFam ix))
+      let coded = push (point thetaSpace eta) codedK
       mapM_ (\o -> assertBitEq ("P(" ++ show o ++ ") at eta=" ++ show eta)
                      (prob frozen (is obsSpace o))
                      (prob coded (is obsSpace o)))
@@ -377,5 +406,121 @@ gPrices = testGroup "group 6: the new prices (P5 mandatory boundary item)"
       -- binder discipline, twice).  Body = Var Z at scope 2 => nodeB + lg 2.
       assertBitEq "Code(Var Z)" (lg 2 + (lg 19 + lg 2))
         (unBits (bits (Code thetaSpace thetaSpace (Var Z)
-                         :: Expr '[] (K Double Double))))
+                         :: Expr '[] (Maybe (K Double Double)))))
+  ]
+
+-- ---------------------------------------------------------------------
+-- GROUP 7 -- THE RULED BOUNDARY (pack sec 6.10, author 2026-07-13).
+--
+-- R-C1 (iii): a code denotes through Maybe, refused EXACTLY on a NaN or
+-- -inf entry or a massless (all-+inf) column.  The three refusal witnesses
+-- are the E1 sweep's CHEAPEST members of each hazard class, copied
+-- byte-wise from the pack's table (code-task2-author-pack.md sec 6.1,
+-- R-D20-i) -- they sit INSIDE the frozen fragment's own price range, which
+-- is why the guard is load-bearing and not a pathology tax.
+--
+-- The lawful side is pinned too, because a boundary has two sides: the
+-- ulp-cliff sentence (L = -2.2e-16 where mathematics says 0; sec 6.5 --
+-- the frozen ExpFam node itself emits negative L, so strict L >= 0 is
+-- INCOMPATIBLE with the shipped engine), and the walkOn-shaped hard zero
+-- (L = +inf in one cell of a column with mass; T1's whole case).
+--
+-- PER-TICK DENOTATION (ruled, sec 6.10 item 4): features arrive at eval
+-- time, so denotation is a fact ABOUT A TICK, not about a sentence -- the
+-- E1 sweep measured 202 of 490 hazardous bodies changing class between
+-- t=0 and t=5.  A hypothesis whose code fails to denote at an observed
+-- tick asserted the impossible there and is refuted PERMANENTLY (an
+-- evidence-shaped zero; dormancy is for absent NAMES, never for
+-- likelihood failure).  The row here pins the eval-level half; the
+-- permanence lands with step 3's integration and is BOUND by this ruling.
+--
+-- R-C2 (ruled: Neg STAYS): the lawful pair from sec 6.6 -- two validated
+-- codes differing ONLY in Neg vs Sub-with-dormancy-zero, bit-different
+-- rows, posterior [1, 0] after one observation.  Neg is measured content,
+-- not sugar; this row is why prodExpr is 19 and not 18.
+-- ---------------------------------------------------------------------
+
+gBoundary :: TestTree
+gBoundary = testGroup "group 7: the ruled boundary (R-C1 iii + NaN/-inf-only, R-C2)"
+  [ testCase "a -inf entry REFUSES to denote: Log (Get t) at t=0 (2 nodes, 9.50 bits)" $
+      case evalAt [("t", 0)] (Code thetaSpace thetaSpace (Log (Get "t"))
+                                :: Expr '[] (Maybe (K Double Double))) of
+        Nothing -> pure ()
+        Just _  -> assertFailure
+          "a -inf column denoted: the R-C1 (iii) boundary is not enforced"
+  , testCase "a massless (all-+inf) column REFUSES: Neg (Log (Get t)) at t=0" $
+      -- the hazard that previously ERRORED inside fromBits ("belief has no
+      -- mass") -- under the ruling it is a typed Nothing, and
+      -- Belief.hs:101-103 stays a THEOREM
+      case evalAt [("t", 0)] (Code thetaSpace thetaSpace (Neg (Log (Get "t")))
+                                :: Expr '[] (Maybe (K Double Double))) of
+        Nothing -> pure ()
+        Just _  -> assertFailure
+          "a massless column denoted: the R-C1 (iii) boundary is not enforced"
+  , testCase "a NaN entry REFUSES: Log (Log theta0) (the silent class, sec 6.2)" $
+      case eval0 (Code thetaSpace thetaSpace (Log (Log (cAt thetaGrid 0)))
+                    :: Expr '[] (Maybe (K Double Double))) of
+        Nothing -> pure ()
+        Just _  -> assertFailure
+          "a NaN column denoted: the R-C1 (iii) boundary is not enforced"
+  , testCase "the ulp-cliff DENOTES: L = -2.2e-16 is lawful (NaN/-inf-only, sec 6.5)" $ do
+      -- exp (log x) / x > 1 at 4 of 17 grid points; a strict L >= 0
+      -- boundary refuses this sentence and 4 of 9 frozen ExpFam rows with it
+      _ <- orRefused "the ulp-cliff sentence"
+             (eval0 (Code thetaSpace thetaSpace
+                       (Neg (Log (Div (Exp (Log (cAt thetaGrid 0)))
+                                      (cAt thetaGrid 0))))
+                       :: Expr '[] (Maybe (K Double Double))))
+      pure ()
+  , testCase "a hard zero DENOTES and is preserved EXACTLY (the walkOn shape)" $ do
+      -- one cell at L = +inf inside a column that has mass: T1's whole
+      -- case, answered by definition -- weight exactly 0, no base measure
+      k <- orRefused "the hard-zero code"
+             (eval0 (Code thetaSpace obsSpace
+                       (If (Gt (ToR (Var Z)) (cAt thetaGrid 0))
+                           (Div (cAt rhoGrid 0) (Get "z"))
+                           (cAt rhoGrid 0))
+                       :: Expr '[] (Maybe (K Double Obs))))
+      let row = push (point thetaSpace (NE.toList thetaPoints !! 4)) k
+      assertBitEq "P(y=1) is EXACTLY zero" 0 (prob row (is obsSpace 1))
+      assertBitEq "P(y=0) carries ALL the mass" 1 (prob row (is obsSpace 0))
+  , testCase "denotation is a PER-TICK fact: one sentence, Nothing at t=0, Just at t=5" $ do
+      let c = Code thetaSpace thetaSpace (Log (Get "t"))
+                :: Expr '[] (Maybe (K Double Double))
+      case evalAt [("t", 0)] c of
+        Just _  -> assertFailure "denoted at t=0 -- it asserted the impossible there"
+        Nothing -> pure ()
+      case evalAt [("t", 5)] c of
+        Nothing -> assertFailure
+          "refused at t=5 -- log 5 bits per cell is a lawful constant column"
+        Just _  -> pure ()
+  , testCase "Neg is CONTENT: the lawful pair posterior is EXACTLY [1, 0] (sec 6.6)" $ do
+      -- copied from the executed E5: c = theta grid point 4 (0.5); the only
+      -- sayable +0.0 left argument today is Get-dormancy (no frozen grid
+      -- declares 0), so the Sub side is Sub (Get "z") y
+      kN <- orRefused "the Neg-version"
+              (eval0 (Code thetaSpace obsSpace
+                        (Exp (Div (cAt thetaGrid 4) (Neg (ToR (Var Z)))))
+                        :: Expr '[] (Maybe (K Double Obs))))
+      kS <- orRefused "the Sub-version"
+              (eval0 (Code thetaSpace obsSpace
+                        (Exp (Div (cAt thetaGrid 4)
+                                  (Sub (Get "z") (ToR (Var Z)))))
+                        :: Expr '[] (Maybe (K Double Obs))))
+      let x0   = NE.toList thetaPoints !! 4
+          rowN = push (point thetaSpace x0) kN
+          rowS = push (point thetaSpace x0) kS
+      -- at y=0: Neg gives c/(-0.0) = -inf, exp = 0, L = 0 -- FULL mass;
+      -- Sub gives c/(+0.0) = +inf, exp = +inf, L = +inf -- a hard ZERO
+      assertBitEq "Sub-version P(y=0) is EXACTLY zero" 0 (prob rowS (is obsSpace 0))
+      assertBool "Neg-version P(y=0) is positive" (prob rowN (is obsSpace 0) > 0)
+      let hSpace = mkSpace (0 :| [1 :: Int])
+          meta0  = fromBits hSpace (const (Bits 1))
+          ke     = kernel hSpace obsSpace ([rowN, rowS] !!)
+      case cond meta0 (Saw ke 0) of
+        Nothing -> assertFailure
+          "conditioning on y=0 returned Nothing (h_neg holds positive mass there)"
+        Just m  -> do
+          assertBitEq "P(h_neg | y=0) is EXACTLY 1" 1 (prob m (is hSpace 0))
+          assertBitEq "P(h_sub | y=0) is EXACTLY 0" 0 (prob m (is hSpace 1))
   ]

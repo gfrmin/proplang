@@ -367,3 +367,71 @@ crash-partiality; CReal: approximate equality). **The author rules.**
   the point list `mkSpace` was given; nothing sealed leaks) vs point-carrying payloads
   (changes Code/Pos arities, re-touches oracle rows). The builder's reading is the export
   amendment; the author rules at the freeze.
+
+### 6.10 RULED (the author, 2026-07-13) — all six, on the evidence above
+
+The author ruled in one sitting, each ruling against its measured section; recorded verbatim
+by the builder the same day. **These are the rulings the freeze enacts.**
+
+1. **R-C5 — binary64 stands.** The substrate question is CLOSED on §6.8's table: MPFR
+   reproduces every hazard class at every precision at ×52–116 measured cost; the cliff
+   density is constant in precision; CReal's Eq/Ord are approximate; Rational/Decimal are
+   structurally disqualified. A future migration, if ever demanded, is a P5-route boundary
+   proposal with §6.8 as its cost sheet.
+2. **R-C1 shape — (iii).** `Code`'s codomain becomes `Expr env (Maybe (K a b))`, eager
+   validation at eval; the `CondE`/ElimJ precedent applied to codes. `fromBits` and
+   `Kernel` stay frozen as shipped; `Belief.hs:101-103` remains a theorem.
+3. **R-C1 boundary — NaN/−∞-only, confirmed.** A code column is refused exactly on NaN or
+   −∞ entries; every L in [0, +∞] denotes (hard zeros and negative-by-ulp L included) —
+   the only boundary compatible with the frozen ExpFam rows (§6.5).
+4. **Refutation semantics — per-tick denotation conditioning, confirmed.** Validation
+   happens at kernel construction each tick; a hypothesis whose code fails to denote at an
+   observed tick asserted the impossible there and is refuted PERMANENTLY (an
+   evidence-shaped zero). Dormancy remains reserved for absent NAMES. Filtering
+   tick-independent codes at enumeration stays legal as an optimisation — it exploits
+   structure and never lives in the prior (§1b's law; §6.4 measured the mechanisms
+   bit-identical where both apply). Binds step 3's integration; group 7 pins the
+   eval-level half now.
+5. **R-C2 — Neg stays; prodExpr 19.** Retiring Neg would delete measured, reachable,
+   posterior-visible content (§6.6's lawful pair, posteriors [1, 0]); keeping it costs
+   0.0781 bits/node and flips no strict ordering (§6.7). Group 5's sign-of-zero row
+   STANDS. The freeze absorbs `ProdTable 19 2 1 2 7 1`.
+6. **The Space-points reader — the gate-2 export amendment.** `spacePoints` joins the
+   frozen `Belief` export list at the freeze (typed-port-spec S2 amended by the author's
+   tag; one name; `Space` is the point list `mkSpace` was given; the weights stay sealed).
+   Point-carrying payloads are rejected.
+
+Freeze-item delta (extends §3's four items, same delegation, same R-D22 re-tag):
+item 5 — the `spacePoints` export line (`Belief.hs` export list + typed-port-spec S2);
+item 6 — the AGENT_PLAN §8 survivor-list amendment (R-C3; the author already ruled the
+disposition: PORT the anchors — they ARE the proof).
+
+### 6.11 R-D21 satisfiability transcript — group 7 (the ruled rows), executed 2026-07-13
+
+The amended oracle (`Code`'s `Maybe` codomain at 4 signature sites; group 7's seven rows)
+compiles clean under the stanza's exact flags and runs **45/45 runtime-red** — every red
+demonstrated to be the missing implementation (`PropLang.Eval: Code is oracle-phase
+surface`) or the freeze-pending `prodTable` (group 6's kerB row: got lg 1 + lg 10 + lg 2,
+expects the 19/2 table). The ten frozen suites stay green; manifest 81/81.
+
+Every group-7 asserted quantity, executed once against the throwaway (iii) prototype,
+mirrored 1:1 from the oracle text (same expressions, same envs, same grid indices);
+prototype discarded:
+
+```
+== R-D21 transcript: test-code group 7, row by row ==
+  row 1  Log (Get t) @ t=0            : Nothing (REFUSED)
+  row 2  Neg (Log (Get t)) @ t=0      : Nothing (REFUSED)
+  row 3  Log (Log theta0)             : Nothing (REFUSED)
+  row 4  Neg(Log(Div(Exp(Log th0))th0)): Just (DENOTES)
+  row 5  hard-zero code: Just; P(y=1) = 0000000000000000 (assert 0), P(y=0) = 3ff0000000000000 (assert 1)
+  row 6a Log (Get t) @ t=0            : Nothing (REFUSED)
+  row 6b Log (Get t) @ t=5            : Just (DENOTES)
+  row 7  both DENOTE; Sub P(y=0) = 0000000000000000 (assert 0), Neg P(y=0) = 3fe3508c5d030c55 (assert > 0)
+  row 7  posterior after y=0: P(h_neg) = 3ff0000000000000 (assert 1), P(h_sub) = 0000000000000000 (assert 0)
+```
+
+Every exact-value assertion in the group (the hard zero, the survivor's full mass, the
+posterior pair) is satisfied **bit-exactly** — `+0.0` and `1.0` on the nose, no tolerance
+anywhere. The refusal rows refuse; both per-tick verdicts land as ruled; both lawful-pair
+sides denote and their posterior is the measured `[1, 0]` of §6.6.
