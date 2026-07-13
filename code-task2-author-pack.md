@@ -540,3 +540,50 @@ transcript row 5 makes a certainty KERNEL sayable where the old lattice made cer
 PARAMETERS unsayable — no conflict, **Cromwell lives in the mixture, not the member**; a
 dogmatic hypothesis is one contrary observation from a permanent zero, ruling 4 applied
 to itself.
+
+### 6.14 STOP AND REPORT (Phase C, 2026-07-14): frozen group 3 is unsatisfiable as written
+
+**The frozen test appears wrong; the builder stops.** Phase C's implementation went in
+(the ruled validator, `Pos`, `ToR`, the seven ops — src only) and the frozen oracle
+adjudicated: **36/45 green; the 9 reds are exactly group 3**, and their failure is not in
+the implementation.
+
+**The smallest reproducing detail.** Group 3's rows push
+`point thetaSpace eta` with `eta = logit θ`. `point` (frozen, `Belief.hs:139-141`)
+weights `negInf` at every grid point `p /= x`, and **`logit θ` is never a member of
+`thetaPoints`** (logit maps the grid into ℝ; even logit 0.5 = 0.0 is off-grid) — so the
+point mass has no mass, and `orImpossible "point"` raises (`Belief.hs:105`) **on both the
+frozen and coded sides, before any assertion runs**. No implementation can satisfy the
+row; the crash is upstream of everything this increment built.
+
+**Why the freeze did not catch it — two mechanisms, both owned.**
+(a) *Stub masking:* at the freeze, `codedK` is forced before the lazy `frozen` thunk, so
+group 3's red presented as `PropLang.Eval: Code is oracle-phase surface` — the expected
+red, hiding the point-crash behind it. (b) *Transcript/row drift:* §2's R-D21 row
+("expfam | ExpFam at η = logit θ | **9/9 BIT-EXACT**") is true of what the oracle-phase
+prototype executed — which used an **eta-containing domain** — while the row as drafted
+pushes through `thetaSpace`. The transcript did not match the row that froze. That is
+precisely the failure R-D21 exists to prevent, and it is the builder's breach to record:
+**a transcript line proves satisfiability only of the expression actually frozen.**
+
+**The fix candidate, executed, not argued.** The frozen corpus already contains the
+correct idiom — `test-expfam`'s `genericAt` (`ExpFam.hs:90-98`), whose own comment reads:
+*"build the family kernel over a domain **containing eta**, then apply it by pushing the
+point mass at eta."* The two-line amendment (both push sites gain `etaSp = mkSpace
+(eta :| [])`):
+
+```haskell
+          etaSp  = mkSpace (eta :| [])
+          frozen = push (point etaSp eta) (eval0 frozenExpFam)
+          ...
+      let coded = push (point etaSp eta) codedK
+```
+
+Scratch-verified against the live implementation: **45/45 PASS**; the ten frozen suites
+are untouched by the amendment. The row's intent (frozen `ExpFam` vs the coded expfam,
+bit-for-bit at each η) is unchanged — only the broken push mechanism moves, to the
+corpus's own precedent.
+
+**Disposition — the author's.** The amendment is a frozen-oracle edit: a re-open of the
+step-1 freeze, by you or under a fresh per-instance delegation, followed by your re-tag
+(R-D22). The builder has applied NOTHING to the frozen file and holds at 36/45.

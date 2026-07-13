@@ -28,6 +28,9 @@ module PropLang.Eval
 #endif
   ) where
 
+#ifndef DROP_POS
+import Data.List (elemIndex)
+#endif
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import Data.Maybe (fromMaybe)
 
@@ -39,8 +42,11 @@ import PropLang.Belief (push)
 #ifndef DROP_FNIND
 import PropLang.Belief (prob)
 #endif
-#ifndef DROP_EXPFAM
+#if !defined(DROP_EXPFAM) || !defined(DROP_CODE)
 import PropLang.Belief (Bits (Bits), fromBits, kernel)
+#endif
+#if !defined(DROP_CODE) || !defined(DROP_POS)
+import PropLang.Belief (spacePoints)
 #endif
 import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
                         StdName (..), Util, applyUtil, mkUtil)
@@ -126,37 +132,55 @@ evalx expr env@(Env feats vals) = case expr of
   USay p -> mkUtil (\a h -> evalx p (mkEnv [] (a :. h :. VNil)))
 #endif
 #ifndef DROP_CODE
-  -- ORACLE-PHASE STUB (AGENT_PLAN step 1). The type surface exists so the
-  -- increment oracle COMPILES; the semantics is deliberately absent so the
-  -- oracle is RUNTIME-RED, as CLAUDE.md's increment protocol requires: "the
-  -- builder writes the increment oracle before any implementation, red
-  -- against compile-enabling type-surface stubs".
-  --
-  -- The intended semantics, executed bit-exactly against walkOn / emit /
-  -- ExpFam at the oracle phase (AGENT_PLAN §5d), is:
-  --
-  --   Code dom cod body ->
-  --     kernel dom cod $ \x ->
-  --       fromBits cod $ \y ->
-  --         Bits (evalx body (Env feats (y :. x :. vals)))
-  --
-  -- This stub is REPLACED at implementation. It is not a fallback and must
-  -- never become one.
-  Code {} -> error "PropLang.Eval: Code is oracle-phase surface, not yet implemented"
+  -- THE likelihood production, as ruled at code-freeze-r0 (R-C1 reading
+  -- (iii) + the NaN/−∞-only boundary; pack §6.10 items 2–3). A code
+  -- DENOTES iff every column over the declared dom × cod grid is lawful:
+  -- no NaN or −∞ entry (values with no likelihood reading), and at least
+  -- one finite L (mass). Validation is EAGER and PER-TICK — features
+  -- arrive here, so denotation is a fact about a tick (§6.10 item 4;
+  -- the refutation/integration half of that ruling binds step 3, not
+  -- this case). Every L in [0, +∞] flows: +∞ is a lawful hard zero
+  -- (walkOn's own mechanism) and negative-by-ulp L is lawful because
+  -- the frozen ExpFam node itself computes negative L (pack §6.5). On
+  -- the lawful side this is bit-for-bit the semantics executed against
+  -- walkOn / emit / ExpFam at the oracle phase (567/567, 9/9, 9/9).
+  Code dom cod body ->
+    let cell x y = evalx body (Env feats (y :. x :. vals))
+        colOK ls = not (any (\l -> isNaN l || l == (-1 / 0)) ls)
+                     && any (< (1 / 0)) ls
+    in if all (\x -> colOK [ cell x y | y <- spacePoints cod ])
+              (spacePoints dom)
+         then Just (kernel dom cod $ \x ->
+                fromBits cod $ \y -> Bits (cell x y))
+         else Nothing
 #endif
 #ifndef DROP_POS
-  Pos {} -> error "PropLang.Eval: Pos is oracle-phase surface, not yet implemented"
+  -- the POSITION reader: the value's index in its DECLARED space. The
+  -- shipped grids are FP-nonuniform, so adjacency is a positional fact,
+  -- not a value fact (AGENT_PLAN §5d). An off-space read answers NaN —
+  -- no frozen row pins that case (the as-built register records it),
+  -- and NaN is the one answer coherent with the ruled boundary: inside
+  -- a Code column it is exactly "asserted the impossible at this tick",
+  -- and the code refuses to denote there.
+  Pos sp e' -> case elemIndex (evalx e' env) (spacePoints sp) of
+    Just i  -> fromIntegral i
+    Nothing -> 0 / 0
 #endif
 #ifndef DROP_TOR
-  ToR _ -> error "PropLang.Eval: ToR is oracle-phase surface, not yet implemented"
+  -- the VALUE reader (§5d; OPEN 6 ruled at code-freeze-r0): SId's
+  -- workload — eta * T(y) needs the carrier VALUE, which no position
+  -- can supply on a value/index-disagreeing carrier (test-code group 4)
+  ToR e' -> realToFrac (evalx e' env)
 #endif
-  Add _ _ -> error "PropLang.Eval: Add is oracle-phase surface, not yet implemented"
-  Sub _ _ -> error "PropLang.Eval: Sub is oracle-phase surface, not yet implemented"
-  Mul _ _ -> error "PropLang.Eval: Mul is oracle-phase surface, not yet implemented"
-  Div _ _ -> error "PropLang.Eval: Div is oracle-phase surface, not yet implemented"
-  Log _ -> error "PropLang.Eval: Log is oracle-phase surface, not yet implemented"
-  Exp _ -> error "PropLang.Eval: Exp is oracle-phase surface, not yet implemented"
-  Neg _ -> error "PropLang.Eval: Neg is oracle-phase surface, not yet implemented"
+  -- the arithmetic is IEEE-754 binary64, exactly as the host computes
+  -- it (R-C5: binary64 stands; test-code group 5 pins the facts)
+  Add a b -> evalx a env + evalx b env
+  Sub a b -> evalx a env - evalx b env
+  Mul a b -> evalx a env * evalx b env
+  Div a b -> evalx a env / evalx b env
+  Log a -> log (evalx a env)
+  Exp a -> exp (evalx a env)
+  Neg a -> negate (evalx a env)
   Call sn as -> applyStd sn (evalArgs as env)
 
 evalArgs :: Args env ts -> Env env -> Vals ts
