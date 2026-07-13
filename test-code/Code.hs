@@ -287,10 +287,14 @@ gExpFam :: TestTree
 gExpFam = testGroup "group 3: expfam IS a code (vs the frozen ExpFam node)"
   [ testCase ("expfam at eta index " ++ show ix ++ " matches ExpFam BIT-FOR-BIT") $ do
       let eta    = logit (NE.toList thetaPoints !! ix)
-          frozen = push (point thetaSpace eta) (eval0 frozenExpFam)
+          -- the eta-containing domain: the genericAt idiom, quoted from the
+          -- frozen precedent (test-expfam/ExpFam.hs:90-98) at the 6.14
+          -- re-open -- point thetaSpace (logit theta) has no mass, ever
+          etaSp  = mkSpace (eta :| [])
+          frozen = push (point etaSp eta) (eval0 frozenExpFam)
       codedK <- orRefused ("codeExpFam at eta index " ++ show ix)
                   (eval0 (codeExpFam ix))
-      let coded = push (point thetaSpace eta) codedK
+      let coded = push (point etaSp eta) codedK
       mapM_ (\o -> assertBitEq ("P(" ++ show o ++ ") at eta=" ++ show eta)
                      (prob frozen (is obsSpace o))
                      (prob coded (is obsSpace o)))
