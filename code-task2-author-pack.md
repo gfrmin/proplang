@@ -587,3 +587,67 @@ corpus's own precedent.
 **Disposition — the author's.** The amendment is a frozen-oracle edit: a re-open of the
 step-1 freeze, by you or under a fresh per-instance delegation, followed by your re-tag
 (R-D22). The builder has applied NOTHING to the frozen file and holds at 36/45.
+
+---
+
+## 7. Increment close — Phase C/D as-built (2026-07-14)
+
+**State at close: every gate green.** Gates 1–7 PASS (`audit/run-gates.sh`, end to end);
+all **eleven** suites PASS (`test-code` 45/45 joined the frozen ten); `MANIFEST.sha256`
+verifies **83/83**; anchors byte-stable beyond the freeze's own re-pricing (the
+acceptance and property suites are the anchor check, and they pass unmodified).
+
+### The as-built register
+
+1. **The six rulings (§6.10) are enacted as ruled.** The validator is eager, per-tick,
+   NaN/−∞-only; `fromBits`/`Kernel`/`Belief.hs:101-103` untouched; `Neg` priced in at
+   19; `spacePoints` exported three-artifact-consistently; binary64 throughout.
+2. **One under-determination answered at implementation: `Pos` off its declared space
+   answers NaN.** No frozen row pins the case (group 4 reads only in-space values).
+   Rationale: the alternative was an `error` against "totality is the point"; NaN is
+   IEEE's no-result value and composes with the ruled boundary — inside a `Code` column
+   an off-space read is precisely "asserted the impossible at this tick", and the code
+   refuses to denote. Recorded here for the author; no pin binds it, so any future
+   boundary may rule it differently at zero re-open cost.
+3. **The §3 enumeration under-count (§6.12 item 4)** — the KER sort's three literal-`0`
+   pins — stands corrected as-built; the sort's enumeration is now complete.
+4. **The increment's one frozen-oracle defect: group 3 (§6.14), re-opened and re-closed
+   same-day.** `point thetaSpace (logit θ)` had no mass at any θ; the amendment (the
+   corpus's own `genericAt` idiom) landed under fresh per-instance delegation ("go"),
+   45/45 at the amendment commit. **The lesson, canonization-worthy at the next
+   boundary: a satisfiability transcript proves only the expression ACTUALLY FROZEN —
+   the oracle-phase execution used the working idiom while the drafted row did not, and
+   stub-masking hid the difference until implementation.** (The two-sided failure —
+   both comparison sides crashing identically upstream — is exactly the shape R-D21's
+   per-row execution is meant to catch; the transcript must be re-run against the final
+   row text, not the prototype's.)
+5. **CL-4 headroom, re-measured at the as-built** (the §2b/step-2 input, generators and
+   both property computations copied byte-wise from the frozen `Properties.hs:48-107`,
+   residue recorded instead of asserted, 200,000 cases each): max relative residue
+   **2.97e-15** (Saw) / **1.19e-15** (Is). The frozen `1e-9` gate is ~3×10⁵ wider than
+   the floor; step 2's `1e-12` target carries **×337 / ×840** headroom. Recorded as
+   step 2's first oracle row.
+6. **Scratch teardown executed** — the E-program copies, the phase runners, the (iii)
+   prototype, the substrate experiment, and the CL-4 measure program are deleted after
+   this close; they were previews and instruments, never sources. What they proved
+   lives here and in the frozen rows.
+
+### Reviewer verification block (run by the author)
+
+```
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+cd ~/git/proplang
+git tag -v code-freeze-r0                 # your r0 signature on 1027398
+bash audit/run-gates.sh                   # gates 1-7: all PASS
+cabal test all                            # eleven suites: all PASS
+sha256sum -c MANIFEST.sha256 | grep -c OK # 83
+git log --oneline code-freeze-r0..HEAD    # the post-tag commits: Phase C, the 6.14 re-open
+```
+
+**The closing act (R-D22):** the 6.14 amendment was a delegated freeze edit, so the
+increment closes only under your re-tag, from your own shell, at the head:
+
+    git tag -s code-freeze-r1 <head> -m "step-1 close: group-3 re-open reviewed; the increment oracle as amended is the frozen oracle"
+
+Step 2 (the optimisation law enforced: observeCounts pinned to repeated observe; CL-4
+tightened to 1e-12 on the numbers above) opens at the next boundary.
