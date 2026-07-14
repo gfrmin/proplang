@@ -5,6 +5,12 @@ Nothing under `test/`, `audit/`, `CLAUDE.md`, `MANIFEST.sha256`, `membrane-wire.
 `HOSTS_PLAN.md`, `interface.md`, `typed-port-spec.md`, or any `test-*/` moves until that
 tag exists. Repo clean, manifest 81/81, as of this draft.
 
+**SIGNED at `agent-boundary` (`f46e08c`), re-tagged `agent-boundary-r1` (the §5d R-D22
+re-tag). As of the design-review gate (2026-07-15): steps 0–1 CLOSED (progress register at
+§7's head); manifest 83/83 at `code-freeze-r1`. Amendments below marked "ruled 2026-07-15"
+were applied under the author's recorded delegation (`AGENT_PLAN_REVIEW.md` Appendix C);
+their R-D22 re-tag rides step 2's freeze.**
+
 **Everything below is quoted from the author, copied from the repository, or executed and
 measured. Nothing is asserted.** Where the builder was wrong, the reversal is marked and the
 old claim is left visible.
@@ -740,6 +746,8 @@ throwaway prototypes now discarded:
 author's signed tag (`agent-boundary`, `f46e08c`). **R-D22 therefore obliges an author RE-TAG
 within the increment: the countersignature is a condition of closure, never a courtesy
 afterwards.** The builder has committed it with the builder key and made **no tag.**
+**DISCHARGED: `agent-boundary-r1` is that re-tag** (recorded stale by the 2026-07-14
+review, S2; amended at the design-review gate).
 
 ---
 
@@ -826,13 +834,31 @@ posterior odds byte-stable**.*
 
 Oracle-first per CLAUDE.md; the builder never owns a live oracle.
 
+**Progress register (S4, added 2026-07-15):**
+step 0 ✅ (`agent-boundary` `f46e08c` + `agent-boundary-r1`) ·
+step 1 ✅ (`code-freeze-r0` `1027398` + `code-freeze-r1` `ea891f0`; as-built record
+`code-task2-author-pack.md` §7) · steps 2–10 open.
+
 0. **This document, signed.** (Author.) **Nothing frozen moves until the tag exists.**
 1. **`Code` + `Pos` + arithmetic** (§2a, §5). Oracle: pin the code forms of `bern`, `expfam`
    and `rw` against the engine's own `bernFast` / `ExpFam` / `walkOn`. **`rw` is the
    falsifier** — if a code cannot express the reflected walk, **stop and report.** (It can:
    it already *is* one.) Guard `fromBits` against `NaN` / `−∞` (§9 OPEN 4).
-2. **The optimisation law, enforced** (§1b). Generalise E7 from a one-off to the rule.
-   **Pin `observeCounts` to repeated `observe`.** **Tighten CL-4 to `1e-12`** (§2b).
+2. **The optimisation law, enforced** (§1b). **Scope PINNED (ruled 2026-07-15, decision 3):**
+   the §1b audit table's three rows — `bernFast` (already pinned by E7), **CL-4 tightened
+   to `1e-12`** (§2b; the frozen `test/Properties.hs` repair is an author re-open, named
+   and signed at this boundary), and **`observeCounts` pinned to repeated `observe`** —
+   plus the law's text into frozen `CLAUDE.md` (one author edit, carrying the R-D21
+   canonization in its ruled mechanical form and the evidence-program-before-ruling
+   protocol line — decisions 4 and 6; drafts in `AGENT_PLAN_REVIEW.md` Appendix A), plus
+   **a one-time completeness sweep of the r1 tree for unpinned fast paths**, recorded in
+   the step-2 pack. If the sweep finds nothing, the table freezes as exhaustive-at-r1;
+   thereafter "the rule" means every future fast path arrives with its pin in-increment
+   (the CLAUDE.md clause), never by appending to step 2.
+   **Tolerance pre-emption (the author, decision 3): measure the `observeCounts`
+   batch-vs-sequential residue over the frozen worlds BEFORE choosing bit-exact or
+   toleranced — the pin must not be born with a round number; that is how the `1e-9`
+   happened.** Nothing else enters this step.
 3. **A hypothesis becomes a sentence.** `Model` → `Expr env (K a Obs)`; `Terminal` → the
    fragment's production table. Delete `Bern`, `THmm`, `Model`, `Terminal`.
    **Obligation rows, queued at code-freeze-r0 (the author's review, 2026-07-13).** The
@@ -850,6 +876,14 @@ Oracle-first per CLAUDE.md; the builder never owns a live oracle.
    — no conflict: **Cromwell lives in the mixture, not the member**; a dogmatic hypothesis
    is one contrary observation from a permanent zero, which is exactly ruling 4's
    semantics applied to itself.
+   **Two rows added at the design-review gate (2026-07-15, decisions 8–9):** the model
+   fragment's production table is DECLARED through `bitsAt` from day one — no interim
+   hand-counted bits (step 4's own complaint, pre-empted); and this step's oracle
+   directory carries **increment-local ablation fixtures for `Code`/`Pos`/`ToR`** (the
+   CPP hooks are already wired, `Syntax.hs:38-44`; only fixtures are missing — the
+   cheapest audit coverage this project will ever buy). From this step onward every NEW
+   production lands with its in-increment ablation, per the CLAUDE.md increment
+   protocol's fixture clause.
 4. **One pricing mechanism, two declared tables.** R4's derivation-relative dl **stands and is
    correct** (`GRAMMAR_HYGIENE_PLAN.md:168`; the builder's "two priors" claim was wrong) — but
    its literals (`dlConst = 1 + mention eg`, …) are `bitsAt` **with a hand-rolled table**. One
@@ -858,24 +892,46 @@ Oracle-first per CLAUDE.md; the builder never owns a live oracle.
 5. **Actions become features.** `Menu = [(Name, Grid)]`; `wait` = the first grid point (§5c);
    delete the five types, the echo path, and **the sentinel**.
 6. **Actions in the feature stream, no lag.** Latent-carrying hypotheses do the memory.
-   Scoring = `push` at an assignment — **but see step 6b: the scoring RULE is OPEN.**
+   The scoring RULE is OPEN (RIDER 3), and **6b runs INSIDE this step's oracle phase**
+   (re-sequenced 2026-07-15, decision 6): whichever scoring rule survives the falsifier
+   is what the step-6 oracle pins — the freeze never encodes a rule its own falsifier
+   convicts.
    *(Proof (ii) stands: it shows the agent LEARNS its action's effect. It does not show the
    evidential scoring rule is correct — RIDER 3.)*
-6b. **RIDER 3's falsifier, before any `do()` ruling.** **A confounded-payoff world; measure
-   whether AND WHEN exploration pressure rescues the choice** — and at what regret. If evidential
-   scoring is dominated for as long as the confound persists, *"the posterior arbitrates"* is a
-   consolation, not a design. **Stop and report if it is.**
-7. **Pricing unified.** Writable names join the namespace; **M5 repealed**; the action space
-   enters the prior for the first time. **RIDER 2's pin lands here: namespace membership is
-   declared at handshake and IMMUTABLE (publication toggles availability, not membership).**
+   **RIDER 2's membership declaration BINDS HERE (ruled 2026-07-15, decision 7):** the
+   hello's namespace includes every writable name from this step's freeze onward, so
+   mention prices are over the completed namespace from the first increment that can
+   utter them. **Obligation: this step's oracle contains NO assignment-priced row —
+   mention prices bind at 6, value prices at 7 — else the pins pay R-C4's
+   double-repricing a second time.**
+6b. **RIDER 3's falsifier — step 6's oracle-phase evidence program** (the step-1 §6
+   E-program pattern: executed on throwaway prototypes, R-D21, before any ruling). **A
+   confounded-payoff world; measure whether AND WHEN exploration pressure rescues the
+   choice** — and at what regret. If evidential scoring is dominated for as long as the
+   confound persists, *"the posterior arbitrates"* is a consolation, not a design. **Stop
+   and report if it is.** **Rider (the author, decision 6): the success criteria are
+   PRE-STATED NUMERICALLY — what counts as dominated, and over what horizon exploration
+   must rescue the choice — before the world runs; no adjudication by eyeball.**
+7. **Pricing unified.** **M5 repealed**; the action space's VALUES enter the prior (a value
+   drawn from its grid at `log₂|grid|`); the wire sentence lands (**`membrane-wire.md` gains
+   the requirement that the hello's `namespace` include writable names not yet in the
+   menu**). **RIDER 2's pin — namespace membership is declared at handshake and IMMUTABLE
+   (publication toggles availability, not membership) — BINDS FROM STEP 6** (ruled
+   2026-07-15, decision 7: mention prices at 6, value prices here).
    **Fixture: publish an affordance mid-episode; existing posterior odds byte-stable.**
-   **`membrane-wire.md` gains the requirement that the hello's `namespace` include writable names
-   not yet in the menu.**
+   *(The fixture stays at this step: before step 6 no hypothesis mentions a writable name,
+   so the mid-episode-publication fixture is vacuous earlier.)*
 8. **Utility on world states, latent.** `Util a y` dies; utility becomes a priced `Expr` over
    features, and a belief over utility programs (CIRL).
-8b. **RIDER 1's falsifier and scope line.** **A payoff-at-t+5 world where one-step `E[ΔU]`
-   provably selects the dominated act.** Then EITHER a kernel-composition / recursion production
-   lands **with its deletion proof**, OR **the myopia is printed as a scope limit** (§9 OPEN 8).
+8b. **RIDER 1's falsifier and scope line — step 8's oracle-phase evidence program**
+   (re-sequenced 2026-07-15, decision 6: the falsifier runs pre-freeze on a prototype, so
+   step 8's oracle already encodes the ruled outcome instead of amending it afterwards).
+   **A payoff-at-t+5 world where one-step `E[ΔU]` provably selects the dominated act.**
+   Then EITHER a kernel-composition / recursion production lands **with its deletion
+   proof**, OR **the myopia is printed as a scope limit** (§9 OPEN 8).
+   **Rider (the author, decision 6): the kernel-composition arm is PRICED in the
+   prototype, not merely demonstrated — `prodExpr` moves again, P5 fires again — so the
+   ruling sees the bit cost beside the capability.**
    **A horizon CONSTANT is forbidden — it is the sentinel's disease returning.**
 9. **`Expect`-binder, `SawE`, `ElimJ`; delete the VOI primitives and the FN/UTIL sorts.**
    *(Proof (i).)* **Re-run the deletion audit against the smaller alphabet — with a proof for
@@ -914,11 +970,20 @@ the action-dependent parts of `membrane`. Two are hard blockers *by construction
 growth) and `:156-159` (the t1 parity world, which publishes three affordances while pricing
 against a singleton namespace).
 
-**Frozen prose to amend at this boundary:** `interface.md` (T1, the load-bearing clause's scope),
-`design.md` / `typed-port-spec.md` (the outcome sort; `prodTable`), `EXPFAM_PLAN.md` (T1, E9),
-`HOSTS_PLAN.md` (M5), `membrane-wire.md` + `host-governor/Wire.hs` (the sentinel and
-`missing-internal-row`), `CLAUDE.md` (**the optimisation law**), and `MANIFEST.sha256` re-signed
-(81 rows today).
+**Frozen prose — the amendment SCHEDULE (ruled 2026-07-15, decision 10, superseding "at
+this boundary"). The discipline: amend at the step that falsifies — never before
+(premature staleness), never after (red suites, dead evidence):**
+
+| frozen prose | amend at |
+|---|---|
+| `CLAUDE.md` — the optimisation law + the R-D21 canonization (mechanical form) + the evidence-program protocol line | **step 2** |
+| `test-expfam/ExpFam.hs` group 6 retirement (the re-open table above) | **step 3** |
+| `interface.md` (T1, the load-bearing clause's scope); `EXPFAM_PLAN.md` (T1, E9) | **step 3** |
+| `design.md` / `typed-port-spec.md` (the outcome sort; `prodTable` prose) | **each alphabet-moving step** (P5's own rhythm) |
+| `membrane-wire.md` + `host-governor/Wire.hs` (the sentinel, `missing-internal-row`) | **step 5** |
+| suite retirements (`ladder`, `prepost`, `cirl`, `govhost`, `test-d`, membrane's action parts) | **the step that falsifies each** (first: step 5 — the M5 guardian `Membrane.hs:340-350` and the t1 parity world `:156-159` break by construction) |
+| `HOSTS_PLAN.md` (M5) | **step 7** |
+| `MANIFEST.sha256` | re-signed at every freeze (83 rows at `code-freeze-r1`) |
 
 Every description length moves — the P5 alphabet-constant clause firing as designed. The
 author has ruled the cost acceptable.
@@ -949,7 +1014,16 @@ The standing chain is **V → R → K → change families** (`BRIEF_AUDIT.md:284
 **Also stale and named:** `BRIEF_AUDIT.md:143-147` prices nodes at `nodeB = lg 10` and quotes
 `ProdTable 10 2 1 1 7 1` verbatim; `:21-22` prices `Bern` at `lg 10 + lg 5`. **Both go stale the
 moment `prodExpr` moves 10 → 20 and four sorts vanish.** They are *audit* rows, not oracle pins —
-but an audit that cites dead prices is not an audit.
+but an audit that cites dead prices is not an audit. *(Discharged 2026-07-15, decision 12:
+BRIEF_AUDIT now carries a dated supersession header — a dated audit is a record, not an
+oracle; prepend, never rewrite.)*
+
+**Custody home for the survivors (added 2026-07-15, decision 11):** R-rebased (vocabulary
+purchase as grid refinement over code constants), change families, A, and B are
+**POST-ROADMAP demand-gated boundaries** — each opens oracle-first under its own tag when
+its gate fires; none is a step of this plan. The founding grids' DEBT rows
+(`BRIEF_AUDIT.md` A4–A6) **transfer to R-rebased**; they stay printed under BRIEF_AUDIT's
+supersession header, which is what keeps "no deadline" from decaying into "forgotten".
 
 ---
 
@@ -1013,13 +1087,19 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
 1. **Does `Event` survive as a peer noun?** With `Expect` binding its variable, `FnInd` is
    just an `If`-indicator, so `prob` is derivable. brief §3 left this open deliberately
    (*"make the argument yourself and record which cost you chose to pay"*).
+   **Due: step 9** (ruled 2026-07-15, decision 5) — the deletion + type-derivation audit
+   is where `prob`'s derivability is executed, not argued.
 2. **The gauge.** `E[ΔU]` is gauge-free in the additive constant but not the scale. What
    fixes the scale — the principal's revealed indifference, or a declared unit?
+   **Due: step 8** (ruled 2026-07-15, decision 5) — the scale question is CIRL's own; the
+   as-built answer (zero + dollar-slope, R-D7) dies with the step table there.
 3. **`Push` vs `Expect`.** brief §4 calls them **one verb** (*"prediction is `push` into ℝ —
    the operation you will elsewhere call `expect`"*). In the typed port they are two
    constructors because the codomains differ (a `Belief` vs a scalar). The builder's reading:
    that is an **encoding artifact, not a fourth verb** — but the prior charges two codewords
    for it, so the author should record which cost was chosen.
+   **Due: step 9** (ruled 2026-07-15, decision 5) — `Expect` gains its binder exactly
+   there; the cost choice is recorded in the same freeze.
 4. **~~`fromBits` has two unguarded hazards, and §2a makes both reachable.~~ — ✅ RULED at
    code-freeze-r0 (pack §6.10 items 2–3, on the §6 evidence program).** Reading (iii):
    `Code`'s codomain is `Expr env (Maybe (K a b))`, validated eagerly at eval and refused
@@ -1093,15 +1173,27 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
     preposterior, not a general licence.** In a general sentence the default is **load-bearing**.
     Branches: a **sentence-level arm** (both arms supplied by the program), or a **world-declared
     grid point** (§5c's discipline). **Never a baked constant.**
+    **Due: step 9, IN `ElimJ`'s landing oracle** (ruled 2026-07-15, decision 5) — the
+    totality story is part of the landing, never after.
 11. **A5's delegation (RIDER 4).** §5c gives **`argmax` totality**, not **inaction**. A world
     declaring `fire :| [stand_down]` makes the first grid point a **launch**. **Inaction semantics
     is delegated to world authors** — lawful (world content is physics) but **a convention
     relocated across the membrane, not abolished.** Recorded, not narrowed. Does the author accept
     the delegation, or does the membrane owe a *declared* inaction row?
+    **✅ RULED 2026-07-15 (design-review gate, decision 1): the delegation is ACCEPTED.**
+    Under A3 the agent has no ontology in which "nothing happened" is distinguished, and a
+    declared inaction row would re-install the convention §5c deleted. **The cost line,
+    recorded verbatim as the register's protection against someone later "fixing" it: a
+    world CAN make its first grid point a launch — that is the world author's declaration,
+    visible in the hello, priced like everything else.**
 12. **V is DANGLING (RIDER 5's map, §8b).** Tag **`v-open` exists; there is no `v-freeze`** — and
     proof (i) **deletes V's entire subject** (`VThink`/`VThinkK`/`VPre`). **The author must
     formally CANCEL V at this boundary**, or the repo carries an open boundary whose subject no
     longer exists. *(A live custody defect, surfaced by the map rather than by anyone noticing.)*
+    **Cancellation ORDERED 2026-07-15 (design-review gate, decision 2).** The row
+    discharges on the author's signed `v-cancelled` tag from his own shell (drafted
+    against `ea891f0`, message approved in the review) — the tag, not this sentence, is
+    the attestation.
 
 ---
 
@@ -1155,6 +1247,12 @@ document, and it is exactly how 'measured compute cost' enters without a fabrica
 
 ## 12. What the author must still do
 
-1. **Rule on §9 OPEN 11** (A5's delegation) and **§9 OPEN 12 (CANCEL `v-open`** — a dangling
-   boundary tag whose subject proof (i) deletes).
-2. **Sign** — `git tag -s` from the author's own shell. **The builder has made no tag.**
+*(Amended at the design-review gate, 2026-07-15 — S1: item 2 had gone stale.)*
+
+1. **§9 OPEN 11 — ✅ RULED 2026-07-15** (the delegation accepted; cost line recorded in
+   the row). **§9 OPEN 12 — ordered, one act outstanding**: sign `v-cancelled` from the
+   author's own shell.
+2. **Sign — ✅ DONE**: `agent-boundary` (`f46e08c`) + `agent-boundary-r1` (the §5d R-D22
+   re-tag), both verified. The author acts hereafter are per-step: each increment's freeze
+   tag, and the R-D22 re-tag covering the 2026-07-15 amendment commit (riding step 2's
+   freeze).

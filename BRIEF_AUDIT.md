@@ -1,3 +1,14 @@
+> **SUPERSESSION NOTICE (prepended 2026-07-15; design-review gate, decision 12/S5).**
+> This is a dated audit RECORD (2026-07-11), not an oracle — prepend, never rewrite; no
+> row below has been edited. Its prices (`nodeB = lg 10`, `ProdTable 10 2 1 1 7 1`,
+> `Bern` at `lg 10 + lg 5`) and its boundary program (V → R → K → change families) are
+> superseded by `AGENT_PLAN.md` §8b's supersession map, as re-verified by
+> `AGENT_PLAN_REVIEW.md` (2026-07-14): V is cancelled (proof (i) deletes its subject),
+> K is discharged by construction at §2a, R and the change families are re-based, A and
+> B survive demand-gated as post-roadmap boundaries. The DEBT rows A4–A6 (the founding
+> grids) **transfer to R-rebased** and stay printed here. This register's one convicted
+> verdict — the sentinel stamped CONFORMANT — is anatomized at `AGENT_PLAN.md` §0.
+
 # BRIEF_AUDIT — the conformance register (corner the language again)
 
 > Builder, 2026-07-11, at the author's direction: the alphabet has only ever been
