@@ -451,7 +451,7 @@ executes under):
 | decision | enacted |
 |---|---|
 | 1 | `AGENT_PLAN.md` §9 OPEN 11 → RULED; the cost line recorded verbatim in the row |
-| 2 | ordered; §9 OPEN 12 annotated — **awaits the author's `v-cancelled` from his own shell** (the one act outstanding) |
+| 2 | **✅ discharged same day**: the author signed `v-cancelled` on `ea891f0` from his own shell (verified: good ED25519 signature, the author key); §9 OPEN 12 closed — no dangling boundary tag remains |
 | 3 | §7 step 2 scope pinned: three rows + CLAUDE.md edit + completeness sweep (exhaustive-at-r1 on empty) + the `observeCounts` residue-before-tolerance pre-emption |
 | 4 | Appendix A clause 2 restated to the `deepseq` normal-form rule (above); rides step 2's CLAUDE.md edit |
 | 5 | §9 due steps: OPEN 1 → 9, OPEN 2 → 8, OPEN 3 → 9, OPEN 10 → 9 (in ElimJ's landing oracle) |

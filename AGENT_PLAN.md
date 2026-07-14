@@ -1190,10 +1190,11 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
     proof (i) **deletes V's entire subject** (`VThink`/`VThinkK`/`VPre`). **The author must
     formally CANCEL V at this boundary**, or the repo carries an open boundary whose subject no
     longer exists. *(A live custody defect, surfaced by the map rather than by anyone noticing.)*
-    **Cancellation ORDERED 2026-07-15 (design-review gate, decision 2).** The row
-    discharges on the author's signed `v-cancelled` tag from his own shell (drafted
-    against `ea891f0`, message approved in the review) — the tag, not this sentence, is
-    the attestation.
+    **✅ DISCHARGED 2026-07-15 (design-review gate, decision 2).** The author signed
+    `v-cancelled` on `ea891f0` from his own shell; verified: *Good "git" signature for
+    guy@publicdatamarket.com, ED25519 SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY*.
+    V is formally cancelled; the boundary closed without a freeze. No dangling boundary
+    tag remains.
 
 ---
 
@@ -1250,8 +1251,8 @@ document, and it is exactly how 'measured compute cost' enters without a fabrica
 *(Amended at the design-review gate, 2026-07-15 — S1: item 2 had gone stale.)*
 
 1. **§9 OPEN 11 — ✅ RULED 2026-07-15** (the delegation accepted; cost line recorded in
-   the row). **§9 OPEN 12 — ordered, one act outstanding**: sign `v-cancelled` from the
-   author's own shell.
+   the row). **§9 OPEN 12 — ✅ DISCHARGED 2026-07-15**: `v-cancelled` signed on `ea891f0`
+   from the author's own shell, verified. **This list is now empty.**
 2. **Sign — ✅ DONE**: `agent-boundary` (`f46e08c`) + `agent-boundary-r1` (the §5d R-D22
    re-tag), both verified. The author acts hereafter are per-step: each increment's freeze
    tag, and the R-D22 re-tag covering the 2026-07-15 amendment commit (riding step 2's
