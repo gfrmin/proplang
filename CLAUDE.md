@@ -153,6 +153,23 @@ Every step-6+ increment follows the recursive two-phase discipline:
    increment does not close until the author's own signed tag covers
    the oracle as amended; the countersignature is a condition of
    closure, never a courtesy afterwards.
+   Four clauses canonized at the step-2 boundary (the optimisation-law
+   freeze, 2026-07-15). A transcript proves only the row text ACTUALLY
+   FROZEN (the step-1 group-3 re-open): before the freeze seals a red
+   row, its exact drafted expression — never the prototype's own
+   variant of it — is executed once against the prototype; and the
+   transcript must force the frozen side of every comparison row to
+   normal form, independently of the stub side (one deepseq per row),
+   proving the red is attributable to the missing implementation
+   rather than to a defect the stub happens to shadow. An increment
+   whose step carries a falsifier runs it as an ORACLE-PHASE EVIDENCE
+   PROGRAM: executed on throwaway prototypes (R-D21), success criteria
+   pre-stated numerically, before any ruling freezes — so a freeze
+   never encodes what its own falsifier convicts. For a PIN-FREEZE —
+   an increment that pins an already-shipped fast path, where no
+   implementation is owed — the red-run clause is satisfied by a
+   seeded-defect demonstration: every row's red reachable, attribution
+   partitioned (the step-2 precedent).
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
@@ -164,6 +181,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
    verification block run by the human.
 
 The builder never owns a live oracle at the moment it becomes binding.
+
+THE OPTIMISATION LAW (canonized at the step-2 boundary; AGENT_PLAN
+§1b): any evaluator fast path is legal iff a property pins it,
+extensionally, to the general route — enforced, never trusted. It
+buys speed, never semantics, and it never enters the alphabet, so it
+never touches the prior. The §1b audit table is exhaustive-at-r1 (the
+step-2 sweep); every future fast path arrives with its pin in the
+same increment that lands it — never by appending to the step-2
+oracle.
 
 Custody: the builder signs its own commits with the builder key and
 never touches the author's; a freeze becomes binding when the author

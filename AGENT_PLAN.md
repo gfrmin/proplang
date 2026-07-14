@@ -127,7 +127,7 @@ Refund: **lg 7 − lg 6 = 0.222 bits on every stdlib mention, forever.**
 |---|---|---|---|
 | `bernFast` (`Eval.hs:179`) | the logit/expfam shape | **E7 `propExpansion`** (`test-expfam/ExpFam.hs:208`) | ✅ **the model** — pinned, enforced |
 | the `cond` engine (`Belief.hs:158-188`) | — (it **is** the general route) | **CL-4** (`test/Properties.hs:64-107`) | ⚠️ **gate ~360,000× too wide** — §2b |
-| `observeCounts` (`Enumerate.hs:649`) | **sufficiency** (batch collapse) | **nothing.** `test-d/D.hs:1041` tests only that the *wire syntax parses* | ❌ **trusted, not enforced** |
+| `observeCounts` (`Enumerate.hs:680`; the cite was `:649` when this table was drafted — corrected at the step-2 enactment, register 6.4) | **sufficiency** (batch collapse) | **nothing.** `test-d/D.hs:1041` tests only that the *wire syntax parses* — until step 2's `test-optlaw` | ❌ → ✅ **pinned at the step-2 freeze** |
 
 **`observeCounts` is a semantic fast path with a syntax test.** It collapses a batch to
 `(n₁, n₀)` — legal only because the bern code *happens* to have a sufficient statistic. Today
@@ -884,6 +884,13 @@ step 1 ✅ (`code-freeze-r0` `1027398` + `code-freeze-r1` `ea891f0`; as-built re
    cheapest audit coverage this project will ever buy). From this step onward every NEW
    production lands with its in-increment ablation, per the CLAUDE.md increment
    protocol's fixture clause.
+   **The optimisation law's first scheduled application (pre-registered at the step-2
+   freeze — the author's rider, 2026-07-15, quoted):** *"step 3's enumeration filter —
+   legalised as an optimisation by step-1 ruling 4 on a measured equivalence in a
+   discarded scratch — becomes a live fast path the moment it is implemented, and under
+   the clause you are about to freeze it must arrive with its pin in the same
+   increment."* The filter's pin is therefore an opening-checklist item of this step's
+   oracle, scheduled rather than remembered.
 4. **One pricing mechanism, two declared tables.** R4's derivation-relative dl **stands and is
    correct** (`GRAMMAR_HYGIENE_PLAN.md:168`; the builder's "two priors" claim was wrong) — but
    its literals (`dlConst = 1 + mention eg`, …) are `bitsAt` **with a hand-rolled table**. One

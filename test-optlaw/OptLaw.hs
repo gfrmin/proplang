@@ -45,7 +45,12 @@
 -- gates are 1e-11 in CL-4's own relative form for evidence and 1e-11
 -- absolute per posterior point: headroom x35 and x106 over the
 -- measured maxima — measured floor plus documented headroom, the
--- repaired-CL-4 idiom, never a number chosen before measurement.
+-- repaired-CL-4 idiom, never a number chosen before measurement. The
+-- headroom asymmetry with CL-4's x336/x840 is not an inconsistency
+-- (the author's ruling, 6.2): this residue is an N-term
+-- summation-order artefact at N = 39k — a different animal from
+-- cond's per-operation noise — and fixed generators plus the frozen
+-- toolchain make the distribution undriftable.
 --
 -- Every generator below is a byte-wise copy from the frozen corpus
 -- (R-D20-i), provenance per definition. Every asserted (n1, n0) pair

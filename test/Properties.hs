@@ -56,6 +56,17 @@ genBits n = vectorOf n (choose (0, 8))
 
 -- ---------------------------------------------------------------------
 -- CL-4: cond == Bayes, computed only through the public accessors
+--
+-- TOLERANCE PROVENANCE (repaired at the step-2 boundary, the
+-- optimisation-law freeze; an author re-open of Phase-1 frozen text --
+-- AGENT_PLAN section 2b): the original 1e-9 was chosen before any
+-- measurement and stood 360,000x wider than the machine's noise floor,
+-- on the very property that enforces the optimisation law. Measured
+-- floors: 2.76e-15 (2026-07-12, 100k cases); re-measured as-built at
+-- step 1's close: 2.971229e-15 (Saw) / 1.190530e-15 (Is) over 200k
+-- cases (code-task2-author-pack.md section 7). The repaired gate 1e-12
+-- carries documented headroom x336.6 / x840.0 over the measured floors
+-- -- a gate is born from a measurement, never from a round guess.
 -- ---------------------------------------------------------------------
 
 -- | Saw evidence: posterior expectation of f must equal
@@ -82,7 +93,7 @@ propCl4Saw =
          Just b' ->
            let lhs = expect b' f
            in counterexample ("cond: " ++ show lhs ++ " vs Bayes: " ++ show rhs)
-                (abs (lhs - rhs) <= 1e-9 * (1 + abs rhs))
+                (abs (lhs - rhs) <= 1e-12 * (1 + abs rhs))
 
 -- | Is evidence: conditioning on a declared event must equal the
 -- renormalized restriction.
@@ -104,7 +115,7 @@ propCl4Is =
          Just b' ->
            let lhs = expect b' f
            in counterexample ("cond: " ++ show lhs ++ " vs Bayes: " ++ show rhs)
-                (abs (lhs - rhs) <= 1e-9 * (1 + abs rhs))
+                (abs (lhs - rhs) <= 1e-12 * (1 + abs rhs))
 
 -- ---------------------------------------------------------------------
 -- fineness charged once

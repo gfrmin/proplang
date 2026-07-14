@@ -215,3 +215,18 @@ test-suite code
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- the step-2 increment oracle (AGENT_PLAN section 7 step 2, the
+-- optimisation law enforced); stanza applied at the step-2 freeze from
+-- test-optlaw/stanza.cabal.draft under the recorded Phase-B delegation
+-- (optlaw-author-pack.md sections 5.3 and 8)
+test-suite optlaw
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          OptLaw.hs
+    hs-source-dirs:   test-optlaw
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

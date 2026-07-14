@@ -367,5 +367,74 @@ Transcripts alongside this pack (scratch, quoted here, discarded after review):
 
 ---
 
-*Phase A ends here. The builder holds: no frozen file has moved; the oracle is
-untracked; the next act is the author's.*
+*Phase A ended here (commit `8f0330c`). Sections below record the Phase-B
+enactment under the author's rulings of 2026-07-15.*
+
+---
+
+## 8. Phase B enacted (2026-07-15, delegated; the tag is the countersignature)
+
+**The delegation (the author, verbatim, this increment, per-instance):**
+"Enact Phase B. Rulings on the register, then three riders." — with the
+rulings 6.1 ("accept, with the reading canonized, not packed... Append a
+fourth clause to the same CLAUDE.md edit"), 6.2 ("set the numbers as
+recommended"), 6.3 ("keep gBoundary, emphatically"), 6.4/6.5/6.6 ack (6.5
+amended, below), and the riders quoted where enacted. Closing: "Tag when
+ready; the step can close on the same signature if Phase C's gates are
+green." Every file edit below is builder action under this recorded
+instruction; the author's signed tag is the R-D22 countersignature.
+
+**Register outcomes:**
+
+| # | ruling | enacted as |
+|---|---|---|
+| 6.1 | ACCEPTED; the pin-freeze reading CANONIZED, not packed | CLAUDE.md increment-protocol item 2 gains the fourth clause: for a pin-freeze the red-run clause is satisfied by a seeded-defect demonstration — every row's red reachable, attribution partitioned |
+| 6.2 | numbers SET as recommended (1e-11 / 1e-11) | row text unchanged — the R-D21 transcript stands as run (49/49). The headroom asymmetry with CL-4 (×35/×106 vs ×336/×840) ruled not-an-inconsistency: this residue is an N-term summation-order artefact at N = 39k, a different animal from cond's per-operation noise; fixed generators + the frozen toolchain make the distribution undriftable. Sentence added to the oracle header (comment only) |
+| 6.3 | gBoundary KEPT, emphatically | recorded for the increment report: the refute rows are a **declared-limitation pin in the R-D23 sense** — they assert the approximation's continued existence, so making `observeCounts` exact for state-carrying agents someday is a deliberate boundary act with the pin re-drawn, never a silent drive-by improvement |
+| 6.4 | ack | the §1b stale cite fixed in AGENT_PLAN (`:649` → `:680`, dated) |
+| 6.5 | ack, AMENDED by the author | the latent-non-advancement is not unpinnable after all: **gBoundary's refute rows are its observable shadow** — batch differs from sequential on state-carrying agents precisely because latents don't advance, so the sealed surface expresses the assertion extensionally |
+| 6.6 | ack | — |
+
+**The riders, discharged:**
+
+1. **`v-cancelled` verified BEFORE the tag** (the OPEN-12 lesson, not
+   repeated): `git tag -v v-cancelled` → Good "git" signature, ED25519
+   SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY, object `ea891f0`.
+   The §5.5 rider text stands: the tag countersigns `5fa305d` + `0b20495`.
+2. **Manifest APPENDED, not re-sorted** (S5's principle applied to the
+   manifest's own history): existing 83 rows re-hashed in historical order
+   (exactly three hashes moved: `CLAUDE.md`, `test/Properties.hs`,
+   `proplang.cabal`), two rows appended (`test-optlaw/OptLaw.hs`,
+   `test-optlaw/stanza.cabal.draft`). 85/85 verify; the diff vs HEAD is
+   two-row-plus-three-refresh, reviewable.
+3. **The law's first future case PRE-REGISTERED**: AGENT_PLAN §7 step 3
+   gains the row (the author's sentence quoted verbatim): step 3's
+   enumeration filter — legalised as an optimisation by step-1 ruling 4 on
+   a measured equivalence in a discarded scratch — arrives with its pin in
+   the same increment; an opening-checklist item of step 3's oracle,
+   scheduled rather than remembered.
+
+**Freeze edits landed (each exactly as drafted in §5, plus the ruled fourth
+clause):** CLAUDE.md (the law as a titled paragraph after the increment
+protocol; the four clauses appended to item 2); `test/Properties.hs`
+(`1e-9` → `1e-12` at both CL-4 sites + the provenance paragraph — the named
+author re-open, enacted under this delegation); `proplang.cabal` (the
+`optlaw` stanza from the draft, with a dated provenance comment);
+`MANIFEST.sha256` (83 → 85 as above); AGENT_PLAN (rider 3 + the 6.4 cite).
+
+## 9. Phase C verification (gates; results recorded at enactment)
+
+**All seven gates PASS** (`audit/run-gates.sh --phase 2`, exit 0) with every
+freeze edit in place — gate 5 now runs twelve suites including `optlaw`,
+gate 6 verifies the 85-row manifest. Targeted confirmation of the two risk
+suites: `properties` PASS at the tightened `1e-12` (CL-4 both forms, 100
+QuickCheck cases each — the step-1 re-measure predicted ×336/×840 headroom
+and it held); `optlaw` PASS 7/7 (1.63 s). The step closes on the author's
+single tag (his ruling: "the step can close on the same signature if Phase
+C's gates are green").
+
+*The one remaining act is the author's, from his own shell:*
+
+```
+git tag -s optlaw-freeze-r0 <freeze-commit> -m "step 2 freeze: the optimisation law canonized; observeCounts pinned (test-optlaw, gates 1e-11/1e-11 from the measured residue); CL-4 repaired 1e-9 -> 1e-12 (the named Phase-1 re-open); manifest 85 rows. R-D22 riders: this tag countersigns the delegated design-review-gate commits 5fa305d and 0b20495, and the delegated Phase-B freeze edits of this increment."
+```
