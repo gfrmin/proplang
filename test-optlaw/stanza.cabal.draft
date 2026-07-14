@@ -1,0 +1,30 @@
+-- The step-2 increment oracle (AGENT_PLAN §7 step 2, the optimisation law
+-- enforced; scope PINNED at the design-review gate, ruled 2026-07-15).
+--
+-- Drafted by the BUILDER in the oracle phase; APPLIED BY THE AUTHOR at the
+-- step-2 freeze, alongside the manifest re-signing. This is the recorded
+-- pattern (the expfam increment; test-code/stanza.cabal.draft at step 1):
+-- proplang.cabal is manifest-frozen, so the builder never edits it -- the
+-- stanza rides on the author's freeze exactly as the CLAUDE.md law text and
+-- the test/Properties.hs re-open do.
+--
+-- Insert into proplang.cabal after the last test-suite stanza:
+
+test-suite optlaw
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          OptLaw.hs
+    hs-source-dirs:   test-optlaw
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+-- The frozen gate 5 (`cabal test all`) absorbs this suite with no edit to
+-- any frozen audit script -- CLAUDE.md's increment protocol, clause 1.
+--
+-- The `warnings` import is load-bearing and NOT a formality: the oracle-phase
+-- runner must be bit-faithful to the future gate conditions -- the stanza's
+-- exact compiler flags and warning set. "A red run under weaker flags proves
+-- nothing" (the ExpFam re-open, 4c7b49d).
