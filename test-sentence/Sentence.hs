@@ -46,13 +46,17 @@
 -- charter, code-task2-author-pack.md:394-401). Both orientations (the
 -- author's added row): a code lawful early and ill-formed late is
 -- neither pre-killed nor kept past its kill tick; ill-formed early and
--- lawful late is dead from its first observed tick. GATE PROVENANCE:
--- residue measured on the oracle-phase prototype BEFORE the gate froze
--- (the step-2 discipline); §6.4 measured the mechanisms bit-identical
--- and E-s2 measured the sentence route bit-identical to the old route
--- (13,992 floats, 0 mismatches) — the pin freezes at == only if the
--- fresh measurement reproduces that; otherwise the tolerance returns
--- to the sitting with the measured residue.
+-- lawful late is dead from its first observed tick. GATE PROVENANCE
+-- (residue measured on the oracle-phase prototype BEFORE any gate
+-- froze — the step-2 discipline, 2026-07-15): on the SHIPPED
+-- population the filter drops nothing, the routes are the same
+-- population, and the trajectory row pins ==. On populations where
+-- the filter ACTUALLY drops mass, == is REFUTED by measurement (the
+-- routes normalize over different candidate counts, algebraically
+-- equal and float-perturbed: max relative predictive residue
+-- 1.2115e-16, max absolute posterior residue 1.4433e-15) — that row's
+-- gates are proposed from the measured floor and RETURN TO THE
+-- SITTING, exactly per the author's pre-ruling.
 --
 -- SILENCE NEVER REFUTES (g2 — the code-freeze-r0 obligation row,
 -- AGENT_PLAN.md:869-878): a hypothesis is refuted only at ticks where
@@ -307,11 +311,12 @@ t1CompPre  = 0x3feccccccccccccc   -- P(y=1|t) for t in {0,59,60}
 t1CompPost = 0x3fb999999999999b   -- P(y=1|t) for t in {61,159,160}
 
 -- FRESH GOLDEN (new artifact, D2; filled from the oracle-phase
--- prototype run — the transcript proves the frozen text): the render
--- of the MAP sentence's emission code. Old render, as provenance label
--- only: t1MapProgram (Anchors) = the tau-11 guard.
+-- prototype run, proto-run 2026-07-15 — the transcript proves this
+-- frozen text): the render of the MAP sentence's emission code. The
+-- old tau-11 guard (provenance label: t1MapProgram in Anchors) is
+-- VISIBLE as the theta subtree — lineage on the artifact's face.
 t1RenderGolden :: String
-t1RenderGolden = "GOLDEN-FROM-PROTOTYPE (filled before the freeze)"
+t1RenderGolden = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8)), ('-', ('c', 'k', 1), ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8))))), ('log', ('c', 'k', 2)))))"
 
 g1cChangingWorld :: TestTree
 g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
@@ -470,8 +475,18 @@ t3CompHexes =
   , (400, 0x3fd9437c705edf8a)   -- section-11's one true value, relabeled
   ]
 
+-- the walk's emission is the identity-emission code over the latent
+-- axis (('var', 1) = the latent context); identical across the eight
+-- walks — the RATE lives in the move code, whose golden pins it
 t3RenderGolden :: String
-t3RenderGolden = "GOLDEN-FROM-PROTOTYPE (filled before the freeze)"
+t3RenderGolden = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('var', 1), ('-', ('c', 'k', 1), ('var', 1)))), ('log', ('c', 'k', 2)))))"
+
+-- filled from the prototype run 2026-07-15; ('c','rho',3) — the
+-- inferred drift rate — appears on the artifact's face, three times
+-- (the diagonal and the two reflections); ('c','k',3) is the shape
+-- grid's n-1 point
+t3MoveGolden :: String
+t3MoveGolden = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('pos', ('var', 1))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
 
 g1eForgetterTrap :: TestTree
 g1eForgetterTrap = testGroup "g1e test 3: the agent-vs-forgetter deliverable"
@@ -502,6 +517,8 @@ g1eForgetterTrap = testGroup "g1e test 3: the agent-vs-forgetter deliverable"
             t3CompHexes
       assertEqual "fresh render golden (new artifact)"
                   t3RenderGolden (renderExpr (hypEmit h))
+      assertEqual "fresh move-code golden (the rate is pinned here)"
+                  (Just t3MoveGolden) (fmap renderExpr (hypMove h))
   ]
 
 -- ---------------------------------------------------------------------
@@ -656,14 +673,12 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
       -- the shipped population is untouched (the fast path's real
       -- shipped effect is a no-op on the 1169 lawful sentences)
       length (filterTickFree (enumerateSentences fragFull)) @?= 1169
-  , testCase "filter == carry+refute, extensionally over shifted160 (posterior + predictive)" $ do
-      -- both routes fold the same observed stream; the pin compares
-      -- the pushed predictive and the surviving sentences' posteriors
-      -- at the nine checkpoints. GATE: == (bit), per the fresh
-      -- prototype measurement (header provenance); a residue here is
-      -- stop-and-report back to the sitting, never a widened gate.
-      let agFast = sentenceAgent (filterTickFree g3Candidates)
-          agSlow = sentenceAgent g3Candidates
+  , testCase "shipped population: the filter is extensionally a no-op, bit-exact" $ do
+      -- on the 1169 lawful sentences the filter drops nothing, so the
+      -- two routes are the SAME population and the trajectories pin at
+      -- == with no caveat — the shipped fast path's own pin
+      let agFast = sentenceAgent (filterTickFree (enumerateSentences fragFull))
+          agSlow = sentenceAgent (enumerateSentences fragFull)
           walk ag = scanl (\a (t, y) -> snd (stepAgentS t y a)) ag
                           (zip [0 ..] shifted160)
           fasts = walk agFast
@@ -676,6 +691,55 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
                assertEqual ("predictive P(y=1) at checkpoint t=" ++ show t
                               ++ " (bit)")
                            (castDoubleToWord64 pF) (castDoubleToWord64 pS))
+            g3Checkpoints
+  , testCase "fixture population: filter ~ carry+refute at the measured-floor gates" $ do
+      -- WHERE THE FILTER ACTUALLY DROPS MASS the routes normalize over
+      -- different candidate counts, algebraically equal and float-
+      -- perturbed: == is REFUTED by measurement (the oracle-phase
+      -- probe, 2026-07-15: max relative predictive residue 1.2115e-16
+      -- = 5 ulps at t=80; max absolute posterior residue 1.4433e-15;
+      -- several checkpoints bit-exact). GATES PROPOSED FROM THE
+      -- MEASURED FLOOR, the repaired-CL-4 idiom: 1e-14 relative on the
+      -- predictive (headroom x83), 1e-13 absolute per posterior point
+      -- (headroom x69) — A SITTING ITEM: the author confirms or sets
+      -- these at the freeze (his pre-ruling: == only if bit-identity
+      -- reproduced; it did not, so the measured residue returns to the
+      -- sitting exactly as instructed).
+      -- Posterior rows start at the first OBSERVED checkpoint: at t=0
+      -- (pre-observation) the carried route's dropped sentence still
+      -- holds its prior mass BY DESIGN — refutation needs evidence —
+      -- so a posterior comparison there is a category error; the t=0
+      -- PREDICTIVE row stands (condition-on-denotation renormalizes,
+      -- and measured bit-equal there).
+      let tolG3Pred = 1e-14
+          tolG3Post = 1e-13
+          fastList = filterTickFree g3Candidates
+          nF = length fastList
+          nS = length g3Candidates
+          droppedIx = 1169    -- tickFreeIllHyp's position in g3Candidates
+          s2 i = if i < droppedIx then i else i + 1
+          walk ag = scanl (\a (t, y) -> snd (stepAgentS t y a)) ag
+                          (zip [0 ..] shifted160)
+          fasts = walk (sentenceAgent fastList)
+          slows = walk (sentenceAgent g3Candidates)
+      mapM_ (\t -> do
+               let pF = prob (predictive [("t", fromIntegral t)] (fasts !! t))
+                             (is obsSpace 1)
+                   pS = prob (predictive [("t", fromIntegral t)] (slows !! t))
+                             (is obsSpace 1)
+               assertBool ("predictive residue at t=" ++ show t ++ ": "
+                             ++ show (abs (pF - pS)))
+                          (abs (pF - pS) <= tolG3Pred * (1 + abs pS))
+               assertBool ("the dropped sentence is refuted from the first "
+                             ++ "observed tick (exact zero), t=" ++ show t)
+                          (t == 0
+                             || posteriorOf (slows !! t) nS droppedIx == 0)
+               assertBool ("posterior residue at t=" ++ show t)
+                          (t == 0
+                             || and [ abs (posteriorOf (fasts !! t) nF i
+                                             - posteriorOf (slows !! t) nS (s2 i))
+                                        <= tolG3Post
+                                    | i <- [0 .. nF - 1] ]))
             g3Checkpoints
   , testCase "reverse orientation: lawful early, ill-formed late — killed AT its tick, in both routes" $ do
       -- lawfulThenIllHyp refuses from t=3 on; the first OBSERVED tick
