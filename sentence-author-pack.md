@@ -784,3 +784,130 @@ becomes utterable. Printed at the declaration site
 the OVERLAY form of R-D21 — the prototype wearing the real module's
 name so the oracle's exact frozen text compiles unchanged — named the
 preferred form where the prototype can carry the module interface.**
+
+## 25. Phase B, EXECUTED (the delegated freeze edits, R-D22)
+
+Delegation recorded verbatim in every commit: **"With the two §19
+rulings recorded in the upgraded form, the freeze proceeds over §20 as
+listed."** (the author's sitting message, 2026-07-15). Builder commits:
+`56bb823` (the sitting enacted), `3eb291a` (§20.1–2), `2f524e3`
+(§20.3), `f4cf249` (§20.4–5), plus the manifest commit closing this
+part. Every edit below awaits the author's signed tag — R-D22: the
+countersignature is a condition of closure.
+
+**§20.1–2 — merge + retirements.** The sentence stanza is in
+proplang.cabal; `test/Acceptance.hs`, `test-d/` (+2 ablations),
+`test-govhost/` (+UseDriver), the govhost executable, and
+`host-governor/{Main,Wire,WireU}.hs` are retired; their stanzas left
+the cabal and THE HOST-LESS WINDOW is stated in their place (D3 rider
+2). One fidelity touch beyond the strict list, recorded: the membrane
+stanza comment's acceptance-suite reference marked retired (a
+freeze-edit leaves no false sentence behind).
+
+**§20.3 — the re-opens, each with its evidence.**
+
+- **test-optlaw**: generators to the sentence route. The u-agents' dl
+  charges and the σ-mixture's tau/w data are DECLARED WORLD DATA
+  (formulas byte-copied, provenance in-file); the pin machinery and
+  tolEv/tolPost are byte-preserved; three declared deltas in the
+  header. **Continuity measured at == twice over**: E-s2's
+  13,992-float zero-mismatch (§15), and a fresh two-route probe of
+  the PORTED generators through the full prototype sentence machinery
+  against the still-live old route — **2,416 hex lines (batch +
+  sequential evidence and complete posteriors, pointer/uConst/uAll/
+  world, including the corpus pair and both 1,169-point world
+  posterior vectors), ZERO diff** (`spots-old.txt`/`spots-new.txt`).
+  Red 7/7 named-stub; proto overlay SAT 7/7.
+- **The prototype caught mid-Phase-B**: the re-opened optlaw's SAT run
+  found `observeVia` had no sentence arm (non-exhaustive case at the
+  supplied-emission row) — the executable design was incomplete
+  exactly where no test-sentence row had reached. The arm was added
+  mirroring stepSent's latent handling with the supplied kernel; the
+  full sentence suite re-ran 27/27 SAT afterwards
+  (`rd21-proto-transcript-r2.txt` supersedes r1; identical content,
+  final proto). Phase C inherits the arm as part of the design.
+- **test-expfam**: `nameAt` → `bernFast` (value-invariant by the
+  definitional equation, Eval.hs:206); the r0 :137 pricing row and
+  :189 render golden retired with the constructor; group 6 retired per
+  the schedule's own booking (KEEP E7 — the law-shaped row); the bern
+  ablation row + UseBern.hs DISCHARGED-PERMANENT. The suite is green
+  TODAY (16/16) and stays green through Phase C.
+- **test-hygiene**: the one enumeration call ported (closed forms,
+  1169, order unchanged). Red 1/15 named-stub; proto SAT 15/15.
+  NOTE: the manifest-derived sweep found NO STDNAME-reading pin in
+  this file (its alphabet pins read prodExpr = 19, untouched); §2's
+  "×6 alphabet-constant pins" row was imprecise on that point.
+- **The STDNAME 7→6 re-pricing (P5, D4 adjudication)**: the
+  manifest-derived sweep found exactly THREE executable
+  STDNAME-reading pins — `test-ladder/fixture/Sayable.hs:205`,
+  `test-prepost/fixture/SayableP.hs:190`,
+  `test-cirl/fixture/SayableC.hs:161`. Each adjudicated: the lg 7
+  term IS the stdname-choice charge, so each moves to lg 6. All
+  three suites are red at EXACTLY that one row each (verified by
+  direct fixture runs) until `prodTable` moves 7→6 with the Phase-C
+  demolition — the pin re-pricing preceding the constant, the
+  correct oracle-first order.
+- **test-membrane**: action rows stay, constructions ported
+  (`enumerateSentencesIn`/`sentenceAgent`); group 6 retired in favor
+  of g1's ports; MAP rows pin the FRESH sentence goldens (D2 —
+  byte-copies of test-sentence's t1/t3 goldens, old render anchors
+  now provenance labels in comments; the C0 control row keeps its
+  by-structure form through the fresh golden). Red 12/27 named-stub;
+  proto SAT 27/27 — including the membrane-fold bit-identity, the
+  dormant-sensor prior ratios under namespace pricing, and both MAP
+  goldens through runMembrane.
+
+**§20.4–5 — canonization + schedule prose.** CLAUDE.md carries the
+three step-3 lines (sweep-universe, discharged-permanent, the overlay
+form as preferred). typed-port-spec.md's normative STDNAME row reads
+six members at log2 6 with a dated repair note (the prepost-precedent
+form); design.md and interface.md carry dated step-3 notes;
+EXPFAM_PLAN.md T1/E9 annotated; AGENT_PLAN §8's rows marked executed,
+the Wire.hs row amended per D3 rider 1, the retirement row records
+govhost/test-d falling at 3 as the rule firing early.
+
+**DISCOVERED, SURFACED, NOT FIXED (outside the delegation):**
+1. `typed-port-spec.md`'s normative table EXPR row still reads the ten
+   r0 productions at log2 10 — the step-1 10→19 alphabet move never
+   amended it (a frozen-text falsehood standing since code-freeze-r0).
+   One-literal-and-list repair; needs the author's word (it can ride
+   this tag if he includes it, or the next boundary).
+2. `audit/run-gates.sh`'s header comment (:12, :85) still names
+   test/Acceptance.hs for gate 5; the gate's mechanism is `cabal test
+   all` and is unaffected. The frozen audit script was not touched.
+
+**Manifest**: regenerated in the rider-2 form — 85 rows − 13 retired
+(Acceptance 1, test-d 6, test-govhost 5, UseBern 1) = 72 re-hashed
+survivors + 6 test-sentence rows = **78 rows, `sha256sum -c` 78/78
+OK**. Binding on the author's tag.
+
+**The gate state after Phase B** (`cabal test all`): GREEN —
+properties 3/3, code 45/45, expfam 16/16. ORACLE-RED, attribution
+total — sentence 20/27 (named stubs), optlaw 7/7 (named stubs),
+hygiene 1/15 (named stub), membrane 12/27 (named stubs), ladder 1/20 +
+prepost 1/15 + cirl 1/17 (each exactly the re-priced STDNAME pin).
+Gate-1 compile of all six src modules clean under the full warning
+set.
+
+## 26. Reviewer verification block (supersedes §21 after Phase B)
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+# the amended oracle: red 20/27, every exception a named step-3 stub
+cabal exec -- ghc -Wall -Werror -Wincomplete-patterns \
+  -Wincomplete-uni-patterns -isrc -itest -itest-sentence \
+  -outputdir /tmp/s3red -o /tmp/s3red/oracle test-sentence/Sentence.hs
+/tmp/s3red/oracle 2>&1 | grep -c "step-3 stub"     # 20
+# SAT: 27/27 sentence, 7/7 optlaw, 15/15 hygiene, 27/27 membrane
+# against the prototype overlay (ask the builder for the scratch path)
+# continuity: diff spots-old.txt spots-new.txt -> empty (2,416 lines)
+# the STDNAME re-pricing red is exactly one row per suite:
+sh test-ladder/sayable.sh 2>&1 | grep FAIL   # the lg 6 price pin only
+# suites + custody
+cabal test all      # green: properties/code/expfam; red set as SS25
+sha256sum -c MANIFEST.sha256   # 78/78
+```
+
+**Phase B is complete; the step stops for the author's freeze tag over
+the amended oracle and the delegated edits (R-D22). Phase C (the
+demolition) begins only after the tag.**
