@@ -337,3 +337,60 @@ three tree builders land as prototyped; `enumerateSentencesGrid`'s
 where-block charges route through the declared trees; `bitsAt` builds
 mirrored trees and prices through the mechanism (D-p1(B)); all eleven
 suites green; as-built report.**
+
+---
+
+# PART IV — the implementation: as-built (2026-07-15)
+
+Authorized by `pricing-freeze-r0` on `9296d24` (signature verified).
+Builder commit: `8a6d00f`. **All eleven suites green on the FIRST full
+run (pricing 8/8); gates 1–7 PASS; manifest 80/80.**
+
+## 15. As-built answers
+
+**The mechanism.** `chargeBits` landed in Syntax.hs as prototyped;
+**grep now finds exactly ONE width-to-bits site in src** — its CW arm
+(the verified obligation row: `logBase 2 (fromIntegral (w s))`,
+Syntax.hs:467). The fragment's three charge trees landed in
+Enumerate.hs as declared data with the frozen tree shapes;
+`enumerateSentencesGrid`'s hand fold bindings (wOf/nsB/lgSize and the
+dl* arithmetic) are DELETED — the enumerator's charges are
+chargeBits-of-declared-tree reads and nothing else.
+
+**D-p1(B), as built.** `bitsAt` builds mirrored `Charge PolSort`
+trees — `PolSort` internal (the public single site stays `prodTable`,
+whose fields its constructors name one-for-one), every CPP guard
+preserved, the shapes node-for-node the E-p1-measured mirror — and
+prices through the mechanism. Its old fold bindings
+(nodeB/stdB/kerB/statsB/utilB/fnB/lgOf) died with the rewrite. The
+§1b caution is printed on the worker's face: any future shortcut
+that skips tree-building is a fast path and arrives with its pin.
+
+**First-run green, again**: E-p1's 15,790/0 predicted bit-stability
+through the mechanism, and the run cashed it — every frozen price
+anchor (test-sentence g1's dl multiset and sum hex, test-hygiene's
+groupDlPins and groupBits, the three sayable pins at lg 6, membrane's
+namespace-pricing rows, expfam's lg 2 row) byte-stable; the pricing
+suite's wiring pin held per-sentence over all three populations; the
+doctrine row's one-ulp pair stands as the permanent tripwire.
+
+**Debts standing, unchanged**: the HEAD width-2 DEBT (printed at the
+declaration, on g4's row, and now on the spec's normative face); the
+host-less window until step 5/7.
+
+## 16. Reviewer verification block (Phase C)
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+git tag -v pricing-freeze-r0        # the freeze this executes
+cabal test all                      # eleven suites, all green
+sh audit/run-gates.sh               # 7/7 PASS
+sha256sum -c MANIFEST.sha256        # 80/80
+# the obligation row, literal:
+grep -rn 'logBase 2 (fromIntegral (w s))' src/   # exactly one site
+grep -rn 'wOf\|lgOf' src/                        # empty
+```
+
+**Step 4 is implemented and green under the signed freeze. The
+increment closes on the author's review of this report — the two-tag
+shape offers `pricing-freeze-r1` on the as-built.**
