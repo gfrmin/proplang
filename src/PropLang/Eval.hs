@@ -202,9 +202,6 @@ applyStd VThinkK (d :. b :. k :. ys :. u :. acts :. n :. price :. VNil) =
 applyStd VPre (d :. b :. ch :. ys :. uD :. ds :. u :. acts :. n :. price :. VNil) =
   vPre d b ch ys uD ds u acts n price
 #endif
-#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
-applyStd (Bern car) (th :. VNil) = bernFast car th
-#endif
 
 negInf :: Double
 negInf = -1 / 0
@@ -230,8 +227,10 @@ statVal s = case s of
 -- semantics, and its expfam expansion is the property-enforced
 -- contract (test-expfam group 5). Exported (additively) so the
 -- domain's emission kernel in "PropLang.Enumerate" is this same form —
--- one arithmetic, no drift. Survives DROP_BERN (the name is sugar;
--- capability survives its deletion) and dies with the basis (E9).
+-- one arithmetic, no drift. SURVIVED the step-3 deletion of the Bern
+-- name itself (the name was sugar; capability survives its deletion —
+-- the sentence route says Bernoulli emission as a code) and dies with
+-- the basis (E9).
 bernFast :: Carrier Int -> Double -> Belief Int
 bernFast car th =
   fromBits (carrierSpace car)

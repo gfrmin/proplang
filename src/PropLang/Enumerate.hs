@@ -2,31 +2,30 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE GADTs #-}
 
--- | The model fragment and the agent (typed-port-spec §6): enumeration to
--- the Cromwell frontier (depth-1 in @if@; a parameter of the
--- implementation, not the language), and the belief-over-programs agent
--- moved only by the verbs. No adaptation code exists here — that is the
--- point, and audit gate 4 checks it.
+-- | The sentence fragment and the agent (typed-port-spec §6 as amended
+-- at the step-3 sentence freeze): enumeration to the Cromwell frontier
+-- (depth-1 in @if@; a parameter of the implementation, not the
+-- language), and the belief-over-programs agent moved only by the
+-- verbs. No adaptation code exists here — that is the point, and audit
+-- gate 4 checks it.
 --
--- The clock is externalized: callers pass the tick as an ordinary feature
--- @[("t", t)]@ (interface.md §5, the host's tick echo) — a deliberate,
--- reviewed deviation from the Python reference's internal @self.t@.
--- There is no @disabled@ knob: deletion audits ablate the grammar itself
--- (gate 7) or restrict enumeration; they never mock.
+-- SINCE THE STEP-3 DEMOLITION (AGENT_PLAN §7 step 3, the sentence
+-- freeze): a hypothesis IS a sentence — its emission is a CODE of the
+-- real grammar over its declared latent axis, priced by the DECLARED
+-- production table ('FragSort' widths), and state-carrying hypotheses
+-- carry a move code of the same grammar. The old parallel encoding
+-- ('Model', 'Terminal', the hmm/bern representation) and the utility
+-- fragment ('UFamily', 'TauSpec', the verdict kernel, the latent
+-- accessors) were DELETED at that boundary; their surviving anchors
+-- were ported to the step-3 oracle through this surface, bit-stable
+-- (E-s1/E-s2, the pack's measurements).
 --
--- A hypothesis's parameter IS a sentence of the real grammar
--- ("PropLang.Syntax") and is evaluated by the real evaluator with the
--- tick features — hypotheses are programs, not a parallel encoding.
+-- The clock is externalized: callers pass the tick as an ordinary
+-- feature @[("t", t)]@ (interface.md §5, the host's tick echo). There
+-- is no @disabled@ knob: deletion audits ablate the grammar itself
+-- (gate 7) or restrict the enumerated production set; they never mock.
 module PropLang.Enumerate
-  ( Terminal(..)
-  , allTerminals
-  , Model
-  , renderModel
-  , renderExpr
-  , enumerateModels
-  , enumerateModelsIn
-  , enumerateModelsGrid
-  , modelBits
+  ( renderExpr
   , Obs
   , obsSpace, thetaSpace
   -- the declared grids, exported for the step-1 oracle (AGENT_PLAN, boundary
@@ -39,6 +38,25 @@ module PropLang.Enumerate
 #ifndef DROP_CARRIER_OBS
   , obsCarrier
 #endif
+  -- THE STEP-3 SENTENCE SURFACE (a hypothesis becomes a sentence).
+  -- Unguarded: sentences are sayable without the scoring layer,
+  -- exactly as the fragment is.
+  , FragSort (..)
+  , FragProd (..)
+  , fragSortOf
+  , fragWidth
+  , fragFull
+  , Hyp (..)
+#if !defined(DROP_CODE) && !defined(DROP_POS) && !defined(DROP_TOR)
+  -- the enumerators UTTER the step-1 constructors (every sentence is a
+  -- code; the walk move reads positions; bern's body reads the carrier
+  -- through ToR) — they die with any of them, consumers-down (the
+  -- strengthened ablation standard)
+  , enumerateSentences
+  , enumerateSentencesIn
+  , enumerateSentencesGrid
+#endif
+  , filterTickFree
   -- the scoring layer dies with the basis or with the carrier
   -- declaration (plan E9): delete expfam — or the declared output
   -- space — and sentences stay sayable but NOTHING can assign
@@ -46,53 +64,18 @@ module PropLang.Enumerate
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
   , emit
   -- the reflected walk, for the step-1 oracle to compare its code form
-  -- against (R-D20-i). Guarded exactly as its DEFINITION is (:349) — an
+  -- against (R-D20-i). Guarded exactly as its DEFINITION is — an
   -- unconditional export made the DROP_CARRIER_OBS ablation fail on
   -- 'walkOn' instead of 'obsCarrier', breaking the deletion audit's
   -- attribution check. The audit caught it; that is what it is for.
   , walkOn
   , Agent
-  , mkAgent
+  , sentenceAgent
   , predictive
   , observe
-  , agentMeta
-  , agentModels
-#ifndef DROP_UPILOT
-  -- the latent-utility fragment's type surface (HOSTS_D_PACK Task 1;
-  -- the arithmetic lands only after the author's freeze)
-  , TauSpec
-  , mkTauSpec
-  , UFamily (..)
-  , allUFamilies
-  , enumerateUModels
-  , verdictKernel
-  , latentMarginal
-  , latentName
-  , latentPoints
-  , latentChannel
   , observeVia
   , observeCounts
-#endif
-#endif
-  -- THE STEP-3 TYPE SURFACE (AGENT_PLAN §7 step 3: a hypothesis becomes
-  -- a sentence). Oracle-phase stubs until the author's freeze — the
-  -- increment-D precedent (:495-499). Unguarded: sentences are sayable
-  -- without the scoring layer, exactly as the fragment is.
-  , FragSort (..)
-  , FragProd (..)
-  , fragSortOf
-  , fragWidth
-  , fragFull
-  , Hyp (..)
-  , enumerateSentences
-  , enumerateSentencesIn
-  , enumerateSentencesGrid
-  , filterTickFree
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
-  -- the agent over sentences dies with the scoring layer, exactly as
-  -- 'Agent' itself does (the E9 boundary: sentences stay sayable, but
-  -- without the carrier no likelihood exists and no agent can be built)
-  , sentenceAgent
+  , agentMeta
 #endif
   ) where
 
@@ -113,17 +96,9 @@ import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), K, Name,
                         carrierName, gridName, gridSize, mkC, mkCarrier,
                         mkGrid, mkNamespace, nsSize)
 
--- | The model-fragment terminals, for restricted enumeration in the
--- deletion audit (deleting a terminal = enumerating without it).
-data Terminal = TBern | THmm | TIf | TGt | TGet | TC
-  deriving (Eq, Show)
-
-allTerminals :: [Terminal]
-allTerminals = [TBern, THmm, TIf, TGt, TGet, TC]
-
 -- ---------------------------------------------------------------------
 -- the priced grids (data with prices, design §5 — the only numeric
--- content of the model fragment)
+-- content of the sentence fragment)
 -- ---------------------------------------------------------------------
 
 thetaPoints :: NonEmpty Double
@@ -140,54 +115,12 @@ tauGrid   = mkGrid "tau" tauPoints
 rhoGrid   = mkGrid "rho" rhoPoints
 
 -- ---------------------------------------------------------------------
--- hypotheses as programs
+-- rendering
 -- ---------------------------------------------------------------------
 
--- | A model-fragment sentence (a hypothesis): a Bernoulli emission whose
--- parameter is a closed sentence of the grammar, or a latent reflected
--- walk whose rate constant IS the sentence it is (R8 — Python's
--- @('hmm', ('c', 'rho', k))@ literally): rate value by evaluation,
--- rendering by match. Every hypothesis carries its description length,
--- charged at the derivation (design §5, plan R4): dl is relative to
--- the model fragment's own production grammar, not the policy
--- pricer's. Abstract to consumers.
--- Since boundary E the emission hypotheses carry their value space —
--- the theta grid as declared world data, the MUConst/MUWalk pattern
--- (one shape, two instantiations); the walk additionally carries the
--- point list its reflected steps index.
-data Model
-  = MBern Bits (Expr '[] Double) (Space Double)
-  | MHmm Bits (Expr '[] Double) (Space Double) (NonEmpty Double)
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
-  -- the latent-utility sorts (increment D): a utility hypothesis
-  -- carries the DECLARED emission channel it steps through (world
-  -- data, the enumerateUModels argument) and its value space (the
-  -- evaluated grid) — the sentence is still the only content
-  | MUConst Bits (Expr '[] Double) (Kernel Double Obs) (Space Double)
-            (NonEmpty Double) Name
-#ifndef DROP_UWALK
-  | MUWalk Bits (Expr '[] Double) (Kernel Double Obs) (Space Double)
-           (NonEmpty Double) Name
-#endif
-#endif
-
--- | Canonical rendering, byte-identical to the Python reference's repr,
--- e.g. @"('hmm', ('c', 'rho', 3))"@. The frozen tests assert MAP
--- programs against these exact strings.
-renderModel :: Model -> String
-renderModel (MBern _ p _)  = "('bern', " ++ renderExpr p ++ ")"
-renderModel (MHmm _ e _ _) = "('hmm', " ++ renderExpr e ++ ")"
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
-renderModel (MUConst _ e _ _ _ _)  = "('uconst', " ++ renderExpr e ++ ")"
-#ifndef DROP_UWALK
-renderModel (MUWalk _ e _ _ _ _) = "('uwalk', " ++ renderExpr e ++ ")"
-#endif
-#endif
-
--- | Rendering is total over the grammar; only the model fragment's
--- shapes are ever asserted against the frozen oracle. Exported since
--- the expfam increment (additive) so the increment oracle can pin the
--- new nodes' strings.
+-- | Rendering is total over the grammar. Exported since the expfam
+-- increment (additive) so increment oracles can pin node strings; the
+-- step-3 goldens pin whole sentence renders (emission and move codes).
 renderExpr :: Expr env t -> String
 renderExpr e0 = case e0 of
   C g k _    -> "('c', '" ++ gridName g ++ "', " ++ show k ++ ")"
@@ -248,104 +181,11 @@ renderExpr e0 = case e0 of
 #ifndef DROP_VPRE
     stdNameStr VPre = "VPre"
 #endif
-#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
-    stdNameStr Bern {} = "bern"
-#endif
     statsStr :: Stats c' -> String
     statsStr s = case s of
 #ifndef DROP_SID
       SId -> "id"
 #endif
-
--- The description length of a hypothesis: its ONLY prior contribution
--- (design §5), charged at the derivation and stored on the hypothesis
--- (plan R4).
-modelBits :: Model -> Bits
-modelBits (MBern dl _ _)  = dl
-modelBits (MHmm dl _ _ _) = dl
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_UPILOT)
-modelBits (MUConst dl _ _ _ _ _)  = dl
-#ifndef DROP_UWALK
-modelBits (MUWalk dl _ _ _ _ _) = dl
-#endif
-#endif
-
--- | Enumerate the model fragment to depth 1 (the Cromwell frontier) from
--- the allowed terminal set. Order and count match the Python reference
--- (full set: 1169 sentences under the current grids): the constant
--- Bernoullis, then the walks, then the change-point sentences with the
--- threshold outermost. Since the membrane increment this is the
--- singleton-namespace, no-extra-guards case of 'enumerateModelsIn' —
--- one generator, one arithmetic, no drift; the frozen anchors keep it
--- honest and the membrane oracle pins the identity.
-enumerateModels :: [Terminal] -> [Model]
-enumerateModels = enumerateModelsIn (mkNamespace ("t" :| [])) []
-
--- | Namespace-relative enumeration (MEMBRANE_PLAN T1/M1; the namespace
--- law, spec §3): the model fragment with (a) the name-mention term
--- inside every guard charged @log2 |ns|@ against the world's declared
--- namespace, and (b) the guard family extended by the given extra
--- (name, threshold grid) pairs, in declaration order after the
--- built-in @("t", tau)@ family.
-enumerateModelsIn :: Namespace -> [(Name, Grid)] -> [Terminal] -> [Model]
-enumerateModelsIn = enumerateModelsGrid thetaPoints
-
--- | Emission-grid-relative enumeration (boundary E): the theta grid is
--- world data like every other grid on the wire, and
--- 'enumerateModelsIn' is this function at the built-in linear grid —
--- byte-identical by construction. The grid is priced where it is
--- mentioned, so a declared grid of another size buys another model
--- count at another price; the handshake prints what was bought.
-enumerateModelsGrid :: NonEmpty Double -> Namespace -> [(Name, Grid)]
-                    -> [Terminal] -> [Model]
-enumerateModelsGrid egPts ns extras allowed =
-    consts ++ walks ++ concatMap guardFamily (("t", tauGrid) : extras)
-  where
-    eg = mkGrid "theta" egPts
-    egSpace = mkSpace egPts
-    has t = t `elem` allowed
-    -- every constant enters through the grammar's only door; the
-    -- index range IS the grid, so completeness is the frozen 1169
-    -- count plus the hygiene dl pins (R8)
-    onGrid g = [ e | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
-    thetaCs = onGrid eg :: [Expr '[] Double]
-    -- description lengths, charged at the derivation choice points
-    -- (design §5; plan R4). The addition trees are term-for-term the
-    -- arithmetic the parity-phase pricer produced — the anchors'
-    -- byte-stability lives in these parentheses:
-    --   mention  = constant-choice bit + grid index
-    --   constant = model bit + mention(theta)
-    --   walk     = model bit + rho index (no param-alternative bit,
-    --              amended design.md §5)
-    --   guard    = model bit + (if bit + guard head + two theta
-    --              mentions), head = (Get bit + log2 |ns|) +
-    --              mention(threshold grid) — the frozen dlChange with
-    --              the namespace charge as data (0 while singleton)
-    mention g = 1 + logBase 2 (fromIntegral (gridSize g))
-    nsB :: Double
-    nsB = case nsSize ns of
-      1 -> 0
-      k -> logBase 2 (fromIntegral k)
-    dlConst, dlWalk :: Double
-    dlConst  = 1 + mention eg
-    dlWalk   = 1 + logBase 2 (fromIntegral (gridSize rhoGrid))
-    dlGuard g = 1 + (((1 + ((1 + nsB) + mention g))
-                      + mention eg) + mention eg)
-    consts =
-      [ MBern (Bits dlConst) e egSpace
-      | has TBern, has TC, e <- thetaCs ]
-    walks =
-      [ MHmm (Bits dlWalk) e egSpace egPts
-      | has THmm, has TC, e <- onGrid rhoGrid ]
-    -- the reference excludes the diagonal by index (k1 /= k2)
-    guardFamily (nm, g) =
-      [ MBern (Bits (dlGuard g)) (If (Gt (Get nm) tc) t1 t2) egSpace
-      | has TBern, has TIf, has TC, has TGet, has TGt
-      , tc <- onGrid g
-      , (k1, t1) <- indexed thetaCs
-      , (k2, t2) <- indexed thetaCs
-      , k1 /= k2 ]
-    indexed = zip [0 :: Int ..]
 
 -- ---------------------------------------------------------------------
 -- the demonstration domain
@@ -371,422 +211,12 @@ obsCarrier = mkCarrier "obs" (0 :| [1])
 thetaSpace :: Space Double
 thetaSpace = mkSpace thetaPoints
 
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
--- | The Bernoulli emission kernel theta -> Belief over the declared
--- obs carrier: since the expfam re-derivation (plan E7/Task 5) this IS
--- the derived name's fast form spread over the theta grid — one
--- arithmetic, no drift (test-expfam groups 4 and 7 pin the identity),
--- and the same float sequence the parity phase shipped.
-emit :: Kernel Double Obs
-emit = kernel thetaSpace (carrierSpace obsCarrier) (bernFast obsCarrier)
-
--- The reflected walk on a value grid at a grid-priced rate: a
--- decision-free combinator, total and domain-independent (design §9).
--- Mass is a total function of grid POSITIONS: a point with no position
--- has mass 0, i.e. infinite description length through 'fromBits' —
--- the measure's own off-support statement, the same road every
--- non-neighbor grid point already travels. No error site (R8);
--- 'kernel' only ever applies 'step' to points of its own space. One
--- shape, every instantiation (boundary E): the hmm family walks on its
--- carried emission grid exactly as the utility fragment's UWalk walks
--- on its declared value grid.
-walkOn :: Space Double -> NonEmpty Double -> Double -> Kernel Double Double
-walkOn vs vpts rho = kernel vs vs step
-  where
-    pts = toList vpts
-    n = length pts
-    mass (Just i) (Just j) =
-      (if j == i then 1 - rho else 0)
-        + (if j == lo then rho / 2 else 0)
-        + (if j == hi then rho / 2 else 0)
-      where
-        lo = if i > 0 then i - 1 else i + 1
-        hi = if i < n - 1 then i + 1 else i - 1
-    mass _ _ = 0
-    step v =
-      let mi = elemIndex v pts
-      in fromBits vs
-           (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
-
 -- ---------------------------------------------------------------------
--- the agent: a belief over programs, moved only by the verbs
--- ---------------------------------------------------------------------
-
--- Per-hypothesis filtered state: Bernoulli sentences are stateless
--- (their carried value space serves the supplied-kernel verbs); a
--- walk carries its value space and points, its rate, and its current
--- latent belief.
-data HypState
-  = HBern (Space Double) (Expr '[] Double)
-  | HHmm (Space Double) (NonEmpty Double) Double (Belief Double)
-#ifndef DROP_UPILOT
-  -- a utility hypothesis's filtered state: the carried channel, the
-  -- value space, and (constant) the value / (walk) rate + latent
-  | HUConst (Kernel Double Obs) (Space Double) Double
-#ifndef DROP_UWALK
-  | HUWalk (Kernel Double Obs) (Space Double) (NonEmpty Double) Double
-           (Belief Double)
-#endif
-#endif
-
--- | A belief over programs plus per-hypothesis filtered latent state.
-data Agent = Agent [Model] [HypState] (Space Int) (Belief Int)
-
--- | The meta-prior is 2^(-description length), through the only prior
--- source. The frozen signature admits no failure value, so an empty
--- enumeration mirrors the reference's raise (unreachable from the
--- frozen suites, which take lengths before ever folding an agent).
-mkAgent :: [Model] -> Agent
-mkAgent ms = case nonEmpty [0 .. length ms - 1] of
-  Nothing  -> error "mkAgent: empty model enumeration"
-  Just ixs ->
-    let dls = map modelBits ms
-        isp = mkSpace ixs
-    in Agent ms (map initHyp ms) isp (fromBits isp (dls !!))
-
--- The walk's rate is read by evaluating its rate sentence — a closed
--- constant of the real grammar, so the read is total and the parity
--- phase's off-grid error site is gone (R8).
-initHyp :: Model -> HypState
-initHyp (MBern _ p sp)    = HBern sp p
-initHyp (MHmm _ e sp pts) =
-  HHmm sp pts (evalx e (mkEnv [] VNil)) (uniform sp)
-#ifndef DROP_UPILOT
-initHyp (MUConst _ e k vs _ _)  = HUConst k vs (evalx e (mkEnv [] VNil))
-#ifndef DROP_UWALK
-initHyp (MUWalk _ e k vs pts _) =
-  HUWalk k vs pts (evalx e (mkEnv [] VNil)) (uniform vs)
-#endif
-#endif
-
--- One tick of one hypothesis at the given features: its predictive over
--- observations, and its absorb continuation (the walk conditions the
--- SAME one-step-pushed latent it predicted from, verb for verb as the
--- reference).
-stepHyp :: Features -> HypState -> (Belief Obs, Obs -> Maybe HypState)
-stepHyp feats h = case h of
-  HBern sp p ->
-    let th = evalx p (mkEnv feats VNil)
-    in (bernFast obsCarrier th, \_ -> Just (HBern sp p))
-  HHmm sp pts rho lat ->
-    let predLat = push lat (walkOn sp pts rho)
-    in ( push predLat emit
-       , \y -> HHmm sp pts rho <$> cond predLat (Saw emit y) )
-#ifndef DROP_UPILOT
-  HUConst k vs v ->
-    (push (point vs v) k, \_ -> Just (HUConst k vs v))
-#ifndef DROP_UWALK
-  HUWalk k vs pts rho lat ->
-    let predLat = push lat (walkOn vs pts rho)
-    in ( push predLat k
-       , \y -> HUWalk k vs pts rho <$> cond predLat (Saw k y) )
-#endif
-#endif
-
--- | The one-tick-ahead predictive: push of the meta-belief along the
--- per-hypothesis step kernel at the given features.
-predictive :: Features -> Agent -> Belief Obs
-predictive feats (Agent _ hyps isp meta) =
-  let preds = map (fst . stepHyp feats) hyps
-  in push meta (kernel isp obsSpace (preds !!))
-
--- | One polling re-entry: returns the natural-log marginal likelihood of
--- the observation ('LogProb') and the conditioned agent. 'Nothing' =
--- impossible evidence (total, like 'PropLang.Belief.cond').
-observe :: Features -> Obs -> Agent -> Maybe (LogProb, Agent)
-observe feats y (Agent ms hyps isp meta) = do
-  let stepped = map (stepHyp feats) hyps
-      preds = map fst stepped
-      ev = Saw (kernel isp obsSpace (preds !!)) y
-      lp = logPredict meta ev
-  meta' <- cond meta ev
-  hyps' <- traverse (\(_, absorb) -> absorb y) stepped
-  pure (lp, Agent ms hyps' isp meta')
-
--- | The meta-belief over hypothesis indices (positions in 'agentModels').
-agentMeta :: Agent -> Belief Int
-agentMeta (Agent _ _ _ meta) = meta
-
-agentModels :: Agent -> [Model]
-agentModels (Agent ms _ _ _) = ms
-
-#ifndef DROP_UPILOT
--- ---------------------------------------------------------------------
--- the latent-utility fragment (HOSTS_D_PACK §6/§9; increment D).
--- TYPE SURFACE ONLY at Task 1 (the prepost 2bf6c72 pattern): data
--- declarations are complete and real, arithmetic bodies are oracle-
--- phase stubs. The oracle (test-d/) compiles against these and runs
--- runtime-red; implementation lands only after the author's freeze.
--- ---------------------------------------------------------------------
-
--- | The declared owner-response apparatus (R-D9; residue grade III):
--- a tau grid plus DECLARED prior weights, marginalised inside
--- 'verdictKernel' and NEVER updated (Armstrong-Mindermann honored by
--- construction; the demand-gate that could ever change this is the
--- pack's promotion-proof table, not code). Abstract; built by the
--- validating constructor only.
-data TauSpec = TauSpec Grid (NonEmpty Double)
-
--- | The one door into 'TauSpec': the declared weights must cover the
--- grid exactly (total, like 'mkC' — no partial spec is constructible).
-mkTauSpec :: Grid -> NonEmpty Double -> Maybe TauSpec
-mkTauSpec g ws
-  | length (toList ws) == gridSize g = Just (TauSpec g ws)
-  | otherwise                        = Nothing
-
--- | The utility fragment's generator sorts (the 'Terminal' analogue,
--- and the DROP_UWALK restricted-enumeration handle): 'UConst' = "the
--- utility parameter is grid constant c_k" (the MBern analogue);
--- 'UWalk' = "it drifts as a reflected walk at grid rate rho_u" (the
--- MHmm analogue — the hmm move on the pointer, enumerated as CONTENT;
--- HOSTS_PLAN 6.1).
-data UFamily
-  = UConst
-#ifndef DROP_UWALK
-  | UWalk
-#endif
-  deriving (Eq, Show)
-
-allUFamilies :: [UFamily]
-#ifndef DROP_UWALK
-allUFamilies = [UConst, UWalk]
-#else
-allUFamilies = [UConst]
-#endif
-
--- | Enumerate the utility fragment over a value grid and a drift-rate
--- grid from the allowed sorts, returning ordinary priced 'Model'
--- hypotheses (HOSTS_PLAN 6.2's sketch: 'Model' grows internally at
--- implementation; dl charged at the derivation like every sentence).
--- The emission the hypotheses' filtered states step through is the
--- DECLARED world channel (a kernel value, world data like the grids)
--- — 'verdictKernel' applied to a declared 'TauSpec' is the canonical
--- instance, and the frozen 'emit' is the CIRL worlds' degenerate one
--- (the degeneracy pins run through exactly that argument).
-enumerateUModels :: Kernel Double Obs -> Grid -> Grid -> [UFamily] -> [Model]
-enumerateUModels k vg rg fams =
-    [ MUConst (Bits dlUConst) e k vspace vpoints (gridName vg)
-    | UConst <- fams, e <- onGrid vg ]
-#ifndef DROP_UWALK
-    ++ [ MUWalk (Bits dlUWalk) e k vspace vpoints (gridName vg)
-       | UWalk <- fams, e <- onGrid rg ]
-#endif
-  where
-    -- the derivation charges, in the model fragment's own shape
-    -- (enumerateModelsIn's arithmetic, instantiated on the declared
-    -- grids): a constant = sort bit + mention(value grid); a walk =
-    -- sort bit + rate index (no param-alternative bit, the dlWalk
-    -- precedent)
-    onGrid g = [ e | j <- [0 .. gridSize g - 1], Just e <- [mkC g j] ]
-    mention g = 1 + logBase 2 (fromIntegral (gridSize g))
-    dlUConst = 1 + mention vg
-#ifndef DROP_UWALK
-    dlUWalk  = 1 + logBase 2 (fromIntegral (gridSize rg))
-#endif
-    vals = [ evalx e (mkEnv [] VNil) | e <- onGrid vg ]
-    vpoints = case nonEmpty vals of
-      Just ne -> ne
-      Nothing -> error "enumerateUModels: grids are nonempty by construction"
-    vspace = mkSpace vpoints
-
--- | The tau-marginalised logistic owner over a declared VALUE grid:
--- a decision-free combinator u -> Belief over verdicts, the finite
--- mixture over the declared tau grid ('rw''s standard: total,
--- domain-independent). The value grid names the kernel's input
--- space — a kernel without a declared domain is unconstructible,
--- the mkC discipline at the channel.
-verdictKernel :: Grid -> TauSpec -> Kernel Double Obs
-verdictKernel vg (TauSpec tg ws) =
-    kernel vspace (carrierSpace obsCarrier)
-           (bernFast obsCarrier . pApprove)
-  where
-    onGrid g = [ e | j <- [0 .. gridSize g - 1], Just e <- [mkC g j] ]
-    taus = [ evalx e (mkEnv [] VNil) | e <- onGrid tg ]
-    wl = toList ws
-    sigma x = 1 / (1 + exp (negate x))
-    pApprove u =
-      sum (zipWith (\w tau -> w * sigma (u / tau)) wl taus) / sum wl
-    vspace = mkSpace $ case nonEmpty [ evalx e (mkEnv [] VNil)
-                                     | e <- onGrid vg ] of
-      Just ne -> ne
-      Nothing -> error "verdictKernel: grids are nonempty by construction"
-
--- | The meta-mixture readout onto the utility-parameter axis, built
--- from PUBLIC verbs only (no new Belief export — I1 intact): the
--- 'agentMeta' analogue for the pointer.
-latentMarginal :: Agent -> Belief Double
-latentMarginal (Agent _ hyps isp meta) =
-  case [ vs | h <- hyps, vs <- hypVSpace h ] of
-    vs : _ -> push meta (kernel isp vs (valueBelief . (hyps !!)))
-    []     -> error "latentMarginal: the agent carries no utility hypotheses"
-  where
-    hypVSpace h = case h of
-      HUConst _ vs _ -> [vs]
-#ifndef DROP_UWALK
-      HUWalk _ vs _ _ _ -> [vs]
-#endif
-      _ -> []
-    valueBelief h = case h of
-      HUConst _ vs v -> point vs v
-#ifndef DROP_UWALK
-      HUWalk _ _ _ _ lat -> lat
-#endif
-      _ -> error "latentMarginal: mixed agent (world hypothesis has no value axis)"
-
--- The declarations a utility agent was BUILT FROM, read back for the
--- driver (observability of world data, not of belief internals — the
--- Belief export list is untouched, I1/I2 intact): the value grid's
--- name (the name-keyed pricing surface, rider 1's upPrice mechanism),
--- its points, and the carried emission channel. Total on any agent
--- holding at least one utility hypothesis; the driver never builds
--- the pair machinery without one.
-firstU :: Agent -> Model
-firstU (Agent ms _ _ _) =
-  case [ m | m@MUConst {} <- ms ] of
-    m : _ -> m
-    []    ->
-#ifndef DROP_UWALK
-      case [ m | m@MUWalk {} <- ms ] of
-        m : _ -> m
-        []    -> error "latent accessors: no utility hypotheses"
-#else
-      error "latent accessors: no utility hypotheses"
-#endif
-
-latentName :: Agent -> Name
-latentName ag = case firstU ag of
-  MUConst _ _ _ _ _ nm -> nm
-#ifndef DROP_UWALK
-  MUWalk _ _ _ _ _ nm  -> nm
-#endif
-  _ -> error "latent accessors: no utility hypotheses"
-
-latentPoints :: Agent -> NonEmpty Double
-latentPoints ag = case firstU ag of
-  MUConst _ _ _ _ pts _ -> pts
-#ifndef DROP_UWALK
-  MUWalk _ _ _ _ pts _  -> pts
-#endif
-  _ -> error "latent accessors: no utility hypotheses"
-
-latentChannel :: Agent -> Kernel Double Obs
-latentChannel ag = case firstU ag of
-  MUConst _ _ k _ _ _ -> k
-#ifndef DROP_UWALK
-  MUWalk _ _ k _ _ _  -> k
-#endif
-  _ -> error "latent accessors: no utility hypotheses"
-
--- | The count-collapsed warm verb (wire v2's @observe_counts@; the
--- second review's budget ruling): per-hypothesis likelihood
--- EXPONENTIATION from (n1, n0) — each hypothesis's predictive is
--- computed ONCE and its log-likelihood scaled by the counts, folded
--- into the meta-belief through one synthetic evidence (a kernel
--- whose emission probability at the observed token IS the max-scaled
--- collapsed likelihood — public verbs only, the Belief export list
--- untouched). EXACT for exchangeable (iid-emission) hypotheses; for
--- state-carrying ones (hmm / UWalk) this IS the declared
--- warm-flattening approximation — the latent is NOT advanced per
--- collapsed tick, printed rather than smuggled. The returned
--- 'LogProb' re-adds the max-scaling constant, so the collapsed
--- EVIDENCE is exact exactly where the posterior is: the rescale is
--- per-call and tracked, never visible downstream — prequential bits
--- read off a counts-collapsed stream carry no scaling artifact (the
--- Task-3 report review's evidence-scaling question, answered by
--- transcript 2026-07-10). O(hypotheses), not
--- O(ticks). The optional kernel routes the collapse through a
--- supplied emission (the outcome channel), 'observeVia''s
--- discipline.
-observeCounts :: Maybe (Kernel Double Obs) -> Features -> Int -> Int
-              -> Agent -> Maybe (LogProb, Agent)
-observeCounts mk feats n1 n0 (Agent ms hyps isp meta) = do
-  let predOf h = case mk of
-        Nothing -> fst (stepHyp feats h)
-        Just kv -> case h of
-          HBern sp p ->
-            push (point sp (evalx p (mkEnv feats VNil))) kv
-          HHmm sp pts rho lat -> push (push lat (walkOn sp pts rho)) kv
-          HUConst _ vs v -> push (point vs v) kv
-#ifndef DROP_UWALK
-          HUWalk _ vs pts rho lat -> push (push lat (walkOn vs pts rho)) kv
-#endif
-      preds = map predOf hyps
-      logL pd =
-        let p1 = prob pd (is obsSpace 1)
-            p0 = prob pd (is obsSpace 0)
-            lg1 = if p1 > 0 then log p1 else negInfD
-            lg0 = if p0 > 0 then log p0 else negInfD
-            term n l = if n == 0 then 0 else fromIntegral n * l
-        in term n1 lg1 + term n0 lg0
-      lls = map logL preds
-      m = maximum lls
-      scaled = [ if m > negInfD then exp (ll - m) else 0 | ll <- lls ]
-      synthSp = mkSpace (True :| [False])
-      synth = kernel isp synthSp $ \i ->
-        let l = scaled !! i
-        in fromBits synthSp
-             (\b -> Bits (negate (logBase 2 (if b then l else 1 - l))))
-      ev = Saw synth True
-      LogProb lp = logPredict meta ev
-  meta' <- cond meta ev
-  pure (LogProb (lp + m), Agent ms hyps isp meta')
-  where
-    negInfD = -1 / 0
-
--- | 'observe' through a SUPPLIED emission (the outcome channel's
--- verb, HOSTS_D_PACK §8: outcome ticks condition the pointer through
--- their own declared kernel, not the hypothesis's carried one). Each
--- hypothesis's current latent belief is pushed through the given
--- kernel for its predictive; walks advance their latent exactly as in
--- 'stepHyp' — one evidence flow, a different declared channel.
-observeVia :: Kernel Double Obs -> Features -> Obs -> Agent
-           -> Maybe (LogProb, Agent)
-observeVia kv feats y (Agent ms hyps isp meta) = do
-  let stepped = map via hyps
-      preds = map fst stepped
-      ev = Saw (kernel isp obsSpace (preds !!)) y
-      lp = logPredict meta ev
-  meta' <- cond meta ev
-  hyps' <- traverse (\(_, absorb) -> absorb y) stepped
-  pure (lp, Agent ms hyps' isp meta')
-  where
-    via h = case h of
-      HBern sp p ->
-        let th = evalx p (mkEnv feats VNil)
-        in (push (point sp th) kv, \_ -> Just (HBern sp p))
-      HHmm sp pts rho lat ->
-        let predLat = push lat (walkOn sp pts rho)
-        in ( push predLat kv
-           , \o -> HHmm sp pts rho <$> cond predLat (Saw kv o) )
-      HUConst k vs v ->
-        (push (point vs v) kv, \_ -> Just (HUConst k vs v))
-#ifndef DROP_UWALK
-      HUWalk k vs pts rho lat ->
-        let predLat = push lat (walkOn vs pts rho)
-        in ( push predLat kv
-           , \o -> HUWalk k vs pts rho <$> cond predLat (Saw kv o) )
-#endif
-
-#endif
-#endif
--- end of the scoring layer (plan E9): everything from 'emit' down
--- requires the expfam basis and the declared obs carrier; without
--- them the model fragment still enumerates and renders — sentences
--- are sayable — but no likelihood can be assigned and no agent built.
-
--- ---------------------------------------------------------------------
--- THE STEP-3 TYPE SURFACE (AGENT_PLAN §7 step 3: a hypothesis becomes a
--- sentence; sentence-author-pack Parts I–III). TYPE SURFACE ONLY at the
--- oracle phase (the increment-D precedent, :495-499): declarations are
--- complete and real, bodies are oracle-phase stubs; implementation
--- lands only after the author's freeze, and the demolition (Bern, THmm,
--- Model, Terminal) lands with it.
---
--- Model -> the emission CODE of the real grammar (Eval.hs Code; R-C1
--- ruling (iii): per-tick denotation through Maybe — a code that refuses
--- at an OBSERVED tick asserted the impossible there and is refuted
--- permanently; on a silent tick, silence never refutes).
--- Terminal -> the fragment's declared production table below.
+-- THE SENTENCE FRAGMENT (step 3: Model -> the emission CODE of the real
+-- grammar; Terminal -> the declared production table. R-C1 ruling
+-- (iii): per-tick denotation through Maybe — a code that refuses at an
+-- OBSERVED tick asserted the impossible there and is refuted
+-- permanently; on a silent tick, silence never refutes.)
 -- ---------------------------------------------------------------------
 
 -- | The fragment's four sorts. A sort's WIDTH is what the derivation
@@ -838,10 +268,11 @@ fragFull = [FBern, FWalk, FConst, FIf, FGuardHead]
 -- charge, a latent axis, the per-tick emission code over that axis,
 -- and — for state-carrying sentences — a transition code over the same
 -- axis (D5 as ruled: this slot plus the filtered 'Belief' the agent
--- carries per hypothesis covers what 'THmm' carried; no new type).
--- Stateless sentences declare a SINGLETON latent axis, so the uniform
--- initial latent is a point mass and every predictive row stays
--- bit-exact (no mixture arithmetic on a degenerate axis).
+-- carries per hypothesis covers what the old hmm representation
+-- carried; no new type). Stateless sentences declare a SINGLETON
+-- latent axis, so the uniform initial latent is a point mass and every
+-- predictive row stays bit-exact (no mixture arithmetic on a
+-- degenerate axis).
 data Hyp = Hyp
   { hypBits  :: Bits
   , hypSpace :: Space Double
@@ -849,44 +280,201 @@ data Hyp = Hyp
   , hypMove  :: Maybe (Expr '[] (Maybe (K Double Double)))
   }
 
+#if !defined(DROP_CODE) && !defined(DROP_POS) && !defined(DROP_TOR)
 -- | The fragment over the built-in namespace and grids — the
 -- 'enumerateModels' successor; 1169 hypotheses at 'fragFull', dl
 -- multiset bit-identical to the frozen enumeration's (g1 pins it).
 enumerateSentences :: [FragProd] -> [Hyp]
-enumerateSentences _ =
-  error "step-3 stub: enumerateSentences lands after the author's freeze"
+enumerateSentences = enumerateSentencesIn (mkNamespace ("t" :| [])) []
 
 -- | Namespace-relative enumeration (the 'enumerateModelsIn' successor;
 -- the membrane's 1241/1529 counts port against this).
 enumerateSentencesIn :: Namespace -> [(Name, Grid)] -> [FragProd] -> [Hyp]
-enumerateSentencesIn _ _ _ =
-  error "step-3 stub: enumerateSentencesIn lands after the author's freeze"
+enumerateSentencesIn = enumerateSentencesGrid thetaPoints
 
 -- | Emission-grid-relative enumeration (the 'enumerateModelsGrid'
--- successor; boundary E's grid relativity).
+-- successor; boundary E's grid relativity). Order and count match the
+-- frozen reference (full set: 1169 sentences under the built-in
+-- grids): the constant sentences, then the walks, then the
+-- change-point sentences with the threshold outermost.
 enumerateSentencesGrid :: NonEmpty Double -> Namespace -> [(Name, Grid)]
                        -> [FragProd] -> [Hyp]
-enumerateSentencesGrid _ _ _ _ =
-  error "step-3 stub: enumerateSentencesGrid lands after the author's freeze"
+enumerateSentencesGrid egPts ns extras allowed =
+    consts ++ walks ++ concatMap guardFamily (("t", tauGrid) : extras)
+  where
+    eg = mkGrid "theta" egPts
+    egSp = mkSpace egPts
+    has t = t `elem` allowed
+    wOf s = logBase 2 (fromIntegral (fragWidth s))
+    nsB :: Double
+    nsB = case nsSize ns of
+      1 -> 0
+      kk -> logBase 2 (fromIntegral kk)
+    lgSize g = logBase 2 (fromIntegral (gridSize g))
+    -- charges from the DECLARED table, tree-shaped (the E-s1 fold —
+    -- the frozen parentheses of the old hand-rolled literals)
+    dlConst = wOf MODEL + (wOf THETA + lgSize eg)
+    dlWalk  = wOf MODEL + (wOf RATE + lgSize rhoGrid)
+    dlGuard g = wOf MODEL
+      + (((wOf THETA + ((wOf HEAD + nsB) + (wOf THETA + lgSize g)))
+          + (wOf THETA + lgSize eg))
+         + (wOf THETA + lgSize eg))
+    cAt :: Grid -> Int -> Expr env Double
+    cAt g k = case mkC g k of
+      Just e  -> e
+      Nothing -> error "enumerateSentencesGrid: on-grid index refused"
+    -- the shape grid (COPY of test-code kGrid: 0/1/2/(n-1); valid for
+    -- the 9-point emission grids all rows use)
+    shGrid = mkGrid "k" (0 :| [1, 2, 8])
+    k0 = cAt shGrid 0; k1 = cAt shGrid 1; k2 = cAt shGrid 2
+    kLast = cAt shGrid 3
+    bernBody th = Neg (Div (Log pb) (Log k2))
+      where
+        yv = ToR (Var Z)
+        pb = If (Gt yv k0) th (Sub k1 th)
+    consts =
+      [ Hyp (Bits dlConst) sp (Code sp obsSpace (bernBody (cAt eg k))) Nothing
+      | has FBern, has FConst, k <- [0 .. gridSize eg - 1]
+      , let v = evalx (cAt eg k :: Expr '[] Double) (mkEnv [] VNil)
+      , let sp = mkSpace (v :| []) ]
+    walks =
+      [ Hyp (Bits dlWalk) egSp (Code egSp obsSpace (bernBody (Var (S Z))))
+            (Just (walkCode j))
+      | has FWalk, has FConst, j <- [0 .. gridSize rhoGrid - 1] ]
+    -- COPY of test-code/Code.hs:198-210 codeWalk; rho via cAt rhoGrid
+    walkCode j = Code egSp egSp body
+      where
+        rho = cAt rhoGrid j
+        eqE a b = Call IsEq (a :* b :* ANil)
+        iv = Pos egSp (Var (S Z))
+        jv = Pos egSp (Var Z)
+        lo = If (Gt iv k0)    (Sub iv k1) (Add iv k1)
+        hi = If (Gt kLast iv) (Add iv k1) (Sub iv k1)
+        mass = Add (Add (If (eqE jv iv) (Sub k1 rho) k0)
+                        (If (eqE jv lo) (Div rho k2) k0))
+                   (If (eqE jv hi) (Div rho k2) k0)
+        body = Neg (Div (Log mass) (Log k2))
+    guardFamily (nm, g) =
+      [ Hyp (Bits (dlGuard g)) gsp
+            (Code gsp obsSpace (bernBody
+               (If (Gt (Get nm) (cAt g t)) (cAt eg a) (cAt eg b))))
+            Nothing
+      | has FBern, has FIf, has FConst, has FGuardHead
+      , t <- [0 .. gridSize g - 1]
+      , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+    gsp = mkSpace (0.5 :| [])
+#endif
 
 -- | THE LAW'S FIRST SCHEDULED APPLICATION (the step-2 rider): drop
 -- candidates whose emission code is TICK-INDEPENDENTLY never-denoting
 -- (a Get-free code refused once is refused always). A fast path, legal
 -- iff pinned extensionally to carry-plus-per-tick-refutation — g3 pins
--- it in BOTH orientations in this same increment; it never enters the
--- alphabet, so it never touches the prior.
+-- it in BOTH orientations; it never enters the alphabet, so it never
+-- touches the prior.
 filterTickFree :: [Hyp] -> [Hyp]
-filterTickFree _ =
-  error "step-3 stub: the filter fast path lands WITH its pin (the law)"
+filterTickFree hs = [ h | h <- hs, not (deadStatic h) ]
+  where
+    deadStatic h =
+      not (hasGet (hypEmit h))
+        && case evalx (hypEmit h) (mkEnv [] VNil) of
+             Nothing -> True
+             Just _  -> False
+
+-- tick-dependence: a code that reads no feature denotes identically at
+-- every tick. Total; the wildcard covers the value-layer constructors
+-- no emission code can carry a Get inside of (their payloads are
+-- opaque to rendering and pricing alike).
+hasGet :: Expr env t -> Bool
+hasGet e0 = case e0 of
+  Get _        -> True
+  If c a b     -> hasGet c || hasGet a || hasGet b
+  Gt a b       -> hasGet a || hasGet b
+  Add a b      -> hasGet a || hasGet b
+  Sub a b      -> hasGet a || hasGet b
+  Mul a b      -> hasGet a || hasGet b
+  Div a b      -> hasGet a || hasGet b
+  Log a        -> hasGet a
+  Exp a        -> hasGet a
+  Neg a        -> hasGet a
+#ifndef DROP_POS
+  Pos _ e      -> hasGet e
+#endif
+#ifndef DROP_TOR
+  ToR e        -> hasGet e
+#endif
+#ifndef DROP_CODE
+  Code _ _ b   -> hasGet b
+#endif
+  Call _ as    -> goArgs as
+  _            -> False
+  where
+    goArgs :: Args env ts -> Bool
+    goArgs ANil      = False
+    goArgs (a :* as) = hasGet a || goArgs as
 
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
--- | The agent over sentences — the 'mkAgent' successor ('mkAgent' dies
--- with 'Model' at this boundary). Meta-prior 2^(-hypBits) through the
--- only prior source; per-hypothesis filtered latents initialize uniform
--- on 'hypSpace' and move only by the verbs. Guarded with the scoring
--- layer: without the carrier declaration no agent can be built (E9),
--- and the deletion audit's attribution must keep landing on
--- 'obsCarrier', never on this stub.
+-- ---------------------------------------------------------------------
+-- the scoring layer (plan E9): everything below requires the expfam
+-- basis and the declared obs carrier; without them the sentence
+-- fragment still enumerates and renders — sentences are sayable — but
+-- no likelihood can be assigned and no agent built.
+-- ---------------------------------------------------------------------
+
+-- | The Bernoulli emission kernel theta -> Belief over the declared
+-- obs carrier: since the expfam re-derivation (plan E7/Task 5) this IS
+-- the derived name's fast form spread over the theta grid — one
+-- arithmetic, no drift (test-expfam groups 4 and 7 pin the identity),
+-- and the same float sequence the parity phase shipped.
+emit :: Kernel Double Obs
+emit = kernel thetaSpace (carrierSpace obsCarrier) (bernFast obsCarrier)
+
+-- The reflected walk on a value grid at a grid-priced rate: a
+-- decision-free combinator, total and domain-independent (design §9).
+-- Mass is a total function of grid POSITIONS: a point with no position
+-- has mass 0, i.e. infinite description length through 'fromBits' —
+-- the measure's own off-support statement, the same road every
+-- non-neighbor grid point already travels. No error site (R8);
+-- 'kernel' only ever applies 'step' to points of its own space.
+-- SINCE STEP 3 this is the REFERENCE the walk code is pinned against
+-- (test-code group 1, 567/567 bit-identical cells); the engine's own
+-- stepping runs through the move CODES.
+walkOn :: Space Double -> NonEmpty Double -> Double -> Kernel Double Double
+walkOn vs vpts rho = kernel vs vs step
+  where
+    pts = toList vpts
+    n = length pts
+    mass (Just i) (Just j) =
+      (if j == i then 1 - rho else 0)
+        + (if j == lo then rho / 2 else 0)
+        + (if j == hi then rho / 2 else 0)
+      where
+        lo = if i > 0 then i - 1 else i + 1
+        hi = if i < n - 1 then i + 1 else i - 1
+    mass _ _ = 0
+    step v =
+      let mi = elemIndex v pts
+      in fromBits vs
+           (\p -> Bits (negate (logBase 2 (mass mi (elemIndex p pts)))))
+
+-- ---------------------------------------------------------------------
+-- the agent: a belief over sentences, moved only by the verbs
+-- ---------------------------------------------------------------------
+
+-- Per-hypothesis filtered state: the sentence and its current latent
+-- belief (a stateless sentence's singleton axis makes this a point
+-- mass by construction).
+data HypState = HSent Hyp (Belief Double)
+
+-- | A belief over programs plus per-hypothesis filtered latent state.
+data Agent = Agent [HypState] (Space Int) (Belief Int)
+
+-- | The agent over sentences — the 'mkAgent' successor ('mkAgent' died
+-- with 'Model' at the step-3 boundary). Meta-prior 2^(-hypBits)
+-- through the only prior source; per-hypothesis filtered latents
+-- initialize uniform on 'hypSpace' and move only by the verbs. Guarded
+-- with the scoring layer: without the carrier declaration no agent can
+-- be built (E9), and the deletion audit's attribution must keep
+-- landing on 'obsCarrier'.
 --
 -- D8 (ruled at the step-3 sitting, 2026-07-15): a refusing sentence
 -- holding positive meta mass at prediction time is CONDITIONED ON
@@ -904,6 +492,171 @@ filterTickFree _ =
 -- preposterior machinery already prices that as wait-and-see value,
 -- so no guard is ever owed for it.
 sentenceAgent :: [Hyp] -> Agent
-sentenceAgent _ =
-  error "step-3 stub: sentenceAgent lands after the author's freeze"
+sentenceAgent hs = case nonEmpty [0 .. length hs - 1] of
+  Nothing  -> error "sentenceAgent: empty enumeration"
+  Just ixs ->
+    let isp = mkSpace ixs
+    in Agent [ HSent h (uniform (hypSpace h)) | h <- hs ] isp
+             (fromBits isp ((map hypBits hs) !!))
+
+-- One tick of one sentence at the given features: its predictive over
+-- observations, and its absorb continuation (a state-carrying sentence
+-- conditions the SAME one-step-pushed latent it predicted from, verb
+-- for verb as the reference). Maybe-valued because a code's denotation
+-- is a per-tick fact (R-C1 ruling iii): Nothing = the sentence refuses
+-- at this tick's features.
+stepSent :: Features -> HypState
+         -> Maybe (Belief Obs, Obs -> Maybe HypState)
+stepSent feats (HSent hy lat) =
+  case evalx (hypEmit hy) (mkEnv feats VNil) of
+    Nothing -> Nothing
+    Just k  ->
+      let predLat = case hypMove hy of
+            Nothing -> lat
+            Just mv -> case evalx mv (mkEnv feats VNil) of
+              Just mk -> push lat mk
+              Nothing -> lat   -- move refusal: unexercised by any row
+      in Just ( push predLat k
+              , \y -> HSent hy <$> cond predLat (Saw k y) )
+
+-- | The one-tick-ahead predictive: push of the meta-belief along the
+-- per-sentence step kernel at the given features. Refusers with
+-- positive mass are handled by ruling D8 (the haddock on
+-- 'sentenceAgent'): condition on denotation — a READ, never an update.
+predictive :: Features -> Agent -> Belief Obs
+predictive feats (Agent hyps isp meta) =
+  let steps = map (stepSent feats) hyps
+  in case traverse (fmap fst) steps of
+       Just bs -> push meta (kernel isp obsSpace (bs !!))
+       Nothing ->
+         -- D8: the refusers' mass is conditioned away by the same
+         -- public cond arithmetic the evidence path uses — locally,
+         -- for this query only; the agent's belief state is untouched
+         let indSp = mkSpace (0 :| [1]) :: Space Int
+             indK  = kernel isp indSp
+                       (\i -> point indSp (case steps !! i of
+                                             Just _  -> 1
+                                             Nothing -> 0))
+             meta' = case cond meta (Saw indK 1) of
+                       Just m  -> m
+                       Nothing -> error
+                         "predictive: no sentence denotes at this tick"
+             row i = case steps !! i of
+                       Just (b, _) -> b
+                       Nothing     -> point obsSpace 0
+         in push meta' (kernel isp obsSpace row)
+
+-- | One polling re-entry: returns the natural-log marginal likelihood of
+-- the observation ('LogProb') and the conditioned agent. 'Nothing' =
+-- impossible evidence (total, like 'PropLang.Belief.cond').
+observe :: Features -> Obs -> Agent -> Maybe (LogProb, Agent)
+observe feats y (Agent hyps isp meta) = do
+  let stepped = map (stepSent feats) hyps
+      row i = case stepped !! i of
+                Just (b, _) -> b
+                -- refusal at an OBSERVED tick: asserted the impossible
+                -- there — likelihood exactly 0, said through public
+                -- machinery (a point row on any OTHER observation has
+                -- probability exactly 0 at y)
+                Nothing -> point obsSpace (if y == 0 then 1 else 0)
+      ev = Saw (kernel isp obsSpace row) y
+      lp = logPredict meta ev
+  meta' <- cond meta ev
+  -- a refuted or refusing sentence keeps its state at zero meta mass
+  -- (Cromwell at the meta level: exact zeros never resurrect)
+  let hyps' = [ case st of
+                  Just (_, absorb) -> maybe h id (absorb y)
+                  Nothing          -> h
+              | (h, st) <- zip hyps stepped ]
+  pure (lp, Agent hyps' isp meta')
+
+-- | The meta-belief over hypothesis indices (positions in the
+-- enumeration the agent was built from).
+agentMeta :: Agent -> Belief Int
+agentMeta (Agent _ _ meta) = meta
+
+-- | The count-collapsed warm verb (wire v2's @observe_counts@; the
+-- second review's budget ruling): per-hypothesis likelihood
+-- EXPONENTIATION from (n1, n0) — each sentence's predictive is
+-- computed ONCE and its log-likelihood scaled by the counts, folded
+-- into the meta-belief through one synthetic evidence (a kernel
+-- whose emission probability at the observed token IS the max-scaled
+-- collapsed likelihood — public verbs only, the Belief export list
+-- untouched). EXACT for exchangeable (iid-emission) sentences; for
+-- state-carrying ones this IS the declared warm-flattening
+-- approximation — the latent is NOT advanced per collapsed tick,
+-- printed rather than smuggled. The returned 'LogProb' re-adds the
+-- max-scaling constant, so the collapsed EVIDENCE is exact exactly
+-- where the posterior is. O(hypotheses), not O(ticks). The optional
+-- kernel routes the collapse through a supplied emission (the outcome
+-- channel), 'observeVia''s discipline. A sentence refusing at the
+-- collapsed features gets observe's evidence-shaped zero across the
+-- n1+n0 observed ticks (no frozen row exercises this; the semantics
+-- is the observed-tick refusal rule, not a new mechanism).
+observeCounts :: Maybe (Kernel Double Obs) -> Features -> Int -> Int
+              -> Agent -> Maybe (LogProb, Agent)
+observeCounts mk feats n1 n0 (Agent hyps isp meta) = do
+  let predOf (HSent hy lat) =
+        case evalx (hypEmit hy) (mkEnv feats VNil) of
+          Nothing -> Nothing
+          Just k  ->
+            let predLat = case hypMove hy of
+                  Nothing -> lat
+                  Just mv -> case evalx mv (mkEnv feats VNil) of
+                    Just mk' -> push lat mk'
+                    Nothing  -> lat
+            in Just (push predLat (case mk of Nothing -> k; Just kv -> kv))
+      preds = map predOf hyps
+      term n l = if n == 0 then 0 else fromIntegral n * l
+      logL Nothing = term n1 negInfD + term n0 negInfD
+      logL (Just pd) =
+        let p1 = prob pd (is obsSpace 1)
+            p0 = prob pd (is obsSpace 0)
+            lg1 = if p1 > 0 then log p1 else negInfD
+            lg0 = if p0 > 0 then log p0 else negInfD
+        in term n1 lg1 + term n0 lg0
+      lls = map logL preds
+      m = maximum lls
+      scaled = [ if m > negInfD then exp (ll - m) else 0 | ll <- lls ]
+      synthSp = mkSpace (True :| [False])
+      synth = kernel isp synthSp $ \i ->
+        let l = scaled !! i
+        in fromBits synthSp
+             (\b -> Bits (negate (logBase 2 (if b then l else 1 - l))))
+      ev = Saw synth True
+      LogProb lp = logPredict meta ev
+  meta' <- cond meta ev
+  pure (LogProb (lp + m), Agent hyps isp meta')
+  where
+    negInfD = -1 / 0
+
+-- | 'observe' through a SUPPLIED emission (the outcome channel's
+-- verb): each sentence's current latent belief is pushed through the
+-- given kernel for its predictive; state-carrying sentences advance
+-- their latent exactly as in 'stepSent' — one evidence flow, a
+-- different declared channel.
+observeVia :: Kernel Double Obs -> Features -> Obs -> Agent
+           -> Maybe (LogProb, Agent)
+observeVia kv feats y (Agent hyps isp meta) = do
+  let stepped = map via hyps
+      preds = map fst stepped
+      ev = Saw (kernel isp obsSpace (preds !!)) y
+      lp = logPredict meta ev
+  meta' <- cond meta ev
+  hyps' <- traverse (\(_, absorb) -> absorb y) stepped
+  pure (lp, Agent hyps' isp meta')
+  where
+    via (HSent hy lat) =
+      let predLat = case hypMove hy of
+            Nothing -> lat
+            Just mv -> case evalx mv (mkEnv feats VNil) of
+              Just mk -> push lat mk
+              Nothing -> lat   -- move refusal: unexercised by any row
+      in ( push predLat kv
+         , \o -> HSent hy <$> cond predLat (Saw kv o) )
+
 #endif
+-- end of the scoring layer (plan E9): everything from 'emit' down
+-- requires the expfam basis and the declared obs carrier; without
+-- them the sentence fragment still enumerates and renders — sentences
+-- are sayable — but no likelihood can be assigned and no agent built.

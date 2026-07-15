@@ -377,19 +377,12 @@ data StdName args t where
   -- myopic base and the fidelity ladder survive.
   VPre :: Eq y => StdName '[Int, B h, Chan d h y, [y], Util d h, NonEmpty d, Util a h, NonEmpty a, Int, Double] Double
 #endif
-#if !defined(DROP_BERN) && !defined(DROP_EXPFAM)
-  -- the derived name (EXPFAM_PLAN E6): bern re-derived over the expfam
-  -- basis — a REPORTED alphabet change (STDNAME grows 4 -> 5, author
-  -- pack §1). Belief-valued: the emission distribution at the
-  -- evaluated parameter. The carrier rides as an opaque payload (the
-  -- Fn-payload precedent); its mention is priced by the carrier
-  -- registry at the 'bits' site. Executed semantics is the recorded
-  -- fast form; the expfam expansion is the property-enforced contract
-  -- (E7 — CL-4's doctrine at the name layer). Dies with the basis
-  -- (E9): the flag conjunction is the coupling that keeps "delete
-  -- expfam and nothing can assign likelihood" true at the code level.
-  Bern   :: Carrier Int -> StdName '[Double] (B Int)
-#endif
+  -- ('Bern' LEFT the stdlib at the step-3 sentence freeze: Bernoulli
+  -- emission is said as a CODE of the declared production table, and
+  -- the evaluator's 'bernFast' remains the E7-pinned fast form.
+  -- STDNAME 7 -> 6, the P5 refund; the deletion the UseBern fixture
+  -- proved possible became the deletion that happened —
+  -- discharged-permanent.)
 
 -- | A utility as an opaque value-layer object (precedent: 'expect',
 -- 'kernel', 'event' all accept host functions at the value layer;
@@ -445,7 +438,7 @@ data ProdTable = ProdTable
   { prodExpr, prodFn, prodStats, prodKer, prodStdName, prodUtil :: Int }
 
 prodTable :: ProdTable
-prodTable = ProdTable 19 2 1 2 7 1
+prodTable = ProdTable 19 2 1 2 6 1
 
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile

@@ -54,16 +54,8 @@ module PropLang.Membrane
   , PureWorld (..)
   , TickTrace (..)
   , runMembrane
-#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE) && !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
-  -- the latent-utility pilot (HOSTS_D_PACK; implemented at Task 3
-  -- against the r2 oracle). Dies with the affordance layer too: no
-  -- menus, no driver.
-  , UPilot (..)
-  , UTickState (..)
-  , UTickTrace (..)
-  , membraneTickU
-  , runMembraneU
-#endif
+  -- (the latent-utility pilot retired at the step-3 sentence freeze
+  --  with the u-fragment; sentence-author-pack.md SS10/SS20)
 #endif
 #endif
   ) where
@@ -98,15 +90,6 @@ import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
                            predictive)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), StdName (..),
                         Util)
-#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE) && !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
-import qualified Data.List.NonEmpty as NE
-import PropLang.Belief (Belief, Kernel, expect, kernel, mkSpace, point,
-                        push)
-import PropLang.Enumerate (latentChannel, latentMarginal, latentName,
-                           latentPoints, observeVia)
-import PropLang.Eval (vPre)
-import PropLang.Syntax (Chan, applyChan, mkChan, mkUtil)
-#endif
 #endif
 
 -- | World-owned stable affordance identity (ruling M2): the echo speaks
@@ -360,217 +343,12 @@ interpretPilot p feats pr opts = case p of
     if fromMaybe 0 (lookup nm feats) > th then a else b
   PilotEU u -> evalx argmaxEU (mkEnv feats (opts :. pr :. u :. VNil))
 
-#if !defined(DROP_UPILOT) && !defined(DROP_LADDER) && !defined(DROP_VPRE) && !defined(DROP_SLOT_GRID) && !defined(DROP_AFFORDANCE)
 -- ---------------------------------------------------------------------
--- the latent-utility pilot (HOSTS_D_PACK §6/§8/§9; increment D;
--- implemented at Task 3 against the r2 oracle, the audited rule of
--- stop report #2 §2). 'Pilot', 'runMembrane', 'TickTrace' are
--- untouched — these are SIBLINGS, recorded honestly, not degenerate
--- faces (HOSTS_PLAN 6.2).
+-- (the latent-utility pilot — UPilot, UTickState, UTickTrace,
+--  membraneTickU, runMembraneU, uChoose — RETIRED at the step-3
+--  sentence freeze with the u-fragment it consumed; utility returns
+--  re-derived from the axioms at steps 6-8, never rebuilt from
+--  nostalgia. sentence-author-pack.md SS10/SS16/SS20.)
 -- ---------------------------------------------------------------------
-
--- | The latent-utility pilot: the utility IS priced syntax ('upSaid'
--- is exactly 'PropLang.Syntax.USay''s payload shape — Var Z the
--- option code, Var (S Z) the latent parameter); verdicts arrive
--- through a decision-indexed channel (asking routes to the verdict
--- kernel, acting to noise); OUTCOME ticks condition the pointer
--- through their own declared emission ('upOutcome' — O3's
--- responder-free channel, world data like every kernel here); depth
--- is bought through the ladder's sort; and the tick price is read as
--- a FEATURE by name — measured world data, never a declared constant
--- (rider 1's stratification).
-data UPilot = UPilot
-  { upSaid    :: Expr '[Double, Double] Double
-  , upVerdict :: Chan Double Double Obs
-  , upOutcome :: Kernel Double Obs
-  , upDepth   :: Rung
-  , upPrice   :: Name
-  }
-
--- | The explicitly threaded per-tick counters (register 8.9 / R-D11,
--- built in from birth): the wire drives one tick at a time with NO
--- counter resets; full episodes compose by folding 'membraneTickU'
--- from @UTickState 0 0 Nothing@ — one function, both drivers.
-data UTickState = UTickState
-  { usT     :: Int
-  , usThink :: Int
-  , usLast  :: Maybe Choice
-  }
-  deriving (Eq, Show)
-
--- | One tick's public record for the two-agent driver: the world
--- trace's fields plus the tick's stream tag (report | verdict |
--- outcome | comparison — §8's one-flow roles), the residual readout,
--- and the decision's sensitivity across the residual's support.
--- Observability-only on the wire: no consumer may branch on
--- 'utResidual' or 'utSensitivity' (consumer discipline, §8).
-data UTickTrace = UTickTrace
-  { utT           :: Int
-  , utStream      :: Name
-  , utP1          :: Double
-  , utEntropy     :: Double
-  , utChoice      :: Choice
-  , utLossBits    :: Double
-  , utResidual    :: Double
-  , utSensitivity :: Bool
-  }
-  deriving (Eq, Show)
-
--- | The one-tick core, threaded state in and out — the R-D11 answer
--- to the counter-reset hazard 'runMembrane' n=1 re-entry carries
--- (membrane-wire.md's "inert under noEcho, silently wrong under
--- echo"). The utility side is a NonEmpty of PER-LATENT agents — the
--- pointer first, then the declared residual components in order:
--- rider 2's product-form independence as the ARCHITECTURE (each
--- component its own Agent), not an estimated correlation.
-membraneTickU :: PureWorld s -> EchoSpec -> UPilot -> UTickState -> s
-              -> Agent -> NonEmpty Agent
-              -> Maybe (s, UTickState, Agent, NonEmpty Agent, UTickTrace)
-membraneTickU w spec up (UTickState t nThink lastC) s wAg uAgs = do
-  let feats = wFeats w s ++ echoFeatures spec t nThink lastC
-      sCode = fromMaybe 0 (lookup "stream" feats)
-      price = fromMaybe 0 (lookup (upPrice up) feats)
-      pr = predictive feats wAg
-      p1 = prob pr (is obsSpace 1)
-      hEnt = entropyBits (agentMeta wAg)
-      pointer = NE.head uAgs
-      residuals = NE.tail uAgs
-      menu = wMenu w s
-      opts = menuOptions menu
-      ptrPts = latentPoints pointer
-      ptrM = latentMarginal pointer
-      -- the first residual's declarations; a pilot with no residual
-      -- components gets the degenerate zero residual (uncharged,
-      -- uninformative) — the pair machinery is total either way
-      (rNm, rPts, rChan, rM) = case residuals of
-        r : _ -> ( latentName r, latentPoints r, latentChannel r
-                 , latentMarginal r )
-        []    -> ( "", 0 :| []
-                 , kernel (mkSpace (0 :| [])) obsSpace
-                          (const (point obsSpace 0))
-                 , point (mkSpace (0 :| [])) 0 )
-      choiceAt = uChoose up price menu opts ptrPts ptrM rNm rPts rChan
-      choice = choiceAt rM
-      -- the per-decision sensitivity scalar (§4's live counterpart of
-      -- routing pin 2): does the fired choice flip across the
-      -- residual's support? Observability-only on the wire.
-      rSp = mkSpace rPts
-      live = [ p | p <- NE.toList rPts, prob rM (is rSp p) > 0 ]
-      sens = case live of
-        [] -> False
-        ps -> choiceAt (point rSp (minimum ps))
-                /= choiceAt (point rSp (maximum ps))
-      utRes = case residuals of
-        [] -> expect ptrM id
-        _  -> expect rM id
-  (lossBits, wAg', uAgs') <- case wEvidence w s of
-    Nothing -> Just (0, wAg, uAgs)
-    -- one evidence flow, streams as roles (HOSTS_PLAN 6.2): report
-    -- ticks are the world hypotheses' to explain; verdict ticks the
-    -- pointer's, through its carried channel; outcome ticks the
-    -- pointer's, through the DECLARED outcome emission (O3's
-    -- responder-free channel); comparison ticks the residuals', each
-    -- through its own carried channel
-    Just y -> case round sCode :: Int of
-      1 -> do (LogProb lp, p') <- observe feats y pointer
-              Just (negate lp / ln2, wAg, p' :| residuals)
-      2 -> do (LogProb lp, p') <- observeVia (upOutcome up) feats y pointer
-              Just (negate lp / ln2, wAg, p' :| residuals)
-      3 -> do prs <- traverse (observe feats y) residuals
-              let bits = sum [ negate lp / ln2 | (LogProb lp, _) <- prs ]
-              Just (bits, wAg, pointer :| map snd prs)
-      _ -> do (LogProb lp, w') <- observe feats y wAg
-              Just (negate lp / ln2, w', uAgs)
-  let nThink' = case choice of
-        InternalFired _ -> nThink + 1
-        Fire _ _        -> nThink
-  Just ( wStep w s choice
-       , UTickState (t + 1) nThink' (Just choice)
-       , wAg', uAgs'
-       , UTickTrace t (uStreamName sCode) p1 hEnt choice lossBits
-                    utRes sens )
-
-uStreamName :: Double -> Name
-uStreamName c = case round c :: Int of
-  1 -> "verdict"
-  2 -> "outcome"
-  3 -> "comparison"
-  _ -> "report"
-
--- one option described for the pair valuation: its code (the echo's
--- own convention — world affordance ids; -1 for the internal act)
--- and its world-declared name
-uDescribe :: [Affordance] -> Choice -> (Double, Name)
-uDescribe menu ch = case ch of
-  Fire aid _ ->
-    ( affIdCode aid
-    , case [ nm | Affordance a nm _ <- menu, a == aid ] of
-        nm : _ -> nm
-        []     -> "" )
-  InternalFired Think -> (-1, "think")
-
--- The audited decision rule (stop report #2 §2; prototype-verified,
--- the r2 satisfiability transcript): pair belief = pointer x first
--- residual, composed by PUBLIC verbs; every option valued as a vPre
--- face at the declared depth, n = 1, the world's measured tick price
--- outside the max; fired choice = menu-order argmax (CL-3, strict
--- improvement). Bindings are NAME-KEYED — rider 1's own upPrice
--- mechanism, the wire's binding surface throughout: an option opens
--- 'upVerdict' at its code (the documented routing: asking to the
--- verdict kernel, acting to noise), EXCEPT the one named "compare",
--- which opens the residual's declared channel (the wire-v2
--- comparison payload's driver realization — recorded as a name-keyed
--- simplification); an option is charged the residual as object-level
--- decision cost iff the residual's grid name is "theta_" ++ its name
--- (the extended ledger's permitted row: theta_ask prices ask
--- decisions as ordinary utility).
-uChoose :: UPilot -> Double -> [Affordance] -> NonEmpty Choice
-        -> NonEmpty Double -> Belief Double
-        -> Name -> NonEmpty Double -> Kernel Double Obs -> Belief Double
-        -> Choice
-uChoose up price menu opts ptrPts ptrM rNm rPts rChan rM =
-  case described of
-    (c0, d0) :| ds -> fst (foldl' scan (c0, face d0) ds)
-  where
-    described = fmap (\c -> (c, uDescribe menu c)) opts
-    scan (bc, bv) (c, d) =
-      let v = face d in if v > bv then (c, v) else (bc, bv)
-    uSp = mkSpace ptrPts
-    rSp = mkSpace rPts
-    pSp = case [ (u, r) | u <- NE.toList ptrPts, r <- NE.toList rPts ] of
-      p : ps -> mkSpace (p :| ps)
-      []     -> error "uChoose: grids are nonempty by construction"
-    pairB = push ptrM (kernel uSp pSp (\u ->
-              push rM (kernel rSp pSp (\r -> point pSp (u, r)))))
-    charged nm = rNm == "theta_" ++ nm
-    uT = mkUtil (\(code, nm) (u, r) ->
-           evalx (upSaid up) (mkEnv [] (code :. u :. VNil))
-             - (if charged nm then r else 0))
-    uDD = mkUtil (\(_, nm) (_, r) -> if charged nm then negate r else 0)
-    chanU = mkChan (\(code, nm) ->
-              if nm == ("compare" :: Name)
-                then kernel pSp obsSpace (\(_, r) -> push (point rSp r) rChan)
-                else kernel pSp obsSpace (\(u, _) ->
-                       push (point uSp u) (applyChan (upVerdict up) code)))
-    actsAll = fmap snd described
-    face d = vPre (rungDepth (upDepth up)) pairB chanU ([0, 1] :: [Obs])
-                  uDD (d :| []) uT actsAll 1 price
-
--- | The episode fold over 'membraneTickU': world agent and per-latent
--- utility agents threaded together, one evidence flow, streams as
--- roles (report | verdict | outcome | comparison).
-runMembraneU :: PureWorld s -> EchoSpec -> UPilot -> Int -> s
-             -> Agent -> NonEmpty Agent
-             -> Maybe (Agent, NonEmpty Agent, [UTickTrace])
-runMembraneU w spec up n s0 wAg0 uAgs0 =
-    go n s0 (UTickState 0 0 Nothing) wAg0 uAgs0
-  where
-    go k s st wa ua
-      | k <= 0 = Just (wa, ua, [])
-      | otherwise = do
-          (s', st', wa', ua', tt) <- membraneTickU w spec up st s wa ua
-          (waF, uaF, rest) <- go (k - 1) s' st' wa' ua'
-          Just (waF, uaF, tt : rest)
-#endif
 #endif
 #endif
