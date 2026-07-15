@@ -127,6 +127,13 @@ PARAMs are ordinary parameter expressions. Then:
   one recorded non-expfam member, printed and priced (design S10's
   honesty standard applied to this document's own earlier claim).
 
+  *Step-3 amendment (the sentence freeze, 2026-07-15; delegated edit,
+  sentence-author-pack.md SS20.5): `bern` left the stdlib — the
+  fragment says Bernoulli emission as a code of the declared
+  production table, and the evaluator's `bernFast` remains the
+  E7-pinned fast form. `rw`'s T1 status is unchanged; its utterance
+  is the walk code, measured bit-identical to the reference (E-s2).*
+
 The alphabet residue shrinks from "a list of combinators per domain" to "one
 constructor plus each domain's carrier declarations," and the deletion audit
 tightens: delete `expfam` and *nothing* can assign likelihood to anything.

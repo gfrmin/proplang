@@ -170,6 +170,18 @@ Every step-6+ increment follows the recursive two-phase discipline:
    implementation is owed — the red-run clause is satisfied by a
    seeded-defect demonstration: every row's red reachable, attribution
    partitioned (the step-2 precedent).
+   Three lines canonized at the step-3 boundary (the sentence freeze,
+   2026-07-15). A sweep's universe derives from the custody record
+   plus declared non-manifest surfaces — never hand-enumeration (the
+   D6 sweep incident). DISCHARGED-PERMANENT is a named register
+   category: the terminal state of an ablation fixture, reached when
+   the deletion it proved possible becomes the deletion that happened
+   (UseBern the first instance; every ablation fixture ends there
+   eventually if the roadmap is honest). And the OVERLAY form of
+   R-D21 — the prototype wearing the real module's name, so the
+   oracle's exact frozen text compiles against it unchanged — is the
+   preferred transcript form wherever the prototype can carry the
+   module interface.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

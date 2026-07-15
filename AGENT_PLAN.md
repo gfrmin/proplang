@@ -988,11 +988,11 @@ this boundary"). The discipline: amend at the step that falsifies — never befo
 | frozen prose | amend at |
 |---|---|
 | `CLAUDE.md` — the optimisation law + the R-D21 canonization (mechanical form) + the evidence-program protocol line | **step 2** |
-| `test-expfam/ExpFam.hs` group 6 retirement (the re-open table above) | **step 3** |
-| `interface.md` (T1, the load-bearing clause's scope); `EXPFAM_PLAN.md` (T1, E9) | **step 3** |
+| `test-expfam/ExpFam.hs` group 6 retirement (the re-open table above) | **step 3** — EXECUTED at the sentence freeze |
+| `interface.md` (T1, the load-bearing clause's scope); `EXPFAM_PLAN.md` (T1, E9) | **step 3** — EXECUTED at the sentence freeze |
 | `design.md` / `typed-port-spec.md` (the outcome sort; `prodTable` prose) | **each alphabet-moving step** (P5's own rhythm) |
-| `membrane-wire.md` + `host-governor/Wire.hs` (the sentinel, `missing-internal-row`) | **step 5** |
-| suite retirements (`ladder`, `prepost`, `cirl`, `govhost`, `test-d`, membrane's action parts) | **the step that falsifies each** (first: step 5 — the M5 guardian `Membrane.hs:340-350` and the t1 parity world `:156-159` break by construction) |
+| `membrane-wire.md` (the sentinel, `missing-internal-row`) | **step 5** — `host-governor/Wire.hs` DISCHARGED EARLY by retirement at step 3 (D3 rider 1); the sentinel's remaining pointable site is `membrane-wire.md:131` (the think row; prose at `:57`), which keeps its step-5 date |
+| suite retirements (`ladder`, `prepost`, `cirl`, membrane's action parts) | **the step that falsifies each** (first: step 5 — the M5 guardian and the t1 parity world break by construction; `govhost` + `test-d` FELL AT STEP 3 with `Model` — the rule fired early, as designed; membrane's action rows were PORTED to the sentence route at the same freeze) |
 | `HOSTS_PLAN.md` (M5) | **step 7** |
 | `MANIFEST.sha256` | re-signed at every freeze (83 rows at `code-freeze-r1`) |
 

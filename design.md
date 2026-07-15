@@ -42,6 +42,16 @@ TEST  ::= ('>', ATOM, ATOM)
 ATOM  ::= ('get', NAME) | CONST_tau
 CONST ::= ('c', grid, k)               k-th point of a priced grid
 
+-- [step-3 amendment, the sentence freeze 2026-07-15 (delegated edit,
+--  sentence-author-pack.md SS20.5): the ENGINE's hypothesis
+--  representation is the emission CODE of the real grammar, priced by
+--  the declared production table {MODEL 2, THETA 2, HEAD 2, RATE 1}
+--  (charges measured bit-identical to this fragment's, E-s1); 'bern'
+--  left the stdlib (STDNAME 7 -> 6) and is said as a code; 'rw'
+--  remains the alphabet's one non-expfam combinator, said as the walk
+--  code (bit-identical to the reference, E-s2). The deletion table's
+--  meaning is carried by the ported per-production ablations.]
+
 -- policy fragment (adds the verbs as terminals) --
 EXPR  ::= ('argmax', OPTIONS, VALUE)   choice by expected utility
         | ('push', BELIEF, KERNEL)     pushforward

@@ -157,13 +157,21 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > | FN | FnInd, FnUtil | 1 bit |
 > | STATS | SId | 0 bits |
 > | KER | ExpFam | 0 bits |
-> | STDNAME | EU, IsEq, VAct, VThink, Bern, VThinkK, VPre | log2 7 |
+> | STDNAME | EU, IsEq, VAct, VThink, VThinkK, VPre | log2 6 |
 > | UTIL | USay | 0 bits |
 >
 > STDNAME row amended at the prepost freeze to cover both the
 > ladder's VThinkK (missed at that boundary) and VPre — two alphabet
 > changes, one repair, per the frozen-text-states-no-falsehood
 > standard.
+>
+> STDNAME row amended again at the sentence freeze (step 3,
+> 2026-07-15; delegated edit, sentence-author-pack.md SS20.5): `Bern`
+> left the stdlib — Bernoulli emission is said as a CODE of the
+> declared production table, and the evaluator's `bernFast` remains
+> the E7-pinned fast form. Every STDNAME mention re-prices by the
+> lg 7 - lg 6 = 0.222-bit refund (P5's pin re-pricing; the three
+> sayable-fixture pins moved with it, D4 adjudication).
 >
 > Hole sorts are declared by the grammar, not inferred from types:
 > kernel-valued positions (e.g. `Push`'s second child) are KER holes;

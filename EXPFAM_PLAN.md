@@ -67,6 +67,14 @@ elsewhere, and each one shapes the register.
 
 ### T1 — `rw` is not an exponential family; its spec'd re-derivation cannot be float-preserving. [STOP-AND-REPORT AT PLAN TIME]
 
+> **Step-3 amendment (the sentence freeze, 2026-07-15; delegated
+> edit):** `Bern` left `StdName` (STDNAME 7 -> 6, the P5 refund) —
+> Bernoulli emission is said as a code of the declared production
+> table; `bernFast` survives as the E7-pinned evaluator fast path.
+> T1's record is unchanged: `rw` stays out of the basis; its
+> utterance is the walk code, measured bit-identical to the
+> reference at the step-3 boundary (E-s2).
+
 interface.md §4 commits to `rw(rho) = expfam(THETA, id,
 mean=('get','theta_prev'), scale=rho)`. The frozen reference semantics
 of `rw` is the REFLECTED WALK (`walkKernel`): from grid position i,
@@ -378,6 +386,10 @@ the increment oracle pins both strings.
    sufficiency property lands as the fast path's semantic license;
    representation debt named.
 9. **E9 — ablation wiring**: four flags, all increment-local rows.
+   *(Step-3 amendment: the bern flag's row is DISCHARGED-PERMANENT —
+   the deletion the fixture proved possible became the deletion that
+   happened; UseBern.hs retired; three rows remain. Group 6 retired
+   per this schedule's own booking, KEEP E7.)*
    `DROP_EXPFAM` removes the constructor AND its evalx/bits/render
    cases AND the derived layer (`Bern`, `bernFast`, `emit`, the
    emission-dependent enumeration branches, the `HypState` members) —
