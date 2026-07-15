@@ -74,6 +74,26 @@ module PropLang.Enumerate
   , observeCounts
 #endif
 #endif
+  -- THE STEP-3 TYPE SURFACE (AGENT_PLAN §7 step 3: a hypothesis becomes
+  -- a sentence). Oracle-phase stubs until the author's freeze — the
+  -- increment-D precedent (:495-499). Unguarded: sentences are sayable
+  -- without the scoring layer, exactly as the fragment is.
+  , FragSort (..)
+  , FragProd (..)
+  , fragSortOf
+  , fragWidth
+  , fragFull
+  , Hyp (..)
+  , enumerateSentences
+  , enumerateSentencesIn
+  , enumerateSentencesGrid
+  , filterTickFree
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+  -- the agent over sentences dies with the scoring layer, exactly as
+  -- 'Agent' itself does (the E9 boundary: sentences stay sayable, but
+  -- without the carrier no likelihood exists and no agent can be built)
+  , sentenceAgent
+#endif
   ) where
 
 import Data.List (elemIndex)
@@ -88,7 +108,7 @@ import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 import PropLang.Eval (bernFast)
 import PropLang.Syntax (carrierSpace)
 #endif
-import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), Name,
+import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), K, Name,
                         Namespace, StdName (..), Args (..), Stats (..),
                         carrierName, gridName, gridSize, mkC, mkCarrier,
                         mkGrid, mkNamespace, nsSize)
@@ -753,3 +773,114 @@ observeVia kv feats y (Agent ms hyps isp meta) = do
 -- requires the expfam basis and the declared obs carrier; without
 -- them the model fragment still enumerates and renders — sentences
 -- are sayable — but no likelihood can be assigned and no agent built.
+
+-- ---------------------------------------------------------------------
+-- THE STEP-3 TYPE SURFACE (AGENT_PLAN §7 step 3: a hypothesis becomes a
+-- sentence; sentence-author-pack Parts I–III). TYPE SURFACE ONLY at the
+-- oracle phase (the increment-D precedent, :495-499): declarations are
+-- complete and real, bodies are oracle-phase stubs; implementation
+-- lands only after the author's freeze, and the demolition (Bern, THmm,
+-- Model, Terminal) lands with it.
+--
+-- Model -> the emission CODE of the real grammar (Eval.hs Code; R-C1
+-- ruling (iii): per-tick denotation through Maybe — a code that refuses
+-- at an OBSERVED tick asserted the impossible there and is refuted
+-- permanently; on a silent tick, silence never refutes).
+-- Terminal -> the fragment's declared production table below.
+-- ---------------------------------------------------------------------
+
+-- | The fragment's four sorts. A sort's WIDTH is what the derivation
+-- charges at its choice point (lg width) — declared data read by the
+-- enumeration's pricer, never a hand-rolled literal (decision 8: the
+-- table through bitsAt's own discipline from day one; E-s1 measured the
+-- declared table bit-identical to the frozen charges, both fold
+-- shapes).
+data FragSort = MODEL | THETA | HEAD | RATE
+  deriving (Eq, Show)
+
+-- | The fragment's productions, each belonging to a sort. HEAD carries
+-- ONE enumerable production under a declared width of 2 — a classified
+-- exception in the SayableP lg-10 sense (the width is what is priced,
+-- not the enumerated count; the D4 discipline: re-pricing is
+-- adjudication, never grep).
+data FragProd = FBern | FWalk | FConst | FIf | FGuardHead
+  deriving (Eq, Show)
+
+fragSortOf :: FragProd -> FragSort
+fragSortOf FBern      = MODEL
+fragSortOf FWalk      = MODEL
+fragSortOf FConst     = THETA
+fragSortOf FIf        = THETA
+fragSortOf FGuardHead = HEAD
+
+-- | The declared widths: MODEL 2, THETA 2, HEAD 2, RATE 1 (the E-s1
+-- table, sentence-author-pack §5).
+fragWidth :: FragSort -> Int
+fragWidth MODEL = 2
+fragWidth THETA = 2
+fragWidth HEAD  = 2
+fragWidth RATE  = 1
+
+-- | The full production list; test 4's deletion rows enumerate declared
+-- SUBSETS of it (the [Terminal] lists' port, D2 part 3).
+fragFull :: [FragProd]
+fragFull = [FBern, FWalk, FConst, FIf, FGuardHead]
+
+-- | A hypothesis IS a sentence — transparent, because hypotheses are
+-- world-declarable data (the deletion-test criterion): a derivation
+-- charge, a latent axis, the per-tick emission code over that axis,
+-- and — for state-carrying sentences — a transition code over the same
+-- axis (D5 as ruled: this slot plus the filtered 'Belief' the agent
+-- carries per hypothesis covers what 'THmm' carried; no new type).
+-- Stateless sentences declare a SINGLETON latent axis, so the uniform
+-- initial latent is a point mass and every predictive row stays
+-- bit-exact (no mixture arithmetic on a degenerate axis).
+data Hyp = Hyp
+  { hypBits  :: Bits
+  , hypSpace :: Space Double
+  , hypEmit  :: Expr '[] (Maybe (K Double Obs))
+  , hypMove  :: Maybe (Expr '[] (Maybe (K Double Double)))
+  }
+
+-- | The fragment over the built-in namespace and grids — the
+-- 'enumerateModels' successor; 1169 hypotheses at 'fragFull', dl
+-- multiset bit-identical to the frozen enumeration's (g1 pins it).
+enumerateSentences :: [FragProd] -> [Hyp]
+enumerateSentences _ =
+  error "step-3 stub: enumerateSentences lands after the author's freeze"
+
+-- | Namespace-relative enumeration (the 'enumerateModelsIn' successor;
+-- the membrane's 1241/1529 counts port against this).
+enumerateSentencesIn :: Namespace -> [(Name, Grid)] -> [FragProd] -> [Hyp]
+enumerateSentencesIn _ _ _ =
+  error "step-3 stub: enumerateSentencesIn lands after the author's freeze"
+
+-- | Emission-grid-relative enumeration (the 'enumerateModelsGrid'
+-- successor; boundary E's grid relativity).
+enumerateSentencesGrid :: NonEmpty Double -> Namespace -> [(Name, Grid)]
+                       -> [FragProd] -> [Hyp]
+enumerateSentencesGrid _ _ _ _ =
+  error "step-3 stub: enumerateSentencesGrid lands after the author's freeze"
+
+-- | THE LAW'S FIRST SCHEDULED APPLICATION (the step-2 rider): drop
+-- candidates whose emission code is TICK-INDEPENDENTLY never-denoting
+-- (a Get-free code refused once is refused always). A fast path, legal
+-- iff pinned extensionally to carry-plus-per-tick-refutation — g3 pins
+-- it in BOTH orientations in this same increment; it never enters the
+-- alphabet, so it never touches the prior.
+filterTickFree :: [Hyp] -> [Hyp]
+filterTickFree _ =
+  error "step-3 stub: the filter fast path lands WITH its pin (the law)"
+
+#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+-- | The agent over sentences — the 'mkAgent' successor ('mkAgent' dies
+-- with 'Model' at this boundary). Meta-prior 2^(-hypBits) through the
+-- only prior source; per-hypothesis filtered latents initialize uniform
+-- on 'hypSpace' and move only by the verbs. Guarded with the scoring
+-- layer: without the carrier declaration no agent can be built (E9),
+-- and the deletion audit's attribution must keep landing on
+-- 'obsCarrier', never on this stub.
+sentenceAgent :: [Hyp] -> Agent
+sentenceAgent _ =
+  error "step-3 stub: sentenceAgent lands after the author's freeze"
+#endif

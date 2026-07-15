@@ -1,0 +1,20 @@
+-- test-sentence/stanza.cabal.draft — the sentence suite's stanza,
+-- merged into proplang.cabal ONLY at the step-3 freeze (manifest-frozen
+-- cabal moves at freeze boundaries; the optlaw/step-2 precedent).
+-- hs-source-dirs reaches test/ for the FROZEN Streams and Anchors
+-- modules (the membrane precedent): anchor values are imported from
+-- the frozen artifact itself, never copied.
+
+test-suite sentence
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Sentence.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test-sentence, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , process
+    default-language: GHC2021
