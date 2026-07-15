@@ -46,12 +46,15 @@ module PropLang.Membrane
 #endif
   ) where
 
-import Data.List.NonEmpty (NonEmpty)
+import Data.List.NonEmpty (NonEmpty ((:|)))
 
-import PropLang.Eval (Features)
-import PropLang.Syntax (Grid, Name)
+import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
+import PropLang.Syntax (Grid, Name, gridSize, mkC)
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
-import PropLang.Enumerate (Agent, Obs)
+import Data.Maybe (fromMaybe)
+import PropLang.Belief (LogProb (LogProb), entropyBits, is, prob)
+import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
+                           predictive)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..),
                         StdName (..), Util)
 #endif
@@ -76,8 +79,16 @@ type Menu = [(Name, Grid)]
 -- evaluation is a fast path under the §1b law and arrives with its
 -- pin (the pricing freeze's caution, third statement).
 menuAssignments :: Menu -> NonEmpty Features
-menuAssignments _ =
-  error "step-5 stub: the option space lands after the author's freeze"
+menuAssignments menu = case go menu of
+  a : as -> a :| as
+  []     -> [] :| []
+  where
+    go [] = [[]]
+    go ((nm, g) : rest) =
+      [ (nm, v) : more | v <- points g, more <- go rest ]
+    points g =
+      [ evalx e (mkEnv [] VNil)
+      | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
 
 #if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 -- | Defunctionalized pilots, 'Choice' deleted: the same three shapes
@@ -132,6 +143,36 @@ data TickTrace = TickTrace
 -- interpretPilot -> observe at negate lp / ln2 -> wStep.
 runMembrane :: PureWorld s -> Pilot -> Int -> s -> Agent
             -> Maybe (Agent, [TickTrace])
-runMembrane _ _ _ _ _ =
-  error "step-5 stub: the tick lands after the author's freeze"
+runMembrane w pilot n s0 ag0 = go 0 s0 ag0
+  where
+    go t s ag
+      | t >= n = Just (ag, [])
+      | otherwise = do
+          let feats = wFeats w s
+              pr = predictive feats ag
+              p1 = prob pr (is obsSpace 1)
+              h = entropyBits (agentMeta ag)
+              opts = menuAssignments (wMenu w s)
+              c = interpretPilot pilot feats pr opts
+          (lossBits, ag') <- case wEvidence w s of
+            Nothing -> Just (0, ag)
+            Just y  -> case observe feats y ag of
+              Nothing              -> Nothing
+              Just (LogProb lp, a) -> Just (negate lp / ln2, a)
+          (agF, rest) <- go (t + 1) (wStep w s c) ag'
+          Just (agF, TickTrace t p1 h c lossBits : rest)
+
+ln2 :: Double
+ln2 = log 2
+
+-- One pilot decision: the doctrinal argmax-EU program over the whole
+-- option space; the scripted threshold read; the first-listed option
+-- (= wait, by construction) for idle worlds.
+interpretPilot :: Pilot -> Features -> B Obs -> NonEmpty Features
+               -> Features
+interpretPilot p feats pr opts = case p of
+  PilotIdle -> let c :| _ = opts in c
+  PilotThreshold nm th a b ->
+    if fromMaybe 0 (lookup nm feats) > th then a else b
+  PilotEU u -> evalx argmaxEU (mkEnv feats (opts :. pr :. u :. VNil))
 #endif
