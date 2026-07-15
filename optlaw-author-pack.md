@@ -433,8 +433,16 @@ and it held); `optlaw` PASS 7/7 (1.63 s). The step closes on the author's
 single tag (his ruling: "the step can close on the same signature if Phase
 C's gates are green").
 
-*The one remaining act is the author's, from his own shell:*
+## 10. CLOSED
 
-```
-git tag -s optlaw-freeze-r0 <freeze-commit> -m "step 2 freeze: the optimisation law canonized; observeCounts pinned (test-optlaw, gates 1e-11/1e-11 from the measured residue); CL-4 repaired 1e-9 -> 1e-12 (the named Phase-1 re-open); manifest 85 rows. R-D22 riders: this tag countersigns the delegated design-review-gate commits 5fa305d and 0b20495, and the delegated Phase-B freeze edits of this increment."
-```
+**`optlaw-freeze-r0` signed on `66a48f1` from the author's own shell,
+2026-07-15, and verified**: Good "git" signature, ED25519
+SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY — the single-tag close the
+author's ruling anticipated (oracle, freeze edits, and all seven gates green
+on one signature). The tag message records the R-D22 riders verbatim: the
+delegated Phase-B freeze edits of this increment, and the delegated
+design-review-gate commits `5fa305d` and `0b20495` — **the re-tag obligation
+carried since the design-review gate is DISCHARGED.** From this signature
+`test-optlaw/` is as frozen as `test/`; the §1b table is exhaustive-at-r1 as
+law; and step 3 opens with the optimisation law's first scheduled application
+already on its checklist.

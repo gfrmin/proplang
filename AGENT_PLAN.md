@@ -837,7 +837,11 @@ Oracle-first per CLAUDE.md; the builder never owns a live oracle.
 **Progress register (S4, added 2026-07-15):**
 step 0 ✅ (`agent-boundary` `f46e08c` + `agent-boundary-r1`) ·
 step 1 ✅ (`code-freeze-r0` `1027398` + `code-freeze-r1` `ea891f0`; as-built record
-`code-task2-author-pack.md` §7) · steps 2–10 open.
+`code-task2-author-pack.md` §7) ·
+step 2 ✅ (`optlaw-freeze-r0` `66a48f1`, signed and verified 2026-07-15 — the single-tag
+close, oracle and gates green on the same signature; as-built record
+`optlaw-author-pack.md` §8–9; manifest 85 rows; the R-D22 riders for `5fa305d` and
+`0b20495` DISCHARGED by this tag) · steps 3–10 open.
 
 0. **This document, signed.** (Author.) **Nothing frozen moves until the tag exists.**
 1. **`Code` + `Pos` + arithmetic** (§2a, §5). Oracle: pin the code forms of `bern`, `expfam`
