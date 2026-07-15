@@ -171,6 +171,19 @@ current widths, and a future declared table or grid would break it
 silently at a distance. Register D-p1 presents both arms with this
 measurement; the recommendation stays (B) with tree-as-data.
 
+> **SUPERSEDED IN PART (the r1 review, 2026-07-15; appended, never
+> rewritten — the S5 form):** this section's mechanism sentence
+> ("every sort width is exactly one bit and lg 16 = 4, so the
+> prefixes are dyadic") is wrong as stated — §13's root cause reveals
+> the probe's tau leaf was lg 15, NON-dyadic, throughout the 6/6
+> rows. The correct reading of the coincidence: ONE-BIT SORT WIDTHS
+> plus a single content leaf re-associating losslessly at these
+> magnitudes. The design conclusion (tree-as-data for robustness) is
+> thereby STRENGTHENED — the coincidence is even narrower than this
+> section claimed — but the mechanism a future reader should
+> reconstruct from the doctrine row's provenance is the corrected
+> one, not this section's.
+
 ## 8. The pin captures (R-D20-i)
 
 The ns0 dl hexes are COPIES of the frozen `test-sentence/Sentence.hs:
@@ -394,3 +407,67 @@ grep -rn 'wOf\|lgOf' src/                        # empty
 **Step 4 is implemented and green under the signed freeze. The
 increment closes on the author's review of this report — the two-tag
 shape offers `pricing-freeze-r1` on the as-built.**
+
+---
+
+# PART V — the r1 review, enacted (2026-07-15)
+
+The author's verification passed (the cabal transcript's eleven PASS
+against the post-retirement census; the §16 greps in the right
+obligation-row form). His three record items and two confirmations,
+enacted before the tag:
+
+## 17. The record items
+
+1. **§13's root cause, given its full name (the author's, verbatim
+   key):** the *capture* was right all along — it was the *checker*
+   that lied; "a disagreement between routes is information, not
+   embarrassment." The sharp part: the remedy already existed in the
+   same increment's own surface — `tauPoints` was exported at the
+   type-surface phase precisely on the ground that "exporting beats
+   copying," and the assoc probe hand-wrote the leaf anyway. So the
+   lesson is not just "hand-enumeration again"; it is that **probes
+   are subject to the same discipline as sweeps: a probe reads
+   declared data — exports, tables — and never re-declares a value it
+   could import.** QUEUED for the canonization queue as the
+   sweep-universe line's sibling, this incident its provenance; lands
+   at the next CLAUDE.md touch (step 5's freeze).
+2. **§7 superseded in part** — the S5-form supersession block now
+   appended to §7 itself: the coincidence's mechanism is one-bit sort
+   widths plus a single content leaf re-associating losslessly at
+   these magnitudes, NOT "all prefixes dyadic" (one leaf was lg 15,
+   non-dyadic, throughout). The design conclusion strengthens.
+3. **First-run green is a measured pattern, recorded in the increment
+   report in the author's terms:** step 3's overlay prototype went
+   26/26 and Phase C landed green; E-p1's 15,790/0 predicted
+   bit-stability through a rewrite of the two most heavily pinned
+   arithmetic sites in the repo, and eleven suites cashed it first
+   run. Two consecutive increments where the falsifier-before-freeze
+   protocol converted implementation from adventure into
+   transcription — that is the economic argument for the discipline,
+   and the day someone proposes skipping the evidence program "just
+   this once" is the day this paragraph earns its keep.
+
+## 18. The confirmations, executed
+
+1. **g2's provenance comment now names both routes for all five
+   namespace-variant goldens** (delegated comment-only edit to the
+   frozen oracle under the author's pre-tag instruction; the r1 tag
+   covers it, R-D22): route 1 = the 9d348eb capture; route 2 = the
+   declared-tree arithmetic independent of guardCharge (assoc-probe
+   shipped-shape rows for s2/z/la; TwoRoute.hs for the two t-guards).
+   Manifest re-hashed, 80/80.
+2. **PolSort's derivation, for the typing-audit rule's letter
+   (internal type, as-built record):** `PolSort` is the policy
+   table's six fields as a sort enumeration — PolExpr/PolFn/PolStats/
+   PolKer/PolStdName/PolUtil name `prodTable`'s fields one-for-one —
+   so `CW` reads `prodTable` through the one mechanism exactly as
+   `CW MODEL` reads the fragment table through `fragWidth`. It
+   carries no width of its own (zero literals), is not exported (the
+   public single site stays `prodTable`), and dies with `bitsAt` if
+   the policy pricer ever leaves.
+
+**With these, the increment closes on `pricing-freeze-r1`. The step
+closed as the author put it: no capability, no alphabet motion, one
+arithmetic where there were two, and the enforcement now lives in
+grep rather than goodwill.**

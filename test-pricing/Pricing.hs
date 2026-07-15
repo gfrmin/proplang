@@ -141,7 +141,15 @@ g2Trees = testGroup "g2 the declared trees == the frozen charges"
                   (chargeBits fragWidth walkCharge)
       assertHexEq "guardCharge ns0 tau theta" 0x4030570068e7ef5a
                   (chargeBits fragWidth (guardCharge ns0 tauG thetaG))
-  , testCase "the namespace-variant guard trees hit the captured hexes (9d348eb, the g1/M1-pinned populations)" $ do
+  , testCase "the namespace-variant guard trees hit the two-route goldens (capture 9d348eb + the TwoRoute/E-p1 tree arithmetic)" $ do
+      -- TWO-ROUTE PROVENANCE, all five (the r0 pre-tag rider): route 1
+      -- = capture from the shipped enumerator at 9d348eb
+      -- (capture-transcript.txt), whose populations the frozen g1/M1
+      -- rows pin; route 2 = declared-tree arithmetic independent of
+      -- guardCharge — the s2/z/la hexes via the assoc probe's shipped-
+      -- shape rows, the two t-guard hexes via TwoRoute.hs (E-p1's
+      -- guardT byte-copied), appended to the same transcript. Both
+      -- routes agree bit-for-bit on every row below.
       assertHexEq "nsA t-guard"  0x4031570068e7ef5a
                   (chargeBits fragWidth (guardCharge nsA tauG thetaG))
       assertHexEq "nsA s2-guard" 0x402aae00d1cfdeb4
