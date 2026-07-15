@@ -941,3 +941,93 @@ draft moves to the new HEAD.
 
 State after the repair: manifest 78/78 OK; Syntax.hs recompiles clean
 under the full warning set; the gate state of §25 is unchanged.
+
+---
+
+# PART VI — Phase C, the demolition: as-built (2026-07-15)
+
+Authorized by `sentence-freeze-r0` on `f0e1a7a` (signature verified:
+the author's ED25519 key). Builder commit: `d60e850`. **All ten suites
+green on the FIRST full run; gates 1–7 PASS; manifest 78/78; net
+−477 lines of src.**
+
+## 28. As-built answers
+
+**What the engine is now.** A hypothesis IS a sentence: `Hyp` = a
+derivation charge from the declared production table, a latent axis,
+an emission code of the real grammar, and (state-carrying only) a move
+code over the same axis. `Enumerate.hs` was rebuilt from the
+freeze-verified prototype — the overlay module the oracle ran 27/27
+SAT against, including the `observeVia` sentence arm the optlaw SAT
+run caught missing. The charges are computed tree-shaped from
+`fragWidth` (`lg width` per choice point, E-s1's fold); nothing
+hand-rolled remains in the enumerator.
+
+**What left the tree** (the §10 extended deletion set, executed
+whole): `Model`, `Terminal`, `allTerminals`, `enumerateModels/In/
+Grid`, `renderModel`, `modelBits`, `mkAgent`, `initHyp`,
+`agentModels`, the `HBern`/`HHmm`/`HUConst`/`HUWalk` states, the
+u-fragment (`UFamily`, `allUFamilies`, `enumerateUModels`, `TauSpec`,
+`mkTauSpec`, `verdictKernel`, the four `latent*` accessors), the
+membrane's latent-utility pilot (`UPilot`, `UTickState`, `UTickTrace`,
+`membraneTickU`, `runMembraneU`, `uChoose`), the `Bern` constructor
+with its `applyStd` case, and the `DROP_BERN`/`DROP_UPILOT`/
+`DROP_UWALK` hooks. `bernFast` survives, E7-pinned (the name was
+sugar; the capability is a code). `walkOn` survives as the REFERENCE
+the walk code is pinned against (test-code group 1); the engine steps
+through move codes.
+
+**The alphabet constant**: `prodTable` moved 19 2 1 2 **7** 1 →
+19 2 1 2 **6** 1 at P5's single site — exactly the move that un-redded
+the three re-priced sayable pins (ladder/prepost/cirl), which had been
+red at precisely that one row each since Phase B. The oracle-first
+order held end to end: pins moved first, the constant followed.
+
+**Rulings, as built.** D8 is `predictive`'s refusal branch —
+condition-on-denotation through public `cond`, renormalisation local
+to the query, the belief state untouched (the ruling text lives on
+`sentenceAgent`'s haddock and in the oracle header). Observed-tick
+refusal is the evidence-shaped zero through public machinery; a
+refuted sentence keeps its state at zero meta mass (Cromwell at the
+meta level). `observeCounts` over a refusing sentence gets observe's
+evidence-shaped zero across the collapsed ticks (no frozen row
+exercises it; recorded as the observed-tick rule applied, not a new
+mechanism). The enumerators are guarded consumers-down under
+`DROP_CODE`/`DROP_POS`/`DROP_TOR` (the strengthened ablation
+standard: all of src compiles ablated; only fixtures fail, with
+attribution).
+
+**The gate transcript** (`cabal-test-all-phaseC.txt`,
+`run-gates-phaseC.txt`): sentence 27/27 · optlaw 7/7 · hygiene 15/15 ·
+expfam 16/16 · membrane 27/27 · ladder 20/20 · prepost 15/15 · cirl
+17/17 · code 45/45 · properties 3/3; gates 1–7 all PASS (gate 5 =
+`cabal test all`; gate 6 = manifest 78/78; gate 7 = the frozen
+ablation audit). Every anchor byte-stable through the sentence route —
+the E-s1/E-s2/spots measurements predicted exactly this, and the
+first-run green is those measurements cashing out.
+
+**Register debts standing (printed, with named homes):** the HEAD
+width-2 DEBT (§24; home: table re-derivation at an author boundary, or
+a second utterable head). The host-less window is open until step 5/7
+(D3 rider 2, stated in the cabal).
+
+## 29. Reviewer verification block (Phase C)
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+git tag -v sentence-freeze-r0        # the freeze this executes
+cabal test all                       # ten suites, all green
+sh audit/run-gates.sh                # 7/7 PASS
+sha256sum -c MANIFEST.sha256         # 78/78
+# the graveyard is empty (code tokens; comments excluded by eye):
+grep -rn 'mkAgent\|enumerateModels\|verdictKernel\|UPilot' src/ | grep -v -- '--'
+# the alphabet constant moved at its single site:
+grep -n 'ProdTable 19 2 1 2 6 1' src/PropLang/Syntax.hs
+# the deletion audit still attributes (spot):
+sh test-sentence/ablation/run.sh code && sh test-expfam/ablation.sh all
+```
+
+**Step 3 is implemented and green under the signed freeze. The
+increment closes on the author's review of this report (the step-1
+precedent offers an r1 close tag if he wants the as-built
+countersigned; nothing here requires further builder action).**
