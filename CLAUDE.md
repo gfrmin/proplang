@@ -193,7 +193,12 @@ Every step-6+ increment follows the recursive two-phase discipline:
    its return row on that boundary's opening checklist AT THE
    RETIRING FREEZE — a deferred obligation living only in a retired
    file's comment is the R6 disease wearing a new hat (g4Self the
-   first instance).
+   first instance). And the overlay-form clause is AMENDED: the
+   overlay SAT compile uses the stanza's EXACT flag set, -Werror
+   included — bit-faithful means FLAG-faithful (the step-5 incident:
+   the reorder's first red run caught the r0 overlay compile without
+   -Werror carrying two redundant imports; caught inside the freeze
+   window, fixed, re-witnessed, re-sealed).
    One line canonized at the step-4 boundary (the pricing freeze,
    2026-07-15): A RETIREMENT LISTS ITS PINS — a retirement
    disposition enumerates every pin the retiring file carries and

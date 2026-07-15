@@ -459,3 +459,51 @@ corpus — the oracle as sealed, the delegated edits of §15, the §13
 sequencing as ratified with the seal closing its one window. Then
 implementation from the E-a1-verified prototype, all suites green,
 as-built, r1.**
+
+## 19. The signing items (the author's verification, enacted pre-key)
+
+**1. The r0→r1 diff, VERBATIM (the bridge between the two sealed
+hashes — "mechanical" checked, not trusted; the standard every future
+replacement-surface use inherits):**
+
+```diff
+diff --git a/test-actions/Actions.hs b/test-actions/Actions.hs
+index e54b7fe..5765776 100644
+--- a/test-actions/Actions.hs
++++ b/test-actions/Actions.hs
+@@ -53,7 +53,6 @@
+ -- retires the constructor itself. Test names are ASCII-only.
+ module Main (main) where
+ 
+-import Data.List (foldl')
+ import Data.List.NonEmpty (NonEmpty ((:|)), toList)
+ import Data.Maybe (fromMaybe)
+ import Test.Tasty
+@@ -62,7 +61,7 @@ import Test.Tasty.HUnit
+ import PropLang.Belief (Belief, Bits (..), Evidence (Saw), cond, uniform)
+ import PropLang.Enumerate (Obs, emit, enumerateSentences, fragFull,
+                            sentenceAgent, thetaSpace)
+-import PropLang.Eval (Features, Vals (..), evalx, mkEnv, vThinkK)
++import PropLang.Eval (Vals (..), evalx, mkEnv, vThinkK)
+ import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
+                           menuAssignments, runMembrane)
+ import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,
+```
+
+**2. The flag-faithful lesson is CANON, not pack prose:** CLAUDE.md's
+step-5 touch now carries it as its third line — the overlay-form
+clause amended: the overlay SAT compile uses the stanza's EXACT flag
+set, -Werror included; bit-faithful means FLAG-faithful; this
+incident its provenance.
+
+**3. The dormancy-row confirmation, answered by MEASUREMENT rather
+than accounting:** the A world was NOT in E-a1's two-route set — the
+ported g2Dormant goldens were textual, their greens PREDICTED. Rather
+than name the risk, the risk was retired: the A world ran two-route
+pre-key (the shipped route from the pre-flip Membrane at ef998e2
+overlaid on unchanged src, vs the prototype; 159 tick rows + both
+1,241-point posterior snapshots at t=39 and t=120 — every quantity
+the three dormancy rows derive from): **ZERO diff over 2,641 lines**
+(`aworld-old.txt`/`aworld-new.txt`/`aworld-diff.txt`). Every
+ported membrane world is now two-route covered; no green at
+implementation is merely predicted.
