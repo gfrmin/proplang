@@ -662,3 +662,125 @@ sha256sum -c MANIFEST.sha256   # 85/85 (extends only at the freeze)
 **The step stops here for the sitting: D8 and the g3 gates (§19), then
 the freeze tag over §20.** The builder's recommendation on both §19
 items is in their rows; nothing proceeds on recommendation alone.
+
+---
+
+# PART V — the sitting enacted; Phase B under the recorded delegation (2026-07-15)
+
+The author's sitting message ruled both §19 items, added one confirmation
+demand, one register row, one canonization line, and closed with the
+delegation: **"With the two §19 rulings recorded in the upgraded form, the
+freeze proceeds over §20 as listed."** This part records the rulings as
+upgraded, the confirmation's answer, and the Phase-B execution log.
+
+## 22. The §19 rulings, recorded in the upgraded form
+
+**D8 — ADOPTED, the ground upgraded from implementation fact to
+coherence.** The author's ruling, its key language verbatim: the
+builder's ground ("only public-verb-expressible option found") is an
+implementation fact; the semantics is actually *forced by coherence* —
+"a prevision on the world's declared carrier must be total and sum to
+one — a deficient mixture prices a Dutch book, and 'the sentence
+doesn't speak' is not a point of `y`'s carrier, so carrying the
+refuser's mass as deficiency is incoherent as a forecast; assigning it
+any likelihood instead is a fabricated number, the sentinel's disease.
+Conditioning on denotation is ordinary Bayes on the one event the
+language can state, and it satisfies the tower property against ruling
+4: today's renormalised predictive equals the expectation of tomorrow's
+post-refutation posterior — the semantics *anticipates* the refutation
+that arrival will execute."
+
+Two precisions frozen into the ruling text (both now in the oracle
+header and at the `sentenceAgent` surface):
+
+1. **A read, not an update.** The belief state is untouched, the
+   refuser keeps its meta mass, the renormalisation is local to the
+   predictive query. "Conditioned away by the same cond arithmetic"
+   invites an implementer to wire it as a belief update — that is
+   refutation-by-prediction, forbidden: no observation occurred, and
+   deliberation must never destroy beliefs. The prototype does it
+   right (the carry route holds prior mass pre-observation); the text
+   now makes it impossible to do wrong.
+2. **The per-assignment corollary, frozen now though step 5 first
+   reaches it.** Push-at-assignment applies the same semantics *per
+   assignment* — a sentence refusing under a contemplated assignment
+   is conditioned out of that assignment's predictive and harmed
+   nowhere else. And the mass a refuser holds is not lost to the agent
+   either way: it is precisely the probability that tomorrow's arrival
+   shrinks the support, which the preposterior machinery prices as
+   wait-and-see value without any new mechanism — recorded so nobody
+   later invents a guard for it.
+
+**g3 — the gates ADOPTED on the measured numbers** (1e-14 relative
+predictive, 1e-13 absolute per posterior point): "the pre-ruling's own
+else-branch firing as designed — `==` was conditional on reproduction,
+reproduction failed for a structural reason, and the repaired-CL-4
+idiom takes over." The mechanism is now NAMED in both provenance
+paragraphs (header and row), the author's wording: "the two routes
+renormalise from different prior populations, so identical algebra
+runs through different division sequences and drifts by ulps — so
+that a future reader of a 5-ulp residue suspects the normaliser's
+history and not the filter." The category-error clause on
+pre-observation posterior rows is annotated as what the author called
+it — D8's read-not-update distinction in test form. The
+shipped-population row keeps `==` untouched (§6.4's full strength
+exactly where it applies).
+
+**Record items from the same message:** the §14 conviction stood but
+the *diagnosis* differed from the charge (advanced-and-read-once-under-
+six-labels, not non-advancing) — the falsifier's three rows
+discriminated the two mechanisms exactly, which is what a falsifier is
+for. E-s2's zero-in-13,992 also quietly discharged a standing gap: the
+σ-mixture's missing 567-analogue, measured for the first time. The
+`sentenceAgent` guard defect caught live by the deletion audit is the
+audit earning its keep mid-increment.
+
+## 23. The confirmation, answered — and made exactly true
+
+The author's demand: "both g3 orientations each carry their own row in
+the fixture population — the reverse orientation … pins the filter
+*classifying* a tick-dependent code as untouchable, both routes
+carrying it to its death tick."
+
+**As drafted, partially true.** The reverse orientation had its own
+fixture-population row, but it walked only the CARRIED route (the
+filter route's agreement was implied through the classification row
+and the residue gates, not pinned in the row itself); the forward
+orientation sat in the fixture population and under the residue gates,
+but its dedicated death-tick row lived in g2 over a two-sentence
+population, not here.
+
+**Amended to exactly the author's sentence.** The reverse row now
+walks BOTH routes (alive through its lawful ticks in each; exactly 0
+from its first refusing observed tick in each — exact zeros,
+route-independent, no tolerance), and a new forward-orientation row in
+the fixture population pins illAtZeroHyp: prior mass PRE-observation
+in both routes (the category-error clause — D8's read-not-update — in
+test form), killed exactly by the t=0 observation in both routes, and
+its lawful later ticks cannot resurrect it.
+
+**Counts after amendment: 27 rows; red 20/27, every red a named
+step-3 stub (`red-run-final-r1.txt`); proto overlay 27/27 SAT in
+45.6 s (`rd21-proto-transcript-r1.txt`)** — the amended rows' exact
+frozen text executed against the prototype, per R-D21 as sharpened
+(a transcript proves only the row text actually frozen; the r0
+transcripts are superseded by r1 for the two amended/new rows and
+identical in content for the untouched 25).
+
+## 24. The HEAD-width DEBT row (the author's register item)
+
+**DEBT, registered at this sitting:** HEAD's declared width of 2 over
+one enumerable production charges a bit for an UNUTTERABLE alternative
+— the frozen anchors' hand-rolled residue, correctly preserved for
+continuity and correctly classified under SayableP's lg-10 discipline,
+but half the HEAD mass is reserved for a sentence that cannot be said,
+and the brief's grep-test calls an unprinted one a hand on the wheel.
+**Named home:** the fragment table's widths become honest when the
+table is re-derived at an author boundary, or when the second head
+becomes utterable. Printed at the declaration site
+(`Enumerate.hs`, the FragProd haddock) and on the g4 width row's face.
+
+**The canonization queue gains its third line (the author's words):
+the OVERLAY form of R-D21 — the prototype wearing the real module's
+name so the oracle's exact frozen text compiles unchanged — named the
+preferred form where the prototype can carry the module interface.**

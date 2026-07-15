@@ -802,7 +802,14 @@ data FragSort = MODEL | THETA | HEAD | RATE
 -- ONE enumerable production under a declared width of 2 — a classified
 -- exception in the SayableP lg-10 sense (the width is what is priced,
 -- not the enumerated count; the D4 discipline: re-pricing is
--- adjudication, never grep).
+-- adjudication, never grep), and a DEBT ROW, registered at the step-3
+-- sitting: half the HEAD mass is a bit charged for an UNUTTERABLE
+-- alternative — the frozen anchors' hand-rolled residue, preserved for
+-- continuity and correctly classified, but a residue with a NAMED
+-- HOME: the widths become honest when the table is re-derived at an
+-- author boundary, or when the second head becomes utterable. Printed
+-- here so it stays a residue rather than a habit (the brief's
+-- grep-test calls an unprinted one a hand on the wheel).
 data FragProd = FBern | FWalk | FConst | FIf | FGuardHead
   deriving (Eq, Show)
 
@@ -880,6 +887,22 @@ filterTickFree _ =
 -- layer: without the carrier declaration no agent can be built (E9),
 -- and the deletion audit's attribution must keep landing on
 -- 'obsCarrier', never on this stub.
+--
+-- D8 (ruled at the step-3 sitting, 2026-07-15): a refusing sentence
+-- holding positive meta mass at prediction time is CONDITIONED ON
+-- DENOTATION — ordinary Bayes on the one event the language can
+-- state, forced by coherence (a deficient mixture prices a Dutch
+-- book; a fabricated likelihood is the sentinel's disease). The
+-- conditioning is A READ, NOT AN UPDATE: the belief state is
+-- untouched, the refuser keeps its meta mass, and the renormalisation
+-- is local to the predictive query — wiring it as a belief update
+-- would be refutation-by-prediction, forbidden (no observation
+-- occurred; deliberation must never destroy beliefs). Step 5's
+-- corollary is frozen with the ruling: push-at-assignment applies the
+-- same semantics per assignment, and a refuser's mass is precisely
+-- the probability that tomorrow's arrival shrinks the support — the
+-- preposterior machinery already prices that as wait-and-see value,
+-- so no guard is ever owed for it.
 sentenceAgent :: [Hyp] -> Agent
 sentenceAgent _ =
   error "step-3 stub: sentenceAgent lands after the author's freeze"

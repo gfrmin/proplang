@@ -43,20 +43,56 @@
 -- application, pre-registered at the step-2 freeze): filtering
 -- TICK-INDEPENDENT codes at enumeration is legal iff pinned,
 -- extensionally, to carry-plus-per-tick-refutation (step-1 ruling 4's
--- charter, code-task2-author-pack.md:394-401). Both orientations (the
--- author's added row): a code lawful early and ill-formed late is
--- neither pre-killed nor kept past its kill tick; ill-formed early and
--- lawful late is dead from its first observed tick. GATE PROVENANCE
--- (residue measured on the oracle-phase prototype BEFORE any gate
--- froze — the step-2 discipline, 2026-07-15): on the SHIPPED
--- population the filter drops nothing, the routes are the same
--- population, and the trajectory row pins ==. On populations where
--- the filter ACTUALLY drops mass, == is REFUTED by measurement (the
--- routes normalize over different candidate counts, algebraically
--- equal and float-perturbed: max relative predictive residue
--- 1.2115e-16, max absolute posterior residue 1.4433e-15) — that row's
--- gates are proposed from the measured floor and RETURN TO THE
--- SITTING, exactly per the author's pre-ruling.
+-- charter, code-task2-author-pack.md:394-401). Both orientations EACH
+-- CARRY THEIR OWN ROW in the fixture population (the sitting's
+-- confirmation, 2026-07-15): a code lawful early and ill-formed late
+-- is neither pre-killed nor kept past its kill tick — the filter
+-- classifies it untouchable and BOTH routes carry it to its death
+-- tick; ill-formed early and lawful late is dead from its first
+-- observed tick, in both routes. GATE PROVENANCE (residue measured on
+-- the oracle-phase prototype BEFORE any gate froze — the step-2
+-- discipline, 2026-07-15): on the SHIPPED population the filter drops
+-- nothing, the routes are the same population, and the trajectory row
+-- pins ==. On populations where the filter ACTUALLY drops mass, == is
+-- REFUTED by measurement — THE MECHANISM, named so a future reader of
+-- a 5-ulp residue suspects the normaliser's history and never the
+-- filter: the two routes renormalise from DIFFERENT PRIOR
+-- POPULATIONS, so identical algebra runs through different division
+-- sequences and drifts by ulps (max relative predictive residue
+-- 1.2115e-16, max absolute posterior residue 1.4433e-15). GATES RULED
+-- AT THE SITTING (2026-07-15), the repaired-CL-4 idiom over the
+-- measured floors: 1e-14 relative on the predictive, 1e-13 absolute
+-- per posterior point — the pre-ruling's own else-branch firing as
+-- designed (== was conditional on bit-identity reproducing; it failed
+-- for the structural reason above), and the defect scale the pin
+-- exists to catch sits twelve orders above the gate.
+--
+-- D8, RULED AT THE SITTING (2026-07-15): the positive-mass-refuser
+-- predictive is CONDITION ON DENOTATION, and the ground is not the
+-- builder's "only public-verb-expressible option found" but
+-- COHERENCE: a prevision on the world's declared carrier must be
+-- total and sum to one — a deficient mixture prices a Dutch book,
+-- "the sentence doesn't speak" is not a point of the carrier, and
+-- fabricating a likelihood for it is the sentinel's disease.
+-- Conditioning on denotation is ordinary Bayes on the one event the
+-- language can state, and it satisfies the tower property against
+-- step-1 ruling 4: today's renormalised predictive equals the
+-- expectation of tomorrow's post-refutation posterior — the semantics
+-- ANTICIPATES the refutation that arrival will execute. Two
+-- precisions frozen into the ruling: (1) the conditioning is A READ,
+-- NOT AN UPDATE — the belief state is untouched, the refuser keeps
+-- its meta mass, and the renormalisation is local to the predictive
+-- query; wiring it as a belief update would be refutation-by-
+-- prediction, forbidden — no observation occurred, and deliberation
+-- must never destroy beliefs. (2) The per-assignment corollary,
+-- frozen now though step 5 first reaches it: push-at-assignment
+-- applies the same semantics PER ASSIGNMENT — a sentence refusing
+-- under a contemplated assignment is conditioned out of that
+-- assignment's predictive and harmed nowhere else; and the refuser's
+-- mass is not lost to the agent either way — it is precisely the
+-- probability that tomorrow's arrival shrinks the support, which the
+-- preposterior machinery already prices as wait-and-see value. No new
+-- mechanism, no guard.
 --
 -- SILENCE NEVER REFUTES (g2 — the code-freeze-r0 obligation row,
 -- AGENT_PLAN.md:869-878): a hypothesis is refuted only at ticks where
@@ -694,23 +730,28 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
             g3Checkpoints
   , testCase "fixture population: filter ~ carry+refute at the measured-floor gates" $ do
       -- WHERE THE FILTER ACTUALLY DROPS MASS the routes normalize over
-      -- different candidate counts, algebraically equal and float-
-      -- perturbed: == is REFUTED by measurement (the oracle-phase
-      -- probe, 2026-07-15: max relative predictive residue 1.2115e-16
-      -- = 5 ulps at t=80; max absolute posterior residue 1.4433e-15;
-      -- several checkpoints bit-exact). GATES PROPOSED FROM THE
-      -- MEASURED FLOOR, the repaired-CL-4 idiom: 1e-14 relative on the
+      -- different candidate counts — THE MECHANISM: the two
+      -- normalisers carry different prior populations, so identical
+      -- algebra runs through different division sequences and drifts
+      -- by ulps; a future reader of a 5-ulp residue here suspects the
+      -- normaliser's history, never the filter. == is REFUTED by
+      -- measurement (the oracle-phase probe, 2026-07-15: max relative
+      -- predictive residue 1.2115e-16 = 5 ulps at t=80; max absolute
+      -- posterior residue 1.4433e-15; several checkpoints bit-exact).
+      -- GATES RULED AT THE SITTING (2026-07-15), the repaired-CL-4
+      -- idiom over the measured floors: 1e-14 relative on the
       -- predictive (headroom x83), 1e-13 absolute per posterior point
-      -- (headroom x69) — A SITTING ITEM: the author confirms or sets
-      -- these at the freeze (his pre-ruling: == only if bit-identity
-      -- reproduced; it did not, so the measured residue returns to the
-      -- sitting exactly as instructed).
+      -- (headroom x69) — the pre-ruling's own else-branch firing as
+      -- designed (== was conditional on bit-identity reproducing; it
+      -- failed structurally), and the defect scale the pin exists to
+      -- catch sits twelve orders above the gate.
       -- Posterior rows start at the first OBSERVED checkpoint: at t=0
       -- (pre-observation) the carried route's dropped sentence still
       -- holds its prior mass BY DESIGN — refutation needs evidence —
-      -- so a posterior comparison there is a category error; the t=0
-      -- PREDICTIVE row stands (condition-on-denotation renormalizes,
-      -- and measured bit-equal there).
+      -- so a posterior comparison there is a category error (D8's
+      -- read-not-update distinction in test form); the t=0 PREDICTIVE
+      -- row stands (condition-on-denotation renormalizes — a READ
+      -- that destroys no belief — and measured bit-equal there).
       let tolG3Pred = 1e-14
           tolG3Post = 1e-13
           fastList = filterTickFree g3Candidates
@@ -741,20 +782,52 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
                                         <= tolG3Post
                                     | i <- [0 .. nF - 1] ]))
             g3Checkpoints
-  , testCase "reverse orientation: lawful early, ill-formed late — killed AT its tick, in both routes" $ do
-      -- lawfulThenIllHyp refuses from t=3 on; the first OBSERVED tick
-      -- >= 3 kills it in the carried route, and the filter route must
-      -- agree because the filter never touched it
-      let agSlow = sentenceAgent g3Candidates
-          n = length g3Candidates
-          revIx = n - 1
+  , testCase "reverse orientation: lawful early, ill-formed late — carried to its death tick by BOTH routes" $ do
+      -- lawfulThenIllHyp refuses from t=3 on; the filter classified it
+      -- UNTOUCHABLE (it reads t), so BOTH routes carry it through its
+      -- lawful ticks and BOTH kill it at its first refusing observed
+      -- tick — exact zeros, route-independent, no tolerance
+      let fastL = filterTickFree g3Candidates
+          nF = length fastL
+          nS = length g3Candidates
           walk ag = scanl (\a (t, y) -> snd (stepAgentS t y a)) ag
                           (zip [0 ..] (take 6 shifted160))
-          slows = walk agSlow
-      assertBool "alive through its lawful ticks (posterior > 0 at t<=2)"
-                 (posteriorOf (slows !! 3) n revIx > 0)
-      assertBool "dead from its first refusing observed tick (exactly 0 at t>=3)"
-                 (all (\ag -> posteriorOf ag n revIx == 0) (drop 4 slows))
+          fasts = walk (sentenceAgent fastL)
+          slows = walk (sentenceAgent g3Candidates)
+      assertBool "alive through its lawful ticks, carried route (posterior > 0 at t<=2)"
+                 (posteriorOf (slows !! 3) nS (nS - 1) > 0)
+      assertBool "alive through its lawful ticks, filter route (posterior > 0 at t<=2)"
+                 (posteriorOf (fasts !! 3) nF (nF - 1) > 0)
+      assertBool "dead from its first refusing observed tick, carried route (exactly 0 at t>=3)"
+                 (all (\ag -> posteriorOf ag nS (nS - 1) == 0) (drop 4 slows))
+      assertBool "dead from its first refusing observed tick, filter route (exactly 0 at t>=3)"
+                 (all (\ag -> posteriorOf ag nF (nF - 1) == 0) (drop 4 fasts))
+  , testCase "forward orientation: ill-formed at t=0, lawful after — killed at its first observed tick by BOTH routes" $ do
+      -- illAtZeroHyp refuses exactly at t=0 (each orientation carries
+      -- its own row in the fixture population — the sitting's
+      -- confirmation): the filter must classify it untouchable (it
+      -- reads t), the prior holds its mass PRE-observation by design
+      -- (refutation needs evidence — the category-error clause above,
+      -- D8's read-not-update in test form), and the t=0 observation
+      -- kills it exactly, in both routes; its lawful later ticks
+      -- cannot resurrect it (Cromwell holds at the meta level)
+      let fastL = filterTickFree g3Candidates
+          nF = length fastL
+          nS = length g3Candidates
+          fwdS = nS - 2       -- illAtZeroHyp's position in g3Candidates
+          fwdF = nF - 2       -- and after the filter (order preserved)
+          walk ag = scanl (\a (t, y) -> snd (stepAgentS t y a)) ag
+                          (zip [0 ..] (take 6 shifted160))
+          fasts = walk (sentenceAgent fastL)
+          slows = walk (sentenceAgent g3Candidates)
+      assertBool "prior mass pre-observation, carried route (t=0, before any evidence)"
+                 (posteriorOf (slows !! 0) nS fwdS > 0)
+      assertBool "prior mass pre-observation, filter route"
+                 (posteriorOf (fasts !! 0) nF fwdF > 0)
+      assertBool "dead from the t=0 observation on, carried route (exactly 0)"
+                 (all (\ag -> posteriorOf ag nS fwdS == 0) (drop 1 slows))
+      assertBool "dead from the t=0 observation on, filter route (exactly 0)"
+                 (all (\ag -> posteriorOf ag nF fwdF == 0) (drop 1 fasts))
   ]
 
 -- ---------------------------------------------------------------------
@@ -766,6 +839,10 @@ g4DeclaredTable = testGroup "g4 the declared table prices the fragment"
   [ testCase "the table IS the declaration: widths 2/2/2/1, five productions" $ do
       fragWidth MODEL @?= 2
       fragWidth THETA @?= 2
+      -- HEAD's 2 over one utterable production is a REGISTERED DEBT
+      -- (step-3 sitting): a bit charged for an unutterable
+      -- alternative; named home — table re-derivation at an author
+      -- boundary, or a second utterable head
       fragWidth HEAD  @?= 2
       fragWidth RATE  @?= 1
       map fragSortOf fragFull @?= [MODEL, MODEL, THETA, THETA, HEAD]
