@@ -8,9 +8,10 @@
 -- surface stays red. Once it compiles, main runs its own assertions:
 --
 --   1. price: a Call VThinkK sentence of eight Var arguments costs
---      node + lg 7 + 8 * (node + lg 8) under the seven-member alphabet
---      (1e-12) — the pin whose stdB movement the author's one-literal
---      amendment of the frozen expfam pin accompanies;
+--      node + lg 6 + 8 * (node + lg 8) under the six-member alphabet
+--      (1e-12; the step-3 re-pricing: STDNAME 7 -> 6 (Bern left the stdlib at the step-3 freeze; P5 pin re-pricing under the recorded delegation, D4 adjudication)) — the pin whose stdB
+--      movement the author's one-literal amendment of the frozen
+--      expfam pin accompanied at r0;
 --   2. identity at the syntax layer: the verb at depth 1 == the frozen
 --      VThink verb (exact), and the verb == the exported worker at
 --      depths 1..3 (one arithmetic, no drift);
@@ -200,9 +201,9 @@ main = do
               (mkEnv [] (b :. emit :. ([0, 1] :: [Obs]) :. stakes :. dirs
                            :. n :. p :. VNil))
   rs <- sequence
-    [ check "price: Call VThinkK = node + lg 7 + eight Var mentions" $
+    [ check "price: Call VThinkK = node + lg 6 + eight Var mentions" $
         abs (unBits (bits priceSentence)
-             - (lg 19 + lg 7 + 8 * (lg 19 + lg 8))) <= 1e-12
+             - (lg 19 + lg 6 + 8 * (lg 19 + lg 8))) <= 1e-12
     , check "identity: the verb at depth 1 == the frozen VThink verb" $
         all (\ (b, p) -> verb (1 :: Int) b 3 p == vt b 3 p)
             [ (b, p) | b <- [u, b3], p <- [0.3, 0.05, 0.005, 0] ]

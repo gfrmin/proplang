@@ -9,9 +9,9 @@
 -- surface before the freeze. Once it compiles, main runs:
 --
 --   1. price: a Call VPre sentence of ten Var arguments costs
---      node + lg 7 + 10 * (node + lg 10) under the seven-member
---      alphabet (1e-12) — the pin whose stdB movement the author's
---      two frozen literal amendments accompany;
+--      node + lg 6 + 10 * (node + lg 10) under the six-member
+--      alphabet (1e-12; the step-3 re-pricing: STDNAME 7 -> 6 (Bern left the stdlib at the step-3 freeze; P5 pin re-pricing under the recorded delegation, D4 adjudication)) — the pin whose stdB movement
+--      the author's two frozen literal amendments accompanied at r0;
 --   2. identity at the syntax layer: the verb == the exported worker,
 --      and the degenerate verb == the frozen VThinkK verb (==);
 --   3. doctrine: decision 1 of both worlds, driven by evalx of ONE
@@ -185,9 +185,9 @@ check msg ok = do
 main :: IO ()
 main = do
   rs <- sequence
-    [ check "price: Call VPre = node + lg 7 + ten Var mentions" $
+    [ check "price: Call VPre = node + lg 6 + ten Var mentions" $
         abs (unBits (bits priceSentence)
-             - (lg 19 + lg 7 + 10 * (lg 19 + lg 10))) <= 1e-12
+             - (lg 19 + lg 6 + 10 * (lg 19 + lg 10))) <= 1e-12
     , check "identity: the verb == the exported worker" $
         all (\ (ch, s, d) -> verbVal ch s d
                == vPre 1 b0 ch ([0, 1] :: [Obs]) (immW s) (d :| [])

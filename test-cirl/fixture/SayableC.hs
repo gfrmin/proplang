@@ -13,7 +13,8 @@
 --      the `worth` saying = 11 nodes + 2 scope-2 Var mentions + 5
 --      four-point grid mentions (1e-12, derived from bits against the
 --      drafted surface — never a parallel derivation);
---   2. price: the off-switch sentence — Call VPre under lg 7 with
+--   2. price: the off-switch sentence — Call VPre under lg 6 with
+--      (the step-3 re-pricing: STDNAME 7 -> 6 (Bern left the stdlib at the step-3 freeze; P5 pin re-pricing under the recorded delegation, D4 adjudication))
 --      eight scope-8 Var mentions and TWO said utilities in the Util
 --      slots (1e-12, the dedicated price sentence);
 --   3. the bridge (E7 at the pointer, ==): the said utility IS its
@@ -117,7 +118,7 @@ valS b d =
 -- | The dedicated price sentence (the SayableP arrangement): all eight
 -- non-utility arguments as Vars in an env of exactly those eight, the
 -- two Util slots carrying the said utility — so the pin decomposes as
--- node + lg 7 + eight scope-8 Var mentions + two said-utility subtrees.
+-- node + lg 6 + eight scope-8 Var mentions + two said-utility subtrees.
 type PriceEnv = '[Int, B Double, Chan Double Double Obs, [Obs],
                   NonEmpty Double, NonEmpty Double, Int, Double]
 
@@ -156,9 +157,9 @@ main = do
     [ check "price: USay = 0 sort bits + the two-variable program as EXPR" $
         abs (unBits (bits (USay worth :: Expr '[] (Util Double Double)))
              - (11 * lg 19 + 2 * lg 2 + 5 * lg 4)) <= 1e-12
-    , check "price: the off-switch sentence under lg 7 + two said utilities" $
+    , check "price: the off-switch sentence under lg 6 + two said utilities" $
         abs (unBits (bits priceSentence)
-             - (lg 19 + lg 7 + 8 * (lg 19 + lg 8)
+             - (lg 19 + lg 6 + 8 * (lg 19 + lg 8)
                 + 2 * (11 * lg 19 + 2 * lg 2 + 5 * lg 4))) <= 1e-12
     , check "bridge: the said utility == its closed evaluation (exact)" $
         all (\(a, h) -> applyUtil uSaid a h

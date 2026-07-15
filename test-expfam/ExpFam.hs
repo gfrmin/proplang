@@ -23,12 +23,29 @@
 -- rows are only publicly readable through 'push', whose
 -- renormalization adds ulps over the name's direct construction — the
 -- pin is 1e-12 relative (the cross-path convention), not (==).
+--
+-- THE STEP-3 PORT (delegated freeze edit, sentence-author-pack.md
+-- §20.3/§25; the delegation recorded in the freeze commit): 'Bern'
+-- died with the step-3 demolition, so E7's fast side 'nameAt' is now
+-- 'bernFast' ITSELF — value-invariant by the definitional equation
+-- the evaluator always used (Eval.hs:206: applyStd (Bern car)
+-- (th :. VNil) = bernFast car th; the retired grammar route and this
+-- one were the same float sequence by definition). Group 5 (E7) is
+-- KEPT — it is the optimisation-law shape for the basis: the executed
+-- fast form pinned, extensionally, against the generic family. The
+-- Call-pricing row (r0 :137) and the Call-render golden (r0 :189)
+-- retired with the constructor; group 6 (sufficiency) retired per the
+-- amendment schedule booked at the expfam freeze ("group 6
+-- retirement, KEEP E7" — its future-conjugate-fast-path license is
+-- superseded by the optimisation law's in-increment pin discipline:
+-- a fast path arrives WITH its pin, never against a pre-landed
+-- license); the bern deletion row and UseBern.hs are
+-- DISCHARGED-PERMANENT (the register category named at the step-3
+-- sitting: the deletion the fixture proved possible became the
+-- deletion that happened).
 module Main (main) where
 
-import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)))
-import qualified Data.List.NonEmpty as NE
-import Data.Maybe (fromMaybe)
 import System.Exit (ExitCode (..))
 import System.Process (readProcessWithExitCode)
 import Test.Tasty
@@ -47,7 +64,6 @@ main = defaultMain $ testGroup "proplang expfam basis (increment oracle)"
   , groupGeneric
   , groupName
   , groupExpansion
-  , groupSufficiency
   , groupGuardian
   , groupAblation
   ]
@@ -55,20 +71,12 @@ main = defaultMain $ testGroup "proplang expfam basis (increment oracle)"
 lg :: Double -> Double
 lg = logBase 2
 
--- the local fixture grid (the hygiene g4 precedent): four points, so a
--- constant mention costs 2 bits and index 1 evaluates to 0.4
-g4 :: Grid
-g4 = mkGrid "g4" (0.2 :| [0.4, 0.6, 0.8])
+-- (the r0 fixture grid g4 retired with its two consumers, the Call
+-- pricing row and the Call render golden — the step-3 port)
 
 -- a local two-point carrier, independent of the domain declaration
 c2 :: Carrier Int
 c2 = mkCarrier "c2" (0 :| [1])
-
--- the sufficiency discriminator (Task-1 oracle review): a 3-point
--- carrier, where distinct multisets can share (n, sum T) — the
--- property that cannot be faked by mere order-invariance
-c3 :: Carrier Int
-c3 = mkCarrier "c3" (0 :| [1, 2])
 
 assertBits :: String -> Double -> Bits -> Assertion
 assertBits name expected (Bits actual) =
@@ -97,14 +105,14 @@ genericAt eta =
                 (mkEnv [] VNil)
   in push (point sp eta) k
 
--- | The derived name's belief at theta, through the real grammar: the
--- parameter enters as a priced constant of a one-point grid.
+-- | The derived name's belief at theta — since the step-3 port, the
+-- executed fast form itself ('bernFast'; the header's port note). The
+-- r0 route built it through the grammar as Call (Bern obsCarrier)
+-- over a priced one-point-grid constant; the two were the same float
+-- sequence by the evaluator's definitional equation (Eval.hs:206), so
+-- every pin below is over unchanged floats.
 nameAt :: Double -> Belief Obs
-nameAt th =
-  let g = mkGrid "th" (th :| [])
-  in case mkC g 0 :: Maybe (Expr '[] Double) of
-       Just p  -> evalx (Call (Bern obsCarrier) (p :* ANil)) (mkEnv [] VNil)
-       Nothing -> error "mkC rejected index 0 of a one-point grid"
+nameAt th = bernFast obsCarrier th
 
 -- ---------------------------------------------------------------------
 -- group 1: Carrier — a declared finite output space (plan Q1/E4)
@@ -134,12 +142,9 @@ groupPrices = testGroup "prices (sort-local coding, plan E2)"
       let sp = mkSpace (0.5 :| []) :: Space Double
       in assertBits "ExpFam node"
            (lg 2) (bits (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs)))
-  , testCase "Call (Bern _) prices node + stdname choice of 7 + param" $
-      case mkC g4 1 :: Maybe (Expr '[] Double) of
-        Just p  -> assertBits "call bern"
-                     (lg 19 + lg 7 + (lg 19 + lg 4))
-                     (bits (Call (Bern obsCarrier) (p :* ANil)))
-        Nothing -> assertFailure "mkC rejected an in-range index"
+  -- the Call (Bern _) pricing row (r0 :137) retired at the step-3
+  -- freeze with the constructor; the stdname re-pricing 7 -> 6 lives
+  -- where it always did, test-hygiene (D4: adjudication, never grep)
   ]
 
 -- ---------------------------------------------------------------------
@@ -184,11 +189,8 @@ groupName = testGroup "the derived name bern (plan E6/E7)"
       let sp = mkSpace (0.5 :| []) :: Space Double
       in renderExpr (ExpFam sp obsCarrier SId :: Expr '[] (K Double Obs))
            @?= "('expfam', 'obs', 'id')"
-  , testCase "renderExpr pins the called name" $
-      case mkC g4 1 :: Maybe (Expr '[] Double) of
-        Just p  -> renderExpr (Call (Bern obsCarrier) (p :* ANil))
-                     @?= "('call', 'bern', ('c', 'g4', 1))"
-        Nothing -> assertFailure "mkC rejected an in-range index"
+  -- the Call-render golden (r0 :189) retired at the step-3 freeze
+  -- with the constructor
   , testCase "the name's masses are (1-theta, theta) at theta = 0.4" $ do
       let b = nameAt 0.4
       assertRel "p(0)" 0.6 (prob b (is obsSpace 0))
@@ -229,103 +231,15 @@ propExpansion =
          (check 0 && check 1)
 
 -- ---------------------------------------------------------------------
--- group 6: sufficiency — the posterior over an expfam family depends on
--- a batch only through (n, sum T(y)) (plan E8): the entire semantic
--- content of any future conjugate fast path, landed as oracle before
--- such a path exists.
---
--- As revised at the Task-1 oracle review: on a binary carrier, equal
--- (n, sum T) forces a permutation, and order-invariance of an iid cond
--- fold holds for EVERY kernel — vacuous as a license. The license
--- rests on the 3-point carrier, where distinct multisets share the
--- statistic ([0,2] vs [1,1]: equal n=2, sum T=2, different data) and
--- agreement holds BECAUSE the family is exponential. The binary
--- property is kept, labeled as the permutation case it is.
+-- group 6 (sufficiency, plan E8) RETIRED at the step-3 freeze, per
+-- the amendment schedule booked at the expfam freeze ("group 6
+-- retirement, KEEP E7"): it was the license for a future conjugate
+-- fast path, landed before such a path existed; the optimisation law
+-- (canonized at the step-2 boundary) superseded that shape — a fast
+-- path arrives WITH its extensional pin in the increment that lands
+-- it, never against a pre-landed license. E7 (group 5) is the kept
+-- law-shaped row.
 -- ---------------------------------------------------------------------
-
-groupSufficiency :: TestTree
-groupSufficiency = testGroup "sufficiency (the fast path's license, plan E8)"
-  [ testCase "the minimal discriminating pair: [0,2] vs [1,1] on c3"
-      minimalPair
-  , testProperty
-      "equal (n, sum T), distinct multisets on c3: equal posteriors"
-      propSufficiency3
-  , testProperty
-      "equal (n, sum T) batches on the binary carrier (permutation case)"
-      propSufficiency
-  ]
-
--- the shared harness: prior over an eta grid, generic family kernel
--- over the given carrier, cond folded over each batch, posteriors
--- compared through expect at the cross-path tolerance
-sufficiencyCase :: Carrier Int -> [Double] -> [Double] -> [Double]
-                -> [Int] -> [Int] -> Property
-sufficiencyCase car etas pb fv ys1 ys2 =
-  let sp = mkSpace (NE.fromList etas)
-      k = evalx (ExpFam sp car SId :: Expr '[] (K Double Int))
-                (mkEnv [] VNil)
-      idx x = fromMaybe 0 (elemIndex x etas)
-      b0 = fromBits sp (\x -> Bits (pb !! idx x))
-      condFold = foldl (\mb y -> mb >>= \b -> cond b (Saw k y)) . Just
-      f x = fv !! idx x
-  in case (condFold b0 ys1, condFold b0 ys2) of
-       (Just b1, Just b2) ->
-         let lhs = expect b1 f
-             rhs = expect b2 f
-         in counterexample ("posteriors: " ++ show lhs ++ " vs " ++ show rhs)
-              (agrees lhs rhs)
-       _ -> counterexample
-              "cond returned Nothing on full-support expfam evidence" False
-
-minimalPair :: Assertion
-minimalPair = do
-  let etas = [-1, 0.5, 2]
-      sp = mkSpace (NE.fromList etas)
-      k = evalx (ExpFam sp c3 SId :: Expr '[] (K Double Int))
-                (mkEnv [] VNil)
-      idx x = fromMaybe 0 (elemIndex x etas)
-      b0 = fromBits sp (\x -> Bits (1 + fromIntegral (idx x)))
-      condFold = foldl (\mb y -> mb >>= \b -> cond b (Saw k y)) . Just
-  case (condFold b0 [0, 2 :: Int], condFold b0 [1, 1]) of
-    (Just b1, Just b2) ->
-      let lhs = expect b1 id
-          rhs = expect b2 id
-      in assertBool ("posterior means: " ++ show lhs ++ " vs " ++ show rhs)
-           (agrees lhs rhs)
-    _ -> assertFailure "cond returned Nothing on full-support expfam evidence"
-
-propSufficiency3 :: Property
-propSufficiency3 =
-  forAll (chooseInt (2, 5)) $ \n ->
-  forAll (choose (-3, 0)) $ \e0 ->
-  forAll (vectorOf (n - 1) (choose (0.1, 2))) $ \ds ->
-  forAll (vectorOf n (choose (0, 8))) $ \pb ->
-  forAll (chooseInt (1, 3)) $ \n0 ->
-  forAll (chooseInt (0, 3)) $ \n1 ->
-  forAll (chooseInt (1, 3)) $ \n2 ->
-  forAll (vectorOf n (choose (-10, 10))) $ \fv ->
-    let etas = scanl (+) e0 ds        -- n distinct ascending parameters
-        -- distinct multisets, equal (n, sum T): one {0,2} pair traded
-        -- for {1,1} (n0, n2 >= 1 by construction)
-        ys1 = replicate n0 0 ++ replicate n1 1 ++ replicate n2 (2 :: Int)
-        ys2 = replicate (n0 - 1) 0 ++ replicate (n1 + 2) 1
-                ++ replicate (n2 - 1) 2
-    in sufficiencyCase c3 etas pb fv ys1 ys2
-
-propSufficiency :: Property
-propSufficiency =
-  forAll (chooseInt (2, 5)) $ \n ->
-  forAll (choose (-3, 0)) $ \e0 ->
-  forAll (vectorOf (n - 1) (choose (0.1, 2))) $ \ds ->
-  forAll (vectorOf n (choose (0, 8))) $ \pb ->
-  forAll (chooseInt (2, 6)) $ \len ->
-  forAll (chooseInt (0, 6)) $ \sRaw ->
-  forAll (vectorOf n (choose (-10, 10))) $ \fv ->
-    let etas = scanl (+) e0 ds
-        s = sRaw `mod` (len + 1)
-        ys1 = replicate s 1 ++ replicate (len - s) (0 :: Int)
-        ys2 = reverse ys1             -- same length, same sum T
-    in sufficiencyCase c2 etas pb fv ys1 ys2
 
 -- ---------------------------------------------------------------------
 -- group 7: float guardians (plan group 7; GREEN from the start): the
@@ -356,7 +270,9 @@ groupAblation :: TestTree
 groupAblation = testGroup "expfam deletion rows (raises-by-type, plan E9)"
   [ ablationRow "expfam"
   , ablationRow "sid"
-  , ablationRow "bern"
+  -- the bern row is DISCHARGED-PERMANENT (step-3 freeze): 'Bern' left
+  -- the grammar, so there is nothing left for the fixture to prove
+  -- deletable — the deletion happened
   , ablationRow "carrier-obs"
   ]
 

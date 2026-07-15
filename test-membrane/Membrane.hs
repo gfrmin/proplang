@@ -41,6 +41,24 @@
 -- prior ratio to 1.4e-15 until its sensor speaks, then lands MAP at
 -- 0.432 from a 1.3e-4 prior; the grown affordance's EU clears the
 -- incumbent by 0.34 the tick it appears.
+--
+-- THE STEP-3 PORT (delegated freeze edit, sentence-author-pack.md
+-- SS20.3/SS25; the delegation recorded in the freeze commit): the
+-- ACTION rows stay for step 5 — their agent constructions ride the
+-- SENTENCE ROUTE (enumerateSentences / enumerateSentencesIn under
+-- sentenceAgent; Model/Terminal died at the step-3 boundary). The
+-- MODEL-FRAGMENT group (r0 group 6: renders/dls/order, the 1241/1529
+-- counts, M1) RETIRED in favor of the step-3 oracle's g1 ports (they
+-- were degeneracy pins by another name — the pack SS2 ruling). MAP
+-- identity rows follow ruling D2: old render strings survive only as
+-- provenance labels in comments; the pinned renders are the FRESH
+-- sentence goldens, byte-copied from test-sentence/Sentence.hs
+-- (frozen at the same signature; R-D20-i). Every quantity anchor
+-- (losses, probes, posteriors, prior ratios) is representation-
+-- independent and UNCHANGED. Rows touching the ported constructions
+-- are runtime-red until the step-3 implementation lands — the
+-- increment discipline; the namespace-pricing, slot-pricing, M5, and
+-- deletion/grep rows never touch the doomed names and stay green.
 module Main (main) where
 
 import Data.List (isInfixOf)
@@ -53,9 +71,9 @@ import Test.Tasty.QuickCheck (Property, choose, counterexample, forAll,
                               testProperty)
 
 import PropLang.Belief (Bits (Bits), LogProb (LogProb), top)
-import PropLang.Enumerate (Model, Obs, allTerminals, enumerateModels,
-                           enumerateModelsIn, mkAgent, modelBits, observe,
-                           renderModel, agentMeta, agentModels)
+import PropLang.Enumerate (Hyp (..), Obs, enumerateSentences,
+                           enumerateSentencesIn, fragFull, observe,
+                           renderExpr, agentMeta, sentenceAgent)
 import PropLang.Membrane (Affordance (..), Choice (..), EchoSpec,
                           InternalAct (..), Pilot (..), PureWorld (..),
                           Slot (..), TickTrace (..), lastActionCode,
@@ -65,13 +83,13 @@ import PropLang.Syntax (Expr (..), Grid, Idx (..), KnownScope, Namespace,
                         Util, bits, bitsIn, mkC, mkGrid, mkNamespace,
                         mkUtil)
 
-import Anchors (t1MapProgram, t1MapPosterior, t1ProbeRows, t3AgentDrift,
-                t3MapProgram, tolBits, tolProb)
+import Anchors (t1MapPosterior, t1ProbeRows, t3AgentDrift,
+                tolBits, tolProb)
 import Streams (drift400, shifted160)
 
 main :: IO ()
 main = defaultMain $ testGroup "membrane oracle (Task 1, runtime-red)"
-  [ g1Parity, g2Dormant, g3Menu, g4Self, g5Names, g6Fragment
+  [ g1Parity, g2Dormant, g3Menu, g4Self, g5Names
   , g7SlotPrice, g8Rows ]
 
 -- ---------------------------------------------------------------------
@@ -110,7 +128,8 @@ runOrFail (Just x) = pure x
 runOrFail Nothing  = assertFailure "runMembrane: impossible evidence"
 
 -- MAP program via the frozen route: meta.top -> index -> render
-mapOfAgent :: (Model -> String) -> [(Int, Double)] -> [Model] -> IO (String, Double)
+-- (the step-3 port generalizes the element type; the body is untouched)
+mapOfAgent :: (a -> String) -> [(Int, Double)] -> [a] -> IO (String, Double)
 mapOfAgent rend ranked ms = case ranked of
   (ix, p) : _ -> pure (rend (ms !! ix), p)
   []          -> assertFailure "agentMeta top returned no entries"
@@ -123,6 +142,25 @@ massOf ranked i = case [p | (ix, p) <- ranked, ix == i] of
 
 sub :: String -> String -> Bool
 sub needle hay = needle `isInfixOf` hay
+
+-- the sentence render: a hypothesis's face is its emission code
+renderHyp :: Hyp -> String
+renderHyp = renderExpr . hypEmit
+
+-- FRESH RENDER GOLDENS (ruling D2), BYTE-COPIES of the step-3
+-- oracle's t1RenderGolden / t3RenderGolden / t3MoveGolden
+-- (test-sentence/Sentence.hs, frozen at the same signature —
+-- R-D20-i copy-not-reconstruct, grep-checkable). Provenance labels:
+-- the retired anchors these rows pinned at r0 were t1MapProgram
+-- (the tau-11 change-point) and t3MapProgram (the rho-index-3 hmm).
+t1RenderGoldenM :: String
+t1RenderGoldenM = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8)), ('-', ('c', 'k', 1), ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8))))), ('log', ('c', 'k', 2)))))"
+
+t3RenderGoldenM :: String
+t3RenderGoldenM = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('var', 1), ('-', ('c', 'k', 1), ('var', 1)))), ('log', ('c', 'k', 2)))))"
+
+t3MoveGoldenM :: String
+t3MoveGoldenM = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('pos', ('var', 1))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
 
 -- ---------------------------------------------------------------------
 -- worlds: a pure evidence stream behind the membrane
@@ -145,7 +183,7 @@ predWorld = PureWorld
 -- verbatim replica of the frozen accumulation (test/Acceptance.hs
 -- stepAgent/runWorld): observe at [("t", t)], negate lp / ln2, foldl'
 handLoss :: [Obs] -> Double
-handLoss ys = fst (foldl' step (0, mkAgent (enumerateModels allTerminals))
+handLoss ys = fst (foldl' step (0, sentenceAgent (enumerateSentences fragFull))
                           (zip [0 :: Int ..] ys))
   where
     step (acc, ag) (t, y) =
@@ -182,28 +220,32 @@ g1Parity = testGroup "membrane parity: frozen worlds, frozen anchors"
   [ testCase "t3 drift: membrane fold == frozen fold, bit for bit" $ do
       (_, trs) <- runOrFail (runMembrane predWorld noEcho
                                PilotIdle 400 (0, drift400)
-                               (mkAgent (enumerateModels allTerminals)))
+                               (sentenceAgent (enumerateSentences fragFull)))
       let membLoss = foldl' (+) 0 (map ttLossBits trs)
       assertEqual "cumulative log-loss (bits), exact Double equality"
                   (handLoss drift400) membLoss
   , testCase "t3 drift: membrane loss lands on the frozen anchor" $ do
       (_, trs) <- runOrFail (runMembrane predWorld noEcho
                                PilotIdle 400 (0, drift400)
-                               (mkAgent (enumerateModels allTerminals)))
+                               (sentenceAgent (enumerateSentences fragFull)))
       assertApprox "t3 agent log-loss" tolBits t3AgentDrift
                    (foldl' (+) 0 (map ttLossBits trs))
-  , testCase "t3 drift: MAP program == frozen anchor" $ do
+  , testCase "t3 drift: MAP program == the fresh sentence goldens" $ do
       (agF, _) <- runOrFail (runMembrane predWorld noEcho
                                PilotIdle 400 (0, drift400)
-                               (mkAgent (enumerateModels allTerminals)))
-      (m, _) <- mapOfAgent renderModel
-                  (top (agentMeta agF) (length (agentModels agF)))
-                  (agentModels agF)
-      m @?= t3MapProgram
+                               (sentenceAgent (enumerateSentences fragFull)))
+      -- D2: the identity the r0 anchor (t3MapProgram, the rho-3 hmm)
+      -- carried is pinned by the fresh emission AND move goldens
+      let msW = enumerateSentences fragFull
+      case top (agentMeta agF) (length msW) of
+        (ix, _) : _ -> do
+          renderHyp (msW !! ix) @?= t3RenderGoldenM
+          fmap renderExpr (hypMove (msW !! ix)) @?= Just t3MoveGoldenM
+        [] -> assertFailure "agentMeta top returned no entries"
   , testCase "t1 probes: P(y=1), action, meta-entropy at the frozen rows" $ do
       (_, trs) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu } noEcho
                                (PilotEU util1M) 160 (0, shifted160)
-                               (mkAgent (enumerateModels allTerminals)))
+                               (sentenceAgent (enumerateSentences fragFull)))
       mapM_ (\(t, p1a, act, ha) -> do
                tr <- traceAt trs t
                assertApprox ("P(y=1) at t=" ++ show t) tolProb p1a (ttP1 tr)
@@ -211,14 +253,14 @@ g1Parity = testGroup "membrane parity: frozen worlds, frozen anchors"
                             (ttEntropy tr)
                choiceName1 (ttChoice tr) @?= act)
             t1ProbeRows
-  , testCase "t1 end MAP: program and posterior == frozen anchors" $ do
+  , testCase "t1 end MAP: program (fresh golden, D2) and posterior anchor" $ do
       (agF, _) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu } noEcho
                                (PilotEU util1M) 160 (0, shifted160)
-                               (mkAgent (enumerateModels allTerminals)))
-      (m, p) <- mapOfAgent renderModel
-                  (top (agentMeta agF) (length (agentModels agF)))
-                  (agentModels agF)
-      m @?= t1MapProgram
+                               (sentenceAgent (enumerateSentences fragFull)))
+      let msW = enumerateSentences fragFull
+      (m, p) <- mapOfAgent renderHyp
+                  (top (agentMeta agF) (length msW)) msW
+      m @?= t1RenderGoldenM
       assertApprox "t1 MAP posterior" tolProb t1MapPosterior p
   ]
 
@@ -232,8 +274,8 @@ nsA = mkNamespace ("t" :| ["s2"])
 s2Grid :: Grid
 s2Grid = mkGrid "s2c" (0.5 :| [])
 
-modelsA :: [Model]
-modelsA = enumerateModelsIn nsA [("s2", s2Grid)] allTerminals
+modelsA :: [Hyp]
+modelsA = enumerateSentencesIn nsA [("s2", s2Grid)] fragFull
 
 -- s2 exists from tick 40; before that the name is declared but silent
 aWorld :: PureWorld Int
@@ -255,7 +297,7 @@ g2Dormant :: TestTree
 g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
   [ testCase "pre-appearance: the dormant sentence rides at its prior ratio" $ do
       (ag, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 39 0
-                              (mkAgent modelsA))
+                              (sentenceAgent modelsA))
       let ranked = top (agentMeta ag) (length modelsA)
       mapM_ (\(k1, k2) -> do
                let gIx = s2GuardIx k1 k2
@@ -264,24 +306,24 @@ g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
                  else do
                    mg <- massOf ranked gIx
                    mt <- massOf ranked k2
-                   let dlG = unBits (modelBits (modelsA !! gIx))
-                       dlT = unBits (modelBits (modelsA !! k2))
+                   let dlG = unBits (hypBits (modelsA !! gIx))
+                       dlT = unBits (hypBits (modelsA !! k2))
                    assertRel ("posterior ratio, pair " ++ show (k1, k2))
                              1e-9 (2 ** (dlT - dlG)) (mg / mt))
             [(7, 2), (0, 5), (4, 8)]
   , testCase "post-appearance: evidence flows, MAP mentions the sensor" $ do
       (agF, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 120 0
-                               (mkAgent modelsA))
-      (m, p) <- mapOfAgent renderModel
+                               (sentenceAgent modelsA))
+      (m, p) <- mapOfAgent renderHyp
                   (top (agentMeta agF) (length modelsA)) modelsA
       assertBool ("MAP mentions ('get', 's2'): " ++ m)
                  (sub "('get', 's2')" m)
       assertBool ("MAP posterior >= 0.2, got " ++ show p) (p >= 0.2)
   , testCase "the winning sentence started below a thousandth of the mass" $ do
       (agF, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 120 0
-                               (mkAgent modelsA))
+                               (sentenceAgent modelsA))
       let rankedEnd = top (agentMeta agF) (length modelsA)
-          ranked0 = top (agentMeta (mkAgent modelsA)) (length modelsA)
+          ranked0 = top (agentMeta (sentenceAgent modelsA)) (length modelsA)
       case rankedEnd of
         (ix, _) : _ -> do
           p0 <- massOf ranked0 ix
@@ -328,14 +370,14 @@ g3Menu = testGroup "growing menu (B): adopted iff expected utility says so"
   [ testCase "B1: the new affordance is adopted the tick it appears" $ do
       (_, trs) <- runOrFail (runMembrane bWorld noEcho
                                (PilotEU (utilB 0.2)) 20 0
-                               (mkAgent (enumerateModels allTerminals)))
+                               (sentenceAgent (enumerateSentences fragFull)))
       map ttChoice trs @?=
         (replicate 10 (Fire (mkAffId 1) [])
          ++ replicate 10 (Fire (mkAffId 2) [("speed", 0.8)]))
   , testCase "B2: a dominated affordance is never adopted (same call)" $ do
       (_, trs) <- runOrFail (runMembrane bWorld noEcho
                                (PilotEU (utilB 0.9)) 20 0
-                               (mkAgent (enumerateModels allTerminals)))
+                               (sentenceAgent (enumerateSentences fragFull)))
       map ttChoice trs @?= replicate 20 (Fire (mkAffId 1) [])
   , testCase "menu growth is not namespace growth (M5, ruled at the freeze)" $
       -- the freeze-review consistency requirement: this increment
@@ -361,9 +403,9 @@ zGrid, laGrid :: Grid
 zGrid = mkGrid "zc" (0.25 :| [0.5, 0.75])
 laGrid = mkGrid "lac" (0.5 :| [1.5])
 
-modelsC :: [Model]
-modelsC = enumerateModelsIn nsC [("z", zGrid), ("last_action", laGrid)]
-                            allTerminals
+modelsC :: [Hyp]
+modelsC = enumerateSentencesIn nsC [("z", zGrid), ("last_action", laGrid)]
+                               fragFull
 
 cMenu :: [Affordance]
 cMenu = [Affordance (mkAffId 1) "a1" [], Affordance (mkAffId 2) "a2" []]
@@ -388,23 +430,24 @@ g4Self :: TestTree
 g4Self = testGroup "self-signature (C): the echo wins only when it should"
   [ testCase "C: MAP mentions ('get', 'last_action'), decisively" $ do
       (agF, _) <- runOrFail (runMembrane (cWorld yC) cEcho cPilot 160 0
-                               (mkAgent modelsC))
-      (m, p) <- mapOfAgent renderModel
+                               (sentenceAgent modelsC))
+      (m, p) <- mapOfAgent renderHyp
                   (top (agentMeta agF) (length modelsC)) modelsC
       assertBool ("MAP mentions ('get', 'last_action'): " ++ m)
                  (sub "('get', 'last_action')" m)
       assertBool ("MAP posterior > 0.5, got " ++ show p) (p > 0.5)
   , testCase "C0 control: the exogenous story wins, BY STRUCTURE" $ do
       (agF, _) <- runOrFail (runMembrane (cWorld shifted160) cEcho cPilot
-                               160 0 (mkAgent modelsC))
-      (m, _) <- mapOfAgent renderModel
+                               160 0 (sentenceAgent modelsC))
+      (m, _) <- mapOfAgent renderHyp
                   (top (agentMeta agF) (length modelsC)) modelsC
       -- freeze-review ruling (the ExpFam group-6 standard): the
       -- competitor's win is pinned by structure, not by negation — the
       -- control MAP must BE the changepoint program, and the sanity
       -- simulation says it is byte-identical to the frozen t1 anchor
-      -- (tau index 11 = 60.0; thetas 0 and 8)
-      m @?= t1MapProgram
+      -- (tau index 11 = 60.0; thetas 0 and 8; r0 pinned t1MapProgram,
+      -- D2's fresh golden carries the same structure)
+      m @?= t1RenderGoldenM
       assertBool ("control MAP must not mention last_action: " ++ m)
                  (not (sub "('get', 'last_action')" m))
   ]
@@ -459,53 +502,14 @@ g5Names = testGroup "one namespace: echo names ordinary, prices per world"
   ]
 
 -- ---------------------------------------------------------------------
--- group 6: the model fragment under a namespace (T1/M1 at the model
--- sort — derivation-charged, so pinned through modelBits)
+-- group 6 (the model fragment under a namespace) RETIRED at the
+-- step-3 freeze in favor of the step-3 oracle's g1 ports (the pack
+-- SS2 ruling: they were degeneracy pins by another name): the
+-- renders/dls/order identity died with the Model representation; the
+-- 1241/1529 counts, the namespace-relative charges, and M1's
+-- re-pricing are pinned in test-sentence/ g1 through the sentence
+-- route, from the declared production table.
 -- ---------------------------------------------------------------------
-
-g6Fragment :: TestTree
-g6Fragment = testGroup "model fragment: namespace-relative derivation charges"
-  [ testCase "the frozen fragment is enumerateModelsIn ns0 [] (renders, dls, order)" $ do
-      let new = enumerateModelsIn ns0 [] allTerminals
-          old = enumerateModels allTerminals
-      length new @?= length old
-      mapM_ (\(n, o) -> do
-               renderModel n @?= renderModel o
-               assertEqual ("dl of " ++ renderModel o)
-                           (unBits (modelBits o)) (unBits (modelBits n)))
-            (zip new old)
-  , testCase "declared guards extend the enumeration: 1241 and 1529" $ do
-      length modelsA @?= 1241
-      length modelsC @?= 1529
-  , testCase "guard sentences pay their namespace and their threshold grid" $ do
-      -- pin provenance (the membrane pre-tag re-open): these literals
-      -- are the frozen tree of dlChange, src/PropLang/Enumerate.hs —
-      -- model bit + (if bit + ((Get bit + lg |ns|) + mention grid)) +
-      -- two theta mentions — verified against the artifact at fd70162
-      -- (modelBits of the first frozen t-guard = 16.339850002884624);
-      -- a pin is derived from the frozen artifact, never from a
-      -- parallel derivation
-      if length modelsA <= s2GuardIx 0 1
-        then assertFailure "enumeration lacks the s2-guard block"
-        else assertApprox "s2-guard dl under a 2-name world" 1e-12
-               (1 + (1 + ((1 + 1) + (1 + 0))) + (1 + lg 9) + (1 + lg 9))
-               (unBits (modelBits (modelsA !! s2GuardIx 0 1)))
-      let laBase = 9 + 8 + 16 * 72 + 3 * 72
-      if length modelsC <= laBase
-        then assertFailure "enumeration lacks the last_action-guard block"
-        else assertApprox "la-guard dl under a 3-name world" 1e-12
-               (1 + (1 + ((1 + lg 3) + (1 + 1))) + (1 + lg 9) + (1 + lg 9))
-               (unBits (modelBits (modelsC !! laBase)))
-  , testCase "M1: publishing a name re-prices every mention (across worlds)" $ do
-      let tGuardA = unBits (modelBits (modelsA !! 17))
-          tGuardC = unBits (modelBits (modelsC !! 17))
-          tGuard0 = unBits (modelBits
-                              (enumerateModels allTerminals !! 17))
-      assertApprox "3-name vs 2-name t-guard" 1e-12 (lg 3 - lg 2)
-                   (tGuardC - tGuardA)
-      assertApprox "2-name vs frozen t-guard" 1e-12 1
-                   (tGuardA - tGuard0)
-  ]
 
 -- ---------------------------------------------------------------------
 -- group 7: slot instantiation is grid-constant utterance (ruling M4)

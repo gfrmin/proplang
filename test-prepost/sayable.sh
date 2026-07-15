@@ -7,7 +7,8 @@
 # Per the canonized fixture-proof habit, the red is DEMONSTRATED to be
 # the missing constructor (the fixture type-checks against the drafted
 # surface; evidence in the pack). On compile success the fixture RUNS
-# its own assertions (price pin under lg 7, verb/worker and degenerate
+# its own assertions (price pin under lg 6 since the step-3
+# re-pricing, verb/worker and degenerate
 # identities, the sentence-driven decisions in both worlds).
 #
 # src/ depends on base only, so plain ghc suffices (audit convention).

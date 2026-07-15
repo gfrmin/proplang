@@ -16,7 +16,13 @@
 # src/ depends on base only, so `ghc -isrc` needs no package flags.
 # Set $GHC to override the compiler (defaults to `ghc` on PATH).
 #
-# usage: test-expfam/ablation.sh [expfam|sid|bern|carrier-obs|all]
+# The bern row (DROP_BERN / UseBern.hs) is DISCHARGED-PERMANENT as of
+# the step-3 freeze (the register category named at the step-3
+# sitting): the deletion the fixture proved possible became the
+# deletion that happened — 'Bern' left the grammar with the step-3
+# demolition.
+#
+# usage: test-expfam/ablation.sh [expfam|sid|carrier-obs|all]
 #        (default: all)
 
 set -u
@@ -59,13 +65,11 @@ row() {
 case "${1:-all}" in
     expfam)      row expfam      DROP_EXPFAM      UseExpFam.hs      ExpFam ;;
     sid)         row sid         DROP_SID         UseSId.hs         SId ;;
-    bern)        row bern        DROP_BERN        UseBern.hs        Bern ;;
     carrier-obs) row carrier-obs DROP_CARRIER_OBS UseObsCarrier.hs  obsCarrier ;;
     all)         row expfam      DROP_EXPFAM      UseExpFam.hs      ExpFam
                  row sid         DROP_SID         UseSId.hs         SId
-                 row bern        DROP_BERN        UseBern.hs        Bern
                  row carrier-obs DROP_CARRIER_OBS UseObsCarrier.hs  obsCarrier ;;
-    *)           echo "usage: $0 [expfam|sid|bern|carrier-obs|all]"; exit 2 ;;
+    *)           echo "usage: $0 [expfam|sid|carrier-obs|all]"; exit 2 ;;
 esac
 
 exit $fail

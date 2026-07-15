@@ -13,6 +13,23 @@
 -- public prior) and group 5 (Fn raises-by-type rows) are pins, green
 -- from the start, protecting anchor byte-stability (plan R4) and the
 -- ablation standard (plan R6) through the refactor.
+--
+-- THE STEP-3 PORT (delegated freeze edit, sentence-author-pack.md
+-- §20.3/§25; the delegation recorded in the freeze commit): group 2's
+-- one enumeration call (r0 :94-95, enumerateModels allTerminals under
+-- mkAgent) rides the SENTENCE ROUTE — enumerateSentences fragFull
+-- under sentenceAgent. The closed-form masses, the population count
+-- 1169, and the frozen enumeration order (9 constants, 8 walks, 1152
+-- change-points) are UNCHANGED — E-s1 measured the declared table's
+-- charges bit-identical to the frozen literals, and the step-3
+-- prototype vindicated the full route (pack §§5, 18). The row is
+-- runtime-red until the step-3 implementation lands, exactly the
+-- increment discipline. STDNAME's 7 -> 6 re-pricing (Bern leaves the
+-- stdlib at this boundary) touches NO pin in this file — the sweep
+-- was manifest-derived at the freeze: this file's alphabet pins read
+-- prodExpr (19, untouched); the three STDNAME-reading pins live in
+-- the sayable fixtures (ladder/prepost/cirl), re-priced there under
+-- the same delegation (D4: adjudication, never grep).
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -91,7 +108,10 @@ propSayable =
 groupDlPins :: TestTree
 groupDlPins = testGroup "model dl pins (derivation-relative, plan R4)"
   [ testCase "the full prior takes exactly the three closed-form masses" $ do
-      let ms = enumerateModels allTerminals
+      -- the step-3 port: the same 1169 hypotheses through the sentence
+      -- route (enumeration order preserved by the route — the g1 port
+      -- vindication); the closed forms below are the frozen quantities
+      let ms = enumerateSentences fragFull
           n = length ms
           z = sum [ 2 ** negate (dlOf i) | i <- [0 .. n - 1] ]
           expected i = 2 ** negate (dlOf i) / z
@@ -101,7 +121,7 @@ groupDlPins = testGroup "model dl pins (derivation-relative, plan R4)"
                            ++ ": expected " ++ show (expected i)
                            ++ ", got " ++ show p)
                           (abs (p - expected i) <= 1e-12 * expected i))
-            (top (agentMeta (mkAgent ms)) n)
+            (top (agentMeta (sentenceAgent ms)) n)
   ]
   where
     -- enumeration order is frozen by the reference: 9 bern-constants,
