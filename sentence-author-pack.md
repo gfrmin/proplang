@@ -223,3 +223,139 @@ test 4 and ports as §4 item 3 (frozen audit scripts never grow rows; the
 increment-local runner carries the new ones).
 
 *Part I ends here. The next act is the author's sitting on D1–D7.*
+
+---
+
+# Part II — the sitting's rulings (2026-07-15) and the D6 sweep, resolved
+
+## 9. The rulings, recorded
+
+- **D1 — RULED A, ground corrected (the author):** the law does not forbid a
+  pinned second route — it *requires pins for* second routes; an interregnum
+  with a degeneracy pin would be legal. The decisive ground: **the
+  falsification wave is invariant to staging** — B defers it, never avoids
+  it, and pays twice; B's only purchase (insurance against anchor
+  non-reproduction) is already half-retired by E-s1 + the §6.7 immunity
+  measurement, and the trajectory half is exactly what g1's genuine red
+  adjudicates. Part I §2's ground (ii) stands corrected accordingly.
+- **D2 — ADOPTED, plus one row, minus one ambiguity:** *position* is a fresh
+  coordinate of the NEW enumeration (nothing guarantees order preservation);
+  continuity is carried by dl + mass. And because the dl multiset has
+  symmetry collisions, the collision-proof identity is added: **the MAP
+  component's predictive at frozen checkpoints, computed from the old route
+  NOW, before the demolition** — executed, §11 below.
+- **D3 — ADOPTED, three riders** (§12 below): the §8 schedule's formal
+  amendment (Wire.hs's step-5 row discharged early by retirement); the
+  host-less window stated; lineage headers on the ported rows.
+- **D4 — ADOPTED, delegated as at step 1,** carrying the classified-exception
+  discipline: the SayableP `lg 10` that was a variable count, not a
+  production count — re-pricing is adjudication, never grep.
+- **D5 — ADOPTED,** with the sitting's check recorded for the type-surface
+  phase: the filtered-latents slot in `Agent` must cover what `THmm` carried
+  (a `Belief Double` latent per state-carrying sentence) — the one place a
+  quiet new type could slip in.
+- **D6 — HELD by the author pending the extended sweep; the sweep is now
+  resolved, §10.** The branch obtains: **test-optlaw is NOT clean.**
+- **D7 — CONFIRMED,** with the host-less window recorded against it.
+- **g3 gains a row (the author):** the reverse orientation — a code lawful
+  early and ill-formed late (per-tick refutation kills it at its tick; the
+  filter must neither pre-kill it nor keep it past that tick) — so the
+  extensional pin spans the domain boundary in both directions; gBoundary's
+  lesson applied to the law's first scheduled application. And if the fresh
+  residue measurement reproduces §6.4's bit-identity, **the pin freezes at
+  `==` without regret** — a bit-exact pin born from a measurement is not a
+  round number.
+
+## 10. The D6 sweep (extended deletion set, file list DERIVED FROM THE MANIFEST)
+
+Method correction first, recorded plainly: Part I §2's inventory was
+hand-enumerated and **omitted the very file the builder froze a week ago** —
+the author caught it from provenance alone (the optlaw pack's own §2 cites
+`test-d/D.hs:588-589` as a byte-copy source). The sweep now derives its file
+list from `MANIFEST.sha256` (34 `.hs` rows) plus the non-manifest host files;
+the extended set = the four step-text names ∪ the u-fragment
+(`MUConst`/`MUWalk`/`enumerateUModels`/`UFamily`/`allUFamilies`/`TauSpec`/
+`mkTauSpec`/`verdictKernel`/`latent*`/`UPilot`/`membraneTickU`/
+`runMembraneU`/`UTickState`/`UTickTrace`/`uChoose`). Every file with a
+nonzero count:
+
+| file | core | ufrag | disposition |
+|---|---|---|---|
+| `test/Acceptance.hs` | 15 | 0 | PORT (ruled, Part I) |
+| `test-hygiene/Hygiene.hs` | 1 | 0 | re-open: port + STDNAME re-price (D4) |
+| `test-membrane/Membrane.hs` | 28 | 0 | re-open: model rows port; action rows stay for 5 |
+| **`test-expfam/ExpFam.hs`** | 4 | 0 | **NEW CATCH: E7 itself routes through the dying name** — `propExpansion`'s fast side is `nameAt` = `Call (Bern obsCarrier) …` (`:106,:224`). The KEEP-E7 ruling forces the port: fast side becomes `bernFast` directly — value-invariant BY DEFINITION today (`applyStd (Bern car) = bernFast car`, `Eval.hs:206`). The `:137` "stdname choice of 7" pricing row and the `:189` render golden retire with the name; group 6 retires as already ruled |
+| `test-expfam/ablation/UseBern.hs` | 2 | 0 | the Bern deletion FIXTURE: its ablation row retires as **discharged-permanent** — the deletion it proved possible becomes the deletion that happened |
+| `test-govhost/GovHost.hs` + `ablation/UseDriver.hs` | 10+2 | 0 | retire (D3) |
+| `test-d/D.hs` + `ablation/UseUPilot.hs` + `ablation/UseUWalk.hs` | 17+3+0 | 69+23+7 | retire (D3) |
+| **`test-optlaw/OptLaw.hs`** | **3** | **18** | **THE BRANCH OBTAINS: NOT clean — joins D3 as a re-open.** core: `worldAgent0 = mkAgent (enumerateModels allTerminals)`; ufrag: `uAgent0`/`pointerAgent0` through `enumerateUModels`/`verdictKernel`/`mkTauSpec`. Generators port to extensional twins over the sentence surface; **values untouched** (the 49/49 transcript quantities re-executed against the ported generators under the sharpened R-D21 at the re-freeze — bit-agreement expected: the step-1 pins made code-vs-`walkOn` 567/567 and code-vs-`bernFast` 18/18 bit-exact, and `verdictKernel`'s σ-mixture is post-step-1 sayable arithmetic) |
+| `host-governor/{Wire,WireU,Main}.hs` | 2+3+0 | 0+21+3 | retire (D3; not manifest-covered — the custody note rides the retirement) |
+
+Zero-hit (stay green through 3): `Properties`, `Anchors`, `Streams`,
+`ladder`(+fixture), `prepost`(+`SayableP`), `cirl`(+fixtures), `code`,
+`audit/ablation/{UseArgmax,UsePush}`, membrane's action-side ablations,
+hygiene's FN ablations.
+
+**Consequence for D6, awaiting the author's word:** the u-fragment's frozen
+consumers are exactly {test-d(+2 ablations), WireU, Main, test-optlaw} —
+the first three retire, optlaw re-opens with ported generators. The
+recommended D6 (dies with its consumers; utility re-derived from the axioms
+at steps 6–8, never rebuilt from nostalgia) stands on the sweep's numbers;
+**the enlarged D3 gains: optlaw (re-open), expfam's E7 port + UseBern
+retirement.**
+
+## 11. The D2 capture, EXECUTED (pre-demolition, old route, public surface only)
+
+(`scratchpad/step3/MapCapture.hs`, throwaway; transcript
+`d2-capture-transcript.txt`. Idioms byte-copied: `stepAgent`
+Acceptance:61-65, the fold :69-73, the MAP route :76-79; streams frozen in
+`test/Streams.hs`. Component predictive read via a SINGLETON agent on the
+MAP model, replayed over the same stream — filtered latents advance exactly
+as the mixture component's did.)
+
+```
+shifted160: MAP = ('bern', ('if', ('>', ('get','t'), ('c','tau',11)), ('c','theta',0), ('c','theta',8)))
+  mass 0.6383157408996509 (3fe46d1521f5f3cc)
+  P(y=1|t=0,59,60) = 0.8999999999999999 (3feccccccccccccc)
+  P(y=1|t=61,159,160) = 0.10000000000000002 (3fb999999999999b)
+drift400:  MAP = ('hmm', ('c','rho',3))       <- STATE-CARRYING: the case dl+mass cannot fingerprint
+  mass 0.401010555353298 (3fd9aa282d25f732)
+  filtered P(y=1) = 0.39474402402583364 (3fd9437c705edf8a), all checkpoints
+flat400:   MAP = ('bern', ('c','theta',6))
+  mass 0.946333003921794 (3fee485c26df0683)
+  P(y=1) = 0.7 (3fe6666666666666), all checkpoints
+```
+
+The old renders are provenance LABELS here, never ported pins (D2's
+ambiguity resolved: position is fresh; continuity = dl + mass + these
+component predictives).
+
+## 12. D3's riders, drafted
+
+1. **The §8 schedule amendment (for the freeze):** the step-5 row
+   "`membrane-wire.md` + `host-governor/Wire.hs` (the sentinel,
+   `missing-internal-row`)" is amended — `Wire.hs` **discharged early by
+   retirement at step 3**; the sentinel's remaining pointable site is
+   `membrane-wire.md:131` (the think row; prose at `:57`), which keeps its
+   step-5 date.
+2. **The host-less window, stated:** from this freeze until the step-5/7
+   host rework, the repo has **no runnable host** — both wire drivers and
+   the govhost executable retire with their consumers. A substrate
+   mid-re-derivation; a stated consequence, not a discovery.
+3. **Lineage headers:** every ported row group in `test-sentence/` names the
+   brief §12 deliverable it descends from (test 1 = the changing-world
+   deliverable; test 2 = lazy-genius; test 3 = agent-vs-forgetter; test 4 =
+   the deletion table), so the four acceptance tests survive the death of
+   the file that housed them as NAMED deliverables.
+
+## 13. Register status after Part II
+
+D1 ✅ A (ground corrected) · D2 ✅ (+capture executed) · D3 ✅ (+three riders;
+enlarged by §10: optlaw re-open, expfam E7 port, UseBern retirement) ·
+D4 ✅ (delegated, SayableP discipline) · D5 ✅ (+the filtered-latents check) ·
+D7 ✅ (window recorded) · **D6 — the sweep the author demanded is resolved,
+the branch recorded; his word adopts it.** With that word the oracle drafts:
+g1–g5 as planned, g2 + g3's two orientations, the optlaw generator port
+riding the same boundary.
+
+*Part II ends here. The one open item is D6's confirmation on §10's numbers.*
