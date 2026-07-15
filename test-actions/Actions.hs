@@ -53,7 +53,6 @@
 -- retires the constructor itself. Test names are ASCII-only.
 module Main (main) where
 
-import Data.List (foldl')
 import Data.List.NonEmpty (NonEmpty ((:|)), toList)
 import Data.Maybe (fromMaybe)
 import Test.Tasty
@@ -62,7 +61,7 @@ import Test.Tasty.HUnit
 import PropLang.Belief (Belief, Bits (..), Evidence (Saw), cond, uniform)
 import PropLang.Enumerate (Obs, emit, enumerateSentences, fragFull,
                            sentenceAgent, thetaSpace)
-import PropLang.Eval (Features, Vals (..), evalx, mkEnv, vThinkK)
+import PropLang.Eval (Vals (..), evalx, mkEnv, vThinkK)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           menuAssignments, runMembrane)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,

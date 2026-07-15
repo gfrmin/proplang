@@ -182,6 +182,18 @@ Every step-6+ increment follows the recursive two-phase discipline:
    oracle's exact frozen text compiles against it unchanged — is the
    preferred transcript form wherever the prototype can carry the
    module interface.
+   Two lines canonized at the step-5 boundary (the actions freeze,
+   2026-07-16). A PROBE READS DECLARED DATA — exports, tables — and
+   never re-declares a value it could import (the tauPoints incident:
+   the remedy existed in the same increment's own surface and the
+   probe hand-wrote the leaf anyway; sibling to the sweep-universe
+   line, and the same discipline: probes are subject to it exactly as
+   sweeps are). And RETIRE-UNTIL-N is a named register category: a
+   retirement whose obligation returns at a scheduled boundary puts
+   its return row on that boundary's opening checklist AT THE
+   RETIRING FREEZE — a deferred obligation living only in a retired
+   file's comment is the R6 disease wearing a new hat (g4Self the
+   first instance).
    One line canonized at the step-4 boundary (the pricing freeze,
    2026-07-15): A RETIREMENT LISTS ITS PINS — a retirement
    disposition enumerates every pin the retiring file carries and

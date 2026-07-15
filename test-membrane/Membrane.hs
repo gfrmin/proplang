@@ -59,6 +59,24 @@
 -- are runtime-red until the step-3 implementation lands — the
 -- increment discipline; the namespace-pricing, slot-pricing, M5, and
 -- deletion/grep rows never touch the doomed names and stay green.
+--
+-- THE STEP-5 PORT (delegated freeze edit, actions-author-pack.md
+-- SS13-SS14; the delegation = the author's approval of the
+-- replacement-surface form, 2026-07-16): ACTIONS BECOME FEATURES.
+-- The action rows ride the Menu/assignment surface (rulings D-a1
+-- full assignments, D-a2 one-name B-world); every quantity anchor is
+-- UNCHANGED and the port was measured behavior-neutral BEFORE this
+-- edit froze (E-a1: zero diff over 2,958 two-route lines, incl. the
+-- tie row). The echo rows and the M5 guardian RETIRED (their
+-- subjects died; the guardian's safety argument: M5 is repealed only
+-- at 7, and RIDER 2's no-action-pricing obligation is itself the
+-- guard through the interregnum). g4Self's action rows are
+-- RETIRE-UNTIL-6 (the self-signature deliverable returns when
+-- actions enter the feature stream; the step-6 opening checklist
+-- carries the return row — scheduled, not remembered). The three
+-- ablation rows are DISCHARGED-PERMANENT with their fixtures. Rows
+-- touching the ported constructions are runtime-red until the step-5
+-- implementation lands.
 module Main (main) where
 
 import Data.List (isInfixOf)
@@ -74,14 +92,12 @@ import PropLang.Belief (Bits (Bits), LogProb (LogProb), top)
 import PropLang.Enumerate (Hyp (..), Obs, enumerateSentences,
                            enumerateSentencesIn, fragFull, observe,
                            renderExpr, agentMeta, sentenceAgent)
-import PropLang.Membrane (Affordance (..), Choice (..), EchoSpec,
-                          InternalAct (..), Pilot (..), PureWorld (..),
-                          Slot (..), TickTrace (..), lastActionCode,
-                          echoFeatures, mkAffId, mkEchoSpec, noEcho,
+import PropLang.Eval (Features)
+import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           runMembrane)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), KnownScope, Namespace,
-                        Util, bits, bitsIn, mkC, mkGrid, mkNamespace,
-                        mkUtil)
+import PropLang.Syntax (Expr (..), Grid, Idx (..), KnownScope, Name,
+                        Namespace, Util, bits, bitsIn, mkC, mkGrid,
+                        mkNamespace, mkUtil)
 
 import Anchors (t1MapPosterior, t1ProbeRows, t3AgentDrift,
                 tolBits, tolProb)
@@ -89,7 +105,7 @@ import Streams (drift400, shifted160)
 
 main :: IO ()
 main = defaultMain $ testGroup "membrane oracle (Task 1, runtime-red)"
-  [ g1Parity, g2Dormant, g3Menu, g4Self, g5Names
+  [ g1Parity, g2Dormant, g3Menu, g5Names
   , g7SlotPrice, g8Rows ]
 
 -- ---------------------------------------------------------------------
@@ -191,47 +207,49 @@ handLoss ys = fst (foldl' step (0, sentenceAgent (enumerateSentences fragFull))
         Nothing              -> error ("impossible evidence at t=" ++ show t)
         Just (LogProb lp, a) -> (acc + negate lp / ln2, a)
 
-t1Menu :: [Affordance]
-t1Menu = [ Affordance (mkAffId 1) "predict1" []
-         , Affordance (mkAffId 2) "predict0" []
-         , Affordance (mkAffId 3) "consult" [] ]
+-- the t1 world's lever, ported (D-a2's discipline): ONE writable
+-- name, grid points in the OLD PUBLICATION ORDER (1=predict1,
+-- 2=predict0, 3=consult) so CL-3 ties break identically — E-a1's tie
+-- row measured exactly this continuity
+t1Menu :: [(Name, Grid)]
+t1Menu = [("opt", mkGrid "t1opt" (1 :| [2, 3]))]
 
 -- the frozen util1 spoken over the membrane's option space (the whole
 -- space, internal acts included — one action space, one valuation)
-util1M :: Util Choice Obs
-util1M = mkUtil $ \c y -> case c of
-  Fire aid _
-    | aid == mkAffId 1 -> if y == 1 then 1.0 else -1.0
-    | aid == mkAffId 2 -> if y == 0 then 1.0 else -1.0
-    | otherwise        -> 0.35
-  InternalFired _      -> -2.0
+-- the frozen util1M over assignments (the -2.0 internal arm has no
+-- counterpart: the sentinel is dead, and E-a1 measured its removal
+-- behavior-neutral — the arm was strictly dominated)
+util1M :: Util Features Obs
+util1M = mkUtil $ \asg y -> case lookup "opt" asg of
+  Just 1 -> if y == 1 then 1.0 else -1.0
+  Just 2 -> if y == 0 then 1.0 else -1.0
+  Just 3 -> 0.35
+  _      -> error "t1 fixture: off-menu assignment"
 
-choiceName1 :: Choice -> String
-choiceName1 c = case c of
-  Fire aid _
-    | aid == mkAffId 1 -> "predict1"
-    | aid == mkAffId 2 -> "predict0"
-    | aid == mkAffId 3 -> "consult"
-    | otherwise        -> "?"
-  InternalFired Think  -> "think"
+choiceName1 :: Features -> String
+choiceName1 asg = case lookup "opt" asg of
+  Just 1 -> "predict1"
+  Just 2 -> "predict0"
+  Just 3 -> "consult"
+  _      -> "?"
 
 g1Parity :: TestTree
 g1Parity = testGroup "membrane parity: frozen worlds, frozen anchors"
   [ testCase "t3 drift: membrane fold == frozen fold, bit for bit" $ do
-      (_, trs) <- runOrFail (runMembrane predWorld noEcho
+      (_, trs) <- runOrFail (runMembrane predWorld
                                PilotIdle 400 (0, drift400)
                                (sentenceAgent (enumerateSentences fragFull)))
       let membLoss = foldl' (+) 0 (map ttLossBits trs)
       assertEqual "cumulative log-loss (bits), exact Double equality"
                   (handLoss drift400) membLoss
   , testCase "t3 drift: membrane loss lands on the frozen anchor" $ do
-      (_, trs) <- runOrFail (runMembrane predWorld noEcho
+      (_, trs) <- runOrFail (runMembrane predWorld
                                PilotIdle 400 (0, drift400)
                                (sentenceAgent (enumerateSentences fragFull)))
       assertApprox "t3 agent log-loss" tolBits t3AgentDrift
                    (foldl' (+) 0 (map ttLossBits trs))
   , testCase "t3 drift: MAP program == the fresh sentence goldens" $ do
-      (agF, _) <- runOrFail (runMembrane predWorld noEcho
+      (agF, _) <- runOrFail (runMembrane predWorld
                                PilotIdle 400 (0, drift400)
                                (sentenceAgent (enumerateSentences fragFull)))
       -- D2: the identity the r0 anchor (t3MapProgram, the rho-3 hmm)
@@ -243,7 +261,7 @@ g1Parity = testGroup "membrane parity: frozen worlds, frozen anchors"
           fmap renderExpr (hypMove (msW !! ix)) @?= Just t3MoveGoldenM
         [] -> assertFailure "agentMeta top returned no entries"
   , testCase "t1 probes: P(y=1), action, meta-entropy at the frozen rows" $ do
-      (_, trs) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu } noEcho
+      (_, trs) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu }
                                (PilotEU util1M) 160 (0, shifted160)
                                (sentenceAgent (enumerateSentences fragFull)))
       mapM_ (\(t, p1a, act, ha) -> do
@@ -251,10 +269,10 @@ g1Parity = testGroup "membrane parity: frozen worlds, frozen anchors"
                assertApprox ("P(y=1) at t=" ++ show t) tolProb p1a (ttP1 tr)
                assertApprox ("meta-entropy at t=" ++ show t) tolProb ha
                             (ttEntropy tr)
-               choiceName1 (ttChoice tr) @?= act)
+               choiceName1 (ttAct tr) @?= act)
             t1ProbeRows
   , testCase "t1 end MAP: program (fresh golden, D2) and posterior anchor" $ do
-      (agF, _) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu } noEcho
+      (agF, _) <- runOrFail (runMembrane predWorld { wMenu = const t1Menu }
                                (PilotEU util1M) 160 (0, shifted160)
                                (sentenceAgent (enumerateSentences fragFull)))
       let msW = enumerateSentences fragFull
@@ -296,7 +314,7 @@ s2GuardIx k1 k2 = 9 + 8 + 16 * 72 + k1 * 8 + (if k2 > k1 then k2 - 1 else k2)
 g2Dormant :: TestTree
 g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
   [ testCase "pre-appearance: the dormant sentence rides at its prior ratio" $ do
-      (ag, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 39 0
+      (ag, _) <- runOrFail (runMembrane aWorld PilotIdle 39 0
                               (sentenceAgent modelsA))
       let ranked = top (agentMeta ag) (length modelsA)
       mapM_ (\(k1, k2) -> do
@@ -312,7 +330,7 @@ g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
                              1e-9 (2 ** (dlT - dlG)) (mg / mt))
             [(7, 2), (0, 5), (4, 8)]
   , testCase "post-appearance: evidence flows, MAP mentions the sensor" $ do
-      (agF, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 120 0
+      (agF, _) <- runOrFail (runMembrane aWorld PilotIdle 120 0
                                (sentenceAgent modelsA))
       (m, p) <- mapOfAgent renderHyp
                   (top (agentMeta agF) (length modelsA)) modelsA
@@ -320,7 +338,7 @@ g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
                  (sub "('get', 's2')" m)
       assertBool ("MAP posterior >= 0.2, got " ++ show p) (p >= 0.2)
   , testCase "the winning sentence started below a thousandth of the mass" $ do
-      (agF, _) <- runOrFail (runMembrane aWorld noEcho PilotIdle 120 0
+      (agF, _) <- runOrFail (runMembrane aWorld PilotIdle 120 0
                                (sentenceAgent modelsA))
       let rankedEnd = top (agentMeta agF) (length modelsA)
           ranked0 = top (agentMeta (sentenceAgent modelsA)) (length modelsA)
@@ -339,9 +357,15 @@ g2Dormant = testGroup "dormant sensor (A): declared, silent, then heard"
 speedGrid :: Grid
 speedGrid = mkGrid "speed" (0.2 :| [0.4, 0.6, 0.8])
 
-holdAff, moveAff :: Affordance
-holdAff = Affordance (mkAffId 1) "hold" []
-moveAff = Affordance (mkAffId 2) "move" [Slot "speed" speedGrid]
+-- the B lever, ported per ruling D-a2: ONE name; hold IS
+-- move-at-its-first-point (the world says what inaction looks like
+-- on its own lever, S5c verbatim); menu growth = the per-tick menu's
+-- grid gaining points at t=10 (a world's own declaration; no pricing
+-- implications until 6/7)
+bMenuAt :: Int -> [(Name, Grid)]
+bMenuAt t = if t >= 10
+              then [("move", mkGrid "bmove" (0 :| [0.2, 0.4, 0.6, 0.8]))]
+              else [("move", mkGrid "bmove" (0 :| []))]
 
 -- the affordance "move" is published from tick 10; evidence is twenty
 -- ones over the FROZEN fragment (menu growth is not namespace growth —
@@ -350,107 +374,67 @@ bWorld :: PureWorld Int
 bWorld = PureWorld
   { wFeats    = \t -> [("t", fromIntegral t)]
   , wEvidence = const (Just 1)
-  , wMenu     = \t -> if t >= 10 then [holdAff, moveAff] else [holdAff]
+  , wMenu     = bMenuAt
   , wStep     = \t _ -> t + 1
   }
 
-utilB :: Double -> Util Choice Obs
-utilB holdPay = mkUtil $ \c y -> case c of
-  Fire aid slots
-    | aid == mkAffId 1 -> holdPay
-    | otherwise ->
-        let v = case [x | (nm, x) <- slots, nm == "speed"] of
-                  x : _ -> x
-                  []    -> 0
-        in if y == 1 then v else negate v
-  InternalFired _ -> -2.0
+utilB :: Double -> Util Features Obs
+utilB holdPay = mkUtil $ \asg y -> case lookup "move" asg of
+  Just 0 -> holdPay
+  Just v -> if y == 1 then v else negate v
+  _      -> error "B fixture: off-menu assignment"
 
 g3Menu :: TestTree
 g3Menu = testGroup "growing menu (B): adopted iff expected utility says so"
   [ testCase "B1: the new affordance is adopted the tick it appears" $ do
-      (_, trs) <- runOrFail (runMembrane bWorld noEcho
+      (_, trs) <- runOrFail (runMembrane bWorld
                                (PilotEU (utilB 0.2)) 20 0
                                (sentenceAgent (enumerateSentences fragFull)))
-      map ttChoice trs @?=
-        (replicate 10 (Fire (mkAffId 1) [])
-         ++ replicate 10 (Fire (mkAffId 2) [("speed", 0.8)]))
+      -- the E-a1 goldens: hold (the first point) for ten ticks, then
+      -- move at 0.8 from the tick the grid grows
+      map ttAct trs @?=
+        (replicate 10 [("move", 0)]
+         ++ replicate 10 [("move", 0.8)])
   , testCase "B2: a dominated affordance is never adopted (same call)" $ do
-      (_, trs) <- runOrFail (runMembrane bWorld noEcho
+      (_, trs) <- runOrFail (runMembrane bWorld
                                (PilotEU (utilB 0.9)) 20 0
                                (sentenceAgent (enumerateSentences fragFull)))
-      map ttChoice trs @?= replicate 20 (Fire (mkAffId 1) [])
-  , testCase "menu growth is not namespace growth (M5, ruled at the freeze)" $
-      -- the freeze-review consistency requirement: this increment
-      -- defers mid-episode NAMESPACE growth, so B's mid-episode MENU
-      -- growth is legitimate only because it adds action vocabulary
-      -- (slot-priced) and never a Get-mentionable name — asserted in
-      -- construction: the published feature-name set is the declared
-      -- singleton at every tick, growth tick included
-      assertBool "published feature names == [\"t\"] at every tick"
-        (all (\t -> map fst (wFeats bWorld t) == ["t"]) [0 .. 19])
+      map ttAct trs @?= replicate 20 [("move", 0)]
+  -- THE M5 GUARDIAN RETIRED at the step-5 freeze (its safety
+  -- argument, stated so no future reader reconstructs it: the
+  -- guardian's subject — slot-priced action vocabulary vs
+  -- Get-mentionable names — becomes unobservable at 5; M5 itself is
+  -- repealed only at 7; and the interregnum is safe precisely
+  -- because RIDER 2's negative obligation — no action pricing
+  -- anywhere in steps 5-6 — is itself the guard until the repeal
+  -- lands with its invariance fixture. Law-without-tripwire for two
+  -- steps is fine only because the door the law guards does not
+  -- exist yet.)
   ]
 
 -- ---------------------------------------------------------------------
--- group 4: the self-signature (interface.md §8 C), WITH the required
--- competitor (Task 0 ruling): the same hypothesis space must hand the
--- exogenous control world to the changepoint story
+-- group 4 (the self-signature, interface.md SS8 C) RETIRE-UNTIL-6
+-- (ruling D-a6, the step-5 freeze): the deliverable NEEDS the action
+-- visible to the hypotheses, and actions enter the feature stream at
+-- STEP 6 — the echo that carried them died here, and a port now
+-- would pin vacuous behavior (the confound 6b exists to falsify).
+-- THE RETURN IS SCHEDULED, NOT REMEMBERED: the step-6 opening
+-- checklist carries the g4Self-return row (AGENT_PLAN SS7 step 6, the
+-- delegated edit at this freeze) — a deferred obligation living only
+-- in this comment would be the R6 disease wearing a new hat (the
+-- author's words). The retired world's fixtures (the yC/zC streams,
+-- the threshold pilot, the echoed world, its 1529-sentence space)
+-- are reconstructible byte-wise from this file's history (the step-3
+-- port carries them; gen_fixtures.py regenerates and
+-- sanity-simulates them).
 -- ---------------------------------------------------------------------
 
+-- the 3-name pricing namespace (formerly the C-world's; kept beside
+-- its surviving consumer — the g5 bitsIn row. The "last_action" NAME
+-- is historical fixture data, ruling D-a5: worlds may name features
+-- anything, and a 3-name world's arithmetic is name-blind.)
 nsC :: Namespace
 nsC = mkNamespace ("t" :| ["z", "last_action"])
-
-zGrid, laGrid :: Grid
-zGrid = mkGrid "zc" (0.25 :| [0.5, 0.75])
-laGrid = mkGrid "lac" (0.5 :| [1.5])
-
-modelsC :: [Hyp]
-modelsC = enumerateSentencesIn nsC [("z", zGrid), ("last_action", laGrid)]
-                               fragFull
-
-cMenu :: [Affordance]
-cMenu = [Affordance (mkAffId 1) "a1" [], Affordance (mkAffId 2) "a2" []]
-
--- the scripted explorer: fire a2 when z > 0.5 else a1 (the test's
--- claim is the posterior's, not the policy's)
-cPilot :: Pilot
-cPilot = PilotThreshold "z" 0.5 (Fire (mkAffId 2) []) (Fire (mkAffId 1) [])
-
-cWorld :: [Obs] -> PureWorld Int
-cWorld ys = PureWorld
-  { wFeats    = \t -> [("t", fromIntegral t), ("z", zC !! t)]
-  , wEvidence = \t -> Just (ys !! t)
-  , wMenu     = const cMenu
-  , wStep     = \t _ -> t + 1
-  }
-
-cEcho :: EchoSpec
-cEcho = mkEchoSpec True False False
-
-g4Self :: TestTree
-g4Self = testGroup "self-signature (C): the echo wins only when it should"
-  [ testCase "C: MAP mentions ('get', 'last_action'), decisively" $ do
-      (agF, _) <- runOrFail (runMembrane (cWorld yC) cEcho cPilot 160 0
-                               (sentenceAgent modelsC))
-      (m, p) <- mapOfAgent renderHyp
-                  (top (agentMeta agF) (length modelsC)) modelsC
-      assertBool ("MAP mentions ('get', 'last_action'): " ++ m)
-                 (sub "('get', 'last_action')" m)
-      assertBool ("MAP posterior > 0.5, got " ++ show p) (p > 0.5)
-  , testCase "C0 control: the exogenous story wins, BY STRUCTURE" $ do
-      (agF, _) <- runOrFail (runMembrane (cWorld shifted160) cEcho cPilot
-                               160 0 (sentenceAgent modelsC))
-      (m, _) <- mapOfAgent renderHyp
-                  (top (agentMeta agF) (length modelsC)) modelsC
-      -- freeze-review ruling (the ExpFam group-6 standard): the
-      -- competitor's win is pinned by structure, not by negation — the
-      -- control MAP must BE the changepoint program, and the sanity
-      -- simulation says it is byte-identical to the frozen t1 anchor
-      -- (tau index 11 = 60.0; thetas 0 and 8; r0 pinned t1MapProgram,
-      -- D2's fresh golden carries the same structure)
-      m @?= t1RenderGoldenM
-      assertBool ("control MAP must not mention last_action: " ++ m)
-                 (not (sub "('get', 'last_action')" m))
-  ]
 
 -- ---------------------------------------------------------------------
 -- group 5: CL-6 and the namespace pricer (T1/M1 at the policy sort)
@@ -489,16 +473,13 @@ g5Names = testGroup "one namespace: echo names ordinary, prices per world"
       assertBool "Argmax"
         (eqPriced (Argmax (Var Z) (Get "t")
                      :: Expr '[NonEmpty Double] Double))
-  , testCase "echoFeatures speaks the trio, in order, or nothing" $ do
-      echoFeatures (mkEchoSpec True True True) 7 2
-                   (Just (InternalFired Think))
-        @?= [ ("last_action", -1.0), ("tick", 7.0)
-            , ("ticks_spent_thinking", 2.0) ]
-      echoFeatures noEcho 7 2 (Just (InternalFired Think)) @?= []
-  , testCase "lastActionCode: 0 before any action; stable ids after" $ do
-      lastActionCode Nothing @?= 0.0
-      lastActionCode (Just (Fire (mkAffId 3) [])) @?= 3.0
-      lastActionCode (Just (InternalFired Think)) @?= -1.0
+  -- (the echoFeatures and lastActionCode rows RETIRED at the step-5
+  -- freeze with their subjects: the echo path was the agent echoing
+  -- ITSELF, and it is gone whole. What survives is world-side: a
+  -- world remains free, under CL-1-at-the-echo, to measure the
+  -- agent's latency from outside the membrane and publish it as an
+  -- ordinary feature — the capability that ruling protected was
+  -- never the self-report.)
   ]
 
 -- ---------------------------------------------------------------------
@@ -551,13 +532,12 @@ srcFiles = map ("src/PropLang/" ++)
 
 g8Rows :: TestTree
 g8Rows = testGroup "deletion rows and grep clauses"
-  [ testCase "slot grids delete: affordances unutterable" $
-      shellRow "sh" ["test-membrane/ablation.sh", "slot-grid"]
-  , testCase "affordance publication deletes: external menu unutterable" $
-      shellRow "sh" ["test-membrane/ablation.sh", "affordance"]
-  , testCase "echo deletes: the self unutterable" $
-      shellRow "sh" ["test-membrane/ablation.sh", "echo"]
-  , testCase "no subscription machinery anywhere in src (S8 A grep)" $
+  -- (the slot-grid, affordance, and echo ablation rows are
+  -- DISCHARGED-PERMANENT at the step-5 freeze, with their fixtures
+  -- and their runner: the deletions they proved possible became the
+  -- deletions that happened — three more instances of the category,
+  -- after UseBern and the Rung half of UseLadder.)
+  [ testCase "no subscription machinery anywhere in src (S8 A grep)" $
       shellRow "python3" (["audit/strip_comments.py", "--forbidden",
                            "test-membrane/no-subscription.txt"] ++ srcFiles)
   , testCase "the membrane is pure: no IO token (gate-3 mirror)" $
@@ -599,54 +579,3 @@ yA =
   , 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1
   ]
 
--- world C context stream (rng seed 202): aperiodic, so no
--- current-tick sentence can proxy the lag the echo carries
-zC :: [Double]
-zC =
-  [ 0.7638815744633954, 0.6447807510863064, 0.40943808013995275, 0.19808744040113768, 0.6767003342360466
-  , 0.9692858163726752, 0.42774708898859193, 0.8508748594767727, 0.036078303300847936, 0.5277860412448065
-  , 0.20155321238517532, 0.4942660229634893, 0.6112527232963626, 0.8559082496370558, 0.5229658349769678
-  , 0.8688389390876086, 0.32677934673499076, 0.12840989549245074, 0.464946990798343, 0.7152468996358645
-  , 0.7079444055031988, 0.03674529136974525, 0.24857148343947266, 0.25434474234978877, 0.47157968486789925
-  , 0.8617020435058247, 0.27090929424730037, 0.04588509298910648, 0.898044162818999, 0.8692000927533886
-  , 0.7706996582437882, 0.03868779823161672, 0.26071076848820574, 0.17679425487660894, 0.9149845853572381
-  , 0.1247762691814659, 0.12749534009772823, 0.22064485914448861, 0.7909890387518833, 0.19802256998212397
-  , 0.9833758044078205, 0.30815505903287455, 0.6500811602972846, 0.1918766967857739, 0.29205572110731104
-  , 0.8654062707721905, 0.9975602236830079, 0.24234912525910135, 0.3494958562329116, 0.05738465199820186
-  , 0.19459585690947445, 0.38396148675330977, 0.5211296287363507, 0.5728266339465008, 0.3494505167705202
-  , 0.1580478194401167, 0.5557031473401765, 0.34891657446743507, 0.34511962615759206, 0.9732087418298719
-  , 0.5872592428652408, 0.015131720013235594, 0.9570810173892395, 0.9697011150746265, 0.3899178249402995
-  , 0.9796379455859785, 0.10503597027001488, 0.9186653549784145, 0.16886817106488827, 0.8640299707248008
-  , 0.677393015469918, 0.958336820535021, 0.30228094004558437, 0.6539282549257739, 0.9405720076563844
-  , 0.1288487580388612, 0.18510410684438972, 0.5570599695054576, 0.1336947339751663, 0.05453928468702074
-  , 0.015523122041815163, 0.34696045313653123, 0.6499602306210984, 0.4658578540938607, 0.6041332716945342
-  , 0.026368748395587893, 0.10124766221453585, 0.5654261544724538, 0.15680423108532615, 0.012824944273280403
-  , 0.06161851290700826, 0.6518827219485058, 0.9599300852975065, 0.4963045372344488, 0.006289238982428391
-  , 0.1947794521035049, 0.6812923526386081, 0.7926520562656519, 0.20604181596784943, 0.46748791606580087
-  , 0.03630839980614653, 0.5402450431444167, 0.756077508833009, 0.49959407928270205, 0.7852773044289958
-  , 0.23424898721227194, 0.6660319564191836, 0.47071635679190515, 0.6035913241862448, 0.07281748372873065
-  , 0.4538937693071986, 0.6200193225537551, 0.23417215110972356, 0.5539355889533747, 0.01966969700413501
-  , 0.4179602560886627, 0.9412028197949556, 0.6470504724458113, 0.5061461450725504, 0.8710807411457973
-  , 0.6935892521969669, 0.5089022416018498, 0.37519097252023725, 0.8737532376735282, 0.5643281702155495
-  , 0.48755638256953904, 0.37140463524028267, 0.1527719143761158, 0.19047370627583904, 0.6025314595643306
-  , 0.5373125801595716, 0.7745694336404262, 0.44911066812217937, 0.38450791343289026, 0.5553143405841365
-  , 0.25128770486599317, 0.9615743551078895, 0.6352708035606135, 0.30073836938485243, 0.49164698681513486
-  , 0.8407722422486795, 0.9508945317116384, 0.699882909462003, 0.8773974424492639, 0.8066516311507484
-  , 0.36733907167219004, 0.41782103194430553, 0.46509605756754535, 0.052063353108449784, 0.5914715882861393
-  , 0.5522742956937672, 0.7870882486811381, 0.33989034102585525, 0.9772133248871614, 0.7387381242549643
-  , 0.5788591594627351, 0.22760920288056674, 0.9339733226024151, 0.6834608410061699, 0.633945255772792
-  ]
-
--- world C explained readings (rng seed 202): 0.9 when the previous
--- tick's action was affordance 2, else 0.1
-yC :: [Obs]
-yC =
-  [ 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1
-  , 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1
-  , 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0
-  , 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0
-  , 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0
-  , 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1
-  , 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0
-  , 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0
-  ]

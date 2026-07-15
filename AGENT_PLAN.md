@@ -903,6 +903,12 @@ close, oracle and gates green on the same signature; as-built record
 5. **Actions become features.** `Menu = [(Name, Grid)]`; `wait` = the first grid point (§5c);
    delete the five types, the echo path, and **the sentinel**.
 6. **Actions in the feature stream, no lag.** Latent-carrying hypotheses do the memory.
+   **OPENING-CHECKLIST ROW, scheduled at the step-5 freeze (ruling D-a6): the g4Self
+   self-signature deliverable RETURNS here** — it retired-until-6 at step 5 (the echo that
+   carried actions died; a port then would have pinned vacuous behavior), and this row is
+   its scheduled resurrection: the C-world re-declared with its action in the feature
+   stream, the competitor control intact (retire-until-N is a named disposition; a deferred
+   obligation living only in a retired file's comment is the R6 disease wearing a new hat).
    The scoring RULE is OPEN (RIDER 3), and **6b runs INSIDE this step's oracle phase**
    (re-sequenced 2026-07-15, decision 6): whichever scoring rule survives the falsifier
    is what the step-6 oracle pins — the freeze never encodes a rule its own falsifier

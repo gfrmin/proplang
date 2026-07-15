@@ -364,3 +364,98 @@ step follows, each piece already precedented:
 register is pre-ruled, the evidence is executed two-route, and the
 one new thing — §13's sequencing — is the only ratification the key
 carries beyond the freeze itself.*
+
+---
+
+# PART IV — Phase B executed under the approval; the seal, twice (2026-07-16)
+
+Delegation: the author's approval of §13 with the identity seal added
+(verbatim key: "Approve — with one seal added to the tag's
+verification block"). All edits in the builder commits this part
+records; the tag countersigns the whole (R-D22).
+
+## 15. The Phase-B edits (one freeze window)
+
+1. **src/PropLang/Membrane.hs FLIPPED** to the step-5 surface: Menu +
+   menuAssignments (stub) + Pilot/PureWorld/TickTrace over Features +
+   argmaxEU (real — it is data) + runMembrane (stub); the five types,
+   the echo path, the Rung machinery, the sentinel, and their hooks
+   ABSENT; the A5'-by-algebra epitaph and the M5/RIDER-2 interregnum
+   argument printed in the module header; the agent-facing surface
+   guarded under the carried-forward deletion coupling
+   (DROP_EXPFAM/DROP_CARRIER_OBS/DROP_ARGMAX).
+2. **test-membrane re-opened (the third port):** action rows on the
+   new surface (t1 one-name lever in publication order; util1M over
+   assignments with the dominated internal arm gone; the D-a2 B
+   lever with per-tick grids; expected assignments = the E-a1
+   goldens); the M5 guardian retired WITH its safety argument printed
+   in place; the echo rows retired with the world-side-latency scope
+   note; g4Self retire-until-6 with the scheduled-return statement;
+   the three ablation rows discharged-permanent, their fixtures and
+   runner deleted; nsC kept beside its surviving pricing consumer
+   (D-a5's note on its face).
+3. **test-ladder RETIRED** (the §3 pin list executed: rungs
+   discharged with the representation; the VThinkK price +
+   verb/worker pins live in test-actions g3).
+4. **Prose (delegated):** AGENT_PLAN step 6 gains the g4Self-return
+   opening-checklist row; membrane-wire.md gains the step-5 amendment
+   (names+grids, wait structural, THE SENTINEL ROW'S DATE ARRIVED,
+   the world-side latency line); CLAUDE.md gains the two step-5
+   lines — THE PROBE-DISCIPLINE CLAUSE (queued at step-4 r1) and
+   RETIRE-UNTIL-N as a named category.
+5. **Manifest, rider-2:** 80 − 11 retired rows (ladder ×7, membrane
+   ablation runner + 3 fixtures) + 2 actions rows = **71 rows,
+   `sha256sum -c` 71/71 OK.**
+
+## 16. The reorder's first catch, and the seal earning its keep twice
+
+The runtime-red run's FIRST FIRING caught the r0 SAT compile being
+flag-unfaithful: `-Werror` was absent from the overlay compile, and
+under the stanza's exact flags the oracle carried two redundant
+imports (Prelude's foldl'; an unused Features). **The §13 sequencing
+worked exactly as designed — the defect was caught inside the freeze
+window, pre-tag,** and the fix was a two-line mechanical import
+removal. Because the oracle text moved, THE SEAL DID ITS JOB: the r0
+witness (hash 840a3127…) records what the first SAT ran; the r1
+transcript re-ran the corrected text under the stanza's EXACT flags
+(10/10 SAT) and re-sealed:
+
+    9346686dab9ae49edcc3ac121f18740968e8288d554dece1e67a4899c3a14e15  test-actions/Actions.hs
+
+Lesson recorded for the rhythm: overlay SAT compiles use the stanza's
+exact flag set INCLUDING -Werror from now on — the bit-faithful
+clause honored literally, not approximately.
+
+## 17. The gate state at signature (the reviewer's blast-radius check)
+
+`cabal test all`: **actions 7/10 red, membrane 10/19 red — all 17
+failures named step-5 stubs (grep count 17/17); NINE untouched suites
+green** (properties, code, hygiene, expfam, cirl, optlaw, prepost,
+sentence, pricing) — the red's blast radius is exactly the flipped
+surface, the step-1 precedent's shape as the author noted. Green at
+birth inside the red suites: g1's three option-space rows red (the
+stub), g3's three re-homed ladder pins GREEN (the constructor lives);
+the membrane's nine pricing/namespace/grep rows green. Gate-1 compile
+clean on the flipped src; manifest 71/71.
+
+## 18. Reviewer verification block (the tag's, with the seal)
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+# THE SEAL (the author's rider): the frozen oracle is byte-identical
+# to the file the r1 overlay transcript ran —
+echo "9346686dab9ae49edcc3ac121f18740968e8288d554dece1e67a4899c3a14e15  test-actions/Actions.hs" | sha256sum -c
+# the red's blast radius: two suites red at named step-5 stubs, nine green
+cabal test all 2>&1 | grep -E ': (PASS|FAIL)'
+cabal test all 2>&1 | grep -c "step-5 stub"    # 17 (= all failures)
+# custody
+sha256sum -c MANIFEST.sha256     # 71/71
+# the epitaph row, for the close (A5' by algebra):
+grep -n "empty menu's sole option" test-actions/Actions.hs
+```
+
+**The step stops for the key: `actions-freeze-r0` over the amended
+corpus — the oracle as sealed, the delegated edits of §15, the §13
+sequencing as ratified with the seal closing its one window. Then
+implementation from the E-a1-verified prototype, all suites green,
+as-built, r1.**

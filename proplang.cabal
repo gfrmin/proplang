@@ -99,21 +99,11 @@ test-suite membrane
                     , process
     default-language: GHC2021
 
-test-suite ladder
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Ladder.hs
-    other-modules:    Streams
-                      Anchors
-    hs-source-dirs:   test-ladder, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
+-- (test-ladder RETIRED at the step-5 freeze — the Rung machinery
+-- died with the action apparatus; its six pins are listed with
+-- destinations in actions-author-pack.md Part I SS3: the VThinkK
+-- price and verb/worker identity pins re-homed into test-actions g3
+-- until step 9 retires the constructor.)
 
 test-suite prepost
     import:           warnings
@@ -212,6 +202,23 @@ test-suite pricing
     type:             exitcode-stdio-1.0
     main-is:          Pricing.hs
     hs-source-dirs:   test-pricing
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+-- the step-5 increment oracle (AGENT_PLAN section 7 step 5, actions
+-- become features); stanza applied at the step-5 freeze from
+-- test-actions/stanza.cabal.draft under the recorded delegation
+-- (actions-author-pack.md sections 13-14). hs-source-dirs reaches
+-- test/ for the FROZEN Streams module only.
+test-suite actions
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Actions.hs
+    other-modules:    Streams
+    hs-source-dirs:   test-actions, test
     build-depends:    base
                     , proplang
                     , tasty

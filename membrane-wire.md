@@ -108,6 +108,25 @@ the verdict (waste polarity: 1 = approve):
   (the driver reports it honestly if it wins; the adapter maps it to
   its own documented posture).
 
+> **Step-5 amendment (the actions freeze, 2026-07-16; delegated edit,
+> actions-author-pack.md §14):** ACTIONS BECOME FEATURES. The wire's
+> action rows are now NAMES AND GRIDS: a world declares its writable
+> names with their grids (the menu), and the agent's choice is a full
+> ASSIGNMENT of values to those names — the `slots` object was always
+> a written feature vector, and it is now labeled as one. `wait` is
+> every action name at the FIRST point of its grid (structural; the
+> world's declaration says what inaction looks like). **The internal
+> think row is RETIRED — the sentinel's step-5 date arrived**: a
+> menuless world's option space is the empty assignment (the empty
+> product's one element), so totality needs no fabricated row. The
+> tick/think echo counters are retired with the echo path — what died
+> is the agent echoing ITSELF; a world remains free, under
+> CL-1-at-the-echo, to measure the agent's latency from OUTSIDE the
+> membrane and publish it as an ordinary feature (that capability was
+> always world-side and survives untouched). Value pricing of
+> assignments binds at step 7 with M5's repeal; nothing on this wire
+> prices an action until then.
+
 ## 4. Features (the governor's encoding, HOSTS_PLAN 2.4)
 
 Categorical features are one-hot indicators, one name per value —
