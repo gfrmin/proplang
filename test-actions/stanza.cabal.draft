@@ -1,0 +1,16 @@
+-- test-actions/stanza.cabal.draft — the actions suite's stanza, merged
+-- into proplang.cabal ONLY at the step-5 freeze (manifest-frozen cabal
+-- moves at freeze boundaries; the optlaw/sentence/pricing precedent).
+-- hs-source-dirs reaches test/ for the FROZEN Streams module only.
+
+test-suite actions
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Actions.hs
+    other-modules:    Streams
+    hs-source-dirs:   test-actions, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

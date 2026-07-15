@@ -285,3 +285,82 @@ objection.
 *Part II ends here. Next: the test-actions/ oracle draft, red against
 surface stubs, SAT against the prototype overlay; then the pack
 returns for the short sitting and the key.*
+
+---
+
+# PART III — the oracle, drafted and prototype-verified (2026-07-16)
+
+## 12. test-actions/ — 10 rows; SAT 10/10; compile-red at the surface
+
+Groups: **g1** the option space's contract (Cartesian product in
+declaration order pinned on a two-name menu; the empty menu's sole
+option is the empty assignment; wait-is-a-position at full strength —
+the first-point-7 fixture, §5c's whole content in one row as
+ordered); **g2** the tick (THE TIE ROW — the 5/5/3 world through the
+real runMembrane picks the first-listed every tick, pinning CL-3
+continuity behaviorally; the all-tied-EU-falls-to-wait row; PilotIdle
+takes the head; the menuless world runs — totality without the
+sentinel, nothing fabricated left to make the option space nonempty);
+**g3** the re-homed ladder pins (the VThinkK price pin at its own
+frozen 1e-12 and the two verb/worker identity rows — COPIES of the
+retiring fixture's exact expressions with file:line provenance, held
+here until step 9 retires the constructor).
+
+**R-D21, the overlay form: the oracle's exact text ran 10/10 SAT
+against the prototype** (`rd21-proto-transcript.txt`; the proto is
+E-a1's own two-route-verified rebuild). **The compile-red
+demonstration** (`compile-red.txt`): against the pre-freeze src the
+suite fails AT the missing surface — the first error is
+`PropLang.Membrane does not export menuAssignments` — the
+compile-red-fixture clause's proof that the red is the missing
+surface, not a defect the stub shadows.
+
+## 13. The replacement-surface form (the protocol note the tag
+    ratifies)
+
+Steps 1–4's type surfaces were ADDITIVE; step 5's REPLACES types
+(`Pilot`/`PureWorld`/`TickTrace` change shape), so surface stubs
+cannot coexist with the frozen test-membrane's imports, and the
+runtime-red run cannot precede the delegated edits. The form this
+step follows, each piece already precedented:
+
+1. Oracle drafted; proven TYPE-CORRECT against the drafted future
+   surface and 100% SAT via the prototype OVERLAY (the canonized
+   preferred form); compile-red against pre-freeze src DEMONSTRATED
+   to be exactly the missing surface (the ladder-Argmax clause's
+   proof form). ← done, §12.
+2. Phase B, ONE delegated signature: test-ladder retires (pins per
+   Part I §3), test-membrane re-opens (action rows ported to the new
+   surface, echo rows + M5 guardian retire with §10's safety
+   argument, g4Self retire-until-6), the three membrane ablation
+   fixtures discharge, AND src/Membrane.hs flips to the step-5
+   surface with STUB bodies.
+3. THE RUNTIME-RED RUN lands here, under stanza flags: test-actions
+   red at named step-5 stubs; the re-opened membrane red at the same
+   stubs; every untouched suite green. (The red run is bit-faithful
+   to the gate conditions — it merely happens after the flip that
+   makes it possible, inside the same freeze window, before the tag.)
+4. The author's key over the whole (R-D22: the tag countersigns the
+   delegated edits and the amended corpus in one signature).
+5. Implementation from the prototype; all suites green; as-built; r1.
+
+## 14. Freeze items, final (Phase B, on the key)
+
+1. `test-actions/{Actions.hs, stanza.cabal.draft}` → manifest APPEND;
+   stanza merge (the suite roster becomes: ten survivors − ladder +
+   actions = ten, plus pricing = eleven again).
+2. Retirements/re-opens per §11 items 2–3 (Part II), with §13's
+   surface flip in the same signature.
+3. Delegated prose: AGENT_PLAN step-6 gains the g4Self-return row;
+   membrane-wire.md step-5 amendments (the sentinel row's date
+   arrives; affordance/slot rows become names+grids; the world-side
+   latency line).
+4. CLAUDE.md touch: the probe-discipline clause (queued at step-4 r1)
+   + retire-until-N as a named category.
+5. Post-tag: implementation from `scratchpad/step5/proto` (the
+   two-route-verified executable design), suites green, as-built, r1.
+
+*Part III ends here. The sitting should be short, as forecast: the
+register is pre-ruled, the evidence is executed two-route, and the
+one new thing — §13's sequencing — is the only ratification the key
+carries beyond the freeze itself.*
