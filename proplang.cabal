@@ -30,20 +30,6 @@ library
     build-depends:    base >=4.16 && <5
     default-language: GHC2021
 
-test-suite acceptance
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Acceptance.hs
-    other-modules:    Streams
-                      Anchors
-    hs-source-dirs:   test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , process
-    default-language: GHC2021
-
 test-suite properties
     import:           warnings
     type:             exitcode-stdio-1.0
@@ -94,7 +80,9 @@ test-suite expfam
 -- phase as test-membrane/stanza.cabal.draft, landed at the Task 2
 -- freeze). hs-source-dirs includes test/ ONLY for the frozen Streams
 -- and Anchors modules — the parity group pins against the same anchor
--- constants the acceptance suite uses.
+-- constants the acceptance suite used (retired at the step-3 freeze;
+-- its four deliverables live on in test-sentence/ g1 with lineage
+-- headers).
 test-suite membrane
     import:           warnings
     type:             exitcode-stdio-1.0
@@ -156,51 +144,14 @@ test-suite cirl
                     , process
     default-language: GHC2021
 
--- The govhost increment (HOSTS_PLAN boundary H; stanzas drafted in the
--- oracle phase as test-govhost/stanza.cabal.draft, landed at the
--- govhost freeze). The wire driver executable is implementation
--- surface like src/ (ruling H-7: gates, not manifest); the suite
--- reaches it through build-tool-depends.
-executable proplang-govhost
-    import:           warnings
-    main-is:          Main.hs
-    other-modules:    Wire
-                    , WireU
-    hs-source-dirs:   host-governor
-    build-depends:    base
-                    , proplang
-    default-language: GHC2021
-
-test-suite govhost
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          GovHost.hs
-    other-modules:    Wire
-    hs-source-dirs:   test-govhost, host-governor
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    build-tool-depends: proplang:proplang-govhost
-    default-language: GHC2021
-
-test-suite test-d
-  import:           warnings
-  type:             exitcode-stdio-1.0
-  main-is:          D.hs
-  other-modules:    Wire
-                  , WireU
-  hs-source-dirs:   test-d, host-governor
-  build-depends:    base
-                  , proplang
-                  , tasty
-                  , tasty-hunit
-                  , process
-  build-tool-depends: proplang:proplang-govhost
-  default-language: GHC2021
+-- THE HOST-LESS WINDOW (stated at the step-3 freeze, D3 rider 2, here
+-- where the host stanzas stood): the govhost executable, its wire
+-- modules (host-governor/Wire.hs, WireU.hs), test-govhost, and test-d
+-- retired at this boundary — their obligations ported or discharged
+-- (sentence-author-pack.md sections 8 and 20). From this freeze until
+-- the hosts boundary re-opens (step 5/7), the engine carries NO host
+-- driver in-tree; host conformance binds to membrane-wire.md, never
+-- to GHC artifacts.
 
 -- the step-1 increment oracle (AGENT_PLAN, boundary agent-boundary-r1);
 -- stanza applied at code-freeze-r0 from test-code/stanza.cabal.draft
@@ -229,4 +180,25 @@ test-suite optlaw
                     , proplang
                     , tasty
                     , tasty-hunit
+    default-language: GHC2021
+
+-- the step-3 increment oracle (AGENT_PLAN section 7 step 3, a
+-- hypothesis becomes a sentence); stanza applied at the step-3 freeze
+-- from test-sentence/stanza.cabal.draft under the recorded Phase-B
+-- delegation (sentence-author-pack.md sections 20 and 25).
+-- hs-source-dirs reaches test/ for the FROZEN Streams and Anchors
+-- modules: anchor values are imported from the frozen artifact itself,
+-- never copied (R-D20-i).
+test-suite sentence
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Sentence.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test-sentence, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , process
     default-language: GHC2021
