@@ -1,0 +1,14 @@
+-- test-pricing/stanza.cabal.draft — the pricing suite's stanza, merged
+-- into proplang.cabal ONLY at the step-4 freeze (manifest-frozen cabal
+-- moves at freeze boundaries; the optlaw/sentence precedent).
+
+test-suite pricing
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Pricing.hs
+    hs-source-dirs:   test-pricing
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

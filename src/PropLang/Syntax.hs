@@ -57,6 +57,10 @@ module PropLang.Syntax
 #endif
   , KnownScope(..)
   , ProdTable(..), prodTable
+  -- THE STEP-4 TYPE SURFACE (one pricing mechanism, two declared
+  -- tables). Oracle-phase stubs until the author's freeze.
+  , Charge (..)
+  , chargeBits
   , bits
   , featureNames
   , carrierNames
@@ -439,6 +443,28 @@ data ProdTable = ProdTable
 
 prodTable :: ProdTable
 prodTable = ProdTable 19 2 1 2 6 1
+
+-- | THE CHARGE TREE (step 4: one pricing mechanism, two declared
+-- tables): a derivation's price as DECLARED DATA. The tree's shape IS
+-- the float order (the E-s1/test-code doctrine) — float addition is
+-- not associative, and at today's leaf values the fragments' shapes
+-- coincide with refolds only because every sort width is exactly one
+-- bit (measured, E-p1/assoc probe); the association ships as data so
+-- correctness never depends on that coincidence. Transparent: charge
+-- trees are declarable data, like the width tables they mention.
+data Charge s
+  = CW s                          -- a sort-choice: lg (width s)
+  | CBits Double                  -- content (a grid or namespace mention)
+  | CSum (Charge s) (Charge s)    -- float addition, THIS association
+
+-- | THE MECHANISM: the one definition in src that turns declared
+-- widths into bits (step 4's charter — after its freeze, both the
+-- policy pricer and the sentence fragment's derivation charges route
+-- through this evaluator, each over its own declared table and its
+-- own declared tree shapes).
+chargeBits :: (s -> Int) -> Charge s -> Double
+chargeBits _ _ =
+  error "step-4 stub: the mechanism lands after the author's freeze"
 
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile

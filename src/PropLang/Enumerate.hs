@@ -35,6 +35,10 @@ module PropLang.Enumerate
   -- ITSELF, not to a transcription. Exporting is strictly safer than copying:
   -- no drift is possible.
   , thetaPoints, rhoPoints
+  -- tauPoints joins them at the step-4 surface (the same R-D20-i
+  -- ground: the pricing oracle pins guard trees over the built-in
+  -- threshold grid, and exporting is strictly safer than copying)
+  , tauPoints
 #ifndef DROP_CARRIER_OBS
   , obsCarrier
 #endif
@@ -47,6 +51,14 @@ module PropLang.Enumerate
   , fragWidth
   , fragFull
   , Hyp (..)
+  -- THE STEP-4 TYPE SURFACE: the fragment's DECLARED charge trees —
+  -- exported so the oracle pins the trees themselves against the
+  -- frozen charges, and so exactly one generator owns them (the
+  -- wiring pin's subject). Oracle-phase stubs until the author's
+  -- freeze.
+  , constCharge
+  , walkCharge
+  , guardCharge
 #if !defined(DROP_CODE) && !defined(DROP_POS) && !defined(DROP_TOR)
   -- the enumerators UTTER the step-1 constructors (every sentence is a
   -- code; the walk move reads positions; bern's body reads the carrier
@@ -91,10 +103,10 @@ import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
 import PropLang.Eval (bernFast)
 import PropLang.Syntax (carrierSpace)
 #endif
-import PropLang.Syntax (Carrier, Expr (..), Grid, Idx (..), K, Name,
-                        Namespace, StdName (..), Args (..), Stats (..),
-                        carrierName, gridName, gridSize, mkC, mkCarrier,
-                        mkGrid, mkNamespace, nsSize)
+import PropLang.Syntax (Carrier, Charge (..), Expr (..), Grid, Idx (..),
+                        K, Name, Namespace, StdName (..), Args (..),
+                        Stats (..), carrierName, gridName, gridSize, mkC,
+                        mkCarrier, mkGrid, mkNamespace, nsSize)
 
 -- ---------------------------------------------------------------------
 -- the priced grids (data with prices, design §5 — the only numeric
@@ -262,6 +274,22 @@ fragWidth RATE  = 1
 -- SUBSETS of it (the [Terminal] lists' port, D2 part 3).
 fragFull :: [FragProd]
 fragFull = [FBern, FWalk, FConst, FIf, FGuardHead]
+
+-- | The fragment's DECLARED charge trees (step 4): the constant
+-- sentence's tree over an emission grid, the walk's, and the guard's
+-- over a namespace and a threshold grid — the shapes the enumerator
+-- prices, said as data ('Charge'). Stubs until the step-4 freeze.
+constCharge :: Grid -> Charge FragSort
+constCharge _ =
+  error "step-4 stub: the declared trees land after the author's freeze"
+
+walkCharge :: Charge FragSort
+walkCharge =
+  error "step-4 stub: the declared trees land after the author's freeze"
+
+guardCharge :: Namespace -> Grid -> Grid -> Charge FragSort
+guardCharge _ _ _ =
+  error "step-4 stub: the declared trees land after the author's freeze"
 
 -- | A hypothesis IS a sentence — transparent, because hypotheses are
 -- world-declarable data (the deletion-test criterion): a derivation
