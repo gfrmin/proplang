@@ -507,3 +507,66 @@ the three dormancy rows derive from): **ZERO diff over 2,641 lines**
 (`aworld-old.txt`/`aworld-new.txt`/`aworld-diff.txt`). Every
 ported membrane world is now two-route covered; no green at
 implementation is merely predicted.
+
+---
+
+# PART V — the implementation: as-built (2026-07-16)
+
+Authorized by `actions-freeze-r0` on `d265318` (signature verified).
+Builder commit: the implementation commit above this part's. **All
+eleven suites green on the FIRST full run; gates 1–7 PASS; manifest
+71/71; the seal HOLDS post-implementation** (`sha256sum -c` on the
+frozen oracle against the sealed identity: OK).
+
+## 20. As-built answers
+
+**Transcription, as forecast.** `menuAssignments`, `runMembrane`, and
+`interpretPilot` landed byte-faithful from the E-a1/A-world-verified
+prototype — the fourth consecutive increment where
+falsifier-before-freeze made implementation a transcription (steps 3,
+4, and twice within 5: the surface flip and this fill). actions
+10/10 — the tie row, the wait rows, the menuless-totality row, the
+re-homed ladder pins; membrane 19/19 on its third-ported surface —
+the parity anchors, the dormancy ratios (their greens MEASURED
+pre-key, not predicted), the one-name B adoptions.
+
+**What the engine is now, action-side:** an action is a full
+assignment over the world's declared menu; wait is the option space's
+head by construction; the pilot argmaxes expected utility over
+assignments through the same first-order program; nothing echoes;
+nothing is priced (until 6/7); and a menuless world's totality is the
+empty product's single element — **the sentinel is buried under the
+epitaph row, A5' by algebra.**
+
+**D-a4 as built, stated plainly:** DROP_LADDER's Syntax/Eval sites
+stay (the VThinkK ablation hook, live until step 9); no runner
+exercises the flag between 5 and 9 — the fixture retired with the
+ladder, and the claim's standing enforcement is g3's rows on the
+LIVE constructor; at 9 the constructor and hook retire together. The
+membrane half of the flag died with Rung.
+
+**Standing debts:** the HEAD width-2 DEBT (unchanged, named home);
+the host-less window (exit 5/7 — step 5 spent; the wire's step-5
+amendment is in place for step 7's driver return); g4Self's
+scheduled return on step 6's opening checklist.
+
+## 21. Reviewer verification block (Phase C)
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+git tag -v actions-freeze-r0
+# THE SEAL, post-implementation:
+echo "9346686dab9ae49edcc3ac121f18740968e8288d554dece1e67a4899c3a14e15  test-actions/Actions.hs" | sha256sum -c
+cabal test all                   # eleven suites, all green
+sh audit/run-gates.sh            # 7/7 PASS
+sha256sum -c MANIFEST.sha256     # 71/71
+# the graveyard (code tokens): only D-a4's kept half remains —
+grep -rn 'Affordance\|EchoSpec\|InternalFired\|data Rung' src/ | grep -v -- '-- '
+grep -n 'DROP_LADDER' src/PropLang/Syntax.hs   # the VThinkK hook, until 9
+# THE EPITAPH ROW:
+grep -n "empty menu's sole option" test-actions/Actions.hs
+```
+
+**Step 5 is implemented and green under the signed freeze. The
+increment closes on the author's review — the two-tag shape offers
+`actions-freeze-r1` on the as-built.**
