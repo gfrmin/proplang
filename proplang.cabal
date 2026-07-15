@@ -202,3 +202,18 @@ test-suite sentence
                     , tasty-hunit
                     , process
     default-language: GHC2021
+
+-- the step-4 increment oracle (AGENT_PLAN section 7 step 4, one
+-- pricing mechanism, two declared tables); stanza applied at the
+-- step-4 freeze from test-pricing/stanza.cabal.draft under the
+-- recorded delegation (pricing-author-pack.md sections 10 and 12)
+test-suite pricing
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Pricing.hs
+    hs-source-dirs:   test-pricing
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

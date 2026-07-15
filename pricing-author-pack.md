@@ -242,3 +242,98 @@ in its message. Suggested, once reviewed:**
 `git tag -s pricing-freeze-r0 <HEAD> -m "step-4 freeze: the pricing
 oracle frozen; D-p1 ruled (B unless amended); implementation
 authorized"`
+
+---
+
+# PART III — the rulings enacted; Phase B executed (2026-07-15)
+
+The author's verification passed end to end (his reading: E-p1's
+grand total reconciles, the red run's every exception is the named
+Syntax.hs stub with g4 lawfully green as declared data, the overlay
+SAT is 8/8, the doctrine pair is in the transcript as quoted). The
+rulings, enacted under the recorded delegation:
+
+## 12. The rulings
+
+**D-p1 = B.** The pre-stated fallback condition (any measured policy
+residue → A) came back empty: 0 in 11,851. B is what makes obligation
+row 1 true rather than aspirational — after the freeze, grep finds
+exactly one definition that turns widths into bits — and the
+one-arithmetic audit row is the standing tripwire. **Two cautions
+recorded for the increment report (the author's, verbatim keys):**
+(1) under the §1b law, `chargeBits` is now the GENERAL pricing route,
+so any future profiling-driven shortcut that skips tree-building is a
+fast path and arrives with its pin; (2) §7's "future non-dyadic
+width" is PRESENT TENSE on the policy side — `lg 6` and `lg 19` are
+already in `prodTable` — so the dyadic accident that spares a single
+shared fold is a fragment-side accident only; B-with-trees guards
+against the shipped table, not a hypothetical.
+
+**D-p2 = stays.** P5's discipline is single-SITE, not single-file;
+the table belongs to the fragment that declares it, the mechanism to
+the pricing home. **Forward ground recorded (the author's):** step 6
+brings writable-name tables — tables will multiply, each at its
+declaring site; the thing that must stay singular is the arithmetic,
+which D-p1(B) just made grep-enforceable.
+
+**D-p3 = yes** on E-p1(b3)'s coverage. **D-p4 = yes, delegated** —
+executed below — and the same delegated edit carries the author's new
+clause for the canonization queue: **A RETIREMENT LISTS ITS PINS.**
+The g4 row quietly re-homed the P5 pin that vanished when govhost
+retired — correct, but noticed one step late because the retirement
+disposition never enumerated what the file carried. Step 3's lineage
+headers did this for Acceptance's deliverables; the clause
+generalises it to every retirement and closes the gP5 class.
+
+## 13. The rider, EXECUTED — all five goldens now two-route
+
+The author's catch: the two t-guard hexes (the ix-17 rows) were
+CAPTURE-ONLY — the assoc probe's nearby "tau" rows are structurally
+different values, so nothing independent touched them. **Root cause,
+owned:** the assoc probe hand-wrote `lg 15` for the tau grid's
+mention — the grid has SIXTEEN points (5,10,…,80) — a hand-enumeration
+slip of exactly the class the sweep-universe line exists for; the
+author decoded the difference as a grid-width leaf from the hexes
+alone. (The probe's refold-coincidence conclusion survives: it
+compares shapes at equal leaves, and 6/6 held even at the wrong —
+non-dyadic! — leaf value, which if anything strengthens the
+one-bit-widths reading.)
+
+**The second route, run pre-tag** (`TwoRoute.hs`, appended to
+`capture-transcript.txt`): E-p1 Part A's own declared-tree arithmetic
+(guardT byte-copied; independent of the proto's `guardCharge`),
+evaluated at ix 17's parameters:
+
+    nsA t-guard: tree 4031570068e7ef5a  capture 4031570068e7ef5a  AGREE
+    nsC t-guard: tree 4031ecc08321eb30  capture 4031ecc08321eb30  AGREE
+
+All five namespace-variant goldens freeze two-route like their
+siblings.
+
+## 14. Phase B, executed (delegated freeze edits, R-D22)
+
+Delegation recorded verbatim in the commit: *"With that appended,
+sign `pricing-freeze-r0` over §10 with D-p1(B), D-p2(stays),
+D-p3(yes), D-p4(delegated) in the message."* The edits:
+
+1. **Stanza merged** into proplang.cabal (test-pricing, from the
+   draft; eleven suites under gate 5's `cabal test all`).
+2. **D-p4**: typed-port-spec §3 gains the sentence fragment's
+   production table as a SECOND NORMATIVE TABLE (widths, charge-tree
+   form, the mechanism, the D-p2 home note, the HEAD DEBT printed on
+   its normative face).
+3. **CLAUDE.md** gains the step-4 line: A RETIREMENT LISTS ITS PINS,
+   with the gP5 incident as its provenance.
+4. **Manifest**: rider-2 — 78 survivors re-hashed (CLAUDE.md,
+   typed-port-spec.md, proplang.cabal rows moved) + the two
+   test-pricing rows appended = **80 rows, `sha256sum -c` 80/80 OK.**
+
+Gate state: ten suites green + pricing red 7/8 at named stubs (the
+eleventh suite enters gate 5 red until implementation — the increment
+discipline); gate-1 compile clean.
+
+**The step stops for the key. Then implementation: `chargeBits` + the
+three tree builders land as prototyped; `enumerateSentencesGrid`'s
+where-block charges route through the declared trees; `bitsAt` builds
+mirrored trees and prices through the mechanism (D-p1(B)); all eleven
+suites green; as-built report.**

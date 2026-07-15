@@ -185,6 +185,30 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > lg 7 - lg 6 = 0.222-bit refund (P5's pin re-pricing; the three
 > sayable-fixture pins moved with it, D4 adjudication).
 >
+> **The sentence fragment's production table (normative; the pricing
+> freeze, step 4, 2026-07-15 — ruling D-p4, delegated edit,
+> pricing-author-pack.md §10).** The model fragment's derivation
+> charges are priced against a SECOND declared table, per-sort like
+> the first:
+>
+> | sort | width | charged at |
+> |---|---|---|
+> | MODEL | 2 | the sentence-family choice (constant/walk vs guard) |
+> | THETA | 2 | each emission-parameter hole (constant vs if) |
+> | HEAD | 2 | the guard head (one utterable production under a declared width of 2 — a REGISTERED DEBT, the step-3 sitting: a bit charged for an unutterable alternative; named home: table re-derivation at an author boundary, or a second utterable head) |
+> | RATE | 1 | the walk's rate hole (sole codeword) |
+>
+> A charge is a TREE-SHAPED declared value ('Charge': sort-choices at
+> lg width, content leaves, sums at a declared association — the
+> tree's shape IS the float order), evaluated by the ONE pricing
+> mechanism ('chargeBits', the single definition that turns declared
+> widths into bits; ruling D-p1(B) routes the policy pricer through
+> the same mechanism over mirrored trees). The table lives with the
+> fragment that declares it (Enumerate; ruling D-p2 — the P5
+> discipline is single-SITE, not single-file); this row is its
+> normative citizenship. Growing a sort's width or adding a sort is a
+> reported alphabet change, exactly as for the policy table above.
+>
 > Hole sorts are declared by the grammar, not inferred from types:
 > kernel-valued positions (e.g. `Push`'s second child) are KER holes;
 > function-valued positions on `Expect` are FN holes; everything else

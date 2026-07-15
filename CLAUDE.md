@@ -182,6 +182,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
    oracle's exact frozen text compiles against it unchanged — is the
    preferred transcript form wherever the prototype can carry the
    module interface.
+   One line canonized at the step-4 boundary (the pricing freeze,
+   2026-07-15): A RETIREMENT LISTS ITS PINS — a retirement
+   disposition enumerates every pin the retiring file carries and
+   names each one's destination (re-homed, ported, or
+   discharged-permanent) in the same freeze; step 3's lineage headers
+   did this for the acceptance deliverables, and the gP5 pin —
+   re-homed one step late because the govhost retirement never
+   enumerated what the file carried — is the incident that bought the
+   rule.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
