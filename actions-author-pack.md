@@ -180,3 +180,108 @@ DROP_LADDER per D-a4.
 
 *Part I ends here. Next: E-a1/E-a2 executed, then the oracle draft
 (test-actions/), then the pack returns for the sitting and the key.*
+
+---
+
+# PART II — the pre-rulings recorded; the evidence executed (2026-07-16)
+
+## 8. The register, ruled (the author's sitting message, verbatim keys)
+
+**D-a1 = full assignments**, with the consequence RECORDED as ordered:
+the option space is now exponential in menu names, **exhaustive argmax
+is the GENERAL ROUTE**, and any future factored or greedy evaluation —
+"when a large-menu world arrives, and Boutilier says one will" — is a
+fast path under the §1b law and arrives with its pin. (The third
+appearance of that caution, same sentence each time; reflex now.)
+**D-a2 = one name** ("hold as move-at-its-first-point is §5c
+verbatim"). **D-a3 = Membrane**, with the note recorded: if `Menu`
+ever becomes a `data` type the question reopens. **D-a4 = keep the
+Syntax half** (the VThinkK ablation claim stays enforceable while the
+constructor lives). **D-a5 = keep as historical** ("editing frozen
+fixtures to launder a string buys nothing"). **D-a6 =
+retire-until-6**, with the addition EXECUTED at this freeze:
+**retire-until-N is a new disposition category**, and a deferred
+obligation living only in a retired file's comment is the R6 disease
+wearing a new hat — **the step-6 opening checklist gains the
+g4Self-return row NOW** (a delegated AGENT_PLAN §7 step-6 edit at this
+freeze; §11's freeze items).
+
+## 9. E-a1 + E-a2, EXECUTED — the port is behavior-neutral, measured
+
+**E-a1 (`ea1-old.txt` / `ea1-new.txt` / `ea1-diff.txt`): ZERO diff
+over 2,958 lines** — 620 tick rows (T3's 400, T1's 160, B1+B2's 40,
+TIE's 20: per-tick predictive, meta-entropy, act label, loss bits, all
+hex) plus BOTH 1,169-point final posterior vectors. Two-route from
+birth: the shipped membrane (still live) vs the rebuilt prototype
+(`scratchpad/step5/proto/PropLang/Membrane.hs`, the overlay form — the
+Phase-C executable design). What it proves, row by row:
+
+- **The sentinel's death is behavior-neutral, now measured** (it was
+  predicted from the dominated −2.0 arm): T1's 160 choices identical,
+  every anchor act (consult at t=0 and t=66, the predict runs) in
+  place.
+- **THE TIE ROW (the sitting's addition) holds:** a genuine EU tie
+  (utilities 5/5/3, y-independent) picks the FIRST-LISTED option in
+  both routes, every tick — CL-3 continuity measured, not asserted.
+  The ported option order is the declaration order; a reordering
+  would have picked b's counterpart and the diff would have caught
+  it.
+- **The D-a2 one-name B-world port is exact:** hold for ten ticks,
+  move@0.8 from t=10 (B1); hold throughout (B2) — the adoption
+  sequences and losses bit-identical.
+- **The echo term's deletion is bit-neutral** for the anchor worlds
+  (they ran noEcho: the append was []), and the menuless world's
+  losses/posteriors are untouched (its act column is the
+  representation change itself, normalized in both transcripts).
+
+**E-a2 (`ea1-new-full.txt`, EA2 rows): wait is a POSITION, never a
+magnitude** — the fixture's first point is 7 (not zero, killing the
+dormancy conflation structurally); the head of the option space IS
+[("lever",7)]; PilotIdle takes it every tick; an all-tied EU hands
+the tie to wait through CL-3 with no new rule. §5c's whole content in
+one fixture — the oracle comment will say it at that strength, as
+ordered.
+
+## 10. The two prose observations, recorded as ordered
+
+**The M5 guardian's retirement, its safety argument stated:** the
+guardian retires because its subject becomes unobservable at 5; M5
+itself is not repealed until 7; and the interregnum is safe precisely
+because RIDER 2's negative obligation — no action pricing anywhere in
+steps 5–6 — is itself the guard until the repeal lands with its
+invariance fixture. Law-without-tripwire for two steps is fine only
+because the door the law guards does not exist yet.
+
+**The echo path's death, scoped:** what dies is the agent echoing
+ITSELF — `ticks_spent_thinking` as self-report. Worlds remain free,
+under the CL-1-at-the-echo ruling, to measure the agent's latency
+from OUTSIDE the membrane and publish it as an ordinary feature; the
+capability that ruling protected is world-side and survives the
+deletion untouched. One line to that effect rides the wire's step-5
+prose amendment (§11), so the distinction is never rediscovered as an
+objection.
+
+## 11. Freeze items (Phase B, on the author's key), updated
+
+1. Oracle freeze: `test-actions/` (drafted next: the port rows over
+   the E-a1 goldens, the tie row, the E-a2 rows at full strength, the
+   re-homed ladder pins per §3 items 2–3, ablation fixtures for
+   nothing new — no new productions) → manifest APPEND; stanza merge.
+2. Retirements: `test-ladder/` (whole, per §3's pin list);
+   test-membrane's echo rows + M5 guardian retire, action rows port,
+   g4Self rows retire-until-6; `UseSlotGrid`/`UseAffordance`/
+   `UseEcho` discharged-permanent.
+3. Delegated prose: AGENT_PLAN §7 step-6 gains the g4Self-return
+   opening-checklist row (D-a6's addition); membrane-wire.md step-5
+   amendments (the sentinel row :131's date arrives; the
+   affordance/slot rows become names+grids; + the world-side latency
+   line of §10).
+4. CLAUDE.md touch: the queued PROBE-DISCIPLINE clause (step-4 r1),
+   + retire-until-N named as a register category (D-a6's ground).
+5. Implementation (post-tag): src Membrane rebuilt from the
+   prototype; the five types + echo + Rung + sentinel deleted;
+   eleven suites green (ladder leaves the roster: ten + actions).
+
+*Part II ends here. Next: the test-actions/ oracle draft, red against
+surface stubs, SAT against the prototype overlay; then the pack
+returns for the short sitting and the key.*
