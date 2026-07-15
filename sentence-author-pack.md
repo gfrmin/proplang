@@ -321,6 +321,9 @@ shifted160: MAP = ('bern', ('if', ('>', ('get','t'), ('c','tau',11)), ('c','thet
 drift400:  MAP = ('hmm', ('c','rho',3))       <- STATE-CARRYING: the case dl+mass cannot fingerprint
   mass 0.401010555353298 (3fd9aa282d25f732)
   filtered P(y=1) = 0.39474402402583364 (3fd9437c705edf8a), all checkpoints
+    ^^^ CONVICTED by the author's verification (Part III §14): this row
+    read the t=400 filtered predictive six times under six labels. The
+    corrected checkpoint values are §14's; g1 pins THOSE.
 flat400:   MAP = ('bern', ('c','theta',6))
   mass 0.946333003921794 (3fee485c26df0683)
   P(y=1) = 0.7 (3fe6666666666666), all checkpoints
@@ -358,4 +361,144 @@ the branch recorded; his word adopts it.** With that word the oracle drafts:
 g1–g5 as planned, g2 + g3's two orientations, the optlaw generator port
 riding the same boundary.
 
-*Part II ends here. The one open item is D6's confirmation on §10's numbers.*
+*Part II ends here. D6's word arrived 2026-07-15 with one condition (E-s2)
+and one conviction (the drift400 row); Part III enacts both.*
+
+---
+
+# PART III — the author's verification, enacted (2026-07-15)
+
+## 14. The D2 capture defect — convicted, characterized, corrected
+
+The author's verification of §11 refused the drift400 row: six checkpoints
+t=0..400 bit-identical on a drifting stream, for a state-carrying
+component, is not a thing the machine does. The demanded falsifier ran
+before anything froze (`scratchpad/step3/Falsify.hs`, transcript
+`falsify-transcript.txt`):
+
+```
+(i)   as-captured read, t=0 : 3fd9437c705edf8a
+      as-captured read, t=1 : 3fd9437c705edf8a     <- labels are fiction
+(ii)  prior predictive      : 3fe0000000000000     <- 0.5, NOT the captured hex
+(iii) perturbed-y0 read t=0 : 3fd9437c705edf6c     <- the state DID absorb the stream
+```
+
+**The defect, characterized:** the capture replayed the FULL stream once
+and then queried that one final agent at six values of the t FEATURE —
+which the hmm model never reads. Every checkpoint label reported the t=400
+filtered predictive. So the mechanism differs from the suspected one in
+detail — the state was not non-advancing ((ii) refutes that: the prior is
+0.5, and (iii) shows the state moved with the data); it advanced all the
+way and was READ once, at the end, under six names. The defect class is
+exactly as charged: a satisfiable capture measuring the wrong quantity,
+caught by review — and it is the R-D23-post-mortem class ("only review
+catches it"), caught this time BEFORE the golden froze, which is the
+system working.
+
+**The fix** (`MapCapture.hs` r1, transcript `d2-capture-transcript-r1.txt`):
+the checkpoint-t read replays the PREFIX y_0..y_{t-1} into a fresh
+singleton and queries `predictive` there — the one-tick-ahead component
+predictive AT t. Corrected values:
+
+```
+shifted160, flat400: BIT-IDENTICAL to §11 (t-deterministic components,
+                     no latents — the labels were harmless exactly there)
+drift400 (the corrected checkpoint row g1 pins):
+  P(y=1|t=0)   = 0.5                 (3fe0000000000000)  <- the prior, lawful
+  P(y=1|t=59)  = 0.6916884643800074  (3fe6224fd8b10b00)
+  P(y=1|t=60)  = 0.6504317073177599  (3fe4d05627e6c256)
+  P(y=1|t=61)  = 0.6707499803272403  (3fe576c8a9a98a5e)
+  P(y=1|t=399) = 0.35587201797761275 (3fd6c69b6db19fad)
+  P(y=1|t=400) = 0.39474402402583364 (3fd9437c705edf8a) <- §11's one true value,
+                                                            now correctly labeled
+MAP identities and masses: unchanged (the mixture replay was never at issue)
+```
+
+**The method ground, for the oracle header as instructed:**
+per-hypothesis latent filtering is independent of the mixture weights —
+`observe` advances each hypothesis's filtered state on its own and the
+meta-belief only reweights — so a singleton agent on the MAP model,
+prefix-replayed to t, carries exactly the mixture component's filtered
+state at t. The ground was always true; the first implementation failed
+to read the state at the checkpoint it claimed.
+
+## 15. E-s2 — the u-fragment's floats through the sentence route, MEASURED
+
+The condition on D6's word, verbatim: "the ported extensional twins
+executed against the old route on the 49 row-instances' quantities,
+bit-compared — and the ==-versus-tolerance decision for the re-frozen
+optlaw rows made on those numbers."
+
+(`scratchpad/step3/Es2.hs` + `twin/PropLang/EnumerateTwin.hs`, throwaway;
+transcript `es2-transcript.txt`.)
+
+**Design — substitution at every float source the demolition moves:**
+
+- The u-channel is a PUBLIC parameter of `enumerateUModels`, so the 39
+  exchangeable gPin rows substitute through the real src surface:
+  **`codeVerdict`** — the σ-mixture said as a `Code` sentence (the
+  u-fragment's missing 567-analogue, measured here for the first time) —
+  and the code-routed `emit`. Float-order discipline: the frozen
+  `pApprove` (Enumerate.hs:586-588, quoted in the program) folds
+  `sum` left from 0, and `0 + x == x` bit-exactly for `x > 0`, so the
+  sentence's tree is `Add (Add t1 t2) t3` both numerator and denominator;
+  `negate`↔`Neg`, `exp`↔`Exp`, `logBase 2 y`↔`Div (Log y) (Log 2)`
+  (Eval.hs:177-183; test-code group 5).
+- The state-carrying gBoundary rows need the INTERNAL walk/bern sites,
+  unreachable publicly: `PropLang.EnumerateTwin` is a scratch copy of
+  `Enumerate.hs` (the step-2 seeded-defect precedent for scratch src
+  copies) with `walkOn`/`emit`/`stepHyp`'s bern re-routed through the
+  frozen test-code sentences — byte-copies of `codeWalk` (:198-210) and
+  `codeBernV` (:252-259), each delta declared at the copy site
+  (instantiation space, value-carrying singleton grids, n−1).
+- Priors held identical by construction (same enumeration, same
+  `modelBits`): E-s2 isolates the kernel-route floats. The prior side is
+  E-s1's (world table bit-for-bit) plus, at the re-freeze, the u-agents'
+  dl values re-entering as DECLARED world data — a float-free step (same
+  dl values, same 2^-dl), stated here so the oracle's continuity row
+  covers both halves.
+
+**Result: zero bit-mismatches in 13,992 floats, max |diff| 0.0.**
+
+```
+PART A (kernel cells, the 567-analogue for every substituted kernel): 1,332 cells, 0 mismatch
+  verdict σ-mixture as a code:   18/18 bit-exact  <- UNPINNED BEFORE NOW
+  emit via codeBernV:            18/18 bit-exact  (the frozen pin re-run)
+  walk cells, world grid:       8 ρ × 81 bit-exact
+  walk cells, u grid:           8 ρ_u × 81 bit-exact (unpinned rates, now measured)
+PART B (the 49 row-instances; lpB + full posteriors + lpS + full posteriors,
+        old vs twin): 12,660 floats, 0 mismatch — including worldAgent0's
+        five 2,340-float rows (1,169-hypothesis posterior vectors, twice each)
+spot (pointer, corpus pair (30000,9314), batch lp): old c0d505a97aa7712b | twin c0d505a97aa7712b
+```
+
+**The decision, made on the numbers:** the re-frozen optlaw generators'
+continuity pins freeze at `==` — bit-equality, the "without regret"
+standard, met by measurement, not expectation. The step-2 gates
+`tolEv = tolPost = 1e-11` keep their provenance untouched: they gate
+batch-vs-sequential WITHIN a route, and the port moves the route's
+inputs, which E-s2 just measured stationary.
+
+## 16. D6 CLOSED; the queue for the freeze
+
+**D6 — the word is given, its condition discharged by §15.** The
+u-fragment dies with its consumers ({test-d + 2 ablations, WireU, Main}
+retire; test-optlaw re-opens with ported generators, continuity at `==`);
+utility is re-derived from the axioms at steps 6–8, never rebuilt from
+nostalgia. The register is now fully ruled: D1–D7 ✅.
+
+Two canonization items join the freeze-edit queue (the next CLAUDE.md
+touch, delegated like the others, R-D22):
+
+1. **The sweep-universe line, the author's wording:** "a sweep's universe
+   derives from the custody record plus declared non-manifest surfaces —
+   never hand-enumeration."
+2. **`discharged-permanent` as a named register category:** the terminal
+   state of an ablation fixture — the deletion it proved possible becomes
+   the deletion that happened (UseBern the first instance; every ablation
+   fixture ends there eventually if the roadmap is honest).
+
+*Part III ends here. The oracle drafts on this ground: g1–g5, g2 + both
+g3 orientations, the optlaw generator port and expfam's E7 port riding
+the same boundary; g1's drift400 MAP rows pin §14's corrected checkpoint
+values.*
