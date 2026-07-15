@@ -105,8 +105,9 @@ import PropLang.Syntax (carrierSpace)
 #endif
 import PropLang.Syntax (Carrier, Charge (..), Expr (..), Grid, Idx (..),
                         K, Name, Namespace, StdName (..), Args (..),
-                        Stats (..), carrierName, gridName, gridSize, mkC,
-                        mkCarrier, mkGrid, mkNamespace, nsSize)
+                        Stats (..), carrierName, chargeBits, gridName,
+                        gridSize, mkC, mkCarrier, mkGrid, mkNamespace,
+                        nsSize)
 
 -- ---------------------------------------------------------------------
 -- the priced grids (data with prices, design §5 — the only numeric
@@ -275,21 +276,40 @@ fragWidth RATE  = 1
 fragFull :: [FragProd]
 fragFull = [FBern, FWalk, FConst, FIf, FGuardHead]
 
--- | The fragment's DECLARED charge trees (step 4): the constant
--- sentence's tree over an emission grid, the walk's, and the guard's
--- over a namespace and a threshold grid — the shapes the enumerator
--- prices, said as data ('Charge'). Stubs until the step-4 freeze.
+-- | The fragment's DECLARED charge trees (step 4, the pricing
+-- freeze): the constant sentence's tree over an emission grid, the
+-- walk's, and the guard's over a namespace and a threshold grid — the
+-- shapes the enumerator prices, said as data ('Charge'; the tree's
+-- shape IS the float order, and these shapes are the frozen
+-- parentheses E-s1 measured bit-identical to the retired hand
+-- literals). Priced only through 'chargeBits', the one mechanism.
 constCharge :: Grid -> Charge FragSort
-constCharge _ =
-  error "step-4 stub: the declared trees land after the author's freeze"
+constCharge eg =
+  CSum (CW MODEL) (CSum (CW THETA) (CBits (lgSizeC eg)))
 
 walkCharge :: Charge FragSort
 walkCharge =
-  error "step-4 stub: the declared trees land after the author's freeze"
+  CSum (CW MODEL) (CSum (CW RATE) (CBits (lgSizeC rhoGrid)))
 
 guardCharge :: Namespace -> Grid -> Grid -> Charge FragSort
-guardCharge _ _ _ =
-  error "step-4 stub: the declared trees land after the author's freeze"
+guardCharge ns g eg =
+  CSum (CW MODEL)
+       (CSum (CSum x y) z)
+  where
+    -- the namespace mention inside the guard head, charged log2 |ns|
+    -- against the world's declared namespace (the M1 law; 0 while
+    -- singleton)
+    nsB = case nsSize ns of
+      1  -> 0
+      kk -> logBase 2 (fromIntegral kk)
+    x = CSum (CW THETA)
+             (CSum (CSum (CW HEAD) (CBits nsB))
+                   (CSum (CW THETA) (CBits (lgSizeC g))))
+    y = CSum (CW THETA) (CBits (lgSizeC eg))
+    z = CSum (CW THETA) (CBits (lgSizeC eg))
+
+lgSizeC :: Grid -> Double
+lgSizeC g = logBase 2 (fromIntegral (gridSize g))
 
 -- | A hypothesis IS a sentence — transparent, because hypotheses are
 -- world-declarable data (the deletion-test criterion): a derivation
@@ -333,20 +353,14 @@ enumerateSentencesGrid egPts ns extras allowed =
     eg = mkGrid "theta" egPts
     egSp = mkSpace egPts
     has t = t `elem` allowed
-    wOf s = logBase 2 (fromIntegral (fragWidth s))
-    nsB :: Double
-    nsB = case nsSize ns of
-      1 -> 0
-      kk -> logBase 2 (fromIntegral kk)
-    lgSize g = logBase 2 (fromIntegral (gridSize g))
-    -- charges from the DECLARED table, tree-shaped (the E-s1 fold —
-    -- the frozen parentheses of the old hand-rolled literals)
-    dlConst = wOf MODEL + (wOf THETA + lgSize eg)
-    dlWalk  = wOf MODEL + (wOf RATE + lgSize rhoGrid)
-    dlGuard g = wOf MODEL
-      + (((wOf THETA + ((wOf HEAD + nsB) + (wOf THETA + lgSize g)))
-          + (wOf THETA + lgSize eg))
-         + (wOf THETA + lgSize eg))
+    -- charges are the DECLARED trees priced through THE MECHANISM
+    -- (step 4: no charge arithmetic lives here — the trees carry the
+    -- shapes, 'chargeBits' carries the one width-to-bits definition,
+    -- and the pricing oracle's g3 pins this very identity per
+    -- sentence)
+    dlConst = chargeBits fragWidth (constCharge eg)
+    dlWalk  = chargeBits fragWidth walkCharge
+    dlGuard g = chargeBits fragWidth (guardCharge ns g eg)
     cAt :: Grid -> Int -> Expr env Double
     cAt g k = case mkC g k of
       Just e  -> e

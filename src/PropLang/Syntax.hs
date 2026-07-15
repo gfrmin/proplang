@@ -463,8 +463,10 @@ data Charge s
 -- through this evaluator, each over its own declared table and its
 -- own declared tree shapes).
 chargeBits :: (s -> Int) -> Charge s -> Double
-chargeBits _ _ =
-  error "step-4 stub: the mechanism lands after the author's freeze"
+chargeBits w c0 = case c0 of
+  CW s     -> logBase 2 (fromIntegral (w s))
+  CBits d  -> d
+  CSum a b -> chargeBits w a + chargeBits w b
 
 -- | Total pricing: every constructible sentence has a price (structural
 -- recursion; '-Wincomplete-patterns' as error makes totality a compile
@@ -483,57 +485,74 @@ bits = bitsAt frozenNameBits
       _ : _ : _ -> logBase 2 (fromIntegral (length featureNames))
       _         -> 0
 
+-- The policy fragment's sorts, for the mechanism's table read (the
+-- 'FragSort' analogue on this side; internal — the public single site
+-- stays 'prodTable', whose fields these constructors name one-for-one).
+data PolSort
+  = PolExpr | PolFn | PolStats | PolKer | PolStdName | PolUtil
+
+polWidth :: PolSort -> Int
+polWidth s = case s of
+  PolExpr    -> prodExpr prodTable
+  PolFn      -> prodFn prodTable
+  PolStats   -> prodStats prodTable
+  PolKer     -> prodKer prodTable
+  PolStdName -> prodStdName prodTable
+  PolUtil    -> prodUtil prodTable
+
 -- The shared pricing worker (MEMBRANE_PLAN T1): the whole production
 -- system with the name-mention charge as a parameter — 'bits' and
 -- 'bitsIn' are one arithmetic, one tree, no drift (the E7 doctrine at
 -- the pricer; the membrane oracle pins the identity with ==).
+--
+-- SINCE THE STEP-4 PRICING FREEZE (ruling D-p1(B)): the worker BUILDS
+-- a declared charge tree ('Charge PolSort') mirroring its frozen fold
+-- shapes node for node, and prices it through THE MECHANISM
+-- ('chargeBits' — the one definition in src that turns declared
+-- widths into bits; E-p1 measured the mirror bit-identical over
+-- 11,851 policy charges before the ruling froze). The alternative
+-- counts are read from 'prodTable' — the P5 single site — through
+-- 'polWidth'; the counts are stated THERE and in the spec's table
+-- only. Counting is by written alternatives, not type-pruned
+-- availability. THE TREE'S SHAPE IS THE FLOAT ORDER: any future
+-- shortcut that skips tree-building is a fast path under the §1b law
+-- and arrives with its pin (the pricing freeze's recorded caution).
 bitsAt :: forall env t. KnownScope env => Double -> Expr env t -> Bits
-bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
+bitsAt nameBits e0 =
+  Bits (chargeBits polWidth (go (scopeLen (Proxy :: Proxy env)) e0))
   where
-    -- the shipped grammar's written alternative counts, per sort (the
-    -- normative production table, spec §3 as amended through the
-    -- step-3 freeze). Alphabet data with prices, like grid points;
-    -- counting is by written alternatives, not type-pruned
-    -- availability. Read from 'prodTable' — the P5 single site —
-    -- since the govhost freeze; the counts are stated THERE and in
-    -- the spec's table only (restating them here is how the spec's
-    -- step-1 staleness happened — the step-3 surfaced-defect repair).
-    nodeB, stdB, kerB, statsB, utilB :: Double
-    nodeB  = lgOf (prodExpr prodTable)
-    stdB   = lgOf (prodStdName prodTable)
-    kerB   = lgOf (prodKer prodTable)
-    statsB = lgOf (prodStats prodTable)
-    utilB  = lgOf (prodUtil prodTable)
+    node :: Charge PolSort
+    node = CW PolExpr
 
-    lgOf :: Int -> Double
-    lgOf n = logBase 2 (fromIntegral n)
-
-    go :: Int -> Expr env' t' -> Double
+    go :: Int -> Expr env' t' -> Charge PolSort
     go sc e = case e of
-      MkC g _ _  -> nodeB + logBase 2 (fromIntegral (gridSize g))
-      Get _      -> nodeB + nameBits
-      If c t f   -> nodeB + go sc c + go sc t + go sc f
-      Gt a b     -> nodeB + go sc a + go sc b
-      Var _      -> nodeB + logBase 2 (fromIntegral sc)
+      MkC g _ _  -> CSum node (CBits (logBase 2 (fromIntegral (gridSize g))))
+      Get _      -> CSum node (CBits nameBits)
+      If c t f   -> CSum (CSum (CSum node (go sc c)) (go sc t)) (go sc f)
+      Gt a b     -> CSum (CSum node (go sc a)) (go sc b)
+      Var _      -> CSum node (CBits (logBase 2 (fromIntegral sc)))
 #ifndef DROP_PUSH
-      Push a b   -> nodeB + go sc a + go sc b
+      Push a b   -> CSum (CSum node (go sc a)) (go sc b)
 #endif
-      CondE a b  -> nodeB + go sc a + go sc b
-      Expect a f -> nodeB + go sc a + fnB f
+      CondE a b  -> CSum (CSum node (go sc a)) (go sc b)
+      -- one FN choice (the two written members, plan Q1); the opaque
+      -- value-layer payload is priced 0, the recorded parity-scoped
+      -- convention
+      Expect a _ -> CSum (CSum node (go sc a)) (CW PolFn)
 #ifndef DROP_ARGMAX
-      Argmax o v -> nodeB + go sc o + go (sc + 1) v
+      Argmax o v -> CSum (CSum node (go sc o)) (go (sc + 1) v)
 #endif
 #ifndef DROP_EXPFAM
-      -- KER-sort (spec §3 production table): sole-codeword constructor
-      -- choice + carrier mention + sole-member stats choice; the
-      -- Space payload is priced 0 (recorded opaque-payload convention)
-      ExpFam {}  -> kerB + carrierB + statsB
+      -- KER-sort (spec §3 production table): constructor choice +
+      -- carrier mention + sole-member stats choice; the Space payload
+      -- is priced 0 (recorded opaque-payload convention)
+      ExpFam {}  -> CSum (CSum (CW PolKer) (CBits carrierB)) (CW PolStats)
 #endif
 #ifndef DROP_USAY
       -- UTIL-sort (spec section 3 as amended at the cirl freeze):
       -- sole-codeword constructor choice (0 bits); the payload prices
       -- as EXPR in its own closed two-variable scope
-      USay p     -> utilB + go 2 p
+      USay p     -> CSum (CW PolUtil) (go 2 p)
 #endif
 #ifndef DROP_CODE
       -- KER-sort (AGENT_PLAN §2a): the constructor choice, plus the code
@@ -547,34 +566,26 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
       -- O(|x|*|y|) bits, and bern beats the table BECAUSE IT IS SHORTER --
       -- not because we forbade the table (brief §8's method, applied to
       -- likelihoods for the first time).
-      Code _ _ b -> kerB + go (sc + 2) b
+      Code _ _ b -> CSum (CW PolKer) (go (sc + 2) b)
 #endif
 #ifndef DROP_POS
-      Pos _ e'   -> nodeB + go sc e'
+      Pos _ e'   -> CSum node (go sc e')
 #endif
 #ifndef DROP_TOR
-      ToR e'     -> nodeB + go sc e'
+      ToR e'     -> CSum node (go sc e')
 #endif
-      Add a b    -> nodeB + go sc a + go sc b
-      Sub a b    -> nodeB + go sc a + go sc b
-      Mul a b    -> nodeB + go sc a + go sc b
-      Div a b    -> nodeB + go sc a + go sc b
-      Log a      -> nodeB + go sc a
-      Exp a      -> nodeB + go sc a
-      Neg a      -> nodeB + go sc a
-      Call _ as  -> nodeB + stdB + goArgs sc as
+      Add a b    -> CSum (CSum node (go sc a)) (go sc b)
+      Sub a b    -> CSum (CSum node (go sc a)) (go sc b)
+      Mul a b    -> CSum (CSum node (go sc a)) (go sc b)
+      Div a b    -> CSum (CSum node (go sc a)) (go sc b)
+      Log a      -> CSum node (go sc a)
+      Exp a      -> CSum node (go sc a)
+      Neg a      -> CSum node (go sc a)
+      Call _ as  -> CSum (CSum node (CW PolStdName)) (goArgs sc as)
 
-    goArgs :: Int -> Args env' ts -> Double
-    goArgs _  ANil      = 0
-    goArgs sc (a :* as) = go sc a + goArgs sc as
-
-    -- one FN choice bit (log2 2, the two written members — plan Q1;
-    -- the SIXTH price literal, found at the govhost pack, H-9 —
-    -- mandatory under P5's single-site clause); the opaque
-    -- value-layer payloads are priced 0, the recorded parity-scoped
-    -- convention.
-    fnB :: Fn a -> Double
-    fnB _ = lgOf (prodFn prodTable)
+    goArgs :: Int -> Args env' ts -> Charge PolSort
+    goArgs _  ANil      = CBits 0
+    goArgs sc (a :* as) = CSum (go sc a) (goArgs sc as)
 
     -- a carrier mention is a name mention against the carrier registry
     -- (same written rule as 'nameBits': free while the registry is a
