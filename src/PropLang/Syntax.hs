@@ -473,11 +473,12 @@ bitsAt nameBits e0 = Bits (go (scopeLen (Proxy :: Proxy env)) e0)
   where
     -- the shipped grammar's written alternative counts, per sort (the
     -- normative production table, spec §3 as amended through the
-    -- prepost freeze): ten EXPR productions, seven STDNAME members, two FN
-    -- members, one KER production, one STATS member. Alphabet data
-    -- with prices, like grid points; counting is by written
-    -- alternatives, not type-pruned availability. Read from
-    -- 'prodTable' — the P5 single site — since the govhost freeze.
+    -- step-3 freeze). Alphabet data with prices, like grid points;
+    -- counting is by written alternatives, not type-pruned
+    -- availability. Read from 'prodTable' — the P5 single site —
+    -- since the govhost freeze; the counts are stated THERE and in
+    -- the spec's table only (restating them here is how the spec's
+    -- step-1 staleness happened — the step-3 surfaced-defect repair).
     nodeB, stdB, kerB, statsB, utilB :: Double
     nodeB  = lgOf (prodExpr prodTable)
     stdB   = lgOf (prodStdName prodTable)

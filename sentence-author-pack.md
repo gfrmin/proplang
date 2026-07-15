@@ -911,3 +911,33 @@ sha256sum -c MANIFEST.sha256   # 78/78
 **Phase B is complete; the step stops for the author's freeze tag over
 the amended oracle and the delegated edits (R-D22). Phase C (the
 demolition) begins only after the tag.**
+
+## 27. The two surfaced defects, REPAIRED (follow-up delegation)
+
+The author's word, verbatim: **"fix tge two surfaced issues"**
+(2026-07-15, following the Phase-B report). Executed as one delegated
+freeze-edit commit; the manifest rows re-hashed (78/78 OK); the tag
+draft moves to the new HEAD.
+
+1. **typed-port-spec.md, the normative production table.** The step-1
+   alphabet move (code-freeze-r0/r1) turned out to have TWO stale rows
+   here, repaired together as the one defect: EXPR 10 → 19 (the row
+   now lists all nineteen — Pos, ToR, Add, Sub, Mul, Div, Neg, Exp,
+   Log joined) and KER 1 → 2 (`Code` joined `ExpFam`; the "sole
+   codeword / 0 bits" claim was the same falsehood at the adjacent
+   row, and the Kraft paragraph repeated both). Membership derived
+   from the frozen pricer's own case arms (`Syntax.hs` bitsAt: exactly
+   the nineteen nodeB-paying constructors; `ExpFam`/`Code` pay kerB),
+   never from memory; the dated repair note in-file records the
+   provenance and the two-day falsehood window. The root cause got a
+   guard: the pricer's src comment restated the counts and had gone
+   stale the same way — it now defers to `prodTable` and the spec
+   table as the only stating sites.
+2. **audit/run-gates.sh, the gate-5 description.** The header comment
+   and the gate-5 echo now describe the gate as it is (`cabal test
+   all` over the frozen suites, Acceptance retired to its
+   test-sentence deliverables); the mechanism is untouched and the
+   script parses (`sh -n`).
+
+State after the repair: manifest 78/78 OK; Syntax.hs recompiles clean
+under the full warning set; the gate state of §25 is unchanged.

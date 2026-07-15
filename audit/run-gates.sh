@@ -9,10 +9,14 @@
 #   3  effect check: no IO token in Belief/Syntax/Eval/Enumerate.
 #   4  forbidden imports/tokens in src/ (audit/forbidden.txt), code
 #      tokens only, comments and strings excluded.
-#   5  test/Acceptance.hs and test/Properties.hs. In --phase 1 the
-#      expected state is: the suites COMPILE and RUN and FAIL (src/ is
-#      stubs); the gate confirms exactly that. In --phase 2 they must
-#      pass.
+#   5  the frozen suites, via `cabal test all` (originally
+#      test/Acceptance.hs + test/Properties.hs; Acceptance retired at
+#      the step-3 sentence freeze — its four deliverables live on in
+#      test-sentence/ g1 — and every increment's suite is absorbed by
+#      the same `cabal test all`, the canonized increment protocol).
+#      In --phase 1 the expected state is: the suites COMPILE and RUN
+#      and FAIL (src/ is stubs); the gate confirms exactly that. In
+#      --phase 2 they must pass.
 #   6  sha256sum -c MANIFEST.sha256. In --phase 1, PENDING until the
 #      human signs; the exact command is printed.
 #   7  the deletion audit runs against the real grammar:
@@ -82,7 +86,7 @@ else
 fi
 
 # -- gate 5: the frozen suites -----------------------------------------------
-echo "--- gate 5: cabal test (acceptance + properties)"
+echo "--- gate 5: cabal test all (the frozen suites)"
 if ! "$CABAL" build --enable-tests all >/dev/null 2>&1; then
     echo "test suites do not compile"
     note 5 FAIL

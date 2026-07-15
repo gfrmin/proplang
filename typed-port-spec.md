@@ -153,10 +153,10 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 >
 > | sort | written alternatives | node cost |
 > |---|---|---|
-> | EXPR | C, Get, If, Gt, Var, Push, CondE, Expect, Argmax, Call | log2 10 |
+> | EXPR | C, Get, If, Gt, Var, Push, CondE, Expect, Argmax, Call, Pos, ToR, Add, Sub, Mul, Div, Neg, Exp, Log | log2 19 |
 > | FN | FnInd, FnUtil | 1 bit |
 > | STATS | SId | 0 bits |
-> | KER | ExpFam | 0 bits |
+> | KER | ExpFam, Code | log2 2 |
 > | STDNAME | EU, IsEq, VAct, VThink, VThinkK, VPre | log2 6 |
 > | UTIL | USay | 0 bits |
 >
@@ -164,6 +164,18 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > ladder's VThinkK (missed at that boundary) and VPre — two alphabet
 > changes, one repair, per the frozen-text-states-no-falsehood
 > standard.
+>
+> EXPR and KER rows repaired at the sentence freeze (step 3,
+> 2026-07-15; the surfaced-defect delegation, sentence-author-pack.md
+> §25/§27): step 1 (code-freeze-r0/r1) grew EXPR 10 -> 19 (Pos, ToR,
+> Add, Sub, Mul, Div, Neg, Exp, Log) and KER 1 -> 2 (Code joined
+> ExpFam), but this normative table was never amended at that
+> boundary — a frozen-text falsehood standing since 2026-07-14,
+> discovered by the step-3 sweep. The rows now state the as-frozen
+> alphabet (prodTable's 19/2, pinned since that freeze by
+> test-hygiene's lg 19 rows and test-expfam's lg 2 row); the
+> membership lists are derived from the frozen pricer's own case
+> arms (Syntax.hs, bitsAt), never from memory.
 >
 > STDNAME row amended again at the sentence freeze (step 3,
 > 2026-07-15; delegated edit, sentence-author-pack.md SS20.5): `Bern`
@@ -177,9 +189,10 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > kernel-valued positions (e.g. `Push`'s second child) are KER holes;
 > function-valued positions on `Expect` are FN holes; everything else
 > is an EXPR hole. This is what keeps the code prefix-decodable
-> (Kraft-tight per hole) while `ExpFam` pays 0 constructor bits — a
-> 0-bit alternative alongside the ten EXPR codewords at the same hole
-> would violate Kraft; at a declared KER hole it is the sole codeword.
+> (Kraft-tight per hole): a free-riding alternative alongside the
+> nineteen EXPR codewords at the same hole would violate Kraft; at a
+> declared KER hole the two members (`ExpFam`, `Code`) each pay their
+> log2 2 constructor choice (the step-1 repair note above).
 > Utility-valued positions are declared UTIL holes (KER's sibling):
 > USay is the sole codeword, its payload pricing as EXPR in a
 > two-variable scope. The subprogram is closed by construction —
