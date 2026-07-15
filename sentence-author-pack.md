@@ -502,3 +502,163 @@ touch, delegated like the others, R-D22):
 g3 orientations, the optlaw generator port and expfam's E7 port riding
 the same boundary; g1's drift400 MAP rows pin §14's corrected checkpoint
 values.*
+
+---
+
+# PART IV — the oracle, drafted and prototype-verified (2026-07-15)
+
+Commits: `bbdc3f7` (type surface + oracle draft, red 18/25),
+`cbf7ac7` (goldens filled from the prototype, g3 restructured on the
+measured residue; red 19/26, proto 26/26 SAT).
+
+## 17. The type surface (src, the increment-D stub pattern)
+
+Landed in `Enumerate.hs` (unguarded — sentences are sayable without
+the scoring layer, exactly as the fragment is): `FragSort`/`FragProd`
+with `fragWidth` = the E-s1 table {MODEL 2, THETA 2, HEAD 2, RATE 1}
+(HEAD: one enumerable production under a declared width of 2 — a
+classified exception in the SayableP lg-10 sense); transparent
+`Hyp { hypBits, hypSpace, hypEmit :: Expr '[] (Maybe (K Double Obs)),
+hypMove :: Maybe (Expr '[] (Maybe (K Double Double))) }` (D5 as ruled:
+this slot plus the agent's filtered `Belief` covers what `THmm`
+carried; no new type — the shipped `Code` IS the hypothesis form;
+stateless sentences declare a SINGLETON latent axis so uniform init is
+a point mass and no mixture arithmetic touches a degenerate axis);
+`enumerateSentences/In/Grid :: … [FragProd] -> [Hyp]` (the deletion
+table's subsets stay declarable — D2 part 3); `filterTickFree`;
+`sentenceAgent` — GUARDED with the scoring layer, a defect the
+deletion audit itself caught live: unguarded, the stub stole the
+`carrier-obs` ablation's attribution from `obsCarrier` and test-expfam
+went red; the fix is the design being honest (an agent cannot exist
+without the carrier — E9). Gate-1 clean; twelve frozen suites green.
+
+## 18. test-sentence/ — 26 rows; red 19/26 attributable, proto 26/26 SAT
+
+Groups as planned (§6) plus the sitting's additions. The seven
+green-at-birth rows, each lawful by name: the audit-grep row and the
+push/argmax rows (frozen scripts, verbatim — nothing owed); test 2
+(verbatim port — the deliberation ladder touches no doomed name; only
+its housing file dies); the g4 table-declaration row (declared data,
+landed with the surface); g5's three rows (the CPP hooks shipped at
+step 1 — the PIN-FREEZE fourth clause applies: red-reachability by
+seeded defect, demonstrated in the reviewer block by running a fixture
+against a hook-less flag). Every one of the 19 red rows dies at a
+NAMED step-3 stub (`red-run-final.txt`) — attribution total.
+
+**R-D21, in the strongest form this project has produced:** the
+prototype is an OVERLAY module with the real module's name
+(`scratchpad/step3/proto/PropLang/Enumerate.hs`), so the oracle's
+EXACT FROZEN TEXT compiles against it unchanged — no transcript
+harness re-derivation, no row-text variant. The full suite runs
+**26/26 SAT in 29.5 s** (`rd21-proto-transcript.txt`); every frozen
+side is forced to normal form by the assertion that consumes it, which
+subsumes the per-row deepseq (nothing is lazily skipped in a PASSING
+assertEqual/assertBool over Doubles and Strings), and the red run's
+19 named-stub exceptions partition attribution exactly.
+
+What the prototype run PROVED (the port-design vindication, all
+through the sentence route): test 1's full timeline — probe rows,
+exact consult ticks, entropies — against the frozen Python anchors;
+test 3's losses and the forgetter table; test 4's whole deletion table
+over declared production subsets (including the old no-TGet/no-TGt
+coincidence, both mapping to drop-FGuardHead — the frozen anchors
+t4LlNoif == t4LlNoget agree); the 1,169 charges bit-exact FROM THE
+DECLARED TABLE (dl multiset, family hexes, the step-1 sum hex); the
+membrane counts 1241/1529 and the M1 re-pricing as order-free
+value-count rows (position is fresh); the MAP identities with §11's
+mass hexes and §14's CORRECTED prefix-replay component predictives,
+bit-for-bit; both silence rows; Cromwell's consonance row. The fresh
+render goldens carry their lineage on their faces: the t1 golden
+contains the old tau-11 guard as its theta subtree, the t3 move golden
+shows `('c','rho',3)` three times.
+
+## 19. TWO SITTING ITEMS (the oracle does not freeze past them)
+
+1. **D8 — the positive-mass-refuser predictive.** A sentence that
+   refuses to denote at prediction time while holding positive meta
+   mass: the mixture predictive needs a semantics, and it is language
+   content, not builder discretion. Implemented in the prototype (and
+   registered here as the candidate): **condition on denotation** —
+   the refusers' mass is conditioned away by the same public `cond`
+   arithmetic the evidence path uses; their placeholder rows then
+   carry weight exactly 0. Grounds: it is the only public-verb-
+   expressible option found; "asserted the impossible there
+   presupposes a there" — at prediction time there is no there, so
+   the mass backs no observation and P(y | the sentence speaks) is
+   what the mixture can honestly say. Measured consequence: the two
+   g3 routes bit-agree at the t=0 checkpoint under it. The only
+   shipped-population effect is NONE (all 1169 sentences always
+   denote); this semantics is reachable only through declared worlds
+   with refusing sentences.
+2. **The g3 fixture-population gates.** The author's pre-ruling asked
+   for == only if bit-identity reproduced. It did not, and the reason
+   is structural, not sloppy: construct-time exclusion and
+   carry-plus-refute normalize over different candidate counts —
+   algebraically identical, float-perturbed. Measured on the
+   prototype (`g3-residue-transcript.txt`): max relative predictive
+   residue **1.2115e-16** (5 ulps, at t=80; most checkpoints
+   bit-exact), max absolute posterior residue **1.4433e-15**; the
+   dropped sentence's carried-route posterior is exactly 0 from the
+   first observed tick. Proposed gates, the repaired-CL-4 idiom:
+   **1e-14 relative (predictive, headroom ×83); 1e-13 absolute per
+   posterior point (headroom ×69)**; posterior rows start at the
+   first OBSERVED checkpoint (pre-observation the dropped sentence
+   holds prior mass BY DESIGN — a comparison there is a category
+   error). The SHIPPED population row is untouched by any of this:
+   the filter drops nothing there and pins ==.
+
+## 20. Freeze items (Phase B, on the author's word; delegated, R-D22)
+
+1. Oracle freeze: `test-sentence/{Sentence.hs, stanza.cabal.draft,
+   ablation/run.sh, ablation/Use{Code,Pos,Tor}.hs}` → manifest
+   APPEND (rider-2 form); stanza merged into proplang.cabal.
+2. D3 retirements at the same signature: `test/Acceptance.hs` (ported
+   — the four deliverables live in g1 with lineage headers), `test-d/`
+   (+2 ablations), `test-govhost/` (+UseDriver), the govhost exe,
+   `host-governor/Wire.hs`, `WireU.hs`; their stanzas leave the cabal.
+   The host-less window (D3 rider 2) begins here, stated.
+3. Re-opens, delegated-edit specs: **test-optlaw** — generators to the
+   sentence route (executable draft: E-s2's twins, §15; continuity at
+   `==` on E-s2's 13,992-float measurement; tolEv/tolPost untouched);
+   **test-expfam** — E7's fast side `nameAt` → `bernFast`
+   (value-invariant by definitional equation, Eval.hs:206), the :137
+   pricing row and :189 render golden retire, group 6 retires,
+   `UseBern.hs` discharged-permanent; **test-hygiene** — the :94 call
+   ported, the STDNAME 7→6 re-pricing (D4, adjudication not grep;
+   P5's single site `prodTable` moves 7→6 in the same edit);
+   **test-membrane** — model-fragment rows retire in favor of g1's
+   ports, action rows stay for step 5.
+4. CLAUDE.md canonization riders (§16): the sweep-universe line and
+   the `discharged-permanent` register category.
+5. Schedule prose amendments (decision 10, D3 rider 1): `interface.md`
+   T1, `EXPFAM_PLAN` T1/E9, `design.md`/`typed-port-spec.md` prodTable
+   prose, the §8 step-5 row (Wire.hs discharged early; the sentinel's
+   surviving site `membrane-wire.md:131` keeps its step-5 date).
+6. Phase C (post-tag): implement the surface (the prototype is the
+   executable design), DELETE `Bern`/`THmm`/`Model`/`Terminal` and the
+   u-fragment, `mkAgent` dies with `Model`; all gates green, anchors
+   byte-stable, then the as-built report.
+
+## 21. Reviewer verification block
+
+```sh
+export PATH="$HOME/.ghcup/bin:$PATH"; export LANG=C.UTF-8
+# red: 19/26 fail, every exception a named step-3 stub
+cabal exec -- ghc -Wall -Werror -Wincomplete-patterns \
+  -Wincomplete-uni-patterns -isrc -itest -itest-sentence \
+  -outputdir /tmp/s3red -o /tmp/s3red/oracle test-sentence/Sentence.hs
+/tmp/s3red/oracle; grep -c "step-3 stub" <(/tmp/s3red/oracle 2>&1)
+# SAT: 26/26 against the prototype overlay (ask the builder for the
+# scratch path, or re-create from pack §17's design)
+# g5 seeded-defect red-reachability (pin-freeze clause): break a hook
+# and watch attribution fail —
+sh test-sentence/ablation/run.sh code   # PASS as shipped
+GHC="ghc -DDROP_POS" sh test-sentence/ablation/run.sh code || true
+# suites + custody
+cabal test all          # twelve suites green
+sha256sum -c MANIFEST.sha256   # 85/85 (extends only at the freeze)
+```
+
+**The step stops here for the sitting: D8 and the g3 gates (§19), then
+the freeze tag over §20.** The builder's recommendation on both §19
+items is in their rows; nothing proceeds on recommendation alone.
