@@ -817,3 +817,57 @@ form (§19.1). Then the freeze: manifest extension over test-stream/
 (likely `stream-freeze-r0`). Implementation after that is the
 overlay's two edits transcribed — the falsifier-before-freeze
 economics one more time.
+
+### §21. ORDERED at this drafting: the type-derivation audit installs at THIS freeze
+
+The author's order (2026-07-16, verbatim): *"Install the
+type-derivation audit now, not at step 9. This is a live gap I
+verified: §8c ruled it 'goes into frozen CLAUDE.md at this boundary'
+— and it is not in CLAUDE.md today. It exists only as signed
+AGENT_PLAN prose plus a step-9 execution row. But steps 6–8 change
+types (the confound channel, utility-as-Expr, the belief over utility
+programs) before the retrospective audit runs. The rule created to
+prevent the next 86-commit silence should be binding before the next
+types land — one line in the step-6 freeze's CLAUDE.md touch."*
+
+Gap verified by the builder: `grep -i "type-derivation\|derivation
+audit" CLAUDE.md` returns nothing; AGENT_PLAN.md §8c carries the
+ruling with its rationale ("it was a type, not a terminal, that hid
+the calculator for 86 commits"). The rule has been honored in spirit
+at recent freezes (PolSort's derivation was recorded at step 4 "for
+the typing-audit rule's letter") but binds nowhere frozen.
+
+**The drafted line for the step-6 freeze's CLAUDE.md touch** (the
+rule text is §8c's own, copied not re-derived; the edit is
+author-only or delegated per R-D22 with the re-tag obligation):
+
+> One line canonized at the step-6 boundary (the stream freeze),
+> installing AGENT_PLAN §8c's ruling of 2026-07-12, which until this
+> boundary bound only as signed prose: THE TYPE-DERIVATION AUDIT —
+> every TYPE on a frozen surface carries a one-line derivation from
+> the brief, exactly as every terminal carries a one-line deletion
+> proof; a type without one is cut, or the brief is amended to
+> license it (the `Util a y` incident its provenance: it was a type,
+> not a terminal, that hid the calculator for 86 commits — the
+> deletion audit polices the alphabet, this polices the types).
+
+**The binding division, stated so step 9's row is not double-counted:**
+from this freeze the rule binds FORWARD — every new type on a frozen
+surface arrives WITH its derivation line, in the same increment that
+lands it (steps 7 and 8 are exactly the steps the author names).
+Step 9's execution row is the RETROSPECTIVE audit over the standing
+stock (§7 step 9: "the TYPE-derivation audit (§8) — its complement"),
+unchanged. Rule now, retrofit at 9.
+
+Step 6 itself lands NO new type (Part III §16: no type-surface edit
+exists), so this step's own audit obligation is vacuously discharged
+— which is precisely the right moment to install the rule: it costs
+this freeze nothing and binds the next two steps, which are the
+expensive ones.
+
+Freeze-checklist consequence: the step-6 freeze's CLAUDE.md touch
+list now carries exactly one line (above). No other canonization is
+queued; the 6b label-symmetry lesson (signed posterior means are
+vacuous over latent-labeled classes — use label-invariant moments) is
+offered in Part II as an observation for the sitting, canonized only
+if the author wants it.
