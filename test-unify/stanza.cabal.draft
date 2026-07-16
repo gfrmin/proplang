@@ -1,0 +1,15 @@
+-- the step-7 increment oracle (AGENT_PLAN section 7 step 7, pricing
+-- unified / M5 repealed); stanza drafted in the oracle phase, to be
+-- applied at the step-7 freeze under the delegation pattern. No
+-- test/ reach needed: every fixture is inline (worlds are declared
+-- data; the control streams of earlier suites are not used here).
+test-suite unify
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Unify.hs
+    hs-source-dirs:   test-unify
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

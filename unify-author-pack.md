@@ -435,3 +435,159 @@ D-c8 (namespace_bits unchanged — confirm), plus the g1-g5 oracle
 shape and the 1e-13 gate. Then: oracle build + SAT/red transcripts,
 your freeze key (unify-freeze-r0), implementation (the driver), the
 as-built.
+
+---
+
+## Part IV — the oracle draft, its transcripts (SAT / red / seeded-defect)
+
+### §16. The draft: test-unify/, twelve rows, four groups, one src stub
+
+`test-unify/Unify.hs` (+ `stanza.cabal.draft`; no test/ reach — every
+fixture inline). The STEP-7 TYPE SURFACE landed additive in
+src/PropLang/Host.hs (the step-4 precedent): `HostState` / `hostStart`
+/ `serveLine` / `hostMain`, with `serveLine` a NAMED STUB (every line
+answered with an unimplemented-error reply) so g4 is RUNTIME-red — a
+compile-red oracle proves nothing. Library builds clean; no frozen
+suite imports the new names.
+
+The pure-core design carries D-c7's shape: the ENTIRE protocol is
+`serveLine :: HostState -> String -> (HostState, String)` — testable
+with no subprocess machinery, no new dependency; `hostMain` is the
+ten-line stdin/stdout shell (gate 3's module, the only IO). The g4
+rows drive sessions through `serveLine` and cross-check every numeric
+reply against the engine through public verbs — NO hand goldens: the
+expected reply strings are BUILT from `enumerateSentencesIn` /
+`predictive` / `entropyBits` / `observe` at the fixture's own data.
+
+### §17. The satisfiability transcript (R-D21, overlay form, flag-faithful)
+
+The overlay: a prototype PropLang.Host realizing the full protocol
+(mini JSON reader, RIDER-2 validation, D-b2 per-tick disjointness
+check, wait and assign@1-EU decisions through the pinned
+exogenous-read arithmetic — the fold copied from the shipped
+interpretPilot with provenance). The oracle's exact text compiled
+against it UNCHANGED under the stanza's exact flag set (-Wall -Werror
+-Wincomplete-patterns -Wincomplete-uni-patterns), then ran:
+
+```
+unify -- one priced surface (step 7)
+  g1 the value price: log2 |grid| through the one constant door
+    the population grows by exactly one guard family per appended grid point:                         OK
+    an a-guard's charge IS the declared tree, at BOTH grid sizes (bit-exact):                         OK (0.11s)
+    ONLY the value leaf moves when the grid grows: every non-a sentence bit-identical:                OK (0.17s)
+  g2 RIDER 2: owned odds invariant under mid-episode publication
+    the publication tick (silent) moves NOTHING (byte-exact):                                         OK (0.36s)
+    publish-at-5 vs always-available: final owned odds byte-identical:                                OK (0.52s)
+  g3 the Dutch book: no sure-loss portfolio beyond float dust
+    100 seeded refuser cases: max |book payoff| < 1e-13 (measured 2.2e-16), every case >= 1 denoting: OK (0.03s)
+  g4 the driver: the pure wire session core, two-route
+    hello -> ok, models and namespace_bits from the engine itself:                                    OK
+    decision tick, no utility: act = wait; p1/entropy == the public verbs:                            OK (0.04s)
+    union tick: choice BEFORE observation; observe at feats ++ act (step 6's geometry):               OK (0.07s)
+    silent tick: ok, agent unmoved:                                                                   OK (0.03s)
+    D-b2 disjointness: a tick publishing a writable name is a validation failure:                     OK
+    EU decision (assign@1 utility): the act == the public exogenous-read arithmetic:                  OK (0.04s)
+
+All 12 tests passed (1.39s)
+```
+
+**Two catches by the SAT discipline, both pre-freeze (the §19-class
+record, third consecutive step):**
+
+1. **helloB was missing its top-level closing brace** — the EU row
+   red on `{"error": "bad hello"}` at first SAT; a fixture typo the
+   two-route discipline caught before it could freeze as a lie. One
+   character; re-run 12/12.
+2. **The disjointness row's red was UNATTRIBUTABLE as first drafted**
+   — it asserted only that the reply is an error line, and the STUB
+   answers everything with an error line, so the row was green
+   against the stub (a red that cannot fire is a red that proves
+   nothing). Sharpened to the exact validation-failure reply
+   (`feature/assignment collision`); now red against the stub, green
+   against the overlay.
+
+### §18. The red run (the same text against SHIPPED src + the stub)
+
+```
+unify -- one priced surface (step 7)
+  g1 the value price: log2 |grid| through the one constant door
+    the population grows by exactly one guard family per appended grid point:                         OK
+    an a-guard's charge IS the declared tree, at BOTH grid sizes (bit-exact):                         OK (0.11s)
+    ONLY the value leaf moves when the grid grows: every non-a sentence bit-identical:                OK (0.17s)
+  g2 RIDER 2: owned odds invariant under mid-episode publication
+    the publication tick (silent) moves NOTHING (byte-exact):                                         OK (0.35s)
+    publish-at-5 vs always-available: final owned odds byte-identical:                                OK (0.51s)
+  g3 the Dutch book: no sure-loss portfolio beyond float dust
+    100 seeded refuser cases: max |book payoff| < 1e-13 (measured 2.2e-16), every case >= 1 denoting: OK (0.03s)
+  g4 the driver: the pure wire session core, two-route
+    hello -> ok, models and namespace_bits from the engine itself:                                    FAIL
+      test-unify/Unify.hs:281:
+      expected: "{\"ok\": true, \"proto\": 1, \"models\": 1529, \"namespace_bits\": 1.5849625007211563}"
+       but got: "{\"error\": \"proplang-host: unimplemented (step-7 oracle-phase stub)\"}"
+      Use -p '/hello -> ok, models and namespace_bits from the engine itself/' to rerun this test only.
+    decision tick, no utility: act = wait; p1/entropy == the public verbs:                            FAIL (0.02s)
+      test-unify/Unify.hs:290:
+      expected: "{\"act\": {\"a\": 0.5}, \"p1\": 0.5, \"entropy_bits\": 4.214679258078533}"
+       but got: "{\"error\": \"proplang-host: unimplemented (step-7 oracle-phase stub)\"}"
+      Use -p '/decision tick, no utility: act = wait; p1\/entropy == the public verbs/' to rerun this test only.
+    union tick: choice BEFORE observation; observe at feats ++ act (step 6's geometry):               FAIL (0.03s)
+      test-unify/Unify.hs:301:
+      expected: "{\"act\": {\"a\": 0.5}, \"p1\": 0.5, \"entropy_bits\": 4.214679258078533, \"observed\": 1, \"loss_bits\": 1.0000000000000764}"
+       but got: "{\"error\": \"proplang-host: unimplemented (step-7 oracle-phase stub)\"}"
+      Use -p '/union tick: choice BEFORE observation; observe at feats ++ act (step 6'\''s geometry)/' to rerun this test only.
+    silent tick: ok, agent unmoved:                                                                   FAIL
+      test-unify/Unify.hs:309:
+      expected: "{\"ok\": true}"
+       but got: "{\"error\": \"proplang-host: unimplemented (step-7 oracle-phase stub)\"}"
+      Use -p '/silent tick: ok, agent unmoved/' to rerun this test only.
+    D-b2 disjointness: a tick publishing a writable name is a validation failure:                     FAIL
+      test-unify/Unify.hs:317:
+      expected: "{\"error\": \"feature/assignment collision\"}"
+       but got: "{\"error\": \"proplang-host: unimplemented (step-7 oracle-phase stub)\"}"
+      Use -p '/D-b2 disjointness: a tick publishing a writable name is a validation failure/' to rerun this test only.
+    EU decision (assign@1 utility): the act == the public exogenous-read arithmetic:                  FAIL
+      test-unify/Unify.hs:325:
+      an act field, got: {"error": "proplang-host: unimplemented (step-7 oracle-phase stub)"}
+      Use -p '/EU decision (assign@1 utility): the act == the public exogenous-read arithmetic/' to rerun this test only.
+
+6 out of 12 tests failed (1.24s)
+```
+
+**Exactly the designed partition:** g1–g3 GREEN against the shipped
+engine (pin-freeze rows: the behavior already ships — E-c1/E-c2/E-c3
+measured it) and ALL SIX g4 rows RED, every red attributable to the
+stub (the missing driver, the window). 
+
+### §19. The pin-freeze seeded-defect demonstrations (the step-2 clause)
+
+g1–g3 owe red-reachability with attribution partitioned. One seeded
+defect per group, each firing its own row predicate and no other:
+
+```
+g1 defect (value leaf dropped): row predicate fires: True
+g2 defect (one odd re-priced by one ulp): row predicate fires: True
+g3 defect (renormalization skipped): book payoff 0.390000 > 1e-13: True
+attribution partition: g1 fires on trees only, g2 on odds only, g3 on the book only
+```
+
+(g1: an engine that drops the value leaf — the bit-exact tree row
+fires; g2: a single odd re-priced by one ulp at publication — the
+byte-equality row fires; g3: the D8 renormalization skipped — the
+book pays 0.39, nine orders past the gate.)
+
+### §20. Where this stops: the sitting
+
+The register (Part I §4, statuses per §10) and this draft go to you:
+D-c2 (wire note §11), D-c5 (the Pilot split's frozen-import cost —
+named re-open of three frozen import lists vs reversal), D-c6 (spec +
+HOSTS_PLAN amendments §12), D-c7 (the driver shape as built into the
+overlay + the assign@1 utility proposal — NOTE: the wire's hello
+utility block is stale calculator shape; assign@1 is this pack's
+proposed replacement and needs your ruling), D-c8 (namespace_bits
+unchanged), the g1–g4 row set, and the 1e-13 measured-born gate.
+After the rulings: any ordered row revisions, then the freeze
+(stanza merge, manifest extension over test-unify/ + the amendments,
+prefreeze-lint pre-tag, unify-freeze-r0 — your key), then
+implementation: serveLine's body transcribed from the overlay, the
+`proplang-host` executable stanza, twelve suites (thirteen with
+unify) green, gates, the as-built.
