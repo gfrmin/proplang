@@ -309,3 +309,129 @@ CALL between the named re-open and reversal), D-c6 (M5 amendment
 scope — spec + HOSTS_PLAN vs HOSTS_PLAN alone), D-c7 (the driver's
 shape). Next: Part III — the oracle draft (test-unify/), the wire and
 spec amendment texts, the driver design, SAT/red transcripts.
+
+---
+
+## Part III — the drafted amendments, the oracle design, the driver
+
+### §11. The wire amendment (D-c2/D-c8), drafted for the freeze touch
+
+Following the wire doc's own convention (dated amendment notes, the
+step-5 precedent at :111-128), ONE note appended at the freeze
+(delegated prose, R-D22):
+
+> **Step-7 amendment (the unify freeze, 2026-07-17): ONE PRICED
+> SURFACE.** Three sentences bind. (1) THE COMPLETED NAMESPACE: the
+> hello's `namespace` MUST include every writable name, including
+> names not yet in any published menu — a world may not conjure a
+> name mid-episode (RIDER 2; membership is declared at handshake and
+> IMMUTABLE, publication toggles availability, not membership; owned
+> posterior odds are thereby invariant under mid-episode publication,
+> and the engine's invariance is pinned bit-exact by test-unify).
+> (2) DISJOINTNESS (ruling D-b2): the tick's published features and
+> the agent's writable names are DISJOINT name sets by handshake —
+> the stream is the world's document, one authority, no merge
+> semantics; a hello whose namespace assigns one name to both surfaces
+> is a validation failure. (3) VALUE PRICING, redeemed from the step-5
+> note: an action value prices at log2 |its grid| through the one
+> constant door wherever a sentence utters it — the same arithmetic as
+> every constant since the pricing freeze; nothing re-prices at
+> publication (E-c1: the threshold leaf moves by exactly lg|grid|,
+> nothing else moves). M5 is repealed: the namespace law's own
+> rationale covers the action vocabulary; there is no second priced
+> surface.
+
+### §12. The spec amendment (D-c6), drafted
+
+typed-port-spec.md:244-248 currently reads "*...the action vocabulary
+prices through slot grids and argmax, and keeping the two priced
+surfaces separate is what stops a fourth flow entering through the
+pricing door; no later increment may unify them.*" — FALSIFIED at
+this boundary. Drafted replacement (in place, with the dated
+provenance paragraph, the CL-4-repair form):
+
+> The namespace covers every declarable name — sensors AND writable
+> names — under one law (M5 REPEALED at the step-7 unify freeze,
+> 2026-07-17: the carve-out protected a "fourth flow" that was
+> asserted four times and derived zero — AGENT_PLAN:49; the namespace
+> law's own rationale, "a richer world makes every sentence about it
+> more surprising: a semantic commitment", covers the action
+> vocabulary). A writable name is mentioned at log2 |ns| like any
+> name; a value is drawn from its grid at log2 |grid| like any
+> constant, through the one mechanism (chargeBits over the declared
+> trees). Namespace membership is declared at handshake and is
+> IMMUTABLE (RIDER 2): publication toggles availability, never
+> membership, so owned posterior odds are invariant under mid-episode
+> publication — measured bit-exact and pinned by test-unify.
+
+HOSTS_PLAN.md:527-528 ("ruling M5's three-surface separation
+preserved") gains the one-line dated bracket: "[M5 REPEALED at the
+step-7 unify freeze; this sketch line is historical]" — the
+schedule's own row discharged.
+
+### §13. The oracle design: test-unify/, a MIXED increment
+
+E-c1/E-c2/E-c3 showed the engine ALREADY satisfies the step's
+arithmetic — so most rows are PIN-FREEZE class (the step-2 clause:
+red demonstrated by seeded defect, no implementation owed), while the
+driver rows are ordinary implementation-red. Groups:
+
+- **g1 THE VALUE PRICE, PINNED (pin-freeze):** the E-c1 shape as
+  rows — two populations (|aGrid| 2 and 3) through the exported
+  enumerator; the a-guard charge differs by exactly lg3−lg2 at the
+  threshold leaf (bit-exact via the declared trees, both routes);
+  non-a sentences bit-identical; +72 per point. THE FIRST
+  ASSIGNMENT-PRICED ROWS (owed here, forbidden at 6).
+- **g2 RIDER 2's INVARIANCE (pin-freeze):** E-c2 ported — publication
+  tick moves nothing; publish-at-k vs always-available byte-identical
+  owned odds (castDoubleToWord64 equality over agentMeta).
+- **g3 THE DUTCH BOOK (pin-freeze):** E-c3 ported — N=100 seeded
+  refuser cases, book payoff |p_shipped − p_book| < 1e-13 (the
+  measured-born gate, 2.220e-16 the measurement), >=1-denoting scope
+  printed on the row's face.
+- **g4 THE DRIVER (implementation-red):** the host executable driven
+  as a subprocess over a scripted session — hello (namespace incl.
+  an unpublished writable name; disjointness honored) -> ok reply
+  with models/namespace_bits; decision tick -> act/p1/entropy_bits;
+  evidence tick -> observed/loss_bits; silent tick -> ok; a
+  disjointness-violating hello -> {"error": ...}. EVERY numeric reply
+  cross-checked TWO-ROUTE against the in-process engine through
+  public verbs (the capture discipline: no golden is hand-written;
+  the wire value must equal the verb value). RED today: no executable
+  exists (the window).
+- **g5 THE PROSE GATES (freeze-mechanical):** the spec/wire/HOSTS_PLAN
+  amendments land at the freeze (manifest rows re-hash); no runtime
+  row — the boundary-audit's grep rows cover the texts.
+
+Seeded-defect demonstrations owed at SAT time (the pin-freeze
+clause): g1 red under a wrong-width charge; g2 red under a
+mid-run re-enumeration; g3 red under an unrenormalized mixture.
+
+### §14. The driver design (D-c7, for the sitting)
+
+`proplang-host` (new cabal executable; main = Host.hostMain): a
+stdin/stdout line loop speaking membrane-wire v1 as amended through
+step 7 — hand-rolled canonical JSON (the wire's own byte-pin
+discipline; no new dependency enters the frozen build plan), IO
+confined to Host.hs (gate 3), the engine reached ONLY through the
+public verbs (enumerateSentencesIn, predictive, observe, the
+exogenous-read fold via runMembrane's own arms is NOT reused — the
+driver owns its loop per the wire's n=1 caution at :58-62, so the
+one-tick step is composed from predictive + observe + the public EU
+arithmetic, exactly the g2 bridge's public route, which test-stream
+g2 already pins extensionally to the loop).
+Decision-tick choice shape (the step-5 note's names-and-grids read):
+`{"act": {"<name>": <value>, ...}, "p1": ..., "entropy_bits": ...}`.
+Scope: ONE session, ONE world at a time, no echo, no utility
+profiles beyond the frozen table form — the MINIMAL conformant host;
+everything else stays HOSTS_PLAN territory.
+
+### §15. Where this stops
+
+The sitting: D-c2 (wire note as drafted), D-c5 (Pilot split: named
+re-open of three frozen import lists vs reversal — YOUR CALL), D-c6
+(spec + HOSTS_PLAN as drafted), D-c7 (driver scope as designed),
+D-c8 (namespace_bits unchanged — confirm), plus the g1-g5 oracle
+shape and the 1e-13 gate. Then: oracle build + SAT/red transcripts,
+your freeze key (unify-freeze-r0), implementation (the driver), the
+as-built.
