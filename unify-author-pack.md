@@ -203,3 +203,109 @@ flag-faithful, red attributed), and the freeze checklist assembles
 (spec + HOSTS_PLAN + wire amendments, the stanza, the manifest
 extension, prefreeze-lint pre-tag, stream of custody unchanged).
 Stops: the sitting's rulings (D-c1..D-c8) and the freeze key.
+
+---
+
+## Part II — the evidence, executed (E-c1/E-c2/E-c3, R-D21 prototypes)
+
+### §7. E-c1: VALUE PRICING IS ALREADY LIVE (the D-c1 answer, measured)
+
+The probe (scratch step7/Ec1.hs): the step-6 g4 population route —
+`enumerateSentencesIn (mkNamespace {t,z,a}) [("z",zGrid),("a",g)]
+fragFull` with the shipped aGrid (|2|) vs one appended point (|3|);
+grids copied byte-wise from test-stream/Stream.hs:90-94 (R-D20-i,
+frozen test main unimportable). Transcript verbatim:
+
+```
+count |aGrid|=2: 1529   |aGrid|=3: 1601
+a-guard sentences: 144 vs 216
+non-a sentences:   1385 vs 1385
+non-a bits identical: True
+distinct a-guard bits |2|: [14.92481250360578]
+distinct a-guard bits |3|: [15.509775004326936]
+lg3-lg2 = 0.5849625007
+```
+
+**Reading (the first pre-stated case in §5, exactly):** the a-guard
+charge moves by lg 3 − lg 2 = 0.5849625007 AT THE THRESHOLD LEAF and
+nowhere else (all 1385 non-a sentences bit-identical); the population
+grows by exactly 72 per grid point (one guard family per threshold).
+**"A value is drawn from its grid at log₂|grid| like any constant"
+has been the shipped arithmetic since the step-6 freeze** — the one
+constant door (the declared trees' threshold leaf) already prices it.
+D-c1 answer: STEP 7 ADDS NO ARITHMETIC. It owes (a) the PINS — the
+first assignment-priced oracle rows, which step 6's R-C4 obligation
+forbade and this step's charter demands; (b) the PROSE — the M5
+repeal amendments. R-C4 is satisfied by seven adding NOTHING: the
+value never re-prices because it was never unpriced.
+test-stream g4's "mention prices only" title survives as TRUE on its
+own terms: its charge row already pins the whole tree INCLUDING the
+value leaf; what it declined to do (per the obligation) was assert a
+row ABOUT assignment pricing — that assertion is this step's.
+
+### §8. E-c2: RIDER 2's fixture prototyped — byte-stable, both forms
+
+The prototype (scratch step7/Ec23.hs, ec2 half): population over the
+COMPLETED namespace {t, a} (1313 sentences), a world publishing the
+affordance at t=5 with the publication tick SILENT, vs the same world
+with the menu available from t=0; PilotIdle (wait) both. Transcript:
+
+```
+E-c2 population over completed ns {t,a}: 1313 sentences
+  (i) publication tick (silent) moves nothing: True
+  (ii) owned odds byte-identical, publish-at-5 vs always: True
+  (iii) per-sentence prices immutable (enumeration-time data,
+        same list both routes by construction): True
+```
+
+Both halves of the author's fixture hold BIT-FOR-BIT on the shipped
+engine: the publication event itself moves no owned odd (odds move
+only through observe — ruling 4's silence clause doing its job on the
+action side), and publication timing is unobservable in owned odds
+when the namespace is completed at handshake. The invariance RIDER 2
+bought by immutability is real and now has an executable form for the
+oracle (D-c3 discharged as designed; the oracle row ports this shape).
+
+### §9. E-c3: the Dutch-book identity — holds at one ulp; the gate must be born from the measurement
+
+The prototype (Ec23.hs, ec3 half): 100 seeded cases, 6 sentences each
+(stateless Bernoulli fixtures copied from test-sentence/Sentence.hs:
+208-235 with provenance), refuser masks via lawful-until-cutoff
+guards, weights trained on six observed ticks, query at t=8 where
+1-4 sentences refuse per case. Route 1 = shipped `predictive` (the
+D8 read); route 2 = hand-renormalized mixture over denoting sentences
+through public verbs (singleton agents for per-sentence predictives
+and refusal detection). Transcript:
+
+```
+E-c3 100 seeded cases, 6 sentences each, refusers at query tick
+  refuser-count histogram (0..5): [0,26,52,20,2,0]
+  max |book payoff| (shipped predictive vs hand renorm): 2.220e-16
+  bit-identical in all 100 cases: False
+```
+
+**The identity holds to one ulp and NOT to the bit** — the two routes
+associate their float sums differently (the step-2 optlaw territory).
+Consequence for the oracle row (the CL-4 doctrine: a gate is born
+from a measurement, never a round guess): the Dutch-book row gates at
+**1e-13** (three orders of margin over the measured 2.220e-16 across
+100 cases), NOT at ==. The book-payoff form is the right executable
+statement: |p_shipped − p_book| is literally the guaranteed profit of
+the two-bet portfolio an adversary could buy against incoherent odds;
+the row asserts no such portfolio exists beyond float dust.
+Scope note for the row: every case keeps >= 1 denoting sentence; the
+all-refusers query (conditioning on a null event) is out of scope and
+a separate designed row may PIN the engine's behavior there if the
+sitting wants it (the wire never asks it today).
+
+### §10. The register after Part II
+
+D-c1 ANSWERED (no arithmetic; pins + prose). D-c3 DISCHARGED as
+designed (E-c2 the executable form, bit-exact). D-c4 DESIGN SETTLED
+(book-payoff form, 1e-13 measured-born gate, >= 1 denoting scope).
+Remaining for the sitting: D-c2/D-c8 (the wire sentences — drafted
+prose in Part III), D-c5 (the Pilot split's frozen-import cost — YOUR
+CALL between the named re-open and reversal), D-c6 (M5 amendment
+scope — spec + HOSTS_PLAN vs HOSTS_PLAN alone), D-c7 (the driver's
+shape). Next: Part III — the oracle draft (test-unify/), the wire and
+spec amendment texts, the driver design, SAT/red transcripts.
