@@ -1,0 +1,205 @@
+# unify-author-pack.md — step 7: pricing unified, M5 repealed
+
+The builder's author pack for AGENT_PLAN §7 step 7, opened 2026-07-17
+at the step-6 close (stream-freeze-r0 06a8424 / r1 235e81b, both
+verified; twelve suites green; manifest 76/76; gates 1-7 PASS) under
+the standing pacing order. Oracle directory (drafted later this
+increment): `test-unify/`.
+
+## Part I — scoping, census, the register
+
+### §1. The step, verbatim (controlling texts, with provenance)
+
+**The step row** (AGENT_PLAN.md:950-972): *"**Pricing unified.** M5
+repealed; the action space's VALUES enter the prior (a value drawn
+from its grid at log₂|grid|); the wire sentence lands (membrane-wire.md
+gains the requirement that the hello's namespace include writable
+names not yet in the menu). RIDER 2's pin — namespace membership is
+declared at handshake and IMMUTABLE (publication toggles availability,
+not membership) — BINDS FROM STEP 6 (ruled 2026-07-15, decision 7:
+mention prices at 6, value prices here). Fixture: publish an
+affordance mid-episode; existing posterior odds byte-stable."* Plus
+the three opening-checklist rows added at the step-6 sitting
+(:959-972): (i) THE EXECUTABLE DUTCH-BOOK CHECK lands here (D8's
+predictive coherence under refusers plus pricing; an executed row over
+random refuser patterns, never haddock prose); (ii) THE PILOT SPLIT
+part (ii) (the scripted arms move out of src to a test-side harness);
+(iii) D-b2's DISJOINTNESS SENTENCE joins the wire touch.
+
+**The repeal's ground** (AGENT_PLAN.md:777-784, §6): *"One namespace.
+A writable name is mentioned at log₂|ns| like any name; a value is
+drawn from its grid at log₂|grid| like any constant. M5 is repealed —
+it carved the action vocabulary out of a law whose own rationale
+covers it ('a richer world makes every sentence about it more
+surprising. This is a semantic commitment'), to protect a 'fourth
+flow' that is nowhere derived. Publishing an affordance now costs the
+prior something. brief §5 is satisfied on the action side for the
+first time."*
+
+**RIDER 2 in full** (AGENT_PLAN.md:786-830): the author's
+path-dependence trap quoted (*"two identical sentences enumerated
+either side of a publication carry different priors ... implementers
+will freeze enumeration-time prices and ship the incoherence M5 was
+clumsily guarding against"*); the pin (*"the ideal prior is over the
+COMPLETED namespace, owned posterior odds are invariant under
+mid-episode publication, new sentences price at the enlarged
+alphabet"*); why naive invariance fails (*"if |ns| grew mid-episode,
+two carried sentences with different mention-counts would take
+different dl increments — invariance is not automatic; it is bought
+by making the namespace immutable"*); the wire consequence (*"the
+hello's namespace must include every writable name, including those
+not yet in the menu. A world may not conjure a name mid-episode"*);
+the fixture (*"publish an affordance mid-episode; existing posterior
+odds byte-stable"*).
+
+**M5's own record**: approved load-bearing at MEMBRANE_PLAN.md:34-38
+(*"Namespace = Get-mentionable feature names only ... A later
+increment must not unify them"*), restated normatively at
+typed-port-spec.md:244-248 (*"no later increment may unify them"* —
+THE CLAUSE THIS STEP FALSIFIES), indicted at AGENT_PLAN.md:49
+(*"asserted four times and derived zero times"*), repeal stated at §6.
+The frozen-prose amendment schedule (AGENT_PLAN.md:1060-1072) assigns
+`HOSTS_PLAN.md (M5)` to step 7 BY NAME (the increment-A sketch comment
+at HOSTS_PLAN.md:527-528 still says "ruling M5's three-surface
+separation preserved").
+
+**The host-less window's exit — provenance verified** (the memory
+claim checked against the corpus, per the recall discipline): the
+window was STATED at the step-3 demolition
+(sentence-author-pack.md:344: *"from this freeze until the step-5/7
+host rework, the repo has no runnable host"*) and step 5 spent its
+half (actions-author-pack.md:176: *"the host-less window persists (no
+driver returns until 7)"*). So the exit IS step-7 scope, owned by the
+signed pack records — NOT by HOSTS_PLAN (whose increment H is the OLD
+roadmap's already-executed boundary; HOSTS_PLAN.md contains no
+host-less-window text; the Explore sweep's contradiction note is
+CORRECT that HOSTS_PLAN does not own this). Host.hs today is 48 lines:
+`draw` and `unitSample` only (gate 3: IO lives there alone); the cabal
+has NO executable stanza (the govhost tombstone comment at
+proplang.cabal:138).
+
+### §2. What the step is, in one paragraph
+
+One priced surface. The namespace law's own rationale covers the
+action vocabulary, so the carve-out (M5) dies in prose exactly where
+it already died in arithmetic: since step 6 the namespace includes
+writable names (mention prices bound there), and since step 6 an
+action-guard's threshold already draws from the action's grid through
+the one constant door (test-stream g4 pins that charge tree). Step 7
+makes the VALUE half normative and pinned — a value drawn from its
+grid at log₂|grid| like any constant, an assignment-priced oracle row
+now OWED where step 6's obligation forbade it — lands the wire's two
+sentences (completed namespace incl. unpublished writables;
+feature/assignment disjointness), executes RIDER 2's byte-stability
+fixture and the Dutch-book coherence row, amends the falsified M5
+prose (spec + HOSTS_PLAN), splits the scripted pilots out of src if
+the frozen-import collision permits, and returns a runnable host (the
+window's exit). The likelihood side does not move; the fragment does
+not move; no alphabet motion is expected (D-c1 verifies).
+
+### §3. The falsification-wave census (what moves, what is at risk)
+
+**Expected to MOVE (unfrozen or freeze-boundary):**
+- `typed-port-spec.md:244-248` — the M5 normative clause ("no later
+  increment may unify") is FALSIFIED at this step: amend-at-the-step-
+  that-falsifies (the ruled discipline, AGENT_PLAN:1060). Manifest
+  event.
+- `HOSTS_PLAN.md:527-528` — the scheduled M5 amendment (BY NAME on
+  the amendment schedule). Manifest event.
+- `membrane-wire.md` — the hello sentence (namespace includes every
+  writable name incl. not-yet-in-menu; :40-42 today says only "cover
+  every guard name"), the D-b2 disjointness sentence, and the
+  :111-128 step-5 note's "Value pricing ... binds at step 7" promise
+  redeemed. Manifest event.
+- `src/PropLang/Host.hs` + a cabal executable stanza — the driver
+  returns (gate 3: the polling loop lives in Host.hs only).
+- `test-unify/` — the increment oracle (new).
+- MEMBRANE_PLAN.md is NOT in the manifest (historical document); its
+  M5 rows get no edit — the repeal supersedes by tag, as the
+  test-membrane header (frozen) already anticipates (":70-71 the M5
+  guardian RETIRED ... M5 is repealed only [at 7]").
+
+**Frozen pins AT RISK (each verified this scoping):**
+- test-pricing's bit-exact rows (Pricing.hs:171-192) compare hypBits
+  against RECONSTRUCTED constCharge/walkCharge/guardCharge trees —
+  both routes read the same declared builders, so they move together
+  or not at all: safe iff any value term lands IN THE DECLARED TREES
+  (the step-4 mechanism honored) or nowhere. A value term added
+  enumeration-side only would red them — forbidden shape.
+- Population pins 1241/1529/1169 (test-membrane:50/:426/:490,
+  test-stream g4 1529, Enumerate haddocks :341/:347): move only if
+  the fragment gains productions. Expected NO fragment motion (D-c1).
+- prodTable pins 19/2/1/2/6/1 (test-pricing:200-206): move only on
+  alphabet motion — P5 single-site clause fires if so. Expected NO.
+- test-stream g4's TITLE says "mention prices only" and its charge row
+  pins hypBits == the guardCharge tree: if step 7 adds a value term to
+  action-guard charges, the row stays green ONLY if the term is in the
+  tree (both routes move) — but the TITLE would then be a frozen lie.
+  E-c1 measures whether any priced quantity is already |menu-grid|-
+  sensitive today (if yes, value pricing is ALREADY LIVE through the
+  one mechanism and 7 owes only pins + prose, no arithmetic).
+- THE PILOT SPLIT (ii) IS NOT FREE (census finding): PilotIdle /
+  PilotThreshold are constructed by THREE frozen oracles via
+  `import PropLang.Membrane` — test-actions/Actions.hs:144-155,
+  test-membrane/Membrane.hs:240-341 (PilotIdle throughout),
+  test-stream/Stream.hs:111 (cPilot = PilotThreshold ...). Moving the
+  constructors out of PropLang.Membrane breaks frozen compilation.
+  Options at the sitting (D-c5): (a) a NAMED RE-OPEN amending three
+  frozen import lists (mechanical, ASCII-re-open class); (b) the type
+  stays in src with the fence comments as the permanent answer (the
+  step-6 split ruling reversed on measured cost); (c) re-export shim —
+  REJECTED as dishonest (src cannot import test-side; a shim inverts
+  the dependency or fakes the move).
+- test-writeup/check.sh:103-104 pins OLD spec table rows (STDNAME
+  log2 7, UTIL USay) — a DATED red-by-design instrument (recorded at
+  the step-6 boundary audit); the step-7 spec amendment must not
+  touch the rows it greps (it greps the stdlib table, not the
+  namespace law) — verify at drafting.
+- The M5 guardian rows: ALREADY RETIRED at the step-5 port
+  (test-membrane header :70-71) — confirmed by grep, no live row
+  asserts menu growth /= namespace growth.
+
+**The likelihood side, the enumerator, the scoring rule: UNTOUCHED.**
+Step 6's exogenous-read pin, the append geometry, and all step-6
+behavioral rows are expected byte-stable (no feature-stream change).
+
+### §4. The under-determination register (D-c1..D-c8)
+
+| id | question | builder recommendation |
+|---|---|---|
+| D-c1 | THE VALUE-PRICE SITE: what concretely changes in the arithmetic? §6 says "a value is drawn from its grid at log₂|grid| like any constant" — and the one mechanism ALREADY prices every uttered grid constant that way (MkC via lgSizeC; the g4 action-guard threshold drew from aGrid at step 6). | E-c1 measures it: if |menu grid| already moves hypBits through the shipped mechanism, then value pricing is ALREADY LIVE, step 7 adds NO arithmetic, and the oracle's job is to PIN it (the first assignment-priced rows, now owed) and repeal the prose. If E-c1 finds any site where an action VALUE is priced OFF-mechanism (or not at all where §6 says it must be), that site is the wave. |
+| D-c2 | the wire touch's exact sentences | drafted in Part II: hello bullet gains "must include every writable name, including names not yet in any published menu — a world may not conjure a name mid-episode" (RIDER 2's own words); a disjointness bullet on the tick (D-b2's ruled ground quoted); the :111-128 note's promise marked redeemed. Delegated prose at the freeze (R-D22). |
+| D-c3 | the mid-episode publication fixture's shape | a two-phase PureWorld: menu = [] for t<k, menu = [(a, grid)] for t>=k, namespace declared {t, z, a} from tick 0; the pin: every owned posterior odd (agentMeta weights, per-sentence hypBits) BYTE-IDENTICAL between a run with publication at k and a run with the menu present from t=0 but never chosen... [exact form in Part II; the invariance is by-construction under RIDER 2 — the row makes it enforced]. |
+| D-c4 | the executable Dutch-book form | D8's read as a COHERENCE identity, property-tested: for random populations and random refuser masks, predictive-at-features == the Bayes-conditioned mixture over non-refusers (renormalisation local to the query, belief state untouched), plus normalisation/additivity of the resulting book — the "no sure-loss portfolio" statement operationalized as the odds identity that de Finetti's theorem makes equivalent. QuickCheck rows over the public verbs, R-D21 transcript. |
+| D-c5 | Pilot split (ii): (a) named re-open of three frozen import lists, (b) reversal on measured cost, (c) shim | (a) — the move is right (the forgetter asymmetry), the cost is mechanical and the ASCII-re-open precedent covers the class; but the register presents (b) honestly: three frozen files is a wider re-open than seven strings. THE AUTHOR'S CALL. |
+| D-c6 | M5 amendment scope: schedule names HOSTS_PLAN only; the spec's :244-248 clause is falsified here | amend BOTH (the amend-at-the-step-that-falsifies discipline is the ruled ground; leaving a falsified normative clause frozen is the R6 disease); MEMBRANE_PLAN untouched (unfrozen, historical). |
+| D-c7 | the returning driver's shape | a minimal conformant agent-host: `proplang-host` executable, stdin/stdout, membrane-wire v1 (hello -> ok+namespace_bits+models; ticks -> p1/entropy_bits/act; evidence -> observed/loss_bits), IO confined to Host.hs (gate 3), the engine reached only through the public verbs; the oracle drives it as a subprocess over a scripted session with byte-pinned replies (the wire's own §168-169 pin discipline). |
+| D-c8 | does the wire's namespace_bits change meaning? | NO — since step 6 the namespace includes writables (RIDER 2 bound); the hello sentence makes the WORLD-side obligation explicit. namespace_bits = log2 |ns| unchanged; the conformance text tightens, the arithmetic does not move. |
+
+### §5. The evidence programs (oracle-phase, R-D21, before any ruling)
+
+- **E-c1 (the value-price site, measured):** through the SHIPPED
+  mechanism, enumerate the step-6 g4 population at aGrid sizes 2 and
+  3 (same names, same declared namespace) and diff every priced
+  quantity (hypBits per sentence, population count, nsB). Pre-stated
+  readings: if action-guard hypBits move by exactly lg(3)-lg(2) at
+  the threshold leaf and nothing else moves, VALUE PRICING IS ALREADY
+  LIVE through the one constant door — D-c1 answer (no arithmetic,
+  pins only). If nothing moves, the value price is OWED as new
+  arithmetic (its site: the declared trees, never enumeration-side).
+  If anything moves OFF the declared trees, stop-and-report.
+- **E-c2 (RIDER 2's fixture, prototyped):** the D-c3 two-route
+  byte-compare on a throwaway world pair.
+- **E-c3 (the Dutch-book identity, prototyped):** the D-c4 identity
+  executed once against a prototype refuser population (masks drawn
+  seeded), transcript to Part II.
+
+### §6. What runs next
+
+E-c1/E-c2/E-c3 on throwaway prototypes; Part II records their
+transcripts verbatim; then the register goes to the sitting with the
+evidence, the oracle drafts under the rulings (SAT overlay,
+flag-faithful, red attributed), and the freeze checklist assembles
+(spec + HOSTS_PLAN + wire amendments, the stanza, the manifest
+extension, prefreeze-lint pre-tag, stream of custody unchanged).
+Stops: the sitting's rulings (D-c1..D-c8) and the freeze key.
