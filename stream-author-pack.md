@@ -612,3 +612,208 @@ name-blindness pins), satisfiability transcripts per R-D21 (overlay
 form, flag-faithful), stanza draft — brought to the sitting with this
 pack per the step-5 precedent. The sitting's rulings and your key are
 the only stops.
+
+---
+
+## Part III — the oracle draft, its transcripts, and the author's mid-drafting note
+
+### §15. The author's note (received at this drafting), dispositioned
+
+The note, verbatim: *"Two enforcement soft spots, both on the decision
+side: EU/VoI behavior is validated by pins on self-authored worlds
+rather than universal properties (VoI non-negativity, utility
+affine-invariance, and generative argmax-optimality are checked
+nowhere), and Dutch-book coherence is grounding prose, not an executed
+check. These would be cheap future oracle rows."*
+
+Disposition, by where each row binds:
+
+- **Utility affine-invariance** and **generative argmax-optimality**
+  land NOW, in this step's oracle (g6): both are universal properties
+  of exactly the scoring rule 6b just selected, stated as QuickCheck
+  properties over the PUBLIC scoring arithmetic (random utilities,
+  random affine maps, 100 cases each) — and composed with g2's bridge
+  row (runMembrane's choice == that public arithmetic, extensional)
+  they hold of the loop's own decisions, not merely of a parallel
+  formula.
+- **VoI non-negativity** — registered to STEP 9's boundary: the VOI
+  verbs are deleted there in favor of the Expect-composition, and the
+  property belongs to the surviving composition (pinning a verb the
+  same increment deletes would be a pin written to die). Recorded on
+  the step-9 opening checklist by this pack (the retire-until-N
+  discipline's sibling: a scheduled row, not a comment).
+- **The executed Dutch-book check** — registered to STEP 7 (pricing
+  unified, M5 repealed): that is the boundary where odds and prices
+  become the increment's subject, and where D8's coherence ground
+  ("a deficient mixture prices a Dutch book") should become an
+  executed row over random refuser patterns rather than haddock
+  prose. Recorded for step 7's opening checklist likewise.
+
+### §16. The oracle draft (test-stream/, ten rows, six groups)
+
+Drafted on the register's recommended rulings and 6b's surviving rule;
+CONTINGENT on the sitting. No new library exports were needed — the
+step-6 surface is a behavior change behind the existing exports, so
+there is no Phase-A type-surface edit at all; the oracle compiles
+against the SHIPPED library and is runtime-red on behavior (the
+simplest oracle shape any step has had).
+
+- **g1 the append** (D-b1): runMembrane's per-tick losses AND acts ==
+  an IN-ROW second route (a hand fold through public verbs observing
+  at `feats ++ c`) on the re-declared C-world — no captured golden
+  anywhere in the row; plus the ns0 name-blindness continuity row
+  (E-b1's mechanism, now enforced by a frozen row forever).
+- **g2 the scoring rule** (D-b3): after a 100-tick sticky-scripted
+  training phase (shared, public verbs), runMembrane's 60 PilotEU
+  choices on an action-RESPONSIVE world == the public exogenous-read
+  arithmetic (per-candidate predictive at `feats ++ candidate`,
+  current weights, the EU verb, the Argmax tie discipline), tick for
+  tick. Extensional and enforced: an evidential implementation fails
+  this row (conditioning the trained state on the candidate moves the
+  a-family's weights; the fold's choices don't).
+- **g3 the self-signature returns** (D-a6/D-b6): the C-world with its
+  action in the stream — MAP mentions `('get', 'a')` AND the
+  action-mentioning FAMILY carries the posterior majority (> 0.5,
+  measured 0.600); the exogenous control's MAP is byte-equal to the
+  frozen changepoint render (t1RenderGoldenM, copied with provenance
+  test-membrane/Membrane.hs:172-173 per R-D20-i) with the a-family
+  DEAD (< 1e-12, measured 5.2e-21).
+- **g4 RIDER 2, fixture-side**: the completed-namespace population is
+  1529 (the retired C-world's own arithmetic, now under a writable
+  name); an action-guard's hypBits == chargeBits of the DECLARED
+  guardCharge tree (both sides imported — R-D20-i with zero copies);
+  and the obligation stands negatively: NO assignment-priced row
+  exists in the suite.
+- **g5 silent ticks** (D-b7): a 20-tick world silent on odd ticks —
+  silent losses are exactly 0, observed ticks score at the appended
+  features (== a fold that skips the silent ones).
+- **g6 the decision-side universal properties** (§15): affine
+  invariance and argmax-optimality, 100 QuickCheck cases each over a
+  deterministic 40-tick-trained state.
+
+Fixtures: test-stream/gen_fixtures.py (seed 20260716 inline), sanity
+line printed and reproduced in the oracle's fixture banner
+(n(a=1.5)=75/160, P(y=1|a=1.5)=0.880, P(y=1|a=0.5)=0.165, action
+crossings=76 — the action is not a cheap function of time). The
+control stream is the frozen test/Streams.hs shifted160, IMPORTED
+(probe-discipline). Stanza: test-stream/stanza.cabal.draft (tasty +
+tasty-quickcheck; hs-source-dirs reaches test/ for Streams only).
+
+### §17. The satisfiability transcript (R-D21, overlay form, flag-faithful)
+
+The overlay: a prototype PropLang.Membrane wearing the real module's
+name, carrying exactly the two owed edits (the append at observe;
+per-assignment exogenous-read scoring in interpretPilot's PilotEU
+arm). The oracle's exact text compiled against it UNCHANGED, under the
+stanza's exact flag set (-Wall -Werror -Wincomplete-patterns
+-Wincomplete-uni-patterns — the step-5 flag-faithful amendment
+honored), then ran:
+
+```
+stream — actions in the feature stream (step 6)
+  g1 the append: observe sees feats ++ assignment
+    the tick's losses ARE the appended-features losses (in-row second route):                        OK (4.47s)
+    name-blindness continuity: an ns0 agent's losses ignore the append (E-b1's mechanism, enforced): OK (2.84s)
+  g2 the scoring rule: exogenous-read, pinned to the public arithmetic
+    runMembrane's choices == per-assignment predictive EU at current weights, every tick:            OK (3.44s)
+  g3 self-signature (C): the action-in-stream story wins only when it should
+    C: MAP mentions ('get', 'a'), decisively:                                                        OK (1.68s)
+    C0 control: the exogenous story wins, BY STRUCTURE:                                              OK (1.59s)
+  g4 RIDER 2: the completed namespace, mention prices only
+    the 3-name population is 1529 (9 + 8 + (16+3+2)*72):                                             OK
+    an action-guard's charge IS the declared tree through the one mechanism:                         OK
+  g5 silent ticks: nothing folds without an observation
+    silent ticks lose 0 bits; observed ticks score at the appended features:                         OK (0.25s)
+  g6 decision-side universal properties
+    utility affine-invariance: argmax(alpha*u + beta) == argmax(u), alpha > 0:                       OK (2.52s)
+      +++ OK, passed 100 tests.
+    generative argmax-optimality: the choice attains the max, first-listed among ties:               OK (3.35s)
+      +++ OK, passed 100 tests.
+
+All 10 tests passed (20.13s)
+```
+
+Every asserted quantity in every row executed once against the
+prototype; comparison rows print both sides on failure and force both
+sides to normal form through == on fully-evaluated Double lists (the
+red transcript below witnesses full-value printing on the frozen
+side).
+
+### §18. The red run (the same text against the SHIPPED library) — 4 red / 6 green, every red attributed
+
+```
+grep of the verdict lines:
+    the tick's losses ARE the appended-features losses:               FAIL
+    name-blindness continuity (ns0):                                  OK
+    runMembrane's choices == per-assignment predictive EU:            FAIL
+    C: MAP mentions ('get', 'a'), decisively:                         FAIL
+    C0 control: the exogenous story wins, BY STRUCTURE:               OK
+    the 3-name population is 1529:                                    OK
+    an action-guard's charge IS the declared tree:                    OK
+    silent ticks / observed ticks at appended features:               FAIL
+    utility affine-invariance:                                        OK (100 cases)
+    generative argmax-optimality:                                     OK (100 cases)
+```
+
+Attribution, row by row (the full transcript with both sides printed
+in full is the scratch red-transcript; its diagnostic content quoted
+here):
+
+- **g1 RED at exactly t=5** — the first 5 losses agree bit-for-bit,
+  the divergence begins at the script's FIRST ACTED tick (z_5 = 0.919
+  > 0.5): the red is the append and nothing else.
+- **g2 RED totally and legibly** — the shipped loop waits all 60
+  ticks (scoring the a-trained state at bare features reads the
+  a-guards' else-branch); the fold acts all 60 (per-assignment
+  scoring reads the learned P(y|a=1.5) ≈ 0.9). The exact divergence
+  6b's arithmetic predicted.
+- **g3 RED with the smoking gun**: under the shipped loop the MAP is
+  the Z-GUARD proxy story (`('get', 'z')` at zc 1) — the agent that
+  cannot see its own actions credits the sensor that drove them. The
+  append exists to displace exactly this.
+- **g5 RED at t=14** — the first OBSERVED acted tick (t=5's action is
+  on a silent tick); silent zeros hold under both routes.
+- The six greens are the rows DESIGNED green under both routes:
+  continuity (g1b), the control (g3b), enumeration arithmetic (g4),
+  and the universal properties (g6, public arithmetic only).
+
+### §19. What the oracle phase caught (three row revisions, all pre-freeze)
+
+The SAT/red discipline earned its keep three times in one drafting:
+
+1. **g3's "decisively" bar was wrong in the right way**: the MAP
+   mentions the action but its SINGLE-sentence posterior is 0.384 —
+   the story's mass splits among sibling a-guards. Measured: the
+   a-family carries 0.600 (self) vs 5.2e-21 (control). The row now
+   pins the FAMILY majority — the decisive unit — with the control's
+   family-death bar at nine orders of margin.
+2. **g2's first world could not red**: the script made the action a
+   deterministic function of z, so bare-features scoring proxied
+   per-assignment scoring through the z channel and the row passed
+   against the SHIPPED loop. Redesigned onto an action-responsive
+   world (evidence answers the previous tick's action; sticky blocks
+   make the appended action the only explanation) — red is now total.
+3. **g5's 8-tick window could not red**: every acted tick in the
+   window happened to be silent. Widened to 20 ticks (t=14, 16 are
+   observed acted ticks).
+
+None of these are implementation bugs — they are exactly the class of
+oracle defect ("a red row whose red is assumed, not demonstrated")
+the step-2 clauses were canonized to catch, caught by the clauses.
+
+### §20. Where this stops
+
+Committed in this state: the pack (Parts I–III), test-stream/
+(Stream.hs, gen_fixtures.py, stanza.cabal.draft) — all BUILDER
+DRAFTS, nothing frozen touched, MANIFEST 71/71 intact, the eleven
+frozen suites untouched. The prototypes (overlay, E-b1 harness, 6b
+falsifier) are scratch and die there per R-D21.
+
+The sitting owes: rulings D-b1..D-b7 (§13's sheet — D-b3 now
+evidence-backed by 6b's two transcripts), the §15 dispositions
+(g6-now / VoI-at-9 / Dutch-book-at-7), and the g3 family-mass row
+form (§19.1). Then the freeze: manifest extension over test-stream/
++ the stanza merge under the delegation pattern, and your signed tag
+(likely `stream-freeze-r0`). Implementation after that is the
+overlay's two edits transcribed — the falsifier-before-freeze
+economics one more time.
