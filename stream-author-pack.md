@@ -453,3 +453,162 @@ the 6b verdict; then the oracle draft (test-stream/, runtime-red,
 satisfiability transcripts, stanza draft); then the freeze gate. The
 only stops are the sitting's rulings and your key — per the standing
 pacing order, everything between them proceeds.
+
+---
+
+## Part II — the evidence, executed (E-b1 and 6b transcripts, verbatim)
+
+### §9. E-b1 — the name-blindness two-route: 8/8 IDENTICAL
+
+Prototype: the step-6 loop (observe at `feats ++ c` AND per-assignment
+exogenous-read scoring through the public EU verb, mirroring the
+Argmax evaluator's exact tie discipline) raced against the shipped
+`runMembrane` on every frozen menu-bearing behavioral world plus two
+no-menu controls. One substitution against §5's list: the no-menu
+control is the t3 parity world (predWorld, PilotIdle, 400 ticks,
+drift400 — longer and load-bearing) in place of aWorld, whose fixture
+streams would have needed copying; same class, stronger control.
+Verdict per row = full-trace `==` (every `ttT/ttP1/ttEntropy/ttAct/
+ttLossBits` Double) AND final meta-entropy `==`:
+
+```
+OK   t1 probes world (membrane g1: predWorld+t1Menu, PilotEU util1M, 160, shifted160)  ticks=160  traces==: True  finalMetaEntropy==: True
+OK   B1 world (membrane g3: bWorld, PilotEU (utilB 0.2), 20)  ticks=20  traces==: True  finalMetaEntropy==: True
+OK   B2 world (membrane g3: bWorld, PilotEU (utilB 0.9), 20)  ticks=20  traces==: True  finalMetaEntropy==: True
+OK   tie world (actions g2: predW+tieMenu, PilotEU utilTie, 20, shifted160)  ticks=20  traces==: True  finalMetaEntropy==: True
+OK   all-tied world (actions g2: predW+ea2Menu, PilotEU constU, 3, shifted160)  ticks=3  traces==: True  finalMetaEntropy==: True
+OK   idle world (actions g2: predW+ea2Menu, PilotIdle, 3, shifted160)  ticks=3  traces==: True  finalMetaEntropy==: True
+OK   menuless world (actions g2: predW, PilotIdle, 10, drift400)  ticks=10  traces==: True  finalMetaEntropy==: True
+OK   no-menu control (membrane g1 t3 parity world: predWorld, PilotIdle, 400, drift400)  ticks=400  traces==: True  finalMetaEntropy==: True
+E-b1 VERDICT: 8/8 rows identical — the frozen behavioral rows survive the step-6 loop, measured
+```
+
+The §3 census's survival column is now measured. The pre-stated
+expectation (zero differences, every row) held exactly; the wave is
+what the census said: one src file, five surviving rows, no frozen
+movement.
+
+### §10. 6b, first run — against the r0 criteria as committed at b721bb2
+
+```
+6b — the confounded-payoff falsifier (criteria committed at b721bb2)
+seeds=200  episodes=60 (scripted 10)  ticks/episode=10  phase-2 ticks/seed=500
+
+confound persistence: 0.0% of phase-2 ticks have gap>=0.2 (seed-mean gap ep11=-0.000, ep60=0.000); seeds with NO confounded tick: 200
+evidential : mean phase-2 refrain rate 0.167  mean total regret 83.4
+exogenous  : mean phase-2 refrain rate 0.000  mean total regret 0.0
+evid smoke rate by episode (11..60):
+  0.65 0.66 0.68 0.70 0.73 0.72 0.75 0.77 0.78 0.80 0.80 0.82 0.83 0.84 0.84 0.84 0.85 0.85 0.85 0.85 0.85 0.85 0.86 0.86 0.86 0.87 0.86 0.86 0.86 0.87 0.87 0.86 0.87 0.87 0.87 0.87 0.87 0.88 0.87 0.87 0.87 0.88 0.88 0.87 0.88 0.88 0.87 0.88 0.87 0.88
+confound gap by episode (11..60):
+  -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+N1 (dominated-while-confounded): FAILS (0.0% of seeds; bar >=90%)
+N2 (rescue): FAILS (e*=None; bar e*<=40 AND mean total regret 83.4 <= 100)
+N3 (stop-and-report): does not fire
+N4 (exogenous-read vindicated): HOLDS (100.0% of seeds at <=0.1/tick; bar >=90%)
+
+VERDICT: the surviving rule(s) go to the sitting with this transcript.
+```
+
+The run exposed the r0 indicator's label-swap symmetry (the §6 r1
+amendment records the theorem and the seed-0 diagnostic: truth and
+mirror at 0.4483 each, signed gap +0.0000, E[|δ1−δ0|] = 0.8000,
+cross-moment +0.2276). N1 was vacuously unfireable; the behavior
+itself already showed the pathology (refrain 16.7%, regret 83.4 vs
+0.0). The amendment (16de2c0) swapped ONLY the indicator, committed
+before the re-run.
+
+### §11. 6b, r1 run — against the amended indicator, all else byte-unchanged
+
+```
+6b — the confounded-payoff falsifier (criteria committed at b721bb2)
+seeds=200  episodes=60 (scripted 10)  ticks/episode=10  phase-2 ticks/seed=500
+
+confound persistence: 97.8% of phase-2 ticks have kappa>=0.06 (seed-mean kappa ep11=0.218, ep60=0.107); seeds with NO confounded tick: 0
+evidential : mean phase-2 refrain rate 0.167  mean total regret 83.4
+exogenous  : mean phase-2 refrain rate 0.000  mean total regret 0.0
+evid smoke rate by episode (11..60):
+  0.65 0.66 0.68 0.70 0.73 0.72 0.75 0.77 0.78 0.80 0.80 0.82 0.83 0.84 0.84 0.84 0.85 0.85 0.85 0.85 0.85 0.85 0.86 0.86 0.86 0.87 0.86 0.86 0.86 0.87 0.87 0.86 0.87 0.87 0.87 0.87 0.87 0.88 0.87 0.87 0.87 0.88 0.88 0.87 0.88 0.88 0.87 0.88 0.87 0.88
+confound gap by episode (11..60):
+  0.22 0.22 0.21 0.21 0.20 0.19 0.18 0.17 0.16 0.15 0.14 0.14 0.13 0.13 0.13 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.11
+
+N1 (dominated-while-confounded): FAILS (0.0% of seeds; bar >=90%)
+N2 (rescue): FAILS (e*=None; bar e*<=40 AND mean total regret 83.4 <= 100)
+N3 (stop-and-report): does not fire
+N4 (exogenous-read vindicated): HOLDS (100.0% of seeds at <=0.1/tick; bar >=90%)
+
+VERDICT: the surviving rule(s) go to the sitting with this transcript.
+```
+
+Sitting-grade distribution diagnostics (same run):
+
+```
+evidential confounded-tick refrain rate over seeds: min 0.044  median 0.178  mean 0.171  max 0.317
+seeds with rate >= 0.5: 0 / 200
+evidential per-seed total regret: min 13  median 89  max 112
+```
+
+### §12. The builder's read (the verdict, and what it is not)
+
+**What the criteria say.** The confound PERSISTS for essentially the
+whole run (κ ≥ 0.06 on 97.8% of phase-2 ticks; seed-mean κ decays
+0.22 → 0.11 and plateaus — it never dies). Against that persistent
+confound: N1 FAILS (no seed's confounded-tick refrain rate reaches
+even 0.35, against the 0.5 bar — evidential pays a steady leak, not
+domination); N2 FAILS on its rescue leg (the smoke rate asymptotes at
+~0.88 and never reaches 0.95 — THERE IS NO e*; the regret leg alone,
+83.4 ≤ 100, cannot carry it); N3 therefore does not fire; N4 HOLDS at
+full strength (exogenous-read pays ZERO regret in 100% of 200 seeds).
+Outcome (b) of §6: the surviving rule goes to the sitting.
+
+**What the measurement showed beyond the criteria (observations, not
+adjudication).** RIDER 3's mechanism is real and now has numbers: the
+back-channel produces sustained news-managing refrains — the
+evidential agent re-pays the fresh-episode transient EVERY episode
+(~1.2 refrain-ticks per 10, forever), and the asymptotic defence
+("the posterior arbitrates, exploration escapes") measurably fails as
+an escape: no exploration pressure exists in the myopic argmax, the
+confound self-sustains partly through the agent's own
+disposition-scored actions, and the rescue never arrives. Evidential
+was not DOMINATED at the pre-stated bar — but it has nothing to
+recommend it in this world class: it can only lose here (0 seeds
+where it beats exogenous-read; median 89 regret against uniform 0),
+and it is inexpressible in the shipped fragment anyway (D-b3's
+engine-fact). The falsifier did not convict evidential of
+catastrophe; it convicted it of being strictly worse, permanently,
+while the rule the engine already speaks was exactly right.
+
+**The builder's recommendation for D-b3, now evidence-backed:** pin
+EXOGENOUS-READ as step 6's scoring rule — per-assignment predictive
+at the D8 read (the candidate as feature input; meta and latents at
+current weights; conditioning happens only at observe). The pin is
+extensional and oracle-borne: the step-6 oracle's behavioral rows are
+computed under this rule, and any future rule change moves pinned
+anchors — stop-and-report by construction. RIDER 3's OPEN status
+resolves to: A6 stands epistemic; "no do()" is now MEASURED policy at
+this boundary, not a definition — the falsifier and both transcripts
+are the provenance, and the door stays open exactly as §6 outcome (c)
+wrote: any future rule needing action-emission productions is an
+alphabet question, priced, at a named boundary.
+
+### §13. The decision sheet (the sitting's rulings, each with its evidence)
+
+| ruling | question | recommendation | evidence |
+|---|---|---|---|
+| D-b1 | tick geometry | observe at `feats ++ c`; trace records pre-choice | E-b1 8/8 under exactly this geometry |
+| D-b2 | append order / collisions | world-first; disjointness = wire text at 7 | design argument §4 (CL-1-at-the-echo); behavior identical for conforming worlds |
+| D-b3 | THE SCORING RULE | **exogenous-read** (the D8 shape) | 6b r1: N4 100%, evidential 0-for-200 with no rescue; both transcripts |
+| D-b4 | scoring surface | options-as-data; no alphabet change | §4; E-b1 ran this shape through the public EU verb |
+| D-b5 | RIDER 2 at 6 | fixture-side; NO assignment-priced oracle row | AGENT_PLAN:921-923 (obligation, not preference) |
+| D-b6 | g4Self return | C-world re-declared, one writable name, control intact, rows in test-stream/ | 2f524e3 provenance; fixtures regenerated at oracle drafting |
+| D-b7 | silent ticks | observation-gated; scope note printed | §4 (no mechanism without an observation) |
+
+### §14. Next
+
+The oracle draft (test-stream/): runtime-red behavioral rows under
+the recommended rulings (action-mentioning worlds where the append
+moves MAP and losses; the g4Self return rows; the tick-geometry and
+name-blindness pins), satisfiability transcripts per R-D21 (overlay
+form, flag-faithful), stanza draft — brought to the sitting with this
+pack per the step-5 precedent. The sitting's rulings and your key are
+the only stops.
