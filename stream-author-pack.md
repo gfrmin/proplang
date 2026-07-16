@@ -364,12 +364,39 @@ true gap 0.8; below it the back-channel moves P(L_e) by less than the
 harm channel's single-observation resolution — a dead confound by
 construction, not by eyeball.)
 
+**r1 AMENDMENT (after the first run; the defect, the theorem, and the
+fix — committed before the re-run, exactly as r0 was committed before
+the first).** The r0 persistence indicator (gap_t = E[δ1] − E[δ0])
+is IDENTICALLY ZERO by a symmetry of the design, proven not measured:
+the latent's label is unidentified — DISP(δ1, δ0, h1, h0) and its
+label-swap DISP(δ0, δ1, h0, h1) assign the same likelihood to every
+stream (P(L)=0.5 is symmetric), so the posterior splits evenly
+between mirror modes and the SIGNED mean cancels. Diagnostic (seed 0
+after phase 1): the truth and its mirror at 0.4483 each; signed gap
++0.0000; label-invariant E[|δ1−δ0|] = 0.8000 (the correlation is
+fully learned); cross-moment E[(δ1−δ0)(h1−h0)] = +0.2276 against
+truth's 0.24. The first run therefore returned N1 vacuously false
+(zero confounded ticks) while the pathology was plainly present
+(evidential refrain 16.7% of phase-2 ticks, mean regret 83.4 vs
+exogenous-read's 0.0) — the committed test could not fire N3 under
+ANY behavior, which is a defect in the indicator, not a verdict.
+THE FIX, and the only change: the persistence indicator becomes the
+label-invariant cross-moment κ_t = E[(δ1−δ0)(h1−h0)] (DISP mass
+renormalized; DIRECT mass reported separately) — invariant under the
+label swap because both factors flip sign, and it measures exactly
+what drives the back-channel: the posterior's belief that the action
+associates with the harm-bearing latent value. Threshold: κ_t ≥ 0.06
+= one quarter of the true cross-moment 0.24 — the same
+quarter-of-truth discipline the r0 threshold used. **Every other
+number and clause below stands byte-unchanged; both runs' transcripts
+go to the sitting.**
+
 **THE CRITERIA (pre-stated numerically; N = 200 seeded runs; phase-2
 = 500 ticks/run; run before nothing — this section is committed
 before any execution):**
 
 - **N1 (DOMINATED).** Evidential is dominated-while-confounded iff,
-  restricted to its confounded ticks (gap_t ≥ 0.2), its refrain rate
+  restricted to its confounded ticks (r1: κ_t ≥ 0.06), its refrain rate
   ≥ 0.5 while exogenous-read's refrain rate over its OWN phase-2
   ticks is ≤ 0.1, in ≥ 90% of seeds. (Per-tick regret is exactly the
   refrain indicator, so this is "evidential pays ≥ 0.5/tick where the
