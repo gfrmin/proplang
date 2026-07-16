@@ -1712,11 +1712,20 @@ node, in ONE file** (src/PropLang/Membrane.hs):
 2. `interpretPilot` takes the `Agent`; the `PilotEU` arm scores each
    candidate through the PUBLIC EU verb at
    `predictive (feats ++ a) ag` — exogenous-read (D-b3 as pinned),
-   current weights, latents untouched; strict-> first-listed-wins
-   argmax mirroring the Argmax evaluator's tie discipline. The
-   scripted arms are untouched. `argmaxEU` stays exported (the frozen
-   membrane suite pins the program form; it remains the doctrinal
-   reference).
+   current weights, latents untouched. THE SELECTION IS A HOST-SIDE
+   FOLD, not an evaluation of the doctrinal `argmaxEU` Expr: the
+   per-candidate predictive read has no verb inside the language, so
+   the doctrinal program cannot express the re-read; under the §1b
+   law the fold is a FAST PATH of the doctrinal program, lawful
+   because g2's bridge row is its extensional pin (strict `>`
+   displaces = the Argmax evaluator's own tie discipline, so
+   first-listed wait keeps ties). Entered on the §1b register at the
+   step-6 r1 — the author's classification order; §41. The scripted
+   arms are untouched. `argmaxEU` stays exported (the frozen membrane
+   suite pins the program form; it remains the doctrinal reference).
+   *(This paragraph as first committed said "mirroring the Argmax
+   evaluator's tie discipline" — the r1 finding: a mirror is not the
+   thing it mirrors; amended in place, the amendment recorded.)*
 
 The module header now states the step-6 semantics and the pinned
 rule's two clauses by pointer; the g2 comment in the frozen oracle
@@ -1781,3 +1790,58 @@ pricing unified, M5 repealed — whose opening checklist now carries
 five scheduled rows: the mid-episode publication fixture, the
 executable Dutch-book check, the Pilot split part (ii), D-b2's
 disjointness wire sentence, and the host-less window's exit.
+
+### §41. The r1 finding, enacted: the selection fold named as what it is
+
+The r1 read closed clean with ONE order — the D-b4 as-built wording
+owed a sentence of honesty about WHAT SELECTS. Verbatim, the
+operative paragraph:
+
+> **The D-b4 as-built wording needs one sentence of honesty about
+> what selects.** The ruling adopted (a): the *same* `argmaxEU`
+> program selects over options-as-data pairs. §37 describes the
+> `PilotEU` arm scoring each candidate through the public EU verb and
+> then performing a "strict first-listed-wins argmax *mirroring* the
+> Argmax evaluator's tie discipline," with `argmaxEU` kept exported
+> as "the doctrinal reference." A mirror is not the thing it mirrors.
+> Either the arm literally evaluates the doctrinal Expr over the
+> pairs — in which case tighten the sentence, because "mirroring"
+> undersells it — or the selection is a host-side fold pinned
+> extensionally to the program by g2's bridge row, which is *lawful
+> under the §1b law precisely because g2 is its pin*, but must then
+> be named as what it is: a fast path of the doctrinal program,
+> entered on the fast-path register with g2 cited, and D-b4's record
+> gaining the note.
+
+**The honest answer is the second branch.** The arm does NOT evaluate
+the doctrinal Expr: `argmaxEU`'s body computes EU against ONE belief
+bound in the environment, and the per-candidate re-read
+`predictive (feats ++ a)` has no verb inside the Expr language — the
+doctrinal program CANNOT express exogenous-read scoring, which is why
+the overlay was a host-side fold from its first compile. The
+classification, enacted at three sites:
+
+1. **The §1b fast-path register** (AGENT_PLAN §1b's audit table)
+   gains its fourth row: the `PilotEU` selection fold — exploits
+   host-side per-candidate iteration; pinned by test-stream g2's
+   bridge row; verdict: a fast path of the doctrinal program, pinned
+   in its landing increment.
+2. **The source comment** (Membrane.hs, the PilotEU arm) now states
+   the classification on its face: HOST-SIDE FOLD, why the doctrinal
+   program cannot express it, g2 as the pin, the register entry.
+3. **§37's sentence** amended in place, the amendment recorded there
+   ("a mirror is not the thing it mirrors").
+
+D-b4's record, the note (this section): options-as-data stands as
+ruled; the SELECTOR over those options is a §1b fast path with g2 its
+pin, not the doctrinal Expr itself. Nothing moves extensionally — g2
+already enforced the identity every tick — which is exactly why the
+sentence was cheap and why its absence would have set the wrong
+precedent at the first boundary after the law got teeth.
+
+The r1 endorsements recorded: the lint's two firings (seven
+violations found -> clean corpus guarded) as the thesis compressed
+into a day; the pinned resolution carried by the enforcing oracle
+rather than the describing pack; dormancy converted from measurement
+to law by g1's continuity row; M5's class emptied by the freeze's own
+row batch. The r1 tag covers THIS state (the classification enacted).

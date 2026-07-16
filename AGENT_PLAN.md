@@ -128,6 +128,7 @@ Refund: **lg 7 − lg 6 = 0.222 bits on every stdlib mention, forever.**
 | `bernFast` (`Eval.hs:179`) | the logit/expfam shape | **E7 `propExpansion`** (`test-expfam/ExpFam.hs:208`) | ✅ **the model** — pinned, enforced |
 | the `cond` engine (`Belief.hs:158-188`) | — (it **is** the general route) | **CL-4** (`test/Properties.hs:64-107`) | ⚠️ **gate ~360,000× too wide** — §2b |
 | `observeCounts` (`Enumerate.hs:680`; the cite was `:649` when this table was drafted — corrected at the step-2 enactment, register 6.4) | **sufficiency** (batch collapse) | **nothing.** `test-d/D.hs:1041` tests only that the *wire syntax parses* — until step 2's `test-optlaw` | ❌ → ✅ **pinned at the step-2 freeze** |
+| the `PilotEU` selection fold (`Membrane.hs` `interpretPilot`, landed step 6; row entered at the step-6 r1, the author's classification order) | host-side per-candidate iteration — the per-candidate `predictive (feats ++ a)` read has no verb inside the Expr language, so the doctrinal `argmaxEU` program cannot express the re-read | **test-stream g2, the bridge row** (runMembrane's choice == the public per-assignment EU arithmetic, every tick; strict `>` displaces = the Argmax evaluator's own tie discipline) | ✅ **a fast path of the doctrinal program, pinned in its landing increment** |
 
 **`observeCounts` is a semantic fast path with a syntax test.** It collapses a batch to
 `(n₁, n₀)` — legal only because the bern code *happens* to have a sufficient statistic. Today

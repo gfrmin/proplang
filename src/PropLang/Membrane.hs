@@ -216,8 +216,17 @@ interpretPilot ag p feats _pr opts = case p of
   PilotEU u ->
     -- per-assignment exogenous-read scoring (6b's survivor): each
     -- candidate's EU is taken against predictive (feats ++ candidate)
-    -- at current weights, through the public EU verb; the Argmax
-    -- evaluator's exact tie discipline (strict > displaces)
+    -- at current weights, through the public EU verb.
+    -- THE SELECTION IS A HOST-SIDE FOLD, not an evaluation of the
+    -- doctrinal 'argmaxEU' Expr: the per-candidate predictive read
+    -- has no verb inside the language, so the doctrinal program
+    -- cannot express the re-read. Under the §1b law the fold is a
+    -- FAST PATH of the doctrinal program, lawful because test-stream
+    -- g2's bridge row is its extensional pin (runMembrane's choice ==
+    -- the public per-assignment EU arithmetic, every tick; strict >
+    -- displaces = the Argmax evaluator's own tie discipline, so
+    -- first-listed wait keeps ties). Entered on the §1b fast-path
+    -- register at the step-6 r1 (the author's classification order).
     let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
                        (mkEnv [] (predictive (feats ++ a) ag :. u :. a :. VNil))
         c0 :| cs = opts
