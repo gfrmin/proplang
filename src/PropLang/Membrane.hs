@@ -218,15 +218,18 @@ interpretPilot ag p feats _pr opts = case p of
     -- candidate's EU is taken against predictive (feats ++ candidate)
     -- at current weights, through the public EU verb.
     -- THE SELECTION IS A HOST-SIDE FOLD, not an evaluation of the
-    -- doctrinal 'argmaxEU' Expr: the per-candidate predictive read
-    -- has no verb inside the language, so the doctrinal program
-    -- cannot express the re-read. Under the §1b law the fold is a
-    -- FAST PATH of the doctrinal program, lawful because test-stream
-    -- g2's bridge row is its extensional pin (runMembrane's choice ==
-    -- the public per-assignment EU arithmetic, every tick; strict >
-    -- displaces = the Argmax evaluator's own tie discipline, so
-    -- first-listed wait keeps ties). Entered on the §1b fast-path
-    -- register at the step-6 r1 (the author's classification order).
+    -- doctrinal 'argmaxEU' Expr — and today it is the ONLY executable
+    -- route: the per-candidate predictive read is a read of the
+    -- agent's own meta-state, which the Expr language lacks BY DESIGN
+    -- until reflexive closure (A7, step 10). Pinned two-route by
+    -- test-stream g2 (runMembrane's choice == the public
+    -- per-assignment EU arithmetic, every tick; strict > displaces =
+    -- the Argmax evaluator's own tie discipline, so first-listed wait
+    -- keeps ties) and law-checked by g6. Its §1b classification is
+    -- DEFERRED to step 10 per the register row (the step-6 r2
+    -- direction: finish the language first — whether this fold is a
+    -- fast path or the general route itself is undetermined until
+    -- reflexivity decides what the language can say).
     let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
                        (mkEnv [] (predictive (feats ++ a) ag :. u :. a :. VNil))
         c0 :| cs = opts

@@ -1845,3 +1845,38 @@ into a day; the pinned resolution carried by the enforcing oracle
 rather than the describing pack; dormancy converted from measurement
 to law by g1's continuity row; M5's class emptied by the freeze's own
 row batch. The r1 tag covers THIS state (the classification enacted).
+
+### §42. The r2 settlement: finish the language first — the classification DEFERRED to step 10
+
+The author's question and direction, verbatim: *"hmm, is this the most
+principled way forward?"* — then: *"maybe we should finish the
+language changes and only then work on fast paths? no premature
+optimisation?"* Adopted; this section supersedes §41's classification
+(appended record, never silent rewrite). The two grounding points:
+
+1. **Nothing here was an optimization.** The fold is the ONLY
+   executable route: the per-candidate `predictive (feats ++ a)` read
+   is a read of the agent's own meta-state, and the object language
+   lacks reflexive reads BY DESIGN — `EU`'s belief is an env-bound
+   argument (Syntax.hs:375), `Argmax`'s body sees only beliefs the
+   environment already carries (Syntax.hs:190), and `Env` carries
+   Features and Vals, no Agent (Eval.hs). It is already two-route
+   pinned (g2, frozen at stream-freeze-r0) and law-checked (g6). No
+   unpinned speed hack exists anywhere in this step; the deferral
+   costs nothing extensionally.
+2. **Any classification written today describes a moving target.**
+   Whether the fold is "a fast path of the doctrinal program" (§41's
+   branch) or "the general route itself" is undetermined until step
+   10's reflexive closure decides whether the selector becomes
+   sayable in-language. Classifying now, in either direction, does
+   step 10's work early with less information — the
+   premature-commitment disease relocated into the register.
+
+Enacted at three sites: the §1b register row's verdict is now
+CLASSIFICATION DEFERRED TO STEP 10 (not-an-optimization stated, both
+closure branches pre-written, g2+g6 named as the interim enforcement);
+AGENT_PLAN step 10 gains the scheduled return row (retire-until-N:
+scheduled, never remembered); the Membrane.hs comment drops the
+fast-path claim and states the deferral. The mechanism, the oracle,
+and everything frozen are untouched. The r1 tag covers THIS state,
+and the language work resumes at step 7.

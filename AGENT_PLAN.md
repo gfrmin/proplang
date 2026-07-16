@@ -128,7 +128,7 @@ Refund: **lg 7 − lg 6 = 0.222 bits on every stdlib mention, forever.**
 | `bernFast` (`Eval.hs:179`) | the logit/expfam shape | **E7 `propExpansion`** (`test-expfam/ExpFam.hs:208`) | ✅ **the model** — pinned, enforced |
 | the `cond` engine (`Belief.hs:158-188`) | — (it **is** the general route) | **CL-4** (`test/Properties.hs:64-107`) | ⚠️ **gate ~360,000× too wide** — §2b |
 | `observeCounts` (`Enumerate.hs:680`; the cite was `:649` when this table was drafted — corrected at the step-2 enactment, register 6.4) | **sufficiency** (batch collapse) | **nothing.** `test-d/D.hs:1041` tests only that the *wire syntax parses* — until step 2's `test-optlaw` | ❌ → ✅ **pinned at the step-2 freeze** |
-| the `PilotEU` selection fold (`Membrane.hs` `interpretPilot`, landed step 6; row entered at the step-6 r1, the author's classification order) | host-side per-candidate iteration — the per-candidate `predictive (feats ++ a)` read has no verb inside the Expr language, so the doctrinal `argmaxEU` program cannot express the re-read | **test-stream g2, the bridge row** (runMembrane's choice == the public per-assignment EU arithmetic, every tick; strict `>` displaces = the Argmax evaluator's own tie discipline) | ✅ **a fast path of the doctrinal program, pinned in its landing increment** |
+| the `PilotEU` selection fold (`Membrane.hs` `interpretPilot`, landed step 6; row entered at the step-6 r1; verdict re-ruled at r2) | host-side per-candidate iteration — the per-candidate `predictive (feats ++ a)` read is a read of the agent's OWN meta-state, which the Expr language lacks BY DESIGN (reflexivity is step 10's subject), so the doctrinal `argmaxEU` program cannot express the re-read | **test-stream g2, the bridge row** (runMembrane's choice == the public per-assignment EU arithmetic, every tick; strict `>` displaces = the Argmax evaluator's own tie discipline) + **g6** (argmax-optimality, affine invariance) | ⏳ **CLASSIFICATION DEFERRED TO STEP 10** (the author's r2 direction: finish the language first). NOT an optimization — no in-language route exists today to accelerate. At reflexive closure the question is decided with full information: sayable selector => a true §1b fast path with g2 already its pin; not sayable => the membrane-side general route, permanent. |
 
 **`observeCounts` is a semantic fast path with a syntax test.** It collapses a batch to
 `(n₁, n₀)` — legal only because the bern code *happens* to have a sufficient statistic. Today
@@ -1017,6 +1017,14 @@ close, oracle and gates green on the same signature; as-built record
    again; pack §29b).
 10. **Reflexive closure (A7).** The policy enters the action space; computation cost is a
     **measured** feature; heuristics emerge. *brief §2's headline. Steps 1-9 stand without it.*
+    **OPENING-CHECKLIST ROW (deferred at the step-6 r2, the author's direction: finish
+    the language first — no premature optimisation): the `PilotEU` selection fold's
+    §1b classification RETURNS HERE.** At reflexive closure, determine whether the
+    step-6 selector (per-candidate EU at exogenous `predictive (feats ++ a)`) becomes
+    sayable in-language, and close the §1b register row's verdict accordingly —
+    sayable => true fast path, g2 (frozen since stream-freeze-r0) already the pin it
+    must arrive with; not sayable => membrane-side general route, printed permanent
+    (retire-until-N: scheduled, never remembered).
 
 The sentinel and the `price` parameter are never "deleted" — after step 8 there is
 **nowhere left to write them.**
