@@ -1691,3 +1691,93 @@ state; the tag is `stream-freeze-r0`, and per R-D22 it is the
 countersignature that makes every delegated edit above binding. After
 the tag: implementation to twelve-green, gates 1-7, the as-built
 report.
+
+---
+
+## Part VI — the as-built report (implementation under stream-freeze-r0)
+
+### §37. The mechanism landed; the wave as built
+
+Your tag `stream-freeze-r0` (on 06a8424, verified) sealed the oracle;
+implementation followed as TRANSCRIPTION, the fifth consecutive
+increment where the falsifier-before-freeze discipline made it so.
+
+**The functional wave is exactly the E-b1-measured overlay, node for
+node, in ONE file** (src/PropLang/Membrane.hs):
+
+1. `runMembrane`: `observe (feats ++ c) y ag` — the chosen
+   assignment joins the tick's observation features, world-first
+   append (D-b1's geometry; D-b2's order); the trace still records
+   the pre-choice predictive.
+2. `interpretPilot` takes the `Agent`; the `PilotEU` arm scores each
+   candidate through the PUBLIC EU verb at
+   `predictive (feats ++ a) ag` — exogenous-read (D-b3 as pinned),
+   current weights, latents untouched; strict-> first-listed-wins
+   argmax mirroring the Argmax evaluator's tie discipline. The
+   scripted arms are untouched. `argmaxEU` stays exported (the frozen
+   membrane suite pins the program form; it remains the doctrinal
+   reference).
+
+The module header now states the step-6 semantics and the pinned
+rule's two clauses by pointer; the g2 comment in the frozen oracle
+carries them in full.
+
+**The §28 comments landed with it** (comment-only, src unfrozen): all
+37 declaration sites across the six modules now carry their one-line
+derivation ("Type derivation (§8c audit, step 6, pack §28): ...") or
+their fence — the Pilot split's part (i) executed (PilotIdle /
+PilotThreshold FENCED as scripted competitors with the step-7
+scheduled-move note printed on their face; PilotEU's derivation is
+the doctrinal line), PureWorld FENCED as the in-process harness,
+TickTrace DERIVES by the wire-mirror argument as ruled, and Util's
+line IS the debt note (DIES AT STEP 8, the death date on its face).
+Greppable: `grep -c 'Type derivation' src/PropLang/*.hs` = 7 Belief,
+17 Syntax, 3 Eval, 6 Enumerate, 4 Membrane.
+
+### §38. The gate transcript (first run after transcription)
+
+- **`cabal test all`: ALL TWELVE SUITES GREEN, first run** — stream
+  10/10 (the four red rows turned by the mechanism, the six green
+  stayed green), and every frozen suite green over the changed
+  membrane: properties 3, pricing 8, code 45, actions 10, hygiene 15,
+  expfam 16, optlaw 7, cirl 17, prepost 15, membrane 19, sentence 27.
+  The frozen behavioral goldens are byte-stable through the append —
+  E-b1's measured dormancy, now ENFORCED by g1's name-blindness
+  continuity row rather than trusted.
+- **Gates 1–7: PASS** (audit/run-gates.sh, the frozen script).
+- **prefreeze-lint: 0 FAIL** (L1 6 src files clean by glob; L2 ASCII
+  across all oracles — the re-open's corpus stays clean; L3 manifest
+  76/76; L4 all 28 tags verify, stream-freeze-r0 among them; L5
+  flag-faithfulness); 11 L6 WARNs advisory as ruled.
+- **boundary-audit: M5=0, H=4** — the M5 class is now empty even at
+  the regex level (the AGENT_PLAN row batch added definition-shaped
+  lines for the D-b register); the four H flags are the known
+  in-doc definition-form misses (§23 triage, unchanged).
+
+### §39. Standing debts (unchanged by this step, one now printed)
+
+HEAD width-2 DEBT (typed-port-spec §3's normative face; step 7's
+subject); the host-less window (exits at step 7, HOSTS_PLAN); the
+DROP_LADDER Syntax/Eval hook (retires at step 9); Util's
+DERIVE-AS-DEBT (dies at step 8) — now printed where the type lives,
+per the audit's first pass.
+
+### §40. The reviewer block (yours to run)
+
+```
+export PATH="$HOME/.ghcup/bin:$PATH" LANG=C.UTF-8
+git tag -v stream-freeze-r0            # the countersignature (06a8424)
+sha256sum -c MANIFEST.sha256           # 76/76 OK
+cabal test all                         # twelve suites green
+bash audit/run-gates.sh                # gates 1-7 PASS
+bash tools/prefreeze-lint.sh           # 0 FAIL (the instrument's second firing)
+git log --oneline -3                   # the freeze commit, the implementation commit
+grep -n 'Type derivation' src/PropLang/Membrane.hs   # the fence/derive comments
+```
+
+Step 6 closes at your r1 read of this report (the step-4/5 rhythm:
+r0 seals the freeze, r1 the as-built). The next boundary is STEP 7 —
+pricing unified, M5 repealed — whose opening checklist now carries
+five scheduled rows: the mid-episode publication fixture, the
+executable Dutch-book check, the Pilot split part (ii), D-b2's
+disjointness wire sentence, and the host-less window's exit.

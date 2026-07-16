@@ -24,12 +24,22 @@
 -- element, and that element is wait, so a menuless world's option
 -- space is a THEOREM of the representation (A5' by algebra).
 --
--- Actions do NOT enter the tick's feature stream here — that is step
--- 6's boundary, with the scoring rule its own falsifier (6b). No
--- assignment or writable-name mention is priced here — mention
--- prices bind at 6, value prices at 7 (RIDER 2). The M5 guardian
--- retired with its subject; M5 itself is repealed only at 7, and the
--- interregnum is guarded by RIDER 2's negative obligation itself.
+-- SINCE THE STEP-6 FREEZE (stream-freeze-r0): ACTIONS ENTER THE
+-- TICK'S FEATURE STREAM, no lag — 'observe' folds evidence at
+-- @feats ++ c@, the chosen assignment appended to the world's
+-- published features (world-first, ruling D-b2: the stream is the
+-- world's document, one authority, no merge semantics; on a
+-- conforming world the names are disjoint by handshake, and the wire
+-- sentence lands at 7). THE SCORING RULE IS EXOGENOUS-READ (ruling
+-- D-b3, 6b's survivor): a candidate's EU reads 'predictive' at the
+-- augmented features with hypothesis weights and latents untouched
+-- by the contemplation — functionally an intervention semantics at
+-- decision time, achieved with NO do-operator in the language (the
+-- ruled clauses: test-stream's g2 header; pack Part V §32). Mention
+-- prices bound at 6; value prices still bind at 7 (RIDER 2). The M5
+-- guardian retired with its subject; M5 itself is repealed only at
+-- 7, and the interregnum is guarded by RIDER 2's negative obligation
+-- itself.
 module PropLang.Membrane
   ( Menu
   , menuAssignments
@@ -64,6 +74,10 @@ import PropLang.Syntax (Args (..), B, Expr (..), Idx (..),
 -- 'enumerateSentencesIn''s extras: one shape, two readers, shared by
 -- construction. (If 'Menu' ever becomes a @data@ type, ruling D-a3's
 -- home question reopens — the sitting's note.)
+--
+-- Type derivation (step 6, pack §28): DERIVES — the world's declared
+-- writable names (AGENT_PLAN §5's one new name; grids are data with
+-- prices).
 type Menu = [(Name, Grid)]
 
 -- | The option space of a menu: every FULL assignment (one value per
@@ -95,6 +109,17 @@ menuAssignments menu = case go menu of
 -- over assignments. No internal act exists to value — the sentinel is
 -- dead, and 'argmax' stays total because wait is always options'
 -- head.
+--
+-- Type derivation (the §8c audit, first pass at step 6 — pack §28,
+-- adopted at the sitting): 'PilotEU' DERIVES — "nothing may select an
+-- action but expected value", the doctrinal arm and the only one on
+-- the agent path. 'PilotIdle' and 'PilotThreshold' are FENCED:
+-- scripted competitor policies, simulator scaffolding OUTSIDE the
+-- language (the raw Double is a script parameter, never a priced
+-- quantity). Their move to a test-side harness module is a SCHEDULED
+-- step-7 opening-checklist row (the sitting's split ruling: the
+-- forgetter asymmetry dies at the first boundary that can fix it
+-- for free).
 data Pilot
   = PilotIdle
   | PilotThreshold Name Double Features Features
@@ -114,6 +139,12 @@ argmaxEU =
 -- declaration), and how it moves when an assignment lands. 'wStep'
 -- returning only @s@ is §1's "actions have no return values" as a
 -- type.
+--
+-- Type derivation (step 6, pack §28): FENCE — simulator scaffolding,
+-- outside the language. The real boundary is the wire (host
+-- conformance binds to membrane-wire.md, never GHC artifacts); the
+-- engine needs SOME in-process world to fold against, and this is
+-- that harness.
 data PureWorld s = PureWorld
   { wFeats    :: s -> Features
   , wEvidence :: s -> Maybe Obs
@@ -126,6 +157,11 @@ data PureWorld s = PureWorld
 -- the observation moves the agent, the assignment selected and
 -- fired, evidence folded through 'observe' at @negate lp / log 2@
 -- bits.
+--
+-- Type derivation (step 6, pack §28): DERIVES — the tick's public
+-- record mirrors the wire's readouts (interface §1 observables: p1,
+-- entropy, act, loss); the wire-mirror argument is a real derivation
+-- (the sitting's ruling on the borderline).
 data TickTrace = TickTrace
   { ttT        :: Int
   , ttP1       :: Double
@@ -137,10 +173,13 @@ data TickTrace = TickTrace
 
 -- | The polling contract (§1), pure — the shipped fold minus the echo
 -- append and the internal-act arm; consequences only ever arrive
--- inside the next tick's features (and actions join that stream at
--- step 6, not here). The E-a1-verified prototype is the executable
--- design: features -> predictive/entropy -> menuAssignments ->
--- interpretPilot -> observe at negate lp / ln2 -> wStep.
+-- inside a LATER tick's features ("actions have no return values"),
+-- while the CHOSEN assignment joins THIS tick's observation features
+-- (step 6: 'observe' at @feats ++ c@; the trace records the
+-- pre-choice predictive — ruling D-b1's geometry, E-b1-verified).
+-- The E-a1-verified prototype is the executable design: features ->
+-- predictive/entropy -> menuAssignments -> interpretPilot -> observe
+-- at negate lp / ln2 -> wStep.
 runMembrane :: PureWorld s -> Pilot -> Int -> s -> Agent
             -> Maybe (Agent, [TickTrace])
 runMembrane w pilot n s0 ag0 = go 0 s0 ag0
@@ -153,10 +192,10 @@ runMembrane w pilot n s0 ag0 = go 0 s0 ag0
               p1 = prob pr (is obsSpace 1)
               h = entropyBits (agentMeta ag)
               opts = menuAssignments (wMenu w s)
-              c = interpretPilot pilot feats pr opts
+              c = interpretPilot ag pilot feats pr opts
           (lossBits, ag') <- case wEvidence w s of
             Nothing -> Just (0, ag)
-            Just y  -> case observe feats y ag of
+            Just y  -> case observe (feats ++ c) y ag of
               Nothing              -> Nothing
               Just (LogProb lp, a) -> Just (negate lp / ln2, a)
           (agF, rest) <- go (t + 1) (wStep w s c) ag'
@@ -168,11 +207,23 @@ ln2 = log 2
 -- One pilot decision: the doctrinal argmax-EU program over the whole
 -- option space; the scripted threshold read; the first-listed option
 -- (= wait, by construction) for idle worlds.
-interpretPilot :: Pilot -> Features -> B Obs -> NonEmpty Features
+interpretPilot :: Agent -> Pilot -> Features -> B Obs -> NonEmpty Features
                -> Features
-interpretPilot p feats pr opts = case p of
+interpretPilot ag p feats _pr opts = case p of
   PilotIdle -> let c :| _ = opts in c
   PilotThreshold nm th a b ->
     if fromMaybe 0 (lookup nm feats) > th then a else b
-  PilotEU u -> evalx argmaxEU (mkEnv feats (opts :. pr :. u :. VNil))
+  PilotEU u ->
+    -- per-assignment exogenous-read scoring (6b's survivor): each
+    -- candidate's EU is taken against predictive (feats ++ candidate)
+    -- at current weights, through the public EU verb; the Argmax
+    -- evaluator's exact tie discipline (strict > displaces)
+    let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
+                       (mkEnv [] (predictive (feats ++ a) ag :. u :. a :. VNil))
+        c0 :| cs = opts
+        go best _bv [] = best
+        go best bv (c : rest) =
+          let cv = euAt c
+          in if cv > bv then go c cv rest else go best bv rest
+    in go c0 (euAt c0) cs
 #endif

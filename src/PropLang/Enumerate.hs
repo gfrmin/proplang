@@ -205,6 +205,8 @@ renderExpr e0 = case e0 of
 -- ---------------------------------------------------------------------
 
 -- | Observations of the demonstration domain ({0,1}).
+-- Type derivation (§8c audit, step 6, pack §28): the declared obs
+-- carrier's synonym.
 type Obs = Int
 
 obsSpace :: Space Obs
@@ -238,6 +240,8 @@ thetaSpace = mkSpace thetaPoints
 -- table through bitsAt's own discipline from day one; E-s1 measured the
 -- declared table bit-identical to the frozen charges, both fold
 -- shapes).
+-- Type derivation (§8c audit, step 6, pack §28): the fragment's declared
+-- sort table (step 3; with FragProd).
 data FragSort = MODEL | THETA | HEAD | RATE
   deriving (Eq, Show)
 
@@ -253,6 +257,8 @@ data FragSort = MODEL | THETA | HEAD | RATE
 -- author boundary, or when the second head becomes utterable. Printed
 -- here so it stays a residue rather than a habit (the brief's
 -- grep-test calls an unprinted one a hand on the wheel).
+-- Type derivation (§8c audit, step 6, pack §28): the fragment's declared
+-- production table (step 3).
 data FragProd = FBern | FWalk | FConst | FIf | FGuardHead
   deriving (Eq, Show)
 
@@ -321,6 +327,8 @@ lgSizeC g = logBase 2 (fromIntegral (gridSize g))
 -- latent axis, so the uniform initial latent is a point mass and every
 -- predictive row stays bit-exact (no mixture arithmetic on a
 -- degenerate axis).
+-- Type derivation (§8c audit, step 6, pack §28): a hypothesis IS a
+-- sentence: price + space + emission/move codes.
 data Hyp = Hyp
   { hypBits  :: Bits
   , hypSpace :: Space Double
@@ -505,9 +513,13 @@ walkOn vs vpts rho = kernel vs vs step
 -- Per-hypothesis filtered state: the sentence and its current latent
 -- belief (a stateless sentence's singleton axis makes this a point
 -- mass by construction).
+-- Type derivation (§8c audit, step 6, pack §28): a sentence with its
+-- latent posterior — state-carrying scoring.
 data HypState = HSent Hyp (Belief Double)
 
 -- | A belief over programs plus per-hypothesis filtered latent state.
+-- Type derivation (§8c audit, step 6, pack §28): the meta-belief over
+-- sentences (brief §4's mixture, §9's prior).
 data Agent = Agent [HypState] (Space Int) (Belief Int)
 
 -- | The agent over sentences — the 'mkAgent' successor ('mkAgent' died

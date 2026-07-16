@@ -32,35 +32,49 @@ import Data.List.NonEmpty (NonEmpty, toList)
 -- | Description length in bits. Newtype (not a synonym): confusing bits
 -- with nats at the module boundary is a bug class this port makes
 -- unwritable (typed-port-spec §2, amended).
+-- Type derivation (§8c audit, step 6, pack §28): description length is
+-- the prior's only currency (brief: 2^-L).
 newtype Bits = Bits Double
   deriving stock (Show)
   deriving newtype (Eq, Ord, Num, Fractional, Floating, Real, RealFrac)
 
 -- | Natural-log probability (the marginal likelihood returned by
 -- 'logPredict' is a natural log; consumers convert to bits explicitly).
+-- Type derivation (§8c audit, step 6, pack §28): observe returns the log
+-- marginal — the polling contract's only score.
 newtype LogProb = LogProb Double
   deriving stock (Show)
   deriving newtype (Eq, Ord, Num, Fractional, Floating, Real, RealFrac)
 
 -- | A set of possibilities. Finite in the reference implementation, and
 -- nonempty by construction ('mkSpace').
+-- Type derivation (§8c audit, step 6, pack §28): belief is over DECLARED
+-- finite carriers, never invented points.
 data Space a = Space [a]
 
 -- | A coherent prevision on a finite Space. Opaque handle (I1): the
 -- log-weights are normalized at construction and never leave this module.
+-- Type derivation (§8c audit, step 6, pack §28): probability is the logic
+-- (brief §4); the sealed reasoner's one object.
 data Belief a = Belief (Space a) [Double]
 
 -- | A declared proposition over a Space. Peer primitive (design §3).
+-- Type derivation (§8c audit, step 6, pack §28): a query is a prevision
+-- of an indicator (CL-1 read-only diagnostics).
 data Event a = Event (a -> Bool)
 
 -- | A Prevision-valued arrow between Spaces. Peer primitive (design §3).
 -- The codomain rides along because 'push' accumulates over its points;
 -- a kernel's output beliefs are over the codomain, in its point order.
+-- Type derivation (§8c audit, step 6, pack §28): conditional belief as
+-- data — transition/emission kernels (interface).
 data Kernel a b = Kernel (Space b) (a -> Belief b)
 
 -- | Evidence carries its algebra in its type (invariant I2): an Event, or
 -- a (Kernel, observation) pair. No third constructor — in particular no
 -- function case; the engine can never receive an opaque closure.
+-- Type derivation (§8c audit, step 6, pack §28): Saw is the ONLY door a
+-- belief changes through (brief §6).
 data Evidence a where
   Is  :: Event a -> Evidence a
   Saw :: Eq o => Kernel a o -> o -> Evidence a

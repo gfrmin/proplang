@@ -59,9 +59,13 @@ import PropLang.Syntax (Chan, applyChan)
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
 -- (interface.md §1: prices, clocks, and echoes are names like any other).
+-- Type derivation (§8c audit, step 6, pack §28): the tick's public stream
+-- (interface §1) — and at 6, actions join it.
 type Features = [(Name, Double)]
 
 -- | Typed value stack matching the expression's environment index.
+-- Type derivation (§8c audit, step 6, pack §28): the typed evaluator
+-- environment — totality of evalx demands it (with Env).
 data Vals env where
   VNil :: Vals '[]
   (:.) :: t -> Vals env -> Vals (t ': env)
@@ -69,6 +73,8 @@ data Vals env where
 infixr 5 :.
 
 -- | The evaluation environment: features + typed bindings. Abstract.
+-- Type derivation (§8c audit, step 6, pack §28): the typed evaluator
+-- environment — totality of evalx demands it.
 data Env env = Env Features (Vals env)
 
 mkEnv :: Features -> Vals env -> Env env

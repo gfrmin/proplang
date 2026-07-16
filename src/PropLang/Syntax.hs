@@ -74,10 +74,14 @@ import Data.Proxy (Proxy (..))
 import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel, Space,
                         mkSpace)
 
+-- Type derivation (§8c audit, step 6, pack §28): synonyms of the sealed
+-- reasoner's objects (with Name and Ix below).
 type B = Belief
 type K = Kernel
 type Ev = Evidence
 
+-- Type derivation (§8c audit, step 6, pack §28): a published feature name
+-- (interface §1).
 type Name = String
 
 -- | Index into a priced grid. Out-of-range mentions are UNCONSTRUCTIBLE
@@ -85,11 +89,15 @@ type Name = String
 -- returns 'Nothing' off the grid. The 'Get' 0.0 convention is dormancy
 -- for names that may appear later; a grid index never can, so it gets
 -- no denotation at all.
+-- Type derivation (§8c audit, step 6, pack §28): index into declared
+-- grids — synonym, part of the priced surface.
 type Ix = Int
 
 -- | A priced grid of sayable constants: a named, finite point set whose
 -- mention costs @log2 n@ bits. Data with prices (design §5); the concrete
 -- theta\/tau\/rho grids live in "PropLang.Enumerate".
+-- Type derivation (§8c audit, step 6, pack §28): grid definitions are
+-- data with prices (CLAUDE.md forbidden-moves list).
 data Grid = Grid Name [Double]
 
 -- | Grids are nonempty by construction, so 'gridSize' is at least 1 and
@@ -121,6 +129,8 @@ gridLookup (Grid _ pts) k
 -- carrier mention is priced against the 'carrierNames' registry (same
 -- written rule as 'featureNames': 0 bits while the registry is a
 -- singleton).
+-- Type derivation (§8c audit, step 6, pack §28): the declared observation
+-- carrier (ExpFam basis, plan E9).
 data Carrier c = Carrier Name (NonEmpty c)
 
 mkCarrier :: Name -> NonEmpty c -> Carrier c
@@ -145,12 +155,16 @@ carrierSpace (Carrier _ pts) = mkSpace pts
 -- gauss pair (y, y²) is the named continuous-carrier debt and grows
 -- this alphabet by reported change when it lands. The CPP flag is the
 -- deletion audit's ablation point (test-expfam row 'sid').
+-- Type derivation (§8c audit, step 6, pack §28): defunctionalized
+-- sufficient statistics — no host lambdas in Expr.
 data Stats c where
 #ifndef DROP_SID
   SId :: Real c => Stats c
 #endif
 
 -- | Typed de Bruijn index into the environment.
+-- Type derivation (§8c audit, step 6, pack §28): the priced language
+-- itself: programs as data (brief §2; with Expr/Args).
 data Idx env t where
   Z :: Idx (t ': env) t
   S :: Idx env t -> Idx (u ': env) t
@@ -159,6 +173,8 @@ data Idx env t where
 -- 'Argmax' binds its option variable in an extended typed environment.
 -- 'Argmax' ranges over 'NonEmpty' options: a totality-forced deviation
 -- from the spec §3 sketch's @[o]@, approved at Phase 1 review.
+-- Type derivation (§8c audit, step 6, pack §28): the priced language
+-- itself: programs as data (brief §2).
 data Expr env t where
   MkC    :: Grid -> Ix -> Double -> Expr env Double  -- NOT exported: 'mkC' is the only door (R1)
   Get    :: Name -> Expr env Double                  -- absent name ~> 0.0
@@ -312,6 +328,8 @@ pattern C g k v <- MkC g k v
 -- events/utilities become latent (CIRL), the payloads become priced
 -- syntax. The CPP flags are the deletion audit's raises-by-type
 -- ablation points, same standard as DROP_PUSH/DROP_ARGMAX.
+-- Type derivation (§8c audit, step 6, pack §28): defunctionalized
+-- function forms (the Fn/Stats mandate, CLAUDE.md).
 data Fn a where
 #ifndef DROP_FNIND
   FnInd  :: Event a -> Fn a
@@ -329,6 +347,8 @@ mkC :: Grid -> Ix -> Maybe (Expr env Double)
 mkC g k = MkC g k <$> gridLookup g k
 
 -- | Typed argument list for 'Call'.
+-- Type derivation (§8c audit, step 6, pack §28): the priced language
+-- itself: programs as data (brief §2; with Idx/Expr).
 data Args env ts where
   ANil :: Args env '[]
   (:*) :: Expr env t -> Args env ts -> Args env (t ': ts)
@@ -349,6 +369,8 @@ infixr 5 :*
 --   outcome, weight @exp (sum logPredict)@ times the post-conditioning
 --   @VAct@, sum, minus @price@; a 'Nothing' from 'cond' contributes
 --   weight 0.
+-- Type derivation (§8c audit, step 6, pack §28): the stdlib alphabet:
+-- derived names with prices (brief §9).
 data StdName args t where
   EU     :: StdName '[B y, Util a y, a] Double
   IsEq   :: Eq a => StdName '[a, a] Bool
@@ -393,6 +415,10 @@ data StdName args t where
 -- likelihoods, by contrast, may only enter as 'Evidence'). Parity-scoped:
 -- when utility becomes latent (CIRL, post-parity), Util must become
 -- priced syntax.
+-- Type derivation (§8c audit, step 6, pack §28): DERIVE-AS-DEBT — the §8c
+-- archetype: utility on (act,obs) pairs; DIES AT STEP 8 (utility-on-
+-- outcomes); this line IS the debt note (adopted at the step-6 sitting,
+-- death date attached).
 data Util a y = Util (a -> y -> Double)
 
 mkUtil :: (a -> y -> Double) -> Util a y
@@ -410,6 +436,9 @@ applyUtil (Util f) = f
 -- evidence. Parity-scoped, recorded: when channels become latent (the
 -- CIRL neighborhood), Chan must become priced syntax — the same debt
 -- 'Util' carries.
+-- Type derivation (§8c audit, step 6, pack §28): the CIRL channel
+-- (increment 6, utility-as-latent under the discrete reading); step-8
+-- subject beside Util.
 data Chan d h y = Chan (d -> Kernel h y)
 
 mkChan :: (d -> Kernel h y) -> Chan d h y
@@ -438,6 +467,8 @@ instance KnownScope env => KnownScope (t ': env) where
 -- enumerated frozen pins of the changed sort (the P5 forward
 -- ruling's mandatory boundary item); the govhost oracle's gP5 group
 -- pins the identity — 'bits' moves nowhere at the re-base.
+-- Type derivation (§8c audit, step 6, pack §28): the DECLARED production
+-- table — prices are data, never hand counts.
 data ProdTable = ProdTable
   { prodExpr, prodFn, prodStats, prodKer, prodStdName, prodUtil :: Int }
 
@@ -452,6 +483,8 @@ prodTable = ProdTable 19 2 1 2 6 1
 -- bit (measured, E-p1/assoc probe); the association ships as data so
 -- correctness never depends on that coincidence. Transparent: charge
 -- trees are declarable data, like the width tables they mention.
+-- Type derivation (§8c audit, step 6, pack §28): step 4's mechanism: the
+-- float order as declared data (with PolSort).
 data Charge s
   = CW s                          -- a sort-choice: lg (width s)
   | CBits Double                  -- content (a grid or namespace mention)
@@ -488,6 +521,8 @@ bits = bitsAt frozenNameBits
 -- The policy fragment's sorts, for the mechanism's table read (the
 -- 'FragSort' analogue on this side; internal — the public single site
 -- stays 'prodTable', whose fields these constructors name one-for-one).
+-- Type derivation (§8c audit, step 6, pack §28): step 4's mechanism (with
+-- Charge): the policy sorts it prices.
 data PolSort
   = PolExpr | PolFn | PolStats | PolKer | PolStdName | PolUtil
 
@@ -620,6 +655,8 @@ carrierNames = ["obs"]
 -- prices through slots and argmax, never through this registry);
 -- 'featureNames' remains the frozen worlds' singleton declaration and
 -- 'bits' remains its pricer. Abstract, like 'Carrier'.
+-- Type derivation (§8c audit, step 6, pack §28): mention pricing over the
+-- completed namespace (M1; RIDER 2).
 data Namespace = Namespace (NonEmpty Name)
 
 mkNamespace :: NonEmpty Name -> Namespace
