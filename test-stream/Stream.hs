@@ -70,7 +70,7 @@ import PropLang.Syntax (Args (..), B, Expr (..), Grid,
 import Streams (shifted160)
 
 main :: IO ()
-main = defaultMain $ testGroup "stream — actions in the feature stream (step 6)"
+main = defaultMain $ testGroup "stream -- actions in the feature stream (step 6)"
   [ g1Append
   , g2Scoring
   , g3SelfSignature
