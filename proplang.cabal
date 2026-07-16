@@ -224,3 +224,23 @@ test-suite actions
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- the step-6 increment oracle (AGENT_PLAN section 7 step 6, actions
+-- in the feature stream); stanza applied at the step-6 freeze from
+-- test-stream/stanza.cabal.draft under the recorded delegation
+-- (stream-author-pack.md Part V section 35). hs-source-dirs reaches
+-- test/ for the FROZEN Streams module only (the control stream is
+-- imported, never re-declared — the probe-discipline clause).
+test-suite stream
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Stream.hs
+    other-modules:    Streams
+    hs-source-dirs:   test-stream, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+                    , QuickCheck
+    default-language: GHC2021

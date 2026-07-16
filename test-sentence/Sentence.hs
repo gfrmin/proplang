@@ -133,7 +133,7 @@ import Anchors
 import Streams
 
 main :: IO ()
-main = defaultMain $ testGroup "sentence — a hypothesis becomes a sentence (step 3)"
+main = defaultMain $ testGroup "sentence -- a hypothesis becomes a sentence (step 3)"
   [ g1Enumeration
   , g1cChangingWorld
   , g1dLazyGenius
@@ -782,7 +782,7 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
                                         <= tolG3Post
                                     | i <- [0 .. nF - 1] ]))
             g3Checkpoints
-  , testCase "reverse orientation: lawful early, ill-formed late — carried to its death tick by BOTH routes" $ do
+  , testCase "reverse orientation: lawful early, ill-formed late -- carried to its death tick by BOTH routes" $ do
       -- lawfulThenIllHyp refuses from t=3 on; the filter classified it
       -- UNTOUCHABLE (it reads t), so BOTH routes carry it through its
       -- lawful ticks and BOTH kill it at its first refusing observed
@@ -802,7 +802,7 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
                  (all (\ag -> posteriorOf ag nS (nS - 1) == 0) (drop 4 slows))
       assertBool "dead from its first refusing observed tick, filter route (exactly 0 at t>=3)"
                  (all (\ag -> posteriorOf ag nF (nF - 1) == 0) (drop 4 fasts))
-  , testCase "forward orientation: ill-formed at t=0, lawful after — killed at its first observed tick by BOTH routes" $ do
+  , testCase "forward orientation: ill-formed at t=0, lawful after -- killed at its first observed tick by BOTH routes" $ do
       -- illAtZeroHyp refuses exactly at t=0 (each orientation carries
       -- its own row in the fixture population — the sitting's
       -- confirmation): the filter must classify it untouchable (it

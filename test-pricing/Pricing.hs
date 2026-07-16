@@ -63,7 +63,7 @@ import PropLang.Syntax (Charge (..), Grid, Namespace, ProdTable (..),
                         prodTable)
 
 main :: IO ()
-main = defaultMain $ testGroup "pricing — one mechanism, two declared tables"
+main = defaultMain $ testGroup "pricing -- one mechanism, two declared tables"
   [ g1Mechanism
   , g2Trees
   , g3Wiring
@@ -114,7 +114,7 @@ g1Mechanism = testGroup "g1 chargeBits: the one width-to-bits evaluator"
       assertHexEq "const-shaped sum" (castDoubleToWord64 (1 + (1 + lg 9)))
                   (chargeBits fragWidth
                      (CSum (CW MODEL) (CSum (CW THETA) (CBits (lg 9)))))
-  , testCase "THE DOCTRINE ROW: the association is data — one ulp moves when the tree does" $ do
+  , testCase "THE DOCTRINE ROW: the association is data -- one ulp moves when the tree does" $ do
       -- measured (the assoc probe, 2026-07-15): a = 1, b = lg 3,
       -- c = lg 7 — corpus-typical leaves where ((a+b)+c) /= (a+(b+c))
       let left  = CSum (CSum (CBits 1) (CBits (lg 3))) (CBits (lg 7))

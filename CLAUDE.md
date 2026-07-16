@@ -208,6 +208,67 @@ Every step-6+ increment follows the recursive two-phase discipline:
    re-homed one step late because the govhost retirement never
    enumerated what the file carried — is the incident that bought the
    rule.
+   Five clauses canonized at the step-6 boundary (the stream freeze,
+   2026-07-16; each drafted in the step-6 pack Part IV and approved
+   at the sitting, §24's standing alone by the author's ruling).
+   One line, installing AGENT_PLAN §8c's ruling of 2026-07-12, which
+   until this boundary bound only as signed prose: THE
+   TYPE-DERIVATION AUDIT — every TYPE on a frozen surface carries a
+   one-line derivation from the brief, exactly as every terminal
+   carries a one-line deletion proof; a type without one is cut, or
+   the brief is amended to license it (the `Util a y` incident its
+   provenance: it was a type, not a terminal, that hid the calculator
+   for 86 commits — the deletion audit polices the alphabet, this
+   polices the types). The rule binds FORWARD from this freeze (a new
+   type arrives WITH its derivation line, in the landing increment);
+   step 9 keeps the retrospective audit over the standing stock.
+   One clause: PRIMITIVITY IS A TWO-SIDED ENTRY GATE. A production
+   enters the alphabet only with BOTH (a) an executed FAILED
+   composition attempt — the candidate written as a sentence of the
+   existing grammar, its failure demonstrated extensionally or at the
+   type level, transcribed in the increment's pack (only demonstrated
+   failure licenses the codeword; ToR's pinned disagreement case,
+   test-code group 4, is the standard) — and (b) the in-increment
+   ablation fixture (the design-review gate's law). Five VOI
+   primitives and Bern entered without (a) and cost two demolition
+   steps; that purchase is this clause's provenance.
+   One clause: THE BOUNDARY AUDIT. Brief-vs-as-built re-derivation is
+   a STANDING EVENT at every roadmap boundary — run scheduled, never
+   on accumulated suspicion (BRIEF_AUDIT, the highest yield-per-cost
+   artifact in the repo, ran once and on suspicion; that is the
+   provenance). Its greppable rows run first (tools/boundary-audit.sh:
+   the M5-row — every ruling ID's citations counted against
+   definition sites; the H-row — every wire/membrane symbol resolves
+   to a definition site or a world-declaration marker) and their
+   flags are triage inputs for the human sweep, never verdicts. The
+   audit output rides the boundary's author pack.
+   One clause: THE RED-TEAM MANDATES. At every roadmap boundary, six
+   standing questions are put to the increment by reviewers
+   INDEPENDENT of the builder's context — one mandate each: (1) is
+   any theorem installed as a definition (the Savage shape, committed
+   twice by the same reflex)? (2) is any ruling asserted N times and
+   derived zero (M5)? (3) is any load-bearing quantity defined
+   nowhere (H)? (4) does any type on a frozen surface lack its
+   derivation (Util)? (5) is any convention silently overloaded
+   (dormancy-as-wait)? (6) for every new object: WHAT IS IT A
+   FUNCTION OF? Findings ride the boundary's author pack beside the
+   audit rows. The floor, not the ceiling: taste asks the novel
+   questions; the mandates stop the known shapes recurring.
+   Execution mode, confirmed at the sitting: fresh-context reviewer
+   agents, one mandate each — fresh context is independence of STATE,
+   not of priors, so true external review remains explicitly
+   available at the author's election (the 2026-07-11 pattern).
+   One clause: THE PRE-FREEZE LINT. tools/prefreeze-lint.sh runs
+   before every freeze tag and its transcript rides the pack —
+   remembered law converted into enforced law ("enforced, never
+   trusted", applied to the process itself). Its rows are the
+   scriptable halves of standing clauses (forbidden tokens by glob
+   over ALL of src — the frozen gate 4 names five files and the
+   membrane escaped it; ASCII test names; manifest; tag signatures;
+   SAT flag-faithfulness); a clause's non-scriptable half stays law
+   as prose. Its first firing found the ASCII clause violated in four
+   frozen oracles the day it became enforced — that is the
+   provenance.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

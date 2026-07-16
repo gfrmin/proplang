@@ -197,6 +197,22 @@ g1Append = testGroup "g1 the append: observe sees feats ++ assignment"
 
 -- ---------------------------------------------------------------------
 -- g2: the scoring rule (D-b3 — 6b's survivor, extensional)
+--
+-- THE PINNED RESOLUTION, as ruled at the step-6 sitting (2026-07-16;
+-- pack Part V section 32), with the author's two clauses:
+--   1. SCOPE: what 6b convicted is THIS evidential rule — naive
+--      joint-conditioning through a phase-blind action channel — in
+--      this world class; the falsifier owed no steelman, and a
+--      fragment extension making actions modelable stays an OPEN
+--      alphabet question, guarded by the primitivity two-sided
+--      entry gate.
+--   2. THE STRUCTURAL READING: exogenous-read is functionally an
+--      intervention semantics at decision time — the contemplated
+--      action enters only as input, its incoming arrows severed —
+--      achieved with NO do-operator in the language, just the D8
+--      read at augmented features. A6 stands epistemic (learning
+--      conditions on everything, including the agent's own record,
+--      world-first per D-b2); decision-time reads are exogenous.
 -- ---------------------------------------------------------------------
 
 uSelf :: Util Features Obs

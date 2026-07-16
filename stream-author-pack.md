@@ -1286,3 +1286,408 @@ H-row: 4 flagged (of 36 symbols scanned)
 note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has 11 (dated red-by-design instrument, recorded)
 === boundary-audit done: M5=7 H=4 ===
 ```
+
+---
+
+## Part V — the sitting (2026-07-16): rulings received, enacted, and the freeze executed under delegation
+
+### §31. The sitting's rulings, verbatim
+
+The author's message, in full (the controlling text for everything
+Part V does):
+
+> The docket is large, so: verdict first — every recommendation is
+> ratifiable, the falsifier did its job and then some, and the
+> eight-order batch is enacted at the right depth. Rulings follow,
+> D-b3 at length since it carries the step.
+>
+> **D-b3 — pin exogenous-read, with the resolution text tightened.**
+> The falsifier's discipline was exemplary: criteria committed before
+> execution, the r0 indicator's label-swap symmetry caught, *proven
+> as a theorem rather than patched*, amended alone with everything
+> else byte-unchanged, both transcripts to the sitting. And the
+> verdict is clean under the pre-stated bars: evidential was not
+> dominated (N1's 0.5 bar unmet — a steady leak, ~1.2 refrain-ticks
+> per episode, forever), never rescued (the smoke rate plateaus at
+> 0.88 against the 0.95 leg; the regret leg alone cannot carry N2),
+> while exogenous-read took zero regret in 200 of 200 seeds. Note for
+> the record what the transcript quietly demonstrates: N2's rescue
+> *never arrives* because the myopic argmax contains no exploration
+> pressure and the confound partly self-sustains through the agent's
+> own disposition-scored actions — RIDER 3's "asymptotic defence is a
+> consolation" claim, now with numbers. Two clauses belong in the
+> pinned resolution. First, scope: what is convicted is *this*
+> evidential rule — naive joint-conditioning through a phase-blind
+> action channel — in this world class; the falsifier owed no
+> steelman, and outcome (c)'s door stays open, now additionally
+> guarded by §22's gate. Second, the structural reading:
+> exogenous-read is functionally an intervention semantics at
+> decision time — the contemplated action enters only as input, its
+> incoming arrows severed — achieved with no do-operator in the
+> language, just the D8 read at augmented features. A6 stands
+> epistemic (learning conditions on everything, including the agent's
+> own record); decision-time reads are exogenous; both are now
+> measured policy with named provenance. That is the correct
+> settlement of the RIDER 3 question and it was reached the
+> constitution's way: by transcript, not by taste.
+>
+> **D-b2 — rule world-first, on a sharper ground than the register
+> offers.** Agent-first smuggles an infallibility assumption into the
+> engine: it privileges the agent's self-model over the world's
+> record, which is precisely the epistemic special-casing the axioms
+> killed. The concrete case is the stuck lever — the agent intends
+> a=1, the actuator jams, the world publishes 0; the hypotheses
+> should learn from what *happened*. The stream stays the world's
+> document, one authority, no merge semantics; the disjointness
+> sentence lands in the wire text at 7 as drafted.
+>
+> **D-b1, D-b4, D-b5, D-b6, D-b7 — approve as recommended.** D-b1's
+> geometry ran 8/8 in E-b1. D-b4's options-as-data keeps the doctrinal
+> argmax program unchanged — and observe that §22 now closes the loop
+> on alternative (b): a kernel-applying StdName would need a
+> demonstrated *failed* composition, and (a) working is the
+> composition succeeding, so (b) is blocked at entry unless the world
+> changes. D-b6 approved with the §19.1 family-majority form, plus one
+> caution: define the family *mechanically* in the row — the
+> a-mentioning guard family by sentence structure, never a hand list —
+> so the pin survives fragment growth. D-b7's observation-gating is
+> ruling 4's silence clause kept consistent: no arrival, no fold, for
+> actions exactly as for predictions.
+>
+> **The §15/§26 property homes — split, by the amendment-schedule
+> logic.** Each property lands where its subject becomes final:
+> affine-invariance and argmax-optimality stand *now* in g6 (do not
+> strike them — early partial enforcement bridged to the loop by g2
+> is pure gain); VoI non-negativity at 9, where the Expect-composition
+> is the surviving object; but the **executable Dutch-book check goes
+> to 7, not 9/10** — its subject is D8's predictive coherence under
+> refusers plus pricing, frozen since step 3 and step 7's own topic,
+> and nothing the step-9 demolition touches. §26's supersession is
+> right for the suite and wrong for that one row; §15's original
+> instinct holds for it.
+>
+> **The five CLAUDE.md lines — all approved, §24 standalone rather
+> than folded.** The type-derivation audit installs as drafted
+> (forward-binding from this freeze, retrospective at 9 — and
+> installing it at the one step that lands no type is exactly right:
+> free now, binding for the two expensive steps). The primitivity gate
+> as drafted; the counterfactual audit is verified and painful in the
+> right way. The boundary audit as drafted, with "flags are triage
+> inputs, never verdicts" doing the load-bearing work. The red-team
+> mandates stand alone because they are a *reviewer* institution, not
+> a tool row — folding them into §23 buries the independence
+> requirement; confirm fresh-context reviewers one mandate each, with
+> true external review remaining explicitly available, since fresh
+> context is independence of *state*, not of priors. The lint as
+> drafted.
+>
+> **The ASCII debt — rule the named re-open, not the narrowed
+> clause.** Seven strings across four frozen oracles, every one frozen
+> *after* the clause canonized, masked by an environment variable —
+> this is the strongest possible advertisement for the lint, and
+> narrowing the clause to bless the violations would be tuning the law
+> to the failure, the exact anti-pattern this project exists to
+> refuse. The re-open is mechanical: seven test-name strings, values
+> untouched, the diff recorded verbatim per the step-5 standard,
+> suites re-run green as the witness, manifest re-hashed, one
+> signature. Order it *before* the tag so the lint's first pre-tag
+> firing is fully green and the instrument's debut ends with a clean
+> corpus. The L6 advisories stay advisory — the Python fixture
+> generators cannot import Haskell exports, which is the
+> probe-discipline clause's known boundary; regenerate-and-diff
+> remains their discipline.
+>
+> **§27, §28, §29 — approve with one upgrade.** The IsEq row as
+> drafted: a ToR-style disagreement case or deletion, no third option.
+> The type table's classifications adopted, including Util's
+> DERIVE-AS-DEBT with its death date and TickTrace as DERIVE (the
+> wire-mirror argument is a real derivation; interface S1 names those
+> observables). The Pilot split: (i) now, but (ii) *scheduled* as a
+> step-7 opening-checklist row rather than noted — the membrane
+> re-opens at 7 regardless, and the forgetter asymmetry the order
+> named should not outlive the boundary that can fix it for free.
+> Scheduled, not remembered, is this project's whole immune system;
+> §29(b) is the ninth incident precisely because a scope note was
+> neither. Both §29 dispositions approved as drafted — the provenance
+> field is the A2-K obligation re-homed in the only form that cannot
+> be orphaned again.
+>
+> Two endorsements to close. §19's three catches are the canonized
+> clauses paying rent — especially g2's first world, where a
+> deterministic script let bare-features scoring proxy the
+> per-assignment rule through the z channel: a red row whose red was
+> assumed, caught before freeze for the third consecutive step. And
+> the label-symmetry lesson (signed posterior means are vacuous over
+> latent-labelled classes; use label-invariant moments) should be
+> *recorded as precedent, not canonized* — it lives greppably in §6's
+> amendment paragraph, and the CLAUDE.md queue is five lines deep this
+> freeze; law accumulates interest, and the lint just taught us what
+> happens when it accumulates faster than enforcement. With the ASCII
+> re-open ordered and the Dutch-book row re-homed to 7, the sitting
+> closes and the key covers §30 as listed.
+
+### §32. D-b3 enacted — THE PINNED RESOLUTION (exogenous-read), as ruled
+
+The resolution, assembled from the ruling's own text (this paragraph
+is the normative settlement of RIDER 3; the oracle's g2 header
+carries the two clauses as its comment, transcribed at this sitting
+while the file is still builder-editable):
+
+**THE SCORING RULE IS EXOGENOUS-READ** (the D8 shape: the contemplated
+assignment enters scoring only as feature input at augmented features,
+hypothesis weights and latents untouched by the contemplation).
+Provenance: 6b r1 (§11) — evidential 0-for-200 seeds with no rescue
+ever (smoke plateaus 0.88 vs the 0.95 leg; median regret 89 vs 0.0),
+exogenous-read zero regret 200/200, the confound alive throughout
+(kappa >= 0.06 on 97.8% of phase-2 ticks). With the ruled clauses:
+
+1. **Scope.** What is convicted is THIS evidential rule — naive
+   joint-conditioning through a phase-blind action channel — in this
+   world class. The falsifier owed no steelman; outcome (c)'s door
+   (a fragment extension making actions modelable, an ALPHABET
+   question) stays open, now additionally guarded by the primitivity
+   two-sided entry gate (§22): any such production must arrive with
+   an executed FAILED composition attempt and its ablation fixture.
+2. **The structural reading.** Exogenous-read is functionally an
+   intervention semantics at decision time — the contemplated action
+   enters only as input, its incoming arrows severed — achieved with
+   NO do-operator in the language, just the D8 read at augmented
+   features. A6 stands epistemic: learning conditions on everything,
+   including the agent's own record (world-first, D-b2). Decision-time
+   reads are exogenous. Both halves are now measured policy with named
+   provenance (E-b1 for the epistemic half, 6b for the decision half).
+
+**For the record, as ordered:** N2's rescue never arrives because the
+myopic argmax contains no exploration pressure and the confound partly
+self-sustains through the agent's own disposition-scored actions —
+under evidential choice the phase-2 record keeps feeding the
+disposition channel (refrains under high-harm beliefs look like the
+low-disposition arm), so kappa plateaus near 0.11 and never dies
+(§11's per-tick kappa trace: above the 0.06 bar on 489 of 500 phase-2
+ticks). RIDER 3's "the asymptotic defence is a consolation" claim now
+has numbers: the transient IS the steady state under this rule.
+
+The label-symmetry lesson stays PRECEDENT, not law, as ruled — its
+greppable home is §6's amendment paragraph and the two transcripts.
+
+### §33. The remaining rulings enacted (each with its landing site)
+
+- **D-b1, D-b4, D-b5, D-b7 — approved as recommended**; no artifact
+  moves (the oracle already encodes them). D-b4's loop-closure
+  observation recorded: alternative (b)'s kernel-applying StdName is
+  blocked at entry by §22's gate unless a composition attempt FAILS —
+  and proof (i)'s vThink-as-sentence already shows the composition
+  SUCCEEDING at today's surface.
+- **D-b2 — world-first, on the ruled ground** (agent-first smuggles
+  infallibility: it privileges the agent's self-model over the
+  world's record — the stuck lever: intend a=1, actuator jams, world
+  publishes 0, the hypotheses learn what HAPPENED). The stream is the
+  world's document, one authority, no merge semantics. The
+  disjointness sentence lands in the wire text at STEP 7 — now a
+  scheduled row in the AGENT_PLAN step-7 batch (§35), not a note.
+- **D-b6 — approved in the family-majority form, with the
+  mechanical-family caution ALREADY SATISFIED AS BUILT**: the oracle's
+  `aFamilyMass` (test-stream/Stream.hs:282-285) defines membership
+  STRUCTURALLY — `"('get', 'a')" isInfixOf renderExpr (hypEmit ...)`
+  over the ranked posterior — a predicate on sentence structure, no
+  hand list anywhere; the pin survives fragment growth by
+  construction. Recorded here so the compliance is reviewable by
+  grep, no oracle edit needed.
+- **The property homes, split as ruled**: g6's affine-invariance and
+  argmax-optimality STAND at 6 (not struck); VoI non-negativity at 9;
+  **the executable Dutch-book check RE-HOMED TO STEP 7** (D8's
+  predictive coherence under refusers plus pricing — step 7's own
+  subject; §26's supersession holds for the suite, §15's original
+  instinct holds for this row). The AGENT_PLAN batch (§35) carries
+  the row at 7, and step 9's row carries the law-grade suite minus
+  that row.
+- **§24 standalone, execution mode CONFIRMED**: fresh-context
+  reviewer agents, one mandate each, at every boundary — fresh
+  context is independence of STATE, not of priors, so true external
+  review remains explicitly available at the author's election. The
+  confirmation sentence joins the canonized clause (§35).
+- **The Pilot split**: (i) the fence comments land at implementation
+  (src unfrozen); (ii) — the scripted arms move to a test-side
+  harness module — is now a SCHEDULED step-7 opening-checklist row
+  (the membrane re-opens there; the forgetter asymmetry dies at the
+  first boundary that can fix it for free), in the §35 batch.
+- **Util DERIVE-AS-DEBT and TickTrace DERIVE adopted** as classified
+  (§28's table stands as ruled).
+
+### §34. THE ASCII RE-OPEN, executed as ordered (pre-tag)
+
+The ruling (§31): the named re-open, never the narrowed clause —
+seven test-name strings, values untouched, diff verbatim, suites
+green as witness, manifest re-hashed, one signature. Executed
+before the tag so the lint's debut ends with a clean corpus.
+
+The diff, verbatim (the four frozen oracles; nothing else in it):
+
+```
+diff --git a/test-actions/Actions.hs b/test-actions/Actions.hs
+index 5765776..882662c 100644
+--- a/test-actions/Actions.hs
++++ b/test-actions/Actions.hs
+@@ -70,7 +70,7 @@ import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,
+ import Streams (drift400, shifted160)
+ 
+ main :: IO ()
+-main = defaultMain $ testGroup "actions — an action is an assignment (step 5)"
++main = defaultMain $ testGroup "actions -- an action is an assignment (step 5)"
+   [ g1Options
+   , g2Tick
+   , g3LadderPins
+diff --git a/test-optlaw/OptLaw.hs b/test-optlaw/OptLaw.hs
+index e99dc2e..2159973 100644
+--- a/test-optlaw/OptLaw.hs
++++ b/test-optlaw/OptLaw.hs
+@@ -100,7 +100,7 @@ import PropLang.Syntax (Args (..), Expr (..), Grid, Idx (..), K, Name,
+                         StdName (..), gridSize, mkC, mkGrid)
+ 
+ main :: IO ()
+-main = defaultMain $ testGroup "optlaw — the section-1b pin"
++main = defaultMain $ testGroup "optlaw -- the section-1b pin"
+   [ gPin
+   , gBoundary
+   ]
+diff --git a/test-pricing/Pricing.hs b/test-pricing/Pricing.hs
+index d058a24..7825739 100644
+--- a/test-pricing/Pricing.hs
++++ b/test-pricing/Pricing.hs
+@@ -63,7 +63,7 @@ import PropLang.Syntax (Charge (..), Grid, Namespace, ProdTable (..),
+                         prodTable)
+ 
+ main :: IO ()
+-main = defaultMain $ testGroup "pricing — one mechanism, two declared tables"
++main = defaultMain $ testGroup "pricing -- one mechanism, two declared tables"
+   [ g1Mechanism
+   , g2Trees
+   , g3Wiring
+@@ -114,7 +114,7 @@ g1Mechanism = testGroup "g1 chargeBits: the one width-to-bits evaluator"
+       assertHexEq "const-shaped sum" (castDoubleToWord64 (1 + (1 + lg 9)))
+                   (chargeBits fragWidth
+                      (CSum (CW MODEL) (CSum (CW THETA) (CBits (lg 9)))))
+-  , testCase "THE DOCTRINE ROW: the association is data — one ulp moves when the tree does" $ do
++  , testCase "THE DOCTRINE ROW: the association is data -- one ulp moves when the tree does" $ do
+       -- measured (the assoc probe, 2026-07-15): a = 1, b = lg 3,
+       -- c = lg 7 — corpus-typical leaves where ((a+b)+c) /= (a+(b+c))
+       let left  = CSum (CSum (CBits 1) (CBits (lg 3))) (CBits (lg 7))
+diff --git a/test-sentence/Sentence.hs b/test-sentence/Sentence.hs
+index 7e41447..18f5aab 100644
+--- a/test-sentence/Sentence.hs
++++ b/test-sentence/Sentence.hs
+@@ -133,7 +133,7 @@ import Anchors
+ import Streams
+ 
+ main :: IO ()
+-main = defaultMain $ testGroup "sentence — a hypothesis becomes a sentence (step 3)"
++main = defaultMain $ testGroup "sentence -- a hypothesis becomes a sentence (step 3)"
+   [ g1Enumeration
+   , g1cChangingWorld
+   , g1dLazyGenius
+@@ -782,7 +782,7 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
+                                         <= tolG3Post
+                                     | i <- [0 .. nF - 1] ]))
+             g3Checkpoints
+-  , testCase "reverse orientation: lawful early, ill-formed late — carried to its death tick by BOTH routes" $ do
++  , testCase "reverse orientation: lawful early, ill-formed late -- carried to its death tick by BOTH routes" $ do
+       -- lawfulThenIllHyp refuses from t=3 on; the filter classified it
+       -- UNTOUCHABLE (it reads t), so BOTH routes carry it through its
+       -- lawful ticks and BOTH kill it at its first refusing observed
+@@ -802,7 +802,7 @@ g3FilterPin = testGroup "g3 the enumeration filter, pinned to the general route"
+                  (all (\ag -> posteriorOf ag nS (nS - 1) == 0) (drop 4 slows))
+       assertBool "dead from its first refusing observed tick, filter route (exactly 0 at t>=3)"
+                  (all (\ag -> posteriorOf ag nF (nF - 1) == 0) (drop 4 fasts))
+-  , testCase "forward orientation: ill-formed at t=0, lawful after — killed at its first observed tick by BOTH routes" $ do
++  , testCase "forward orientation: ill-formed at t=0, lawful after -- killed at its first observed tick by BOTH routes" $ do
+       -- illAtZeroHyp refuses exactly at t=0 (each orientation carries
+       -- its own row in the fixture population — the sitting's
+       -- confirmation): the filter must classify it untouchable (it
+```
+
+The witness: all four re-opened suites re-run green after the
+rename — pricing 8/8 (0.00s), actions 10/10 (0.41s), optlaw 7/7
+(2.57s), sentence 27/27 (26.47s) — via `cabal test optlaw pricing
+sentence actions`, full log in the builder scratchpad
+(ascii-reopen-witness.txt). The four manifest rows re-hash in the
+§35 extension (one manifest event, one signature, as ordered).
+
+### §35. The delegated freeze edits, executed (R-D22; the delegation verbatim)
+
+The delegation: the sitting's closing sentence — *"With the ASCII
+re-open ordered and the Dutch-book row re-homed to 7, the sitting
+closes and the key covers §30 as listed"* — over §30's enumerated
+checklist, plus the re-open order's own text (*"Order it before the
+tag"*). Fresh, explicit, per-instance; executed by the builder with
+the builder key; **the author's signed tag over this state
+(stream-freeze-r0) is the R-D22 countersignature and the increment
+does not close without it.** The edits:
+
+1. **CLAUDE.md** — the five approved clauses appended to the
+   increment-protocol canonization run (type-derivation audit with
+   its forward/retrospective division; primitivity two-sided entry
+   gate; boundary audit with the flags-are-triage clause; red-team
+   mandates STANDALONE, with the sitting's execution-mode
+   confirmation sentence joined to the clause — fresh-context
+   reviewer agents one mandate each, independence of STATE not of
+   priors, external review at the author's election; the pre-freeze
+   lint).
+2. **AGENT_PLAN.md** — the row batch: step 6 gains the D-b3
+   resolution mark (exogenous-read, both ruled clauses) and the
+   g4Self row's DISCHARGED mark; 6b gains its EXECUTED mark; step 7
+   gains THREE rows (the executable Dutch-book check re-homed here;
+   the Pilot split part (ii); D-b2's disjointness sentence in the
+   wire touch); step 8 gains the acceptance-lineage ontology row and
+   8b's under-the-primitivity-gate note; step 9 gains THREE rows
+   (IsEq retrospective gate application, no third option; the EU
+   law-grade property suite with VoI non-negativity; the deletion
+   audit's standing GENERIC/SELF-LICENSED world column) plus the
+   retrospective type-pass baseline note.
+3. **proplang.cabal** — the stream stanza merged from
+   test-stream/stanza.cabal.draft (twelfth suite; QuickCheck deps
+   already in the frozen plan — cabal.project.freeze untouched).
+4. **The ASCII re-open** (§34) — seven name strings in four frozen
+   oracles, executed pre-tag as ordered.
+5. **MANIFEST.sha256** — 71 -> 76 rows: six rows re-hashed in place
+   (CLAUDE.md, proplang.cabal, the four re-opened oracles), five
+   rows appended (test-stream/Stream.hs, test-stream/gen_fixtures.py,
+   test-stream/stanza.cabal.draft, tools/prefreeze-lint.sh,
+   tools/boundary-audit.sh). Verified 76/76 OK.
+
+Also at this sitting, pre-freeze and builder-legal: the oracle's g2
+header gained the pinned resolution's two clauses as its comment
+(§32), and the SAT compile re-ran against the overlay under the exact
+stanza flags after that comment-only edit — 10/10, the flag-faithful
+witness re-established on the file's final pre-freeze text.
+
+### §36. The pre-tag transcripts, and where this stops
+
+**The lint's debut as a pre-tag instrument — fully green, as the
+re-open order intended:**
+
+```
+=== prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+PASS  L1 forbidden-tokens-by-glob: 6 src files clean (frozen gate 4 names 5)
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 76 rows verified
+PASS  L4 all 27 tags verify
+PASS  L5 stream-author-pack.md records the four stanza flags (incl. -Werror)
+[11 L6 WARNs, advisory as ruled: the Python fixture generators cannot
+import Haskell exports — the probe-discipline clause's known boundary;
+regenerate-and-diff remains their discipline]
+=== prefreeze-lint: 0 FAIL, 11 WARN ===
+```
+
+**The full corpus under the merged stanza** (`cabal test all`, twelve
+suites): eleven PASS; `stream` FAIL 4-of-10 — exactly the attributed
+red rows (g1's append row at t=5, g2's bridge total, g3's C
+self-signature, g5's first observed acted tick), the oracle-phase red
+the freeze is supposed to seal. Implementation (the overlay's two
+edits transcribed into src/PropLang/Membrane.hs, plus the §28
+derivation/fence comments) begins only after the tag.
+
+**Where this stops: your key.** The corpus as committed is the freeze
+state; the tag is `stream-freeze-r0`, and per R-D22 it is the
+countersignature that makes every delegated edit above binding. After
+the tag: implementation to twelve-green, gates 1-7, the as-built
+report.

@@ -921,6 +921,21 @@ close, oracle and gates green on the same signature; as-built record
    utter them. **Obligation: this step's oracle contains NO assignment-priced row —
    mention prices bind at 6, value prices at 7 — else the pins pay R-C4's
    double-repricing a second time.**
+   **RESOLVED AT THE STEP-6 SITTING (2026-07-16; pack Part V §32): THE SCORING RULE IS
+   EXOGENOUS-READ.** 6b ran oracle-phase (criteria committed FIRST at b721bb2; the r1
+   label-invariant indicator amended alone at 16de2c0 before the re-run): N3 did NOT
+   fire — evidential was not dominated at the pre-stated bar but went 0-for-200 seeds
+   with no rescue ever (smoke plateaus 0.88 vs the 0.95 leg; median regret 89 vs 0.0),
+   while exogenous-read took zero regret 200/200. The ruled resolution carries two
+   clauses: SCOPE (what is convicted is THIS evidential rule — naive joint-conditioning
+   through a phase-blind action channel — in this world class; outcome (c) stays an open
+   alphabet question, guarded by the primitivity two-sided entry gate) and STRUCTURE
+   (exogenous-read is functionally an intervention semantics at decision time, the
+   contemplated action's incoming arrows severed, with NO do-operator in the language —
+   A6 stands epistemic, decision-time reads are exogenous; both halves measured policy).
+   **The g4Self opening-checklist row above is DISCHARGED here** (test-stream g3: the
+   C-world re-declared with its action in the stream, competitor control intact,
+   family-majority form with MECHANICAL membership — structure predicate, no hand list).
 6b. **RIDER 3's falsifier — step 6's oracle-phase evidence program** (the step-1 §6
    E-program pattern: executed on throwaway prototypes, R-D21, before any ruling). **A
    confounded-payoff world; measure whether AND WHEN exploration pressure rescues the
@@ -929,6 +944,8 @@ close, oracle and gates green on the same signature; as-built record
    and report if it is.** **Rider (the author, decision 6): the success criteria are
    PRE-STATED NUMERICALLY — what counts as dominated, and over what horizon exploration
    must rescue the choice — before the world runs; no adjudication by eyeball.**
+   **EXECUTED (2026-07-16), exactly as re-sequenced: both transcripts to the sitting,
+   the stop-and-report arm did not fire; the resolution mark lives in step 6 above.**
 7. **Pricing unified.** **M5 repealed**; the action space's VALUES enter the prior (a value
    drawn from its grid at `log₂|grid|`); the wire sentence lands (**`membrane-wire.md` gains
    the requirement that the hello's `namespace` include writable names not yet in the
@@ -938,8 +955,28 @@ close, oracle and gates green on the same signature; as-built record
    **Fixture: publish an affordance mid-episode; existing posterior odds byte-stable.**
    *(The fixture stays at this step: before step 6 no hypothesis mentions a writable name,
    so the mid-episode-publication fixture is vacuous earlier.)*
+   **Three opening-checklist rows added at the step-6 sitting (2026-07-16):**
+   (i) **THE EXECUTABLE DUTCH-BOOK CHECK lands HERE** (re-homed from the step-9/10
+   suite by the author's ruling: its subject is D8's predictive coherence under
+   refusers plus pricing — frozen since step 3 and this step's own topic, untouched by
+   the step-9 demolition; an executed row over random refuser patterns, never haddock
+   prose). (ii) **THE PILOT SPLIT, part (ii)**: the scripted competitor arms
+   (PilotIdle, PilotThreshold) move out of src to a test-side harness module while the
+   membrane is open anyway — the forgetter asymmetry (Python's forgetter was
+   quarantined in tests; its Haskell analog ships in src behind CPP) dies at the first
+   boundary that can fix it for free (scheduled, not remembered). (iii) **D-b2's
+   DISJOINTNESS SENTENCE joins this step's wire touch**: the tick's features and the
+   chosen assignment's names are disjoint by handshake — the stream is the world's
+   document, one authority, no merge semantics (world-first; the stuck-lever ground:
+   intend a=1, actuator jams, world publishes 0, hypotheses learn what HAPPENED).
 8. **Utility on world states, latent.** `Util a y` dies; utility becomes a priced `Expr` over
    features, and a belief over utility programs (CIRL).
+   **OPENING-CHECKLIST ROW (ordered at the step-6 sitting): the amendment schedule
+   names every acceptance-lineage row whose green currently re-confirms the OLD
+   ontology R(a,s) = u(a(s))** (the test-sentence g1 ports; the test-membrane t1
+   utility rows) **and re-derives or retires each at this boundary** — the founding
+   oracle deliberately pins both ontologies at once until this step fires; every
+   acceptance run until then re-confirms the calculator's definition (pack §29a).
 8b. **RIDER 1's falsifier and scope line — step 8's oracle-phase evidence program**
    (re-sequenced 2026-07-15, decision 6: the falsifier runs pre-freeze on a prototype, so
    step 8's oracle already encodes the ruled outcome instead of amending it afterwards).
@@ -950,9 +987,33 @@ close, oracle and gates green on the same signature; as-built record
    prototype, not merely demonstrated — `prodExpr` moves again, P5 fires again — so the
    ruling sees the bit cost beside the capability.**
    **A horizon CONSTANT is forbidden — it is the sentinel's disease returning.**
+   **8b runs UNDER THE PRIMITIVITY GATE (canonized at the step-6 boundary): the
+   payoff-at-t+5 falsifier IS the composition attempt — the production lands only on
+   the sentence form's demonstrated failure, with its price beside it.**
 9. **`Expect`-binder, `SawE`, `ElimJ`; delete the VOI primitives and the FN/UTIL sorts.**
    *(Proof (i).)* **Re-run the deletion audit against the smaller alphabet — with a proof for
-   EVERY terminal** (today: 2 of ~22). **And the TYPE-derivation audit (§8) — its complement.**
+   EVERY terminal** (today: 2 of ~22). **And the TYPE-derivation audit (§8) — its complement**
+   (the retrospective pass; the step-6 first-pass table, pack §28 as adopted at the
+   sitting, is its baseline).
+   **Three opening-checklist rows added at the step-6 sitting (2026-07-16):**
+   (i) **IsEq's primitivity gets the two-sided gate RETROSPECTIVELY** — the one
+   surviving production whose primitivity is an assertion, made pre-arithmetic. The
+   composition attempt: an equality test written as per-name difference arithmetic
+   (Sub/Mul, Gt both ways) over the declared name set, options being Features over a
+   declared menu. Either the attempt FAILS pinned (a ToR-style disagreement case, by
+   construction) and IsEq keeps its codeword with a real proof, or it succeeds and
+   IsEq is deleted at this step with the others — no third option (the ruling).
+   (ii) **THE EU LAW-GRADE PROPERTY SUITE homes here**: VoI non-negativity (over the
+   surviving Expect-composition — pinning a verb the same increment deletes would be a
+   pin written to die), plus utility affine-invariance and generative argmax-optimality
+   re-stated law-grade over the final decision surface (step 6's g6 rows stand as the
+   early partial enforcement; the executable Dutch-book check landed at step 7 by the
+   same amendment-schedule logic).
+   (iii) **THE DELETION AUDIT'S WORLD COLUMN IS STANDING: every deletion-proof world
+   is labeled GENERIC or SELF-LICENSED, and a terminal's survival cannot be earned
+   exclusively on SELF-LICENSED worlds** (the A2-K obligation re-homed at last, as a
+   field instead of a boundary's scope note — the only form that cannot be orphaned
+   again; pack §29b).
 10. **Reflexive closure (A7).** The policy enters the action space; computation cost is a
     **measured** feature; heuristics emerge. *brief §2's headline. Steps 1-9 stand without it.*
 

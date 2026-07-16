@@ -70,7 +70,7 @@ import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,
 import Streams (drift400, shifted160)
 
 main :: IO ()
-main = defaultMain $ testGroup "actions — an action is an assignment (step 5)"
+main = defaultMain $ testGroup "actions -- an action is an assignment (step 5)"
   [ g1Options
   , g2Tick
   , g3LadderPins

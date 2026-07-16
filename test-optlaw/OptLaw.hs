@@ -100,7 +100,7 @@ import PropLang.Syntax (Args (..), Expr (..), Grid, Idx (..), K, Name,
                         StdName (..), gridSize, mkC, mkGrid)
 
 main :: IO ()
-main = defaultMain $ testGroup "optlaw — the section-1b pin"
+main = defaultMain $ testGroup "optlaw -- the section-1b pin"
   [ gPin
   , gBoundary
   ]
