@@ -96,8 +96,8 @@ import PropLang.Enumerate (Agent, Hyp (..), Obs, agentMeta, emit,
                            observeCounts, observeVia, obsSpace,
                            sentenceAgent)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
-import PropLang.Syntax (Args (..), Expr (..), Grid, Idx (..), K, Name,
-                        StdName (..), gridSize, mkC, mkGrid)
+import PropLang.Syntax (Expr (..), Grid, Idx (..), K, Name,
+                        gridSize, mkC, mkGrid)
 
 main :: IO ()
 main = defaultMain $ testGroup "optlaw -- the section-1b pin"
@@ -214,7 +214,13 @@ walkCodeU :: Int -> Expr env (Maybe (K Double Double))
 walkCodeU j = Code uSpaceD uSpaceD body
   where
     rho = cAtG rhoUGrid j
-    eqE a b = Call IsEq (a :* b :* ANil)
+    -- SINCE STEP 9 (elim-freeze-r0): equality is the If/Gt composition
+    -- (E-e2, 0/1225; IsEq deleted). Values bit-identical, so every
+    -- observeCounts pin below is untouched — only the move code's
+    -- serialization changes.
+    eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+    trueE = Gt k1E k0E
+    falseE = Gt k0E k1E
     iv = Pos uSpaceD (Var (S Z))
     jv = Pos uSpaceD (Var Z)
     lo = If (Gt iv k0E)    (Sub iv k1E) (Add iv k1E)
