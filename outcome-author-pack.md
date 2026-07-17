@@ -589,3 +589,73 @@ re-derivations (the R-D22 batch at the freeze), the frozen-layer
 inventory (all four items incl. the plan cite), prodUtil unchanged
 (USay remains the door; the wrapper was never a production). The key
 follows the lint.
+
+---
+
+## Part VII — the replacement surface, settled (the build's blueprint)
+
+### §18. The type surface (every signature with its derivation line, the typing-audit carry)
+
+1. **`newtype USent = USent (Expr '[Double, Double] Double)`**
+   (Syntax; replaces `data Util a y`). Derivation line = §15's ruled
+   text verbatim (DERIVES + THE RESIDUE NOTE). No host function
+   anywhere in the utility path. Exported `USent (..)` — pure priced
+   syntax, nothing sealed.
+2. **`USay :: Expr '[Double, Double] Double -> Expr env USent`**
+   (re-typed; the phantom parameters die with the wrapper). Still
+   the UTIL sort's sole codeword: prodUtil stays 1, the payload
+   prices as EXPR in its two-variable scope — THE PRICING SUITE'S
+   PIN DOES NOT MOVE.
+3. **`uAt :: Features -> USent -> Double -> Double -> Double`**
+   (Eval; THE bridge, the measured one-site change): `uAt feats
+   (USent p) a y = evalx p (mkEnv feats (a :. y :. VNil))`. Get
+   inside a utility now reads the world; the residue vars carry
+   (option code, outcome).
+4. **`EU :: StdName '[B Obs, USent, Features, Double] Double`** —
+   the evaluation FEATURES enter as an ARGUMENT (data through the
+   args; applyStd stays pure, zero evaluator plumbing): semantics
+   `expect b (\y -> uAt feats u code (fromIntegral y))`. Callers
+   pass (feats ++ candidate) — the step-6 exogenous-read geometry,
+   now carrying the utility's world too.
+5. **The dying verbs (VAct/VThink/VThinkK/VPre), MINIMAL re-plumb
+   (D-e2):** `Util a h` args become `USent`, option lists become
+   option-code lists (`NonEmpty Double` — the residue's own
+   reading), bridges evaluate `uAt [] u code h` (featureless for the
+   verbs that die at 9; their suites' utilities never read
+   features). `FnUtil :: USent -> Double -> Fn Obs` likewise.
+6. **Membrane:** `PilotEU USent`; the fold's euAt becomes
+   `Call EU (pred :* u :* (feats ++ a) :* code :* ANil)` with
+   code = 0 for assignment worlds (the act routes through features —
+   the doctrine's own sentence; the residue var serves code-shaped
+   options in the re-derived cirl/prepost/membrane rows).
+7. **Host (D-e5):** assign@1 dies; `said@1` lands — the hello's
+   utility is an S-expression parsed against the residue-scope
+   grammar subset (var/const/arith/If/Gt/IsEq/Get) into the priced
+   program: THE PRINCIPAL'S DECLARATION AS A POINT-MASS PRIOR over
+   the program shape (grid-priced parameter latent where declared);
+   unparseable or unpriceable = validation failure, FAIL-CLOSED.
+
+### §19. The oracle plan (test-outcome/) and the replacement-surface discipline
+
+Groups: **g1 THE BRIDGE** (uAt's one-site delta pinned: Get inside
+utility reads the world; the repeal's arithmetic face); **g2 THE
+SEAMS** (EU/FnUtil two-route over USent; the fold == the public
+arithmetic re-pinned); **g3 THE SCOPE LINE** (D-e7 order 2: the
+visible-fuse world as a GREEN DECLARED-LIMITATION pin, R-D23 form —
+the refusal ASSERTED, the comment printing BOTH gaps: the
+choice-side Features eliminators and the model-side transition
+family; flipped deliberately by the boundary that lands the horizon,
+never silently); **g4 THE WIRE** (said@1 hello two-route; fail-closed
+rows); **g5 THE LATENT HALF** (the point-mass doctrine + the
+grid-priced parameter moved by evidence through cond — the CIRL
+bridge re-derived over USent).
+
+SAT/red for a REPLACEMENT surface (the step-5 caveat): shipped src
+cannot carry the new surface without compile-breaking seven frozen
+suites, so the compile-enabling stubs LIVE IN THE OVERLAY — SAT
+compiles the oracle against the full new-surface overlay
+(flag-faithful) and the RED run compiles against the same overlay
+with the uAt bridge STUBBED (runtime-red, every red attributable to
+the missing bridge). The seven re-derived suites are drafted in the
+oracle phase and land AT THE FREEZE as the R-D22 batch beside the
+src swap — the sealed replacement, the step-5 precedent's form.
