@@ -1057,3 +1057,29 @@ Per R-D22 the tag countersigns every delegated edit above, the
 frozen-layer sweep included. After the tag: implementation =
 serveLine's body transcribed from the overlay (scratch step7/proto7),
 thirteen suites green, gates 1-7, the as-built (Part VI), r1.
+
+### §25. The r0 review, enacted (the fix rides the key)
+
+The review's verdict verbatim where it binds: *"G1/G2's record form
+is weaker than N8's, and the weak form asserts nothing ... a green
+that cannot fail is the mirror image of the red that cannot fire."*
+WRITEUP.md QUOTES both close-date counts ("fourteen `DROP_` CPP
+flags", :211/:352; "across the eight suites", :184/:272), so both
+rows took the N8 shape: assert the close-date quote intact, print
+the live count, FAIL if the quote goes missing. Verified green
+two-sided.
+
+**Note one recorded (P0's retired-list failure class):** a hand
+enumeration, acceptable at two dated entries; APPEND-ONLY DEBT — the
+next demolition that retires a cited path grows it by hand; at ~five
+entries, derive it from the retirement registry the packs already
+keep. Known class, not worth machinery today.
+
+**Note two enacted:** the sweep canonized as THE FROZEN-LAYER
+INVENTORY — one line in CLAUDE.md's increment protocol (per-boundary
+inventory to the sitting; repair under the key in the form the text
+class demands; never a standing builder license). The institution,
+not the exhortation.
+
+Manifest re-hashed over check.sh + CLAUDE.md (79/79). The key covers
+THIS commit: `unify-freeze-r0`.

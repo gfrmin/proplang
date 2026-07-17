@@ -269,6 +269,19 @@ Every step-6+ increment follows the recursive two-phase discipline:
    as prose. Its first firing found the ASCII clause violated in four
    frozen oracles the day it became enforced — that is the
    provenance.
+   One line canonized at the step-7 boundary (the unify freeze,
+   2026-07-17): THE FROZEN-LAYER INVENTORY. Every boundary sitting
+   receives an inventory of frozen prose the increment's rulings or
+   measurements have falsified; repairs execute under that boundary's
+   key, in the form the text class demands — in-place with the
+   falsified sentence quoted inside its own repair for normative
+   prose, a dated bracket for historical record, a dated supersession
+   note for close-date documents, two-sided record rows for
+   instruments (a green that cannot fail is the mirror image of the
+   red that cannot fire). NEVER a standing license: the builder
+   touches the frozen layer only at a boundary, under an inventory
+   brought to the sitting (the step-7 sweep its provenance — the
+   directive was per-sitting and verbatim-quoted).
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

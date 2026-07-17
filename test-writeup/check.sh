@@ -125,15 +125,25 @@ fi
 pin "N9 UTIL row"          '| UTIL | USay | 0 bits |' typed-port-spec.md
 
 # ---- G: textual gates ------------------------------------------------
-# G1/G2 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17):
-# the close-date corpus had 14 ablation flags and 8 stanzas; the
-# re-derivation legitimately moves both counts at its freezes (every
-# move tagged). The record rows print the live counts beside the
-# as-of state and fail on nothing.
+# G1/G2 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17;
+# two-sided N8 form at the r0 review — "a green that cannot fail is
+# the mirror image of the red that cannot fire"): the close-date
+# corpus had 14 ablation flags and 8 stanzas, and WRITEUP.md QUOTES
+# both counts; each record row asserts the close-date quote intact
+# and prints the live count (the re-derivation legitimately moves
+# the counts at its freezes; every move tagged).
 nf=$(grep -rhoE 'DROP_[A-Z_]+' src | sort -u | wc -l)
-ok "G1 ablation flags (RECORD: 14 at the 2026-07-07 close; live: $nf)"
+if grep -qF -- 'fourteen `DROP_` CPP flags' WRITEUP.md; then
+    ok "G1 ablation flags (RECORD: close-date quote intact; live: $nf)"
+else
+    bad "G1 ablation flags (record form)" "close-date quote missing from WRITEUP.md"
+fi
 ns=$(grep -c '^test-suite ' proplang.cabal)
-ok "G2 test-suite stanzas (RECORD: 8 at the 2026-07-07 close; live: $ns)"
+if grep -qF -- 'across the eight suites' WRITEUP.md; then
+    ok "G2 test-suite stanzas (RECORD: close-date quote intact; live: $ns)"
+else
+    bad "G2 test-suite stanzas (record form)" "close-date quote missing from WRITEUP.md"
+fi
 grep -qx 'forget' audit/forbidden.txt \
     && ok "G3 the forgetting family is gate-4 forbidden" \
     || bad "G3 the forgetting family is gate-4 forbidden"
