@@ -436,3 +436,85 @@ codeword goes); STDNAME **6 -> 0**, FN **2 -> 0**, UTIL **1 -> 0**,
 STATS **1 -> 0**; KER **2** unchanged. `ProdTable` drops from six
 fields to two. The refund per deleted `Call` mention is `lg 6 =
 2.585` bits (not §5b's stale `lg 7 = 2.81`).
+
+---
+
+## Part IV — E-e2 (the IsEq attempt) and the register
+
+### §12. E-e2 — the IsEq composition attempt (ruling 4, mandatory): the transcript
+
+```
+E-e2 IsEq composition attempt: IsEq x y == not(x>y) && not(y>x)
+(a) REACHABLE domain (1225 pairs: positions, grids, residue values):
+    disagreements: 0
+(b) EDGE cases:
+      NaN vs NaN: prim=False comp=True  <-- DISAGREE
+      NaN vs 1.0: prim=False comp=True  <-- DISAGREE
+      (Infinity, -0.0, +-inf: all AGREE)
+VERDICT: reachable disagreements = 0; the only disagreement is NaN.
+```
+
+**The finding, and why it does not decide itself.** Every LIVE IsEq
+call is over Doubles (`Pos` gives Double positions — Enumerate:400-401;
+codes and features are Doubles; the Obs uses coerce through `ToR`,
+injective on the reachable ints). Over the reachable domain the
+Gt/ToR composition `If (Gt x y) F (If (Gt y x) F T)` equals `x == y`
+**exactly, 0 disagreements in 1225 pairs.** The SOLE disagreement is
+NaN (`NaN == NaN` is False; the composition says True). So row (i)'s
+binary turns on ONE grammar fact:
+
+- **NaN is reachable as an IsEq operand IFF a world can declare a NaN
+  grid point** (`mkGrid` takes a `NonEmpty Double` — nothing prohibits
+  NaN today). Option codes, positions, and features are otherwise all
+  finite.
+
+Therefore row (i)'s "no third option" resolves to a REAL binary, and
+the third option (keep-on-assertion) is eliminated as the ruling
+intended:
+
+- **(A) the freeze prohibits NaN grid points** (a cheap validation at
+  `mkGrid` / wire ingestion) -> the composition is TOTAL over the
+  provably-reachable domain -> **IsEq is DELETED**, its 15 call sites
+  rewritten to the Gt/ToR composition, EXPR gains nothing (the
+  composition is existing productions).
+- **(B) NaN grid points stay declarable** -> **E-e2's NaN row IS the
+  pinned disagreement** (the ToR-standard executable row) -> **IsEq is
+  KEPT** with a real proof, and migrates into EXPR (19->21 already
+  carries it).
+
+Either way the dead `Acceptance.hs:205` cite is REPLACED by E-e2 (a
+row the suite runs). The builder's recommendation: **(B)** — IsEq is
+the banked Features-eliminator step 10's horizon will need (the 8b
+transcript), the NaN row is a genuine ToR-standard pin, and prohibiting
+NaN grids to save one codeword is churn against a codeword step 10
+re-adds. But this is the author's call: it trades a codeword against a
+grammar-validation and a forward-looking role, and E-e2 is the ground
+either way.
+
+### §13. The register (D-f1..D-f12) — recommendations from the measurements
+
+| id | question | recommendation |
+|---|---|---|
+| D-f1 | the per-verb deletions (EU/VAct/VThink/VThinkK/VPre) | DELETE all five — E-e1a licenses each per-verb, bit-exact; the compositions land as SHIPPED sentences (ruling 1) |
+| D-f2 | the FN sort (FnInd/FnUtil) | DELETE — E-e1b: prob is Expect-of-indicator; utility is Expect-of-body; the sort dissolves into the Expect-binder |
+| D-f3 | the UTIL sort (USay) | DELETE the sort; utility is an ordinary Expr. **USent: TWO deaths (ruling 3)** — the SORT dies here, the RESIDUE does not (its death is outcome-as-feature, world-encoding). Derivation line repaired to name the condition |
+| D-f4 | Expect-binder | LAND as drafted (§11): `Real a => Expr env (B a) -> Expr (Double ': env) Double -> Expr env Double` |
+| D-f5 | SawE + ElimJ | LAND as drafted (§11); ElimJ owes ONE Maybe (E-e1c); the Nothing arm a sentence (OPEN 10), never baked |
+| D-f6 | Push (OPEN 3) | KEEP — the tower holds into ℝ but Push-into-Belief is a distinct codomain; cost recorded (§10) |
+| D-f7 | Event (OPEN 1) | survives as a Belief-layer smart constructor, NOT a grammar peer noun; prob derivable (E-e1b executed, not argued) |
+| D-f8 | IsEq (row i) | THE AUTHOR'S BINARY (§12): (A) prohibit NaN grids + delete, or (B) the NaN pin + keep. Builder recommends (B) |
+| D-f9 | the deletion audit (ruling 7) | UNIFY on the four-check standard (add layer-absence to audit/ablation.sh); the four missing DROP points land; GENERIC/SELF-LICENSED column standing |
+| D-f10 | the rulings-sweep dispositions (ruling 5) | RETIRE-AND-REPLACE per §3: hygiene FN rows + actions VThinkK price row retire (new prices from the 21-table); CL-3 tie rows re-derived over the composition; seam rows retire (anti-resurrection = layer-absence); cirl:286 retires |
+| D-f11 | the frozen-layer inventory (ruling 8) | the biggest yet: §5b's table (EXPR 19->21, refund lg 6, "+1.07" corrected in place); the spec's normative production table (4 of 6 rows delete); design's grammar + v_think passage; the Acceptance.hs cites ×3; "2 of ~22"; the Bern ghost; §28's line numbers |
+| D-f12 | the alphabet arithmetic | EXPR 19->21, STDNAME/FN/UTIL/STATS -> 0, KER 2; ProdTable six fields -> two; P5 fires (the author has ruled the cost acceptable) |
+
+### §14. What runs next — the sitting, then the freeze
+
+Parts I-IV complete: the two-column census (two step-reframing
+findings), the eight rulings recorded, E-e1a-d + E-e2 executed, the
+two unspecified types drafted with their derivation lines, OPEN 1/3/10
+answered by measurement, the register. **The sitting rules D-f1..D-f12
+(D-f8 the one genuine fork).** Then: the oracle (test-elim/, the
+compositions as shipped sentences + the SAT overlay under the smaller
+alphabet), the deletion audit's unification, the frozen-layer
+inventory, and outcome... `elim-freeze-r0` — the key.
