@@ -1083,3 +1083,82 @@ not the exhortation.
 
 Manifest re-hashed over check.sh + CLAUDE.md (79/79). The key covers
 THIS commit: `unify-freeze-r0`.
+
+---
+
+## Part VI — the as-built report (implementation under unify-freeze-r0)
+
+### §26. The window exits; the wave as transcription
+
+Your tag `unify-freeze-r0` (on c0e3378, verified) sealed the oracle;
+implementation followed as TRANSCRIPTION — the sixth consecutive
+increment where falsifier-before-freeze made it so. ONE file:
+src/PropLang/Host.hs gains the E-c-verified overlay node for node —
+the mini JSON reader (the whole wire grammar, hand-rolled, no
+dependency entering the frozen plan), canonical rendering, the
+RIDER-2 hello validation, the D-b2 per-tick disjointness check, the
+frozen loop's tick order (choice from the predictive BEFORE the
+observation; observe at feats ++ act, step 6's geometry; silent ticks
+move nothing), and the pinned exogenous-read decision fold (g2's
+public arithmetic — the register's second citing consumer). The
+session core sits behind the same CPP guard as the membrane's
+agent-facing surface (the wire session dies with the scoring layer or
+with argmax — the deletion coupling recorded in the export list).
+`hostMain` is the ten-line loop; `proplang-host` serves it.
+
+### §27. The gate transcript (first run after transcription)
+
+- **`cabal test all`: ALL THIRTEEN SUITES GREEN, first run** — unify
+  12/12 (the six driver rows turned by the transcription; the six
+  pin-freeze rows stayed green), every earlier suite green over the
+  changed Host.
+- **Gates 1–7: PASS** (the frozen script; gate 3's IO check now has
+  a real polling loop to police, and it lives where the gate demands).
+- **prefreeze-lint 0 FAIL** (79 rows, 30 tags with unify-freeze-r0);
+  **boundary-audit M5=0 H=4-known**; **test-writeup/check.sh fully
+  green** (the dated instrument's first post-repair run under a
+  moving corpus: the two-sided rows held).
+- **The wire, live** (the executable itself, stdin to stdout):
+
+```
+{"ok": true, "proto": 1, "models": 1529, "namespace_bits": 1.5849625007211563}
+{"act": {"a": 0.5}, "p1": 0.5, "entropy_bits": 4.214679258078533}
+{"observed": 1, "loss_bits": 1.0000000000000764}
+{"ok": true}
+```
+
+  — the g4 session's world, spoken to the real binary: the models
+  count is the engine's own 1529, the wait assignment, the fold's
+  loss. THE REPO HAS A RUNNABLE HOST for the first time since the
+  step-3 demolition; "no driver returns until 7" is discharged on
+  its own schedule.
+
+### §28. Standing debts (as they leave step 7)
+
+HEAD width-2 DEBT (unchanged; the table re-derivation home stands).
+assign@1 dies at step 8 (printed on the wire, in src, and on step 8's
+opening checklist). Util DERIVE-AS-DEBT dies at step 8. The Pilot
+split lands at step 8 (re-homed, ruled D-c5). DROP_LADDER hook
+retires at step 9. P0's retired-list: append-only-debt class,
+registry-derived at ~5 entries. The null-event ruling waits at step 9
+beside ElimJ.
+
+### §29. The reviewer block (yours to run)
+
+```
+export PATH="$HOME/.ghcup/bin:$PATH" LANG=C.UTF-8
+git tag -v unify-freeze-r0             # the countersignature (c0e3378)
+sha256sum -c MANIFEST.sha256           # 79/79 OK
+cabal test all                         # thirteen suites green
+bash audit/run-gates.sh                # gates 1-7 PASS
+bash tools/prefreeze-lint.sh           # 0 FAIL
+bash test-writeup/check.sh             # fully green, dated instrument
+echo '<the g4 hello line>' | $(cabal list-bin proplang-host)   # the wire, live
+```
+
+Step 7 closes at your r1 read. Step 8 opens on the heaviest remaining
+subject — Util dies, utility becomes a priced Expr over features and
+a belief over utility programs (CIRL) — with its checklist already
+carrying: the acceptance-lineage ontology rows, 8b under the
+primitivity gate (priced, falsifier-first), the Pilot split, and
+assign@1's death.
