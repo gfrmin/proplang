@@ -63,8 +63,9 @@ import PropLang.Enumerate (Agent, Hyp (..), Obs, agentMeta,
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           menuAssignments, runMembrane)
-import PropLang.Syntax (Args (..), B, Expr (..), Grid,
-                        Idx (..), Name, StdName (..), USent (..),
+import PropLang.Belief (expect)
+import PropLang.Syntax (B, Expr (..), Grid,
+                        Idx (..), Name,
                         chargeBits, mkC, mkGrid, mkNamespace)
 
 import Streams (shifted160)
@@ -124,11 +125,13 @@ runOrFail Nothing  = assertFailure "runMembrane: impossible evidence"
 -- RE-DERIVED at the step-8 outcome freeze (R-D22): EU's evaluation
 -- features are an ARGUMENT now (feats ++ candidate — the same value
 -- the fold passes); the residue code is 0 for assignment worlds.
-euAt :: B Obs -> USent -> Features -> Features -> Double
+-- SINCE STEP 9: the EU verb died; EU is the public 'expect' over the
+-- utility residue (bit-identical: pre-step-9 'Call EU' was exactly
+-- 'expect pr (\\y -> uAt (feats++a) u 0 y)' — 'Var Z' the code 0,
+-- 'Var (S Z)' the outcome).
+euAt :: B Obs -> Expr '[Double, Double] Double -> Features -> Features -> Double
 euAt pr u feats a =
-  evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
-                  :* Var (S (S (S Z))) :* ANil))
-        (mkEnv [] (pr :. u :. (feats ++ a) :. (0 :: Double) :. VNil))
+  expect pr (\y -> evalx u (mkEnv (feats ++ a) (0 :. realToFrac y :. VNil)))
 
 argmaxBy :: (a -> Double) -> NonEmpty a -> a
 argmaxBy val (o0 :| os) = go o0 (val o0) os
@@ -140,7 +143,7 @@ argmaxBy val (o0 :| os) = go o0 (val o0) os
 
 -- the public exogenous-read choice at one tick (D-b3's arithmetic,
 -- stated where it can be enforced)
-exoChoice :: Agent -> Features -> [(Name, Grid)] -> USent
+exoChoice :: Agent -> Features -> [(Name, Grid)] -> Expr '[Double, Double] Double
           -> Features
 exoChoice ag feats menu u =
   argmaxBy (\a -> euAt (predictive (feats ++ a) ag) u feats a)
@@ -223,7 +226,7 @@ g1Append = testGroup "g1 the append: observe sees feats ++ assignment"
 -- payUtil 1 0 — a=1.5 -> 2y-1, a=0.5 -> 0, as a sentence over
 -- Get "a" (same extension on the menu; a sentence cannot error
 -- off-menu, and the pinned runs never leave it)
-uSelf :: USent
+uSelf :: Expr '[Double, Double] Double
 uSelf = payUtil 1.0 0.0
 
 -- the action-RESPONSIVE world (the discriminating fixture the first
@@ -416,11 +419,11 @@ trainedS = go (0 :: Int) (sentenceAgent modelsS)
 probeFeats :: Features
 probeFeats = [("t", 40), ("z", zC !! 40)]
 
-payUtil :: Double -> Double -> USent
-payUtil vHi vLo = USent
-  (If (Gt (Get "a") (gkS 1))
-      (Mul (gkS vHi) (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1)))
-      (gkS vLo))
+payUtil :: Double -> Double -> Expr '[Double, Double] Double
+payUtil vHi vLo =
+  If (Gt (Get "a") (gkS 1))
+     (Mul (gkS vHi) (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1)))
+     (gkS vLo)
 
 gkS :: Double -> Expr env Double
 gkS v = case mkC (mkGrid "k" (v :| [])) 0 of
@@ -428,9 +431,9 @@ gkS v = case mkC (mkGrid "k" (v :| [])) 0 of
   Nothing -> error "stream fixture: singleton grid index 0 must construct"
 
 -- alpha*u + beta AS A SENTENCE (the affine property's second route)
-affineU :: Double -> Double -> USent -> USent
-affineU alpha beta (USent p) =
-  USent (Add (Mul (gkS alpha) p) (gkS beta))
+affineU :: Double -> Double -> Expr '[Double, Double] Double -> Expr '[Double, Double] Double
+affineU alpha beta p =
+  Add (Mul (gkS alpha) p) (gkS beta)
 
 g6Properties :: TestTree
 g6Properties = testGroup "g6 decision-side universal properties"
