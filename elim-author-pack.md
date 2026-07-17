@@ -188,3 +188,103 @@ unification and its GENERIC/SELF-LICENSED column; the frozen-layer
 inventory (the biggest yet — the whole §5b alphabet table, the spec's
 normative production table, design's grammar and v_think passage, four
 stale cite classes); then the register to the sitting.
+
+---
+
+## Part II — the sitting's rulings (2026-07-17), recorded; the work order
+
+### §7. The eight rulings, as the work will run them
+
+1. **E-e1a APPROVED — the per-verb gate is LAW, plus two additions.**
+   *"If any verb fails to compose, that verb's deletion is not
+   licensed"* cuts both ways, PER VERB not per batch. Addition one:
+   the re-execution lands as SHIPPED composition — the sentences that
+   replace the primitives ARE the deliverable, so proof (i) becomes
+   permanent rather than re-mortal. Addition two: the run must include
+   a **NON-WEIGHT-ZERO Nothing case** — OPEN 10 notes proof (i)'s
+   default sat under a weight-zero predictive, so ElimJ's Nothing arm
+   has never been exercised for VALUE; a license inheriting that
+   accident licenses less than it claims.
+
+2. **OPEN 3 gains E-e1d — the Push-elimination attempt under the
+   two-sided gate.** The tower property: `Expect (Push k b) f ==
+   Expect b (\a. Expect (k a) f)` wherever a pushed belief is consumed
+   by expectation. Push is eliminable UNLESS a corpus site consumes a
+   pushed belief by something other than Expect (conditioning a pushed
+   belief the likely wall). Attempt the derivation at EVERY
+   consumption site: composes everywhere -> Push dies, brief §4
+   vindicated by measurement; a site fails -> the failure IS the
+   pinned disagreement licensing two codewords, the cost recorded with
+   the transcript as ground. By compiler or transcript, never taste.
+
+3. **USent: TWO DEATHS, and step 9 is the boundary for only ONE.**
+   The UTIL SORT dies here (USay cut, utility an ordinary Expr). The
+   RESIDUE (the two-var scope remembering Savage's pair) does NOT die
+   at 9 — its death condition is outcome-as-feature, world-encoding
+   territory this step doesn't touch. The register keeps the deaths
+   separate; the derivation line is REPAIRED to name its condition:
+   *"dies when worlds publish outcomes as features, tracked as
+   standing debt with the world-encoding boundary as its home."* A
+   residue with a named condition is debt; a residue with "a named
+   boundary" that names none was about to become furniture.
+
+4. **IsEq — the composition attempt is MANDATORY and its output
+   REPLACES the dead cite with a living pin.** Finding 1: the sole
+   survivor's license is a citation to a file retired six steps ago.
+   The attempt's product must be an EXECUTABLE DISAGREEMENT ROW inside
+   test-elim (the ToR standard) — the survivor's license is something
+   the SUITE RUNS, not something the plan remembers. The 8b transcript
+   is banked evidence in favour (the grammar's only Features
+   eliminator) but SUPPORTS the attempt, never substitutes for it. The
+   migration to EXPR re-prices it as a production mention — P5 fires,
+   the 19->21 arithmetic already carries it.
+
+5. **The rulings-sweep dispositions — RETIRE-AND-REPLACE, NEVER
+   RE-PRICE.** The hygiene FN-choice row and the actions VThinkK price
+   row RETIRE (their subjects die; a mechanically re-priced shape
+   pinning a false price is exactly the stale-green the column exists
+   to catch) — each replaced by a new row whose price is DERIVED FROM
+   THE 21-PRODUCTION TABLE in its own comment. The CL-3 tie rows are
+   RE-DERIVED over the Expect-composition (they pin real law, must
+   survive the vehicle's death). The outcome seam rows RETIRE with the
+   seam (proof (i)'s own sentence); their anti-resurrection assertion
+   is the deletion audit's LAYER-ABSENCE check, not a vacuous green
+   row. cirl:286 retires with the sort. These enter the wave census as
+   RULED, so the freeze batch carries them by construction.
+
+6. **The two-Maybe obligation — expect it to DISSOLVE, let E-e1c
+   prove it.** Ruling 4 (step-3) already places Code's Maybe at the
+   ENGINE layer: validation at kernel construction, refutation
+   evidence-shaped, *"an unvalidated code cannot feed a verb"*. If the
+   census confirms no sentence ever eliminates the Code Maybe, ElimJ
+   owes exactly ONE Maybe (cond's) and the architecture answered OPEN
+   10's sibling before it was asked. If E-e1c finds a sentence-level
+   Code-Maybe site, ONE POLYMORPHIC eliminator covers both faces
+   (minimality forbids two eliminators for one type constructor) with
+   the Nothing arm per OPEN 10 (sentence-branch or world-declared grid
+   point, never a baked constant). The null-event predictive ruling
+   rides the same text — one ruling, both faces.
+
+7. **The deletion audit — the FOUR-CHECK standard, unified, with the
+   column.** Adopt test-cirl/prepost's four checks (layer absence /
+   positive control / ablation / attribution) as the single standard
+   in audit/ablation.sh — two standards in one audit is the M5 of
+   instrumentation. Every terminal gets its proof against the smaller
+   alphabet; the four missing DROP_ points land with the step;
+   DROP_LADDER gains its fixture or retires its flag. GENERIC/
+   SELF-LICENSED is standing. This audit is where OPEN 1's prob
+   derivability EXECUTES — E-e1b is its evidence program.
+
+8. **The inventory — ALL items approved, the biggest yet by honest
+   count.** §5b's alphabet table repairs to the true arithmetic (EXPR
+   19->21, refund lg 6) with "+1.07 bits" corrected in place, falsified
+   text quoted inside its repair; the three Acceptance.hs cites; "2 of
+   ~22"; the Bern ghost comment; the pack-§28 line numbers. (And the
+   pack's first sentence corrected the reviewer's own "~7" to the true
+   six — the inventory discipline applied to the reviewer's prose, the
+   impartiality the practice claims.)
+
+The work order is §1-§8 as ruled: E-e1a-d executed; the Expect-binder
+and ElimJ types drafted from the measurements with their §8c
+derivation lines written AT the drafting; the IsEq attempt; the
+register to the sitting.
