@@ -736,3 +736,85 @@ the Acceptance numeric anchors — all unchanged across the re-expression**
 
 **Manifest 81/81 at the ruling. The alphabet leaves this step smaller
 than it entered it: two sorts where six stood.**
+
+---
+
+## Part VII — AS-BUILT PROGRESS (2026-07-18, enactment underway)
+
+### §21. What is GREEN and committed (builder key)
+
+| commit | deliverable | state |
+|---|---|---|
+| 358e4b7 | **src demolition, all 6 modules** | -Wall -Werror -Wincomplete clean |
+| ad77ec0 | **test-elim oracle** (ruling 1's centerpiece) | 14 tests PASS against real 20/1 |
+| — | test-optlaw, test-unify | PASS |
+| — | test-stream | 10 PASS (g2 two-route, g6 properties) |
+| — | test-membrane | 19 PASS (golden re-pinned + EXPR repriced) |
+
+The src is the WIDE ruling in full: EXPR 20, KER 1, `ProdTable` two
+fields, `PolSort` two constructors; `Expect` the prevision binder;
+`SawE`/`ElimJ` landed; the five verbs + `IsEq` + `Fn`/`Stats`/`StdName`/
+`Args`/`USent`/`Chan`/`ExpFam`/`USay`/`Call` gone. The oracle SHIPS the
+compositions (EU/prob/VAct = `Expect`; IsEq = If/Gt, 0 disagreements;
+the SawE→CondE→ElimJ chain; the load-bearing Nothing arm).
+
+### §22. The four confirmed adaptation patterns (values stable unless noted)
+
+1. **EU verb → `expect pr (\y -> evalx uResidue (mkEnv (feats++a)
+   (0 :. realToFrac y :. VNil)))`** — BIT-IDENTICAL (the pre-step-9
+   `Call EU` was exactly this). Verified: test-stream g2 two-route.
+2. **IsEq → `If (Gt a b) F (If (Gt b a) F T)`** (F=`Gt k0 k1`,
+   T=`Gt k1 k0`) — values bit-identical (E-e2), serialization moves.
+   Verified: test-optlaw observeCounts pins UNMOVED.
+3. **`USent` wrapper dropped** — utility fixtures become the residue
+   `Expr '[Double,Double] Double` directly. Where a utility reads the
+   OPTION CODE (Var Z), the residue re-indexes (option→Var (S Z),
+   outcome→Var Z) under the `Expect` binder — value-preserving.
+4. **EXPR repricing 19→20** — the census-flagged wave: EVERY pricing
+   pin over an EXPR node moves +lg(20/19)=0.074/node. `lg 19`→`lg 20`.
+   The frozen-layer instrument repair (D4: adjudication, not grep).
+   Verified: test-membrane 4 Get/const pins re-priced correctly.
+   And **the golden re-pin (§19) holds its identity triple**:
+   test-membrane's t3-drift test (MAP == goldens) still PASSES — the
+   sentence is unchanged, only its serialization moved.
+
+### §23. THE ONE NOTABLE CONSEQUENCE to surface (not a stop; ruled)
+
+**The deliberation deliverable (test 2 — the lazy-genius tick counts
+1/3/12/12) RETIRES at step 9.** `test-sentence`'s `policyThink`/
+`runDeliberation` (Acceptance.hs:201-239 lineage) selects DoAct/DoThink
+via `Call VThink` — and VThink's re-composition is the step-10 cluster
+(D-f4: the world-rollforward endo-kernel + structured-carrier
+expectation, the `Real a` wall). VAct re-composes (g3), but the policy
+needs VThink, so the whole group retires with a NAMED HOME: step 10, the
+preposterior re-composition. This is the direct consequence of D-f1
+(delete all five verbs) + ruling 1 (E-e1a licensed depth-1; arbitrary
+depth is the horizon) — not a new decision, but a core Acceptance-lineage
+deliverable leaving the corpus, so it is surfaced explicitly rather than
+retired silently. Tests 1 (consult/MAP) and 3 (agent-vs-forgetter) in the
+same suite SURVIVE (they use argmaxEU/Expect, not VThink).
+
+### §24. REMAINING (the honest ledger)
+
+- **REPLACE/reprice suites** (values stable + EXPR 19→20, KER 2→1):
+  test-sentence (IsEq + argmaxEU/util1 residue-swap + golden #2 +
+  RETIRE the VThink group), test-code (IsEq live + the ExpFam
+  subsumption rows RETIRE + KER:407 pin), test-outcome (EU/USay fuse),
+  test-actions (tie rows re-derive + VThinkK retire), test-pricing
+  (ProdTable 6-fields→2 + reprice), test-hygiene (the FN price rows
+  retire — the census's highest-risk :153).
+- **RETIRE whole** (subject deleted): test-cirl (USay), test-prepost
+  (VPre), test-expfam (ExpFam/SId) + the discharged-permanent fixtures
+  (UseUSay/UseVPre/UseExpFam/UseSId/UseFnInd/UseFnUtil — DELETE the
+  files, UseBern precedent) + SayableC/SayableP. Remove their cabal
+  stanzas.
+- **Then**: the deletion audit 4-check unification + the missing DROP
+  points + GENERIC/SELF-LICENSED column (D-f9); the frozen-layer
+  inventory at its largest (D-f11) + the KER-repricing row (§18); the
+  rulings-sweep retire-and-replace (D-f10); the full-corpus
+  overlay-build lint (row v — the discharged fixtures MUST be deleted
+  or the lint fails); gates 1-7; the manifest re-sign; `elim-freeze-r0`
+  (the key).
+
+The corpus is in a CLEAN partial state: five suites green, the rest
+unedited (no half-edited files). Manifest unchanged at 81/81.
