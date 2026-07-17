@@ -490,3 +490,102 @@ attempt, the race. The register (§10) with D-e7 now framed goes to
 you. After the rulings: the oracle (test-outcome/,
 replacement-surface seal), the frozen-layer inventory riding the
 freeze, outcome-freeze-r0, the demolition-and-replumb, the as-built.
+
+---
+
+## Part VI — the sitting (2026-07-17): rulings received, the repair executed
+
+### §15. The rulings, the operative texts
+
+**The doctrine framed at the opening:** *"no OUTCOME sort exists
+because none is owed — features are the world state as rendered, the
+act is among them since step 6, and minimality held at the ontology
+level without anyone defending it."*
+
+**D-e1 APPROVED + the residue footnote (the typing audit's own):**
+the replacement surface is the measured one-site delta, AND the
+surviving two-variable scope is NAMED AS RESIDUE — *"the
+not-yet-featurized residue of Savage's (act, outcome) pair, living on
+in the scope shape ... retained lawfully — continuity through the
+heaviest demolition — but the derivation line should name it as
+residue, with the A1-terminal form recorded beside it: utility as
+Get-only over the completed feature row, reachable whenever a world
+publishes its outcome as a feature. The type that carried the
+calculator dies this step; the scope shape that remembers it should
+die knowingly, at a named boundary, not linger as an unexamined
+default."* The drafted derivation line (lands with the surface):
+
+> Type derivation (§8c audit, step 8): DERIVES — utility is a priced
+> sentence (brief §9, CIRL; the one grammar, the one price source),
+> evaluated at the tick's features (A1: features ARE the world state
+> as rendered). RESIDUE NOTE (the step-8 sitting): the two-variable
+> scope is the not-yet-featurized residue of Savage's (act, outcome)
+> pair — retained for continuity through the demolition; the
+> A1-terminal form is Get-only over the completed feature row
+> (reachable when worlds publish outcomes as features); the residue
+> dies knowingly at a named boundary, never as a lingering default.
+
+**D-e2/D-e3/D-e4/D-e6/D-e8 APPROVED**, with the D-e3 foundation
+repair ORDERED AND EXECUTED (§16): the recorded (d) instance was a
+degenerate tie — *"a tie is argmax-invariant under any shift
+whatsoever, so the transcript records less than the theorem claims
+... measurements convert assumptions into recorded facts, and this
+one recorded a tautology."*
+
+**D-e5 APPROVED with the CIRL semantics stated in the ruling:** the
+hello's utility program is *"the principal's declaration, which ...
+is a POINT-MASS PRIOR over the program shape with the grid-priced
+parameter latent — the declared-table-as-point-mass-latent doctrine,
+now applied to the first program the wire ever ingests. Unparseable
+or unpriceable declarations are validation failures, fail-closed."*
+The wire's utility block becomes a degenerate case of the latent
+machinery, never a parallel mechanism.
+
+**THE INVENTORY — all four approved; item 3 RULED IN SCOPE:** *"A
+stale line-cite in the author's own plan is incorrect frozen text;
+the directive said anything. The inventory covers plan cites."*
+
+**D-e7 — RULED (ii): THE MYOPIA PRINTS AS THE SCOPE LIMIT**, the
+builder's grounds plus two the sitting added: a depth-5 sentence
+landed now is *"a constant through the back door — why five? because
+the fixture's fuse is five; fitting the alphabet to the falsifier's
+world is the sentinel's disease in its most polite dress"*; and the
+horizon is *"reflexive-cost terrain: rolling the model forward k
+steps is deliberation whose depth should be earned through the same
+value-of-computation machinery as everything else — 'depth earned,
+not toggled' ... step 10 owns exactly that subject."* TWO ORDERS
+ATTACH: (1) the scope line prints BOTH gaps — the choice-side
+eliminators AND the model-side transition family — so the future
+boundary sees the full bill; (2) the visible-fuse world enters
+test-outcome as a GREEN DECLARED-LIMITATION PIN in the R-D23 form —
+the refusal asserted as the known behaviour, flipped deliberately by
+whichever boundary lands the horizon, never silently. *"The
+recurring-stakes myopia was this project's oldest printed debt ...
+it now has numbers, a fixture, and a named heir."*
+
+### §16. The (d) repair, executed (strict-ordering world)
+
+```
+level rankings (fully evaluated): [([("a",0.5)],0.10000000000000002),([("a",1.5)],0.5685144847845058)]
+delta rankings (shift 0.3141):      [([("a",0.5)],-0.21409999999999996),([("a",1.5)],0.25441448478450585)]
+STRICT ordering (|EU gap| > 1e-6): True
+same argmax, level vs delta:       True
+```
+
+The agent trained forty ticks on an action-responsive stream so the
+candidates' EU separate by 0.47; the shift preserves the strict
+argmax. The theorem's recorded instance is no longer a tautology;
+the D-e3 wave may lean on it.
+
+### §17. What the oracle now owes (under these rulings)
+
+test-outcome/: the replacement surface (D-e1's type with the residue
+derivation line), the four re-plumbed seams pinned two-route, the
+scope-line pin (D-e7 order 2: the visible-fuse world as a GREEN
+declared-limitation row asserting the refusal, R-D23 form, with BOTH
+gaps printed in its comment), the said@1 wire rows under D-e5's
+point-mass doctrine (fail-closed validation rows), the seven-suite
+re-derivations (the R-D22 batch at the freeze), the frozen-layer
+inventory (all four items incl. the plan cite), prodUtil unchanged
+(USay remains the door; the wrapper was never a production). The key
+follows the lint.
