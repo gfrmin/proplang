@@ -518,3 +518,132 @@ answered by measurement, the register. **The sitting rules D-f1..D-f12
 compositions as shipped sentences + the SAT overlay under the smaller
 alphabet), the deletion audit's unification, the frozen-layer
 inventory, and outcome... `elim-freeze-r0` — the key.
+
+---
+
+## Part V — THE SITTING RULED; ONE PRE-IMPLEMENTATION STOP (2026-07-17)
+
+The author ruled the whole register at the sitting. D-f1 delete all
+five; D-f2..D-f7 as recommended (with the `Real a` structured-carrier
+wall filed to the step-10 case file); **D-f8 = (A), delete IsEq**
+(departing from the builder's B, on the gate's own standard: the
+composition SUCCEEDED 0/1225, NaN is not a lawful input the engine
+respects, (B) was retention-on-prophecy); **EXPR settles at 20, not
+21**; NaN-grid validation lands as R-C1's boundary extended to `mkGrid`
++ wire ingestion; D-f9/10/11 as recommended. The order: draft the
+oracle, the full-corpus overlay build, `elim-freeze-r0` follows the
+lint.
+
+Before demolishing I mapped the blast radius. Two items are ordinary
+authorized replacement-surface work and ride to r0 as disclosure (not
+questions). **One is a genuine stop: the alphabet arithmetic (D-f12) is
+internally inconsistent and under-determines the step's scope on
+`ExpFam`/`SId` — the single most-policed quantity in the repo (the H
+red-team mandate; the type-derivation audit; D-f12 itself). I will not
+demolish on it by guessing.**
+
+### §15. THE STOP — `ExpFam`/`SId`: NARROW or WIDE? (one ruling)
+
+**The incoherence.** Three claims in the sitting materials cannot all
+hold:
+- pack §11 / D-f12: *"KER 2 unchanged"* (both `ExpFam` and `Code` live)
+- pack Part I Finding 3 / D-f12: *"STATS -> 0"* (`SId` dies)
+- pack §11 / D-f12: *"ProdTable six fields -> two"*
+
+`ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double
+c)` REQUIRES a `Stats c`. If `STATS -> 0` (`SId` dies), `Stats c` is
+uninhabited and `ExpFam` is dead — so `KER = 1` (`Code` only), not 2,
+and `ProdTable = {prodExpr, prodKer}` = two fields. You cannot have
+`STATS -> 0` AND `KER 2`. The pack wrote both.
+
+**What the plan's own arithmetic says.** AGENT_PLAN §5b (the canonical
+table, `AGENT_PLAN.md:642-650`, quoted byte-wise per R-D20-i):
+
+> | sort | today | after | |
+> | KER | 1 | **1** | `ExpFam` -> `Code` |
+> | STATS | 1 | **—** | subsumed by **`ToR`** (NOT by `Pos` — §5d) |
+> | **total** | **22 productions, 6 sorts** | **22 productions, 2 sorts** |
+
+So the plan's end-state is **WIDE**: `ExpFam` deleted (KER 2->1), `SId`
+deleted (STATS 1->0), **two surviving sorts (EXPR, KER)**. The pack's
+"KER 2 unchanged" is simply an ERROR (it read the CURRENT `prodKer=2`
+as the after-value, forgetting `ExpFam` dies). The register the author
+RULED (D-f1..D-f12) carries this error and has **no row deleting
+`ExpFam` or `SId`.**
+
+**The two readings, and their exact consequences.**
+
+| | NARROW (defer ExpFam/SId) | WIDE (§5b end-state) |
+|---|---|---|
+| step-9 sorts deleted | STDNAME, FN, UTIL (3) | STDNAME, FN, UTIL, STATS, KER-member ExpFam (§5b's "6->2") |
+| `prodTable` | `ProdTable 20 0 1 2 0 0` (EXPR 20, STATS 1, KER 2) — 3 live fields | `{prodExpr=20, prodKer=1}` — **two fields** |
+| ExpFam/SId | survive | **deleted** |
+| test-expfam (3 fixtures), test-code ExpFam rows | untouched | **discharged-permanent / adapted** |
+| new composition proofs owed this step | none | ExpFam->Code, SId->ToR — **already frozen in test-code** (Code==ExpFam bit-for-bit :284-296; SId=realToFrac=ToR) |
+| matches "alphabet smaller / 6->2 headline" | partly (6->3) | **yes (6->2)** |
+
+**Why WIDE is well-supported (the builder's recommendation):**
+1. §5b's canonical headline the author has repeatedly invoked is
+   *"FOUR WHOLE SORTS vanish ... 6 sorts -> 2"* — that is WIDE, verbatim.
+2. The subsumption proofs `ExpFam->Code` and `SId->ToR` are **already
+   frozen** (test-code group; §5b/§5d), so the two-sided gate's
+   demonstrated-composition half is discharged — WIDE adds no un-proven
+   deletion.
+3. Grammar `ExpFam`/`SId` have **NO live src construction** — the
+   enumerator builds kernels through `Belief.kernel` (`emit`,
+   `walkOn`), never the grammar node. They live only in test-expfam /
+   test-code. Deletion is clean: discharge-permanent (the UseBern
+   precedent).
+4. `test-code:407` already pins *"Code joins ExpFam in the KER sort"*
+   (KER=2) — under WIDE that row goes **stale-green** (ExpFam gone).
+   A row the census's rulings-sweep missed; WIDE retires it correctly.
+
+**Why it is nonetheless a STOP and not a builder call:** WIDE **deletes
+two productions the ruled register did not enumerate.** Enacting
+deletions beyond D-f1..D-f12 — even ones §5b implies — is exactly the
+silent scope-creep the register discipline and the primitivity gate
+exist to refuse. And the quantity in dispute is THE load-bearing one.
+One line resolves it: **"WIDE — delete ExpFam/SId, ProdTable to two
+fields (EXPR 20, KER 1), test-expfam discharged-permanent"** (the
+builder's recommendation), or **"NARROW — ExpFam/SId stand this step,
+ProdTable EXPR 20 / STATS 1 / KER 2, they die at a later boundary with
+their own gate."**
+
+### §16. DISCLOSURE for r0 (not questions) — the true frozen-layer bill
+
+Two consequences of the ruled decisions that exceed what the sitting's
+inventory enumerated. Both are ordinary authorized replacement-surface
+work (step 8 adapted twelve suites), backstopped by the new
+full-corpus overlay-build lint (row v — the corpus is *"red by design
+until implementation"*), sealed at r0's manifest re-sign. Surfaced here
+so the author sees the bill of (A) — which is larger than the sitting's
+stated *"15 call sites"* — BEFORE it is baked, not at r0.
+
+**(a) The (A) delete-IsEq bill spans frozen suites, and moves two
+frozen WIRE goldens.** IsEq's 15 sites are not loose call sites; they
+sit in ~6 frozen suites (test-code, test-optlaw, test-prepost/fixture,
+test-sentence live constructions; test-membrane + test-sentence
+GOLDENS). When `walkCode`'s `eqE` re-expresses `Call IsEq` -> `If (Gt
+x y) F (If (Gt y x) F T)` (E-e2's total composition), the model
+sentence's serialization changes, so:
+- `test-membrane/Membrane.hs:179` `t3MoveGoldenM` — **moves**
+- `test-sentence/Sentence.hs:554` `t3MoveGolden` — **moves**
+These re-pin under the frozen-layer inventory's instrument-repair form
+(the old value quoted inside a dated supersession; the two-sided record
+row). The Acceptance numeric anchors do NOT move — walkOn's values are
+bit-identical (E-e2, 0/1225), only the sentence text changes.
+
+**(b) The broader corpus recompiles/retires against the new surface.**
+~12 frozen suites construct a dying constructor and split:
+- **REPLACE** (subject migrates to a composition): EU-users
+  (test-outcome, test-stream, test-sentence) -> `Expect`-binder
+  composition; IsEq-users -> `If`/`Gt`.
+- **RETIRE / discharge-permanent** (subject deleted, no replacement):
+  test-prepost (VPre), the VThinkK ladder rows in test-actions,
+  test-cirl (USay); the ablation fixtures UseVPre / UseUSay / UseFnInd
+  / UseFnUtil (+ under WIDE: UseExpFam / UseSId / UseObsCarrier).
+The retire/replace disposition is mechanical enactment of the ruled
+alphabet; the overlay-build lint proves completeness (no suite missed);
+the author re-signs the manifest over the adapted corpus at r0.
+
+**Nothing frozen touched. Manifest 81/81. Stopped for the §15 ruling.**
