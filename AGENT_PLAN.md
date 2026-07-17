@@ -996,6 +996,18 @@ close, oracle and gates green on the same signature; as-built record
    D-c7 rider 1: assign@1 entered the wire as INTERIM with its death date printed —
    this row is that death; the step-8 wire touch replaces it with the
    utility-on-outcomes form).
+   **Two scoping carries, ordered at the step-7 r1 sitting (2026-07-17):**
+   (i) **OPEN WITH THE MEASUREMENT, NOT THE DESIGN** — expect an E-c1-style discovery:
+   the assign@1 interim, the utilTie/constU worlds, and the g2-bridged EU fold mean
+   some of utility's machinery already routes through public verbs; measure what
+   already ships before assuming arithmetic is owed ("the repeal is a description" was
+   the cheapest ruling this project ever made, and there may be another one waiting).
+   (ii) **THIS STEP IS THE TYPING AUDIT'S PROVING GROUND** — the original calculator
+   hid in a utility type (u(act, state), the 86-commit defect), and this is where
+   utility types are re-derived from the axioms: EVERY type this step lands arrives
+   with its derivation line already written (the §8c rule binds forward from the
+   step-6 freeze; this is the precise terrain where a quiet type once cost the
+   project its agenthood, and where the audit proves it would have prevented it).
 8b. **RIDER 1's falsifier and scope line — step 8's oracle-phase evidence program**
    (re-sequenced 2026-07-15, decision 6: the falsifier runs pre-freeze on a prototype, so
    step 8's oracle already encodes the ruled outcome instead of amending it afterwards).

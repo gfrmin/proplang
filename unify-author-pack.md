@@ -1162,3 +1162,36 @@ a belief over utility programs (CIRL) — with its checklist already
 carrying: the acceptance-lineage ontology rows, 8b under the
 primitivity gate (priced, falsifier-first), the Pilot split, and
 assign@1's death.
+
+### §30. The r1 record: step 7 closes (the delegated tag)
+
+The r1 read, closing verbatim: *"Step 7 closes — sign
+`unify-freeze-r1` ... Key turned; sitting adjourned. The
+re-derivation stands at seven of ten, and for the first time since
+the axioms were rewritten, something answers when you speak to it."*
+The delegation is fresh, explicit, and per-instance; the builder tags
+with the BUILDER key, the delegation recorded in the tag message (the
+membrane precedent — the signature attests builder action under
+recorded instruction and cannot mint an author attestation).
+
+**The milestone, given its full sentence as ordered:** the host-less
+window was declared at the step-3 demolition, half-spent at 5, and
+discharged at 7 — the longest-lived scheduled obligation this project
+has carried, closed on the schedule that opened it, the front door
+landed at the freeze and the house behind it built after the key.
+THAT is retire-until-N demonstrated end-to-end at its maximum span —
+the citation for the next time a scope note asks to live in a comment
+instead of a checklist.
+
+**The two step-8 scoping carries LANDED on its checklist** (AGENT_PLAN
+step 8): (i) open with the measurement, not the design (the E-c1
+pattern: assign@1, the utilTie/constU worlds, and the g2-bridged fold
+mean utility machinery already routes through public verbs — another
+"the repeal is a description" may be waiting); (ii) step 8 is the
+typing audit's proving ground (u(act, state) was the 86-commit
+defect; every type lands with its derivation line already written).
+
+Endorsement recorded: the live wire session byte-matching goldens
+built from the public verbs — "there is no hand-written number
+anywhere between the enumerator and the socket" — the capture
+discipline's final form.
