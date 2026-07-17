@@ -43,7 +43,7 @@
 module PropLang.Membrane
   ( Menu
   , menuAssignments
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
   -- the agent-facing surface dies with the scoring layer or with
   -- 'PropLang.Syntax.Argmax' (nothing may select an action but
   -- expected value, so no argmax means no choice flow) — the
@@ -60,13 +60,12 @@ import Data.List.NonEmpty (NonEmpty ((:|)))
 
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Syntax (Grid, Name, gridSize, mkC)
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 import Data.Maybe (fromMaybe)
-import PropLang.Belief (LogProb (LogProb), entropyBits, is, prob)
+import PropLang.Belief (LogProb (LogProb), entropyBits, expect, is, prob)
 import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
                            predictive)
-import PropLang.Syntax (Args (..), B, Expr (..), Idx (..),
-                        StdName (..), USent)
+import PropLang.Syntax (B, Expr (..), Idx (..))
 #endif
 
 -- | The writable names and their grids — a SYNONYM, not a type
@@ -104,7 +103,7 @@ menuAssignments menu = case go menu of
       [ evalx e (mkEnv [] VNil)
       | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
 
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 -- | Defunctionalized pilots, 'Choice' deleted: the same three shapes
 -- over assignments. No internal act exists to value — the sentinel is
 -- dead, and 'argmax' stays total because wait is always options'
@@ -125,16 +124,24 @@ menuAssignments menu = case go menu of
 data Pilot
   = PilotIdle
   | PilotThreshold Name Double Features Features
-  | PilotEU USent
+  -- SINCE STEP 9: the utility is the residue program directly (the
+  -- 'USent' wrapper died with the UTIL sort); 'Var Z' the option code,
+  -- 'Var (S Z)' the outcome (the surviving two-variable residue scope).
+  | PilotEU (Expr '[Double, Double] Double)
 
--- | Expected-utility action selection AS A PROGRAM — unchanged from
--- the shipped membrane; the option type simply instantiates at
--- 'Features' (assignments) where 'Choice' stood.
-argmaxEU :: Expr '[NonEmpty Double, B Obs, USent, Features] Double
-argmaxEU =
-  Argmax (Var Z)
-    (Call EU (Var (S (S Z)) :* Var (S (S (S Z))) :* Var (S (S (S (S Z))))
-              :* Var Z :* ANil))
+-- | Expected-utility action selection AS A SAYABLE PROGRAM (step 9:
+-- 'Call EU' died; EU is now the 'Expect' binder). Parameterized by the
+-- utility BODY — utility is inline syntax now, not a threaded value —
+-- so this is the doctrinal composition 'Argmax opts (Expect belief
+-- body)': the option is bound at 'Var Z', the belief read at
+-- 'Var (S (S Z))', and the binder pushes the outcome atop the body's
+-- scope. The exogenous-read fold below is the executable route (a read
+-- of the agent's own meta-state, unsayable until reflexive closure);
+-- this is the general-route sentence it is pinned against.
+argmaxEU :: Expr (Double ': o ': '[NonEmpty o, B Obs]) Double
+         -> Expr '[NonEmpty o, B Obs] o
+argmaxEU body =
+  Argmax (Var Z) (Expect (Var (S (S Z))) body)
 
 -- | A pure world behind the membrane: what it publishes, what its one
 -- explained sensor reads (Nothing = a silent tick), which names it
@@ -219,27 +226,24 @@ interpretPilot ag p feats _pr opts = case p of
   PilotEU u ->
     -- per-assignment exogenous-read scoring (6b's survivor): each
     -- candidate's EU is taken against predictive (feats ++ candidate)
-    -- at current weights, through the public EU verb.
+    -- at current weights, through the public 'expect' verb over the
+    -- utility residue (bit-identical to the pre-step-9 'Call EU', which
+    -- was 'expect b (\y -> uAt fs u 0 y)' — the verb died, the
+    -- arithmetic did not: 'Var Z' the option code 0, 'Var (S Z)' the
+    -- outcome).
     -- THE SELECTION IS A HOST-SIDE FOLD, not an evaluation of the
     -- doctrinal 'argmaxEU' Expr — and today it is the ONLY executable
     -- route: the per-candidate predictive read is a read of the
     -- agent's own meta-state, which the Expr language lacks BY DESIGN
     -- until reflexive closure (A7, step 10). Pinned two-route by
-    -- test-stream g2 (runMembrane's choice == the public
-    -- per-assignment EU arithmetic, every tick; strict > displaces =
-    -- the Argmax evaluator's own tie discipline, so first-listed wait
-    -- keeps ties) and law-checked by g6. Its §1b classification is
-    -- DEFERRED to step 10 per the register row (the step-6 r2
-    -- direction: finish the language first — whether this fold is a
-    -- fast path or the general route itself is undetermined until
-    -- reflexivity decides what the language can say).
-    let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
-                                 :* Var (S (S (S Z))) :* ANil))
-                       (mkEnv [] (predictive (feats ++ a) ag :. u
-                                  :. (feats ++ a) :. (0 :: Double) :. VNil))
-        -- code 0: assignment worlds route the act through features
-        -- (the step-8 doctrine: the act is among them since step 6);
-        -- the residue code var serves code-shaped options
+    -- test-stream g2 and law-checked by g6. Its §1b classification is
+    -- DEFERRED to step 10 (the step-6 r2 direction: finish the language
+    -- first — whether this fold is a fast path or the general route
+    -- itself is undetermined until reflexivity decides what the
+    -- language can say).
+    let euAt a = expect (predictive (feats ++ a) ag)
+                        (\y -> evalx u (mkEnv (feats ++ a)
+                                         (0 :. realToFrac y :. VNil)))
         c0 :| cs = opts
         go best _bv [] = best
         go best bv (c : rest) =

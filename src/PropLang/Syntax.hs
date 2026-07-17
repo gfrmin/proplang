@@ -24,16 +24,21 @@ module PropLang.Syntax
 #ifndef DROP_PUSH
         , Push
 #endif
-        , CondE, Expect
+#ifndef DROP_CONDE
+        , CondE
+#endif
+#ifndef DROP_EXPECT
+        , Expect
+#endif
 #ifndef DROP_ARGMAX
         , Argmax
 #endif
-        , Call, C
-#ifndef DROP_EXPFAM
-        , ExpFam
+        , C
+#ifndef DROP_SAWE
+        , SawE
 #endif
-#ifndef DROP_USAY
-        , USay
+#ifndef DROP_ELIMJ
+        , ElimJ
 #endif
 #ifndef DROP_CODE
         , Code
@@ -47,14 +52,6 @@ module PropLang.Syntax
         , Add, Sub, Mul, Div, Log, Exp, Neg
         )
   , mkC
-  , Fn(..)
-  , Stats(..)
-  , Args(..)
-  , StdName(..)
-  , USent (..)
-#ifndef DROP_VPRE
-  , Chan, mkChan, applyChan
-#endif
   , KnownScope(..)
   , ProdTable(..), prodTable
   -- THE STEP-4 TYPE SURFACE (one pricing mechanism, two declared
@@ -71,7 +68,7 @@ module PropLang.Syntax
 import Data.Kind (Type)
 import Data.List.NonEmpty (NonEmpty, toList)
 import Data.Proxy (Proxy (..))
-import PropLang.Belief (Belief, Bits (..), Event, Evidence, Kernel, Space,
+import PropLang.Belief (Belief, Bits (..), Evidence, Kernel, Space,
                         mkSpace)
 
 -- Type derivation (§8c audit, step 6, pack §28): synonyms of the sealed
@@ -147,21 +144,6 @@ carrierSize (Carrier _ pts) = length pts
 carrierSpace :: Carrier c -> Space c
 carrierSpace (Carrier _ pts) = mkSpace pts
 
--- | Defunctionalized sufficient-statistic syntax (first-order, priced;
--- the reported STATS alphabet, EXPFAM_PLAN Q4/E5): sole written member
--- 'SId', the identity statistic T(y) = y — bern's sufficient statistic
--- (interface.md §4). Sort-local coding (author pack §1): a STATS
--- choice costs log2 1 = 0 bits while the alphabet has one member; the
--- gauss pair (y, y²) is the named continuous-carrier debt and grows
--- this alphabet by reported change when it lands. The CPP flag is the
--- deletion audit's ablation point (test-expfam row 'sid').
--- Type derivation (§8c audit, step 6, pack §28): defunctionalized
--- sufficient statistics — no host lambdas in Expr.
-data Stats c where
-#ifndef DROP_SID
-  SId :: Real c => Stats c
-#endif
-
 -- | Typed de Bruijn index into the environment.
 -- Type derivation (§8c audit, step 6, pack §28): the priced language
 -- itself: programs as data (brief §2; with Expr/Args).
@@ -184,54 +166,47 @@ data Expr env t where
 #ifndef DROP_PUSH
   Push   :: Expr env (B a) -> Expr env (K a b) -> Expr env (B b)
 #endif
+#ifndef DROP_CONDE
   CondE  :: Expr env (B a) -> Expr env (Ev a) -> Expr env (Maybe (B a))
-  Expect :: Expr env (B a) -> Fn a -> Expr env Double
+#endif
+#ifndef DROP_EXPECT
+  -- the PREVISION atom (step 9; brief §3: "take the prevision — a
+  -- coherent expectation functional — as the atom, and derive
+  -- probability from it"). A binder: the belief's carrier is bound as a
+  -- real (the residue convention step 8 established, 'realToFrac' of the
+  -- outcome at 'Var Z'), the body an ordinary EXPR in extended scope.
+  -- It SUBSUMES the FN sort — 'prob b e' is 'Expect b (indicator)' and
+  -- utility-prevision is 'Expect b (priced body)' (E-e1b, 42 rows
+  -- bit-exact; the 'Fn'/'FnInd'/'FnUtil' surface and the 'Event'
+  -- peer-noun all dissolve into it). The body's RESIDUE (the bound
+  -- outcome variable) survives here and dies at outcome-as-feature.
+  Expect :: Real a => Expr env (B a) -> Expr (Double ': env) Double
+                   -> Expr env Double
+#endif
 #ifndef DROP_ARGMAX
   Argmax :: Expr env (NonEmpty o) -> Expr (o ': env) Double -> Expr env o
 #endif
-  Call   :: StdName args t -> Args env args -> Expr env t
-#ifndef DROP_EXPFAM
-  -- the expfam basis (interface.md §4; EXPFAM_PLAN E3 as ruled): the
-  -- family node IS a kernel from its (single) natural parameter to the
-  -- declared carrier — the parameter arrives where the kernel is
-  -- applied, as the K type says. The Space payload declares the
-  -- kernel's domain (a kernel HAS a domain; declaring it is declared
-  -- structure), priced 0 by the recorded opaque-payload convention.
-  -- KER-sort: 0 constructor bits (sole production, author pack §1).
-  ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double c)
+#ifndef DROP_SAWE
+  -- the evidence producer (step 9): evidence is a kernel applied to an
+  -- outcome ('PropLang.Belief.Saw' made sayable) — the ONLY producer of
+  -- 'Expr env (Ev a)', so it is what makes 'CondE' reachable from a
+  -- sentence (AGENT_PLAN:501, "the hole VThink papered over"). Its
+  -- kernel argument is a BARE 'K a b' (an env-validated kernel), never a
+  -- raw 'Code' — which is why 'ElimJ' owes one Maybe, not two.
+  SawE :: Eq b => Expr env (K a b) -> Expr env b -> Expr env (Ev a)
 #endif
-#ifndef DROP_USAY
-  -- the pointer's door (increment 6, CIRL_PLAN C3 as ruled): the
-  -- priced utility. A NEW SORT (UTIL, spec section 3 table row at this
-  -- increment's freeze): USay is the sole codeword at declared
-  -- utility-valued holes (the ExpFam maneuver — outside EXPR's ten
-  -- written alternatives, 0 constructor bits), its payload priced as
-  -- EXPR in its own two-variable scope. Env convention as ruled:
-  -- Var Z is the option code, Var (S Z) the latent parameter. The
-  -- subprogram is CLOSED — evaluation discards the outer environment —
-  -- SINCE THE STEP-8 FREEZE (outcome-freeze-r0/r0a): THE PAYLOAD IS
-  -- EVALUATED AT THE TICK'S FEATURES through the one bridge
-  -- ('PropLang.Eval.uAt') — 'Get' inside a utility READS THE WORLD,
-  -- because features ARE the consequences (A1). This comment read,
-  -- until step 8: "The subprogram is CLOSED — evaluation discards the
-  -- outer environment — so utilities are featureless and clockless as
-  -- a definition-level fact ('Get' inside a utility is dormant,
-  -- per-node-priced syntax)." E-d1 measured that "definition-level
-  -- fact" to be ONE EMPTY ENVIRONMENT ARGUMENT; the closed face
-  -- survives as the empty-environment case, @uAt [] u a y@, which
-  -- test-cirl's doctrine row asserts beside the repeal's face.
-  -- The env convention is the RESIDUE scope (named at the step-8
-  -- sitting): Var Z the option code, Var (S Z) the outcome — the
-  -- not-yet-featurized residue of Savage's (act, outcome) pair, kept
-  -- for continuity through the demolition and dying knowingly at a
-  -- named boundary (the A1-terminal form: Get-only over the completed
-  -- feature row, reachable when worlds publish outcomes as features).
-  -- Dies with DROP_USAY: delete the door and NO UTILITY EXISTS AT ALL
-  -- — the worlds and the verbs survive, but the old escape (the
-  -- opaque world-data face, 'mkUtil') is GONE with the wrapper, so
-  -- this door is now the only one. The deletion proof is strictly
-  -- stronger than it was at the CIRL increment.
-  USay :: Expr '[Double, Double] Double -> Expr env USent
+#ifndef DROP_ELIMJ
+  -- the conditioned-belief eliminator (step 9): a conditioned belief is
+  -- 'Maybe'-valued for totality ('cond' returns 'Maybe', the
+  -- impossible-evidence case a value not an exception); 'ElimJ' is the
+  -- ONLY consumer that lets a sentence USE it. ONE Maybe, not two:
+  -- 'Code''s 'Maybe (K a b)' is eliminated at the engine layer (step-3
+  -- ruling 4), so no sentence eliminates it. The Nothing arm is an
+  -- ordinary EXPR — a SENTENCE-LEVEL default, never a baked constant,
+  -- because it is LOAD-BEARING when the impossible is reached with real
+  -- weight (E-e1a's non-weight-zero case, default 0.42 shown through).
+  ElimJ :: Expr env (Maybe (B a)) -> Expr (B a ': env) t -> Expr env t
+                                  -> Expr env t
 #endif
 #ifndef DROP_CODE
   -- THE likelihood production (AGENT_PLAN §2a, boundary agent-boundary-r1).
@@ -312,15 +287,20 @@ pattern C g k v <- MkC g k v
 #ifndef DROP_PUSH
              Push,
 #endif
-             CondE, Expect,
+#ifndef DROP_CONDE
+             CondE,
+#endif
+#ifndef DROP_EXPECT
+             Expect,
+#endif
 #ifndef DROP_ARGMAX
              Argmax,
 #endif
-#ifndef DROP_EXPFAM
-             ExpFam,
+#ifndef DROP_SAWE
+             SawE,
 #endif
-#ifndef DROP_USAY
-             USay,
+#ifndef DROP_ELIMJ
+             ElimJ,
 #endif
 #ifndef DROP_CODE
              Code,
@@ -331,29 +311,7 @@ pattern C g k v <- MkC g k v
 #ifndef DROP_TOR
              ToR,
 #endif
-             Add, Sub, Mul, Div, Log, Exp, Neg,
-             Call #-}
-
--- | Defunctionalized function syntax (first-order, priced): the
--- grammar-hygiene alphabet, exactly the two published expansions of the
--- reference (a REPORTED alphabet change, GRAMMAR_HYGIENE_PLAN Q1).
--- 'FnInd' is the indicator of a declared event — probability derived
--- from prevision (design §3) gets its syntactic witness; 'FnUtil' is a
--- utility section — the EU contract's expansion. Each costs one FN
--- choice bit; the opaque value-layer payloads are priced 0, the
--- recorded parity-scoped convention (Phase 1 report §4.3) — when
--- events/utilities become latent (CIRL), the payloads become priced
--- syntax. The CPP flags are the deletion audit's raises-by-type
--- ablation points, same standard as DROP_PUSH/DROP_ARGMAX.
--- Type derivation (§8c audit, step 6, pack §28): defunctionalized
--- function forms (the Fn/Stats mandate, CLAUDE.md).
-data Fn a where
-#ifndef DROP_FNIND
-  FnInd  :: Event a -> Fn a
-#endif
-#ifndef DROP_FNUTIL
-  FnUtil :: Real a => USent -> Double -> Fn a
-#endif
+             Add, Sub, Mul, Div, Log, Exp, Neg #-}
 
 -- | The ONLY constructor of a priced-constant sentence: 'Nothing' off
 -- the grid, so a malformed constant is unconstructible rather than
@@ -362,106 +320,6 @@ data Fn a where
 -- resolved here, once, and carried by the sentence.
 mkC :: Grid -> Ix -> Maybe (Expr env Double)
 mkC g k = MkC g k <$> gridLookup g k
-
--- | Typed argument list for 'Call'.
--- Type derivation (§8c audit, step 6, pack §28): the priced language
--- itself: programs as data (brief §2; with Idx/Expr).
-data Args env ts where
-  ANil :: Args env '[]
-  (:*) :: Expr env t -> Args env ts -> Args env (t ': ts)
-
-infixr 5 :*
-
--- | The stdlib alphabet: named compositions ('call' is the stdlib
--- boundary, design §2). Closed; adding a member is a reported alphabet
--- change (CLAUDE.md forbidden moves). Semantics live in "PropLang.Eval"
--- and are pure verb composition; the recorded contracts:
---
--- * @EU b u a      = expect b (applyUtil u a)@
--- * @IsEq x y      = x == y@
--- * @VAct b u acts = max over acts of expect b (applyUtil u a)@
--- * @VThink b k ys u acts n price@: Russell–Wefald preposterior value —
---   over all length-@n@ sequences of @ys@ outcomes in binary-counting
---   order (alphabet order as given), fold @logPredict@ BEFORE @cond@ per
---   outcome, weight @exp (sum logPredict)@ times the post-conditioning
---   @VAct@, sum, minus @price@; a 'Nothing' from 'cond' contributes
---   weight 0.
--- Type derivation (§8c audit, step 6, pack §28): the stdlib alphabet:
--- derived names with prices (brief §9).
-data StdName args t where
-  EU     :: Real y => StdName '[B y, USent, [(Name, Double)], Double] Double
-  IsEq   :: Eq a => StdName '[a, a] Bool
-  VAct   :: StdName '[B Double, USent, NonEmpty Double] Double
-  VThink :: Eq y => StdName '[B Double, K Double y, [y], USent, NonEmpty Double, Int, Double] Double
-#ifndef DROP_LADDER
-  -- the fidelity ladder's rung valuation (increment 4, LADDER_PLAN L1
-  -- reading c / L3 as ruled): a REPORTED alphabet change, STDNAME
-  -- grows 5 -> 6 (stdB moves lg 5 -> lg 6; the author's one-literal
-  -- amendment of the frozen expfam price pin accompanies this member
-  -- in the same freeze commit). Contract: @VThinkK d b k ys u acts n
-  -- price@ is Est_d - Est_0 the value of acting now (the induction
-  -- base), Est_k the next-batch preposterior of Est_{k-1} minus the
-  -- tick's price - so depth 1 is exactly @VThink@ and depth k
-  -- telescopes to the k-batch preposterior of acting minus k*price.
-  -- Dies with the ladder (DROP_LADDER), never with the myopic base.
-  VThinkK :: Eq y => StdName '[Int, B Double, K Double y, [y], USent, NonEmpty Double, Int, Double] Double
-#endif
-#ifndef DROP_VPRE
-  -- the action-dependent preposterior (increment 5, PREPOSTERIOR_PLAN
-  -- P1/P4 as ruled): a REPORTED alphabet change, STDNAME grows 6 -> 7
-  -- (stdB moves lg 6 -> lg 7; the author's two frozen price-pin
-  -- amendments accompany this member in the same freeze commit).
-  -- Contract: @VPre d b ch ys uD ds u acts n price@ is W_d - W_0 the
-  -- frozen leaf (vAct over the terminal menu, the induction base),
-  -- W_j the best interior decision's immediate prevision plus the
-  -- continuation through ITS OWN channel, price outside the max. The
-  -- frozen VThink chain is the mute-singleton degenerate case (the
-  -- oracle pins == at the verb layer). Dies with DROP_VPRE; the
-  -- myopic base and the fidelity ladder survive.
-  VPre :: Eq y => StdName '[Int, B Double, Chan Double Double y, [y], USent, NonEmpty Double, USent, NonEmpty Double, Int, Double] Double
-#endif
-  -- ('Bern' LEFT the stdlib at the step-3 sentence freeze: Bernoulli
-  -- emission is said as a CODE of the declared production table, and
-  -- the evaluator's 'bernFast' remains the E7-pinned fast form.
-  -- STDNAME 7 -> 6, the P5 refund; the deletion the UseBern fixture
-  -- proved possible became the deletion that happened —
-  -- discharged-permanent.)
-
--- | A utility as a PRICED SENTENCE (step 8: `Util a y` — the
--- host-function wrapper that carried the calculator — dies; the
--- program that was always inside USay is the surface now).
---
--- Type derivation (§8c audit, step 8): DERIVES — utility is a priced
--- sentence (brief §9, CIRL; the one grammar, the one price source),
--- evaluated at the tick's features (A1: features ARE the world state
--- as rendered). RESIDUE NOTE (the step-8 sitting): the two-variable
--- scope is the not-yet-featurized residue of Savage's (act, outcome)
--- pair — retained for continuity through the demolition; the
--- A1-terminal form is Get-only over the completed feature row
--- (reachable when worlds publish outcomes as features); the residue
--- dies knowingly at a named boundary, never as a lingering default.
-newtype USent = USent (Expr '[Double, Double] Double)
-
-#ifndef DROP_VPRE
--- | An action-indexed evidence channel (PREPOSTERIOR_PLAN P3 as
--- ruled): the value-layer opaque wrapper, the 'Util' pattern verbatim
--- — which kernel the world shows depends on which decision fires.
--- Composition, not widening: 'Evidence' stays the closed variant,
--- 'Kernel' is untouched, and conditioning still enters only as
--- evidence. Parity-scoped, recorded: when channels become latent (the
--- CIRL neighborhood), Chan must become priced syntax — the same debt
--- 'Util' carries.
--- Type derivation (§8c audit, step 6, pack §28): the CIRL channel
--- (increment 6, utility-as-latent under the discrete reading); step-8
--- subject beside Util.
-data Chan d h y = Chan (d -> Kernel h y)
-
-mkChan :: (d -> Kernel h y) -> Chan d h y
-mkChan = Chan
-
-applyChan :: Chan d h y -> d -> Kernel h y
-applyChan (Chan f) = f
-#endif
 
 -- | Type-level scope size, so 'Var' can be priced as a name mention
 -- (amended spec §3): the pricer reads |scope| from the environment
@@ -477,18 +335,26 @@ instance KnownScope env => KnownScope (t ': env) where
 
 -- | The normative production table's written alternative counts
 -- (spec §3; HOSTS_PLAN §0.3 — P5's single-site alphabet constant,
--- landed at the govhost freeze): ONE value, six fields, total by
--- construction. A count change edits exactly this value plus the
--- enumerated frozen pins of the changed sort (the P5 forward
--- ruling's mandatory boundary item); the govhost oracle's gP5 group
--- pins the identity — 'bits' moves nowhere at the re-base.
+-- landed at the govhost freeze): ONE value, total by construction. A
+-- count change edits exactly this value plus the enumerated frozen
+-- pins of the changed sort (the P5 forward ruling's mandatory boundary
+-- item); the govhost oracle's gP5 group pins the identity — 'bits'
+-- moves nowhere at the re-base.
+--
+-- SINCE THE STEP-9 ELIMINATION (elim-freeze-r0, WIDE): SIX FIELDS ->
+-- TWO. Four whole sorts vanished — STDNAME (the five VoI verbs + IsEq,
+-- deleted), FN (FnInd/FnUtil, subsumed by the Expect binder), UTIL
+-- (USay, utility is an ordinary Expr), STATS (SId, subsumed by ToR) —
+-- and KER lost 'ExpFam' (subsumed by 'Code', bit-for-bit; only 'Code'
+-- remains). Two sorts stand where six stood; every survivor carries an
+-- executed proof (AGENT_PLAN §5b's "22 productions, 2 sorts").
 -- Type derivation (§8c audit, step 6, pack §28): the DECLARED production
 -- table — prices are data, never hand counts.
 data ProdTable = ProdTable
-  { prodExpr, prodFn, prodStats, prodKer, prodStdName, prodUtil :: Int }
+  { prodExpr, prodKer :: Int }
 
 prodTable :: ProdTable
-prodTable = ProdTable 19 2 1 2 6 1
+prodTable = ProdTable 20 1
 
 -- | THE CHARGE TREE (step 4: one pricing mechanism, two declared
 -- tables): a derivation's price as DECLARED DATA. The tree's shape IS
@@ -539,16 +405,12 @@ bits = bitsAt frozenNameBits
 -- Type derivation (§8c audit, step 6, pack §28): step 4's mechanism (with
 -- Charge): the policy sorts it prices.
 data PolSort
-  = PolExpr | PolFn | PolStats | PolKer | PolStdName | PolUtil
+  = PolExpr | PolKer
 
 polWidth :: PolSort -> Int
 polWidth s = case s of
   PolExpr    -> prodExpr prodTable
-  PolFn      -> prodFn prodTable
-  PolStats   -> prodStats prodTable
   PolKer     -> prodKer prodTable
-  PolStdName -> prodStdName prodTable
-  PolUtil    -> prodUtil prodTable
 
 -- The shared pricing worker (MEMBRANE_PLAN T1): the whole production
 -- system with the name-mention charge as a parameter — 'bits' and
@@ -584,25 +446,32 @@ bitsAt nameBits e0 =
 #ifndef DROP_PUSH
       Push a b   -> CSum (CSum node (go sc a)) (go sc b)
 #endif
+#ifndef DROP_CONDE
       CondE a b  -> CSum (CSum node (go sc a)) (go sc b)
-      -- one FN choice (the two written members, plan Q1); the opaque
-      -- value-layer payload is priced 0, the recorded parity-scoped
-      -- convention
-      Expect a _ -> CSum (CSum node (go sc a)) (CW PolFn)
+#endif
+#ifndef DROP_EXPECT
+      -- the prevision atom (step 9): constructor choice + the belief,
+      -- plus the utility body priced as an ordinary EXPR in the
+      -- outcome-bound extended scope (the FN choice bit is GONE — the
+      -- Fn sort dissolved into this binder). The body was priced 0 as
+      -- an opaque Fn payload before step 9; utility is a priced
+      -- sentence now.
+      Expect a b -> CSum (CSum node (go sc a)) (go (sc + 1) b)
+#endif
 #ifndef DROP_ARGMAX
       Argmax o v -> CSum (CSum node (go sc o)) (go (sc + 1) v)
 #endif
-#ifndef DROP_EXPFAM
-      -- KER-sort (spec §3 production table): constructor choice +
-      -- carrier mention + sole-member stats choice; the Space payload
-      -- is priced 0 (recorded opaque-payload convention)
-      ExpFam {}  -> CSum (CSum (CW PolKer) (CBits carrierB)) (CW PolStats)
+#ifndef DROP_SAWE
+      -- the evidence producer (step 9): constructor choice + the kernel
+      -- expression + the outcome expression
+      SawE k y   -> CSum (CSum node (go sc k)) (go sc y)
 #endif
-#ifndef DROP_USAY
-      -- UTIL-sort (spec section 3 as amended at the cirl freeze):
-      -- sole-codeword constructor choice (0 bits); the payload prices
-      -- as EXPR in its own closed two-variable scope
-      USay p     -> CSum (CW PolUtil) (go 2 p)
+#ifndef DROP_ELIMJ
+      -- the conditioned-belief eliminator (step 9): constructor choice +
+      -- the Maybe-belief, the Just arm priced in the belief-bound extended
+      -- scope, and the Nothing arm an ordinary EXPR
+      ElimJ m j n -> CSum (CSum (CSum node (go sc m)) (go (sc + 1) j))
+                          (go sc n)
 #endif
 #ifndef DROP_CODE
       -- KER-sort (AGENT_PLAN §2a): the constructor choice, plus the code
@@ -631,19 +500,6 @@ bitsAt nameBits e0 =
       Log a      -> CSum node (go sc a)
       Exp a      -> CSum node (go sc a)
       Neg a      -> CSum node (go sc a)
-      Call _ as  -> CSum (CSum node (CW PolStdName)) (goArgs sc as)
-
-    goArgs :: Int -> Args env' ts -> Charge PolSort
-    goArgs _  ANil      = CBits 0
-    goArgs sc (a :* as) = CSum (go sc a) (goArgs sc as)
-
-    -- a carrier mention is a name mention against the carrier registry
-    -- (same written rule as 'nameBits': free while the registry is a
-    -- singleton)
-    carrierB :: Double
-    carrierB = case carrierNames of
-      _ : _ : _ -> logBase 2 (fromIntegral (length carrierNames))
-      _         -> 0
 
 -- | The priced feature namespace: @Get name@ costs
 -- @log2 |featureNames|@ at the mention site (0 bits while the namespace

@@ -69,11 +69,13 @@ module PropLang.Enumerate
   , enumerateSentencesGrid
 #endif
   , filterTickFree
-  -- the scoring layer dies with the basis or with the carrier
-  -- declaration (plan E9): delete expfam — or the declared output
-  -- space — and sentences stay sayable but NOTHING can assign
-  -- likelihood; the agent cannot exist
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+  -- the scoring layer dies with the carrier declaration (plan E9;
+  -- SINCE STEP 9: the ExpFam grammar node is gone, so the layer's only
+  -- ablation coupling is the declared output space): delete the carrier
+  -- and sentences stay sayable but NOTHING can assign likelihood; the
+  -- agent cannot exist. 'emit'/'bernFast' are the Belief-layer emission
+  -- form, never the grammar node — they outlive ExpFam's deletion.
+#ifndef DROP_CARRIER_OBS
   , emit
   -- the reflected walk, for the step-1 oracle to compare its code form
   -- against (R-D20-i). Guarded exactly as its DEFINITION is — an
@@ -99,13 +101,12 @@ import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), Kernel,
                         kernel, logPredict, mkSpace, point, prob, push,
                         uniform)
 import PropLang.Eval (Features, Vals (VNil), evalx, mkEnv)
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+#ifndef DROP_CARRIER_OBS
 import PropLang.Eval (bernFast)
 import PropLang.Syntax (carrierSpace)
 #endif
 import PropLang.Syntax (Carrier, Charge (..), Expr (..), Grid, Idx (..),
-                        K, Name, Namespace, StdName (..), Args (..),
-                        Stats (..), carrierName, chargeBits, gridName,
+                        K, Name, Namespace, chargeBits, gridName,
                         gridSize, mkC, mkCarrier, mkGrid, mkNamespace,
                         nsSize)
 
@@ -145,17 +146,24 @@ renderExpr e0 = case e0 of
 #ifndef DROP_PUSH
   Push a b   -> "('push', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
 #endif
+#ifndef DROP_CONDE
   CondE a b  -> "('cond', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
-  Expect a _ -> "('expect', " ++ renderExpr a ++ ")"
+#endif
+#ifndef DROP_EXPECT
+  -- the binder now renders its BODY (an ordinary priced EXPR in the
+  -- outcome-bound scope); the old Fn-eliminator payload it discarded is
+  -- gone with the Fn sort
+  Expect a b -> "('expect', " ++ renderExpr a ++ ", " ++ renderExpr b ++ ")"
+#endif
 #ifndef DROP_ARGMAX
   Argmax o v -> "('argmax', " ++ renderExpr o ++ ", " ++ renderExpr v ++ ")"
 #endif
-#ifndef DROP_EXPFAM
-  ExpFam _ car st -> "('expfam', '" ++ carrierName car ++ "', '"
-                       ++ statsStr st ++ "')"
+#ifndef DROP_SAWE
+  SawE k y   -> "('sawe', " ++ renderExpr k ++ ", " ++ renderExpr y ++ ")"
 #endif
-#ifndef DROP_USAY
-  USay p     -> "('usay', " ++ renderExpr p ++ ")"
+#ifndef DROP_ELIMJ
+  ElimJ m j n -> "('elimj', " ++ renderExpr m ++ ", " ++ renderExpr j
+                   ++ ", " ++ renderExpr n ++ ")"
 #endif
 #ifndef DROP_CODE
   -- the Space payloads are opaque and priced 0; the RENDERED form carries
@@ -175,30 +183,10 @@ renderExpr e0 = case e0 of
   Log a      -> "('log', " ++ renderExpr a ++ ")"
   Exp a      -> "('exp', " ++ renderExpr a ++ ")"
   Neg a      -> "('neg', " ++ renderExpr a ++ ")"
-  Call sn as -> "('call', '" ++ stdNameStr sn ++ "'" ++ renderArgs as ++ ")"
   where
     idxInt :: Idx env' t' -> Int
     idxInt Z     = 0
     idxInt (S i) = 1 + idxInt i
-    renderArgs :: Args env' ts -> String
-    renderArgs ANil      = ""
-    renderArgs (a :* as) = ", " ++ renderExpr a ++ renderArgs as
-    stdNameStr :: StdName args t' -> String
-    stdNameStr EU     = "EU"
-    stdNameStr IsEq   = "IsEq"
-    stdNameStr VAct   = "VAct"
-    stdNameStr VThink = "VThink"
-#ifndef DROP_LADDER
-    stdNameStr VThinkK = "VThinkK"
-#endif
-#ifndef DROP_VPRE
-    stdNameStr VPre = "VPre"
-#endif
-    statsStr :: Stats c' -> String
-    statsStr s = case s of
-#ifndef DROP_SID
-      SId -> "id"
-#endif
 
 -- ---------------------------------------------------------------------
 -- the demonstration domain
@@ -395,7 +383,13 @@ enumerateSentencesGrid egPts ns extras allowed =
     walkCode j = Code egSp egSp body
       where
         rho = cAt rhoGrid j
-        eqE a b = Call IsEq (a :* b :* ANil)
+        -- SINCE STEP 9 (elim-freeze-r0): equality is the If/Gt
+        -- composition (E-e2, 0/1225 reachable disagreements — IsEq
+        -- deleted): a == b iff neither a > b nor b > a. trueE/falseE are
+        -- the constant guards k1 > k0 (1 > 0) and k0 > k1 (0 > 1).
+        eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+        trueE = Gt k1 k0
+        falseE = Gt k0 k1
         iv = Pos egSp (Var (S Z))
         jv = Pos egSp (Var Z)
         lo = If (Gt iv k0)    (Sub iv k1) (Add iv k1)
@@ -455,26 +449,27 @@ hasGet e0 = case e0 of
 #ifndef DROP_CODE
   Code _ _ b   -> hasGet b
 #endif
-  Call _ as    -> goArgs as
+  -- the wildcard covers the value-layer / policy constructors no
+  -- emission code can carry a Get inside of (SawE/ElimJ/Expect/CondE/
+  -- Push/Argmax): their payloads are opaque to rendering and pricing
+  -- alike, and no MODEL emission code ever nests them
   _            -> False
-  where
-    goArgs :: Args env ts -> Bool
-    goArgs ANil      = False
-    goArgs (a :* as) = hasGet a || goArgs as
 
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS)
+#ifndef DROP_CARRIER_OBS
 -- ---------------------------------------------------------------------
--- the scoring layer (plan E9): everything below requires the expfam
--- basis and the declared obs carrier; without them the sentence
--- fragment still enumerates and renders — sentences are sayable — but
--- no likelihood can be assigned and no agent built.
+-- the scoring layer (plan E9): everything below requires the declared
+-- obs carrier; without it the sentence fragment still enumerates and
+-- renders — sentences are sayable — but no likelihood can be assigned
+-- and no agent built. (SINCE STEP 9: the ExpFam grammar node is gone;
+-- the emission form is 'bernFast', a Belief-layer kernel that never was
+-- the grammar node — the layer's only remaining ablation coupling is
+-- the carrier declaration.)
 -- ---------------------------------------------------------------------
 
 -- | The Bernoulli emission kernel theta -> Belief over the declared
--- obs carrier: since the expfam re-derivation (plan E7/Task 5) this IS
--- the derived name's fast form spread over the theta grid — one
--- arithmetic, no drift (test-expfam groups 4 and 7 pin the identity),
--- and the same float sequence the parity phase shipped.
+-- obs carrier: 'bernFast' spread over the theta grid — one arithmetic,
+-- no drift, the same float sequence the parity phase shipped. Not the
+-- grammar 'ExpFam' node (deleted at step 9): a Belief-layer form.
 emit :: Kernel Double Obs
 emit = kernel thetaSpace (carrierSpace obsCarrier) (bernFast obsCarrier)
 
@@ -711,6 +706,6 @@ observeVia kv feats y (Agent hyps isp meta) = do
 
 #endif
 -- end of the scoring layer (plan E9): everything from 'emit' down
--- requires the expfam basis and the declared obs carrier; without
--- them the sentence fragment still enumerates and renders — sentences
--- are sayable — but no likelihood can be assigned and no agent built.
+-- requires the declared obs carrier; without it the sentence fragment
+-- still enumerates and renders — sentences are sayable — but no
+-- likelihood can be assigned and no agent built.

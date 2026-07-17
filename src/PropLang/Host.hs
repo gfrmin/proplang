@@ -21,7 +21,7 @@
 -- phase, transcribed node for node under unify-freeze-r0.
 module PropLang.Host
   ( draw
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
   -- the wire session dies with the scoring layer or with argmax
   -- (no scoring, no agent; no argmax, no choice flow) — the same
   -- deletion coupling the membrane's agent-facing surface records
@@ -40,20 +40,20 @@ import System.IO (IOMode (ReadMode), hGetBuf, withBinaryFile)
 
 import PropLang.Belief (Belief, top)
 
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 import Data.Char (isDigit)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
 import System.IO (isEOF)
 
-import PropLang.Belief (LogProb (LogProb), entropyBits, is, prob)
+import PropLang.Belief (LogProb (LogProb), entropyBits, expect, is, prob)
 import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
                            fragFull, observe, obsSpace, predictive,
                            sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (menuAssignments)
-import PropLang.Syntax (Args (..), Expr (..), Grid, Idx (..), Name,
-                        StdName (..), USent (..), mkC, mkGrid, mkNamespace)
+import PropLang.Syntax (Expr (..), Grid, Idx (..), Name,
+                        mkC, mkGrid, mkNamespace)
 #endif
 
 -- | The sole source of randomness, host-side, called AFTER the language
@@ -88,7 +88,7 @@ unitSample =
           w <- peek (castPtr buf :: Ptr Word64)
           pure (fromIntegral w / 2 ^^ (64 :: Int))
 
-#if !defined(DROP_EXPFAM) && !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 -- ------------------------- mini JSON -------------------------------
 -- The wire is JSON-lines (membrane-wire.md §1); the reader below
 -- covers the whole grammar the wire can utter, hand-rolled so no
@@ -204,7 +204,7 @@ errLine m = "{\"error\": \"" ++ m ++ "\"}"
 -- doctrine; assign@1 died here with Util, on its printed date).
 data World = World
   { wMenuGrids :: [(Name, Grid)]
-  , wUSaid     :: Maybe USent
+  , wUSaid     :: Maybe (Expr '[Double, Double] Double)
   }
 
 -- | The wire session state (membrane-wire v1 as amended through step
@@ -248,7 +248,7 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       JStr "said@1" <- oGet "form" u
       sexp <- oGet "said" u
       prog <- parseSaid sexp        -- FAIL-CLOSED: unparseable => bad hello
-      pure (Just (USent prog))
+      pure (Just prog)
     Nothing -> pure Nothing
   n0 : nrest <- pure ns
   -- RIDER 2's validation: every guard and writable name inside the
@@ -326,14 +326,16 @@ tick w ag t = maybe (HostLive w ag, errLine "bad tick") id $ do
 -- src/PropLang/Membrane.hs interpretPilot PilotEU / test-stream g2's
 -- public arithmetic): candidate EU at predictive (feats ++ a), current
 -- weights; strict > displaces, first-listed wins ties (= wait). No
--- utility rows => wait (the option space's head).
-choose :: Maybe USent -> Features -> Agent -> NonEmpty Features -> Features
+-- utility rows => wait (the option space's head). SINCE STEP 9: the EU
+-- is the public 'expect' verb over the utility residue (bit-identical
+-- to the pre-step-9 'Call EU' = 'expect b (\y -> uAt fs u 0 y)').
+choose :: Maybe (Expr '[Double, Double] Double) -> Features -> Agent
+       -> NonEmpty Features -> Features
 choose Nothing _ _ opts = NE.head opts
 choose (Just u) feats ag opts =
-  let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
-                               :* Var (S (S (S Z))) :* ANil))
-                     (mkEnv [] (predictive (feats ++ a) ag :. u
-                                :. (feats ++ a) :. (0 :: Double) :. VNil))
+  let euAt a = expect (predictive (feats ++ a) ag)
+                      (\y -> evalx u (mkEnv (feats ++ a)
+                                       (0 :. realToFrac y :. VNil)))
       c0 :| cs = opts
       go best _bv [] = best
       go best bv (c : rest) =
@@ -358,8 +360,17 @@ parseSaid = pE
     pE (JArr [JStr "if", c, t, e]) = If <$> pB c <*> pE t <*> pE e
     pE _ = Nothing
     pB (JArr [JStr ">", a, b]) = Gt <$> pE a <*> pE b
-    pB (JArr [JStr "=", a, b]) =
-      (\x y -> Call IsEq (x :* y :* ANil)) <$> pE a <*> pE b
+    -- SINCE STEP 9: '=' is the If/Gt composition (E-e2; IsEq deleted):
+    -- x == y iff neither x > y nor y > x. trueE/falseE are constant
+    -- guards over singleton grids (the same 'mkC' door 'c' uses).
+    pB (JArr [JStr "=", a, b]) = do
+      x <- pE a
+      y <- pE b
+      oneE  <- mkC (mkGrid "k" (1 :| [])) 0
+      zeroE <- mkC (mkGrid "k" (0 :| [])) 0
+      let trueE  = Gt oneE zeroE
+          falseE = Gt zeroE oneE
+      pure (If (Gt x y) falseE (If (Gt y x) falseE trueE))
     pB _ = Nothing
 
 -- | The executable's whole IO surface: the stdin/stdout line loop

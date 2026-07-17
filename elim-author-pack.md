@@ -647,3 +647,92 @@ alphabet; the overlay-build lint proves completeness (no suite missed);
 the author re-signs the manifest over the adapted corpus at r0.
 
 **Nothing frozen touched. Manifest 81/81. Stopped for the §15 ruling.**
+
+---
+
+## Part VI — THE §15 FORK RULED: WIDE (2026-07-17)
+
+The author ruled **WIDE** — delete `ExpFam` and `SId`; `ProdTable` to two
+fields (EXPR 20, KER 1); test-expfam discharged-permanent — and noted the
+stop for what it is: step 8's discipline was a *post-key* stop; this is a
+*pre-implementation* stop on a mapped blast radius, the practice maturing
+by one boundary. The grounds, in the order they bind (author, verbatim
+substance): (1) not new scope but the plan's own canonical end-state —
+"22 productions, 2 sorts", the six-to-two headline this re-derivation has
+marched toward; NARROW would deliver a "6->3" nobody wrote. (2) the
+two-sided gate's demonstrated-composition half is **already discharged
+with frozen evidence** — `Code==ExpFam` bit-for-bit and `SId=realToFrac=ToR`
+sit in a frozen suite, stronger ground than E-e2's throwaway; NARROW would
+defer to a gate whose work is already done. (3) the grammar nodes have no
+live src construction — test-only citizens, the UseBern terminal state
+exists precisely for this. (4) NARROW leaves `test-code:407` stale-green
+pinning "Code joins ExpFam in the KER sort" — a row the rulings-sweep
+missed; WIDE retires it, so WIDE is the reading under which the census
+closes honest.
+
+### §17. The register amended: D-f13, D-f14 (enumerated, never implied)
+
+The deletions enter the register as formal rows so they are enumerated,
+not implied by §5b:
+
+| id | deletion | proof cited |
+|---|---|---|
+| **D-f13** | `ExpFam` (KER member) — DELETE | the frozen composition rows: `Code == ExpFam` bit-for-bit, test-code/Code.hs:284-296 (§5b subsumption). KER 2 -> 1. |
+| **D-f14** | `SId` (STATS sort) — DELETE | §5d subsumption: `statVal SId = realToFrac`, identical to `ToR :: Real c => Expr env c -> Expr env Double`. STATS 1 -> 0. |
+
+**D-f12 amended (the true final arithmetic).** EXPR **19 -> 20** (−`Call`,
++`SawE`, +`ElimJ`; `IsEq` DELETED not migrated — that is why (A) is 20 and
+(B) would have been 21); STDNAME 6 -> 0, FN 2 -> 0, UTIL 1 -> 0, STATS
+1 -> 0, KER **2 -> 1**. `ProdTable` six fields -> **two**: `ProdTable 20 1`
+= `{prodExpr = 20, prodKer = 1}`. `PolSort` six constructors -> two
+(`PolExpr | PolKer`). Two sorts remain where six stood; every survivor
+carries an executed proof.
+
+### §18. The consequence WIDE's bill must name: the KER-choice bit vanishes
+
+With `prodKer = 1`, `polWidth PolKer = ceil(lg 1) = 0`: the sort-width
+leaf for **every kernel mention** goes from `lg 2 = 1` bit to `lg 1 = 0`
+bits — a one-bit repricing across every kernel-mentioning priced
+sentence, P5 firing through the one arithmetic (`chargeBits`). Mechanical
+under the law, and the declared table recomputes it as its own second
+route — but it **enters the wave census as an enumerated repricing**, not
+a surprise diff in a pricing pin (the step-4 lesson: re-pricing is
+adjudication; the wave knows this bit moves before the pins are re-read).
+The only frozen row that pinned the KER width is `test-code:407` ("Code
+joins ExpFam in the KER sort", KER=2), which WIDE retires.
+
+### §19. (A) re-affirmed at the true price; the golden identity re-pin obligation
+
+The author re-affirmed (A) at §16's larger bill: six frozen suites and
+two frozen wire goldens move because the **serialization** changes while
+every value stays bit-identical. That alters the bill, not the balance —
+retention to dodge a serialization diff would be a perpetual tax against a
+one-time toll. The re-pins carry one obligation from the D2 lineage: **a
+serialization is a LABEL; labels move, identities must not.** Each moved
+golden (`test-membrane/Membrane.hs:179` `t3MoveGoldenM`,
+`test-sentence/Sentence.hs:554` `t3MoveGolden`) re-pins with the identity
+triple asserted beside it — **dl (description length), posterior mass, and
+the Acceptance numeric anchors — all unchanged across the re-expression**
+— so the row proves the sentence changed its clothes and nothing else.
+
+### §20. The work order, as it will run
+
+1. the oracle (test-elim/): the compositions as SHIPPED sentences
+   (EU -> `Expect`-binder; `Call IsEq` -> `If (Gt x y) F (If (Gt y x) F
+   T)`), the SAT overlay against the **20/1** alphabet, R-D21 transcripts.
+2. demolition (delegated freeze edits): delete the five verbs + IsEq
+   (STDNAME), FnInd/FnUtil (FN), USay (UTIL), SId (STATS), ExpFam (KER),
+   Call; land `Expect`-binder + `SawE` + `ElimJ`; retype `Expect`;
+   NaN-grid validation at `mkGrid` + wire ingestion (R-C1 extended);
+   `ProdTable 20 1`; `PolSort` two constructors.
+3. adapt/retire ~12 frozen suites; re-pin the two goldens (§19 form).
+4. the deletion audit unified on the four-check standard + the four
+   missing DROP points + layer-absence (D-f9).
+5. the frozen-layer inventory, largest yet (D-f11) + the KER repricing
+   row (§18).
+6. the rulings-sweep retire-and-replace (D-f10).
+7. the full-corpus overlay-build lint (row v); gates green + lint.
+8. Part VII (as-built register) + `elim-freeze-r0` — the key.
+
+**Manifest 81/81 at the ruling. The alphabet leaves this step smaller
+than it entered it: two sorts where six stood.**

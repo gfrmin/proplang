@@ -5,30 +5,27 @@
 -- | The evaluator (typed-port-spec §3): @evalx :: Expr env t -> Env env
 -- -> t@ — the type IS the purity claim. Nothing effectful appears in any
 -- type in this module (audit gate 3); the environment carries features
--- and typed bindings; stdlib semantics for 'PropLang.Syntax.StdName'
--- live here and are pure verb composition.
+-- and typed bindings.
 --
--- The 'Push' and 'Argmax' cases sit behind the same CPP flags as their
--- grammar constructors, so a code-level ablation deletes verb and
--- semantics together and all of src\/ stays compilable.
+-- The 'Push' / 'Argmax' / 'Expect' / 'CondE' / 'SawE' / 'ElimJ' cases
+-- sit behind the same CPP flags as their grammar constructors, so a
+-- code-level ablation deletes verb and semantics together and all of
+-- src\/ stays compilable.
+--
+-- SINCE THE STEP-9 ELIMINATION (elim-freeze-r0): the stdlib alphabet
+-- ('StdName' — the five VoI verbs and 'IsEq'), the 'Fn' eliminator, the
+-- 'ExpFam'/'SId' scoring nodes, and the 'USay' door are GONE. Utility is
+-- an ordinary sentence, so the one bridge 'uAt' and the deliberation
+-- workers ('vAct'\/'vThink'\/'vPre'\/...) died with the verbs they
+-- served. 'bernFast' — a Belief-layer kernel form, never the grammar
+-- 'ExpFam' node — survives as the demonstration domain's emission form.
 module PropLang.Eval
   ( Features
   , Vals(..)
   , Env
   , mkEnv
   , evalx
-  -- THE STEP-8 BRIDGE (the one-site change; unify... outcome-freeze):
-  -- a priced utility evaluated at the tick's features
-  , uAt
-#ifndef DROP_EXPFAM
   , bernFast
-#endif
-#ifndef DROP_LADDER
-  , vThinkK
-#endif
-#ifndef DROP_VPRE
-  , vPre
-#endif
   ) where
 
 #ifndef DROP_POS
@@ -37,28 +34,15 @@ import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import Data.Maybe (fromMaybe)
 
-import PropLang.Belief (Belief, Evidence (Saw), Kernel, LogProb (LogProb),
-                        cond, expect, logPredict)
+import PropLang.Belief (Belief, Bits (Bits), Evidence (Saw), cond, expect,
+                        fromBits, kernel)
 #ifndef DROP_PUSH
 import PropLang.Belief (push)
-#endif
-#ifndef DROP_FNIND
-import PropLang.Belief (prob)
-#endif
-#if !defined(DROP_EXPFAM) || !defined(DROP_CODE)
-import PropLang.Belief (Bits (Bits), fromBits, kernel)
 #endif
 #if !defined(DROP_CODE) || !defined(DROP_POS)
 import PropLang.Belief (spacePoints)
 #endif
-import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
-                        StdName (..), USent (..), mkC, mkGrid)
-#ifndef DROP_EXPFAM
-import PropLang.Syntax (Carrier, Stats (..), carrierSpace)
-#endif
-#ifndef DROP_VPRE
-import PropLang.Syntax (Chan, applyChan)
-#endif
+import PropLang.Syntax (Carrier, Expr (..), Idx (..), Name, carrierSpace)
 
 -- | The world's published names, one tick's worth. Absent names read 0.0
 -- (interface.md §1: prices, clocks, and echoes are names like any other).
@@ -100,16 +84,17 @@ evalx expr env@(Env feats vals) = case expr of
 #ifndef DROP_PUSH
   Push b k   -> push (evalx b env) (evalx k env)
 #endif
+#ifndef DROP_CONDE
   CondE b ev -> cond (evalx b env) (evalx ev env)
-  -- the two published expansions (plan Q1): probability derived from
-  -- prevision, and the EU contract's utility section
-  Expect b f -> case f of
-#ifndef DROP_FNIND
-    FnInd e    -> prob (evalx b env) e
 #endif
-#ifndef DROP_FNUTIL
-    FnUtil u o -> case env of
-      Env fs _ -> expect (evalx b env) (\y -> uAt fs u o (realToFrac y))
+#ifndef DROP_EXPECT
+  -- the prevision atom (step 9): the belief's carrier, bound as a real
+  -- ('realToFrac' of the outcome at 'Var Z'), integrated against the
+  -- body — an ordinary EXPR in extended scope. This subsumes the Fn
+  -- eliminator: 'prob b e' is 'Expect b (indicator)', utility-prevision
+  -- is 'Expect b (priced body)'.
+  Expect b body ->
+    expect (evalx b env) (\y -> evalx body (Env feats (realToFrac y :. vals)))
 #endif
 #ifndef DROP_ARGMAX
   Argmax o v ->
@@ -124,23 +109,18 @@ evalx expr env@(Env feats vals) = case expr of
           in if cv > bv then go c cv rest else go best bv rest
     in fst (go o0 (val o0) os)
 #endif
-#ifndef DROP_EXPFAM
-  -- the generic family (plan Q1): natural parameter in, belief over
-  -- the declared carrier out — weights exp(eta * T(y)), normalized
-  -- over the carrier's points by the only prior source (fromBits
-  -- absorbs the log-partition A(eta) in its normalization)
-  ExpFam sp car st ->
-    kernel sp (carrierSpace car) $ \eta ->
-      fromBits (carrierSpace car)
-        (\y -> Bits (negate (eta * statVal st y) / ln2))
+#ifndef DROP_SAWE
+  -- the evidence producer (step 9): 'PropLang.Belief.Saw' made sayable —
+  -- a kernel applied to an observed outcome
+  SawE k y -> Saw (evalx k env) (evalx y env)
 #endif
-#ifndef DROP_USAY
-  -- the pointer's door (step 8, CIRL C3 superseded): a priced utility
-  -- IS its syntax — evaluation is constructor application, and the
-  -- environment enters at the ONE bridge ('uAt'), where the tick's
-  -- features are passed (the step-8 repeal: utilities read features,
-  -- because features ARE the consequences).
-  USay p -> USent p
+#ifndef DROP_ELIMJ
+  -- the conditioned-belief eliminator (step 9): the Just arm binds the
+  -- belief; the Nothing arm is an ordinary sentence (LOAD-BEARING — the
+  -- impossible-evidence default shows through when reached with weight)
+  ElimJ m j n -> case evalx m env of
+    Just b  -> evalx j (Env feats (b :. vals))
+    Nothing -> evalx n env
 #endif
 #ifndef DROP_CODE
   -- THE likelihood production, as ruled at code-freeze-r0 (R-C1 reading
@@ -152,9 +132,9 @@ evalx expr env@(Env feats vals) = case expr of
   -- the refutation/integration half of that ruling binds step 3, not
   -- this case). Every L in [0, +∞] flows: +∞ is a lawful hard zero
   -- (walkOn's own mechanism) and negative-by-ulp L is lawful because
-  -- the frozen ExpFam node itself computes negative L (pack §6.5). On
-  -- the lawful side this is bit-for-bit the semantics executed against
-  -- walkOn / emit / ExpFam at the oracle phase (567/567, 9/9, 9/9).
+  -- the composition 'Code' subsumed ('ExpFam') itself computed negative
+  -- L. On the lawful side this is bit-for-bit the semantics executed
+  -- against walkOn / emit at the oracle phase (567/567, 9/9).
   Code dom cod body ->
     let cell x y = evalx body (Env feats (y :. x :. vals))
         colOK ls = not (any (\l -> isNaN l || l == (-1 / 0)) ls)
@@ -178,9 +158,10 @@ evalx expr env@(Env feats vals) = case expr of
     Nothing -> 0 / 0
 #endif
 #ifndef DROP_TOR
-  -- the VALUE reader (§5d; OPEN 6 ruled at code-freeze-r0): SId's
-  -- workload — eta * T(y) needs the carrier VALUE, which no position
-  -- can supply on a value/index-disagreeing carrier (test-code group 4)
+  -- the VALUE reader (§5d; OPEN 6 ruled at code-freeze-r0): the carrier
+  -- VALUE — since step 9 THIS is what subsumes 'SId' (statVal SId =
+  -- realToFrac = ToR); expfam's eta * T(y) needs T(y) :: Double, and a
+  -- POSITION cannot supply it on a value/index-disagreeing carrier.
   ToR e' -> realToFrac (evalx e' env)
 #endif
   -- the arithmetic is IEEE-754 binary64, exactly as the host computes
@@ -192,183 +173,17 @@ evalx expr env@(Env feats vals) = case expr of
   Log a -> log (evalx a env)
   Exp a -> exp (evalx a env)
   Neg a -> negate (evalx a env)
-  Call sn as -> applyStd sn (evalArgs as env)
 
-evalArgs :: Args env ts -> Env env -> Vals ts
-evalArgs ANil      _   = VNil
-evalArgs (a :* as) env = evalx a env :. evalArgs as env
-
--- THE bridge (step 8, the measured one-site change): a priced
--- utility evaluated AT THE TICK'S FEATURES, the residue pair
--- (option code, outcome) in the two-variable scope. E-d1(a): this
--- argument is the entire difference between "featureless and
--- clockless" and "features are the consequences".
-uAt :: Features -> USent -> Double -> Double -> Double
-uAt fs (USent p) a y = evalx p (mkEnv fs (a :. y :. VNil))
-
--- the mute utility (the vThinkAt degeneracy's constant-0 program —
--- the same zero the wrapper form carried, now a grid datum)
-muteU :: USent
-muteU = USent (case mkC (mkGrid "mute0" (0 :| [])) 0 of
-  Just e  -> e
-  Nothing -> error "muteU: singleton grid index 0 must construct")
-
--- The stdlib semantics (contracts recorded on 'StdName').
-applyStd :: StdName args t -> Vals args -> t
-applyStd EU     (b :. u :. fs :. code :. VNil) =
-  expect b (\y -> uAt fs u code (realToFrac y))
-applyStd IsEq   (x :. y :. VNil)      = x == y
-applyStd VAct   (b :. u :. acts :. VNil) = vAct b u acts
-applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
-  vThink b k ys u acts n price
-#ifndef DROP_LADDER
-applyStd VThinkK (d :. b :. k :. ys :. u :. acts :. n :. price :. VNil) =
-  vThinkK d b k ys u acts n price
-#endif
-#ifndef DROP_VPRE
-applyStd VPre (d :. b :. ch :. ys :. uD :. ds :. u :. acts :. n :. price :. VNil) =
-  vPre d b ch ys uD ds u acts n price
-#endif
-
-negInf :: Double
-negInf = -1 / 0
-
-sumL :: [Double] -> Double
-sumL = foldl' (+) 0
-
-#ifndef DROP_EXPFAM
-ln2 :: Double
-ln2 = log 2
-
--- the sufficient statistic's value: first-order syntax, evaluated here
--- like every other verb (empty case when the STATS alphabet is ablated)
-statVal :: Stats c -> c -> Double
-statVal s = case s of
-#ifndef DROP_SID
-  SId -> realToFrac
-#endif
-
--- | The Bernoulli fast form of the expfam basis (plan E7): the derived
--- name's executed semantics, kept literally the reference arithmetic —
+-- | The Bernoulli emission form of the demonstration domain (plan E7):
+-- a Belief-layer kernel, NOT the grammar 'ExpFam' node (which died at
+-- step 9, subsumed by 'Code'). Kept literally the reference arithmetic —
 -- CL-4's doctrine at the name layer: the fast path buys speed, never
--- semantics, and its expfam expansion is the property-enforced
--- contract (test-expfam group 5). Exported (additively) so the
--- domain's emission kernel in "PropLang.Enumerate" is this same form —
--- one arithmetic, no drift. SURVIVED the step-3 deletion of the Bern
--- name itself (the name was sugar; capability survives its deletion —
--- the sentence route says Bernoulli emission as a code) and dies with
--- the basis (E9).
+-- semantics. Exported (additively) so the domain's emission kernel in
+-- "PropLang.Enumerate" is this same form — one arithmetic, no drift.
+-- SURVIVED the step-3 deletion of the Bern name and the step-9 deletion
+-- of the ExpFam grammar node: capability survives its syntax's deletion
+-- (the sentence route says Bernoulli emission as a 'Code').
 bernFast :: Carrier Int -> Double -> Belief Int
 bernFast car th =
   fromBits (carrierSpace car)
     (\y -> Bits (negate (logBase 2 (if y == 1 then th else 1 - th))))
-#endif
-
--- max over acts of the prevision of the utility (the value of acting
--- now); iteration order and the strict-improvement rule mirror CL-3.
-vAct :: Belief Double -> USent -> NonEmpty Double -> Double
-vAct b u = foldl' step negInf
-  where
-    step bv a = let v = expect b (uAt [] u a) in if v > bv then v else bv
-
--- The one preposterior arithmetic (PREPOSTERIOR_PLAN P1 as ruled),
--- private and unconditional like 'PropLang.Syntax'.bitsAt: W_0 is
--- 'vAct' over the terminal menu (the induction base, used as-is);
--- W_j is the best interior decision's immediate prevision plus the
--- continuation through THAT decision's own channel — the same kernel
--- weighting the length-n outcome sequences (binary-counting order
--- over the given alphabet, logPredict folded BEFORE cond per outcome,
--- an impossible branch contributing weight 0) and conditioning the
--- belief the continuation sees — with the tick's price outside the
--- max. The mute singleton (constant channel, zero immediate — a
--- definitional zero, not a steering constant — unit menu) collapses
--- W_j to the frozen deliberation arithmetic: the immediate prevision
--- is exactly 0, the singleton max is the identity, and the remaining
--- fold is line-for-line the pre-increment worker. 'vThinkAt' below IS
--- that application (identity as definition, P1's required form).
-vPreAt :: Eq y
-       => Int -> Belief Double -> (Double -> Kernel Double y) -> USent
-       -> NonEmpty Double -> [y] -> USent -> NonEmpty Double -> Int
-       -> Double -> Double
-vPreAt d b ch uD ds ys u acts n price = est d b
-  where
-    est j bb | j <= 0    = vAct bb u acts
-             | otherwise =
-                 foldl' pick negInf (fmap (branch (est (j - 1)) bb) ds)
-                   - price
-    pick bv v = if v > bv then v else bv
-    branch cont bb dd =
-      expect bb (uAt [] uD dd)
-        + sumL (map (walk (ch dd) cont 0 (Just bb)) (grow n [[]]))
-    grow m ss | m <= 0    = ss
-              | otherwise = grow (m - 1) [s ++ [y] | s <- ss, y <- ys]
-    walk k cont lp (Just bc) (y : rest) =
-      let LogProb l = logPredict bc (Saw k y)
-      in walk k cont (lp + l) (cond bc (Saw k y)) rest
-    walk _ cont lp (Just bc) [] = exp lp * cont bc
-    walk _ _    _  Nothing   _  = 0
-
--- Russell–Wefald preposterior value of one more batch of computation:
--- the fidelity ladder's depth-1 case — 'vThinkAt' at depth 1, itself
--- the mute-singleton face of 'vPreAt' (the bitsAt pattern, twice).
-vThink :: Eq y
-       => Belief Double -> Kernel Double y -> [y] -> USent
-       -> NonEmpty Double -> Int -> Double -> Double
-vThink = vThinkAt 1
-
--- The action-INDEPENDENT deliberation arithmetic (LADDER_PLAN L1,
--- reading c as ruled): Est_0 is the value of acting now (the
--- induction base, used as-is); Est_j is the next-batch preposterior
--- of Est_{j-1} minus the tick's price — so depth k telescopes to the
--- k-batch preposterior of acting minus k*price, every priced tick a
--- real tick. Since the prepost freeze this is DEFINED as 'vPreAt' at
--- the mute singleton (the increment-5 degeneracy identity, pinned
--- with == by the frozen oracle): the frozen worker IS the
--- action-independent case of the action-dependent one.
-vThinkAt :: Eq y
-         => Int -> Belief Double -> Kernel Double y -> [y] -> USent
-         -> NonEmpty Double -> Int -> Double -> Double
-vThinkAt d b k ys u acts n price =
-  vPreAt d b (const k) muteU (0 :| []) ys u acts n price
-
-#ifndef DROP_LADDER
--- | The fidelity ladder's rung valuation (interface.md section 6;
--- LADDER_PLAN L1, reading c — the recorded contract): @Est_0@ is the
--- value of acting now; @Est_k@ is the next-batch preposterior of
--- @Est_{k-1}@ minus the tick's price. @Est_1@ is therefore exactly
--- 'vThink', and @Est_k@ telescopes to the k-batch preposterior of
--- acting minus @k * price@ — every priced tick a real tick, the
--- induction base ("unexamined estimates are used as-is") sitting at
--- @Est_0@ and nowhere else.
---
--- The executed semantics IS 'vThinkAt' — one arithmetic with 'vThink'
--- as its depth-1 face (the E7 doctrine; the ladder oracle pins the
--- identity with ==).
-vThinkK :: Eq y
-        => Int -> Belief Double -> Kernel Double y -> [y] -> USent
-        -> NonEmpty Double -> Int -> Double -> Double
-vThinkK = vThinkAt
-#endif
-
-#ifndef DROP_VPRE
--- | The action-dependent preposterior (PREPOSTERIOR_PLAN P1/P4 as
--- ruled; the verb VPre's executed semantics at the freeze): W_0 is
--- the frozen leaf — 'vAct' over the terminal menu, the induction base
--- untouched; W_j takes the best interior decision's immediate
--- prevision plus the continuation through THAT decision's own
--- channel, the tick's price outside the max. The frozen worker is the
--- degenerate case at the mute singleton (constant channel, zero
--- immediate, unit menu), and 'vThinkAt' is re-based as exactly that
--- application (the bitsAt pattern's third use; the oracle pins the
--- identity with ==).
---
--- The executed semantics IS 'vPreAt' — the public conditional face of
--- the one preposterior arithmetic, unwrapping the channel at the
--- membrane of the sealed value layer.
-vPre :: Eq y
-     => Int -> Belief Double -> Chan Double Double y -> [y] -> USent
-     -> NonEmpty Double -> USent -> NonEmpty Double -> Int -> Double
-     -> Double
-vPre d b ch ys uD ds u acts n price =
-  vPreAt d b (applyChan ch) uD ds ys u acts n price
-#endif
