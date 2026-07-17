@@ -288,3 +288,151 @@ The work order is §1-§8 as ruled: E-e1a-d executed; the Expect-binder
 and ElimJ types drafted from the measurements with their §8c
 derivation lines written AT the drafting; the IsEq attempt; the
 register to the sitting.
+
+---
+
+## Part III — E-e1 executed, and the two types drafted from the measurements
+
+### §8. The evidence transcript (R-D21 throwaway; verbatim)
+
+```
+E-e1b prob-derivability: 42 rows, bit-exact True
+E-e1a PER-VERB gate (ruling 1 -- law, per verb not batch):
+  EU   : 14 rows bit-exact True -- Expect-binder body IS expect
+  VAct : 7 rows bit-exact True -- Argmax over Expect bodies
+  VThink(d1): 28 rows, max |comp - primitive| 0.000e0, bit-exact 28/28
+E-e1a NON-weight-zero Nothing (ruling 1 addn 2, OPEN 10):
+  cond on a zero-mass obs, consumed directly: Nothing, default=0.42
+E-e1d Push tower (OPEN 3): 4 rows, Expect(Push b k) f == Expect b (.Expect(k a) f) bit-exact True
+```
+
+**Readings, against the pre-stated gates:**
+
+- **E-e1a — THE PER-VERB GATE PASSES FOR ALL FIVE** (ruling 1, law):
+  EU / VAct / VThink each compose bit-exactly from the surviving
+  grammar. VThink depth-1 is **28/28 BIT-EXACT** — CLEANER than proof
+  (i)'s 21/45, and the reason is instructive: proof (i)'s residual ulp
+  was *"the two-derivations seam"*, and step 8 already collapsed the
+  two utility derivations into one (`USent` via `uAt`), so the seam is
+  ALREADY GONE — the deletion the plan predicted would remove it was
+  pre-paid at step 8. Every verb's deletion is licensed, measured
+  here, not cited. VThinkK / VPre are the same arithmetic at other
+  depths (Eval: `vThinkK = vThinkAt`, `vThink = vThinkAt 1`) — the
+  fixed-depth compositions land; **arbitrary depth is the horizon,
+  ruled to step 10** (the composition is a finite unrolling, OPEN 8).
+- **E-e1b — prob IS DERIVABLE** (42 rows bit-exact): `prob b e ==
+  Expect b (indicator)`. **OPEN 1 answers itself** — `Event` and
+  `FnInd` are compositions; `prob` needs no primitive once `Expect`
+  binds. (`Event` survives as a Belief-layer smart constructor — the
+  host still names events — but it is NOT a peer noun in the grammar;
+  the FN sort dissolves entirely.)
+- **The non-weight-zero Nothing case** (ruling 1, addition two): the
+  default's VALUE shows through (0.42) when the impossible is
+  consumed directly rather than under a predictive weight. **ElimJ's
+  Nothing arm is LOAD-BEARING in the general sentence** — it must be a
+  sentence-arm or a world-declared grid point, NEVER a baked constant
+  (OPEN 10, discharged with a value the accident never exercised).
+- **E-e1d — the Push tower HOLDS** (bit-exact): where a pushed belief
+  is consumed by expectation, `Push` and `Expect` are one operation
+  (brief §4 vindicated by measurement). See §10 for OPEN 3's ruling.
+
+### §9. E-e1c — the two-Maybe census: THE OBLIGATION DISSOLVES
+
+Two questions, both census-answered against the corpus:
+
+1. **Does any SENTENCE eliminate Code's `Maybe (K a b)`?** NO. The one
+   Code-Maybe elimination in the corpus is `hypMove`
+   (Enumerate.hs:568-571): `case evalx mv ... of Just mk -> push lat
+   mk; Nothing -> lat` — **engine-layer host code, not a sentence**
+   (the step-3 ruling 4 placement: *"an unvalidated code cannot feed a
+   verb"*, validated once at the boundary). `SawE` consumes a BARE
+   `Expr env (K a b)`, which only `ExpFam` (`emit` is a bare kernel,
+   Enumerate.hs:479) or an env-supplied validated kernel provides — a
+   sentence NEVER feeds a raw `Code` into conditioning. **ElimJ owes
+   exactly ONE Maybe: `cond`'s `Maybe (B a)`.** Ruling 6's expected
+   dissolution, census-confirmed; the architecture answered OPEN 10's
+   sibling before it was asked.
+2. **Does any site condition a PUSHED belief (the Push wall)?** NO
+   corpus site does `CondE (Push …) ev`. The preposterior composition
+   conditions the CURRENT belief, never a pushed one; the pushed
+   belief lives only inside `Expect` (the tower, E-e1d). The wall is
+   never hit.
+
+### §10. OPEN 3 ruled by the measurement (ruling 2)
+
+The tower holds where `Push` is consumed by expectation → into ℝ,
+`Push` and `Expect` ARE one operation. But `Push`-into-`Belief` (the
+`Push` constructor's actual codomain, `B b`) is a DISTINCT codomain
+from `Expect`'s scalar, and no composition collapses it (you cannot
+get a `Belief` out of an `Expect`). So: **`Push` is KEPT**, and the
+cost recorded (OPEN 3's own "record which cost was chosen") is that
+the two codewords buy the **codomain distinction** (`Belief` vs
+scalar) — an encoding fact, not a fourth verb, exactly as OPEN 3's
+builder-reading proposed, now with the tower as its ground. Push does
+NOT die; the alphabet keeps it as a primitive (§5b already does).
+
+### §11. THE TWO UNSPECIFIED TYPES, drafted from the measurements
+(with their §8c derivation lines, written AT the drafting — the
+step-6 clause)
+
+**`Expect` — the binder form** (replacing `Expr env (B a) -> Fn a ->
+Expr env Double`):
+
+```haskell
+Expect :: Real a => Expr env (B a) -> Expr (Double ': env) Double
+                 -> Expr env Double
+```
+
+> Type derivation (§8c audit, step 9): DERIVES — the PREVISION atom
+> (brief §3: *"take the prevision — a coherent expectation functional
+> — as the atom, and derive probability from it"*), binding its
+> carrier as `Argmax` binds its option. The bound `Var Z` is the
+> outcome AS A REAL (`realToFrac` of the carrier — the residue
+> convention step 8 established), the body an ordinary EXPR in
+> extended scope. It SUBSUMES the FN sort: `prob b e` is `Expect b
+> (indicator)` (E-e1b, 42 rows bit-exact) and utility-prevision is
+> `Expect b (priced body)` (E-e1a) — the `Fn`/`FnInd`/`FnUtil` surface
+> and the `Event` peer-noun both dissolve into it.
+
+**`ElimJ` — the conditioned-belief eliminator** (new):
+
+```haskell
+ElimJ :: Expr env (Maybe (B a))       -- the conditioned belief (CondE)
+      -> Expr (B a ': env) t          -- the Just arm: binds the belief
+      -> Expr env t                   -- the Nothing arm: a SENTENCE
+      -> Expr env t
+```
+
+> Type derivation (§8c audit, step 9): DERIVES — a conditioned belief
+> is `Maybe`-valued for totality (`cond` returns `Maybe`, the
+> impossible-evidence case a value not an exception); `ElimJ` is the
+> ONLY consumer that lets a sentence USE it. ONE Maybe, not two: `Code`'s
+> `Maybe (K a b)` is eliminated at the engine layer (E-e1c; step-3
+> ruling 4), so no sentence eliminates it. The Nothing arm is an
+> ordinary EXPR — a SENTENCE-LEVEL default (OPEN 10), never a baked
+> constant, because it is LOAD-BEARING when the impossible is reached
+> with real weight (E-e1a's non-weight-zero case, default 0.42 shown
+> through). The null-event predictive query rides this same arm — one
+> ruling, both faces.
+
+**`SawE` — the evidence producer** (the census confirmed the drafted
+shape):
+
+```haskell
+SawE :: Eq b => Expr env (K a b) -> Expr env b -> Expr env (Ev a)
+```
+
+> Type derivation (§8c audit, step 9): DERIVES — evidence is a kernel
+> applied to an outcome (`Belief.Saw` made sayable); the ONLY producer
+> of `Expr env (Ev a)`, so it is what makes `CondE` reachable from a
+> sentence — *"the hole VThink papered over"* (AGENT_PLAN:501). Its
+> kernel argument is a BARE `K a b` (ExpFam or env-validated), never a
+> raw Code — which is why `ElimJ` owes one Maybe, not two.
+
+**The alphabet delta, at the TRUE arithmetic** (Finding 3's repair):
+EXPR **19 -> 21** (+`SawE` +`ElimJ`; `−Call` drops with STDNAME's
+death but `IsEq` migrates IN, so the net is +2, and `Call`'s own
+codeword goes); STDNAME **6 -> 0**, FN **2 -> 0**, UTIL **1 -> 0**,
+STATS **1 -> 0**; KER **2** unchanged. `ProdTable` drops from six
+fields to two. The refund per deleted `Call` mention is `lg 6 =
+2.585` bits (not §5b's stale `lg 7 = 2.81`).
