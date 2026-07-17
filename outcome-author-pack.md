@@ -234,3 +234,86 @@ Next: the 8b falsifier design with criteria PRE-STATED NUMERICALLY
 (the 6b discipline — the payoff-at-t+5 world, the depth-unrolled
 sentence as the PRICED composition attempt under the primitivity
 gate), then the register to the sitting.
+
+---
+
+## Part III — 8b: the falsifier design, criteria PRE-STATED (committed before any run)
+
+### §8. The world, the candidates, the numbers
+
+**The design constraint the falsifier honors** (§9 OPEN 8's own
+words): a consequence at t+5 must be *visible to learning and
+invisible to choice*. To keep the falsifier about CHOICE and not
+about fragment expressiveness, the world publishes its fuse as an
+ordinary sensor (CL-1: worlds may publish anything):
+
+- **The visible-fuse world.** Episodes e = 1..E, E = 40, each T = 12
+  ticks; per-episode state = (t, fuse queue). One writable name
+  a ∈ {0, 1} (grid 0 :| [1]; wait = 0). Acting at tick t plants a
+  fuse that fires at t+5. The world PUBLISHES the feature
+  `pending ∈ {0,1}` — 1 exactly when a fuse fires this tick. The
+  outcome: y ~ Bern(0.9) when pending = 1, else Bern(0.1). Utility
+  (prototype-side): u(asg, y) = y − 0.2·a — acting costs 0.2 NOW,
+  buys ΔE[y] = +0.8 at t+5. Acting is dominant at every tick with
+  t+5 ≤ T (net +0.6); myopic E[ΔU] sees only −0.2 (the current
+  tick's y-odds do not depend on the current a) and refrains.
+  Opportunities per episode: 7 (t = 0..6). Regret per refused
+  opportunity: 0.6 exactly on matched randomness.
+- **Phase 1 (episodes 1..10):** actions world-scripted
+  (a ~ Bern(0.5)) — the habituation record: pending-guards learn
+  P(y | pending) by ordinary cond.
+- **Phase 2 (episodes 11..40, 210 decision ticks):** the raced rule
+  chooses.
+
+**The candidates raced:**
+1. **MYOPIC** — the shipped exogenous-read EU at (feats ++ a),
+   current weights (the step-6 pinned rule).
+2. **THE COMPOSITION ATTEMPT (the primitivity gate's clause (a),
+   executed):** the depth-5 lookahead written as a sentence of the
+   EXISTING grammar (Push/Cond/Expect/Argmax — proof (i)'s sPre
+   form). Pre-stated expectation, honestly held: the sayable form
+   unrolls over a FIXED evidence channel (observations), not over
+   the world's state evolution; the world-rollforward needs a
+   hypothesis pushed through its own transition five times, and a
+   hypothesis is context -> Obs, NOT an endo-kernel — the attempt is
+   expected to fail AT THE TYPE LEVEL for the rollforward, with the
+   exact ill-typing transcribed (the gate's demonstrated failure,
+   ToR-standard). If a sayable form nonetheless expresses it, its
+   sentence price is measured and N2's bar applies.
+3. **THE PRICED CAPABILITY (prototype-only):** a throwaway
+   kernel-composition route — the trained model rolled forward five
+   ticks host-side — so the ruling sees capability AND cost:
+   prodExpr 19 -> 20 re-prices EVERY Expr node by lg(20/19) = 0.0740
+   bits; the census impact on the frozen populations computed and
+   printed beside the regret.
+4. **ORACLE:** act at every opportunity tick (the regret floor).
+
+**The criteria (numeric, committed before the world runs):**
+- **P0 (premise):** the fuse is visible to learning — after phase 1
+  the MAP mentions `pending` and the learned P(y=1 | pending=1) is
+  within ±0.10 of 0.9 (and | pending=0 within ±0.10 of 0.1). If P0
+  fails the world is redesigned BEFORE any N-criterion is read (the
+  6b r0/r1 lesson: vacuous indicators are amended alone, everything
+  else byte-stable).
+- **N1 (the myopia demonstrated):** MYOPIC refuses ≥ 95% of
+  opportunity ticks and its total phase-2 regret ≥ 0.5 × 0.6 ×
+  opportunities, on ≥ 95% of N = 100 seeds.
+- **N2 (the composition attempt):** IF a sayable depth-5 sentence
+  exists, it acts on ≥ 95% of opportunity ticks at a sentence price
+  ≤ +40 nodes over the myopic program; ELSE the exact type failure
+  is transcribed (either outcome discharges the gate's clause (a)).
+- **N3 (the capability, priced):** the prototype rollforward's
+  regret ≤ 0.05 × oracle-attainable, on ≥ 95% of seeds, AND its
+  price stated (the alphabet motion + the per-sentence census
+  delta).
+- **N4 (the scope-line default):** if N2's attempt fails and N3's
+  capability holds, the RULING (not the builder) chooses between
+  landing the production (with deletion proof + price, under the
+  gate) and printing the myopia as the scope limit with N1's
+  numbers on its face. STOP-AND-REPORT only if N1 fails (the myopia
+  cannot be demonstrated — the plan's premise would be wrong).
+
+E = 40 / T = 12 / lag 5 / cost 0.2 / odds 0.9/0.1 / N = 100 seeds
+are design arithmetic, not tuning; every threshold above is
+committed at this Part-III commit BEFORE any world runs (the 6b
+discipline, b721bb2's precedent).
