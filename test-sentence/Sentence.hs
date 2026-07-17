@@ -124,10 +124,10 @@ import PropLang.Enumerate (Agent, FragProd (..), FragSort (..), Hyp (..),
                            enumerateSentencesIn, filterTickFree, fragFull,
                            fragSortOf, fragWidth, obsSpace, predictive,
                            observe, renderExpr, sentenceAgent, thetaSpace)
-import PropLang.Eval (evalx, mkEnv, Vals (..))
+import PropLang.Eval (Features, evalx, mkEnv, Vals (..))
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K, Name,
-                        StdName (..), Util, mkC, mkGrid, mkNamespace,
-                        mkUtil)
+                        StdName (..), USent (..), mkC, mkGrid,
+                        mkNamespace)
 
 import Anchors
 import Streams
@@ -302,37 +302,58 @@ g1Enumeration = testGroup "g1 enumeration: the fragment as sentences"
 -- test/Anchors.hs)
 -- ---------------------------------------------------------------------
 
-data Act1 = Predict1 | Predict0 | Consult
-  deriving (Eq, Show)
+-- RE-DERIVED at the step-8 outcome freeze (R-D22; THE ACCEPTANCE
+-- LINEAGE ROW — brief §12 test 1, the changing-world deliverable).
+-- The lineage is the DELIVERABLE's, never the calculator's: the
+-- Python oracle's `util(a, y)` (tests_acceptance.py:74-76 — Savage's
+-- R(a,s) = u(a(s)) installed as a definition, AGENT_PLAN:43) becomes
+-- a PRICED SENTENCE over the residue code. Same extension at the
+-- three codes; the timeline, the consult ticks, the MAP identity and
+-- every golden below are UNMOVED — which is the deliverable's own
+-- claim, now carried by an ontology that does not hide a calculator.
+predict1C, predict0C, consultC :: Double
+predict1C = 0; predict0C = 1; consultC = 2
 
-act1Name :: Act1 -> String
-act1Name Predict1 = "predict1"
-act1Name Predict0 = "predict0"
-act1Name Consult  = "consult"
+act1Name :: Double -> String
+act1Name c
+  | c == predict1C = "predict1"
+  | c == predict0C = "predict0"
+  | otherwise      = "consult"
 
--- COPIED test/Acceptance.hs:104-108
-util1 :: Util Act1 Obs
-util1 = mkUtil $ \a y -> case a of
-  Consult  -> 0.35
-  Predict1 -> if y == 1 then 1.0 else -1.0
-  Predict0 -> if y == 0 then 1.0 else -1.0
+gkS :: Double -> Expr env Double
+gkS v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "sentence fixture: singleton grid index 0 must construct"
 
--- COPIED test/Acceptance.hs:86-89
-argmaxEU :: Expr '[NonEmpty o, B y, Util o y] o
+-- RE-DERIVED from test/Acceptance.hs:104-108 (the lineage's utility):
+--   consult (2) -> 0.35; predict1 (0) -> 2y-1; predict0 (1) -> 1-2y
+util1 :: USent
+util1 = USent
+  (If (Gt (Var Z) (gkS 1.5)) (gkS 0.35)
+      (If (Gt (Var Z) (gkS 0.5))
+          (Sub (gkS 1) (Mul (gkS 2) (Var (S Z))))
+          (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1))))
+
+-- RE-DERIVED from test/Acceptance.hs:86-89: the doctrinal argmax-EU
+-- program over option CODES; EU's evaluation features are an argument
+-- (empty here — this world publishes no feature the utility reads)
+argmaxEU :: Real y => Expr '[NonEmpty Double, B y, USent, Features] Double
 argmaxEU =
   Argmax (Var Z)
-    (Call EU (Var (S (S Z)) :* Var (S (S (S Z))) :* Var Z :* ANil))
+    (Call EU (Var (S (S Z)) :* Var (S (S (S Z)))
+              :* Var (S (S (S (S Z)))) :* Var Z :* ANil))
 
 -- COPIED test/Acceptance.hs:111-123, the agent re-based on sentences
-runChangingWorld :: ([(Int, Double, Act1, Double)], Agent)
+runChangingWorld :: ([(Int, Double, Double, Double)], Agent)
 runChangingWorld = go 0 (sentenceAgent (enumerateSentences fragFull)) shifted160
   where
-    acts = Predict1 :| [Predict0, Consult]
+    acts = predict1C :| [predict0C, consultC]
     go _ ag [] = ([], ag)
     go t ag (y : ys) =
       let pr = predictive [("t", fromIntegral t)] ag
           p1 = prob pr (is obsSpace 1)
-          a  = evalx argmaxEU (mkEnv [] (acts :. pr :. util1 :. VNil))
+          a  = evalx argmaxEU (mkEnv [] (acts :. pr :. util1
+                                          :. ([] :: Features) :. VNil))
           h  = entropyBits (agentMeta ag)
           (_, ag')     = stepAgentS t y ag
           (rows, agF)  = go (t + 1) ag' ys
@@ -364,15 +385,15 @@ g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
           hPre  = hs !! 59
           hPost = maximum (take 30 (drop 60 hs))
       assertBool "confident (predict1) for t in [30,60)"
-                 (all (== Predict1) (between 30 60))
+                 (all (== predict1C) (between 30 60))
       assertBool "consults inside t in [60,80)"
-                 (Consult `elem` between 60 80)
+                 (consultC `elem` between 60 80)
       assertBool "recovers to predict0 for t in [130,160)"
-                 (all (== Predict0) (between 130 160))
+                 (all (== predict0C) (between 130 160))
       assertBool "entropy disperses (H_post > H_pre + 0.5)"
                  (hPost > hPre + 0.5)
       assertEqual "consult tick set (exact)"
-                  t1ConsultTicks [ t | (t, Consult) <- actAt ]
+                  t1ConsultTicks [ t | (t, a) <- actAt, a == consultC ]
       assertApprox "H_pre(t=59)" tolProb t1HPre hPre
       assertApprox "H_post max over [60,90)" tolProb t1HPostMax hPost
       mapM_ (\(t, p, a, h) -> do
@@ -413,21 +434,28 @@ g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
 data MetaAct = DoAct | DoThink
   deriving (Eq, Show)
 
-data Dir = DirL | DirR
-  deriving (Eq, Show)
+-- RE-DERIVED at the step-8 outcome freeze (R-D22; THE ACCEPTANCE
+-- LINEAGE ROW — brief §12 test 2, the lazy-genius deliverable): Dir
+-- becomes the residue CODE (L = 0, R = 1, the lineage's own listing
+-- order) and the stakes become a PRICED SENTENCE. Same extension at
+-- both codes; the tick counts and final acts are UNMOVED.
+dirLC, dirRC :: Double
+dirLC = 0; dirRC = 1
 
-dirName :: Dir -> String
-dirName DirL = "L"
-dirName DirR = "R"
+dirName :: Double -> String
+dirName c = if c > 0.5 then "R" else "L"
 
--- COPIED test/Acceptance.hs:187-188
-stakes :: Util Dir Double
-stakes = mkUtil $ \a th ->
-  let v = 2 * th - 1 in case a of DirR -> v; DirL -> negate v
+-- RE-DERIVED from test/Acceptance.hs:187-188: R -> 2*theta-1,
+-- L -> 1-2*theta
+stakes :: USent
+stakes = USent
+  (If (Gt (Var Z) (gkS 0.5))
+      (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1))
+      (Sub (gkS 1) (Mul (gkS 2) (Var (S Z)))))
 
 -- COPIED test/Acceptance.hs:201-217
 policyThink :: Expr '[ NonEmpty MetaAct, MetaAct, B Double, K Double Obs
-                     , [Obs], Util Dir Double, NonEmpty Dir, Int ] MetaAct
+                     , [Obs], USent, NonEmpty Double, Int ] MetaAct
 policyThink =
   Argmax (Var Z)
     (If (Call IsEq (Var Z :* Var (S (S Z)) :* ANil))
@@ -445,10 +473,10 @@ policyThink =
                    :* ANil)))
 
 -- COPIED test/Acceptance.hs:223-239
-runDeliberation :: Double -> [Obs] -> (Int, Dir)
+runDeliberation :: Double -> [Obs] -> (Int, Double)
 runDeliberation price = go (0 :: Int) (uniform thetaSpace)
   where
-    dirs = DirL :| [DirR]
+    dirs = dirLC :| [dirRC]
     go ticks b buf =
       let metaacts = DoAct :| [DoThink | not (null buf)]
           batchN   = min 3 (length buf)
@@ -457,7 +485,8 @@ runDeliberation price = go (0 :: Int) (uniform thetaSpace)
                     :. stakes :. dirs :. batchN :. VNil)
       in case evalx policyThink env of
            DoAct   -> (ticks, evalx argmaxEU
-                                (mkEnv [] (dirs :. b :. stakes :. VNil)))
+                                (mkEnv [] (dirs :. b :. stakes
+                                           :. ([] :: Features) :. VNil)))
            DoThink -> go (ticks + 1) (condBatch b (take 3 buf)) (drop 3 buf)
     condBatch = foldl' (\bb y ->
       fromMaybe (error "impossible evidence in batch")

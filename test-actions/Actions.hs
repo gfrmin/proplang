@@ -65,7 +65,7 @@ import PropLang.Eval (Vals (..), evalx, mkEnv, vThinkK)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           menuAssignments, runMembrane)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,
-                        StdName (..), Util, bits, mkGrid, mkUtil)
+                        StdName (..), USent (..), bits, mkC, mkGrid)
 
 import Streams (drift400, shifted160)
 
@@ -121,12 +121,11 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
       -- shipped route picked its first-listed counterpart on every
       -- tick (ea1-diff empty), and this row pins the ported half
       let tieMenu = [("lever", mkGrid "tie" (10 :| [20, 30]))]
-          utilTie = mkUtil $ \asg (_ :: Obs) ->
-            case lookup "lever" asg of
-              Just 10 -> 5.0
-              Just 20 -> 5.0
-              Just 30 -> 3.0
-              _       -> error "tie fixture: off-menu assignment"
+          -- RE-DERIVED at the step-8 outcome freeze (R-D22): the
+          -- 5/5/3 tie table as a sentence over Get "lever" (levers
+          -- 10/20 -> 5; 30 -> 3; y-independent as before)
+          utilTie = USent (If (Gt (Get "lever") (gkA 25))
+                              (gkA 3) (gkA 5))
           ag0 = sentenceAgent (enumerateSentences fragFull)
       case runMembrane predW { wMenu = const tieMenu }
              (PilotEU utilTie) 20 (0, shifted160) ag0 of
@@ -135,7 +134,7 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
           map ttAct trs @?= replicate 20 [("lever", 10)]
   , testCase "an all-tied EU hands the tie to wait (no new rule)" $ do
       let menu = [("lever", mkGrid "ea2" (7 :| [1, 9]))]
-          constU = mkUtil (\_ (_ :: Obs) -> 1.0)
+          constU = USent (gkA 1)   -- re-derived: the constant sentence
           ag0 = sentenceAgent (enumerateSentences fragFull)
       case runMembrane predW { wMenu = const menu }
              (PilotEU constU) 3 (0, shifted160) ag0 of
@@ -166,12 +165,23 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
 data Dir = DirL | DirR
   deriving (Eq, Show)
 
-stakes :: Util Dir Double
-stakes = mkUtil $ \a th ->
-  let v = 2 * th - 1 in case a of DirR -> v; DirL -> negate v
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): Dir becomes the
+-- residue CODE (DirL = 0, DirR = 1 — the fixture's own order); the
+-- stakes as a sentence over (code, theta): DirR -> 2*theta-1,
+-- DirL -> 1-2*theta. Same extension at both codes.
+stakes :: USent
+stakes = USent
+  (If (Gt (Var Z) (gkA 0.5))
+      (Sub (Mul (gkA 2) (Var (S Z))) (gkA 1))
+      (Sub (gkA 1) (Mul (gkA 2) (Var (S Z)))))
 
-dirs :: NonEmpty Dir
-dirs = DirL :| [DirR]
+gkA :: Double -> Expr env Double
+gkA v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "actions fixture: singleton grid index 0 must construct"
+
+dirs :: NonEmpty Double
+dirs = 0 :| [1]
 
 -- COPY test-ladder/fixture/Sayable.hs:116-118
 condBatch :: Belief Double -> [Obs] -> Belief Double
@@ -181,7 +191,7 @@ condBatch = foldl' (\bb y ->
 -- COPY test-ladder/fixture/Sayable.hs:169-176 (the canonical
 -- eight-Var VThinkK sentence for the price pin)
 priceSentence :: Expr '[ Int, B Double, K Double Obs, [Obs]
-                       , Util Dir Double, NonEmpty Dir, Int, Double ] Double
+                       , USent, NonEmpty Double, Int, Double ] Double
 priceSentence =
   Call VThinkK (Var Z :* Var (S Z) :* Var (S (S Z)) :* Var (S (S (S Z)))
               :* Var (S (S (S (S Z)))) :* Var (S (S (S (S (S Z)))))

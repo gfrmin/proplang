@@ -659,3 +659,95 @@ with the uAt bridge STUBBED (runtime-red, every red attributable to
 the missing bridge). The seven re-derived suites are drafted in the
 oracle phase and land AT THE FREEZE as the R-D22 batch beside the
 src swap — the sealed replacement, the step-5 precedent's form.
+
+---
+
+## Part VIII — the oracle, the overlay, and the seven re-derivations (executed)
+
+### §20. The new surface, built and compiling (the overlay)
+
+The full new-surface overlay (scratch step8/proto8, all six modules)
+COMPILES UNDER THE EXACT STANZA FLAGS with `Util a y` GONE:
+
+- `newtype USent = USent (Expr '[Double, Double] Double)` with the
+  ruled derivation line (DERIVES + the residue note) — no host
+  function anywhere in the utility path;
+- `USay :: Expr '[Double, Double] Double -> Expr env USent` (prodUtil
+  stays 1; the payload still prices as EXPR — the pricing pin does
+  not move, and test-cirl's fixture confirms it byte-wise);
+- `uAt :: Features -> USent -> Double -> Double -> Double` — THE
+  bridge (`evalx p (mkEnv fs (a :. y :. VNil))`): the measured
+  one-site change, exported from Eval;
+- `EU :: Real y => StdName '[B y, USent, Features, Double] Double`
+  — **the carrier polymorphism is PRESERVED** (a build finding worth
+  its line: g1d's lazy-genius deliberation takes EU over a belief in
+  THETA, not observations; the residue's outcome var is "the outcome
+  as a real", `realToFrac`, so both carriers fit exactly as they did
+  under the wrapper). Evaluation features enter as an ARGUMENT, so
+  `applyStd` stays pure — zero evaluator plumbing;
+- the dying verbs re-plumbed minimally (option codes; featureless
+  bridges); `muteU` is now the constant-0 SENTENCE (the degeneracy
+  identity's zero, a grid datum);
+- Membrane's fold and Host's `choose` pass `(feats ++ a)` and code 0;
+  `said@1` parses the principal's declaration FAIL-CLOSED.
+
+### §21. The oracle (test-outcome/, 12 rows) — SAT and red
+
+SAT against the new-surface overlay, flag-faithful:
+
+```
+outcome -- utility on world states, latent (step 8)
+  g1 the bridge: Get inside a utility reads the world
+    the E-d1 payload at feats=[] vs feats=[x=10]: only Get moves, by exactly the feature:                              OK
+    USay evaluates to SYNTAX (the wrapper is dead): both routes bit-equal at arbitrary points:                         OK
+    the mute face: a Get on an absent name reads 0 (dormancy, unchanged by the step):                                  OK
+  g2 the seams: the public arithmetic over USent, two-route
+    EU == expect . uAt (the verb against the hand route, bit-exact):                                                   OK (0.61s)
+    FnUtil reads the ENV's features (the seam carries the world):                                                      OK (0.01s)
+    the fold == the public per-assignment arithmetic (the step-6 bridge, re-pinned over USent):                        OK (0.05s)
+    the residue var serves code-shaped options: uCode dispatches on Var Z:                                             OK
+  g3 THE SCOPE LINE: recurring-stakes myopia, asserted (R-D23; flipped deliberately, never silently)
+    the visible-fuse world: the trained myopic loop REFUSES the dominant act (the known limitation, its heir step 10): OK (1.56s)
+  g4 the wire: said@1 -- the principal's declaration, fail-closed
+    a said@1 hello parses, prices, and answers with the engine's own census:                                           OK
+    the decision routes through the declared program (two-route against the public arithmetic):                        OK (0.07s)
+    an unparseable declaration FAILS CLOSED (the ruled doctrine):                                                      OK
+  g5 the latent half: the parameter behind the point-mass shape moves through the one door
+    evidence moves the belief over the utility parameter; the chosen act follows it:                                   OK
+
+All 12 tests passed (2.32s)
+```
+
+RED against the same overlay with the `uAt` bridge STUBBED (the
+replacement-surface discipline: the surface must exist to compile the
+oracle, so the RED is the missing BRIDGE — runtime, attributable):
+**10 of 12 red**, every red at the stub. The two parser rows (g4's
+census and fail-closed) carry SEEDED-DEFECT demonstrations instead,
+each firing its own row and no other:
+
+```
+defect A (a parser that refuses everything):  census row FAIL, fail-closed row OK
+defect B (a parser that accepts anything):    census row OK,   fail-closed row FAIL
+```
+
+### §22. THE SEVEN RE-DERIVATIONS (the R-D22 batch, all green on the overlay)
+
+Every frozen suite that constructed `Util` values is re-derived over
+the new surface — the deliverable's lineage carried, never the
+calculator's — and ALL PASS against the overlay:
+
+| suite | disposition | result |
+|---|---|---|
+| test-sentence | THE ACCEPTANCE LINEAGE: `util1` (test 1's Python `util(a,y)`) and `stakes` (test 2's) become PRICED SENTENCES over residue codes; `argmaxEU` stays the doctrinal program, now carrier-polymorphic | **27/27** — the timeline, the consult ticks, the MAP identity, the render golden, the 1/3/12/12 tick counts: ALL UNMOVED |
+| test-membrane | `util1M`/`utilB` become sentences reading `Get "opt"`/`Get "move"` (the assignment is in the features — the step-6 append) | **19/19**, goldens byte-stable |
+| test-actions | `utilTie`/`constU`/`stakes` as sentences; `Dir` -> codes | **10/10** |
+| test-stream | `uSelf` = `payUtil 1 0`; the affine property's second route is now `affineU` (alpha*p + beta AS A SENTENCE — the property got STRONGER: it composes in the language) | **10/10** |
+| test-prepost | `stakes`/`muteU`/`immW` as sentences; `Dir`/`D1` -> codes | **15/15** |
+| test-cirl | `uTerm`/`immU` = the fixture's own ONE saying; the SayableC bridge rows re-derived: `applyUtil uSaid` -> `uAt [] uSaid` | **16/17** + fixture 6/6 (the one FAIL is a shell row spawning bare `ghc` outside the cabal env — verified environmental: `sh test-cirl/ablation.sh usay` PASSES with PATH set) |
+| test-hygiene | `constStake` = `USent (Var (S Z))`; `propFnUtil`'s random table becomes a nested-dispatch SENTENCE | **15/15**, the FnUtil price pin unmoved |
+
+**The doctrine row re-derived, not deleted** (SayableC): "utilities are
+featureless and clockless (Get is dormant)" becomes "Get inside a
+utility reads the PASSED features — and 0.0 at empty": BOTH faces
+asserted, the closed face surviving as the empty-environment case.
+That is the repeal in one row.

@@ -75,20 +75,31 @@ assertApprox msg tol expected actual =
                   ++ ", got " ++ show actual)
              (abs (actual - expected) <= tol)
 
-data Dir = DirL | DirR
-  deriving (Eq, Show)
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): the enums become
+-- the residue CODES (dirL/safe = 0, dirR/probe = 1 — the fixtures'
+-- own listing order preserved), and the utilities become SENTENCES
+-- with the same extension at the codes.
+dirL, dirR, safeD, probeD :: Double
+dirL = 0; dirR = 1; safeD = 0; probeD = 1
 
-stakes :: Util Dir Double
-stakes = mkUtil $ \a th ->
-  let v = 2 * th - 1 in case a of DirR -> v; DirL -> negate v
+gkP :: Double -> Expr env Double
+gkP v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "prepost fixture: singleton grid index 0 must construct"
 
-dirs :: NonEmpty Dir
-dirs = DirL :| [DirR]
+stakes :: USent
+stakes = USent
+  (If (Gt (Var Z) (gkP 0.5))
+      (Sub (Mul (gkP 2) (Var (S Z))) (gkP 1))
+      (Sub (gkP 1) (Mul (gkP 2) (Var (S Z)))))
 
-chosenAct :: Belief Double -> Dir
+dirs :: NonEmpty Double
+dirs = dirL :| [dirR]
+
+chosenAct :: Belief Double -> Double
 chosenAct b =
-  if expect b (applyUtil stakes DirR) > expect b (applyUtil stakes DirL)
-    then DirR else DirL
+  if expect b (uAt [] stakes dirR) > expect b (uAt [] stakes dirL)
+    then dirR else dirL
 
 condBatch :: Kernel Double Obs -> Belief Double -> [Obs] -> Belief Double
 condBatch k = foldl' (\bb y ->
@@ -96,11 +107,11 @@ condBatch k = foldl' (\bb y ->
 
 -- the mute singleton for the degeneracy identity: unit menu, zero
 -- immediate (definitional zero, not a steering constant)
-muteU :: Util () Double
-muteU = mkUtil (\_ _ -> 0)
+muteU :: USent
+muteU = USent (gkP 0)
 
-muteMenu :: NonEmpty ()
-muteMenu = () :| []
+muteMenu :: NonEmpty Double
+muteMenu = 0 :| []
 
 -- degenerate vPre against the frozen worker, same args both sides
 degen :: Int -> Belief Double -> Double -> (Double, Double)
@@ -127,42 +138,40 @@ noise :: Kernel Double Obs
 noise = kernel thetaSpace (carrierSpace obsCarrier)
                (\_ -> bernFast obsCarrier 0.5)
 
-data D1 = Safe | Probe
-  deriving (Eq, Show)
-
--- immediate utilities: safe pays s regardless of theta; probe pays 0
-immW :: Double -> Util D1 Double
-immW s = mkUtil $ \d _ -> case d of Safe -> s; Probe -> 0
+-- immediate utilities: safe (0) pays s regardless of theta; the
+-- probe (1) pays 0 — as a sentence over the code
+immW :: Double -> USent
+immW s = USent (If (Gt (Var Z) (gkP 0.5)) (gkP 0) (gkP s))
 
 -- world W: the probe shows the informative channel; control W0: the
 -- probe's channel is ALSO noise — the ONLY difference between the
 -- worlds (same menu, same immediates, same price, same stream)
-chanW, chanC :: Chan D1 Double Obs
-chanW = mkChan $ \d -> case d of Safe -> noise; Probe -> emit
+chanW, chanC :: Chan Double Double Obs
+chanW = mkChan $ \d -> if d > 0.5 then emit else noise
 chanC = mkChan (const noise)
 
 pTick :: Double
 pTick = 0.01
 
 -- per-decision value: vPre at the singleton menu of that decision
-val1 :: Chan D1 Double Obs -> Double -> D1 -> Double
+val1 :: Chan Double Double Obs -> Double -> Double -> Double
 val1 ch s d =
   vPre 1 b0 ch ([0, 1] :: [Obs]) (immW s) (d :| []) stakes dirs 3 pTick
 
 -- the anticipating agent's decision (strict improvement, first-listed
 -- wins — CL-3; Safe is first-listed, so the probe must strictly earn it)
-decide :: Chan D1 Double Obs -> Double -> D1
+decide :: Chan Double Double Obs -> Double -> Double
 decide ch s =
-  let vs = val1 ch s Safe
-      vp = val1 ch s Probe
-  in if vp > vs then Probe else Safe
+  let vs = val1 ch s safeD
+      vp = val1 ch s probeD
+  in if vp > vs then probeD else safeD
 
 -- the myopic agent: immediate prevision only (the frozen EU argmax)
-decideMyopic :: Double -> D1
+decideMyopic :: Double -> Double
 decideMyopic s =
-  if expect b0 (applyUtil (immW s) Probe)
-       > expect b0 (applyUtil (immW s) Safe)
-    then Probe else Safe
+  if expect b0 (uAt [] (immW s) probeD)
+       > expect b0 (uAt [] (immW s) safeD)
+    then probeD else safeD
 
 -- realized episode: true theta at the bottom of the grid; the probe
 -- reveals three zeros; two ticks either way (the probe pays in
@@ -173,13 +182,12 @@ trueTheta = 0.1
 probeStream :: [Obs]
 probeStream = [0, 0, 0]
 
-realizedNet :: Chan D1 Double Obs -> Double -> D1 -> Double
+realizedNet :: Chan Double Double Obs -> Double -> Double -> Double
 realizedNet ch s d =
-  let imm = case d of Safe -> s; Probe -> 0
-      b1 = case d of
-             Safe  -> b0
-             Probe -> condBatch (applyChan ch d) b0 probeStream
-  in imm + applyUtil stakes (chosenAct b1) trueTheta - 2 * pTick
+  let imm = if d > 0.5 then 0 else s
+      b1 = if d > 0.5 then condBatch (applyChan ch d) b0 probeStream
+                      else b0
+  in imm + uAt [] stakes (chosenAct b1) trueTheta - 2 * pTick
 
 -- frozen-verb compositions the value pins are asserted against: the
 -- continuation through a channel is the frozen worker at price 0
@@ -225,18 +233,18 @@ g2World :: TestTree
 g2World = testGroup "exploration priced (world W)"
   [ testCase "per-decision values pin to frozen-verb compositions (1e-12)" $ do
       assertApprox "safe = s + noise-continuation - p" 1e-12
-                   (0.05 + contVia noise - pTick) (val1 chanW 0.05 Safe)
+                   (0.05 + contVia noise - pTick) (val1 chanW 0.05 safeD)
       assertApprox "probe = 0 + emit-continuation - p" 1e-12
-                   (contVia emit - pTick) (val1 chanW 0.05 Probe)
+                   (contVia emit - pTick) (val1 chanW 0.05 probeD)
   , testCase "the probe is bought at s=0.05 (the VoI covers the sacrifice)" $ do
       assertBool "probe strictly displaces first-listed safe"
-                 (val1 chanW 0.05 Probe > val1 chanW 0.05 Safe)
-      assertEqual "the anticipating agent's choice" Probe (decide chanW 0.05)
+                 (val1 chanW 0.05 probeD > val1 chanW 0.05 safeD)
+      assertEqual "the anticipating agent's choice" probeD (decide chanW 0.05)
   , testCase "the probe is declined at s=0.4 (the iff's other direction)" $ do
-      assertBool "safe holds" (val1 chanW 0.4 Safe > val1 chanW 0.4 Probe)
-      assertEqual "the choice" Safe (decide chanW 0.4)
+      assertBool "safe holds" (val1 chanW 0.4 safeD > val1 chanW 0.4 probeD)
+      assertEqual "the choice" safeD (decide chanW 0.4)
   , testCase "the myopic agent never probes (immediate prevision only)" $
-      mapM_ (\s -> assertEqual ("s = " ++ show s) Safe (decideMyopic s))
+      mapM_ (\s -> assertEqual ("s = " ++ show s) safeD (decideMyopic s))
             [0.05, 0.4]
   , testCase "realized: anticipation beats myopia (pins at 1e-12)" $ do
       let netAD = realizedNet chanW 0.05 (decide chanW 0.05)
@@ -254,14 +262,14 @@ g3Control :: TestTree
 g3Control = testGroup "the paired control (W0)"
   [ testCase "the same code path declines the uninformative probe" $ do
       assertBool "safe holds in the control"
-                 (val1 chanC 0.05 Safe > val1 chanC 0.05 Probe)
-      assertEqual "the choice" Safe (decide chanC 0.05)
+                 (val1 chanC 0.05 safeD > val1 chanC 0.05 probeD)
+      assertEqual "the choice" safeD (decide chanC 0.05)
   , testCase "the margin is the sacrifice exactly (analytic, 1e-12)" $
       assertApprox "value(safe) - value(probe) = s" 1e-12 0.05
-                   (val1 chanC 0.05 Safe - val1 chanC 0.05 Probe)
+                   (val1 chanC 0.05 safeD - val1 chanC 0.05 probeD)
   , testCase "forced exploration loses the sacrifice (realized, 1e-12)" $ do
-      let netSafe = realizedNet chanC 0.05 Safe
-          netProbe = realizedNet chanC 0.05 Probe
+      let netSafe = realizedNet chanC 0.05 safeD
+          netProbe = realizedNet chanC 0.05 probeD
       assertApprox "safe nets -0.77" 1e-12 (-0.77) netSafe
       assertApprox "forced probe nets -0.82" 1e-12 (-0.82) netProbe
       assertBool "declining was correct" (netSafe > netProbe)
@@ -276,15 +284,15 @@ g4Honesty = testGroup "channel honesty"
   [ testCase "conditioning on the noise channel is a posterior no-op (CL-4)" $
       mapM_ (\seq' ->
         let b' = condBatch noise b0 seq'
-            lhs = expect b' (applyUtil stakes DirR)
-            rhs = expect b0 (applyUtil stakes DirR)
+            lhs = expect b' (uAt [] stakes dirR)
+            rhs = expect b0 (uAt [] stakes dirR)
         in assertBool ("seq " ++ show seq' ++ ": " ++ show lhs
                        ++ " vs " ++ show rhs)
                       (abs (lhs - rhs) <= 1e-9 * (1 + abs rhs)))
         [[0, 0, 0], [1, 0, 1], [1, 1, 1]]
   , testCase "W and W0 differ in the probe channel alone: safe's value ==" $
       assertEqual "identical floats through identical arithmetic"
-                  (val1 chanW 0.05 Safe) (val1 chanC 0.05 Safe)
+                  (val1 chanW 0.05 safeD) (val1 chanC 0.05 safeD)
   ]
 
 -- ---------------------------------------------------------------------

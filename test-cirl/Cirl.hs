@@ -68,27 +68,26 @@ assertApprox msg tol expected actual =
                   ++ ", got " ++ show actual)
              (abs (actual - expected) <= tol)
 
-data D2 = DAct | DDefer
-  deriving (Eq, Show)
-
-data T2 = TOff | TProceed
-  deriving (Eq, Show)
-
--- the step utility (the sayable discrete form; its USay saying and the
--- bridge identity live in the fixture): proceed pays +1 iff the latent
--- clears the middle of the grid, else -1; off pays 0
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): the enum types
+-- become the residue CODES (act/proceed = 1, defer/off = 0 — the
+-- fixture's own coded-world convention, SayableC), and the step
+-- utilities become SENTENCES with the same extension at both codes.
 stepH :: Double -> Double
 stepH u = if u > 0.5 then 1 else -1
 
-uTerm :: Util T2 Double
-uTerm = mkUtil $ \a u -> case a of
-  TProceed -> stepH u
-  TOff     -> 0
+gkC :: Double -> Expr env Double
+gkC v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "cirl fixture: singleton grid index 0 must construct"
 
-immU :: Util D2 Double
-immU = mkUtil $ \d u -> case d of
-  DAct   -> stepH u
-  DDefer -> 0
+stepP :: Expr '[Double, Double] Double
+stepP = If (Gt (Var (S Z)) (gkC 0.5)) (gkC 1) (gkC (-1))
+
+uTerm :: USent
+uTerm = USent (If (Gt (Var Z) (gkC 0.5)) stepP (gkC 0))
+
+immU :: USent
+immU = uTerm    -- the same step form serves both slots (the fixture's ONE saying)
 
 noise :: Kernel Double Obs
 noise = kernel thetaSpace (carrierSpace obsCarrier)
@@ -96,16 +95,16 @@ noise = kernel thetaSpace (carrierSpace obsCarrier)
 
 -- world W: asking is heard (the human's allow/press reveals u);
 -- control W0: asking reaches only noise — the ONLY difference
-chanW, chanC :: Chan D2 Double Obs
-chanW = mkChan $ \d -> case d of DAct -> noise; DDefer -> emit
+chanW, chanC :: Chan Double Double Obs
+chanW = mkChan $ \d -> if d > 0.5 then noise else emit
 chanC = mkChan (const noise)
 
 pTick :: Double
 pTick = 0.01
 
 -- Off first-listed: CL-3's tie-break carries safety content (C1 rider)
-terms :: NonEmpty T2
-terms = TOff :| [TProceed]
+terms :: NonEmpty Double
+terms = 0 :| [1]    -- off (0) first-listed, as before
 
 condBatch :: Kernel Double Obs -> Belief Double -> [Obs] -> Belief Double
 condBatch k = foldl' (\bb y ->
@@ -116,17 +115,17 @@ condBatch k = foldl' (\bb y ->
 bk :: Int -> Belief Double
 bk k = condBatch emit (uniform thetaSpace) (replicate k 1)
 
-val :: Belief Double -> Chan D2 Double Obs -> D2 -> Double
+val :: Belief Double -> Chan Double Double Obs -> Double -> Double
 val b ch d = vPre 1 b ch ([0, 1] :: [Obs]) immU (d :| []) uTerm terms 3 pTick
 
-marginD :: Belief Double -> Chan D2 Double Obs -> Double
-marginD b ch = val b ch DDefer - val b ch DAct
+marginD :: Belief Double -> Chan Double Double Obs -> Double
+marginD b ch = val b ch 0 - val b ch 1
 
 voi :: Belief Double -> Double
 voi b = marginD b chanW - marginD b chanC
 
 e2u1 :: Belief Double -> Double
-e2u1 b = expect b (applyUtil uTerm TProceed)
+e2u1 b = expect b (uAt [] uTerm 1)
 
 -- the frozen-verb composition the margins decompose through: the
 -- continuation IS vThinkK at price 0
@@ -140,13 +139,12 @@ obeys kk n = e2u1 (condBatch kk (bk n) [0, 0, 0]) <= 0
 
 -- realized value: interior d, response stream (if deferring), terminal
 -- by posterior sign, two ticks either way, true u fixed
-realized :: Double -> Chan D2 Double Obs -> Int -> D2 -> [Obs] -> Double
+realized :: Double -> Chan Double Double Obs -> Int -> Double -> [Obs] -> Double
 realized trueU ch k d resp =
   let b0 = bk k
-      b1 = case d of DDefer -> condBatch (applyChan ch d) b0 resp
-                     DAct   -> b0
-      term = if e2u1 b1 > 0 then TProceed else TOff
-  in applyUtil immU d trueU + applyUtil uTerm term trueU - 2 * pTick
+      b1 = if d < 0.5 then condBatch (applyChan ch d) b0 resp else b0
+      term = if e2u1 b1 > 0 then 1 else 0
+  in uAt [] immU d trueU + uAt [] uTerm term trueU - 2 * pTick
 
 gridPoints :: [Double]
 gridPoints = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
@@ -164,10 +162,10 @@ gDeference = testGroup "deference while uncertain (world W)"
       mapM_ (\k -> do
         let b = bk k
         assertApprox ("defer = ask-continuation - p, k=" ++ show k) 1e-12
-                     (contVia emit b - pTick) (val b chanW DDefer)
+                     (contVia emit b - pTick) (val b chanW 0)
         assertApprox ("act = step prevision + noise-continuation - p, k="
                        ++ show k) 1e-12
-                     (e2u1 b + contVia noise b - pTick) (val b chanW DAct))
+                     (e2u1 b + contVia noise b - pTick) (val b chanW 1))
         [0, 2]
   , testCase "deference is bought at k=0 (the VoI covers the abstention)" $ do
       assertBool "defer strictly displaces act"
@@ -175,15 +173,15 @@ gDeference = testGroup "deference while uncertain (world W)"
       assertBool "and exceeds the control's abstention margin by the VoI"
                  (marginD (bk 0) chanW > marginD (bk 0) chanC)
   , testCase "realized: the switch saves the step at true u=0.2 (1e-12)" $ do
-      let nDefer = realized 0.2 chanW 0 DDefer [0, 0, 0]
-          nAct   = realized 0.2 chanW 0 DAct []
+      let nDefer = realized 0.2 chanW 0 0 [0, 0, 0]
+          nAct   = realized 0.2 chanW 0 1 []
       assertApprox "deferring agent nets -0.02" 1e-12 (-0.02) nDefer
       assertApprox "unilateral agent nets -1.02" 1e-12 (-1.02) nAct
       assertBool "the switch earned its keep" (nDefer > nAct)
   , testCase "realized: the tie at true u=0.8 is real (==)" $
       assertEqual "identical float sums either side"
-                  (realized 0.8 chanW 0 DDefer [1, 1, 1])
-                  (realized 0.8 chanW 0 DAct [])
+                  (realized 0.8 chanW 0 0 [1, 1, 1])
+                  (realized 0.8 chanW 0 1 [])
   ]
 
 -- ---------------------------------------------------------------------

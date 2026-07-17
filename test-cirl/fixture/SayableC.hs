@@ -59,7 +59,10 @@ worth = If (Gt (Var Z) (cAt 0))
            (If (Gt (Var (S Z)) (cAt 0)) (cAt 1) (cAt 2))
            (cAt 3)
 
-uSaid :: Util Double Double
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): USay now
+-- EVALUATES TO SYNTAX (USent) — the wrapper died; the bridge runs
+-- through uAt, the one environment-carrying site.
+uSaid :: USent
 uSaid = evalx (USay worth) (mkEnv [] VNil)
 
 hostWorth :: Double -> Double -> Double
@@ -155,25 +158,26 @@ main :: IO ()
 main = do
   rs <- sequence
     [ check "price: USay = 0 sort bits + the two-variable program as EXPR" $
-        abs (unBits (bits (USay worth :: Expr '[] (Util Double Double)))
+        abs (unBits (bits (USay worth :: Expr '[] USent))
              - (11 * lg 19 + 2 * lg 2 + 5 * lg 4)) <= 1e-12
     , check "price: the off-switch sentence under lg 6 + two said utilities" $
         abs (unBits (bits priceSentence)
              - (lg 19 + lg 6 + 8 * (lg 19 + lg 8)
                 + 2 * (11 * lg 19 + 2 * lg 2 + 5 * lg 4))) <= 1e-12
     , check "bridge: the said utility == its closed evaluation (exact)" $
-        all (\(a, h) -> applyUtil uSaid a h
+        all (\(a, h) -> uAt [] uSaid a h
                           == evalx worth (mkEnv [] (a :. h :. VNil)))
             [ (a, h) | a <- [0, 1]
                      , h <- [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] ]
     , check "bridge: the said utility == the host step (exact)" $
-        all (\(a, h) -> applyUtil uSaid a h == hostWorth a h)
+        all (\(a, h) -> uAt [] uSaid a h == hostWorth a h)
             [ (a, h) | a <- [0, 1]
                      , h <- [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] ]
-    , check "doctrine: utilities are featureless and clockless (Get is dormant)" $
+    , check "doctrine RE-DERIVED (step 8, the repeal): Get inside a utility reads the PASSED features -- and 0.0 at empty" $
         let uClock = evalx (USay (Get "price"))
                            (mkEnv [("price", 99)] VNil)
-        in applyUtil uClock 1 0.9 == 0.0
+        in uAt [] uClock 1 0.9 == 0.0            -- the closed face survives
+           && uAt [("price", 99)] uClock 1 0.9 == 99.0  -- the repeal's face
     , check "doctrine: the said agent defers at k=0 and acts at k=1" $
         defersS (bk 0) && not (defersS (bk 1))
     ]

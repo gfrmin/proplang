@@ -96,8 +96,8 @@ import PropLang.Eval (Features)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           runMembrane)
 import PropLang.Syntax (Expr (..), Grid, Idx (..), KnownScope, Name,
-                        Namespace, Util, bits, bitsIn, mkC, mkGrid,
-                        mkNamespace, mkUtil)
+                        Namespace, USent (..), bits, bitsIn, mkC, mkGrid,
+                        mkNamespace)
 
 import Anchors (t1MapPosterior, t1ProbeRows, t3AgentDrift,
                 tolBits, tolProb)
@@ -219,12 +219,25 @@ t1Menu = [("opt", mkGrid "t1opt" (1 :| [2, 3]))]
 -- the frozen util1M over assignments (the -2.0 internal arm has no
 -- counterpart: the sentinel is dead, and E-a1 measured its removal
 -- behavior-neutral — the arm was strictly dominated)
-util1M :: Util Features Obs
-util1M = mkUtil $ \asg y -> case lookup "opt" asg of
-  Just 1 -> if y == 1 then 1.0 else -1.0
-  Just 2 -> if y == 0 then 1.0 else -1.0
-  Just 3 -> 0.35
-  _      -> error "t1 fixture: off-menu assignment"
+-- RE-DERIVED at the step-8 outcome freeze (R-D22; the same
+-- extension over the pinned runs): the utility is a PRICED SENTENCE
+-- reading the option through Get "opt" — the assignment is among the
+-- features at every evaluation site (the step-6 append; the step-8
+-- doctrine). Dispatch: opt=1 -> 2y-1; opt=2 -> 1-2y; opt=3 -> 0.35.
+-- (The old host function ERRORED off-menu; a sentence cannot — the
+-- pinned runs never leave the menu, so the extension is identical
+-- where the goldens live.)
+util1M :: USent
+util1M = USent
+  (If (Gt (Get "opt") (gkM 2.5)) (gkM 0.35)
+      (If (Gt (Get "opt") (gkM 1.5))
+          (Sub (gkM 1) (Mul (gkM 2) (Var (S Z))))
+          (Sub (Mul (gkM 2) (Var (S Z))) (gkM 1))))
+
+gkM :: Double -> Expr env Double
+gkM v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "t1 fixture: singleton grid index 0 must construct"
 
 choiceName1 :: Features -> String
 choiceName1 asg = case lookup "opt" asg of
@@ -378,11 +391,14 @@ bWorld = PureWorld
   , wStep     = \t _ -> t + 1
   }
 
-utilB :: Double -> Util Features Obs
-utilB holdPay = mkUtil $ \asg y -> case lookup "move" asg of
-  Just 0 -> holdPay
-  Just v -> if y == 1 then v else negate v
-  _      -> error "B fixture: off-menu assignment"
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): move=0 -> the
+-- hold pay; move=v>0 -> v*(2y-1) = Get "move" * (2y-1). Same
+-- extension over the pinned runs (the grids' points are 0, 0.8).
+utilB :: Double -> USent
+utilB holdPay = USent
+  (If (Gt (Get "move") (gkM 0))
+      (Mul (Get "move") (Sub (Mul (gkM 2) (Var (S Z))) (gkM 1)))
+      (gkM holdPay))
 
 g3Menu :: TestTree
 g3Menu = testGroup "growing menu (B): adopted iff expected utility says so"

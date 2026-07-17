@@ -156,11 +156,14 @@ groupBits = testGroup "policy prices (amended spec S3; plan R5 as corrected)"
                :: Expr '[B Obs] Double))
   , testCase "Expect pays node + child + FN choice bit (FnUtil)" $
       assertBits "Expect/FnUtil" (2 * lg 19 + 1)
-        (bits (Expect (Var Z) (FnUtil constStake ())
+        (bits (Expect (Var Z) (FnUtil constStake 0)
                :: Expr '[B Obs] Double))
   ]
   where
-    constStake = mkUtil (\() y -> fromIntegral (y :: Obs))
+    -- RE-DERIVED at the step-8 outcome freeze (R-D22): u(y) = y as
+    -- a sentence (the FN payload is opaque at 8 — the sort dies at 9
+    -- with the same price it carries today)
+    constStake = USent (Var (S Z))
 
 -- ---------------------------------------------------------------------
 -- group 4: Fn semantics — the two published expansions, extensionally
@@ -170,7 +173,7 @@ groupBits = testGroup "policy prices (amended spec S3; plan R5 as corrected)"
 groupFn :: TestTree
 groupFn = testGroup "Fn semantics (the reported alphabet, plan Q1)"
   [ testProperty "Expect b (FnInd e) is prob b e" propFnInd
-  , testProperty "Expect b (FnUtil u o) is expect b (applyUtil u o)"
+  , testProperty "Expect b (FnUtil u o) is expect b (uAt-at-env u o)"
       propFnUtil
   ]
 
@@ -185,16 +188,29 @@ propFnInd =
     in evalx (Expect (Var Z) (FnInd e)) (mkEnv [] (b :. VNil))
          == prob b e
 
+gkH :: Double -> Expr env Double
+gkH v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "hygiene fixture: singleton grid index 0 must construct"
+
 propFnUtil :: Property
 propFnUtil =
   forAll (chooseInt (2, 6)) $ \n ->
   forAll (vectorOf n (choose (0, 8))) $ \pb ->
-  forAll (vectorOf n (choose (-10, 10))) $ \uv ->
+  forAll (vectorOf n (choose (-10, 10 :: Int))) $ \uv ->
     let sp = mkSpace (NE.fromList [0 .. n - 1])
         b = fromBits sp (\x -> Bits (pb !! x))
-        u = mkUtil (\() y -> uv !! y)
-    in evalx (Expect (Var Z) (FnUtil u ())) (mkEnv [] (b :. VNil))
-         == expect b (applyUtil u ())
+        -- the y-indexed table as a SENTENCE: nested dispatch on the
+        -- outcome var (re-derived at the step-8 outcome freeze)
+        tableU = USent (go 0)
+          where
+            go i | i >= n - 1 = gkH (fromIntegral (uv !! (n - 1)))
+                 | otherwise =
+                     If (Gt (gkH (fromIntegral i + 0.5)) (Var (S Z)))
+                        (gkH (fromIntegral (uv !! i)))
+                        (go (i + 1))
+    in evalx (Expect (Var Z) (FnUtil tableU 0)) (mkEnv [] (b :. VNil))
+         == expect b (\y -> uAt [] tableU 0 (fromIntegral y))
 
 -- ---------------------------------------------------------------------
 -- group 5: Fn deletion is raises-by-type (plan R6): audit/ablation.sh

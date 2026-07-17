@@ -1,0 +1,14 @@
+-- the step-8 increment oracle (AGENT_PLAN section 7 step 8, utility on
+-- world states / latent); stanza drafted in the oracle phase, to be
+-- applied at the step-8 freeze under the delegation pattern. Every
+-- fixture inline (the worlds are declared data).
+test-suite outcome
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Outcome.hs
+    hs-source-dirs:   test-outcome
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

@@ -64,8 +64,8 @@ import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           menuAssignments, runMembrane)
 import PropLang.Syntax (Args (..), B, Expr (..), Grid,
-                        Idx (..), Name, StdName (..), Util, chargeBits,
-                        mkGrid, mkNamespace, mkUtil)
+                        Idx (..), Name, StdName (..), USent (..),
+                        chargeBits, mkC, mkGrid, mkNamespace)
 
 import Streams (shifted160)
 
@@ -121,10 +121,14 @@ runOrFail Nothing  = assertFailure "runMembrane: impossible evidence"
 -- strict > displaces, first-listed wins).
 -- ---------------------------------------------------------------------
 
-euAt :: B Obs -> Util Features Obs -> Features -> Double
-euAt pr u a =
-  evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
-        (mkEnv [] (pr :. u :. a :. VNil))
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): EU's evaluation
+-- features are an ARGUMENT now (feats ++ candidate — the same value
+-- the fold passes); the residue code is 0 for assignment worlds.
+euAt :: B Obs -> USent -> Features -> Features -> Double
+euAt pr u feats a =
+  evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
+                  :* Var (S (S (S Z))) :* ANil))
+        (mkEnv [] (pr :. u :. (feats ++ a) :. (0 :: Double) :. VNil))
 
 argmaxBy :: (a -> Double) -> NonEmpty a -> a
 argmaxBy val (o0 :| os) = go o0 (val o0) os
@@ -136,10 +140,10 @@ argmaxBy val (o0 :| os) = go o0 (val o0) os
 
 -- the public exogenous-read choice at one tick (D-b3's arithmetic,
 -- stated where it can be enforced)
-exoChoice :: Agent -> Features -> [(Name, Grid)] -> Util Features Obs
+exoChoice :: Agent -> Features -> [(Name, Grid)] -> USent
           -> Features
 exoChoice ag feats menu u =
-  argmaxBy (\a -> euAt (predictive (feats ++ a) ag) u a)
+  argmaxBy (\a -> euAt (predictive (feats ++ a) ag) u feats a)
            (menuAssignments menu)
 
 -- hand fold of the step-6 tick: choose (scripted or EU), observe at
@@ -215,11 +219,12 @@ g1Append = testGroup "g1 the append: observe sees feats ++ assignment"
 --      world-first per D-b2); decision-time reads are exogenous.
 -- ---------------------------------------------------------------------
 
-uSelf :: Util Features Obs
-uSelf = mkUtil $ \asg y -> case lookup "a" asg of
-  Just 1.5 -> if y == 1 then 1.0 else -1.0
-  Just 0.5 -> 0.0
-  _        -> error "stream fixture: off-menu assignment"
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): uSelf IS
+-- payUtil 1 0 — a=1.5 -> 2y-1, a=0.5 -> 0, as a sentence over
+-- Get "a" (same extension on the menu; a sentence cannot error
+-- off-menu, and the pinned runs never leave it)
+uSelf :: USent
+uSelf = payUtil 1.0 0.0
 
 -- the action-RESPONSIVE world (the discriminating fixture the first
 -- SAT/red pass forced: in the C-world the script made the action a
@@ -411,11 +416,21 @@ trainedS = go (0 :: Int) (sentenceAgent modelsS)
 probeFeats :: Features
 probeFeats = [("t", 40), ("z", zC !! 40)]
 
-payUtil :: Double -> Double -> Util Features Obs
-payUtil vHi vLo = mkUtil $ \asg y -> case lookup "a" asg of
-  Just 1.5 -> if y == 1 then vHi else negate vHi
-  Just 0.5 -> vLo
-  _        -> error "stream fixture: off-menu assignment"
+payUtil :: Double -> Double -> USent
+payUtil vHi vLo = USent
+  (If (Gt (Get "a") (gkS 1))
+      (Mul (gkS vHi) (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1)))
+      (gkS vLo))
+
+gkS :: Double -> Expr env Double
+gkS v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "stream fixture: singleton grid index 0 must construct"
+
+-- alpha*u + beta AS A SENTENCE (the affine property's second route)
+affineU :: Double -> Double -> USent -> USent
+affineU alpha beta (USent p) =
+  USent (Add (Mul (gkS alpha) p) (gkS beta))
 
 g6Properties :: TestTree
 g6Properties = testGroup "g6 decision-side universal properties"
@@ -424,12 +439,8 @@ g6Properties = testGroup "g6 decision-side universal properties"
       forAll (choose (-100, 100 :: Double)) $ \beta ->
       forAll (choose (-2, 2 :: Double)) $ \vHi ->
       forAll (choose (-2, 2 :: Double)) $ \vLo ->
-        let base a y = case lookup "a" a of
-              Just 1.5 -> if y == (1 :: Obs) then vHi else negate vHi
-              Just 0.5 -> vLo
-              _        -> error "off-menu"
-            u  = mkUtil base
-            u' = mkUtil (\a y -> alpha * base a y + beta)
+        let u  = payUtil vHi vLo
+            u' = affineU alpha beta u
         in exoChoice trainedS probeFeats [("a", aGrid)] u
              == exoChoice trainedS probeFeats [("a", aGrid)] u'
   , testProperty "generative argmax-optimality: the choice attains the max, first-listed among ties" $
@@ -437,7 +448,7 @@ g6Properties = testGroup "g6 decision-side universal properties"
       forAll (choose (-2, 2 :: Double)) $ \vLo ->
         let u = payUtil vHi vLo
             opts = menuAssignments [("a", aGrid)]
-            eu a = euAt (predictive (probeFeats ++ a) trainedS) u a
+            eu a = euAt (predictive (probeFeats ++ a) trainedS) u probeFeats a
             c = exoChoice trainedS probeFeats [("a", aGrid)] u
             best = maximum (map eu (toList opts))
         in eu c == best
