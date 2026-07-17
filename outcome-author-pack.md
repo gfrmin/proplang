@@ -1014,3 +1014,70 @@ retrospective pass; and its checklist already carries IsEq's row (with
 8b's transcript banked as its strongest evidence), the EU law-grade
 suite, the GENERIC/SELF-LICENSED world column, the null-event ruling
 beside ElimJ's, Chan's re-dated debt, and the Pilot split.
+
+---
+
+## Part XII — the r1 read: step 8 closes
+
+### §33. The ruling, and the sharpening that binds
+
+The r1 read closed the step and RULED on the lesson, with a
+distinction the builder had not drawn and the record needed —
+**TWO INSTRUMENTS, TWO FAILURE CLASSES**, verbatim:
+
+> *"The corpus build catches the MECHANICAL wave — all five misses
+> here would have failed it instantly. But the fifth miss teaches
+> something the build cannot fully cover: test-unify died by a
+> RULING's consequence, not a type's death, and a ruling can falsify
+> a row that keeps compiling and even keeps passing — a suite pinning
+> behaviour whose subject a ruling killed goes STALE GREEN, which no
+> build detects. So the census keeps its rulings-sweep column ('what
+> does each ruling falsify?') for the semantic wave, and the lint
+> gains the corpus-build row for the mechanical one. Two instruments,
+> two failure classes, both bought at the usual price. RULED: the
+> lint row lands at step 9's CLAUDE.md touch as drafted — glob-derived
+> corpus, build AND run — and the wave-census discipline records the
+> rulings-sweep as its permanent second column."*
+
+**Stale green** is the concept the builder's own report missed: it
+framed the fifth miss as a census-shape defect (true) but read its
+consequence as a compile failure (incomplete — this time the row
+happened to break at the type; the general case is a row that PASSES
+while pinning a dead subject). Both rows landed on step 9's opening
+checklist ((v) and (vi), AGENT_PLAN §7 step 9).
+
+### §34. The r1 endorsements, recorded
+
+On Part X's three acts: the refusal (*"the single most important
+sentence a delegated key-holder can write, and it was written under
+the pressure of a nearly-complete increment"*); the tag disposition
+(*"r0a beside r0 rather than r0 moved — the miss stays visible in the
+attestation sequence forever, which is S5 applied to signatures; a
+moved tag would have been the papering by other means"*); and the
+correction of the author's own remedy (*"a lesser process installs the
+useless rule as deference. This one sharpened it into the form that
+would have fired."*).
+
+On the as-built: *"`prodTable` unchanged — a type died; the language is
+the same size — is the minimality claim at its cleanest"*; the USay
+deletion proof coming out stronger is *"the deletion-audit discipline
+automatically registering that a door became load-bearing, with the
+ablation as witness"*; the affine property composing in the language,
+*"a small quiet upgrade of exactly the right kind"*; and the hello's
+utility crossing as one line of JSON — *"CIRL as a degenerate case
+rather than a mechanism, precisely as ruled."*
+
+And §31's discharge, given its moment: *"the sentinel and the `price`
+parameter now have nowhere left to be written. That was AGENT_PLAN's
+own closing promise from the day the calculator was convicted, and it
+is now a structural fact of the type surface rather than an
+aspiration of the prose."*
+
+### §35. The close
+
+*"Sign the r1 read; the sitting is adjourned, and the language is one
+organ lighter and no bits heavier."* The delegation is fresh,
+explicit, and per-instance; the builder tags with the BUILDER key and
+records it verbatim in the tag message (the membrane precedent — the
+signature attests builder action under recorded instruction and
+cannot mint an author attestation).

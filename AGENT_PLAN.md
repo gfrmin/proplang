@@ -1072,6 +1072,28 @@ close, oracle and gates green on the same signature; as-built record
    (R-D23 form) — the refusal ASSERTED as the known behaviour, flipped deliberately by
    whichever boundary lands the horizon, never silently.
 9. **`Expect`-binder, `SawE`, `ElimJ`; delete the VOI primitives and the FN/UTIL sorts.**
+   **TWO OPENING-CHECKLIST ROWS ordered at the step-8 r1 sitting (2026-07-17; the two
+   instruments the step-8 miss bought, ruled distinct so neither is dropped as subsumed
+   by the other — TWO FAILURE CLASSES):**
+   (v) **THE CLAUDE.md TOUCH LANDS THE FULL-CORPUS OVERLAY BUILD as a lint row** (the
+   MECHANICAL wave): when an increment declares an overlay, `tools/prefreeze-lint.sh`
+   derives the corpus BY GLOB (every `test*/**/*.hs` — suites, fixtures, ablation
+   fixtures) and BUILDS AND RUNS every member against it; any member that does not
+   compile fails the lint. Provenance: the step-8 freeze sealed a batch that could not
+   go green because the census enumerated seven suites and the wave had twelve members;
+   all five misses would have failed this row instantly. *"The enumeration is what the
+   census can get wrong; the corpus is what the build cannot."* (And the naive form —
+   "run cabal test before freezing" — proves NOTHING at a replacement-surface seal,
+   where the corpus is red BY DESIGN until implementation: the author's own remedy,
+   sharpened at the sitting into the form that would have fired.)
+   (vi) **THE WAVE CENSUS'S PERMANENT SECOND COLUMN: THE RULINGS-SWEEP** (the SEMANTIC
+   wave, which the build CANNOT see): every wave census asks not only "what does the
+   dying type break?" but **"what does each RULING falsify?"** — because a ruling can
+   falsify a row that keeps compiling and keeps passing. **A suite pinning behaviour
+   whose subject a ruling killed goes STALE GREEN, and no build detects it.**
+   Provenance: test-unify constructed no `Util` at all and was invisible to a
+   type-shaped sweep — it died by D-e5's ruling killing `assign@1` on the wire. Two
+   instruments, two failure classes, both bought at the usual price.
    *(Proof (i).)* **Re-run the deletion audit against the smaller alphabet — with a proof for
    EVERY terminal** (today: 2 of ~22). **And the TYPE-derivation audit (§8) — its complement**
    (the retrospective pass; the step-6 first-pass table, pack §28 as adopted at the
