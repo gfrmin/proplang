@@ -389,3 +389,32 @@ ALSO the strongest evidence yet on IsEq's primitivity — it is the
 ONLY eliminator the grammar has for option/feature values; delete it
 and NO predicate over Features is sayable at all (the step-9
 composition attempt inherits this transcript).
+
+---
+
+## Part IV — the under-determination register (drafted while the race runs)
+
+### §10. The register (D-e1..D-e8), recommendations from the measurements
+
+| id | question | builder recommendation |
+|---|---|---|
+| D-e1 | THE REPLACEMENT UTILITY SURFACE: what type replaces `Util a y`? | The measured one-site delta (E-d1a): utility = a priced Expr in USay's two-variable scope, EVALUATED AT THE TICK'S FEATURES (the bridge's mkEnv [] becomes mkEnv feats). USay's shape survives; the host-function wrapper (`Util (a -> y -> Double)`) dies; consumers hold the priced program (or its belief) instead of the opaque function. The typing-audit carry binds: the new surface's derivation lines are drafted IN the sitting's ruling, not after. |
+| D-e2 | the four seams (Eval :108/:198/:251/:279) | re-plumbed to evaluate the priced utility at (feats, option, outcome); VAct/VThink/VThinkK/VPre die at step 9 anyway — their seams get the MINIMAL re-plumb (no investment in dying verbs); EU and FnUtil get the real one. |
+| D-e3 | the seven frozen suites (the lineage dispositions) | a PER-ROW table to the sitting once the replacement surface is ruled: the acceptance-lineage rows (sentence g1, membrane t1) RE-DERIVED over the new surface (their deliverables are the brief's, not the type's); the step-5/6/7 behavioral rows (actions, stream, unify's driver) re-derived mechanically (their utilities become priced programs with the same extension — the E-d1d theorem guarantees argmax-invariance for feature-free utilities); hygiene's FnUtil rows follow FnUtil's fate; cirl's USay bridge rows survive almost byte-stable (USay IS the new surface); prepost's VPre rows die with VPre at 9 — retired or carried one step. |
+| D-e4 | the Pilot redesign (split (ii) lands inside) | PilotEU carries the priced utility program; the scripted arms move test-side in the same re-open wave D-e3 already owes those files. |
+| D-e5 | the wire's utility block (assign@1 dies) | the latent@1 record's own shape, generalized: the hello carries `"utility": {"form": "said@1", "said": <S-expression of the priced utility program>}` — a SENTENCE on the wire, parsed against the priced grammar (the arithmetic-free boundary holds: it is data, priced like any sentence); the latent half declares its parameter grid as latent@1's residuals did. |
+| D-e6 | Chan's ordering | Chan SURVIVES step 8 with its debt RE-DATED to step 9 (VPre, its sole consumer, dies there; killing Chan now widows a verb one step early for no gain; the debt note gains the new date — a dated re-home, the D-c5 form). |
+| D-e7 | 8b's ruling | awaiting the race; the composition attempt's failure is already on the record (§9), so the choice is scope-line vs production-with-price — the numbers decide whether the capability's value (N3) justifies the alphabet motion, THE AUTHOR'S CALL either way. |
+| D-e8 | the latent half's scope AT 8 | parameter-shaped, as CIRL shipped it (a belief over the utility program's grid-priced parameter through the one door); ENUMERATED utility programs (a third fragment table) are step-9+ scope if ever — no new enumeration door opens here. |
+
+Plus the frozen-layer inventory (Part I §3's four candidates) rides
+the freeze, and the typing-audit carry means every ruled type above
+arrives at the freeze WITH its derivation line drafted.
+
+### §11. What remains before the sitting
+
+The race's P0/N1/N3 numbers (running; criteria pre-committed at
+e37c0ba); §10's D-e7 filled from them; then the register goes to you
+with Part I-IV complete. After the rulings: the oracle
+(test-outcome/, replacement-surface seal), the freeze, the
+demolition-and-replumb, the as-built.
