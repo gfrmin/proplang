@@ -350,6 +350,22 @@ recorded, with its consequence: **corrigibility earned this way vanishes at
 convergence**, since a posterior over utility that has concentrated no
 longer pays for deference. Open.
 
+> **Step-8 amendment (the outcome freeze, 2026-07-17; the
+> frozen-layer inventory).** "Scoped to design here, not
+> implemented" is FALSE from this boundary: utility-as-latent is
+> IMPLEMENTED. `Util a y` — the host-function wrapper that let
+> utility sit on (act, outcome) pairs, the calculator's last organ —
+> is deleted; utility is a priced sentence (`USent`) evaluated at the
+> tick's features, with a belief over its parameter moved by evidence
+> through the one door. The off-switch result is executed
+> (test-cirl); the vanishing-at-convergence consequence recorded
+> above is MEASURED, not predicted (the CIRL oracle's own rows). The
+> paragraph below — "utilities world-supplied in all tests (pointer
+> residue above)" — is likewise superseded: the tests' utilities are
+> now sentences the worlds DECLARE and the agent PRICES, and the wire
+> ingests them as `said@1`, a point-mass prior over the program shape
+> with the parameter latent.
+
 **Open problems**, named: (1) exact exploration pricing — replacing the
 myopic Russell–Wefald surrogate (§7) with expected Δ log-evidence over
 policies, at a computable fidelity; (2) corrigibility at convergence, above;

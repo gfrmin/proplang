@@ -28,18 +28,19 @@ The parser additionally tolerates whitespace between tokens.
   "namespace": ["t", "<feature>=<value>", "..."],
   "guards":    [{"name": "<feature>=<value>", "grid": [0.5]}, "..."],
   "menu":      [{"name": "<writable-name>", "grid": [0.5, 1.5]}, "..."],
-  "utility":   {"form": "assign@1",
-                "rows": [{"name": "<writable-name>", "value": 1.5,
-                          "u": [-1, 1]}, "..."]}}}
+  "utility":   {"form": "said@1",
+                "said": ["-", ["var", 1],
+                         ["*", ["c", 0.2], ["get", "a"]]]}}}
 ```
 
-*(This block repaired in place at the step-7 unify freeze,
-2026-07-17, under the sitting's nothing-incorrect-stays-frozen
-directive: the previous example carried the id/slots menu shape, the
-table@1 fire-row utility, and the echo block — all retired at the
-step-5 actions freeze, per the dated note below; the example now
-shows the current contract. The historical shapes live in this file's
-git history and the notes.)*
+*(This block is repaired in place at each freeze that falsifies it,
+under the frozen-layer inventory: at the step-7 unify freeze the
+example still carried the id/slots menu shape, the table@1 fire-row
+utility and the echo block — all dead since step 5; at the step-8
+outcome freeze the `assign@1` rows died on their printed date and
+`said@1` — the utility AS A SENTENCE — took their place. The example
+always shows the current contract; the historical shapes live in this
+file's git history and its dated notes.)*
 
 Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
 
@@ -66,14 +67,25 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   are DISJOINT sets — the stream is the world's document, one
   authority, no merge semantics. A tick that publishes a writable
   name as a feature is a validation failure.
-- `utility` (form `assign@1` — INTERIM, dies at step 8 with `Util`:
-  utility moves to world states there, and this block's replacement
-  is on step 8's amendment schedule): rows keyed per writable name
-  per grid value, `[u(y=0), u(y=1)]`; an assignment's utility at an
-  outcome sums its rows. A hello with no utility block is lawful —
-  decision ticks then choose `wait`. No formula language exists on
-  this wire — the arithmetic-free boundary stays where the record
-  put it.
+- `utility` (form `said@1` — the step-8 replacement; `assign@1` died
+  on its printed date, at the outcome freeze): THE PRINCIPAL'S
+  DECLARATION, a SENTENCE — `"said"` carries the utility program as
+  an S-expression, parsed against the priced grammar and priced like
+  any sentence (`{"form": "said@1", "said": ["-", ["var", 1],
+  ["*", ["c", 0.2], ["get", "a"]]]}`). Its scope is the residue pair:
+  `["var", 0]` the option code, `["var", 1]` the outcome; `["get",
+  "<name>"]` reads the tick's features — UTILITY READS FEATURES,
+  because features are the consequences (the step-8 repeal). The
+  declaration is a POINT-MASS PRIOR over the program shape with the
+  grid-priced parameter latent (the declared-table-as-point-mass-
+  latent doctrine, applied to the first program this wire ingests):
+  a table is the degenerate case of the latent machinery, never a
+  parallel mechanism. Unparseable or unpriceable declarations are
+  validation failures — FAIL-CLOSED. A hello with no utility block
+  is lawful; decision ticks then choose `wait`. No formula language
+  exists on this wire: a program is DATA, priced through the one
+  mechanism — the arithmetic-free boundary stays where the record put
+  it.
 - The host sets NO priors: the terminal set is not on the wire; the
   prior over explanations is 2^(-dl) through the one prior source.
 - Value pricing (step 7, M5 repealed): an action value prices at
@@ -114,8 +126,8 @@ the verdict (waste polarity: 1 = approve):
 - A tick with neither is the silent tick: `{"ok": true}`, agent
   unmoved.
 - `"utility"` on a tick is the per-request profile: a FULL
-  replacement `assign@1` table for this tick only (it must cover the
-  offered names; the internal row died with the sentinel at step 5).
+  replacement `said@1` declaration for this tick only (the internal
+  row died with the sentinel at step 5).
 - Ordering ruling (register 8.2): evidence conditions in ARRIVAL
   order — live equals replay. Stated facts, not bugs: hmm-family
   latents advance one step per EVIDENCE tick (their clock is the
@@ -169,6 +181,18 @@ the verdict (waste polarity: 1 = approve):
 > latent@1 record as its informing precedent. Sections 4-6 are
 > historical from this freeze — kept for the record, binding on
 > nothing current.**
+
+> **Step-8 amendment (the outcome freeze, 2026-07-17; delegated edit,
+> outcome-author-pack.md Part VIII): UTILITY IS A SENTENCE.**
+> `Util a y` — the host-function wrapper that let utility sit on
+> (act, outcome) pairs — is deleted from the language; utility is a
+> priced program evaluated at the tick's features, latent in its
+> parameter (CIRL). On this wire that is `said@1`, replacing
+> `assign@1` on the date §2 printed for it. The arithmetic-free
+> boundary is UNMOVED and now better founded: what crosses is a
+> sentence of the one grammar, priced by the one mechanism, not a
+> formula hatch — and the host cannot smuggle arithmetic through it,
+> because everything it can say, the language could already say.
 
 ## 4. Features (the governor's encoding, HOSTS_PLAN 2.4)
 

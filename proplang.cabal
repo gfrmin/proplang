@@ -272,3 +272,18 @@ executable proplang-host
     build-depends:    base
                     , proplang
     default-language: GHC2021
+
+-- the step-8 increment oracle (AGENT_PLAN section 7 step 8, utility on
+-- world states / latent); stanza applied at the step-8 freeze from
+-- test-outcome/stanza.cabal.draft under the recorded delegation
+-- (outcome-author-pack.md Part VIII). Every fixture inline.
+test-suite outcome
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Outcome.hs
+    hs-source-dirs:   test-outcome
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

@@ -537,9 +537,14 @@ because **the engine already computes every one of these in Haskell, behind the 
 The arithmetic is not being *added* to the language. It is being **confessed**.
 
 **Utility**: an ordinary `Expr env Double` reading `Get`, and **latent** — a belief over
-utility programs (brief §9, CIRL). `Util a y` dies. Repeals `typed-port-spec.md:172-177`'s
-*"utilities are featureless and clockless"*, which is backwards: **utility must read
-features, because features ARE the consequences.**
+utility programs (brief §9, CIRL). `Util a y` dies. Repeals the spec's
+*"utilities are featureless and clockless"* clause (cited here as
+`typed-port-spec.md:172-177` when this plan was written; the text moved to
+**`:220-225`** at the step-3 renumbering and was REPAIRED IN PLACE at the step-8
+outcome freeze — the stale cite corrected under the frozen-layer inventory, the
+step-8 sitting ruling that a stale line-cite in the author's own plan is incorrect
+frozen text and the inventory covers plan cites), which is backwards: **utility must
+read features, because features ARE the consequences.**
 
 ---
 
@@ -981,6 +986,23 @@ close, oracle and gates green on the same signature; as-built record
    intend a=1, actuator jams, world publishes 0, hypotheses learn what HAPPENED).
 8. **Utility on world states, latent.** `Util a y` dies; utility becomes a priced `Expr` over
    features, and a belief over utility programs (CIRL).
+   **RULED AND EXECUTED AT THE STEP-8 SITTING (2026-07-17; outcome-author-pack.md
+   Parts I-VIII).** THE DOCTRINE, as the sitting framed it: **no OUTCOME sort exists
+   because none is owed** — features are the world state as rendered, the act is among
+   them since step 6, and minimality held at the ontology level without anyone defending
+   it. The replacement surface (D-e1): `newtype USent = USent (Expr '[Double, Double]
+   Double)` — the priced program that was always inside `USay`; the host-function
+   wrapper dies; the ONE bridge `uAt :: Features -> USent -> Double -> Double -> Double`
+   passes the tick's features (E-d1 measured the entire semantic change to be that one
+   argument). **THE RESIDUE NAMED** (the sitting's footnote, the typing audit's own):
+   the surviving two-variable scope is the not-yet-featurized residue of Savage's
+   (act, outcome) pair — retained for continuity through the demolition, its A1-terminal
+   form recorded beside it (utility as `Get`-only over the completed feature row,
+   reachable when worlds publish outcomes as features); **the residue dies knowingly at
+   a named boundary, never as a lingering default.** The wire's `said@1` (D-e5): the
+   principal's declaration as a POINT-MASS PRIOR over the program shape with the
+   grid-priced parameter latent — fail-closed. Chan survives with its debt RE-DATED to
+   step 9 (D-e6). **8b RULED (ii): THE MYOPIA PRINTS AS THE SCOPE LIMIT** — see 8b.
    **OPENING-CHECKLIST ROW (ordered at the step-6 sitting): the amendment schedule
    names every acceptance-lineage row whose green currently re-confirms the OLD
    ontology R(a,s) = u(a(s))** (the test-sentence g1 ports; the test-membrane t1
@@ -1021,6 +1043,34 @@ close, oracle and gates green on the same signature; as-built record
    **8b runs UNDER THE PRIMITIVITY GATE (canonized at the step-6 boundary): the
    payoff-at-t+5 falsifier IS the composition attempt — the production lands only on
    the sentence form's demonstrated failure, with its price beside it.**
+   **EXECUTED AND RULED (ii) AT THE STEP-8 SITTING (2026-07-17): THE MYOPIA IS THE
+   SCOPE LIMIT.** The falsifier ran with criteria committed first (e37c0ba): the
+   visible-fuse world (a consequence at t+5 published as an ordinary sensor —
+   visible to learning, invisible to myopic choice). **N1 held at the maximum** — the
+   shipped rule refuses EVERY opportunity tick (refusal 1.000; mean utility 36.4 vs the
+   oracle's 136.1; ~100 utility/run regret), structurally: acting costs now and the
+   current tick's odds ignore the current act. **The composition attempt was EXECUTED
+   and FAILED at the type level, in the compiler's words** (pack §9 — the gate's clause
+   (a) discharged): five `Push`es nest and `K Features Features` is even constructible,
+   but the transition body is inexpressible — `Gt` refuses a Features variable, no
+   projection form exists, and `IsEq` between the bound points is the grammar's only
+   Features predicate. **N3 held at the maximum** — granted the transition, the
+   rollforward matches the oracle exactly; the LEARNED odds suffice. **THE RULING (ii),
+   with the sitting's grounds:** the capability is not one production but a complex (the
+   body's eliminators AND a transition-hypothesis family the falsifier granted rather
+   than scoped); a depth-5 sentence landed now would be **a constant through the back
+   door — "why five? because the fixture's fuse is five; fitting the alphabet to the
+   falsifier's world is the sentinel's disease in its most polite dress"**; and the
+   horizon is **reflexive-cost terrain** — rolling the model forward k steps is
+   deliberation whose depth must be EARNED through the same value-of-computation
+   machinery as everything else ("depth earned, not toggled"). **The lawful landing is
+   depth-as-priced-choice at step 10, the boundary that owns reflexive cost**, with §9's
+   compile witnesses and §12's numbers banked as its opening case file. TWO ORDERS,
+   discharged at this freeze: the scope line prints BOTH gaps (choice-side eliminators
+   AND model-side transition family) so the future boundary sees the full bill; and the
+   visible-fuse world entered `test-outcome` as a **GREEN DECLARED-LIMITATION PIN**
+   (R-D23 form) — the refusal ASSERTED as the known behaviour, flipped deliberately by
+   whichever boundary lands the horizon, never silently.
 9. **`Expect`-binder, `SawE`, `ElimJ`; delete the VOI primitives and the FN/UTIL sorts.**
    *(Proof (i).)* **Re-run the deletion audit against the smaller alphabet — with a proof for
    EVERY terminal** (today: 2 of ~22). **And the TYPE-derivation audit (§8) — its complement**
@@ -1053,6 +1103,17 @@ close, oracle and gates green on the same signature; as-built record
    so the two cannot be settled inconsistently).
 10. **Reflexive closure (A7).** The policy enters the action space; computation cost is a
     **measured** feature; heuristics emerge. *brief §2's headline. Steps 1-9 stand without it.*
+    **OPENING-CHECKLIST ROW (ordered at the step-8 sitting, ruling D-e7): THE HORIZON
+    LANDS HERE, OR NOWHERE — depth-as-priced-choice.** Step 8 printed the
+    recurring-stakes myopia as its scope limit and named this boundary its heir: rolling
+    a model forward k steps is DELIBERATION, and its depth must be earned through the
+    same value-of-computation machinery as every other act (never a constant — "why
+    five?" is the sentinel's disease in its politest dress). The opening case file is
+    banked: outcome-author-pack §9 (the compile witnesses — the two gaps: the body's
+    Features eliminators, and the absent transition-hypothesis family) and §12 (the
+    numbers — refusal 1.000, ~100 utility/run regret, the granted-transition rollforward
+    at oracle parity, the price 0.0740 bits/node). `test-outcome`'s g3 is the
+    declared-limitation pin this step flips — deliberately, never silently.
     **OPENING-CHECKLIST ROW (deferred at the step-6 r2, the author's direction: finish
     the language first — no premature optimisation): the `PilotEU` selection fold's
     §1b classification RETURNS HERE.** At reflexive closure, determine whether the

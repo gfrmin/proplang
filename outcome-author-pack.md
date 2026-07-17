@@ -693,7 +693,20 @@ COMPILES UNDER THE EXACT STANZA FLAGS with `Util a y` GONE:
 
 ### §21. The oracle (test-outcome/, 12 rows) — SAT and red
 
-SAT against the new-surface overlay, flag-faithful:
+SAT against the new-surface overlay, FLAG-FAITHFUL — the stanza's
+exact flag set, recorded verbatim (the step-5 amendment; the
+pre-freeze lint's L5 row caught this pack asserting flag-faithfulness
+without recording the flags, which is precisely the class that clause
+exists to close):
+
+```
+cabal exec ghc -- -Wall -Werror -Wincomplete-patterns \
+  -Wincomplete-uni-patterns -i<overlay> -itest-outcome \
+  -outputdir <out> -o <bin> test-outcome/Outcome.hs
+```
+
+The same four flags compiled the overlay's six modules and all seven
+re-derived suites (§22). The run:
 
 ```
 outcome -- utility on world states, latent (step 8)
@@ -751,3 +764,70 @@ featureless and clockless (Get is dormant)" becomes "Get inside a
 utility reads the PASSED features — and 0.0 at empty": BOTH faces
 asserted, the closed face surviving as the empty-environment case.
 That is the repeal in one row.
+
+---
+
+## Part IX — the freeze, executed under the sitting's instruction
+
+### §23. The frozen-layer inventory (all four items, as ruled)
+
+1. **typed-port-spec.md** — *"utilities are featureless and clockless
+   as a definition-level fact"* REPAIRED IN PLACE, the falsified
+   sentence quoted inside its own repair with the measurement that
+   killed it (E-d1: the "definition-level fact" was one empty
+   environment argument) and the surviving face named (the closed
+   evaluation IS `uAt []`, which test-cirl's re-derived doctrine row
+   asserts beside the repeal's face). The paragraph now states the
+   step's doctrine: UTILITY READS FEATURES, no OUTCOME sort is owed.
+2. **The src comment twins** (Syntax's USay haddock, Eval's USay arm)
+   — land with the implementation (src is unfrozen; the overlay
+   already carries them).
+3. **AGENT_PLAN:540's stale line-cite** — REPAIRED (ruled in scope:
+   "a stale line-cite in the author's own plan is incorrect frozen
+   text; the directive said anything"). The cite now names both the
+   as-written line and the current one, with the renumbering dated.
+4. **design.md's pointer prose** — the step-8 amendment note: "scoped
+   to design here, not implemented" is FALSE from this boundary
+   (utility-as-latent is implemented; the vanishing is MEASURED, not
+   predicted), and ":369-370's utilities world-supplied in all tests"
+   is superseded (the tests' utilities are sentences the worlds
+   declare and the agent prices).
+
+**Plus the wire** (D-e5's landing): `assign@1` died on the date §2
+printed for it; `said@1` replaced it in the bullet AND in the
+handshake example — the example is repaired at every freeze that
+falsifies it, which is now written into the note itself.
+
+### §24. The delegated freeze edits (R-D22)
+
+The instruction: *"Draft the oracle under these rulings; the
+replacement-surface seal per the step-5 precedent; the key follows
+the lint."* Executed: the four inventory items (§23); the wire's
+said@1; AGENT_PLAN's ruling records (the step-8 doctrine + the
+residue footnote + 8b's ruling (ii) with the sitting's grounds
+verbatim, and STEP 10 GAINS THE HORIZON'S CHECKLIST ROW — "the
+horizon lands here, or nowhere: depth-as-priced-choice", with §9/§12
+banked as its opening case file); the seven re-derived suites (§22);
+`test-outcome/` + its stanza (fourteenth suite); the manifest
+79 -> 81 (twelve rows re-hashed, two added).
+
+### §25. The pre-tag transcripts, and where this stops
+
+- **prefreeze-lint: 0 FAIL** — and its **L5 row caught a live defect
+  in this pack**: §21 asserted flag-faithfulness without recording
+  the flags. The clause the step-5 incident bought, firing on the
+  builder, at the boundary, before the key. Recorded and repaired
+  (§21 now carries the exact command).
+- **boundary-audit: M5=0**, H=4 (the known §6-record fields inside
+  the historical bracket).
+- **The corpus at this commit is RED BY CONSTRUCTION** — the
+  replacement-surface seal (the step-5 precedent): the seven
+  re-derived suites and `test-outcome` speak the new surface, which
+  src does not carry until implementation. Every row's green is
+  witnessed against the overlay in §21/§22, under the same flags.
+
+**Where this stops: your key — `outcome-freeze-r0` on this commit.**
+Per R-D22 it countersigns every delegated edit above. After the tag:
+implementation transcribes the overlay into src (six modules; the
+`Util` type and its wrapper deleted; the §8c derivation lines landing
+with it), fourteen suites green, gates 1-7, the as-built.

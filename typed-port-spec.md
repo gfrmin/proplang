@@ -219,10 +219,29 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > log2 2 constructor choice (the step-1 repair note above).
 > Utility-valued positions are declared UTIL holes (KER's sibling):
 > USay is the sole codeword, its payload pricing as EXPR in a
-> two-variable scope. The subprogram is closed by construction —
-> evaluation discards the outer environment — so utilities are
-> featureless and clockless as a definition-level fact, and Get
-> inside a utility is dormant, per-node-priced syntax.
+> two-variable scope. **UTILITY READS FEATURES** — the payload is
+> evaluated at the tick's features through the one bridge, because
+> FEATURES ARE THE CONSEQUENCES (A1: an action's value is E[dU] over
+> the world state, and the world state is what the world publishes;
+> since the step-6 freeze the agent's own act is among those
+> features). A utility is a PRICED SENTENCE: `USent`, the
+> two-variable residue scope over (option code, outcome), with a
+> belief over its parameter (CIRL) — there is no host function on the
+> utility path, and no OUTCOME sort is owed, because none exists to
+> owe: features are the world state as rendered.
+>
+> *(This paragraph read, until the step-8 outcome freeze, 2026-07-17:
+> "The subprogram is closed by construction — evaluation discards the
+> outer environment — so utilities are featureless and clockless as a
+> definition-level fact, and Get inside a utility is dormant,
+> per-node-priced syntax." That was BACKWARDS and this step falsified
+> it: E-d1 measured the "definition-level fact" to be one empty
+> environment argument at the bridge (`mkEnv []`), and the step-8
+> demolition passes the tick's features instead. The closed face
+> survives as the EMPTY-ENVIRONMENT CASE — `uAt [] u a y` reads 0 for
+> any Get, which test-cirl's re-derived doctrine row asserts beside
+> the repeal's face. Repaired at the step that falsified it, the
+> ruled discipline.)*
 > GADT terms outside this published fragment (the Haskell encoding
 > admits, e.g., `Var` at a kernel-typed hole) remain per-node priced
 > for totality of `bits`, but lie outside the generative prior: no
