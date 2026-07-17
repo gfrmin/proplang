@@ -896,3 +896,36 @@ does the dying type break?" — and must also ask "what does each RULING
 falsify?" (D-e5 killed a wire form; the suite pinning that form was
 invisible to a type-shaped sweep). The sibling of the sweep-universe
 line, in the wave's own vocabulary.
+
+### §28. The disposition: re-hashed, and the lesson sharpened
+
+Your instruction — *"let's use cabal test next time before freezing"*
+— with one precision the record needs, because the naive form would
+NOT have caught this: **at the freeze commit `cabal test all` was red
+BY DESIGN.** That is the replacement-surface seal (the step-5
+precedent): the re-derived suites speak a surface src does not carry
+until implementation, so the frozen corpus is necessarily red between
+the key and the transcription. Running it there proves nothing.
+
+**What WOULD have caught it, exactly:** I verified the seven suites
+against the overlay one by one — and never compiled THE WHOLE CORPUS
+against the overlay. Every one of the five missed files would have
+failed that build instantly (four at the type, test-unify at its
+hello). So the rule that binds is:
+
+> **A REPLACEMENT-SURFACE FREEZE OWES A FULL-CORPUS OVERLAY BUILD.**
+> Before the key: every test-suite, every fixture, every ablation
+> fixture compiled and run against the overlay — not the enumerated
+> members, THE CORPUS. The enumeration is what the census can get
+> wrong; the corpus is what the build cannot.
+
+That is mechanizable and belongs in the pre-freeze lint (a row that,
+when an overlay is declared, builds every `test*/**/*.hs` against it
+and fails on any that does not compile). Offered for the step-9
+CLAUDE.md touch — the lint's rows are exactly the scriptable halves of
+clauses like this one, and this clause was bought at the usual price.
+
+**State at this commit:** the five rows re-hashed into the manifest
+(81/81 verified), **GATES 1-7 ALL PASS**, prefreeze-lint 0 FAIL,
+fourteen suites green, `Util` gone. The corpus is whole and the batch
+is complete; the key covers it.
