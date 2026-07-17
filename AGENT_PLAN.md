@@ -128,7 +128,7 @@ Refund: **lg 7 − lg 6 = 0.222 bits on every stdlib mention, forever.**
 | `bernFast` (`Eval.hs:179`) | the logit/expfam shape | **E7 `propExpansion`** (`test-expfam/ExpFam.hs:208`) | ✅ **the model** — pinned, enforced |
 | the `cond` engine (`Belief.hs:158-188`) | — (it **is** the general route) | **CL-4** (`test/Properties.hs:64-107`) | ⚠️ **gate ~360,000× too wide** — §2b |
 | `observeCounts` (`Enumerate.hs:680`; the cite was `:649` when this table was drafted — corrected at the step-2 enactment, register 6.4) | **sufficiency** (batch collapse) | **nothing.** `test-d/D.hs:1041` tests only that the *wire syntax parses* — until step 2's `test-optlaw` | ❌ → ✅ **pinned at the step-2 freeze** |
-| the `PilotEU` selection fold (`Membrane.hs` `interpretPilot`, landed step 6; row entered at the step-6 r1; verdict re-ruled at r2) | host-side per-candidate iteration — the per-candidate `predictive (feats ++ a)` read is a read of the agent's OWN meta-state, which the Expr language lacks BY DESIGN (reflexivity is step 10's subject), so the doctrinal `argmaxEU` program cannot express the re-read | **test-stream g2, the bridge row** (runMembrane's choice == the public per-assignment EU arithmetic, every tick; strict `>` displaces = the Argmax evaluator's own tie discipline) + **g6** (argmax-optimality, affine invariance) | ⏳ **CLASSIFICATION DEFERRED TO STEP 10** (the author's r2 direction: finish the language first). NOT an optimization — no in-language route exists today to accelerate. At reflexive closure the question is decided with full information: sayable selector => a true §1b fast path with g2 already its pin; not sayable => the membrane-side general route, permanent. |
+| the `PilotEU` selection fold (`Membrane.hs` `interpretPilot`, landed step 6; row entered at the step-6 r1; verdict re-ruled at r2) | host-side per-candidate iteration — the per-candidate `predictive (feats ++ a)` read is a read of the agent's OWN meta-state, which the Expr language lacks BY DESIGN (reflexivity is step 10's subject), so the doctrinal `argmaxEU` program cannot express the re-read | **test-stream g2, the bridge row** (runMembrane's choice == the public per-assignment EU arithmetic, every tick; strict `>` displaces = the Argmax evaluator's own tie discipline) + **g6** (argmax-optimality, affine invariance). **TWO citing consumers registered at the step-7 sitting (D-c7 rider 2): the membrane's own PilotEU arm AND the driver's decision loop (PropLang.Host serveLine, step 7) — any future change to g2 has the WIRE in its blast radius.** | ⏳ **CLASSIFICATION DEFERRED TO STEP 10** (the author's r2 direction: finish the language first). NOT an optimization — no in-language route exists today to accelerate. At reflexive closure the question is decided with full information: sayable selector => a true §1b fast path with g2 already its pin; not sayable => the membrane-side general route, permanent. |
 
 **`observeCounts` is a semantic fast path with a syntax test.** It collapses a batch to
 `(n₁, n₀)` — legal only because the bern code *happens* to have a sufficient statistic. Today
@@ -961,11 +961,20 @@ close, oracle and gates green on the same signature; as-built record
    suite by the author's ruling: its subject is D8's predictive coherence under
    refusers plus pricing — frozen since step 3 and this step's own topic, untouched by
    the step-9 demolition; an executed row over random refuser patterns, never haddock
-   prose). (ii) **THE PILOT SPLIT, part (ii)**: the scripted competitor arms
-   (PilotIdle, PilotThreshold) move out of src to a test-side harness module while the
-   membrane is open anyway — the forgetter asymmetry (Python's forgetter was
-   quarantined in tests; its Haskell analog ships in src behind CPP) dies at the first
-   boundary that can fix it for free (scheduled, not remembered). (iii) **D-b2's
+   prose). (ii) **THE PILOT SPLIT, part (ii) — RE-HOMED TO STEP 8 (ruling D-c5, RULED at the
+   step-7 sitting 2026-07-17; a re-home with a cost argument, not a reversal)**: the census
+   found the move is NOT free here (constructors cannot leave their type's module;
+   THREE frozen oracles construct PilotIdle/PilotThreshold via import PropLang.Membrane
+   — test-actions:144-155, test-membrane:240-341, test-stream:111), and the honest
+   designs (runMembrane generalised over the decision procedure, or a harness-side
+   second loop pinned extensionally) each carry their own new ruling. Step 8 re-opens
+   this exact terrain regardless (Util dies, interpretPilot's arms are rewritten for
+   utility-on-outcomes, the acceptance-lineage row re-opens test-membrane and likely
+   test-actions/test-stream whose worlds carry utility tables) — the split folds into
+   re-opens already owed, at the boundary where the Pilot type is being redesigned
+   anyway. The step-6 ground ("the first boundary that can fix it for free") is
+   honoured: 7 is not that boundary and 8 nearly is. The src fence comments hold the
+   line for one more step. (iii) **D-b2's
    DISJOINTNESS SENTENCE joins this step's wire touch**: the tick's features and the
    chosen assignment's names are disjoint by handshake — the stream is the world's
    document, one authority, no merge semantics (world-first; the stuck-lever ground:
@@ -978,6 +987,15 @@ close, oracle and gates green on the same signature; as-built record
    utility rows) **and re-derives or retires each at this boundary** — the founding
    oracle deliberately pins both ontologies at once until this step fires; every
    acceptance run until then re-confirms the calculator's definition (pack §29a).
+   **OPENING-CHECKLIST ROW (re-homed from step 7 at the step-7 sitting, D-c5): THE
+   PILOT SPLIT, part (ii)** — the scripted competitor arms leave src inside this
+   step's Pilot redesign (interpretPilot's arms are rewritten for utility-on-outcomes
+   here; the frozen-import re-opens this row needs are already owed to the
+   acceptance-lineage row above). The forgetter asymmetry dies HERE.
+   **AND: the wire's assign@1 utility block dies here with Util** (the step-7 sitting,
+   D-c7 rider 1: assign@1 entered the wire as INTERIM with its death date printed —
+   this row is that death; the step-8 wire touch replaces it with the
+   utility-on-outcomes form).
 8b. **RIDER 1's falsifier and scope line — step 8's oracle-phase evidence program**
    (re-sequenced 2026-07-15, decision 6: the falsifier runs pre-freeze on a prototype, so
    step 8's oracle already encodes the ruled outcome instead of amending it afterwards).
@@ -1015,6 +1033,12 @@ close, oracle and gates green on the same signature; as-built record
    exclusively on SELF-LICENSED worlds** (the A2-K obligation re-homed at last, as a
    field instead of a boundary's scope note — the only form that cannot be orphaned
    again; pack §29b).
+   **(iv) OPENING-CHECKLIST ROW (ordered at the step-7 sitting): the NULL-EVENT
+   PREDICTIVE QUERY (all sentences refusing at the queried features) is ruled HERE,
+   WITH ElimJ's Nothing branch — one ruling, both faces** (conditioning on a null
+   event is ElimJ's totality question wearing wire clothing; test-unify's Dutch-book
+   row scopes itself to >= 1 denoting sentence and this row closes the excluded case
+   so the two cannot be settled inconsistently).
 10. **Reflexive closure (A7).** The policy enters the action space; computation cost is a
     **measured** feature; heuristics emerge. *brief §2's headline. Steps 1-9 stand without it.*
     **OPENING-CHECKLIST ROW (deferred at the step-6 r2, the author's direction: finish

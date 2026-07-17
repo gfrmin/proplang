@@ -27,42 +27,60 @@ The parser additionally tolerates whitespace between tokens.
 {"membrane": 1, "world": {
   "namespace": ["t", "<feature>=<value>", "..."],
   "guards":    [{"name": "<feature>=<value>", "grid": [0.5]}, "..."],
-  "menu":      [{"id": 3, "name": "ask", "slots": []}, "..."],
-  "utility":   {"form": "table@1",
-                "rows": [{"fire": 3, "u": [-0.02, -0.02]}, "...",
-                         {"internal": "think", "u": [-3, -3]}]},
-  "echo":      {"last_action": false, "tick": false,
-                "ticks_spent_thinking": false}}}
+  "menu":      [{"name": "<writable-name>", "grid": [0.5, 1.5]}, "..."],
+  "utility":   {"form": "assign@1",
+                "rows": [{"name": "<writable-name>", "value": 1.5,
+                          "u": [-1, 1]}, "..."]}}}
 ```
+
+*(This block repaired in place at the step-7 unify freeze,
+2026-07-17, under the sitting's nothing-incorrect-stays-frozen
+directive: the previous example carried the id/slots menu shape, the
+table@1 fire-row utility, and the echo block — all retired at the
+step-5 actions freeze, per the dated note below; the example now
+shows the current contract. The historical shapes live in this file's
+git history and the notes.)*
 
 Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
 
-- `namespace` is the world's declared Get-mentionable name set (the
-  namespace law: every guard's name mention prices log2 |namespace|).
-  It must be nonempty and cover every guard name.
+- `namespace` is the world's declared name set under ONE law: every
+  name mention prices log2 |namespace|. It must be nonempty, cover
+  every guard name, and (RIDER 2, bound at step 6; the step-7
+  conformance sentence) include EVERY writable name, including names
+  not yet in any published menu — a world may not conjure a name
+  mid-episode. Membership is declared here and is IMMUTABLE:
+  publication toggles availability, not membership, so owned
+  posterior odds are invariant under mid-episode publication (pinned
+  bit-exact by test-unify).
 - `guards` extend the model fragment's guard families
-  (`enumerateModelsIn`), one `(name, threshold grid)` pair each;
+  (`enumerateSentencesIn`), one `(name, threshold grid)` pair each;
   grids nonempty.
-- `menu` declares affordances as data: world-owned stable positive
-  ids, display names, typed slots (name, grid points). Listing order
-  in a TICK's `menu` array is NORMATIVE: argmaxEU ties resolve
-  first-listed (CL-3). The governor's normative order is
-  **`ask, block, proceed`** — RULED by the author at H's pack (R1,
-  HOSTS_PLAN 8.1): at exact indifference the agent buys information;
-  CIRL C1's fail-safe polarity (`block` first) is the recorded
-  fallback. Fail-open never enters this wire as a tie-break default.
-- `utility` is a finite STEP TABLE: per affordance id,
-  `[u(y=0), u(y=1)]`, plus exactly one `internal: "think"` row (the
-  internal act is always in the option space; give it a dominated
-  sentinel row). No formula language exists on this wire — the
-  arithmetic-free boundary stays where the record put it.
-- `echo`: epoch-1 RESTRICTION — all three must be false. The H
-  driver re-enters the frozen `runMembrane` at n = 1, which resets
-  the internal tick/think counters per call: inert under noEcho,
-  silently wrong under echo. Echo-carrying hosts need the exported
-  one-tick step (HOSTS_PLAN register 8.9), a later boundary.
+- `menu` declares the writable names with their grids (the step-5
+  shape: names and grids, nothing else). The agent's choice is a
+  full ASSIGNMENT of values to the published names; `wait` is every
+  name at the FIRST point of its grid (structural), and argmaxEU
+  ties resolve first-listed (CL-3) — so wait, the option space's
+  head by construction, keeps ties.
+- DISJOINTNESS (ruling D-b2, the step-7 conformance sentence): the
+  names a world publishes as tick features and its writable names
+  are DISJOINT sets — the stream is the world's document, one
+  authority, no merge semantics. A tick that publishes a writable
+  name as a feature is a validation failure.
+- `utility` (form `assign@1` — INTERIM, dies at step 8 with `Util`:
+  utility moves to world states there, and this block's replacement
+  is on step 8's amendment schedule): rows keyed per writable name
+  per grid value, `[u(y=0), u(y=1)]`; an assignment's utility at an
+  outcome sums its rows. A hello with no utility block is lawful —
+  decision ticks then choose `wait`. No formula language exists on
+  this wire — the arithmetic-free boundary stays where the record
+  put it.
 - The host sets NO priors: the terminal set is not on the wire; the
   prior over explanations is 2^(-dl) through the one prior source.
+- Value pricing (step 7, M5 repealed): an action value prices at
+  log2 |its grid| through the one constant door wherever a sentence
+  utters it — the same arithmetic as every constant since the
+  pricing freeze; nothing re-prices at publication, because
+  DECLARING costs (at handshake) and publishing never did.
 
 Validation failures answer `{"error": "<reason>"}` and the process
 stays on the handshake state.
@@ -73,9 +91,13 @@ Decision tick — features + menu, no evidence; THE AGENT DOES NOT
 MOVE:
 
 ```json
-{"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": [3, 2, 1]}}
-{"choice": {"fire": 3, "slots": {}}, "p1": 0.81, "entropy_bits": 3.2}
+{"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": ["a"]}}
+{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2}
 ```
+
+*(Examples repaired in place at the step-7 unify freeze: a tick's
+`menu` lists the names available this tick; the reply's `act` is the
+chosen assignment — the fire/slots encoding died at step 5.)*
 
 Evidence tick — the JUDGED EVENT'S ORIGINAL features re-sent, with
 the verdict (waste polarity: 1 = approve):
@@ -92,8 +114,8 @@ the verdict (waste polarity: 1 = approve):
 - A tick with neither is the silent tick: `{"ok": true}`, agent
   unmoved.
 - `"utility"` on a tick is the per-request profile: a FULL
-  replacement table for this tick only (it must cover the offered
-  menu and the internal row).
+  replacement `assign@1` table for this tick only (it must cover the
+  offered names; the internal row died with the sentinel at step 5).
 - Ordering ruling (register 8.2): evidence conditions in ARRIVAL
   order — live equals replay. Stated facts, not bugs: hmm-family
   latents advance one step per EVIDENCE tick (their clock is the
@@ -103,10 +125,11 @@ the verdict (waste polarity: 1 = approve):
   verdict outside the observation space): `{"error":
   "impossible-evidence"}`, agent UNCHANGED. The host decides what
   fail-open means at transport level; the wire never defaults it.
-- Choice encoding: `{"fire": <id>, "slots": {<name>: <value>}}` for
-  a world affordance; `{"internal": "think"}` for the internal act
-  (the driver reports it honestly if it wins; the adapter maps it to
-  its own documented posture).
+- Choice encoding: `"act"` is the full assignment object,
+  `{<writable-name>: <value>, ...}` — one value per name published
+  this tick (the empty object when no menu is published: the empty
+  product's one element IS wait). The fire/slots and internal-think
+  encodings died at step 5 (repaired in place at step 7).
 
 > **Step-5 amendment (the actions freeze, 2026-07-16; delegated edit,
 > actions-author-pack.md §14):** ACTIONS BECOME FEATURES. The wire's
@@ -126,6 +149,26 @@ the verdict (waste polarity: 1 = approve):
 > always world-side and survives untouched). Value pricing of
 > assignments binds at step 7 with M5's repeal; nothing on this wire
 > prices an action until then.
+
+> **Step-7 amendment (the unify freeze, 2026-07-17; delegated edit,
+> unify-author-pack.md Part V): ONE PRICED SURFACE, and the wire's
+> incorrect residue repaired.** M5 is repealed: the namespace law's
+> own rationale covers the action vocabulary; there is no second
+> priced surface. The three conformance sentences (completed
+> namespace, D-b2 disjointness, value pricing) are folded into
+> section 2's bullets above, and sections 2-3's examples are repaired
+> in place to the current contract (the sitting's directive: nothing
+> incorrect stays frozen). The `assign@1` utility form enters as
+> INTERIM with its death date printed — step 8 replaces it when
+> utility moves to world states. SCOPE BRACKET for sections 4-6
+> below: they are the OLD roadmap's record (increments H and D — the
+> governor's encoding, the table@1 derivation, the latent@1 v2
+> surface, with goldens pinned by the RETIRED test-d suite). The
+> re-derived engine's conformance surface is sections 1-3 as amended;
+> the utility surface is re-derived at step 8, with section 6's
+> latent@1 record as its informing precedent. Sections 4-6 are
+> historical from this freeze — kept for the record, binding on
+> nothing current.**
 
 ## 4. Features (the governor's encoding, HOSTS_PLAN 2.4)
 

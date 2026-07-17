@@ -238,16 +238,28 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 > log2 |visible namespace| against the WORLD's declared namespace, at
 > both priced sorts (the policy pricer's `Get` term and the model
 > fragment's guard derivations), and 2^(-|program|) normalizes per
-> world. Publishing a name therefore raises every name-mention's cost
-> and re-weights the prior — a richer world makes every sentence about
-> it more surprising. This is a semantic commitment, not an
-> implementation detail. The namespace covers Get-mentionable feature
-> names ONLY (ruling M5, load-bearing): the action vocabulary prices
-> through slot grids and argmax, and keeping the two priced surfaces
-> separate is what stops a fourth flow entering through the pricing
-> door; no later increment may unify them. The frozen worlds are the
-> singleton case (`featureNames = ["t"]`, 0 bits), whose prices this
-> law leaves untouched.
+> world. DECLARING a name — at handshake, where membership is fixed —
+> raises every name-mention's cost and re-weights the prior: a richer
+> world makes every sentence about it more surprising. This is a
+> semantic commitment, not an implementation detail. (This sentence
+> read "publishing a name" until the step-7 unify freeze, 2026-07-17;
+> RIDER 2, bound at step 6, made membership immutable at handshake —
+> publication toggles availability and moves NO price, measured
+> bit-exact by E-c2 and pinned by test-unify. Repaired at the step
+> that falsified it.) The namespace covers every declarable name —
+> sensors AND writable names — under this one law (M5 REPEALED at the
+> step-7 unify freeze: the carve-out protected a "fourth flow"
+> asserted four times and derived zero, AGENT_PLAN:49; the original
+> clause here read "no later increment may unify them" and this
+> boundary falsified it — amended at the step that falsifies, the
+> ruled discipline). A writable name is mentioned at log2 |ns| like
+> any name; a value is drawn from its grid at log2 |grid| like any
+> constant, through the one mechanism — already the shipped
+> arithmetic since the step-6 freeze (E-c1: the threshold leaf moves
+> by exactly lg |grid|, nothing else moves), now pinned by
+> test-unify's first assignment-priced rows. The frozen worlds are
+> the singleton case (`featureNames = ["t"]`, 0 bits), whose prices
+> this law leaves untouched.
 
 ## 4. The estimator choice, dissolved                    [COMPILE]+[FROZEN]
 

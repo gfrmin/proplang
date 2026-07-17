@@ -116,10 +116,12 @@ menuAssignments menu = case go menu of
 -- the agent path. 'PilotIdle' and 'PilotThreshold' are FENCED:
 -- scripted competitor policies, simulator scaffolding OUTSIDE the
 -- language (the raw Double is a script parameter, never a priced
--- quantity). Their move to a test-side harness module is a SCHEDULED
--- step-7 opening-checklist row (the sitting's split ruling: the
--- forgetter asymmetry dies at the first boundary that can fix it
--- for free).
+-- quantity). Their move out of src is a SCHEDULED step-8
+-- opening-checklist row (RE-HOMED from 7 at the step-7 sitting on
+-- the census's cost: constructors cannot leave their type's module,
+-- three frozen oracles construct these arms, and step 8 rewrites
+-- interpretPilot's arms for utility-on-outcomes anyway — the split
+-- folds into re-opens already owed there).
 data Pilot
   = PilotIdle
   | PilotThreshold Name Double Features Features

@@ -61,8 +61,15 @@ author's hand).
 
 ### 0.3 The P5 mandatory item (lands at H, the first boundary — author-ruled)
 
-The single-site alphabet constant. As-built, the five sort constants
-live inside `bitsAt` (src/PropLang/Syntax.hs:384-389, verified):
+The single-site alphabet constant. As-built AT INCREMENT H — a dated
+record (bracket added at the step-7 unify freeze, 2026-07-17, under
+the nothing-incorrect-stays-frozen directive: the constants below no
+longer live anywhere — step 4's pricing freeze replaced the fold
+constants with `chargeBits` over the declared `prodTable`, and the
+live table is `ProdTable 19 2 1 2 6 1`, Syntax.hs — EXPR 10->19 at
+step 1, KER 1->2 at step 1, STDNAME 7->6 at step 3): the five sort
+constants then lived inside `bitsAt` (verified at H against the
+pre-brief tree):
 
 ```haskell
     nodeB, stdB, kerB, statsB, utilB :: Double
@@ -526,6 +533,9 @@ to `obsCarrier`/`obsSpace`.
 ```haskell
 -- Syntax.hs: the world's full priced alphabet (namespace + declared
 -- carrier registry; ruling M5's three-surface separation preserved)
+-- [M5 REPEALED at the step-7 unify freeze, 2026-07-17 — this sketch
+--  line is historical; the amendment-schedule row AGENT_PLAN:1072
+--  discharged here]
 data WorldAlphabet
 mkWorldAlphabet :: Namespace -> NonEmpty Name -> WorldAlphabet
 bitsInW :: KnownScope env => WorldAlphabet -> Expr env t -> Bits

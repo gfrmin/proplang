@@ -10,6 +10,19 @@ wins and the disagreement is a defect here, which is what
 repo: every claim below is a pointer into it, and the closing
 reviewer block (§10) re-verifies the whole chain from a clean shell.
 
+> **Dated note (the step-7 unify freeze, 2026-07-17; the
+> nothing-incorrect-stays-frozen directive).** This write-up
+> describes the project at its 2026-07-07 close. The 2026-07-12
+> re-derivation (IMPLEMENT THE BRIEF; AGENT_PLAN.md) has since
+> re-derived the language through step 7: artifacts this document
+> cites (`test-ladder/`, `test/Acceptance.hs`) were retired at those
+> boundaries, and quoted tables reflect the close-date alphabet
+> (e.g. STDNAME log2 7; the live spec says log2 6 since the step-3
+> sentence freeze). By this document's own rule above, the frozen
+> sources win every such disagreement; the divergences are DATED and
+> enumerated by test-writeup/check.sh's record rows — they are the
+> re-derivation's work, not defects of the close.
+
 The brief is `brief.md` — in this repository verbatim and unannotated,
 entered by the author's own commit under the `brief-freeze` tag, per
 W1's custody ruling: the one oracle the builder never owned enters by

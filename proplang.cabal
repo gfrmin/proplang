@@ -244,3 +244,31 @@ test-suite stream
                     , tasty-quickcheck
                     , QuickCheck
     default-language: GHC2021
+
+-- the step-7 increment oracle (AGENT_PLAN section 7 step 7, pricing
+-- unified / M5 repealed); stanza applied at the step-7 freeze from
+-- test-unify/stanza.cabal.draft under the recorded delegation
+-- (unify-author-pack.md Part V). Every fixture inline.
+test-suite unify
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Unify.hs
+    hs-source-dirs:   test-unify
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+-- THE DRIVER RETURNS (step 7, the host-less window's exit — "no
+-- driver returns until 7", actions-author-pack.md:176, discharged
+-- here). The executable is PropLang.Host.hostMain: the pure session
+-- core behind a line loop; it serves the oracle-phase stub until the
+-- step-7 implementation lands serveLine's body.
+executable proplang-host
+    import:           warnings
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    build-depends:    base
+                    , proplang
+    default-language: GHC2021

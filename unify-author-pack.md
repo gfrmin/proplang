@@ -591,3 +591,469 @@ prefreeze-lint pre-tag, unify-freeze-r0 — your key), then
 implementation: serveLine's body transcribed from the overlay, the
 `proplang-host` executable stanza, twelve suites (thirteen with
 unify) green, gates, the as-built.
+
+---
+
+## Part V — the sitting (2026-07-17): rulings enacted, THE FROZEN-LAYER SWEEP, the freeze executed under delegation
+
+### §21. The rulings, verbatim
+
+The sitting's message opened: *"E-c1 is the step's story and it
+deserves telling in one sentence: M5 died in arithmetic a full step
+before it died in prose ... The repeal is therefore a description,
+which is the best kind of repeal, and R-C4's obligation is discharged
+by the elegant route: nothing re-prices because nothing was ever
+unpriced."* The rulings: **D-c1 confirmed** (pins plus prose, no
+arithmetic; wording note — no surviving normative sentence may use
+"publishing" where it means "declaring"). **D-c2/D-c8 approved as
+drafted.** **D-c6 amend both** (spec + HOSTS_PLAN; MEMBRANE_PLAN
+historical; verify check.sh's stdlib-table greps untouched).
+**D-c5 — NEITHER (a) NOR (b): RE-HOMED TO STEP 8** (constructors
+cannot leave their type's module; the honest designs each need their
+own ruling; step 8 re-opens the exact terrain — Util dies,
+interpretPilot's arms rewritten, the acceptance-lineage row re-opens
+the utility-carrying suites; "7 is not the free boundary and 8 nearly
+is"; a re-home with a cost argument, not a reversal). **D-c7 approved
+with two riders**: (1) assign@1 is INTERIM with its death date
+printed on the wire (step 8's amendment schedule owns it); (2) g2's
+bridge pin now carries TWO citing consumers (the membrane's arm and
+the driver's loop) — the second citation registered on the pin.
+**The oracle approved, g1–g5 and the 1e-13 gate**; the all-refusers
+row ORDERED AT STEP 9 beside ElimJ's Nothing branch (one ruling, both
+faces — null-event conditioning is ElimJ's totality question in wire
+clothing). Endorsements recorded: four consecutive steps of SAT
+convictions; "a red that cannot fire is a red that proves nothing";
+E-c2's reading ordered into the g2 comment; the recall discipline's
+quiet verification of the window's provenance.
+
+**And the directive, issued twice during the assembly, verbatim:**
+*"let's try not to leave anything incorrect in the frozen layer."*
+
+### §22. THE FROZEN-LAYER SWEEP (the directive executed)
+
+Inventory: everything in the frozen layer this step's rulings or
+earlier drift had left false, each verified before repair:
+
+1. **typed-port-spec.md:244-248** — "no later increment may unify"
+   (falsified by this step) AND, found by the D-c1 wording audit,
+   **:241 "Publishing a name therefore raises every name-mention's
+   cost"** — false since RIDER 2 bound at step 6 (publication moves
+   NO price; declaring does). Both repaired in place, CL-4-repair
+   form, provenance in-file. The stdlib tables at :160-161 were
+   VERIFIED CURRENT (STDNAME log2 6 amended at step 3; UTIL/USay true
+   until step 8) — the census's stale-spec suspicion was about
+   check.sh's pins, not the spec.
+2. **membrane-wire.md §2/§3** — the handshake example still carried
+   the id/slots menu, the table@1 fire-row utility, and the echo
+   block; §3's reply example the fire/slots choice encoding — ALL
+   dead since step 5 and now contradicted by the conformance the
+   driver oracle pins. Repaired IN PLACE to the current contract
+   (dated provenance lines); the three step-7 conformance sentences
+   folded into §2's bullets (completed namespace, D-b2 disjointness
+   as a validation failure, value pricing with E-c1/E-c2 cited);
+   assign@1 entered with its death bracket (rider 1). **§§4-6
+   BRACKETED as the old roadmap's record** (increments H/D; goldens
+   pinned by the retired test-d) — historical from this freeze,
+   binding on nothing current; §6's latent@1 stays as step 8's
+   informing precedent.
+3. **HOSTS_PLAN.md:527-528** — the scheduled M5 amendment (the
+   schedule row discharged) — AND **§0.3's present-tense as-built**
+   ("the five sort constants live inside bitsAt ... EXPR 10, STDNAME
+   7"), false since step 4 (chargeBits; live ProdTable 19 2 1 2 6 1).
+   Both bracketed dated.
+4. **test-writeup/check.sh** — four rows asserting the close-date
+   corpus against the live tree: N8 (grepped a spec row that died at
+   step 3), P0 (WRITEUP cites test-ladder/ and test/Acceptance.hs,
+   retired by the demolitions), G1/G2 (14 flags / 8 stanzas, both
+   legitimately moved). ALL FOUR converted to DATED RECORD rows —
+   true forever, printing the live state beside the as-of state,
+   failing on nothing (N8 now also verifies the LIVE spec row
+   exists). The instrument runs FULLY GREEN for the first time since
+   the re-derivation began. The N1-N7/N9 pins and every W/S/Q/G3+
+   row are untouched — the ruled caution honored: the stdlib-table
+   edit touched no grepped row (N9's UTIL row text is byte-identical
+   in the amended spec).
+5. **WRITEUP.md** — gained the dated supersession note its own
+   source-wins rule demanded (the close-date document, the
+   re-derivation named, the divergences dated and enumerated by the
+   record rows).
+
+The diff over the frozen layer, verbatim (the re-open record; stat
+first):
+
+```
+ HOSTS_PLAN.md         |  14 +++++-
+ MANIFEST.sha256       |  15 ++++---
+ WRITEUP.md            |  13 ++++++
+ membrane-wire.md      | 115 ++++++++++++++++++++++++++++++++++----------------
+ proplang.cabal        |  28 ++++++++++++
+ test-writeup/check.sh |  38 ++++++++++++++---
+ typed-port-spec.md    |  32 +++++++++-----
+ 7 files changed, 194 insertions(+), 61 deletions(-)
+
+diff --git a/HOSTS_PLAN.md b/HOSTS_PLAN.md
+index 78c4e4c..792c585 100644
+--- a/HOSTS_PLAN.md
++++ b/HOSTS_PLAN.md
+@@ -61,8 +61,15 @@ author's hand).
+ 
+ ### 0.3 The P5 mandatory item (lands at H, the first boundary — author-ruled)
+ 
+-The single-site alphabet constant. As-built, the five sort constants
+-live inside `bitsAt` (src/PropLang/Syntax.hs:384-389, verified):
++The single-site alphabet constant. As-built AT INCREMENT H — a dated
++record (bracket added at the step-7 unify freeze, 2026-07-17, under
++the nothing-incorrect-stays-frozen directive: the constants below no
++longer live anywhere — step 4's pricing freeze replaced the fold
++constants with `chargeBits` over the declared `prodTable`, and the
++live table is `ProdTable 19 2 1 2 6 1`, Syntax.hs — EXPR 10->19 at
++step 1, KER 1->2 at step 1, STDNAME 7->6 at step 3): the five sort
++constants then lived inside `bitsAt` (verified at H against the
++pre-brief tree):
+ 
+ ```haskell
+     nodeB, stdB, kerB, statsB, utilB :: Double
+@@ -526,6 +533,9 @@ to `obsCarrier`/`obsSpace`.
+ ```haskell
+ -- Syntax.hs: the world's full priced alphabet (namespace + declared
+ -- carrier registry; ruling M5's three-surface separation preserved)
++-- [M5 REPEALED at the step-7 unify freeze, 2026-07-17 — this sketch
++--  line is historical; the amendment-schedule row AGENT_PLAN:1072
++--  discharged here]
+ data WorldAlphabet
+ mkWorldAlphabet :: Namespace -> NonEmpty Name -> WorldAlphabet
+ bitsInW :: KnownScope env => WorldAlphabet -> Expr env t -> Bits
+diff --git a/WRITEUP.md b/WRITEUP.md
+index 42356a7..566b0df 100644
+--- a/WRITEUP.md
++++ b/WRITEUP.md
+@@ -10,6 +10,19 @@ wins and the disagreement is a defect here, which is what
+ repo: every claim below is a pointer into it, and the closing
+ reviewer block (§10) re-verifies the whole chain from a clean shell.
+ 
++> **Dated note (the step-7 unify freeze, 2026-07-17; the
++> nothing-incorrect-stays-frozen directive).** This write-up
++> describes the project at its 2026-07-07 close. The 2026-07-12
++> re-derivation (IMPLEMENT THE BRIEF; AGENT_PLAN.md) has since
++> re-derived the language through step 7: artifacts this document
++> cites (`test-ladder/`, `test/Acceptance.hs`) were retired at those
++> boundaries, and quoted tables reflect the close-date alphabet
++> (e.g. STDNAME log2 7; the live spec says log2 6 since the step-3
++> sentence freeze). By this document's own rule above, the frozen
++> sources win every such disagreement; the divergences are DATED and
++> enumerated by test-writeup/check.sh's record rows — they are the
++> re-derivation's work, not defects of the close.
++
+ The brief is `brief.md` — in this repository verbatim and unannotated,
+ entered by the author's own commit under the `brief-freeze` tag, per
+ W1's custody ruling: the one oracle the builder never owned enters by
+diff --git a/membrane-wire.md b/membrane-wire.md
+index c339a58..dc5f8b9 100644
+--- a/membrane-wire.md
++++ b/membrane-wire.md
+@@ -27,42 +27,60 @@ The parser additionally tolerates whitespace between tokens.
+ {"membrane": 1, "world": {
+   "namespace": ["t", "<feature>=<value>", "..."],
+   "guards":    [{"name": "<feature>=<value>", "grid": [0.5]}, "..."],
+-  "menu":      [{"id": 3, "name": "ask", "slots": []}, "..."],
+-  "utility":   {"form": "table@1",
+-                "rows": [{"fire": 3, "u": [-0.02, -0.02]}, "...",
+-                         {"internal": "think", "u": [-3, -3]}]},
+-  "echo":      {"last_action": false, "tick": false,
+-                "ticks_spent_thinking": false}}}
++  "menu":      [{"name": "<writable-name>", "grid": [0.5, 1.5]}, "..."],
++  "utility":   {"form": "assign@1",
++                "rows": [{"name": "<writable-name>", "value": 1.5,
++                          "u": [-1, 1]}, "..."]}}}
+ ```
+ 
++*(This block repaired in place at the step-7 unify freeze,
++2026-07-17, under the sitting's nothing-incorrect-stays-frozen
++directive: the previous example carried the id/slots menu shape, the
++table@1 fire-row utility, and the echo block — all retired at the
++step-5 actions freeze, per the dated note below; the example now
++shows the current contract. The historical shapes live in this file's
++git history and the notes.)*
++
+ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
+ 
+-- `namespace` is the world's declared Get-mentionable name set (the
+-  namespace law: every guard's name mention prices log2 |namespace|).
+-  It must be nonempty and cover every guard name.
++- `namespace` is the world's declared name set under ONE law: every
++  name mention prices log2 |namespace|. It must be nonempty, cover
++  every guard name, and (RIDER 2, bound at step 6; the step-7
++  conformance sentence) include EVERY writable name, including names
++  not yet in any published menu — a world may not conjure a name
++  mid-episode. Membership is declared here and is IMMUTABLE:
++  publication toggles availability, not membership, so owned
++  posterior odds are invariant under mid-episode publication (pinned
++  bit-exact by test-unify).
+ - `guards` extend the model fragment's guard families
+-  (`enumerateModelsIn`), one `(name, threshold grid)` pair each;
++  (`enumerateSentencesIn`), one `(name, threshold grid)` pair each;
+   grids nonempty.
+-- `menu` declares affordances as data: world-owned stable positive
+-  ids, display names, typed slots (name, grid points). Listing order
+-  in a TICK's `menu` array is NORMATIVE: argmaxEU ties resolve
+-  first-listed (CL-3). The governor's normative order is
+-  **`ask, block, proceed`** — RULED by the author at H's pack (R1,
+-  HOSTS_PLAN 8.1): at exact indifference the agent buys information;
+-  CIRL C1's fail-safe polarity (`block` first) is the recorded
+-  fallback. Fail-open never enters this wire as a tie-break default.
+-- `utility` is a finite STEP TABLE: per affordance id,
+-  `[u(y=0), u(y=1)]`, plus exactly one `internal: "think"` row (the
+-  internal act is always in the option space; give it a dominated
+-  sentinel row). No formula language exists on this wire — the
+-  arithmetic-free boundary stays where the record put it.
+-- `echo`: epoch-1 RESTRICTION — all three must be false. The H
+-  driver re-enters the frozen `runMembrane` at n = 1, which resets
+-  the internal tick/think counters per call: inert under noEcho,
+-  silently wrong under echo. Echo-carrying hosts need the exported
+-  one-tick step (HOSTS_PLAN register 8.9), a later boundary.
++- `menu` declares the writable names with their grids (the step-5
++  shape: names and grids, nothing else). The agent's choice is a
++  full ASSIGNMENT of values to the published names; `wait` is every
++  name at the FIRST point of its grid (structural), and argmaxEU
++  ties resolve first-listed (CL-3) — so wait, the option space's
++  head by construction, keeps ties.
++- DISJOINTNESS (ruling D-b2, the step-7 conformance sentence): the
++  names a world publishes as tick features and its writable names
++  are DISJOINT sets — the stream is the world's document, one
++  authority, no merge semantics. A tick that publishes a writable
++  name as a feature is a validation failure.
++- `utility` (form `assign@1` — INTERIM, dies at step 8 with `Util`:
++  utility moves to world states there, and this block's replacement
++  is on step 8's amendment schedule): rows keyed per writable name
++  per grid value, `[u(y=0), u(y=1)]`; an assignment's utility at an
++  outcome sums its rows. A hello with no utility block is lawful —
++  decision ticks then choose `wait`. No formula language exists on
++  this wire — the arithmetic-free boundary stays where the record
++  put it.
+ - The host sets NO priors: the terminal set is not on the wire; the
+   prior over explanations is 2^(-dl) through the one prior source.
++- Value pricing (step 7, M5 repealed): an action value prices at
++  log2 |its grid| through the one constant door wherever a sentence
++  utters it — the same arithmetic as every constant since the
++  pricing freeze; nothing re-prices at publication, because
++  DECLARING costs (at handshake) and publishing never did.
+ 
+ Validation failures answer `{"error": "<reason>"}` and the process
+ stays on the handshake state.
+@@ -73,10 +91,14 @@ Decision tick — features + menu, no evidence; THE AGENT DOES NOT
+ MOVE:
+ 
+ ```json
+-{"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": [3, 2, 1]}}
+-{"choice": {"fire": 3, "slots": {}}, "p1": 0.81, "entropy_bits": 3.2}
++{"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": ["a"]}}
++{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2}
+ ```
+ 
++*(Examples repaired in place at the step-7 unify freeze: a tick's
++`menu` lists the names available this tick; the reply's `act` is the
++chosen assignment — the fire/slots encoding died at step 5.)*
++
+ Evidence tick — the JUDGED EVENT'S ORIGINAL features re-sent, with
+ the verdict (waste polarity: 1 = approve):
+ 
+@@ -92,8 +114,8 @@ the verdict (waste polarity: 1 = approve):
+ - A tick with neither is the silent tick: `{"ok": true}`, agent
+   unmoved.
+ - `"utility"` on a tick is the per-request profile: a FULL
+-  replacement table for this tick only (it must cover the offered
+-  menu and the internal row).
++  replacement `assign@1` table for this tick only (it must cover the
++  offered names; the internal row died with the sentinel at step 5).
+ - Ordering ruling (register 8.2): evidence conditions in ARRIVAL
+   order — live equals replay. Stated facts, not bugs: hmm-family
+   latents advance one step per EVIDENCE tick (their clock is the
+@@ -103,10 +125,11 @@ the verdict (waste polarity: 1 = approve):
+   verdict outside the observation space): `{"error":
+   "impossible-evidence"}`, agent UNCHANGED. The host decides what
+   fail-open means at transport level; the wire never defaults it.
+-- Choice encoding: `{"fire": <id>, "slots": {<name>: <value>}}` for
+-  a world affordance; `{"internal": "think"}` for the internal act
+-  (the driver reports it honestly if it wins; the adapter maps it to
+-  its own documented posture).
++- Choice encoding: `"act"` is the full assignment object,
++  `{<writable-name>: <value>, ...}` — one value per name published
++  this tick (the empty object when no menu is published: the empty
++  product's one element IS wait). The fire/slots and internal-think
++  encodings died at step 5 (repaired in place at step 7).
+ 
+ > **Step-5 amendment (the actions freeze, 2026-07-16; delegated edit,
+ > actions-author-pack.md §14):** ACTIONS BECOME FEATURES. The wire's
+@@ -127,6 +150,26 @@ the verdict (waste polarity: 1 = approve):
+ > assignments binds at step 7 with M5's repeal; nothing on this wire
+ > prices an action until then.
+ 
++> **Step-7 amendment (the unify freeze, 2026-07-17; delegated edit,
++> unify-author-pack.md Part V): ONE PRICED SURFACE, and the wire's
++> incorrect residue repaired.** M5 is repealed: the namespace law's
++> own rationale covers the action vocabulary; there is no second
++> priced surface. The three conformance sentences (completed
++> namespace, D-b2 disjointness, value pricing) are folded into
++> section 2's bullets above, and sections 2-3's examples are repaired
++> in place to the current contract (the sitting's directive: nothing
++> incorrect stays frozen). The `assign@1` utility form enters as
++> INTERIM with its death date printed — step 8 replaces it when
++> utility moves to world states. SCOPE BRACKET for sections 4-6
++> below: they are the OLD roadmap's record (increments H and D — the
++> governor's encoding, the table@1 derivation, the latent@1 v2
++> surface, with goldens pinned by the RETIRED test-d suite). The
++> re-derived engine's conformance surface is sections 1-3 as amended;
++> the utility surface is re-derived at step 8, with section 6's
++> latent@1 record as its informing precedent. Sections 4-6 are
++> historical from this freeze — kept for the record, binding on
++> nothing current.**
++
+ ## 4. Features (the governor's encoding, HOSTS_PLAN 2.4)
+ 
+ Categorical features are one-hot indicators, one name per value —
+diff --git a/test-writeup/check.sh b/test-writeup/check.sh
+index 5970b55..58345d1 100644
+--- a/test-writeup/check.sh
++++ b/test-writeup/check.sh
+@@ -75,11 +75,22 @@ fi
+ # ---- P: pointer resolution (cited paths exist) ----------------------
+ grep -oE '`[A-Za-z0-9_./-]+`' "$out/audit" | tr -d '`' | sort -u \
+     | grep -E '/|\.' > "$out/paths" || true
++# paths the post-close re-derivation retired (dated at the step-7
++# unify freeze, 2026-07-17, the nothing-incorrect-stays-frozen
++# directive: the write-up describes the 2026-07-07 close; these
++# artifacts died at the re-derivation's demolitions — their citations
++# are HISTORICAL, not dangling):
++retired=" test-ladder/ test/Acceptance.hs "
+ pmiss=0
+ while IFS= read -r p; do
+-    [ -e "$p" ] || { pmiss=$((pmiss+1)); echo "[writeup]   missing: $p"; }
++    if [ ! -e "$p" ]; then
++        case "$retired" in
++            *" $p "*) echo "[writeup]   retired by the re-derivation (dated): $p";;
++            *) pmiss=$((pmiss+1)); echo "[writeup]   missing: $p";;
++        esac
++    fi
+ done < "$out/paths"
+-[ "$pmiss" -eq 0 ] && ok "P0 all $(wc -l < "$out/paths") cited paths exist" \
++[ "$pmiss" -eq 0 ] && ok "P0 all $(wc -l < "$out/paths") cited paths exist or are dated-retired" \
+                    || bad "P0 all cited paths exist" "$pmiss missing"
+ 
+ # ---- N: pin agreement (quoted in WRITEUP.md AND in the frozen source)
+@@ -100,16 +111,29 @@ pin "N4 t2 row price 0.05" '(0.05, 3, "L")'  test/Anchors.hs
+ pin "N5 t2 row price .005" '(0.005, 12, "L")' test/Anchors.hs
+ pin "N6 t2 row price 0"    '(0.0, 12, "L")'  test/Anchors.hs
+ pin "N7 t3 forgetter row"  '(0.8, 369.7929712967316, 396.60210068705993)' test/Anchors.hs
+-pin "N8 STDNAME row"       '| STDNAME | EU, IsEq, VAct, VThink, Bern, VThinkK, VPre | log2 7 |' typed-port-spec.md
++# N8 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17): the
++# spec's STDNAME row was amended at the step-3 sentence freeze (Bern
++# left the stdlib; log2 7 -> log2 6, provenance in-file) — the
++# write-up's quote is the CLOSE-DATE row, historically true. The
++# record row asserts exactly that, and the spec's live row exists.
++if grep -qF -- '| STDNAME | EU, IsEq, VAct, VThink, Bern, VThinkK, VPre | log2 7 |' WRITEUP.md \
++   && grep -qF -- '| STDNAME | EU, IsEq, VAct, VThink, VThinkK, VPre | log2 6 |' typed-port-spec.md; then
++    ok "N8 STDNAME row (RECORD: close-date quote intact; spec amended step 3)"
++else
++    bad "N8 STDNAME row (record form)" "close-date quote or live spec row missing"
++fi
+ pin "N9 UTIL row"          '| UTIL | USay | 0 bits |' typed-port-spec.md
+ 
+ # ---- G: textual gates ------------------------------------------------
++# G1/G2 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17):
++# the close-date corpus had 14 ablation flags and 8 stanzas; the
++# re-derivation legitimately moves both counts at its freezes (every
++# move tagged). The record rows print the live counts beside the
++# as-of state and fail on nothing.
+ nf=$(grep -rhoE 'DROP_[A-Z_]+' src | sort -u | wc -l)
+-[ "$nf" -eq 14 ] && ok "G1 fourteen ablation flags in src/ ($nf)" \
+-                 || bad "G1 fourteen ablation flags in src/" "got $nf"
++ok "G1 ablation flags (RECORD: 14 at the 2026-07-07 close; live: $nf)"
+ ns=$(grep -c '^test-suite ' proplang.cabal)
+-[ "$ns" -eq 8 ] && ok "G2 eight test-suite stanzas ($ns)" \
+-                || bad "G2 eight test-suite stanzas" "got $ns"
++ok "G2 test-suite stanzas (RECORD: 8 at the 2026-07-07 close; live: $ns)"
+ grep -qx 'forget' audit/forbidden.txt \
+     && ok "G3 the forgetting family is gate-4 forbidden" \
+     || bad "G3 the forgetting family is gate-4 forbidden"
+diff --git a/typed-port-spec.md b/typed-port-spec.md
+index 0ae7afe..86c71c2 100644
+--- a/typed-port-spec.md
++++ b/typed-port-spec.md
+@@ -238,16 +238,28 @@ discharging `Expect` by empty case is a parity-phase expedient only.
+ > log2 |visible namespace| against the WORLD's declared namespace, at
+ > both priced sorts (the policy pricer's `Get` term and the model
+ > fragment's guard derivations), and 2^(-|program|) normalizes per
+-> world. Publishing a name therefore raises every name-mention's cost
+-> and re-weights the prior — a richer world makes every sentence about
+-> it more surprising. This is a semantic commitment, not an
+-> implementation detail. The namespace covers Get-mentionable feature
+-> names ONLY (ruling M5, load-bearing): the action vocabulary prices
+-> through slot grids and argmax, and keeping the two priced surfaces
+-> separate is what stops a fourth flow entering through the pricing
+-> door; no later increment may unify them. The frozen worlds are the
+-> singleton case (`featureNames = ["t"]`, 0 bits), whose prices this
+-> law leaves untouched.
++> world. DECLARING a name — at handshake, where membership is fixed —
++> raises every name-mention's cost and re-weights the prior: a richer
++> world makes every sentence about it more surprising. This is a
++> semantic commitment, not an implementation detail. (This sentence
++> read "publishing a name" until the step-7 unify freeze, 2026-07-17;
++> RIDER 2, bound at step 6, made membership immutable at handshake —
++> publication toggles availability and moves NO price, measured
++> bit-exact by E-c2 and pinned by test-unify. Repaired at the step
++> that falsified it.) The namespace covers every declarable name —
++> sensors AND writable names — under this one law (M5 REPEALED at the
++> step-7 unify freeze: the carve-out protected a "fourth flow"
++> asserted four times and derived zero, AGENT_PLAN:49; the original
++> clause here read "no later increment may unify them" and this
++> boundary falsified it — amended at the step that falsifies, the
++> ruled discipline). A writable name is mentioned at log2 |ns| like
++> any name; a value is drawn from its grid at log2 |grid| like any
++> constant, through the one mechanism — already the shipped
++> arithmetic since the step-6 freeze (E-c1: the threshold leaf moves
++> by exactly lg |grid|, nothing else moves), now pinned by
++> test-unify's first assignment-priced rows. The frozen worlds are
++> the singleton case (`featureNames = ["t"]`, 0 bits), whose prices
++> this law leaves untouched.
+ 
+ ## 4. The estimator choice, dissolved                    [COMPILE]+[FROZEN]
+ 
+```
+
+### §23. The rest of the delegated freeze, executed
+
+- **AGENT_PLAN batch**: the step-7 Pilot-split row RE-HOMED (ruling
+  D-c5 recorded in place with the census ground); step 8 gains the
+  split's opening-checklist row AND the assign@1 death row (rider 1);
+  step 9 gains the null-event-with-ElimJ row (iv); the §1b register's
+  fold row gains the second-consumer citation (rider 2). The E-c2
+  reading landed in test-unify's g2 comment (ordered); the Membrane.hs
+  fence comment re-pointed to step 8; the publishing-where-declaring
+  audit ran over the normative corpus (grep transcript in the
+  builder scratchpad) — AGENT_PLAN §6's ground sentence stays
+  historical as ruled, and the spec's instance (§22 item 1) was the
+  one live hit, repaired.
+- **proplang.cabal**: the unify stanza merged (thirteenth suite) AND
+  the `proplang-host` executable stanza with app/Main.hs (the window's
+  exit has a front door; it serves the stub until implementation).
+- **MANIFEST.sha256**: 76 -> 79 (six rows re-hashed: the spec,
+  HOSTS_PLAN, the wire, check.sh, WRITEUP, the cabal; three added:
+  test-unify/Unify.hs, test-unify/stanza.cabal.draft, app/Main.hs).
+  Verified 79/79.
+
+### §24. The pre-tag transcripts, and where this stops
+
+- `cabal test all`: TWELVE suites PASS + `unify` FAIL exactly as
+  sealed (the six driver rows red against the stub).
+- `prefreeze-lint`: **0 FAIL** (79 manifest rows, 29 tags verify, L5
+  flag-faithful against this pack).
+- `boundary-audit`: **M5 = 0** (the sweep's own D-c5 flag triaged as
+  a definition-form miss and made self-evidencing in place), H = 4
+  (the known §6-record fields, now inside the historical bracket).
+- `test-writeup/check.sh`: FULLY GREEN as a dated instrument.
+
+**Where this stops: your key — `unify-freeze-r0` on this commit.**
+Per R-D22 the tag countersigns every delegated edit above, the
+frozen-layer sweep included. After the tag: implementation =
+serveLine's body transcribed from the overlay (scratch step7/proto7),
+thirteen suites green, gates 1-7, the as-built (Part VI), r1.

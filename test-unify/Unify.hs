@@ -175,6 +175,11 @@ wPub = PureWorld
   }
 wAlways = wPub { wMenu = const [("a", aG)] }
 
+-- THE READING (the step-7 sitting, for the record): publication moves
+-- nothing because owned odds move ONLY through observe — ruling 4's
+-- silence clause covering the action side unasked. DECLARING costs
+-- (at handshake, the completed namespace); publishing merely toggles
+-- availability.
 g2Invariance :: TestTree
 g2Invariance = testGroup "g2 RIDER 2: owned odds invariant under mid-episode publication"
   [ testCase "the publication tick (silent) moves NOTHING (byte-exact)" $ do
