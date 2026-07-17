@@ -418,3 +418,75 @@ e37c0ba); §10's D-e7 filled from them; then the register goes to you
 with Part I-IV complete. After the rulings: the oracle
 (test-outcome/, replacement-surface seal), the freeze, the
 demolition-and-replumb, the as-built.
+
+---
+
+## Part V — the race, executed (P0/N1/N3 against the pre-committed bars)
+
+### §12. The transcript, verbatim
+
+```
+population over ns {t,pending,a}: 1313 sentences
+P0 learned P(y=1|pending=1) = 0.805  (truth 0.9)
+P0 learned P(y=1|pending=0) = 0.101  (truth 0.1)
+P0 MAP mentions pending: True
+ORACLE       mean utility 136.1   mean acts/run 210.0
+MYOPIC       mean utility 36.4   mean acts/run 0.0
+ROLLFORWARD  mean utility 136.1   mean acts/run 210.0
+N1: myopic refusal rate 1.000 (bar >= 0.95); regret bar met on 100/100 (bar >= 95)
+N3: rollforward regret <= 5% of oracle on 100/100 (bar >= 95)
+price beside capability: prodExpr 19->20 = 0.0740 bits per Expr node
+```
+
+### §13. The readings (each against its pre-committed bar, no eyeball)
+
+- **P0 HOLDS** — the fuse is visible to learning: the MAP mentions
+  `pending`, and both learned odds are inside the ±0.10 bars —
+  honestly noted, P(y|pending=1) = 0.805 sits 0.095 from truth,
+  five thousandths inside its bar (ten training episodes; the odds
+  keep converging with more, but the bar was committed and it is
+  met as committed).
+- **N1 HOLDS AT THE MAXIMUM** — the myopia is demonstrated
+  absolutely: the shipped rule refuses EVERY opportunity tick
+  (refusal rate 1.000 against the 0.95 bar; the regret bar met
+  100/100). This is structural, not statistical: acting costs 0.2
+  NOW, the current tick's odds do not depend on the current act, so
+  one-step E[dU] < 0 at every opportunity — RIDER 1's sentence
+  ("visible to learning and invisible to choice") holds with mean
+  regret ~100 utility per run (36.4 vs the oracle's 136.1).
+- **N2 was discharged at §9** — the composition attempt failed at
+  the type level, in the compiler's words.
+- **N3 HOLDS AT THE MAXIMUM** — the granted-transition rollforward
+  matches the oracle EXACTLY (136.1, every opportunity taken,
+  100/100): the LEARNED odds suffice; only the transition's
+  expressibility is missing. The capability is worth ~100 utility
+  per run on this world, and its price stands beside it: prodExpr
+  19 -> 20 = 0.0740 bits on EVERY Expr node in every population
+  (plus the un-designed fragment-side cost: the agent must also
+  LEARN the transition the prototype was granted — a second,
+  model-side production this falsifier deliberately did not scope).
+- **N4 — THE RULING IS YOURS (D-e7):** the two lawful outcomes as
+  pre-stated: (i) the kernel-composition production lands WITH its
+  deletion proof and its price, under the gate whose clause (a) §9
+  discharged — noting the model-side gap above makes this a
+  TWO-production question, which the sitting should see plainly; or
+  (ii) THE MYOPIA IS PRINTED AS THE SCOPE LIMIT with these numbers
+  on its face (refusal 1.000, regret ~100/run, the capability
+  demonstrated and priced) — the depth question then waits for the
+  boundary that owns reflexive cost (step 10) or a future roadmap.
+  The builder's recommendation, offered not presumed: (ii) — the
+  step-8 charter is utility's ONTOLOGY, not the horizon; landing an
+  alphabet-moving production plus an unscoped fragment production
+  inside the heaviest demolition step compounds two waves; the
+  scope line with the falsifier's numbers is exactly what the plan's
+  own RULED text ("print the myopia as a scope limit", §9 OPEN 8)
+  pre-authorized, and the production's case file (§9 + §12) is
+  banked for whichever boundary re-opens it.
+
+### §14. Where this stops: the sitting
+
+Parts I-V complete: the census, E-d1, the criteria, the composition
+attempt, the race. The register (§10) with D-e7 now framed goes to
+you. After the rulings: the oracle (test-outcome/,
+replacement-surface seal), the frozen-layer inventory riding the
+freeze, outcome-freeze-r0, the demolition-and-replumb, the as-built.
