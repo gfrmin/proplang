@@ -317,3 +317,75 @@ E = 40 / T = 12 / lag 5 / cost 0.2 / odds 0.9/0.1 / N = 100 seeds
 are design arithmetic, not tuning; every threshold above is
 committed at this Part-III commit BEFORE any world runs (the 6b
 discipline, b721bb2's precedent).
+
+### §9. The composition attempt, EXECUTED (the gate's clause (a); the compiler is the witness)
+
+The attempt ran as two compile witnesses against the shipped grammar
+(scratch step8/CompAttemptA.hs / CompAttemptB.hs):
+
+**PART A — what IS sayable (compiles clean):**
+1. The composition SHAPE: `Push (Push (Push (Push (Push b k) k) k) k) k`
+   type-checks — five pushes nest; depth-unrolling was never the
+   obstacle (proof (i) stands).
+2. THE HOLE IS CONSTRUCTIBLE: `Code fsp fsp body ::
+   Expr env (Maybe (K Features Features))` over a DECLARED
+   `Space Features` — the K-sort census expectation in Part I was
+   WRONG in an instructive way: the missing production is not the
+   kernel type (Code's spaces are polymorphic) but the body's
+   ELIMINATORS.
+3. The MAXIMAL expressible body: `If (Call IsEq (Var Z :* Var (S Z)
+   :* ANil)) ...` — stay-or-not. IsEq (Eq a => StdName '[a, a] Bool)
+   is the grammar's ONLY Features eliminator; no Features constant
+   exists (grids are Double); no projection exists.
+
+**PART B — the transition is INEXPRESSIBLE (the errors verbatim):**
+
+```
+Loaded package environment from /home/g/git/proplang/dist-newstyle/tmp/environment.-3155511/.ghc.environment.x86_64-linux-9.10.3
+/tmp/claude-1000/-home-g-git-proplang/b4c9ade2-7df8-4372-8bf0-674553d6e068/scratchpad/step8/CompAttemptB.hs:28:16: error: [GHC-83865]
+    • Couldn't match type ‘[(PropLang.Syntax.Name, Double)]’
+                     with ‘Double’
+      Expected: Idx (Features : Features : env) Double
+        Actual: Idx (Features : Features : env) Features
+    • In the first argument of ‘Var’, namely ‘Z’
+      In the first argument of ‘Gt’, namely ‘(Var Z)’
+      In the first argument of ‘If’, namely ‘(Gt (Var Z) (gk 0.5))’
+   |
+28 |   (If (Gt (Var Z) (gk 0.5)) (gk 0.9) (gk 0.1))
+   |                ^
+
+/tmp/claude-1000/-home-g-git-proplang/b4c9ade2-7df8-4372-8bf0-674553d6e068/scratchpad/step8/CompAttemptB.hs:35:12: error: [GHC-83865]
+    • Couldn't match expected type: Expr (t0 : env10) t0
+                                    -> Expr (Features : Features : env) Double
+                  with actual type: Expr env0 Double
+    • The function ‘Get’ is applied to two visible arguments,
+        but its type ‘PropLang.Syntax.Name -> Expr env Double’ has only one
+      In the first argument of ‘Gt’, namely ‘(Get "pending" (Var Z))’
+      In the first argument of ‘If’, namely
+        ‘(Gt (Get "pending" (Var Z)) (gk 0.5))’
+    • Relevant bindings include
+        attempt2 :: Expr env (Maybe (K Features Features))
+          (bound at /tmp/claude-1000/-home-g-git-proplang/b4c9ade2-7df8-4372-8bf0-674553d6e068/scratchpad/step8/CompAttemptB.hs:34:1)
+   |
+35 |   (If (Gt (Get "pending" (Var Z)) (gk 0.5)) (gk 0.9) (gk 0.1))
+   |            ^^^^^^^^^^^^^^^^^^^^^
+
+```
+
+The fuse dynamics need the body to INSPECT the bound state — read a
+named component or threshold it — and both attempts fail at the type
+level exactly where the doctrine said the wall is: `Gt` consumes
+Double, `Get` reads the environment's features and takes no
+Features-typed value. Only constant and identity-dispatch kernels
+inhabit `K Features Features`. **The demonstrated failure the
+primitivity gate demands is on the record, in the compiler's own
+words** — the kernel-composition production's entry question is now
+OPEN WITH ITS LICENSE (clause (a) discharged), and the ruling still
+sees the price beside it (prodExpr 19 -> 20 = 0.0740 bits per Expr
+node) before deciding against the scope-line default.
+
+**A finding for step 9's IsEq row, banked:** the executed attempt is
+ALSO the strongest evidence yet on IsEq's primitivity — it is the
+ONLY eliminator the grammar has for option/feature values; delete it
+and NO predicate over Features is sayable at all (the step-9
+composition attempt inherits this transcript).
