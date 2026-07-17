@@ -209,11 +209,28 @@ data Expr env t where
   -- EXPR in its own two-variable scope. Env convention as ruled:
   -- Var Z is the option code, Var (S Z) the latent parameter. The
   -- subprogram is CLOSED — evaluation discards the outer environment —
-  -- so utilities are featureless and clockless as a definition-level
-  -- fact ('Get' inside a utility is dormant, per-node-priced syntax).
-  -- Dies with DROP_USAY: delete the door and no sentence can hold a
-  -- utility; the worlds, the verbs, and the opaque world-data face
-  -- ('mkUtil') all survive.
+  -- SINCE THE STEP-8 FREEZE (outcome-freeze-r0/r0a): THE PAYLOAD IS
+  -- EVALUATED AT THE TICK'S FEATURES through the one bridge
+  -- ('PropLang.Eval.uAt') — 'Get' inside a utility READS THE WORLD,
+  -- because features ARE the consequences (A1). This comment read,
+  -- until step 8: "The subprogram is CLOSED — evaluation discards the
+  -- outer environment — so utilities are featureless and clockless as
+  -- a definition-level fact ('Get' inside a utility is dormant,
+  -- per-node-priced syntax)." E-d1 measured that "definition-level
+  -- fact" to be ONE EMPTY ENVIRONMENT ARGUMENT; the closed face
+  -- survives as the empty-environment case, @uAt [] u a y@, which
+  -- test-cirl's doctrine row asserts beside the repeal's face.
+  -- The env convention is the RESIDUE scope (named at the step-8
+  -- sitting): Var Z the option code, Var (S Z) the outcome — the
+  -- not-yet-featurized residue of Savage's (act, outcome) pair, kept
+  -- for continuity through the demolition and dying knowingly at a
+  -- named boundary (the A1-terminal form: Get-only over the completed
+  -- feature row, reachable when worlds publish outcomes as features).
+  -- Dies with DROP_USAY: delete the door and NO UTILITY EXISTS AT ALL
+  -- — the worlds and the verbs survive, but the old escape (the
+  -- opaque world-data face, 'mkUtil') is GONE with the wrapper, so
+  -- this door is now the only one. The deletion proof is strictly
+  -- stronger than it was at the CIRL increment.
   USay :: Expr '[Double, Double] Double -> Expr env USent
 #endif
 #ifndef DROP_CODE

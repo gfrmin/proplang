@@ -929,3 +929,88 @@ clauses like this one, and this clause was bought at the usual price.
 (81/81 verified), **GATES 1-7 ALL PASS**, prefreeze-lint 0 FAIL,
 fourteen suites green, `Util` gone. The corpus is whole and the batch
 is complete; the key covers it.
+
+---
+
+## Part XI — the as-built report (implementation under outcome-freeze-r0/r0a)
+
+### §29. What landed: the calculator's last organ, removed
+
+`Util a y = Util (a -> y -> Double)` — the host-function wrapper that
+let utility sit on (act, outcome) pairs, the type that carried the
+calculator for 86 commits and that no one ever asked what it was a
+function of — **is deleted from the language.** In its place, the
+program that was always inside `USay`:
+
+- `newtype USent = USent (Expr '[Double, Double] Double)` with its
+  ruled derivation line and THE RESIDUE NOTE on its face;
+- `uAt :: Features -> USent -> Double -> Double -> Double` — the one
+  bridge, `evalx p (mkEnv fs (a :. y :. VNil))`: E-d1's measured
+  one-site change, and the whole of "utilities are featureless and
+  clockless" repealed by passing an argument that was already there;
+- `EU :: Real y => StdName '[B y, USent, Features, Double] Double` —
+  carrier polymorphism preserved (the build finding), evaluation
+  features as data through the args, `applyStd` still pure;
+- `said@1` on the wire: the principal's declaration, parsed
+  fail-closed, a point-mass prior over the program shape.
+
+**The alphabet did not move**: `prodTable = ProdTable 19 2 1 2 6 1`
+— unchanged, because nothing entered and nothing left the priced
+grammar. A type died; the language is the same size. That is what the
+sitting meant by "the repeal is a description, one layer deeper".
+
+**Two src texts repaired at implementation** (the inventory's item 2,
+plus one the transcription surfaced): USay's doctrine comment (the
+falsified sentence quoted inside its own repair, the measurement
+cited, the residue named) — AND its DELETION PROOF, which claimed
+"the opaque world-data face ('mkUtil') survives". It does not: with
+the wrapper gone, **deleting USay now deletes utility ITSELF, from
+inside the language and from any host.** The proof is strictly
+stronger than it was at the CIRL increment, and the ablation confirms
+it (`PASS [usay] deleted; error names USay`).
+
+### §30. The gate transcript
+
+- **`cabal test all`: FOURTEEN SUITES GREEN** — outcome 12/12,
+  sentence 27/27 (the acceptance lineage, every golden unmoved),
+  cirl 17/17, membrane 19/19, prepost 15/15, hygiene 15/15,
+  unify 12/12, code 45/45, actions 10/10, stream 10/10, plus
+  properties/pricing/optlaw/expfam.
+- **GATES 1-7: ALL PASS.**
+- **prefreeze-lint 0 FAIL**; manifest **81/81**; boundary-audit M5=0.
+- **The wire, live** (`said@1` to the real binary): the hello answered
+  with the engine's own 1529 models; `{"act": {"a": 0.5}, ...}`; the
+  fold's loss. A utility crossed the membrane AS A SENTENCE.
+
+### §31. What step 8 leaves standing
+
+The sentinel and the `price` parameter now have **nowhere left to
+write them** (AGENT_PLAN §7's own closing line, discharged). Standing
+debts as they leave: HEAD width-2; `Chan`'s debt RE-DATED to step 9
+(D-e6); the VOI verbs and FN/UTIL sorts die at 9; the Pilot split
+lands at 9's re-opens (it was re-homed here and this step's wave did
+not need it — the arms never touched `Util`'s death); **the horizon
+at step 10, named heir, case file banked** (§9's compile witnesses,
+§12's numbers, g3's declared-limitation pin waiting to be flipped
+deliberately).
+
+### §32. The reviewer block
+
+```
+export PATH="$HOME/.ghcup/bin:$PATH" LANG=C.UTF-8
+git tag -v outcome-freeze-r0a           # the countersignature (58e895f)
+sha256sum -c MANIFEST.sha256            # 81/81
+cabal test all                          # fourteen suites green
+bash audit/run-gates.sh                 # gates 1-7 PASS
+grep -rn 'data Util\|mkUtil' src/       # the calculator's organ: gone
+sh test-cirl/ablation.sh usay           # delete the door, delete utility itself
+```
+
+Step 8 closes at your r1 read. Step 9 is the demolition's other half:
+`Expect`-binder, `SawE`, `ElimJ`; the VOI primitives and the FN/UTIL
+sorts deleted; the deletion audit re-run against the smaller alphabet
+with a proof for EVERY terminal; the type-derivation audit's
+retrospective pass; and its checklist already carries IsEq's row (with
+8b's transcript banked as its strongest evidence), the EU law-grade
+suite, the GENERIC/SELF-LICENSED world column, the null-event ruling
+beside ElimJ's, Chan's re-dated debt, and the Pilot split.
