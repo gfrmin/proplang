@@ -66,7 +66,7 @@ import PropLang.Belief (LogProb (LogProb), entropyBits, is, prob)
 import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
                            predictive)
 import PropLang.Syntax (Args (..), B, Expr (..), Idx (..),
-                        StdName (..), Util)
+                        StdName (..), USent)
 #endif
 
 -- | The writable names and their grids — a SYNONYM, not a type
@@ -125,15 +125,16 @@ menuAssignments menu = case go menu of
 data Pilot
   = PilotIdle
   | PilotThreshold Name Double Features Features
-  | PilotEU (Util Features Obs)
+  | PilotEU USent
 
 -- | Expected-utility action selection AS A PROGRAM — unchanged from
 -- the shipped membrane; the option type simply instantiates at
 -- 'Features' (assignments) where 'Choice' stood.
-argmaxEU :: Expr '[NonEmpty o, B y, Util o y] o
+argmaxEU :: Expr '[NonEmpty Double, B Obs, USent, Features] Double
 argmaxEU =
   Argmax (Var Z)
-    (Call EU (Var (S (S Z)) :* Var (S (S (S Z))) :* Var Z :* ANil))
+    (Call EU (Var (S (S Z)) :* Var (S (S (S Z))) :* Var (S (S (S (S Z))))
+              :* Var Z :* ANil))
 
 -- | A pure world behind the membrane: what it publishes, what its one
 -- explained sensor reads (Nothing = a silent tick), which names it
@@ -232,8 +233,13 @@ interpretPilot ag p feats _pr opts = case p of
     -- direction: finish the language first — whether this fold is a
     -- fast path or the general route itself is undetermined until
     -- reflexivity decides what the language can say).
-    let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
-                       (mkEnv [] (predictive (feats ++ a) ag :. u :. a :. VNil))
+    let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
+                                 :* Var (S (S (S Z))) :* ANil))
+                       (mkEnv [] (predictive (feats ++ a) ag :. u
+                                  :. (feats ++ a) :. (0 :: Double) :. VNil))
+        -- code 0: assignment worlds route the act through features
+        -- (the step-8 doctrine: the act is among them since step 6);
+        -- the residue code var serves code-shaped options
         c0 :| cs = opts
         go best _bv [] = best
         go best bv (c : rest) =

@@ -51,7 +51,7 @@ module PropLang.Syntax
   , Stats(..)
   , Args(..)
   , StdName(..)
-  , Util, mkUtil, applyUtil
+  , USent (..)
 #ifndef DROP_VPRE
   , Chan, mkChan, applyChan
 #endif
@@ -214,7 +214,7 @@ data Expr env t where
   -- Dies with DROP_USAY: delete the door and no sentence can hold a
   -- utility; the worlds, the verbs, and the opaque world-data face
   -- ('mkUtil') all survive.
-  USay :: Expr '[Double, Double] Double -> Expr env (Util Double Double)
+  USay :: Expr '[Double, Double] Double -> Expr env USent
 #endif
 #ifndef DROP_CODE
   -- THE likelihood production (AGENT_PLAN §2a, boundary agent-boundary-r1).
@@ -335,7 +335,7 @@ data Fn a where
   FnInd  :: Event a -> Fn a
 #endif
 #ifndef DROP_FNUTIL
-  FnUtil :: Util o a -> o -> Fn a
+  FnUtil :: Real a => USent -> Double -> Fn a
 #endif
 
 -- | The ONLY constructor of a priced-constant sentence: 'Nothing' off
@@ -372,10 +372,10 @@ infixr 5 :*
 -- Type derivation (§8c audit, step 6, pack §28): the stdlib alphabet:
 -- derived names with prices (brief §9).
 data StdName args t where
-  EU     :: StdName '[B y, Util a y, a] Double
+  EU     :: Real y => StdName '[B y, USent, [(Name, Double)], Double] Double
   IsEq   :: Eq a => StdName '[a, a] Bool
-  VAct   :: StdName '[B h, Util a h, NonEmpty a] Double
-  VThink :: Eq y => StdName '[B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
+  VAct   :: StdName '[B Double, USent, NonEmpty Double] Double
+  VThink :: Eq y => StdName '[B Double, K Double y, [y], USent, NonEmpty Double, Int, Double] Double
 #ifndef DROP_LADDER
   -- the fidelity ladder's rung valuation (increment 4, LADDER_PLAN L1
   -- reading c / L3 as ruled): a REPORTED alphabet change, STDNAME
@@ -387,7 +387,7 @@ data StdName args t where
   -- tick's price - so depth 1 is exactly @VThink@ and depth k
   -- telescopes to the k-batch preposterior of acting minus k*price.
   -- Dies with the ladder (DROP_LADDER), never with the myopic base.
-  VThinkK :: Eq y => StdName '[Int, B h, K h y, [y], Util a h, NonEmpty a, Int, Double] Double
+  VThinkK :: Eq y => StdName '[Int, B Double, K Double y, [y], USent, NonEmpty Double, Int, Double] Double
 #endif
 #ifndef DROP_VPRE
   -- the action-dependent preposterior (increment 5, PREPOSTERIOR_PLAN
@@ -401,7 +401,7 @@ data StdName args t where
   -- frozen VThink chain is the mute-singleton degenerate case (the
   -- oracle pins == at the verb layer). Dies with DROP_VPRE; the
   -- myopic base and the fidelity ladder survive.
-  VPre :: Eq y => StdName '[Int, B h, Chan d h y, [y], Util d h, NonEmpty d, Util a h, NonEmpty a, Int, Double] Double
+  VPre :: Eq y => StdName '[Int, B Double, Chan Double Double y, [y], USent, NonEmpty Double, USent, NonEmpty Double, Int, Double] Double
 #endif
   -- ('Bern' LEFT the stdlib at the step-3 sentence freeze: Bernoulli
   -- emission is said as a CODE of the declared production table, and
@@ -410,22 +410,20 @@ data StdName args t where
   -- proved possible became the deletion that happened —
   -- discharged-permanent.)
 
--- | A utility as an opaque value-layer object (precedent: 'expect',
--- 'kernel', 'event' all accept host functions at the value layer;
--- likelihoods, by contrast, may only enter as 'Evidence'). Parity-scoped:
--- when utility becomes latent (CIRL, post-parity), Util must become
--- priced syntax.
--- Type derivation (§8c audit, step 6, pack §28): DERIVE-AS-DEBT — the §8c
--- archetype: utility on (act,obs) pairs; DIES AT STEP 8 (utility-on-
--- outcomes); this line IS the debt note (adopted at the step-6 sitting,
--- death date attached).
-data Util a y = Util (a -> y -> Double)
-
-mkUtil :: (a -> y -> Double) -> Util a y
-mkUtil = Util
-
-applyUtil :: Util a y -> a -> y -> Double
-applyUtil (Util f) = f
+-- | A utility as a PRICED SENTENCE (step 8: `Util a y` — the
+-- host-function wrapper that carried the calculator — dies; the
+-- program that was always inside USay is the surface now).
+--
+-- Type derivation (§8c audit, step 8): DERIVES — utility is a priced
+-- sentence (brief §9, CIRL; the one grammar, the one price source),
+-- evaluated at the tick's features (A1: features ARE the world state
+-- as rendered). RESIDUE NOTE (the step-8 sitting): the two-variable
+-- scope is the not-yet-featurized residue of Savage's (act, outcome)
+-- pair — retained for continuity through the demolition; the
+-- A1-terminal form is Get-only over the completed feature row
+-- (reachable when worlds publish outcomes as features); the residue
+-- dies knowingly at a named boundary, never as a lingering default.
+newtype USent = USent (Expr '[Double, Double] Double)
 
 #ifndef DROP_VPRE
 -- | An action-indexed evidence channel (PREPOSTERIOR_PLAN P3 as

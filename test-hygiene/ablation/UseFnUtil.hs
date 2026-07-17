@@ -10,5 +10,7 @@ module UseFnUtil (useFnUtil) where
 
 import PropLang.Syntax
 
-useFnUtil :: Util o a -> o -> Fn a
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): the utility
+-- payload is a priced SENTENCE (USent) and the option a residue code
+useFnUtil :: Real a => USent -> Double -> Fn a
 useFnUtil = FnUtil

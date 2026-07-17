@@ -34,28 +34,37 @@ import PropLang.Enumerate (Obs, emit, obsCarrier, thetaSpace)
 import PropLang.Eval
 import PropLang.Syntax
 
-data Dir = DirL | DirR
-  deriving (Eq, Show)
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): the enums become
+-- residue CODES and the utilities priced SENTENCES (the same
+-- extension at the codes). The IsEq witness at S^2 Z now compares
+-- Doubles — the grammar's only Features/option eliminator, and this
+-- fixture is one of its live consumers (banked for step 9's IsEq row).
+gkQ :: Double -> Expr env Double
+gkQ v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "SayableP fixture: singleton grid index 0 must construct"
 
-stakes :: Util Dir Double
-stakes = mkUtil $ \a th ->
-  let v = 2 * th - 1 in case a of DirR -> v; DirL -> negate v
+stakes :: USent
+stakes = USent
+  (If (Gt (Var Z) (gkQ 0.5))
+      (Sub (Mul (gkQ 2) (Var (S Z))) (gkQ 1))
+      (Sub (gkQ 1) (Mul (gkQ 2) (Var (S Z)))))
 
-dirs :: NonEmpty Dir
-dirs = DirL :| [DirR]
+dirs :: NonEmpty Double
+dirs = 0 :| [1]
 
-data D1 = Safe | Probe
-  deriving (Eq, Show)
+safeD, probeD :: Double
+safeD = 0; probeD = 1
 
 noise :: Kernel Double Obs
 noise = kernel thetaSpace (carrierSpace obsCarrier)
                (\_ -> bernFast obsCarrier 0.5)
 
-immW :: Double -> Util D1 Double
-immW s = mkUtil $ \d _ -> case d of Safe -> s; Probe -> 0
+immW :: Double -> USent
+immW s = USent (If (Gt (Var Z) (gkQ 0.5)) (gkQ 0) (gkQ s))
 
-chanW, chanC :: Chan D1 Double Obs
-chanW = mkChan $ \d -> case d of Safe -> noise; Probe -> emit
+chanW, chanC :: Chan Double Double Obs
+chanW = mkChan $ \d -> if d > 0.5 then emit else noise
 chanC = mkChan (const noise)
 
 condBatch :: Kernel Double Obs -> Belief Double -> [Obs] -> Belief Double
@@ -72,20 +81,21 @@ b0 = condBatch emit (uniform thetaSpace) [1]
 -- environment (Var Z — the frozen policyThink shape); the value body
 -- is in the extended environment, after Argmax binds the decision:
 --   S Z    menu     :: NonEmpty D1
---   S^2 Z  Safe     :: D1          (IsEq witness)
+--   S^2 Z  safeD    :: Double      (IsEq witness)
 --   S^3 Z  depth    :: Int
 --   S^4 Z  belief   :: B Double
---   S^5 Z  channel  :: Chan D1 Double Obs
+--   S^5 Z  channel  :: Chan Double Double Obs
 --   S^6 Z  outcomes :: [Obs]
---   S^7 Z  imm      :: Util D1 Double
---   S^8 Z  dsSafe   :: NonEmpty D1  (singleton Safe)
---   S^9 Z  dsProbe  :: NonEmpty D1  (singleton Probe)
---   S^10 Z stakes   :: Util Dir Double
---   S^11 Z acts     :: NonEmpty Dir
+--   S^7 Z  imm      :: USent
+--   S^8 Z  dsSafe   :: NonEmpty Double  (singleton safeD)
+--   S^9 Z  dsProbe  :: NonEmpty Double  (singleton probeD)
+--   S^10 Z stakes   :: USent
+--   S^11 Z acts     :: NonEmpty Double
 --   S^12 Z n        :: Int
-policyPre :: Expr '[ NonEmpty D1, D1, Int, B Double, Chan D1 Double Obs
-                   , [Obs], Util D1 Double, NonEmpty D1, NonEmpty D1
-                   , Util Dir Double, NonEmpty Dir, Int ] D1
+policyPre :: Expr '[ NonEmpty Double, Double, Int, B Double
+                   , Chan Double Double Obs, [Obs], USent
+                   , NonEmpty Double, NonEmpty Double, USent
+                   , NonEmpty Double, Int ] Double
 policyPre =
   Argmax (Var Z)
     (If (Call IsEq (Var Z :* Var (S (S Z)) :* ANil))
@@ -105,12 +115,12 @@ policyPre =
                         :* vU :* vActs :* vN :* Get "price" :* ANil)
 
 -- the sentence-driven decision for a world and a safe-pay
-decideS :: Chan D1 Double Obs -> Double -> D1
+decideS :: Chan Double Double Obs -> Double -> Double
 decideS ch s =
   evalx policyPre
     (mkEnv [("price", 0.01)]
-       ((Safe :| [Probe]) :. Safe :. (1 :: Int) :. b0 :. ch
-         :. ([0, 1] :: [Obs]) :. immW s :. (Safe :| []) :. (Probe :| [])
+       ((safeD :| [probeD]) :. safeD :. (1 :: Int) :. b0 :. ch
+         :. ([0, 1] :: [Obs]) :. immW s :. (safeD :| []) :. (probeD :| [])
          :. stakes :. dirs :. (3 :: Int) :. VNil))
 
 lg :: Double -> Double
@@ -120,9 +130,9 @@ unBits :: Bits -> Double
 unBits (Bits x) = x
 
 -- a canonical ten-Var VPre sentence for the price pin
-priceSentence :: Expr '[ Int, B Double, Chan D1 Double Obs, [Obs]
-                       , Util D1 Double, NonEmpty D1, Util Dir Double
-                       , NonEmpty Dir, Int, Double ] Double
+priceSentence :: Expr '[ Int, B Double, Chan Double Double Obs, [Obs]
+                       , USent, NonEmpty Double, USent
+                       , NonEmpty Double, Int, Double ] Double
 priceSentence =
   Call VPre (Var Z :* Var (S Z) :* Var (S (S Z)) :* Var (S (S (S Z)))
            :* Var (S (S (S (S Z)))) :* Var (S (S (S (S (S Z)))))
@@ -133,7 +143,7 @@ priceSentence =
            :* ANil)
 
 -- the verb through the evaluator, mirroring the oracle's val1
-verbVal :: Chan D1 Double Obs -> Double -> D1 -> Double
+verbVal :: Chan Double Double Obs -> Double -> Double -> Double
 verbVal ch s d =
   evalx (Call VPre (Var Z :* Var (S Z) :* Var (S (S Z))
                   :* Var (S (S (S Z))) :* Var (S (S (S (S Z))))
@@ -148,8 +158,8 @@ verbVal ch s d =
                     :. (0.01 :: Double) :. VNil))
 
 -- the degenerate verb against the frozen VThinkK verb, both sentences
-muteU :: Util () Double
-muteU = mkUtil (\_ _ -> 0)
+muteU :: USent
+muteU = USent (gkQ 0)
 
 degenVerb :: Int -> Double -> Double
 degenVerb d p =
@@ -162,7 +172,7 @@ degenVerb d p =
                   :* Var (S (S (S (S (S (S (S (S (S Z)))))))))
                   :* ANil))
         (mkEnv [] ((d :: Int) :. b0 :. mkChan (const emit)
-                    :. ([0, 1] :: [Obs]) :. muteU :. (() :| [])
+                    :. ([0, 1] :: [Obs]) :. muteU :. (0 :| [])
                     :. stakes :. dirs :. (3 :: Int) :. (p :: Double)
                     :. VNil))
 
@@ -194,13 +204,13 @@ main = do
                        stakes dirs 3 0.01)
             [ (ch, s, d) | (ch, s) <- [(chanW, 0.05), (chanW, 0.4)
                                       , (chanC, 0.05)]
-                         , d <- [Safe, Probe] ]
+                         , d <- [safeD, probeD] ]
     , check "identity: the degenerate verb == the frozen VThinkK verb" $
         all (\ (d, p) -> degenVerb d p == frozenVerb d p)
             [ (d, p) | d <- [1, 2, 3], p <- [0.05, 0] ]
     , check "doctrine: the sentence-driven decisions reproduce the pins" $
-        decideS chanW 0.05 == Probe
-          && decideS chanW 0.4 == Safe
-          && decideS chanC 0.05 == Safe
+        decideS chanW 0.05 == probeD
+          && decideS chanW 0.4 == safeD
+          && decideS chanC 0.05 == safeD
     ]
   if and rs then putStrLn "sayable: all checks pass" else exitFailure

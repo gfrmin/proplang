@@ -831,3 +831,68 @@ Per R-D22 it countersigns every delegated edit above. After the tag:
 implementation transcribes the overlay into src (six modules; the
 `Util` type and its wrapper deleted; the §8c derivation lines landing
 with it), fourteen suites green, gates 1-7, the as-built.
+
+---
+
+## Part X — STOP AND REPORT: the freeze's batch was INCOMPLETE (the gates caught it)
+
+### §26. What happened, precisely
+
+`outcome-freeze-r0` (2bf2a9e, your key, verified) sealed a batch that
+**could not go green**. Implementation transcribed the overlay into
+src; `cabal test all` then failed FOUR suites, and the causes were not
+overlay drift — they were **five frozen files the wave census owed and
+did not carry**:
+
+| file | why it dies | how the census missed it |
+|---|---|---|
+| test-cirl/ablation/UseUSay.hs | utters `Expr env (Util Double Double)` | the census's raw sweep LISTED it; my §3 table carried only the seven SUITES and dropped the fixtures |
+| test-hygiene/ablation/UseFnUtil.hs | `Util o a -> o -> Fn a` | same |
+| test-prepost/ablation/UseVPre.hs | two `mkUtil` calls | same |
+| test-prepost/fixture/SayableP.hs | `stakes`/`immW`/`muteU` + the D1/Dir enums | same |
+| **test-unify/Unify.hs** | **`assign@1`'s death (D-e5)** — it constructs no `Util` at all | **the census missed it ENTIRELY: it looked for Util constructors, and this suite dies by a RULING's consequence on the wire** |
+
+**The gates caught it** — gate 6 (the manifest) and gate 5 (the
+suites), doing exactly their job on the builder's own work, after the
+key. The first four are a CENSUS-TRANSCRIPTION defect (the sweep found
+them; the pack's table lost them between the sweep and the batch). The
+fifth is a CENSUS-SHAPE defect, and the more instructive one: **a
+wave's members are not only the type's constructors — they are
+everything a RULING falsifies.** D-e5 killed `assign@1` on the wire,
+and the suite that pins the wire died with it. A census that greps for
+the dying type cannot see that.
+
+### §27. The state, and what the key must now cover
+
+The five files are RE-DERIVED (same discipline as §22: the
+deliverable's lineage carried, the pins unmoved; test-unify's g4 hello
+now says its utility as a SENTENCE — `["if", [">", ["get", "a"],
+["c", 1]], ["-", ["*", ["c", 2], ["var", 1]], ["c", 1]], ["c", 0]]` —
+which is the step-8 doctrine in one line of JSON, and its subject
+(value pricing, RIDER 2, the Dutch book, the driver) is untouched).
+With them:
+
+- **ALL FOURTEEN SUITES GREEN** (code 45, cirl 17, and the twelve
+  others — verified individually; `Util` is GONE from src: the three
+  residual matches are the deletion-proof fixture's own prose).
+- Gates 1-5 and 7 PASS; **gate 6 FAILS BY CONSTRUCTION** — the five
+  re-derived rows are outside the manifest your key signed.
+- The wire speaks `said@1` live (the binary, hello -> 1529 models;
+  the act; the fold's loss).
+
+**This is the R-D22 re-tag obligation firing on a real miss, not a
+formality: the increment does not close until your own signed tag
+covers the oracle AS AMENDED.** The batch is now complete; the
+manifest re-hash and your re-tag are the close. I have NOT re-hashed
+the five rows into MANIFEST.sha256 in this commit — the manifest is
+the instrument your key signs, and papering the gate green before you
+have seen the miss is exactly the move the protocol exists to refuse.
+Your instruction decides: re-hash and re-tag (`outcome-freeze-r0a`, or
+r0 moved), or a different disposition for the five.
+
+**The lesson, offered for the register:** THE WAVE CENSUS MUST SWEEP
+RULINGS, NOT ONLY TYPES. A replacement-surface step's census asks "what
+does the dying type break?" — and must also ask "what does each RULING
+falsify?" (D-e5 killed a wire form; the suite pinning that form was
+invisible to a type-shaped sweep). The sibling of the sweep-universe
+line, in the wave's own vocabulary.

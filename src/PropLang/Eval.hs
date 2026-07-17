@@ -17,6 +17,9 @@ module PropLang.Eval
   , Env
   , mkEnv
   , evalx
+  -- THE STEP-8 BRIDGE (the one-site change; unify... outcome-freeze):
+  -- a priced utility evaluated at the tick's features
+  , uAt
 #ifndef DROP_EXPFAM
   , bernFast
 #endif
@@ -49,7 +52,7 @@ import PropLang.Belief (Bits (Bits), fromBits, kernel)
 import PropLang.Belief (spacePoints)
 #endif
 import PropLang.Syntax (Args (..), Expr (..), Fn (..), Idx (..), Name,
-                        StdName (..), Util, applyUtil, mkUtil)
+                        StdName (..), USent (..), mkC, mkGrid)
 #ifndef DROP_EXPFAM
 import PropLang.Syntax (Carrier, Stats (..), carrierSpace)
 #endif
@@ -105,7 +108,8 @@ evalx expr env@(Env feats vals) = case expr of
     FnInd e    -> prob (evalx b env) e
 #endif
 #ifndef DROP_FNUTIL
-    FnUtil u o -> expect (evalx b env) (applyUtil u o)
+    FnUtil u o -> case env of
+      Env fs _ -> expect (evalx b env) (\y -> uAt fs u o (realToFrac y))
 #endif
 #ifndef DROP_ARGMAX
   Argmax o v ->
@@ -131,11 +135,12 @@ evalx expr env@(Env feats vals) = case expr of
         (\y -> Bits (negate (eta * statVal st y) / ln2))
 #endif
 #ifndef DROP_USAY
-  -- the pointer's door (CIRL_PLAN C3 as ruled): the priced utility IS
-  -- its host form — the bridge identity is this definition. The outer
-  -- environment is DISCARDED: utilities are featureless and clockless
-  -- by construction.
-  USay p -> mkUtil (\a h -> evalx p (mkEnv [] (a :. h :. VNil)))
+  -- the pointer's door (step 8, CIRL C3 superseded): a priced utility
+  -- IS its syntax — evaluation is constructor application, and the
+  -- environment enters at the ONE bridge ('uAt'), where the tick's
+  -- features are passed (the step-8 repeal: utilities read features,
+  -- because features ARE the consequences).
+  USay p -> USent p
 #endif
 #ifndef DROP_CODE
   -- THE likelihood production, as ruled at code-freeze-r0 (R-C1 reading
@@ -193,9 +198,25 @@ evalArgs :: Args env ts -> Env env -> Vals ts
 evalArgs ANil      _   = VNil
 evalArgs (a :* as) env = evalx a env :. evalArgs as env
 
+-- THE bridge (step 8, the measured one-site change): a priced
+-- utility evaluated AT THE TICK'S FEATURES, the residue pair
+-- (option code, outcome) in the two-variable scope. E-d1(a): this
+-- argument is the entire difference between "featureless and
+-- clockless" and "features are the consequences".
+uAt :: Features -> USent -> Double -> Double -> Double
+uAt fs (USent p) a y = evalx p (mkEnv fs (a :. y :. VNil))
+
+-- the mute utility (the vThinkAt degeneracy's constant-0 program —
+-- the same zero the wrapper form carried, now a grid datum)
+muteU :: USent
+muteU = USent (case mkC (mkGrid "mute0" (0 :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "muteU: singleton grid index 0 must construct")
+
 -- The stdlib semantics (contracts recorded on 'StdName').
 applyStd :: StdName args t -> Vals args -> t
-applyStd EU     (b :. u :. a :. VNil) = expect b (applyUtil u a)
+applyStd EU     (b :. u :. fs :. code :. VNil) =
+  expect b (\y -> uAt fs u code (realToFrac y))
 applyStd IsEq   (x :. y :. VNil)      = x == y
 applyStd VAct   (b :. u :. acts :. VNil) = vAct b u acts
 applyStd VThink (b :. k :. ys :. u :. acts :. n :. price :. VNil) =
@@ -245,10 +266,10 @@ bernFast car th =
 
 -- max over acts of the prevision of the utility (the value of acting
 -- now); iteration order and the strict-improvement rule mirror CL-3.
-vAct :: Belief h -> Util a h -> NonEmpty a -> Double
+vAct :: Belief Double -> USent -> NonEmpty Double -> Double
 vAct b u = foldl' step negInf
   where
-    step bv a = let v = expect b (applyUtil u a) in if v > bv then v else bv
+    step bv a = let v = expect b (uAt [] u a) in if v > bv then v else bv
 
 -- The one preposterior arithmetic (PREPOSTERIOR_PLAN P1 as ruled),
 -- private and unconditional like 'PropLang.Syntax'.bitsAt: W_0 is
@@ -266,8 +287,9 @@ vAct b u = foldl' step negInf
 -- fold is line-for-line the pre-increment worker. 'vThinkAt' below IS
 -- that application (identity as definition, P1's required form).
 vPreAt :: Eq y
-       => Int -> Belief h -> (d -> Kernel h y) -> Util d h -> NonEmpty d
-       -> [y] -> Util a h -> NonEmpty a -> Int -> Double -> Double
+       => Int -> Belief Double -> (Double -> Kernel Double y) -> USent
+       -> NonEmpty Double -> [y] -> USent -> NonEmpty Double -> Int
+       -> Double -> Double
 vPreAt d b ch uD ds ys u acts n price = est d b
   where
     est j bb | j <= 0    = vAct bb u acts
@@ -276,7 +298,7 @@ vPreAt d b ch uD ds ys u acts n price = est d b
                    - price
     pick bv v = if v > bv then v else bv
     branch cont bb dd =
-      expect bb (applyUtil uD dd)
+      expect bb (uAt [] uD dd)
         + sumL (map (walk (ch dd) cont 0 (Just bb)) (grow n [[]]))
     grow m ss | m <= 0    = ss
               | otherwise = grow (m - 1) [s ++ [y] | s <- ss, y <- ys]
@@ -290,8 +312,8 @@ vPreAt d b ch uD ds ys u acts n price = est d b
 -- the fidelity ladder's depth-1 case — 'vThinkAt' at depth 1, itself
 -- the mute-singleton face of 'vPreAt' (the bitsAt pattern, twice).
 vThink :: Eq y
-       => Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a -> Int
-       -> Double -> Double
+       => Belief Double -> Kernel Double y -> [y] -> USent
+       -> NonEmpty Double -> Int -> Double -> Double
 vThink = vThinkAt 1
 
 -- The action-INDEPENDENT deliberation arithmetic (LADDER_PLAN L1,
@@ -304,10 +326,10 @@ vThink = vThinkAt 1
 -- with == by the frozen oracle): the frozen worker IS the
 -- action-independent case of the action-dependent one.
 vThinkAt :: Eq y
-         => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
-         -> Int -> Double -> Double
+         => Int -> Belief Double -> Kernel Double y -> [y] -> USent
+         -> NonEmpty Double -> Int -> Double -> Double
 vThinkAt d b k ys u acts n price =
-  vPreAt d b (const k) (mkUtil (\_ _ -> 0)) (() :| []) ys u acts n price
+  vPreAt d b (const k) muteU (0 :| []) ys u acts n price
 
 #ifndef DROP_LADDER
 -- | The fidelity ladder's rung valuation (interface.md section 6;
@@ -323,8 +345,8 @@ vThinkAt d b k ys u acts n price =
 -- as its depth-1 face (the E7 doctrine; the ladder oracle pins the
 -- identity with ==).
 vThinkK :: Eq y
-        => Int -> Belief h -> Kernel h y -> [y] -> Util a h -> NonEmpty a
-        -> Int -> Double -> Double
+        => Int -> Belief Double -> Kernel Double y -> [y] -> USent
+        -> NonEmpty Double -> Int -> Double -> Double
 vThinkK = vThinkAt
 #endif
 
@@ -344,8 +366,9 @@ vThinkK = vThinkAt
 -- the one preposterior arithmetic, unwrapping the channel at the
 -- membrane of the sealed value layer.
 vPre :: Eq y
-     => Int -> Belief h -> Chan d h y -> [y] -> Util d h -> NonEmpty d
-     -> Util a h -> NonEmpty a -> Int -> Double -> Double
+     => Int -> Belief Double -> Chan Double Double y -> [y] -> USent
+     -> NonEmpty Double -> USent -> NonEmpty Double -> Int -> Double
+     -> Double
 vPre d b ch ys uD ds u acts n price =
   vPreAt d b (applyChan ch) uD ds ys u acts n price
 #endif

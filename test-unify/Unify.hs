@@ -258,14 +258,24 @@ helloA = "{\"membrane\": 1, \"world\": {\"namespace\": [\"t\", \"z\", \"a\"], "
       ++ "{\"name\": \"a\", \"grid\": [0.5, 1.5]}], "
       ++ "\"menu\": [{\"name\": \"a\", \"grid\": [0.5, 1.5]}]}}"
 
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): `assign@1` died on
+-- the date this suite's own step-7 wire text printed for it (D-c7
+-- rider 1), and `said@1` — THE PRINCIPAL'S DECLARATION AS A SENTENCE
+-- (ruling D-e5) — replaced it. The declaration below is the same
+-- utility this row always meant: a=1.5 pays 2y-1, a=0.5 pays 0 —
+-- now SAID, reading the act from the tick's features (`get a`), which
+-- is the step-8 doctrine in one line of JSON. This suite's subject
+-- (value pricing, RIDER 2 invariance, the Dutch book, the driver) is
+-- untouched by the ontology change: the pins below are unmoved.
 helloB :: String
 helloB = "{\"membrane\": 1, \"world\": {\"namespace\": [\"t\", \"z\", \"a\"], "
       ++ "\"guards\": [{\"name\": \"z\", \"grid\": [0.25, 0.5, 0.75]}, "
       ++ "{\"name\": \"a\", \"grid\": [0.5, 1.5]}], "
       ++ "\"menu\": [{\"name\": \"a\", \"grid\": [0.5, 1.5]}], "
-      ++ "\"utility\": {\"form\": \"assign@1\", \"rows\": ["
-      ++ "{\"name\": \"a\", \"value\": 0.5, \"u\": [0, 0]}, "
-      ++ "{\"name\": \"a\", \"value\": 1.5, \"u\": [-1, 1]}]}}}"
+      ++ "\"utility\": {\"form\": \"said@1\", \"said\": "
+      ++ "[\"if\", [\">\", [\"get\", \"a\"], [\"c\", 1]], "
+      ++ "[\"-\", [\"*\", [\"c\", 2], [\"var\", 1]], [\"c\", 1]], "
+      ++ "[\"c\", 0]]}}}"
 
 tickDec, tickUnion, tickSilent, tickCollide :: String
 tickDec     = "{\"tick\": {\"features\": {\"t\": 0, \"z\": 0.7}, \"menu\": [\"a\"]}}"
@@ -320,13 +330,13 @@ g4Driver = testGroup "g4 the driver: the pure wire session core, two-route"
       -- everything with an error; a row green against the stub has an
       -- unattributable red — sharpened at the SAT/red pass)
       r @?= "{\"error\": \"feature/assignment collision\"}"
-  , testCase "EU decision (assign@1 utility): the act == the public exogenous-read arithmetic" $ do
+  , testCase "EU decision (said@1 utility): the act == the public exogenous-read arithmetic" $ do
       let (s1, _) = serveLine hostStart helloB
           (_, r2) = serveLine s1 tickDec
-      -- with u(a=1.5) = [-1, 1] and the trained-nothing prior, the
-      -- expected act comes from the same public arithmetic the driver
-      -- must use; the pin is structural: the reply carries SOME act
-      -- from the menu and the two-route p1/entropy
+      -- with the said utility (a=1.5 -> 2y-1, a=0.5 -> 0) and the
+      -- trained-nothing prior, the expected act comes from the same
+      -- public arithmetic the driver must use; the pin is structural:
+      -- the reply carries SOME act from the menu
       assertBool ("an act field, got: " ++ r2) (sub "\"act\"" r2)
       assertBool ("act from the menu, got: " ++ r2)
                  (sub "\"a\": 0.5" r2 || sub "\"a\": 1.5" r2)

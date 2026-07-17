@@ -13,15 +13,24 @@ import Data.List.NonEmpty (NonEmpty ((:|)))
 import PropLang.Belief (Kernel, uniform)
 import PropLang.Enumerate (Obs, emit, thetaSpace)
 import PropLang.Eval (vPre)
-import PropLang.Syntax (Chan, applyChan, mkChan, mkUtil)
+import PropLang.Syntax (Chan, Expr (..), Idx (..), USent (..), applyChan,
+                        mkC, mkChan, mkGrid)
 
-chan :: Chan () Double Obs
+-- RE-DERIVED at the step-8 outcome freeze (R-D22): the utilities are
+-- priced SENTENCES and the menus are residue codes; the fixture still
+-- utters exactly what DROP_VPRE deletes and nothing else.
+chan :: Chan Double Double Obs
 chan = mkChan (const emit)
 
 shown :: Kernel Double Obs
-shown = applyChan chan ()
+shown = applyChan chan 0
+
+gk0 :: Double -> Expr env Double
+gk0 v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "UseVPre fixture: singleton grid index 0 must construct"
 
 valuation :: Double
 valuation = vPre 1 (uniform thetaSpace) chan ([0, 1] :: [Obs])
-                 (mkUtil (\_ _ -> 0)) (() :| [])
-                 (mkUtil (\() th -> th)) (() :| []) 3 0.05
+                 (USent (gk0 0)) (0 :| [])
+                 (USent (Var (S Z))) (0 :| []) 3 0.05

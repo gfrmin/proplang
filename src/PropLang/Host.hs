@@ -53,7 +53,7 @@ import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (menuAssignments)
 import PropLang.Syntax (Args (..), Expr (..), Grid, Idx (..), Name,
-                        StdName (..), Util, mkGrid, mkNamespace, mkUtil)
+                        StdName (..), USent (..), mkC, mkGrid, mkNamespace)
 #endif
 
 -- | The sole source of randomness, host-side, called AFTER the language
@@ -198,12 +198,13 @@ errLine m = "{\"error\": \"" ++ m ++ "\"}"
 -- ------------------------- the session ------------------------------
 
 -- The world as the handshake declared it: the writable names with
--- their grids (the step-5 shape), and the interim assign@1 utility
--- rows (DIES AT STEP 8 with Util — the death date is on the wire's
--- own face and on step 8's opening checklist).
+-- their grids (the step-5 shape), and the utility as THE PRINCIPAL'S
+-- DECLARATION (step 8, said@1: a priced sentence parsed against the
+-- grammar — a POINT-MASS PRIOR over the program shape, the ruled
+-- doctrine; assign@1 died here with Util, on its printed date).
 data World = World
   { wMenuGrids :: [(Name, Grid)]
-  , wURows     :: [(Name, Double, (Double, Double))]
+  , wUSaid     :: Maybe USent
   }
 
 -- | The wire session state (membrane-wire v1 as amended through step
@@ -242,12 +243,13 @@ hello st j = maybe (st, errLine "bad hello") id $ do
   menu <- case oGet "menu" w of
     Just (JArr ms) -> mapM pairGrid ms
     _              -> Just []
-  uRows <- case oGet "utility" w of
+  uSaid <- case oGet "utility" w of
     Just u -> do
-      JStr "assign@1" <- oGet "form" u
-      JArr rows <- oGet "rows" u
-      mapM uRow rows
-    Nothing -> Just []
+      JStr "said@1" <- oGet "form" u
+      sexp <- oGet "said" u
+      prog <- parseSaid sexp        -- FAIL-CLOSED: unparseable => bad hello
+      pure (Just (USent prog))
+    Nothing -> pure Nothing
   n0 : nrest <- pure ns
   -- RIDER 2's validation: every guard and writable name inside the
   -- declared (completed, immutable) namespace
@@ -262,7 +264,7 @@ hello st j = maybe (st, errLine "bad hello") id $ do
           reply = "{\"ok\": true, \"proto\": 1, \"models\": "
                   ++ show (length pop) ++ ", \"namespace_bits\": "
                   ++ show nsb ++ "}"
-      pure (HostLive (World menu uRows) ag, reply)
+      pure (HostLive (World menu uSaid) ag, reply)
   where
     pairGrid g = do
       nm <- jStr =<< oGet "name" g
@@ -270,12 +272,6 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       vs <- mapM jNum vsJ
       v0 : vrest <- pure vs
       pure (nm, mkGrid nm (v0 :| vrest))
-    uRow r = do
-      nm <- jStr =<< oGet "name" r
-      v <- jNum =<< oGet "value" r
-      JArr us <- oGet "u" r
-      [u0, u1] <- mapM jNum us
-      pure (nm, v, (u0, u1))
 
 -- One tick (membrane-wire §3): the frozen loop's order — the choice
 -- is computed from the predictive BEFORE the observation moves the
@@ -303,7 +299,7 @@ tick w ag t = maybe (HostLive w ag, errLine "bad tick") id $ do
             pure (menuAssignments grids)
           act = case mOpts of
             Nothing   -> []
-            Just opts -> choose (wURows w) feats ag opts
+            Just opts -> choose (wUSaid w) feats ag opts
           p1 = prob (predictive feats ag) (is obsSpace 1)
           hB = entropyBits (agentMeta ag)
           decPart = case mOpts of
@@ -331,23 +327,40 @@ tick w ag t = maybe (HostLive w ag, errLine "bad tick") id $ do
 -- public arithmetic): candidate EU at predictive (feats ++ a), current
 -- weights; strict > displaces, first-listed wins ties (= wait). No
 -- utility rows => wait (the option space's head).
-choose :: [(Name, Double, (Double, Double))] -> Features -> Agent
-       -> NonEmpty Features -> Features
-choose [] _ _ opts = NE.head opts
-choose uRows feats ag opts =
-  let u = mkUtil $ \asg y ->
-            sum [ (if y == (1 :: Obs) then u1 else u0)
-                | (nm, v) <- asg
-                , (rn, rv, (u0, u1)) <- uRows
-                , rn == nm, rv == v ]
-      euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z)) :* ANil))
-                     (mkEnv [] (predictive (feats ++ a) ag :. (u :: Util Features Obs) :. a :. VNil))
+choose :: Maybe USent -> Features -> Agent -> NonEmpty Features -> Features
+choose Nothing _ _ opts = NE.head opts
+choose (Just u) feats ag opts =
+  let euAt a = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
+                               :* Var (S (S (S Z))) :* ANil))
+                     (mkEnv [] (predictive (feats ++ a) ag :. u
+                                :. (feats ++ a) :. (0 :: Double) :. VNil))
       c0 :| cs = opts
       go best _bv [] = best
       go best bv (c : rest) =
         let cv = euAt c
         in if cv > bv then go c cv rest else go best bv rest
   in go c0 (euAt c0) cs
+
+-- said@1: the declaration parsed against the residue-scope grammar
+-- subset (var, c, add, sub, mul, if, gt, eq, get) — a SENTENCE,
+-- priced like any sentence; anything else refuses (fail-closed, the
+-- ruled doctrine)
+parseSaid :: J -> Maybe (Expr '[Double, Double] Double)
+parseSaid = pE
+  where
+    pE (JArr [JStr "var", JNum 0]) = Just (Var Z)
+    pE (JArr [JStr "var", JNum 1]) = Just (Var (S Z))
+    pE (JArr [JStr "c", JNum v]) = mkC (mkGrid "k" (v :| [])) 0
+    pE (JArr [JStr "+", a, b]) = Add <$> pE a <*> pE b
+    pE (JArr [JStr "-", a, b]) = Sub <$> pE a <*> pE b
+    pE (JArr [JStr "*", a, b]) = Mul <$> pE a <*> pE b
+    pE (JArr [JStr "get", JStr nm]) = Just (Get nm)
+    pE (JArr [JStr "if", c, t, e]) = If <$> pB c <*> pE t <*> pE e
+    pE _ = Nothing
+    pB (JArr [JStr ">", a, b]) = Gt <$> pE a <*> pE b
+    pB (JArr [JStr "=", a, b]) =
+      (\x y -> Call IsEq (x :* y :* ANil)) <$> pE a <*> pE b
+    pB _ = Nothing
 
 -- | The executable's whole IO surface: the stdin/stdout line loop
 -- over 'serveLine' (gate 3: the loop lives here and only here).
