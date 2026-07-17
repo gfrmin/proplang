@@ -96,7 +96,7 @@ import PropLang.Eval (Features)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           runMembrane)
 import PropLang.Syntax (Expr (..), Grid, Idx (..), KnownScope, Name,
-                        Namespace, USent (..), bits, bitsIn, mkC, mkGrid,
+                        Namespace, bits, bitsIn, mkC, mkGrid,
                         mkNamespace)
 
 import Anchors (t1MapPosterior, t1ProbeRows, t3AgentDrift,
@@ -176,7 +176,7 @@ t3RenderGoldenM :: String
 t3RenderGoldenM = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('var', 1), ('-', ('c', 'k', 1), ('var', 1)))), ('log', ('c', 'k', 2)))))"
 
 t3MoveGoldenM :: String
-t3MoveGoldenM = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('pos', ('var', 1))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
+t3MoveGoldenM = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('if', ('>', ('pos', ('var', 0)), ('pos', ('var', 1))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('pos', ('var', 1)), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('if', ('>', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1))), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('if', ('>', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1))), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
 
 -- ---------------------------------------------------------------------
 -- worlds: a pure evidence stream behind the membrane
@@ -227,8 +227,8 @@ t1Menu = [("opt", mkGrid "t1opt" (1 :| [2, 3]))]
 -- (The old host function ERRORED off-menu; a sentence cannot — the
 -- pinned runs never leave the menu, so the extension is identical
 -- where the goldens live.)
-util1M :: USent
-util1M = USent
+util1M :: Expr '[Double, Double] Double
+util1M =
   (If (Gt (Get "opt") (gkM 2.5)) (gkM 0.35)
       (If (Gt (Get "opt") (gkM 1.5))
           (Sub (gkM 1) (Mul (gkM 2) (Var (S Z))))
@@ -394,8 +394,8 @@ bWorld = PureWorld
 -- RE-DERIVED at the step-8 outcome freeze (R-D22): move=0 -> the
 -- hold pay; move=v>0 -> v*(2y-1) = Get "move" * (2y-1). Same
 -- extension over the pinned runs (the grids' points are 0, 0.8).
-utilB :: Double -> USent
-utilB holdPay = USent
+utilB :: Double -> Expr '[Double, Double] Double
+utilB holdPay =
   (If (Gt (Get "move") (gkM 0))
       (Mul (Get "move") (Sub (Mul (gkM 2) (Var (S Z))) (gkM 1)))
       (gkM holdPay))
@@ -467,17 +467,17 @@ propNsPrice =
   forAll (choose (2, 12 :: Int)) $ \k ->
     let ns = mkNamespace ("t" :| ["n" ++ show i | i <- [2 .. k]])
         got = unBits (bitsIn ns (Get "t" :: Expr '[] Double))
-        want = lg 19 + lg (fromIntegral k)
+        want = lg 20 + lg (fromIntegral k)
     in counterexample ("k=" ++ show k ++ " got " ++ show got)
          (abs (got - want) <= 1e-12)
 
 g5Names :: TestTree
 g5Names = testGroup "one namespace: echo names ordinary, prices per world"
-  [ testCase "a 3-name world prices Get at lg 19 + lg 3" $
-      assertApprox "bitsIn nsC (Get last_action)" 1e-12 (lg 19 + lg 3)
+  [ testCase "a 3-name world prices Get at lg 20 + lg 3" $
+      assertApprox "bitsIn nsC (Get last_action)" 1e-12 (lg 20 + lg 3)
         (unBits (bitsIn nsC (Get "last_action" :: Expr '[] Double)))
-  , testCase "a 2-name world prices Get at lg 19 + 1" $
-      assertApprox "bitsIn nsA (Get s2)" 1e-12 (lg 19 + 1)
+  , testCase "a 2-name world prices Get at lg 20 + 1" $
+      assertApprox "bitsIn nsA (Get s2)" 1e-12 (lg 20 + 1)
         (unBits (bitsIn nsA (Get "s2" :: Expr '[] Double)))
   , testProperty "k published names charge lg k at every mention" propNsPrice
   , testCase "the frozen registry is the singleton special case (==)" $ do
@@ -518,7 +518,7 @@ g7SlotPrice = testGroup "slot pricing: the charge sits at the C node"
       case mkC speedGrid 3 of
         Nothing -> assertFailure "mkC refused an on-grid index"
         Just c  -> assertApprox "bits of a speed constant" 1e-12
-                     (lg 19 + lg 4) (unBits (bits (c :: Expr '[] Double)))
+                     (lg 20 + lg 4) (unBits (bits (c :: Expr '[] Double)))
   , testCase "a finer slot grid charges exactly its extra bit" $ do
       let fine = mkGrid "speed8" (0.1 :| [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8])
       case (mkC speedGrid 0, mkC fine 0) of
