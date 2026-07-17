@@ -173,3 +173,64 @@ sitting rules; the oracle drafts under the rulings (SAT overlay,
 flag-faithful, red attributed — replacement-surface seal per the
 step-5 precedent); the frozen-layer inventory rides the freeze.
 Stops: the sitting and the key (outcome-freeze-r0).
+
+---
+
+## Part II — E-d1 executed: the measurement before the design
+
+### §6. The transcript (R-D21 throwaway; verbatim)
+
+```
+(a) USay payload u(a,h) = a*h + x at (a,h)=(2,3):
+    shipped bridge (mkEnv []):    6.0
+    hand route at feats=[]:       6.0
+    hand route at feats=[x=10]:   16.0
+    ONE-SITE DELTA (shipped==empty, feats moves only Get): True
+(d) level ranking:  [([("a",0.5)],0.25),([("a",1.5)],0.25)]
+    delta ranking:  [([("a",0.5)],-0.4871),([("a",1.5)],-0.4871)]
+    same argmax under any candidate-independent shift: True
+```
+
+(b) by grep: the applyUtil seams in src are EXACTLY FOUR evaluator
+sites — Eval.hs:108 (the FnUtil arm), :198 (EU), :251 (vAct's step),
+:279 (vPre) — plus the constructor pair in Syntax. Membrane's fold
+and Host's choose consume through Call EU, i.e. through :198.
+(c) by the census: test-cirl already runs a belief over the utility
+parameter moved by human acts through cond (15 green rows; the
+off-switch game); the u-fragment's enumeration door died at step 3
+and re-enters only as a priced fragment table (the step-3/4
+mechanism, ready for a third table if the sitting wants enumerated
+utility programs, or the latent stays parameter-shaped as at CIRL).
+
+### §7. The verdict: the type's death IS the step
+
+The r1 carry's expectation held — this is another "the repeal is a
+description," one layer deeper:
+
+- **"Utilities are featureless and clockless" is ONE ARGUMENT.** The
+  USay bridge (Eval.hs:138) evaluates its payload at `mkEnv []`; pass
+  the tick's features instead and Get inside a utility reads the
+  world — measured, (a). The step-8 utility form ALREADY EXISTS as
+  priced syntax (USay: a program, priced CSum (CW PolUtil) ..., with
+  a belief over its parameter since CIRL); what dies is the
+  HOST-FUNCTION WRAPPER around it (`Util a y = Util (a -> y ->
+  Double)`, the calculator's last organ) and what changes is one
+  environment argument plus four evaluator seams.
+- **A1's delta form is a depth-one theorem, not arithmetic** — (d):
+  E[dU] and E[u] share every argmax under candidate-independent
+  u(now); the delta binds only under composition. 8b is therefore
+  THE step's only genuinely new question, exactly as the plan
+  sequenced it.
+- **The wave is the demolition** (Part I §3's seven suites), and the
+  sitting's register is a DEMOLITION-AND-REPLUMB register: the
+  replacement utility surface (the sitting rules its exact type — a
+  priced Expr over a two-var scope WITH the environment, per (a)),
+  the four seams, the lineage row dispositions, the Pilot redesign
+  (the split lands inside it), assign@1's wire replacement, Chan's
+  ordering, the frozen-layer inventory. The design space the
+  measurements leave open is SMALL and enumerated.
+
+Next: the 8b falsifier design with criteria PRE-STATED NUMERICALLY
+(the 6b discipline — the payoff-at-t+5 world, the depth-unrolled
+sentence as the PRICED composition attempt under the primitivity
+gate), then the register to the sitting.
