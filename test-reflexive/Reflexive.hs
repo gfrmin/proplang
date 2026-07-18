@@ -85,6 +85,15 @@ gk v = case mkC (mkGrid "k" (v :| [])) 0 of
   Just e  -> e
   Nothing -> error "reflexive fixture: singleton grid index 0 must construct"
 
+-- the per-tick batch size, ported from the frozen executable spec
+-- (tests_acceptance.py:167, `batch_n = min(3, len(buf))`). Named once so
+-- the control-flow constant is not scattered (probe-discipline). NB this
+-- is the batch SIZE (world/host-structural), NOT the deliberation DEPTH:
+-- the depth is the priced think/act choice, which lives IN the sentence
+-- (v_think vs v_act, the clock entering by Get "price").
+batchCap :: Int
+batchCap = 3
+
 -- v_act as a SENTENCE over an env holding the belief at Var Z.
 -- max_a E[util(a,th)] = max( E[2th-1], E[1-2th] ), max x y = If (Gt x y) x y.
 vActS :: Expr '[B Double] Double
@@ -133,12 +142,12 @@ runDelibComposed :: Double -> (Int, String)
 runDelibComposed price = go (uniform thetaSpace) buffer36 0
   where
     go b buf ticks =
-      let batchN   = min 3 (length buf)
+      let batchN   = min batchCap (length buf)
           canThink = not (null buf)
           think    = canThink && evalVThinkS b batchN price > evalVActS b
       in if think
-           then go (foldl (\bb y -> fromJust (cond bb (Saw emit y))) b (take 3 buf))
-                   (drop 3 buf) (ticks + 1)
+           then go (foldl (\bb y -> fromJust (cond bb (Saw emit y))) b (take batchCap buf))
+                   (drop batchCap buf) (ticks + 1)
            else (ticks, finalActComposed b)
 
 -- final act by the SAME v_act composition (argmax over {L,R} of the two
@@ -186,22 +195,23 @@ g2Composition = testGroup "g2 the deliberation is a composition (D-g1: no new pr
   [ testCase "v_act renders as the shipped-alphabet composition (golden)" $
       assertEqual "vActS render" vActGolden (renderExpr vActS)
   , testCase "v_think is COND-FREE: no cond / sawe / elimj / stdlib token" $ do
-      let r = renderExpr (vThinkS 3)
+      let r = renderExpr (vThinkS batchCap)
       mapM_ (\tok -> assertBool ("v_think render must not contain " ++ show tok)
                        (not (tok `isInfixOf` r)))
             ["cond", "sawe", "elimj", "vthink", "vact", "call", "argmax"]
-  , testCase "v_think uses only expect / arithmetic / if-gt / const / var" $ do
-      -- every token in the render is a shipped, non-VoI production
-      let r = renderExpr (vThinkS 3)
-          ok = ["expect", "'+'", "'-'", "'*'", "'>'", "'if'", "'c'", "'get'", "'var'"]
-      assertBool ("v_think uses expect (the prevision atom): " ++ take 60 r)
-                 ("expect" `isInfixOf` r)
+  , testCase "v_think is built ONLY from expect / arithmetic / if-gt / const / var" $ do
+      -- POSITIVE coverage: every whitelisted shipped, non-VoI production
+      -- actually appears in the render (the "only" restriction is the
+      -- cond-free negative check above; together they bracket the form).
+      let r = renderExpr (vThinkS batchCap)
+          ok = ["'expect'", "'+'", "'-'", "'*'", "'>'", "'if'", "'c'", "'get'", "'var'"]
       assertBool "v_think prices the clock through a feature (get 'price')"
                  ("('get', 'price')" `isInfixOf` r)
-      -- and it is a nontrivial 8-way sum (2^3 sequences): 8 'if' maxes
-      assertBool ("v_think is the 2^3 batch sum: " ++ show (countOf "'if'" r))
-                 (countOf "'if'" r == 8)
-      mapM_ (\t -> assertBool ("expected token " ++ t) True) ok
+      -- a nontrivial 2^batchCap-way sum: one 'if' max per outcome sequence
+      assertBool ("v_think is the 2^batchCap batch sum: " ++ show (countOf "'if'" r))
+                 (countOf "'if'" r == 2 ^ batchCap)
+      mapM_ (\t -> assertBool ("v_think render must contain " ++ t ++ ": " ++ take 80 r)
+                     (t `isInfixOf` r)) ok
   ]
   where
     countOf sub s = length [ () | i <- [0 .. length s - length sub]
@@ -251,19 +261,23 @@ g3PreposteriorIdentity = testGroup "g3 verb/worker identity: sentence == sealed-
       -- orders below this 1e-12 gate; the decision margin the anchor
       -- needs is 1.5e-3, eleven orders above).
       mapM_ (\b -> mapM_ (\price -> do
-               let w = vThinkWorker b 3 price
-                   s = evalVThinkS b 3 price
+               let w = vThinkWorker b batchCap price
+                   s = evalVThinkS b batchCap price
                assertBool ("vThink residue at price " ++ show price ++ ": "
                              ++ show (abs (w - s)))
                           (abs (w - s) <= 1e-12 * (1 + abs w)))
-             [0.3, 0.05, 0.005, 0.0])
+             [ p | (p, _, _) <- t2Rows ])   -- prices from the frozen anchor, not re-declared
             (take 5 trajBeliefs)
   ]
 
 -- ---------------------------------------------------------------------
--- g4 -- the PIN-FREEZE red-run (the step-2 clause): a seeded defect in
--- the composition breaks the frozen anchor, so the green is load-bearing
--- and attribution is partitioned (each defect breaks a DIFFERENT face).
+-- g4 -- the PIN-FREEZE red-run (the step-2 clause): seeded defects in
+-- the composition break the pins, so the greens are load-bearing and
+-- attribution is partitioned -- THREE defects, THREE different faces:
+-- (1) drop the clock price -> the value-of-computation face (g1's tick
+-- counts); (2) swap the util sign -> the final-act face (g1's act);
+-- (3) corrupt the likelihood factor -> the pull-through face (g3's
+-- sentence==worker identity, the step's novel content).
 -- ---------------------------------------------------------------------
 
 -- defect 1: v_think without the clock price (drop the Sub ... (Get price))
@@ -280,14 +294,36 @@ runDefectNoPrice :: Double -> Int
 runDefectNoPrice price = go (uniform thetaSpace) buffer36 0
   where
     go b buf ticks =
-      let batchN   = min 3 (length buf)
+      let batchN   = min batchCap (length buf)
           canThink = not (null buf)
           vt = evalx (vThinkNoPrice batchN) (mkEnv [("price", price)] (b :. VNil))
           think = canThink && vt > evalVActS b
       in if think
-           then go (foldl (\bb y -> fromJust (cond bb (Saw emit y))) b (take 3 buf))
-                   (drop 3 buf) (ticks + 1)
+           then go (foldl (\bb y -> fromJust (cond bb (Saw emit y))) b (take batchCap buf))
+                   (drop batchCap buf) (ticks + 1)
            else ticks
+
+-- defect 3: v_think with a WRONG likelihood factor -- the pull-through's
+-- own novel content. bodyFor uses P(s|th) = prod (th if y==1 else 1-th);
+-- this drops the (1-th) branch (uses th for every outcome), so P(s|th) is
+-- no longer the Bernoulli likelihood. The composition then diverges from
+-- the sealed-engine worker: g3's identity (sentence == worker) breaks.
+bodyForBadLik :: [Obs] -> Bool -> Expr (Double ': '[B Double]) Double
+bodyForBadLik s isR = Mul pfactor u
+  where
+    th      = Var Z
+    pfactor = foldr Mul (gk 1) [ th | _ <- s ]     -- WRONG: always th
+    u       = if isR then Sub (Mul (gk 2) th) (gk 1)
+                     else Sub (gk 1) (Mul (gk 2) th)
+
+vThinkBadLik :: Int -> Expr '[B Double] Double
+vThinkBadLik batchN = Sub (foldr Add (gk 0) terms) (Get "price")
+  where
+    b = Var Z
+    terms = [ let eR = Expect b (bodyForBadLik s True)
+                  eL = Expect b (bodyForBadLik s False)
+              in If (Gt eR eL) eR eL
+            | s <- seqsOf batchN ]
 
 g4SeededDefect :: TestTree
 g4SeededDefect = testGroup "g4 the pin is load-bearing (seeded-defect red-run)"
@@ -300,7 +336,8 @@ g4SeededDefect = testGroup "g4 the pin is load-bearing (seeded-defect red-run)"
                     ++ show ns)
                  (ns /= [ t | (_, t, _) <- t2Rows ])
       assertBool "price-blind thinks to the cap at the highest price too"
-                 (case ns of n0 : _ -> n0 == 12; [] -> False)
+                 -- the cap is buffer-length / batch size, both imported
+                 (case ns of n0 : _ -> n0 == length buffer36 `div` batchCap; [] -> False)
   , testCase "swap the util sign: the final act flips off the anchor" $ do
       -- v_act with R/L swapped picks the wrong act (anchor act is L; a
       -- sign flip makes the argmax choose R on the seed-14 posterior)
@@ -312,4 +349,15 @@ g4SeededDefect = testGroup "g4 the pin is load-bearing (seeded-defect red-run)"
           swapped = if eL > eR then "R" else "L"   -- deliberately inverted
       assertBool "the inverted rule disagrees with the anchor act (L)"
                  (swapped /= "L")
+  , testCase "corrupt the likelihood factor: the pull-through identity breaks" $ do
+      -- the step's NOVEL content is the cond-free pull-through P(s|th); a
+      -- wrong P(s|th) must break g3's sentence==worker identity by far more
+      -- than the CL-4 gate, proving g3's green is load-bearing on the
+      -- pull-through itself (attribution: the bodyFor likelihood factor).
+      let b = trajBeliefs !! 3
+          w  = vThinkWorker b batchCap 0.0
+          bad = evalx (vThinkBadLik batchCap) (mkEnv [("price", 0.0)] (b :. VNil))
+      assertBool ("corrupted-likelihood v_think must diverge from the worker: "
+                    ++ show (abs (w - bad)))
+                 (abs (w - bad) > 1e-6 * (1 + abs w))
   ]

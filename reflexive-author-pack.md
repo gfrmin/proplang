@@ -261,6 +261,8 @@ quoted inside its repair (the FROZEN-LAYER INVENTORY clause).
 | J2 | AGENT_PLAN.md:1140-1150 (step-10 charter, D-e7) | "THE HORIZON LANDS HERE ... depth-as-priced-choice ... its price 0.0740 bits/node" — the horizon expected as a PRODUCTION | OVERTURNED by E-g1/E-g2 (Part I/III): the horizon is a COMPOSITION, prodExpr stays 20. Repair records the measurement's verdict per D-g1's ruling. |
 | J3 | test-sentence/Sentence.hs:454-458 (g1d retirement) | "the deliberation POLICY needs ... the world-rollforward endo-kernel and sentence-level expectation over structured carriers — the 'Real a' wall" | FALSE: the endo-kernel is sayable (WitnessA); the composition works over the SCALAR latent where Real holds (WitnessC, Delib). This is a FROZEN test comment — repaired only at the sitting, dated bracket. |
 | J4 | test-actions/Actions.hs:83-85 (g3 retirement) | "the verb/worker identity is the D-f4 step-10 preposterior re-composition cluster ('Real a' wall)" | The cluster LANDED as a composition (g3); the 'Real a' wall was never the obstacle. Dated bracket at the sitting. |
+| J5 | AGENT_PLAN.md:1383-1385 | "Not sayable: the world-rollforward. A hypothesis is context -> Obs, not an endo-kernel on features, so pushing it five times is not type-correct. There is no kernel-composition ... among the 21." | FALSE AS A BLANKET: WitnessA compiles a Pos-index endo-kernel and WitnessC pushes an env-bound K five times, type-correct; the frozen walk move-code IS a shipped endo-kernel. TRUE only in the NARROW structured-component case (WitnessB). NB the SAME section already says the right thing at :1381-1382 (depth-unrolling sayable) and :1386-1389 (horizon is O(k) nodes, depth is a priced act) -- the repair corrects :1383-1385 to the narrow limit and lets the section's own reasoning stand. In-place, quote-inside-repair. |
+| J6 | design.md:248 | "the 'Real a' wall -- world-rollforward endo-kernel + sentence-level expectation over structured carriers" (inside a dated bracket) | The re-composition LANDED without the wall being the obstacle (the scalar axis satisfies Real). Dated supersession note appended inside the existing bracket. |
 
 Note J3/J4 are frozen TEST comments (manifest-covered); by the inventory
 clause they are touched ONLY at the boundary, under the key, as dated
@@ -270,7 +272,9 @@ brackets — never a standing license.
 
 `tools/boundary-audit.sh`: **M5=1, H=5.** Triage inputs, not verdicts:
 - M5 FLAG `D-f4` cited 6x / 0 definition lines — a PACK-HOMED ruling
-  (elim-author-pack §17/D-f4), cited forward into AGENT_PLAN §7. Its
+  (elim-author-pack §11 draft + §13 register — NOT §17, which is
+  D-f13/f14; pointer corrected per red-team mandate 2), cited forward
+  into AGENT_PLAN §7. Its
   definition site is the elim pack, not a normative doc; benign, but the
   human sweep confirms the pack home is real (it is — the three return
   rows this step discharges ARE D-f4).
@@ -310,3 +314,48 @@ built toward turns out to be a sentence the language could already say. The
 horizon, the preposterior, and the lazy genius are all `Expect`, `If/Gt`,
 and arithmetic over an env-bound belief, with the clock priced as a
 published feature exactly as A7 demands.
+
+---
+
+## Part V — the red-team mandates (six, fresh-context, executed 2026-07-18)
+
+Six INDEPENDENT reviewers (fresh state, one mandate each — the CLAUDE.md
+execution mode). Findings ride this pack; the actionable ones were fixed
+IN THE WINDOW (the oracle is not yet frozen), the rest ride to the sitting.
+
+| # | mandate | verdict | finding / action |
+|---|---|---|---|
+| 1 | theorem-as-definition (Savage) | CLEAR | the pull-through identity is MEASURED not asserted; g3's two routes are genuinely independent (nonzero 7.58e-17 residue proves distinct code paths — divide vs no-divide); t2Rows frozen-imported (no R-D20-i violation). Caveat: g1 is the sole pin to frozen EXTERNAL truth; g3 is a builder-vs-builder algebraic cross-check (adequate — g1 anchors correctness, g3 adds identity confidence). |
+| 2 | ruling cited / derived 0 (M5) | NO DEFECT | D-g1..D-g6 each defined + as-built; D-f4 has a real home (elim-pack §11 draft + §13 register) — the boundary-audit flag is a regex blind spot, not a phantom. One minor: the pack mis-cited D-f4's home as §17; **FIXED** (§11/§13, pack §10). |
+| 3 | load-bearing quantity defined nowhere (H) | ONE FINDING, FIXED | g3 re-declared the price grid `[0.3,..]` instead of projecting the imported `t2Rows` (R-D20-i / probe-discipline). **FIXED** (`[ p | (p,_,_) <- t2Rows ]`). Two magic constants de-scattered: `batchCap` named with provenance; the cap-12 assertion now `length buffer36 \`div\` batchCap`. The 1e-12 gate (frozen repaired-CL-4) and the render golden (captured) both cleared. |
+| 4 | type without derivation (Util) | PASS | git-confirmed: NO src .hs changed, NO new type declared, prodTable 20/1 unmoved. The pin-freeze claim survives — no type arrives, so the §8c trigger never fires. |
+| 5 | convention silently overloaded | TWO ITEMS | F1: a vacuous `assertBool ... True` whitelist no-op — **FIXED** (now a genuine positive-coverage check + the "only" is the cond-free negative test). F3: the novel pull-through had no seeded defect — **FIXED** (g4 now has a third defect: a corrupted likelihood factor breaks g3's identity). g4's red-run confirmed genuine + partitioned; the `cond` boundary, price-as-feature, and g3 "worker" naming all honest. F2 (below) rides the sitting. |
+| 6 | what is it a function of? | PASS (stronger) | vActS = f(belief, grid constants), reads NO features; vThinkS = f(belief, feature "price", host batchN, grid constants). D-g4 CONFIRMED and STRONGER: no reflexive read is expressible STRUCTURALLY — `Env` carries no agent (Eval.hs:65), so the absence is a property of the evaluator type, not just this composition. Note folded into `batchCap`: the batch SIZE is host-chosen (world-structural), the DEPTH is the priced think/act choice IN the sentence. |
+
+### §13. For the sitting's ratification list (F2)
+
+**PIN-FREEZE, extended.** The step-2 clause defines a PIN-FREEZE as pinning
+an already-shipped **fast path**. Step 10 pins an already-shipped
+**capability** (the deliberation composition), no implementation owed — the
+same structure (pin the shipped thing to the reference route + seeded-defect
+for red), applied to a capability rather than an optimisation. The
+invocation is explicit, not silent (mandate 5, F2). **The author ratifies
+(or amends) this reading of the clause at the sitting** — it is the one
+convention this increment stretches.
+
+### §14. The manifest delta (turnkey, for the freeze re-sign)
+
+Gate 6 is expected-RED until the author's re-sign (NOT papered). The delta
+over the frozen MANIFEST.sha256 (64 rows) is exactly two entries:
+
+```
+CHANGE  proplang.cabal
+  from  183a01f4907159095b7e1953fdca77230a4639f358700934181d9e35b34a7ddf
+  to    af04b51de73ecd80853902a97d7516209ee37894ae9c209dc118f51be4bf67b8
+ADD     test-reflexive/Reflexive.hs
+        1e8f848263e4efd406f57063a8395c1b43483950274618ec615fba947d206b00
+```
+
+(reflexive-author-pack.md is working material, not manifest-covered; the
+scratchpad witnesses are R-D21 throwaway, discarded.) After the re-sign,
+`sha256sum -c MANIFEST.sha256` passes at 65 rows and the oracle is frozen.
