@@ -170,3 +170,143 @@ demand. If the author concurs (D-g1 + D-g3(A)), step 10 is the SMALLEST
 possible closing of the brief's headline — the language was already big
 enough, and the proof is that its own frozen walk-code has been rolling a
 model forward since step 1.
+
+---
+
+## Part III — the behavioral proof (E-g2), executed 2026-07-18
+
+The type-level measurement (Part I) said the deliberation composes. Part
+III proves it BEHAVES — reproduces the frozen lazy-genius anchor — against
+the shipped engine. R-D21 throwaway (scratchpad/step10/Delib.hs), discarded;
+the transcript is here and the FROZEN form is test-reflexive/Reflexive.hs.
+
+### §5. The composition (no Call/stdlib — deleted at step 9)
+
+- `v_act(b) = max_a E_th[util(a,th)]` = `If (Gt eR eL) eR eL`, where
+  `eR = Expect b (2th-1)`, `eL = Expect b (1-2th)` (util(R,th)=2th-1,
+  util(L,th)=1-2th; tests_acceptance.py:146-148).
+- `v_think(b) = sum_s max_a E_th[ P(s|th)*util(a,th) ] - price` — the
+  COND-FREE PULL-THROUGH of the preposterior. The identity, exact:
+  `contrib(s) = P(s)*max_a E[util(a,.|s)]` (Python: `exp(lp)*v_act(cond..)`)
+  `= max_a sum_th P(th) P(s|th) util(a,th) = max_a E_th[P(s|th)*util]`,
+  since P(s) is constant over the max. So NO cond / SawE / ElimJ / Obs-Int:
+  `P(s|th) = prod_i (th if s_i==1 else 1-th)` is a Double factor in the
+  Expect body, and the 8-way (2^3) sum is eight `If/Gt` maxes added.
+- **The clock is a FEATURE, not a constant** (`Get "price"`), exactly as
+  A7 demands (AGENT_PLAN:382-385: "the cost of a computation must be
+  MEASURED and published as a feature — never declared as a constant");
+  this is the Python POLICY's own `("get","price")` (tests_acceptance.py:177).
+
+### §6. The transcript (both routes, vs the frozen anchor t2Rows)
+
+```
+price  | (R) reference | (S) sentence  | anchor t2Rows
+-------+---------------+---------------+--------------
+0.3    | (1,"L")       | (1,"L")       | (1,"L")  OK
+0.05   | (3,"L")       | (3,"L")       | (3,"L")  OK
+0.005  | (12,"L")      | (12,"L")      | (12,"L") OK
+0.0    | (12,"L")      | (12,"L")      | (12,"L") OK
+
+vActS vs vActR  : BIT-EXACT on every trajectory belief.
+vThinkS vs vThinkR (batchN=3): max relative residue 7.58e-17 (sub-ulp) --
+  the pull-through is algebraically exact, float-reassociated only because
+  the worker divides by P(s) in cond and the composition never divides.
+  The anchor's decision margin is 1.5e-3 (min |v_act - v_think|), eleven
+  orders above the residue: no decision can flip.
+```
+
+- (R) = the reference route (Belief-API worker: `expect`/`cond`/`logPredict`
+  — the semantics the deleted verbs wrapped).
+- (S) = the sentence route (the composition, via the shipped `evalx`).
+- Both reproduce t2Rows exactly. **The three return rows (D-f4) are ONE
+  re-composition seen three ways, all discharged:** g1d = the end-to-end
+  tick counts; VPre's preposterior identity = `vThinkS` IS the preposterior
+  value; VThinkK's verb/worker identity = the sentence == the sealed-engine
+  worker (g3). The primitives stay DISCHARGED-PERMANENT; the CAPABILITY
+  returns as a composition.
+
+### §7. The oracle (test-reflexive/, 9 rows, GREEN on shipped src)
+
+Step 10 is a PIN-FREEZE (the step-2 clause): an already-shipped capability,
+no implementation owed. The oracle is GREEN against the shipped src with
+NO src diff — which IS the proof of D-g1 (the horizon is a composition; the
+language was already big enough). The red-run clause is satisfied by
+seeded defect (g4), not a runtime-red implement cycle. Groups: g1 (anchor
+reproduction), g2 (the form: render golden + cond-free structural pins),
+g3 (verb/worker two-route identity), g4 (two seeded defects, two faces).
+
+### §8. SAT / flag-faithfulness (L5)
+
+The oracle runs under the frozen `warnings` common stanza — the exact
+gate-1 set: `-Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns`
+(proplang.cabal `common warnings`), GHC2021, GHC 9.10.3. `test-reflexive`
+builds and passes under this set (two -Werror lints caught and fixed in
+the build window: a redundant `Name` import and a partial `head`). The
+overlay-build lint (L7) builds every test .hs — test-reflexive included —
+against the shipped src: PASS.
+
+---
+
+## Part IV — the boundary events (frozen-layer, audit, register)
+
+### §9. The frozen-layer inventory (D-g6; repairs under the sitting key)
+
+Falsified frozen NORMATIVE prose the step-10 measurement convicts. Repairs
+execute at the sitting under the boundary key, the falsified sentence
+quoted inside its repair (the FROZEN-LAYER INVENTORY clause).
+
+| id | site | falsified text | repair form |
+|---|---|---|---|
+| J1 | AGENT_PLAN.md:1245 | V "DEAD — AND DANGLING RIGHT NOW ... V must be formally CANCELLED by the author at this boundary" | FALSE since v-cancelled (ea891f0, author-signed 2026-07-15; §8b OPEN 12 already `DISCHARGED`). In-place, quote-inside-repair. |
+| J2 | AGENT_PLAN.md:1140-1150 (step-10 charter, D-e7) | "THE HORIZON LANDS HERE ... depth-as-priced-choice ... its price 0.0740 bits/node" — the horizon expected as a PRODUCTION | OVERTURNED by E-g1/E-g2 (Part I/III): the horizon is a COMPOSITION, prodExpr stays 20. Repair records the measurement's verdict per D-g1's ruling. |
+| J3 | test-sentence/Sentence.hs:454-458 (g1d retirement) | "the deliberation POLICY needs ... the world-rollforward endo-kernel and sentence-level expectation over structured carriers — the 'Real a' wall" | FALSE: the endo-kernel is sayable (WitnessA); the composition works over the SCALAR latent where Real holds (WitnessC, Delib). This is a FROZEN test comment — repaired only at the sitting, dated bracket. |
+| J4 | test-actions/Actions.hs:83-85 (g3 retirement) | "the verb/worker identity is the D-f4 step-10 preposterior re-composition cluster ('Real a' wall)" | The cluster LANDED as a composition (g3); the 'Real a' wall was never the obstacle. Dated bracket at the sitting. |
+
+Note J3/J4 are frozen TEST comments (manifest-covered); by the inventory
+clause they are touched ONLY at the boundary, under the key, as dated
+brackets — never a standing license.
+
+### §10. The boundary audit triage (ran 2026-07-18, rides the sitting)
+
+`tools/boundary-audit.sh`: **M5=1, H=5.** Triage inputs, not verdicts:
+- M5 FLAG `D-f4` cited 6x / 0 definition lines — a PACK-HOMED ruling
+  (elim-author-pack §17/D-f4), cited forward into AGENT_PLAN §7. Its
+  definition site is the elim pack, not a normative doc; benign, but the
+  human sweep confirms the pack home is real (it is — the three return
+  rows this step discharges ARE D-f4).
+- H FLAGS `gauss / observe_batch / residual_mean / residuals /
+  sensitivity` — forward-declared wire surface of the UNBUILT HOSTS_PLAN
+  increments B (reliability) and C (arithmetic). Declared, not
+  load-bearing; expected. No step-10 symbol is unresolved.
+
+### §11. The as-built register (D-g1..D-g6 answered by the increment)
+
+| id | as-built answer |
+|---|---|
+| D-g1 | HORIZON = COMPOSITION. Confirmed: test-reflexive green on shipped src, NO src diff, prodExpr 20 unmoved. The step-8 D-e7 production expectation is overturned by measurement. |
+| D-g2 | THREE RETURN ROWS re-composed (g1/g3), reproduce t2Rows; primitives DISCHARGED-PERMANENT. |
+| D-g3 | THE BINARY — awaits the author. Evidence for (A): the composition BEHAVES (§6), and no brief world needs component-projection (GetV). (B) stays banked with clause (a) discharged (WitnessB). Builder recommendation: (A). |
+| D-g4 | PilotEU §1b: the composition reads an ENV-BOUND belief (Var Z), never the live agent — the selector's reflexive re-read stays UNSAYABLE; membrane-side PERMANENT; g2 (frozen) the pin. Confirmed vs as-built. |
+| D-g5 | THE NUMERIC RACE: executed (§6). Composition reproduces 1/3/12/12 through evalx; residue 7.58e-17 vs the worker, margin 1.5e-3. |
+| D-g6 | FROZEN-LAYER INVENTORY: J1-J4 (§9), repairs at the sitting under the key. |
+
+### §12. What needs the author (the sitting + the key)
+
+1. **Rule D-g1/D-g2/D-g4** (the measurement's verdicts) and **D-g3** (the
+   one genuine binary — (A) recommended). 
+2. **The frozen-layer repairs J1-J4** (§9) — under the boundary key.
+3. **Confirm the freeze naming** (`reflexive-freeze-r0`, this pack) and the
+   **red-team mandates** (§13, six fresh-context reviewers — findings ride
+   this pack).
+4. **Extend and re-sign MANIFEST.sha256** to cover proplang.cabal (the
+   reflexive stanza) and test-reflexive/ — gate 6 is expected-RED until
+   then (NOT papered). From that signature the oracle is frozen.
+5. **The author's signed `reflexive-freeze-r0` tag** — the attestation.
+
+**THE SHAPE OF THE CLOSE:** if the author concurs with (A), step 10 closes
+the brief's HEADLINE (reflexive closure, A7) as a PIN-FREEZE with ZERO
+alphabet growth and ZERO src diff — the deliberation the whole roadmap was
+built toward turns out to be a sentence the language could already say. The
+horizon, the preposterior, and the lazy genius are all `Expect`, `If/Gt`,
+and arithmetic over an env-bound belief, with the clock priced as a
+published feature exactly as A7 demands.
