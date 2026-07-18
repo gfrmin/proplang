@@ -254,6 +254,18 @@ g4Wire = testGroup "g4 the wire: said@1 -- the principal's declaration, fail-clo
   , testCase "an unparseable declaration FAILS CLOSED (the ruled doctrine)" $ do
       let (_, r) = serveLine hostStart helloBadSaid
       r @?= "{\"error\": \"bad hello\"}"
+  , testCase "a NaN/inf grid point FAILS CLOSED AT DECLARATION (D-f8 (A), rider 1)" $ do
+      -- the pin on the door: a hello whose declared carrier carries an
+      -- infinite grid point (1e999 reads as +Infinity through the wire
+      -- tokenizer) is rejected AT THE HELLO -- not accepted and then
+      -- dishonoured mid-tick. The same hello with a finite grid parses
+      -- (g4's helloSaid), so it is the VALUE that fails, not the shape.
+      let helloInf = "{\"membrane\": 1, \"world\": {\"namespace\": [\"t\", \"z\"], "
+            ++ "\"guards\": [{\"name\": \"z\", \"grid\": [0.5, 1e999]}], "
+            ++ "\"menu\": [], "
+            ++ "\"utility\": {\"form\": \"said@1\", \"said\": [\"c\", 0.2]}}}"
+          (_, r) = serveLine hostStart helloInf
+      r @?= "{\"error\": \"bad hello\"}"
   ]
 
 isPrefixOfAnywhere :: String -> String -> Bool

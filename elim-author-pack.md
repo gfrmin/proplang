@@ -886,7 +886,7 @@ form the text class demands.
 | I5 | design.md:221-224 | the `('call', 'v_think', ...)` grammar example + "v_think expands through the stdlib boundary into pure verbs" | in-place: v_think/the verb layer deleted; the deliberation ladder is the step-10 preposterior re-composition (D-f4). |
 | I6 | design.md:358 | "utility is a priced sentence (`USent`)" | dated bracket: USent deleted at step 9; utility is the bare residue Expr '[Double,Double] Double. |
 | I7 | interface.md:109-127 | `KER ::= ('expfam', CARRIER, STATS, PARAM...)`; bern/gauss "expfam" names; "the alphabet residue's one recorded non-expfam member" | in-place: KER ::= ('code', ...); ExpFam deleted (== Code); the non-expfam-member framing dissolves. |
-| I8 | AGENT_PLAN.md §7 step 10 | opening checklist | ADD three RETIRE-UNTIL-N return rows: g1d (test 2 deliberation), test-prepost (VPre preposterior), test-actions VThinkK identity — each returns as a FRESH shipped-composition oracle if step 10 re-composes it. |
+| I8 | AGENT_PLAN.md §7 step 10 | opening checklist | ADD three UNCONDITIONAL return rows (rider 2 — not "if"): g1d (test 2, a brief-§12 acceptance deliverable), test-prepost (VPre's preposterior identity = proof (i)'s content), test-actions VThinkK identity. Each: step 10 LANDS the deliberation re-composition and the pins return against it as a FRESH shipped-composition oracle, or step 10 STALLS HONESTLY — the darkness is declared and bounded to ONE window (the host-less-window precedent); the brief's acceptance suite never quietly loses a member to a conditional clause. |
 | I9 | AGENT_PLAN.md:557 | "The deletion audit covers 2 of ~22 productions" | dated bracket: D-f9 unified the audit on the 4-check with GENERIC/SELF-LICENSED; the new terminals (Expect/SawE/ElimJ) covered in test-elim g8. |
 | I10 | test-hygiene/Hygiene.hs header | "prodExpr (19, untouched)" | DONE in-window (dated supersession bracket added — a test file already under this increment's edits). |
 
@@ -917,3 +917,68 @@ MANIFEST DELTA (for the author's re-sign at the freeze):
 4. `elim-freeze-r0` — the author's signed tag (or the builder key on fresh, explicit, per-instance delegation, recorded verbatim — the membrane precedent).
 
 Everything a builder can do without the key is done and green.
+
+---
+
+# PART IX — THE TWO RIDERS FOLDED IN (2026-07-18, before the key)
+
+The author approved elim-freeze-r0 with two riders and one audit note.
+All three are folded in, builder-side, before signalling ready.
+
+## §31. RIDER 1 — the NaN guard moved to the door
+
+The ruling put the guard at `mkGrid` / wire ingestion (construction);
+the as-built had landed it at `gridLookup` (the read site). A NaN grid
+that validates at the hello and fails at the tick is fail-closed LATER
+than promised — the world's declaration accepted and then dishonoured
+mid-episode. Fixed:
+
+- **The pin is now on the door.** `Host.pairGrid` (the hello's guard/menu
+  grid parser) rejects any NaN or infinite grid point → the whole hello
+  fails closed with `bad hello`, at DECLARATION time. `reads` can produce
+  `+Infinity` (e.g. `1e999`), which the wire tokenizer accepts as a
+  finite-looking token, so the value — not the shape — is what fails.
+- **The pin.** test-outcome g4Wire: a hello carrying `[0.5, 1e999]` →
+  `{"error": "bad hello"}`, while the same shape with finite grids parses
+  (g4's helloSaid). Declaration-time refusal, pinned.
+- **Defence-in-depth retained.** The `gridLookup` guard stays (test-elim
+  g7, the read-site unconstructibility), so the composition is total even
+  for any constant that reaches the read by another path.
+
+## §32. RIDER 2 — the return rows are unconditional
+
+g1d (test 2, the lazy-genius deliberation) and VPre's preposterior
+identity are not lost to a conditional clause. Every "if step 10
+re-composes it" is rewritten: step 10 LANDS the deliberation
+re-composition and the pins return against it, or step 10 STALLS
+HONESTLY — the darkness is declared and bounded to exactly one window
+(the host-less-window precedent), and the brief's acceptance suite never
+quietly drops a member. Enacted in: test-sentence g1d marker,
+test-actions g3 marker, the test-prepost cabal retirement note, and §28
+I8 (the AGENT_PLAN §7 step-10 return rows the author executes under the
+key). The primitives themselves (VThink/VThinkK/VPre) stay
+DISCHARGED-PERMANENT — only the CAPABILITY returns, as a fresh oracle.
+
+## §33. THE AUDIT NOTE — Expect's honest shape
+
+§26 marks Expect SELF-LICENSED, the audit column doing its job on the
+most central primitive. The honest sentence is now in the fixture's own
+comment (test-elim/ablation/UseExpect.hs): Expect's GENERIC evidence is
+the entire corpus — every suite that prices or evaluates a prob/utility
+is an unwitting deletion proof — so its survival rests on twelve suites
+of generic usage; the SELF-LICENSED flag marks only the one bespoke
+ablation world. A primitive everything depends on is proven by
+everything, not by a single fixture.
+
+## §34. STILL UNDER THE KEY (unchanged from §30, riders folded)
+
+1. §28 frozen-layer inventory I1–I9 (I10 done in-window).
+2. The overlay-build lint's CLAUDE.md clause (author-only — CLAUDE.md is
+   not builder-editable by protocol).
+3. MANIFEST.sha256 re-sign per §29 (now also covering the rider-1 Host.hs
+   change and the rider-2 marker edits).
+4. `elim-freeze-r0` — the author's signature, or a fresh per-instance
+   delegation recorded verbatim.
+
+Corpus state: full corpus green with the riders folded (13 suites incl.
+the two new pins); lint L1/L2/L4/L5/L7 PASS, L3 = gate 6 (the re-sign).

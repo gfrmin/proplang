@@ -76,10 +76,13 @@ main = defaultMain $ testGroup "actions -- an action is an assignment (step 5)"
   -- replace). The re-homed ladder price/identity pins had a named home
   -- ONLY until this boundary; the price pin dies with the sort, and the
   -- verb/worker identity is the D-f4 step-10 preposterior re-composition
-  -- cluster ('Real a' wall). RETIRE-UNTIL-N: return row on step 10's
-  -- checklist. The re-homed pins from the retired test-ladder end here
-  -- (DISCHARGED-PERMANENT for the sort; the deliberation capability
-  -- returns as a fresh composition oracle if step 10 re-composes it).
+  -- cluster ('Real a' wall). RETIRE-UNTIL-N, UNCONDITIONAL return
+  -- (rider 2): step 10 LANDS the deliberation re-composition and the
+  -- verb/worker identity pins return against it, or step 10 STALLS
+  -- HONESTLY -- the return is not conditional on convenience. Return row
+  -- on step 10's opening checklist. The VThinkK sort itself is
+  -- DISCHARGED-PERMANENT (the primitive never returns); only the
+  -- deliberation CAPABILITY returns, as a fresh composition oracle.
 
 -- ---------------------------------------------------------------------
 -- g1: the option space (menuAssignments' contract)

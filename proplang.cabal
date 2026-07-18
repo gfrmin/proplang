@@ -103,11 +103,15 @@ test-suite membrane
 -- verbs). The preposterior CAPABILITY is not lost forever: its
 -- arbitrary-depth re-composition is the D-f4 step-10 cluster (the
 -- 'Real a' wall — world-rollforward endo-kernel + sentence-level
--- expectation over structured carriers). RETIRE-UNTIL-N: if it
--- re-composes at step 10 it lands as a FRESH shipped-composition oracle
--- (the test-elim form), never by un-retiring this file. The VPre
--- ablation fixture is discharged-permanent — the verb never returns as
--- a primitive. Return row on step 10's opening checklist.)
+-- expectation over structured carriers). RETIRE-UNTIL-N, UNCONDITIONAL
+-- return (rider 2): VPre's preposterior identity is proof (i)'s content,
+-- and its permanent home is the step-10 oracle, not an "if" — step 10
+-- LANDS the re-composition and the identity returns against it (as a
+-- FRESH shipped-composition oracle, the test-elim form, never by
+-- un-retiring this file), or step 10 STALLS HONESTLY; the darkness is
+-- declared and bounded to one window. The VPre ablation fixture is
+-- discharged-permanent — the verb never returns as a primitive. Return
+-- row on step 10's opening checklist.)
 
 -- (test-cirl RETIRED at the step-9 elimination freeze — its subject,
 -- utility-as-latent through the USay UTIL sort, is DELETED (D-f1 UTIL

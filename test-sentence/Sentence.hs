@@ -454,10 +454,16 @@ g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
 -- another batch, which requires the world-rollforward endo-kernel and
 -- sentence-level expectation over structured carriers — the 'Real a'
 -- wall (D-f4 addition). That composition is filed to the step-10 case
--- file as one cluster. RETIRE-UNTIL-N: test 2's return rides step 10's
--- opening checklist (the preposterior re-composition), never a comment
--- remembered only here. The other three brief-§12 tests (g1c/g1e/g1f)
--- survive this step, re-expressed over the smaller alphabet.
+-- file as one cluster. RETIRE-UNTIL-N, and the return is UNCONDITIONAL
+-- (rider 2): test 2 is a brief-§12 acceptance deliverable, so its
+-- darkness is lawful for EXACTLY ONE window (the host-less window's own
+-- precedent) PROVIDED it is declared and the return is not conditional
+-- -- step 10 LANDS the deliberation re-composition and these pins return
+-- against it, or step 10 STALLS HONESTLY; the brief's acceptance suite
+-- does not quietly lose a member. The return rides step 10's opening
+-- checklist, never a comment remembered only here. The other three
+-- brief-§12 tests (g1c/g1e/g1f) survive, re-expressed over the smaller
+-- alphabet.
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------

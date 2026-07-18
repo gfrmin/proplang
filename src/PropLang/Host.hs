@@ -270,6 +270,14 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       nm <- jStr =<< oGet "name" g
       JArr vsJ <- oGet "grid" g
       vs <- mapM jNum vsJ
+      -- D-f8 (A), RIDER 1 (the pin on the door): a NaN or infinite grid
+      -- point is a DECLARATION-TIME validation failure -- the world's
+      -- declared carrier must denote, and it must fail at the HELLO, not
+      -- mid-episode (R-C1 refuses ill-formedness at construction, not
+      -- merely at the read). A hello carrying such a point is bad hello,
+      -- full stop; 'reads' can produce +/-Infinity (e.g. 1e999). The
+      -- gridLookup guard stays as defence-in-depth for the read site.
+      True <- pure (all (\v -> not (isNaN v || isInfinite v)) vs)
       v0 : vrest <- pure vs
       pure (nm, mkGrid nm (v0 :| vrest))
 
