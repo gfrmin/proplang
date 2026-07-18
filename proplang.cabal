@@ -59,22 +59,15 @@ test-suite hygiene
                     , process
     default-language: GHC2021
 
--- The expfam increment oracle (EXPFAM_PLAN E10): stanza drafted by the
--- builder in the oracle phase (test-expfam/stanza.cabal.draft), applied
--- at the Task 2 freeze alongside the manifest re-signing.
-test-suite expfam
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          ExpFam.hs
-    hs-source-dirs:   test-expfam
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
+-- (test-expfam RETIRED at the step-9 elimination freeze — DISCHARGED-
+-- PERMANENT, WIDE ruling / D-f13/D-f14. The ExpFam grammar node and the
+-- SId statistic are DELETED: ExpFam == Code bit-for-bit (test-code
+-- Code.hs:284-296), SId = realToFrac = ToR (§5d). The KER sort holds
+-- only Code now; STATS is gone. The suite's subject no longer exists;
+-- the deletion it proved possible became the deletion that happened —
+-- an ablation fixture's terminal state, so the files are removed, not
+-- kept as dead code, exactly as UseBern was. The Carrier machinery it
+-- exercised survives at the Belief layer, un-graded by the alphabet.)
 
 -- The membrane increment's suite (MEMBRANE_PLAN; drafted in the oracle
 -- phase as test-membrane/stanza.cabal.draft, landed at the Task 2
@@ -105,34 +98,24 @@ test-suite membrane
 -- price and verb/worker identity pins re-homed into test-actions g3
 -- until step 9 retires the constructor.)
 
-test-suite prepost
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Prepost.hs
-    other-modules:    Streams
-    hs-source-dirs:   test-prepost, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
+-- (test-prepost RETIRED at the step-9 elimination freeze — its subject,
+-- the VPre preposterior verb, is DELETED (D-f1, one of the five VoI
+-- verbs). The preposterior CAPABILITY is not lost forever: its
+-- arbitrary-depth re-composition is the D-f4 step-10 cluster (the
+-- 'Real a' wall — world-rollforward endo-kernel + sentence-level
+-- expectation over structured carriers). RETIRE-UNTIL-N: if it
+-- re-composes at step 10 it lands as a FRESH shipped-composition oracle
+-- (the test-elim form), never by un-retiring this file. The VPre
+-- ablation fixture is discharged-permanent — the verb never returns as
+-- a primitive. Return row on step 10's opening checklist.)
 
-test-suite cirl
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Cirl.hs
-    hs-source-dirs:   test-cirl
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
+-- (test-cirl RETIRED at the step-9 elimination freeze — its subject,
+-- utility-as-latent through the USay UTIL sort, is DELETED (D-f1 UTIL
+-- sort; utility is now an ordinary Expect-body EXPR). The pointer /
+-- CIRL deliverable (increment 6) leaves the corpus with its vehicle;
+-- if a belief-over-utility surface returns it does so over the new
+-- Expect surface as a fresh oracle. The USay ablation fixture +
+-- SayableC are discharged-permanent.)
 
 -- THE HOST-LESS WINDOW (stated at the step-3 freeze, D3 rider 2, here
 -- where the host stanzas stood): the govhost executable, its wire
