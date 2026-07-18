@@ -197,14 +197,22 @@ g3Wiring = testGroup "g3 hypBits IS chargeBits of the declared tree"
 
 g4Tables :: TestTree
 g4Tables = testGroup "g4 the two declared tables"
-  [ testCase "prodTable, the P5 single site, six fields (re-homes the retired gP5 pin; typed-port-spec section 3)" $ do
-      prodExpr prodTable    @?= 19
-      prodFn prodTable      @?= 2
-      prodStats prodTable   @?= 1
-      prodKer prodTable     @?= 2
-      prodStdName prodTable @?= 6
-      prodUtil prodTable    @?= 1
+  [ testCase "prodTable, the P5 single site, TWO fields (step 9 WIDE: six sorts -> two)" $ do
+      prodExpr prodTable @?= 20
+      prodKer  prodTable @?= 1
+  -- RETIRE-AND-REPLACE (D-f10; the six-field row RETIRED, not re-priced).
+  -- SINCE THE STEP-9 ELIMINATION (elim-freeze-r0, WIDE): four whole
+  -- sorts vanished -- STDNAME (the five VoI verbs + IsEq), FN
+  -- (FnInd/FnUtil, subsumed by the Expect binder), UTIL (USay, utility
+  -- is an ordinary Expr), STATS (SId, subsumed by ToR) -- and KER lost
+  -- ExpFam (subsumed by Code, bit-for-bit). EXPR settled at 20 (Expect
+  -- + SawE + ElimJ landed, IsEq deleted -- ruling A); KER at 1 (Code
+  -- alone). THE KER REPRICING (WIDE's named consequence, §18): prodKer
+  -- 2 -> 1, so the sort-width leaf for every kernel mention moves
+  -- lg 2 -> lg 1 = 0 -- a -1-bit repricing across every kernel-mentioning
+  -- priced sentence, P5 firing through the one arithmetic; the declared
+  -- table above recomputes it as its own second route.
   -- the fragment table's four widths are pinned where they were
-  -- declared: test-sentence g4 (frozen). Not duplicated here —
+  -- declared: test-sentence g4 (frozen). Not duplicated here --
   -- copy-not-reconstruct cuts both ways.
   ]
