@@ -359,3 +359,99 @@ ADD     test-reflexive/Reflexive.hs
 (reflexive-author-pack.md is working material, not manifest-covered; the
 scratchpad witnesses are R-D21 throwaway, discarded.) After the re-sign,
 `sha256sum -c MANIFEST.sha256` passes at 65 rows and the oracle is frozen.
+
+---
+
+## Part VI — the sitting (2026-07-18): rulings received, repairs executed
+
+The author ruled the full register at the sitting and directed the frozen
+edits with verbatim text. The builder executed the content edits (builder
+key, this section the record); the author reserves the manifest re-sign and
+the `reflexive-freeze-r0` tag ("I'll re-sign to 65 rows and the tag
+follows"). The rulings, operative:
+
+- **D-g1 — the horizon is a composition; ruled as measured.** No codeword
+  licensed, prodExpr stays 20. Depth-as-priced-choice delivered literally:
+  depth = the number of `Push` iterations in the sentence, each a different
+  price in bits and clock cost; the 1/3/12 tick counts are the agent buying
+  deliberation at the posted price. A7's "heuristics emerge as optimal
+  acts" closed by transcript. (The author's own step-8 "not one production
+  but a complex" sizing is overturned along with the builder's; the
+  capability was zero productions, and the deferral bought the boundary at
+  which the re-measurement became possible.)
+- **D-g2 — approved.** The three return rows as one re-composition seen
+  three ways; the unconditional-return obligation honoured in full; the
+  primitives stay in their graves while the capability walks.
+- **D-g5 — verified.** The pull-through is exact (P(s) constant over the
+  max; the cond-free form never divides — which is WHY the residue is
+  sub-ulp reassociation). Mandate 1's observation kept: the nonzero
+  7.58e-17 is itself the proof the two routes are distinct code paths.
+- **D-g3 — ruled (A).** WitnessB banked as clause (a)'s discharged license;
+  `GetV` waits as the kernel-composition production waited at step 8, with
+  its transcript attached. No brief world demands the structured SHORT
+  transition; the index-map fallback being expressible-but-long is the
+  CORRECT state under the complexity prior — a structural shortcut no world
+  has demanded costs description length until demand licenses its codeword.
+  The scope line prints the narrow limit with the fallback named.
+- **D-g4 — approved, permanent, mandate 6's strengthening in the ruling
+  text.** The selector's re-read of the live posterior stays unsayable
+  BY THE EVALUATOR'S TYPE — `Env` carries no agent — so the absence of
+  reflexive self-reading is a structural property of the language, not a
+  gap in a sentence. Reflexive closure is delivered as the policy in the
+  action space with a measured, published clock; sentences deliberate over
+  env-bound beliefs; the membrane owns the live read with g2 the standing
+  two-route pin. The deeper §11 open problem (hypotheses that mention the
+  policy — the quine face) remains open and is named, not closed.
+- **F2 — ratified**, and the reading goes into the CLAUSE not the pack:
+  the pin-freeze text is amended to "fast path OR CAPABILITY" (step 10 the
+  provenance), and a NEW clause is canonized — **a banked composition-
+  failure expires when the alphabet moves** (a negative result is a
+  hypothesis at any boundary whose terms changed underneath it,
+  re-executed before relied upon; E-g1 its provenance). Both landed in
+  CLAUDE.md at this boundary's touch.
+- **J1–J6 approved**; executed as ruled (J1/J2 in-place quote-inside-repair;
+  J3/J4 dated brackets under the key; J5 the surgical three-line correction
+  letting the section's own correct reasoning stand; J6 a dated supersession
+  note inside the existing bracket). Mandate fixes and audit triage accepted.
+
+### §15. The frozen edits, executed (builder key; author re-signs + tags)
+
+Content edits made this sitting (the manifest-affecting set):
+- **CLAUDE.md** — F2 amendment (pin-freeze "fast path or capability") + the
+  new clause (banked-failure-expires-when-the-alphabet-moves).
+- **AGENT_PLAN.md** (unfrozen — not manifest-covered) — J1 (V resolved),
+  J2 (horizon-as-composition), J5 (the "not type-correct" line corrected).
+- **design.md** — J6 (dated supersession note).
+- **test-sentence/Sentence.hs**, **test-actions/Actions.hs** — J3/J4 dated
+  brackets (comment-only; both suites stay green, 13/13 corpus).
+
+### §16. The manifest delta, FINAL (turnkey for the re-sign; 65 rows)
+
+Gate 6 expected-RED until the re-sign (NOT papered). Over the frozen
+MANIFEST.sha256 (64 rows):
+
+```
+CHANGE  proplang.cabal                af04b51de73ecd80853902a97d7516209ee37894ae9c209dc118f51be4bf67b8
+CHANGE  CLAUDE.md                     00d3c8c3f3af3ba7137061d5c8cf2739cb3c1d14cd3c35003e034e6118e5084b
+CHANGE  design.md                     e7c74358b2729b44ea9d20b70370531e636456d39a822ddb287587ede2cb793c
+CHANGE  test-sentence/Sentence.hs     ec0b622a82f5f335f0a36ccb815f576dec6ae07d2e4fa3d93967bb3a482317d2
+CHANGE  test-actions/Actions.hs       04872eb6ae6a16bcd99b324bdedf0db5e70585a819ea87c88c1d8e57555cc29b
+ADD     test-reflexive/Reflexive.hs   1e8f848263e4efd406f57063a8395c1b43483950274618ec615fba947d206b00
+```
+
+(AGENT_PLAN.md is not manifest-covered; reflexive-author-pack.md is working
+material; the scratchpad witnesses are R-D21 throwaway, discarded.) Five
+existing rows change hash, one row is added → 65 rows. After the re-sign,
+`sha256sum -c MANIFEST.sha256` passes and the oracle is frozen; the
+`reflexive-freeze-r0` tag is the attestation.
+
+**THE BRIEF IS DISCHARGED.** Steps 0–10: a calculator convicted and an
+agent derived; the alphabet at twenty productions and one kernel form;
+every survivor carrying an executed proof; the final step a pin-freeze with
+zero src diff because the language was already big enough. The deliberating
+agent the roadmap was built toward is a sentence — `Expect`, `If`/`Gt`,
+arithmetic, an env-bound belief, and a clock read from the world like any
+other fact. The residue is printed and homed: `GetV` banked with its
+license, the quine face of §11 open, HOSTS_PLAN B and C unbuilt — an honest
+completion, smaller than planned, sounder than hoped, its remaining
+questions named rather than forgotten.

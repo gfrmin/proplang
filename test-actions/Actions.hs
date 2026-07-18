@@ -76,7 +76,14 @@ main = defaultMain $ testGroup "actions -- an action is an assignment (step 5)"
   -- replace). The re-homed ladder price/identity pins had a named home
   -- ONLY until this boundary; the price pin dies with the sort, and the
   -- verb/worker identity is the D-f4 step-10 preposterior re-composition
-  -- cluster ('Real a' wall). RETIRE-UNTIL-N, UNCONDITIONAL return
+  -- cluster ('Real a' wall).
+  -- [J4 -- SUPERSEDED at reflexive-freeze-r0, 2026-07-18: the 'Real a'
+  -- wall was not the obstacle. The verb/worker identity RETURNED at
+  -- test-reflexive g3 as (composed sentence == sealed-engine worker):
+  -- v_act bit-exact, v_think within the CL-4 gate over a 7.58e-17
+  -- pull-through residue. No new production; the primitive stayed in its
+  -- grave and the capability walked, exactly as promised below.]
+  -- RETIRE-UNTIL-N, UNCONDITIONAL return
   -- (rider 2): step 10 LANDS the deliberation re-composition and the
   -- verb/worker identity pins return against it, or step 10 STALLS
   -- HONESTLY -- the return is not conditional on convenience. Return row

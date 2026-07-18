@@ -166,10 +166,16 @@ Every step-6+ increment follows the recursive two-phase discipline:
    PROGRAM: executed on throwaway prototypes (R-D21), success criteria
    pre-stated numerically, before any ruling freezes — so a freeze
    never encodes what its own falsifier convicts. For a PIN-FREEZE —
-   an increment that pins an already-shipped fast path, where no
-   implementation is owed — the red-run clause is satisfied by a
+   an increment that pins an already-shipped fast path OR CAPABILITY,
+   where no implementation is owed — the red-run clause is satisfied by a
    seeded-defect demonstration: every row's red reachable, attribution
-   partitioned (the step-2 precedent).
+   partitioned (the step-2 precedent). The "or capability" is AMENDED at
+   the step-10 boundary (reflexive-freeze-r0, 2026-07-18): step 10 pinned
+   the deliberation composition — an already-shipped CAPABILITY, no
+   implementation owed — with the same structure as a fast-path pin (pin
+   the shipped thing to the reference route; seeded defects for the red),
+   so the clause covers a capability composition as well as an
+   optimisation; step 10 is that reading's provenance.
    Three lines canonized at the step-3 boundary (the sentence freeze,
    2026-07-15). A sweep's universe derives from the custody record
    plus declared non-manifest surfaces — never hand-enumeration (the
@@ -297,6 +303,24 @@ Every step-6+ increment follows the recursive two-phase discipline:
    left in-tree fails the row — which is why DISCHARGED-PERMANENT means
    the file is DELETED, not kept as dead code. Its transcript rides the
    boundary's pack.
+   One clause canonized at the step-10 boundary (the reflexive freeze,
+   2026-07-18): A BANKED COMPOSITION-FAILURE EXPIRES WHEN THE ALPHABET
+   MOVES. A negative result — a demonstrated failed composition banked
+   under the primitivity gate's clause (a) — is a HYPOTHESIS at any later
+   boundary whose terms changed underneath it, and must be RE-EXECUTED
+   against the shipped grammar before it is relied upon. Its provenance
+   is step 10's opening measurement (E-g1): step 8 banked "the
+   world-rollforward needs an endo-kernel the type surface refuses" as
+   the license for a horizon PRODUCTION; step 9 then moved the alphabet
+   (deleted IsEq, landed Expect/SawE/ElimJ/Code), and the step-10
+   re-execution found the verdict too strong — the step-8 attempt had
+   never tried `Pos`, and the frozen walk move-code had been a Pos-index
+   rollforward kernel since step 1. Re-testing the banked verdict as a
+   hypothesis is exactly what stood between step 10 and landing a
+   needless production on a stale negative. The scriptable half is a
+   boundary-audit candidate (flag every banked clause-(a) failure whose
+   increment postdates the alphabet motion it assumed); the
+   non-scriptable half stays law as prose.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

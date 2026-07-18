@@ -249,7 +249,16 @@ argmax.
 > expectation over structured carriers). Test 2's tick-count deliverable
 > retires for exactly this one window and returns UNCONDITIONALLY against
 > the step-10 oracle (rider 2). The `is_act`/`v_act`/`v_think` names in
-> the block above are historical.]
+> the block above are historical.
+> [J6 — SUPERSEDED at reflexive-freeze-r0, 2026-07-18: the "`Real a` wall
+> — world-rollforward endo-kernel" framing above was too strong. Step 10
+> LANDED the re-composition (test-reflexive, 10/10) over the SCALAR latent
+> axis, where `Real` holds and the wall never binds; the endo-kernel is
+> sayable (the frozen walk move-code is one). Test 2's tick counts
+> (1/3/12/12) returned as `v_act` = `If/Gt` over two `Expect`s and
+> `v_think` = the cond-free pull-through, with the clock a `Get` feature —
+> no new production, prodExpr 20. The wall binds only the narrow
+> structured-component case (`GetV`), banked under D-g3.]]
 
 ---
 

@@ -453,7 +453,16 @@ g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
 -- VThink's ARBITRARY-DEPTH preposterior: the expected value of thinking
 -- another batch, which requires the world-rollforward endo-kernel and
 -- sentence-level expectation over structured carriers — the 'Real a'
--- wall (D-f4 addition). That composition is filed to the step-10 case
+-- wall (D-f4 addition).
+-- [J3 — SUPERSEDED at reflexive-freeze-r0, 2026-07-18: the 'Real a' wall
+-- did NOT bind. Step 10 re-composed this deliberation over the SCALAR
+-- latent axis (Real Double), where the wall is vacuous, and reproduced
+-- test 2's tick counts 1/3/12/12 (test-reflexive g1) with NO new
+-- production. The 'world-rollforward endo-kernel' is sayable (WitnessA;
+-- the frozen walk move-code is one); only a NAMED-COMPONENT projection of
+-- a bound structured state stays out (GetV, banked under D-g3). The
+-- return happened as promised, unconditionally.]
+-- That composition is filed to the step-10 case
 -- file as one cluster. RETIRE-UNTIL-N, and the return is UNCONDITIONAL
 -- (rider 2): test 2 is a brief-§12 acceptance deliverable, so its
 -- darkness is lawful for EXACTLY ONE window (the host-less window's own

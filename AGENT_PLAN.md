@@ -1142,12 +1142,25 @@ close, oracle and gates green on the same signature; as-built record
     recurring-stakes myopia as its scope limit and named this boundary its heir: rolling
     a model forward k steps is DELIBERATION, and its depth must be earned through the
     same value-of-computation machinery as every other act (never a constant — "why
-    five?" is the sentinel's disease in its politest dress). The opening case file is
-    banked: outcome-author-pack §9 (the compile witnesses — the two gaps: the body's
-    Features eliminators, and the absent transition-hypothesis family) and §12 (the
-    numbers — refusal 1.000, ~100 utility/run regret, the granted-transition rollforward
-    at oracle parity, the price 0.0740 bits/node). `test-outcome`'s g3 is the
-    declared-limitation pin this step flips — deliberately, never silently.
+    five?" is the sentinel's disease in its politest dress).
+    **✅ RESOLVED AS A COMPOSITION (J2, D-g1, reflexive-freeze-r0, 2026-07-18).** This
+    row expected the horizon as a PRODUCTION with a price — the banked case file read:
+    *"the two gaps: the body's Features eliminators, and the absent transition-hypothesis
+    family ... the price 0.0740 bits/node."* Step 10's opening measurement (E-g1,
+    reflexive-author-pack Part I) OVERTURNED that verdict as too strong: the step-8
+    compile witness never tried `Pos`, and the frozen walk move-code has been a
+    Pos-index rollforward kernel since step 1. The horizon LANDED AS A COMPOSITION — the
+    primitivity gate's clause (a) does not fire (the composition succeeds), so no codeword
+    is licensed; prodExpr stays 20, no alphabet motion. The "never a constant" demand is
+    delivered LITERALLY: depth is the number of `Push` iterations IN the sentence, each
+    depth a different sentence at a different price in bits and a different clock cost, the
+    argmax choosing among them — the 1/3/12 tick counts are the agent buying deliberation
+    at the posted price (test-reflexive g1). `test-outcome`'s g3 declared-limitation pin
+    stands unflipped (the fuse world is the structured-component case, banked under D-g3);
+    what flipped is the expected FORM of the fix — a composition, not a production. The
+    only residue is `GetV` (component projection over a bound structured state), banked
+    under D-g3 with its clause-(a) license (WitnessB), awaiting a brief world that demands
+    the structured SHORT transition.
     **OPENING-CHECKLIST ROW (deferred at the step-6 r2, the author's direction: finish
     the language first — no premature optimisation): the `PilotEU` selection fold's
     §1b classification RETURNS HERE.** At reflexive closure, determine whether the
@@ -1242,7 +1255,7 @@ The standing chain is **V → R → K → change families** (`BRIEF_AUDIT.md:284
 | **C — arithmetic** (`HOSTS_PLAN.md:798-801`) | *"the census-bearing boundary, **last**"*; **GATE**: *"C is built only if D's oracle demonstrates step-table underfit"* | **RE-BASED, AND ITS GATE IS DEAD.** §5: arithmetic is forced **by the likelihood**, not by utility underfit. **C's demand-gate was watching the wrong quantity** and would never have fired for the reason that actually forces it. **C moves from LAST-and-conditional to FIRST-and-unconditional** (step 1). |
 | **A — K-ary observations** (`HOSTS_PLAN.md:509-513`) | *"K-ary observation is **NOT a grammar change**"*; demand-gated on the life-agent differential | **SURVIVES, UNCHANGED.** Orthogonal to §2a — it is about the observation *space*, not the likelihood's *form*. Still demand-gated. |
 | **B — reliability / noisy channel** (`HOSTS_PLAN.md:583-587`) | conditional on A's differential showing a reliability shortfall | **SURVIVES, and gets EASIER.** A noisy channel is **a code** (§2a) — a finite mixture, no longer a special family needing its own boundary. If it lands at all, it lands as a sentence. |
-| **V — the single decision rule at the wire** (`METAREASONING_PLAN.md:10-11`) | tag **`v-open` EXISTS; there is NO `v-freeze`.** | ⚠️ **DEAD — AND DANGLING RIGHT NOW.** Its entire subject (`VThink`/`VThinkK`/`VPre`) is **deleted** by proof (i). **This is a live custody defect the map surfaces: an OPEN boundary tag with no freeze and no cancellation.** **V must be formally CANCELLED by the author at this boundary**, or the repo carries an open boundary whose subject no longer exists. |
+| **V — the single decision rule at the wire** (`METAREASONING_PLAN.md:10-11`) | tag **`v-open` and `v-cancelled` BOTH exist.** | ✅ **RESOLVED (J1, reflexive-freeze-r0, 2026-07-18).** This row read: *"DEAD — AND DANGLING RIGHT NOW ... V must be formally CANCELLED by the author at this boundary, or the repo carries an open boundary whose subject no longer exists."* That was true when written and is now FALSE: V was formally cancelled — `v-cancelled` on `ea891f0`, author-signed, verified 2026-07-15 (§8b OPEN 12 marks it `DISCHARGED`). No dangling boundary remains; its subject (`VThink`/`VThinkK`/`VPre`) is deleted and the boundary is closed without a freeze, as the cancellation records. |
 
 **Also stale and named:** `BRIEF_AUDIT.md:143-147` prices nodes at `nodeB = lg 10` and quotes
 `ProdTable 10 2 1 1 7 1` verbatim; `:21-22` prices `Bern` at `lg 10 + lg 5`. **Both go stale the
@@ -1383,6 +1396,18 @@ CL-3 first-listed-wins stands. `wait` is core, always available (A5).
    - **Not sayable:** the **world-rollforward**. A hypothesis is `context → Obs`, **not an
      endo-kernel on features**, so pushing it five times **is not type-correct.** There is no
      kernel-composition and no recursion production among the 21.
+     **[J5 — CORRECTED at reflexive-freeze-r0, 2026-07-18: this line is FALSE as a
+     blanket.** The quoted claim — *"the world-rollforward ... is not type-correct ... no
+     kernel-composition"* — was refuted by step-10 WitnessA/C: a `Pos`-index endo-kernel
+     (`Code Space Space body`, body reading bound points via `Pos`) compiles, an env-bound
+     `K` pushes five times type-correctly, and the frozen walk move-code IS such a kernel,
+     shipped since step 1. It is true ONLY in the NARROW case: a transition body needing a
+     NAMED COMPONENT of a bound structured (`Features`) state (`GetV`, WitnessB) — banked
+     under D-g3. NB the surrounding reasoning STANDS unamended: the line above ("Already
+     sayable: depth-unrolling ... `sPre m` ... `Push`/`Cond`/`Expect`/`Argmax` alone") and
+     the lines below ("the horizon ... a depth-`k` unrolled sentence costs `O(k)` nodes ...
+     choosing the depth is an act, priced by the clock") are exactly what step 10
+     delivered. Only the "not type-correct / no kernel-composition" blanket was wrong.]**
    - **The horizon must never be a CONSTANT** — *"the sentinel's disease returning"* (the author).
      Nor need it be: **a depth-`k` unrolled sentence costs `O(k)` nodes, so deeper lookahead is
      DEARER IN THE PRIOR.** The bound is already paid in bits; *choosing* the depth is an **act**,
