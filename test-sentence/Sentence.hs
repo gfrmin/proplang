@@ -108,7 +108,6 @@
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty (..))
-import Data.Maybe (fromMaybe)
 import Data.Word (Word64)
 import GHC.Float (castDoubleToWord64)
 import System.Exit (ExitCode (..))
@@ -116,18 +115,17 @@ import System.Process (readProcessWithExitCode)
 import Test.Tasty
 import Test.Tasty.HUnit
 
-import PropLang.Belief (Bits (..), Evidence (..), LogProb (..),
-                        Space, cond, entropyBits, is, mkSpace,
-                        prob, top, uniform)
+import PropLang.Belief (Bits (..), LogProb (..),
+                        Space, entropyBits, is, mkSpace,
+                        prob, top)
 import PropLang.Enumerate (Agent, FragProd (..), FragSort (..), Hyp (..),
-                           Obs, agentMeta, emit, enumerateSentences,
+                           Obs, agentMeta, enumerateSentences,
                            enumerateSentencesIn, filterTickFree, fragFull,
                            fragSortOf, fragWidth, obsSpace, predictive,
-                           observe, renderExpr, sentenceAgent, thetaSpace)
-import PropLang.Eval (Features, evalx, mkEnv, Vals (..))
-import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K, Name,
-                        StdName (..), USent (..), mkC, mkGrid,
-                        mkNamespace)
+                           observe, renderExpr, sentenceAgent)
+import PropLang.Eval (evalx, mkEnv, Vals (..))
+import PropLang.Syntax (B, Expr (..), Idx (..), Name,
+                        mkC, mkGrid, mkNamespace)
 
 import Anchors
 import Streams
@@ -136,7 +134,6 @@ main :: IO ()
 main = defaultMain $ testGroup "sentence -- a hypothesis becomes a sentence (step 3)"
   [ g1Enumeration
   , g1cChangingWorld
-  , g1dLazyGenius
   , g1eForgetterTrap
   , g1fDeletionTable
   , g2SilentTick
@@ -209,6 +206,18 @@ gk :: Name -> Double -> Expr env Double
 gk nm v = case mkC (mkGrid nm (v :| [])) 0 of
   Just e  -> e
   Nothing -> error "sentence fixture: singleton grid index 0 must construct"
+
+-- IsEq deleted (step 9, D-f8 = (A); ruling A, EXPR settles at 20): the
+-- equality of two reals is the If/Gt composition (test-elim g4: 0
+-- disagreements over 1225 reachable pairs; NaN, the sole disagreement,
+-- is not a lawful grid point). a == b iff neither strictly exceeds the
+-- other. Value-identical to the deleted 'Call IsEq'.
+eqE :: Expr env Double -> Expr env Double -> Expr env Bool
+eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+
+trueE, falseE :: Expr env Bool
+trueE  = Gt (gk "k1" 1) (gk "k0" 0)
+falseE = Gt (gk "k0" 0) (gk "k1" 1)
 
 -- the bern-code body shape at a theta subtree (COPY of the frozen
 -- test-code/Code.hs:252-259 codeBernV body; delta: th is a subtree,
@@ -325,23 +334,32 @@ gkS v = case mkC (mkGrid "k" (v :| [])) 0 of
   Just e  -> e
   Nothing -> error "sentence fixture: singleton grid index 0 must construct"
 
--- RE-DERIVED from test/Acceptance.hs:104-108 (the lineage's utility):
+-- RE-DERIVED from test/Acceptance.hs:104-108 (the lineage's utility),
+-- now the Expect binder's body (step 9, D-f1/§17): the FN/USent wrapper
+-- is GONE — utility is an ordinary priced EXPR in the outcome-bound
+-- scope (E-e1a; the FN sort dissolved into Expect). RESIDUE-SWAP (the
+-- value-preserving re-index, §19 identity): the outcome binds at Var Z
+-- (the Expect binder), the option code reads at Var (S Z) — the mirror
+-- of the old USent payload (option at Z, outcome at S Z), so every EU
+-- value is bit-identical and the timeline is UNMOVED.
 --   consult (2) -> 0.35; predict1 (0) -> 2y-1; predict0 (1) -> 1-2y
-util1 :: USent
-util1 = USent
-  (If (Gt (Var Z) (gkS 1.5)) (gkS 0.35)
-      (If (Gt (Var Z) (gkS 0.5))
-          (Sub (gkS 1) (Mul (gkS 2) (Var (S Z))))
-          (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1))))
+util1Body :: Expr '[Double, Double, NonEmpty Double, B Obs] Double
+util1Body =
+  If (Gt (Var (S Z)) (gkS 1.5)) (gkS 0.35)
+      (If (Gt (Var (S Z)) (gkS 0.5))
+          (Sub (gkS 1) (Mul (gkS 2) (Var Z)))
+          (Sub (Mul (gkS 2) (Var Z)) (gkS 1)))
 
 -- RE-DERIVED from test/Acceptance.hs:86-89: the doctrinal argmax-EU
--- program over option CODES; EU's evaluation features are an argument
--- (empty here — this world publishes no feature the utility reads)
-argmaxEU :: Real y => Expr '[NonEmpty Double, B y, USent, Features] Double
+-- program over option CODES. EU is DELETED (D-f1); its composition is
+-- the Argmax/Expect pairing (test-elim g3): for each option, take the
+-- prevision of the utility body over the belief. The belief (pr) sits
+-- at Var (S (S Z)) in the Argmax body; Expect binds the outcome and
+-- util1Body reads it at Var Z, the option at Var (S Z).
+argmaxEU :: Expr '[NonEmpty Double, B Obs] Double
 argmaxEU =
   Argmax (Var Z)
-    (Call EU (Var (S (S Z)) :* Var (S (S (S Z)))
-              :* Var (S (S (S (S Z)))) :* Var Z :* ANil))
+    (Expect (Var (S (S Z))) util1Body)
 
 -- COPIED test/Acceptance.hs:111-123, the agent re-based on sentences
 runChangingWorld :: ([(Int, Double, Double, Double)], Agent)
@@ -352,8 +370,7 @@ runChangingWorld = go 0 (sentenceAgent (enumerateSentences fragFull)) shifted160
     go t ag (y : ys) =
       let pr = predictive [("t", fromIntegral t)] ag
           p1 = prob pr (is obsSpace 1)
-          a  = evalx argmaxEU (mkEnv [] (acts :. pr :. util1
-                                          :. ([] :: Features) :. VNil))
+          a  = evalx argmaxEU (mkEnv [] (acts :. pr :. VNil))
           h  = entropyBits (agentMeta ag)
           (_, ag')     = stepAgentS t y ag
           (rows, agF)  = go (t + 1) ag' ys
@@ -426,86 +443,22 @@ g1cChangingWorld = testGroup "g1c test 1: the changing-world deliverable"
   ]
 
 -- ---------------------------------------------------------------------
--- g1d: TEST 2 — the lazy-genius deliverable (brief §12; lineage:
--- test/Acceptance.hs test2, VERBATIM port — the deliberation ladder
--- touches no doomed name; only its housing file dies)
+-- g1d: TEST 2 — the lazy-genius deliverable — RETIRED AT STEP 9
+-- (elim-freeze-r0; D-f1). The deliberation ladder (the think/act tick
+-- counts 1/3/12/12) is the ONE Acceptance-lineage deliverable that
+-- leaves the corpus at this boundary. It selected via 'Call VThink' —
+-- the value-of-thinking verb — and VThink is DELETED (D-f1). VAct
+-- re-composes as the myopic Argmax/Expect pairing (test-elim g3, and
+-- g1c above uses exactly it), but the deliberation POLICY needs
+-- VThink's ARBITRARY-DEPTH preposterior: the expected value of thinking
+-- another batch, which requires the world-rollforward endo-kernel and
+-- sentence-level expectation over structured carriers — the 'Real a'
+-- wall (D-f4 addition). That composition is filed to the step-10 case
+-- file as one cluster. RETIRE-UNTIL-N: test 2's return rides step 10's
+-- opening checklist (the preposterior re-composition), never a comment
+-- remembered only here. The other three brief-§12 tests (g1c/g1e/g1f)
+-- survive this step, re-expressed over the smaller alphabet.
 -- ---------------------------------------------------------------------
-
-data MetaAct = DoAct | DoThink
-  deriving (Eq, Show)
-
--- RE-DERIVED at the step-8 outcome freeze (R-D22; THE ACCEPTANCE
--- LINEAGE ROW — brief §12 test 2, the lazy-genius deliverable): Dir
--- becomes the residue CODE (L = 0, R = 1, the lineage's own listing
--- order) and the stakes become a PRICED SENTENCE. Same extension at
--- both codes; the tick counts and final acts are UNMOVED.
-dirLC, dirRC :: Double
-dirLC = 0; dirRC = 1
-
-dirName :: Double -> String
-dirName c = if c > 0.5 then "R" else "L"
-
--- RE-DERIVED from test/Acceptance.hs:187-188: R -> 2*theta-1,
--- L -> 1-2*theta
-stakes :: USent
-stakes = USent
-  (If (Gt (Var Z) (gkS 0.5))
-      (Sub (Mul (gkS 2) (Var (S Z))) (gkS 1))
-      (Sub (gkS 1) (Mul (gkS 2) (Var (S Z)))))
-
--- COPIED test/Acceptance.hs:201-217
-policyThink :: Expr '[ NonEmpty MetaAct, MetaAct, B Double, K Double Obs
-                     , [Obs], USent, NonEmpty Double, Int ] MetaAct
-policyThink =
-  Argmax (Var Z)
-    (If (Call IsEq (Var Z :* Var (S (S Z)) :* ANil))
-        (Call VAct (Var (S (S (S Z)))
-                 :* Var (S (S (S (S (S (S Z))))))
-                 :* Var (S (S (S (S (S (S (S Z)))))))
-                 :* ANil))
-        (Call VThink (Var (S (S (S Z)))
-                   :* Var (S (S (S (S Z))))
-                   :* Var (S (S (S (S (S Z)))))
-                   :* Var (S (S (S (S (S (S Z))))))
-                   :* Var (S (S (S (S (S (S (S Z)))))))
-                   :* Var (S (S (S (S (S (S (S (S Z))))))))
-                   :* Get "price"
-                   :* ANil)))
-
--- COPIED test/Acceptance.hs:223-239
-runDeliberation :: Double -> [Obs] -> (Int, Double)
-runDeliberation price = go (0 :: Int) (uniform thetaSpace)
-  where
-    dirs = dirLC :| [dirRC]
-    go ticks b buf =
-      let metaacts = DoAct :| [DoThink | not (null buf)]
-          batchN   = min 3 (length buf)
-          env = mkEnv [("price", price)]
-                  (metaacts :. DoAct :. b :. emit :. ([0, 1] :: [Obs])
-                    :. stakes :. dirs :. batchN :. VNil)
-      in case evalx policyThink env of
-           DoAct   -> (ticks, evalx argmaxEU
-                                (mkEnv [] (dirs :. b :. stakes
-                                           :. ([] :: Features) :. VNil)))
-           DoThink -> go (ticks + 1) (condBatch b (take 3 buf)) (drop 3 buf)
-    condBatch = foldl' (\bb y ->
-      fromMaybe (error "impossible evidence in batch")
-                (cond bb (Saw emit y)))
-
-g1dLazyGenius :: TestTree
-g1dLazyGenius = testGroup "g1d test 2: the lazy-genius deliverable"
-  [ testCase "tick counts and final acts at the four prices (exact)" $ do
-      let runs = [ (p, runDeliberation p buffer36) | (p, _, _) <- t2Rows ]
-      mapM_ (\((pA, tkA, fA), (_, (tk, f))) -> do
-               assertEqual ("thinking ticks at price " ++ show pA) tkA tk
-               assertEqual ("final act at price " ++ show pA) fA (dirName f))
-            (zip t2Rows runs)
-      case map (fst . snd) runs of
-        [tHi, tMid, tLo, tNone] ->
-          assertBool "t_hi < t_mid < t_lo <= t_none"
-                     (tHi < tMid && tMid < tLo && tLo <= tNone)
-        other -> assertFailure ("expected 4 runs, got " ++ show (length other))
-  ]
 
 -- ---------------------------------------------------------------------
 -- g1e: TEST 3 — the agent-vs-forgetter deliverable (brief §12;
@@ -546,12 +499,20 @@ t3CompHexes =
 t3RenderGolden :: String
 t3RenderGolden = "('code', ('neg', ('/', ('log', ('if', ('>', ('tor', ('var', 0)), ('c', 'k', 0)), ('var', 1), ('-', ('c', 'k', 1), ('var', 1)))), ('log', ('c', 'k', 2)))))"
 
--- filled from the prototype run 2026-07-15; ('c','rho',3) — the
--- inferred drift rate — appears on the artifact's face, three times
--- (the diagonal and the two reflections); ('c','k',3) is the shape
--- grid's n-1 point
+-- RE-PINNED at step 9 (elim-freeze-r0; §19 identity-triple re-pin): the
+-- move code's three equality tests were 'Call IsEq'; IsEq is DELETED
+-- (D-f8 = (A)) and walkCode now emits the If/Gt composition, so the
+-- SERIALIZATION moves (a label moves; the identity must not). The triple
+-- is asserted UNCHANGED beside this re-pin and passes: dlWalkHex (the
+-- walk's price, 4.0 bits — the move-code node count never entered the
+-- enumeration dl), t3MassHex (the MAP posterior mass), and every
+-- t3CompHexes component predictive are bit-identical across the
+-- re-expression. ('c','rho',3) — the inferred drift rate — still
+-- appears three times (the diagonal and the two reflections);
+-- ('c','k',3) is the shape grid's n-1 point. Captured from the run
+-- 2026-07-18 (the sentinel technique; this frozen text is the transcript).
 t3MoveGolden :: String
-t3MoveGolden = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('pos', ('var', 1))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('call', 'IsEq', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
+t3MoveGolden = "('code', ('neg', ('/', ('log', ('+', ('+', ('if', ('if', ('>', ('pos', ('var', 0)), ('pos', ('var', 1))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('pos', ('var', 1)), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('-', ('c', 'k', 1), ('c', 'rho', 3)), ('c', 'k', 0)), ('if', ('if', ('>', ('pos', ('var', 0)), ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1)))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('if', ('>', ('pos', ('var', 1)), ('c', 'k', 0)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)), ('+', ('pos', ('var', 1)), ('c', 'k', 1))), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0))), ('if', ('if', ('>', ('pos', ('var', 0)), ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1)))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('if', ('>', ('if', ('>', ('c', 'k', 3), ('pos', ('var', 1))), ('+', ('pos', ('var', 1)), ('c', 'k', 1)), ('-', ('pos', ('var', 1)), ('c', 'k', 1))), ('pos', ('var', 0))), ('>', ('c', 'k', 0), ('c', 'k', 1)), ('>', ('c', 'k', 1), ('c', 'k', 0)))), ('/', ('c', 'rho', 3), ('c', 'k', 2)), ('c', 'k', 0)))), ('log', ('c', 'k', 2)))))"
 
 g1eForgetterTrap :: TestTree
 g1eForgetterTrap = testGroup "g1e test 3: the agent-vs-forgetter deliverable"
@@ -667,7 +628,7 @@ illAtZeroHyp = statelessHyp 1
 -- survives, because silence never refutes
 illAtFiveHyp :: Hyp
 illAtFiveHyp = statelessHyp 1
-  (If (Call IsEq (Get "t" :* gk "k5" 5 :* ANil))
+  (If (eqE (Get "t") (gk "k5" 5))
       (gk "bad" (-1)) (gk "th7" 0.7))
 
 -- ten observed ticks; for (b) the fold SKIPS t=5 (host-level silence:
