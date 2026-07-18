@@ -30,6 +30,14 @@
 -- prodExpr (19, untouched); the three STDNAME-reading pins live in
 -- the sayable fixtures (ladder/prepost/cirl), re-priced there under
 -- the same delegation (D4: adjudication, never grep).
+--   [STEP-9 UPDATE, elim-freeze-r0: the sentence above ("this file's
+--   alphabet pins read prodExpr (19, untouched)") is SUPERSEDED. The
+--   step-9 elimination moved prodExpr 19 -> 20 (Expect/SawE/ElimJ
+--   landed, IsEq deleted -- ruling A), so groupBits's node pins now read
+--   lg 20; and the STDNAME sort itself is DELETED (the five VoI verbs +
+--   IsEq gone), so the three STDNAME-reading pins named above are
+--   RETIRED with their fixtures (ladder/prepost/cirl all retired). The
+--   FN price rows (groupFn/groupAblation) are retired here at step 9.]
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))

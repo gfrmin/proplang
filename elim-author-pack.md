@@ -818,3 +818,102 @@ same suite SURVIVE (they use argmaxEU/Expect, not VThink).
 
 The corpus is in a CLEAN partial state: five suites green, the rest
 unedited (no half-edited files). Manifest unchanged at 81/81.
+
+---
+
+# PART VIII — THE ENACTMENT AS BUILT (elim-freeze-r0 prep, 2026-07-18)
+
+WIDE is fully enacted. The alphabet leaves smaller than it entered: two
+sorts (EXPR 20, KER 1) where six stood, and every survivor carries an
+executed proof. What follows is the as-built record, the two census
+columns the sitting is owed, the frozen-layer inventory brought FOR the
+sitting (normative-doc repairs land under the boundary's key), and the
+gate/manifest state.
+
+## §25. THE SAT / OVERLAY FLAG SET (flag-faithfulness, the step-5 amendment)
+
+Every satisfiability/overlay transcript in this increment ran under the
+stanza's EXACT gate-1 flag set, `-Werror` included:
+`-Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns`.
+The test-elim oracle is R-D21 in OVERLAY form — the prototype wears the
+real module's name, so the frozen oracle text compiles and RUNS against
+the shipped src unchanged, and GREEN under those four flags IS the
+transcript (no throwaway prototype to discard).
+
+## §26. AS-BUILT REGISTER (the D-e / D-f answers)
+
+| Q | as built |
+|---|----------|
+| D-f1 (delete 5 verbs + FN/UTIL/STDNAME/STATS) | DONE — src green, gate-1 clean. |
+| D-f8 = (A) (delete IsEq + prohibit NaN grids) | DONE — eqE = If/Gt everywhere (test-elim g4, 0 disagreements); NaN/inf guard at gridLookup (R-C1 extended to the mkC door; test-elim g7). EXPR settles at 20. |
+| D-f13 (ExpFam delete) / D-f14 (SId delete) | DONE — KER holds Code alone; STATS gone; gExpFam + test-expfam retired. |
+| §18 (KER-bit vanishes) | DONE — prodKer 2->1; kernel-mention leaf lg 2 -> lg 1 = 0; pinned test-code gPrices (kerB row) + test-pricing g4 census note. |
+| §19 (golden identity-triple re-pins) | DONE — two goldens moved (membrane t3, sentence t3MoveGolden); each re-pinned with dl + posterior mass + component predictives asserted UNCHANGED beside it (the sentence changed its clothes, not its identity). |
+| Expect/SawE/ElimJ landed + priced | DONE — the prevision binder, the evidence producer, the one-Maybe eliminator; test-elim g1/g2/g3/g5/g6 green. |
+| deletion audit (D-f9) | DONE — test-elim/ablation 4-check (layer absence + GENERIC/SELF-LICENSED, control, ablation, attribution); Expect SELF-LICENSED, SawE/ElimJ GENERIC; g8 green. |
+
+## §27. THE RULINGS-SWEEP COLUMN (D-f10 — the SEMANTIC wave the build cannot see)
+
+Each stale-green candidate the two-column census flagged, and its
+enacted disposition (RETIRE-AND-REPLACE, never re-price):
+
+| candidate (subject a ruling killed) | disposition |
+|---|---|
+| test-code:407 "Code joins ExpFam in the KER sort" (KER=2) | RETIRED; replaced by the §18 kerB=lg 1 row (Code alone). |
+| test-code group 3 gExpFam (ExpFam==Code) | RETIRED (D-f13); the demonstrated-composition proof is frozen in the record, the node deleted. |
+| test-hygiene groupFn/groupAblation (FN semantics + FN raises-by-type) | RETIRED (FN sort deleted); UseFnInd/UseFnUtil discharged-permanent. |
+| test-hygiene groupBits FN price rows (:153-160, "re-price not fail") | RETIRED (the census's highest-risk row — a mechanical port would have silently pinned a false price). |
+| test-actions g3 VThinkK ladder pins | RETIRED (VThinkK deleted); return on step-10 checklist. |
+| test-outcome g2 EU/FnUtil seam rows + g1 USay-to-syntax row | RETIRED (subjects deleted; composition pinned in test-elim; anti-resurrection = the deletion audit's layer-absence). |
+| test-sentence g1d (test 2, the lazy-genius deliberation) | RETIRED (VThink); RETIRE-UNTIL-N, step 10. |
+| test-pricing g4 six-field prodTable | RETIRED; replaced with the two-field ruled table. |
+
+## §28. THE FROZEN-LAYER INVENTORY (D-f11, the largest yet — BROUGHT TO THE SITTING)
+
+Per the FROZEN-LAYER INVENTORY clause the builder touches the frozen
+layer only at a boundary, under an inventory brought to the sitting.
+These are NORMATIVE-doc repairs (the LAW): they are enumerated here for
+execution at elim-freeze-r0 under the author's key (or fresh per-instance
+delegation). Each is quoted with its file:line and the repair in the
+form the text class demands.
+
+| # | site | falsified text | repair form |
+|---|---|---|---|
+| I1 | typed-port-spec.md:157-164 | THE §5b NORMATIVE PRODUCTION TABLE: rows FN (FnInd/FnUtil, 1 bit), STATS (SId, 0), KER (ExpFam+Code, log2 2), STDNAME (EU/IsEq/VAct/VThink/VThinkK/VPre, log2 6), UTIL (USay, 0) | in-place: collapse to EXPR (20) + KER (Code, log2 1); the four sorts' rows deleted with a one-line deletion note citing D-f1/D-f8/D-f13/D-f14. |
+| I2 | typed-port-spec.md:111-112 | `Call :: StdName args t -> ...` and `ExpFam :: ...` in the GADT sketch | in-place: Call/ExpFam lines removed; add Expect/SawE/ElimJ with their derivation lines (already in Syntax.hs). |
+| I3 | typed-port-spec.md:127 | "`Fn a` and `Stats c` are first-order syntax, not Haskell lambdas" | in-place: Fn/Stats gone; the residue Expr is the first-order utility now. |
+| I4 | design.md:50-51 | "left the stdlib (STDNAME 7 -> 6) ... 'rw' remains the alphabet's one non-expfam combinator" | in-place: STDNAME deleted entirely; rw is a code (walkCode), ExpFam gone. |
+| I5 | design.md:221-224 | the `('call', 'v_think', ...)` grammar example + "v_think expands through the stdlib boundary into pure verbs" | in-place: v_think/the verb layer deleted; the deliberation ladder is the step-10 preposterior re-composition (D-f4). |
+| I6 | design.md:358 | "utility is a priced sentence (`USent`)" | dated bracket: USent deleted at step 9; utility is the bare residue Expr '[Double,Double] Double. |
+| I7 | interface.md:109-127 | `KER ::= ('expfam', CARRIER, STATS, PARAM...)`; bern/gauss "expfam" names; "the alphabet residue's one recorded non-expfam member" | in-place: KER ::= ('code', ...); ExpFam deleted (== Code); the non-expfam-member framing dissolves. |
+| I8 | AGENT_PLAN.md §7 step 10 | opening checklist | ADD three RETIRE-UNTIL-N return rows: g1d (test 2 deliberation), test-prepost (VPre preposterior), test-actions VThinkK identity — each returns as a FRESH shipped-composition oracle if step 10 re-composes it. |
+| I9 | AGENT_PLAN.md:557 | "The deletion audit covers 2 of ~22 productions" | dated bracket: D-f9 unified the audit on the 4-check with GENERIC/SELF-LICENSED; the new terminals (Expect/SawE/ElimJ) covered in test-elim g8. |
+| I10 | test-hygiene/Hygiene.hs header | "prodExpr (19, untouched)" | DONE in-window (dated supersession bracket added — a test file already under this increment's edits). |
+
+## §29. GATES + MANIFEST (as of 2026-07-18)
+
+| gate | state |
+|---|---|
+| 1 (`-Wall -Werror -Wincomplete[-uni]-patterns` on src) | PASS (clean, verified). |
+| 2 (`Belief(..)` never exported) | PASS (Belief.hs untouched). |
+| 3 (no IO in Belief/Syntax/Eval/Enumerate) | PASS. |
+| 4 (forbidden tokens) | PASS (5 named files + Membrane via lint L1). |
+| 5 (`cabal test all`) | PASS — 12/12 suites green together. |
+| 6 (`sha256sum -c MANIFEST.sha256`) | EXPECTED-RED until the author re-signs — NOT papered (the step-8 lesson). |
+| 7 (deletion audit against the real grammar) | PASS — frozen audit/ablation.sh (push/argmax) + per-increment 4-check runners incl. test-elim g8 (Expect/SawE/ElimJ). |
+| prefreeze-lint | L1/L2/L4/L6/L7 PASS; L3 = gate 6 (author); L5 = §25 (this pack). |
+
+MANIFEST DELTA (for the author's re-sign at the freeze):
+- REMOVE rows: test-cirl/*, test-prepost/*, test-expfam/* (retired, files deleted).
+- ADD rows: test-elim/Elim.hs, test-elim/ablation/run.sh + UseExpect/UseSawE/UseElimJ.hs, test-elim/stanza.cabal.draft.
+- RE-COVER (content changed): src/PropLang/{Syntax,Eval,Enumerate,Membrane,Host}.hs, proplang.cabal, and the adapted suites test-{sentence,code,outcome,actions,pricing,hygiene,optlaw,unify,stream,membrane}.
+- tools/prefreeze-lint.sh gained L7 (unfrozen; informational).
+
+## §30. WHAT NEEDS THE AUTHOR'S KEY (the sitting)
+
+1. The §28 frozen-layer inventory repairs (I1-I9) — normative-doc edits under the boundary key.
+2. The overlay-build lint's CLAUDE.md clause (row v, the increment-protocol text) — a frozen-file author edit.
+3. The MANIFEST.sha256 re-sign per the §29 delta.
+4. `elim-freeze-r0` — the author's signed tag (or the builder key on fresh, explicit, per-instance delegation, recorded verbatim — the membrane precedent).
+
+Everything a builder can do without the key is done and green.

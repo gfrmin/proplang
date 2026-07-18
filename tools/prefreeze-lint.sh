@@ -94,5 +94,33 @@ for grid in thetaPoints tauPoints rhoPoints; do
 done
 [ "$warns" -eq 0 ] && ok "L6 no grid re-declaration flags (advisory heuristic)"
 
+# -- L7 (row v): FULL-CORPUS OVERLAY BUILD -----------------------------------
+# The step-8 lesson (five missed files at a replacement surface): a naive
+# "cabal test before freezing" proves nothing while the corpus is red BY
+# DESIGN, and any test .hs NOT in a cabal stanza escapes the build
+# entirely. This row GLOBS every test .hs and BUILDS each against the
+# new src: stanza'd suites through `cabal build all` (their tasty deps
+# resolve there), and standalone fixtures (no `import Test.Tasty`,
+# PropLang-only imports) through `ghc -isrc`. A retired fixture left
+# in-tree fails here -- which is why discharged-permanent means DELETED.
+GHC="${GHC:-ghc}"
+l7=0
+if ! cabal build all >/tmp/prefreeze-cabal-build.log 2>&1; then
+  bad "L7 overlay build: cabal build all failed (see /tmp/prefreeze-cabal-build.log)"
+  l7=1
+fi
+l7tmp="${TMPDIR:-/tmp}/prefreeze-overlay.$$"
+mkdir -p "$l7tmp"
+for f in $(find test* -name '*.hs' 2>/dev/null); do
+  grep -q "import Test.Tasty" "$f" && continue          # a suite: cabal covers it
+  grep -q "import  *PropLang" "$f" || continue           # not a PropLang fixture
+  if ! "$GHC" -fno-code -isrc "$f" -outputdir "$l7tmp" >"$l7tmp/log" 2>&1; then
+    bad "L7 overlay build: fixture $f does not compile against new src"
+    l7=1
+  fi
+done
+rm -rf "$l7tmp"
+[ "$l7" -eq 0 ] && ok "L7 full-corpus overlay build: every test .hs builds against new src"
+
 echo "=== prefreeze-lint: $fails FAIL, $warns WARN ==="
 exit "$( [ "$fails" -eq 0 ] && echo 0 || echo 1 )"
