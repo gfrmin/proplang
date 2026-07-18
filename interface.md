@@ -134,9 +134,24 @@ PARAMs are ordinary parameter expressions. Then:
   E7-pinned fast form. `rw`'s T1 status is unchanged; its utterance
   is the walk code, measured bit-identical to the reference (E-s2).*
 
+  *Step-9 amendment (the elimination freeze, 2026-07-18; elim-freeze-r0,
+  WIDE, D-f13): the single kernel constructor is now `Code`, not
+  `expfam`. `('expfam', CARRIER, STATS, PARAM...)` is DELETED —
+  test-code group 3 measured `ExpFam == Code` BIT-FOR-BIT, so the expfam
+  node was redundant with the more foundational likelihood-as-code (every
+  distribution IS a code, by Kraft), and it goes. So: `KER ::= ('code',
+  DOMAIN, CODOMAIN, L)` where `L` is the outcome's code length as an
+  ordinary priced EXPR; `bern`/`gauss`/`rw` are all just codes now (no
+  "in-the-family / non-family" distinction survives — `rw`'s
+  source-dependent hard zeros were always what a code expresses and an
+  expfam could not). `STATS` folds away with `SId` (subsumed by `ToR`,
+  D-f14). The deletion-audit sentence below reads accordingly: delete
+  `Code`.*
+
 The alphabet residue shrinks from "a list of combinators per domain" to "one
 constructor plus each domain's carrier declarations," and the deletion audit
-tightens: delete `expfam` and *nothing* can assign likelihood to anything.
+tightens: delete the sole kernel constructor (`Code` since step 9; `expfam`
+before it) and *nothing* can assign likelihood to anything.
 
 **Likelihoods of likelihoods, both levels, no new mechanism.** Level 1 —
 uncertainty over the likelihood *function* — already exists: the posterior

@@ -282,6 +282,21 @@ Every step-6+ increment follows the recursive two-phase discipline:
    touches the frozen layer only at a boundary, under an inventory
    brought to the sitting (the step-7 sweep its provenance — the
    directive was per-sitting and verbatim-quoted).
+   One clause canonized at the step-9 boundary (the elimination freeze,
+   2026-07-18): THE FULL-CORPUS OVERLAY BUILD. tools/prefreeze-lint.sh
+   (row v / L7) derives the corpus BY GLOB — every test .hs under
+   test*/ — and BUILDS each against the shipped src: stanza'd suites
+   through cabal, standalone fixtures through `ghc -isrc`, so no test
+   file escapes the replacement-surface build. Its provenance is the
+   step-8 seal, where the census enumerated seven suites and the wave
+   had twelve members: a naive "cabal test before freezing" proves
+   NOTHING while the corpus is red BY DESIGN until implementation, and
+   a file in no stanza is built by nothing — all five misses would have
+   failed this row instantly ("the enumeration is what the census can
+   get wrong; the corpus is what the build cannot"). A retired fixture
+   left in-tree fails the row — which is why DISCHARGED-PERMANENT means
+   the file is DELETED, not kept as dead code. Its transcript rides the
+   boundary's pack.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

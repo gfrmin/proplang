@@ -560,6 +560,18 @@ ablated.** Nor have `Get`, `If`, `Gt`, `Var`, `MkC`, `Expect`, `Call`, `EU`, `Is
 `VThink`, `VThinkK`. By the brief's own rule, every one of them is *"a standing bug against
 the prior."*
 
+> [Step-9 update, the elimination freeze 2026-07-18 (elim-freeze-r0, D-f9):
+> the diagnosis above is DISCHARGED for its named terminals. `Call`, `EU`,
+> `IsEq`, `VAct`, `VThink`, `VThinkK` are DELETED (so there is nothing left
+> to ablate — their absence is the deletion audit passing by construction),
+> and the deletion audit is UNIFIED on the four-check standard (layer
+> absence + GENERIC/SELF-LICENSED, positive control, ablation, attribution)
+> with per-increment runners the frozen `audit/ablation.sh` never grows.
+> The step-9 terminals `Expect`/`SawE`/`ElimJ` are covered in test-elim g8
+> (Expect SELF-LICENSED, the other two GENERIC); `Code`/`Pos`/`ToR` in
+> test-sentence g5; `Push`/`Argmax` in the frozen row. The "~22" count is
+> now EXPR 20 + KER 1 = the two-sort alphabet.]
+
 And one is self-convicting — `Syntax.hs:299`, the author's own comment:
 > `-- the derived name (EXPFAM_PLAN E6): bern re-derived over the expfam basis`
 
@@ -1144,6 +1156,21 @@ close, oracle and gates green on the same signature; as-built record
     sayable => true fast path, g2 (frozen since stream-freeze-r0) already the pin it
     must arrive with; not sayable => membrane-side general route, printed permanent
     (retire-until-N: scheduled, never remembered).
+    **THREE UNCONDITIONAL RETURN ROWS (ordered at the step-9 sitting, elim-freeze-r0,
+    2026-07-18; D-f4 cluster, rider 2).** Step 9 retired three deliberation deliverables
+    for EXACTLY ONE window (the host-less-window precedent); their return here is NOT
+    conditional — step 10 LANDS the deliberation/preposterior re-composition and these
+    pins return against it as fresh shipped-composition oracles (the test-elim form), or
+    step 10 STALLS HONESTLY declaring the continued darkness; the brief's acceptance
+    suite never quietly loses a member to an "if". (a) **g1d — TEST 2, the lazy-genius
+    tick-count deliverable** (brief §12): the deliberation ladder, retired from
+    test-sentence when `Call VThink` died; returns as the depth-as-priced-choice
+    composition. (b) **VPre's preposterior identity** (proof (i)'s content): its permanent
+    home is this step's oracle, re-composed from `Expect`/`CondE`/`ElimJ` over the
+    world-rollforward endo-kernel — NOT an un-retirement of test-prepost. (c) **the
+    VThinkK verb/worker identity** (test-actions g3, re-homed from the retired
+    test-ladder): returns against the same re-composition. The primitives
+    (VThink/VThinkK/VPre) stay DISCHARGED-PERMANENT — only the CAPABILITY returns.
 
 The sentinel and the `price` parameter are never "deleted" — after step 8 there is
 **nowhere left to write them.**

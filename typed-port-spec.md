@@ -106,16 +106,26 @@ data Expr env t where
   -- the verbs, sayable (reflexive closure):
   Push   :: Expr env (B a) -> Expr env (K a b) -> Expr env (B b)
   CondE  :: Expr env (B a) -> Expr env (Ev a) -> Expr env (Maybe (B a))
-  Expect :: Expr env (B a) -> Fn a -> Expr env Double
+  -- Expect is the PREVISION BINDER (step 9, elim-freeze-r0): it binds the
+  -- belief's carrier as a real at Var Z, the body an ordinary EXPR in
+  -- extended scope; it SUBSUMES the FN sort (`Fn a` deleted).
+  Expect :: Real a => Expr env (B a) -> Expr (Double ': env) Double
+                   -> Expr env Double
   Argmax :: Expr env [o] -> Expr (o ': env) Double -> Expr env o
-  Call   :: StdName args t -> Args env args -> Expr env t
-  ExpFam :: Space Double -> Carrier c -> Stats c -> Expr env (K Double c)
-  -- E3 as ruled: no Params slot until its first consumer (a slot
-  -- with no inhabitant forces the evaluator to invent semantics);
-  -- the node declares its parameter space as an opaque payload
-  -- (priced 0, recorded payload convention) because a kernel HAS a
-  -- domain and declaring it is declared structure. The parameter
-  -- itself arrives where the kernel is applied, as K Double c says.
+  -- SawE produces evidence (a sayable Saw); ElimJ eliminates a
+  -- conditioned belief (one Maybe). Both landed step 9.
+  SawE   :: Eq b => Expr env (K a b) -> Expr env b -> Expr env (Ev a)
+  ElimJ  :: Expr env (Maybe (B a)) -> Expr (B a ': env) t -> Expr env t
+                                   -> Expr env t
+  -- Code is the likelihood production (a kernel whose rows are 2^(-L),
+  -- L a priced EXPR). It is the sole KER member since step 9.
+  Code   :: Space a -> Space b -> Expr (b ': a ': env) Double
+                    -> Expr env (Maybe (K a b))
+  -- DELETED at the step-9 elimination freeze (elim-freeze-r0, WIDE):
+  --   Call   :: StdName args t -> Args env args -> Expr env t   (D-f1;
+  --     the five VoI verbs + IsEq re-composed or filed to step 10)
+  --   ExpFam :: Space Double -> Carrier c -> Stats c -> ...      (D-f13;
+  --     ExpFam == Code bit-for-bit, subsumed)
 
 evalx :: Expr env t -> Env env -> t     -- pure: the type IS the purity claim
 ```
@@ -124,11 +134,15 @@ Two consequences worth flagging. First, `Argmax` binds its option variable
 in an *extended typed environment* — "the value expression may mention the
 candidate option" is now scoping discipline enforced by the index, not by an
 env-dict convention. Second — the point surfaced by the port — **the grammar
-is defunctionalized**: `Fn a` and `Stats c` are first-order syntax, not
-Haskell lambdas. Embedding host lambdas in sentences would smuggle opaque
-closures back into the language through the syntax door that I2 closed at
-the evidence door. Declared structure now applies to the policy fragment
-too, and it is [COMPILE].
+is defunctionalized**: sentences are first-order syntax, not Haskell
+lambdas. (The original clause read *"`Fn a` and `Stats c` are first-order
+syntax, not Haskell lambdas"*; `Fn` and `Stats` are DELETED at the step-9
+elimination freeze — subsumed by the `Expect` binder and `ToR` — but the
+defunctionalization principle stands: the utility RESIDUE is an ordinary
+priced EXPR, no closure smuggled.) Embedding host lambdas in sentences
+would smuggle opaque closures back into the language through the syntax
+door that I2 closed at the evidence door. Declared structure now applies
+to the policy fragment too, and it is [COMPILE].
 
 Bit-pricing rides the same structure: `bits :: Expr env t -> Bits` is total
 structural recursion over the GADT, so every constructible sentence has a
@@ -143,9 +157,13 @@ over FEATURE_NAMES). Description length is always relative to the
 generating fragment's production grammar: the same surface tree prices
 differently derived as MODEL versus as EXPR, which is why model-fragment
 anchors are untouched by policy pricing (the two-pricer arrangement,
-Phase 2 R4, is principled coding, not a fudge). `Fn` must be inhabited
-by first-order constructors before any priced policy sentence ships;
-discharging `Expect` by empty case is a parity-phase expedient only.
+Phase 2 R4, is principled coding, not a fudge). (The original clause
+read *"`Fn` must be inhabited by first-order constructors before any
+priced policy sentence ships; discharging `Expect` by empty case is a
+parity-phase expedient only."* — superseded at the step-9 elimination
+freeze: `Fn` is DELETED and `Expect` is the prevision binder over an
+ordinary priced EXPR body, so it is inhabited by the whole EXPR sort,
+not an empty case.)
 
 > **The production system (normative; the priced object is this
 > table, not the Haskell encoding).** Description lengths are charged
@@ -153,12 +171,41 @@ discharging `Expect` by empty case is a parity-phase expedient only.
 >
 > | sort | written alternatives | node cost |
 > |---|---|---|
-> | EXPR | C, Get, If, Gt, Var, Push, CondE, Expect, Argmax, Call, Pos, ToR, Add, Sub, Mul, Div, Neg, Exp, Log | log2 19 |
-> | FN | FnInd, FnUtil | 1 bit |
-> | STATS | SId | 0 bits |
-> | KER | ExpFam, Code | log2 2 |
-> | STDNAME | EU, IsEq, VAct, VThink, VThinkK, VPre | log2 6 |
-> | UTIL | USay | 0 bits |
+> | EXPR | C, Get, If, Gt, Var, Push, CondE, Expect, Argmax, SawE, ElimJ, Pos, ToR, Add, Sub, Mul, Div, Neg, Exp, Log | log2 20 |
+> | KER | Code | log2 1 |
+>
+> **Amended at the step-9 elimination freeze (elim-freeze-r0,
+> 2026-07-18; WIDE ruling, D-f1/D-f8/D-f13/D-f14 — the largest single
+> repair the frozen layer has taken).** SIX SORTS -> TWO. The four rows
+> quoted here are DELETED, each by a named ruling:
+> - *"| FN | FnInd, FnUtil | 1 bit |"* — DELETED (D-f1): the FN sort is
+>   subsumed by the `Expect` prevision binder. `prob b e` is
+>   `Expect b (indicator)` and utility-prevision is `Expect b (priced
+>   body)` (E-e1b, 42 rows bit-exact); `FnInd`/`FnUtil`/the `Event`
+>   peer-noun all dissolve into it.
+> - *"| STATS | SId | 0 bits |"* — DELETED (D-f14): `statVal SId =
+>   realToFrac = ToR`, so `SId` is subsumed by the `ToR` value reader
+>   (§5d).
+> - *"| STDNAME | EU, IsEq, VAct, VThink, VThinkK, VPre | log2 6 |"* —
+>   DELETED (D-f1 + D-f8): the five VoI verbs re-compose (EU/VAct as the
+>   `Argmax`/`Expect` pairing, test-elim g2/g3; VThink/VThinkK/VPre the
+>   step-10 preposterior cluster, D-f4), and `IsEq` is the If/Gt
+>   composition (test-elim g4, 0 disagreements; D-f8 = (A)). The whole
+>   `Call`/`StdName`/`Args` machinery goes with it.
+> - *"| UTIL | USay | 0 bits |"* — DELETED (D-f1): utility is an ordinary
+>   priced EXPR (the residue over `Var Z`=option, `Var (S Z)`=outcome),
+>   `USay`/`USent` gone.
+>
+> The KER row lost `ExpFam` (D-f13: `ExpFam == Code` bit-for-bit,
+> test-code group 3's frozen proof), so KER holds `Code` alone and its
+> node cost is *log2 2 -> log2 1 = 0* (the §18 KER repricing: every
+> kernel-mention sort leaf drops one bit). EXPR moved 19 -> 20: `Call`
+> deleted, `SawE`+`ElimJ` landed, `IsEq` never was EXPR — net +1
+> (ruling A: EXPR settles at 20, not 21). The membership lists are
+> derived from the frozen pricer's own case arms (Syntax.hs `bitsAt`)
+> and `prodTable = ProdTable 20 1`, never from memory. This is
+> AGENT_PLAN §5b's canonical end-state — *"22 productions, 2 sorts"* —
+> reached.
 >
 > STDNAME row amended at the prepost freeze to cover both the
 > ladder's VThinkK (missed at that boundary) and VPre — two alphabet

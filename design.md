@@ -51,6 +51,13 @@ CONST ::= ('c', grid, k)               k-th point of a priced grid
 --  remains the alphabet's one non-expfam combinator, said as the walk
 --  code (bit-identical to the reference, E-s2). The deletion table's
 --  meaning is carried by the ported per-production ablations.]
+-- [step-9 amendment, the elimination freeze 2026-07-18 (elim-freeze-r0,
+--  WIDE): the sentence above is SUPERSEDED. The STDNAME sort is DELETED
+--  entirely (the five VoI verbs + IsEq re-composed or filed to step 10;
+--  D-f1/D-f8), so "STDNAME 7 -> 6" no longer names a live sort. ExpFam
+--  is DELETED too (D-f13: ExpFam == Code), so the "one non-expfam
+--  combinator" framing dissolves -- 'rw' is simply the walk code, the
+--  KER sort holds Code alone. The alphabet is two sorts (EXPR 20, KER 1).]
 
 -- policy fragment (adds the verbs as terminals) --
 EXPR  ::= ('argmax', OPTIONS, VALUE)   choice by expected utility
@@ -230,6 +237,20 @@ ranges over it. That is the reflexive closure: deliberation is an option in
 the same action space as acting, valued by the same push, chosen by the same
 argmax.
 
+> [step-9 amendment, the elimination freeze 2026-07-18 (elim-freeze-r0,
+> WIDE): the worked example above uses `('call', 'v_act', ...)` /
+> `('call', 'v_think', ...)` — the `Call`/StdName verb dispatch, which is
+> DELETED (D-f1). The reflexive-closure PRINCIPLE stands (deliberation is
+> an option in the same action space, chosen by the same `argmax`), but
+> its SENTENCE is now a composition, not a verb: `v_act` is the
+> `Argmax`/`Expect` pairing (test-elim g2/g3), and `v_think`'s
+> arbitrary-depth preposterior is the step-10 re-composition (D-f4, the
+> `Real a` wall — world-rollforward endo-kernel + sentence-level
+> expectation over structured carriers). Test 2's tick-count deliverable
+> retires for exactly this one window and returns UNCONDITIONALLY against
+> the step-10 oracle (rider 2). The `is_act`/`v_act`/`v_think` names in
+> the block above are historical.]
+
 ---
 
 ## 7. The two moves of the generator, one currency, two fidelities
@@ -365,6 +386,20 @@ longer pays for deference. Open.
 > now sentences the worlds DECLARE and the agent PRICES, and the wire
 > ingests them as `said@1`, a point-mass prior over the program shape
 > with the parameter latent.
+>
+> **Step-9 amendment (the elimination freeze, 2026-07-18; elim-freeze-r0,
+> WIDE).** Two names above are superseded. *"utility is a priced sentence
+> (`USent`)"* — `USent` (the UTIL sort) is DELETED (D-f1); utility is
+> the bare RESIDUE `Expr '[Double, Double] Double` (`Var Z` = option
+> code, `Var (S Z)` = outcome), priced through the one mechanism, no
+> wrapper. And *"The off-switch result is executed (test-cirl)"* —
+> test-cirl RETIRED at this boundary (its vehicle, the `USay`/UTIL sort,
+> is gone); the utility-as-latent PRINCIPLE and its measured
+> vanishing-at-convergence stand in the record, and any belief-over-
+> utility surface that returns does so over the `Expect` residue. The
+> `said@1` wire survives (utility crosses as one JSON sentence, priced
+> like any sentence); its NaN/inf grids now fail closed at declaration
+> (D-f8 (A), rider 1).
 
 **Open problems**, named: (1) exact exploration pricing — replacing the
 myopic Russell–Wefald surrogate (§7) with expected Δ log-evidence over
