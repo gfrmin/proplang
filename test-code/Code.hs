@@ -59,17 +59,24 @@ import PropLang.Belief
   ( Bits (..), Evidence (..), Kernel, Space
   , cond, fromBits, is, kernel, mkSpace, point, prob, push )
 import PropLang.Enumerate
-  (Obs, emit, obsCarrier, obsSpace, rhoPoints, thetaPoints, thetaSpace, walkOn)
+  (Obs, emit, obsSpace, rhoPoints, thetaPoints, thetaSpace, walkOn)
 import PropLang.Eval (Vals (..), evalx, mkEnv)
 import PropLang.Syntax
-  ( Args (..), Expr (..), Grid, Idx (..), K, Stats (..), StdName (..)
+  ( Expr (..), Grid, Idx (..), K
   , bits, carrierSpace, mkC, mkCarrier, mkGrid )
 
 main :: IO ()
 main = defaultMain $ testGroup "test-code (step 1: the likelihood is a code)"
   [ gWalk        -- THE FALSIFIER
   , gBern
-  , gExpFam
+  -- gExpFam RETIRED at the step-9 elimination freeze (D-f13; D-f10):
+  -- the ExpFam grammar node is DELETED. This group PROVED ExpFam == Code
+  -- bit-for-bit (the demonstrated-composition half of the two-sided
+  -- primitivity gate); with that proof frozen and the node now deleted,
+  -- the deletion it licensed HAS HAPPENED -- an ablation fixture's
+  -- terminal state (DISCHARGED-PERMANENT). "expfam is a code" is now
+  -- trivially true: only the code remains. gReaders (Pos vs ToR)
+  -- survives and still carries the ToR-subsumes-SId regression.
   , gReaders     -- Pos vs ToR: the sec 5d defect, pinned as a regression
   , gArith
   , gPrices
@@ -153,18 +160,27 @@ cAt g i = case mkC g i of
   Just e  -> e
   Nothing -> error ("test-code fixture bug: index " ++ show i ++ " off grid")
 
-rhoGrid, thetaGrid, etaGrid :: Grid
+-- etaGrid + logit RETIRED with group 3 (the ExpFam subsumption group):
+-- they fed codeExpFam/frozenExpFam only, both gone at the step-9
+-- elimination (ExpFam deleted, D-f13).
+rhoGrid, thetaGrid :: Grid
 rhoGrid   = mkGrid "rho" rhoPoints
 thetaGrid = mkGrid "theta" thetaPoints
-etaGrid   = mkGrid "eta" (NE.map logit thetaPoints)
 
-logit :: Double -> Double
-logit t = log (t / (1 - t))
+-- equality in the grammar: what walkOn's `j == i` actually is. IsEq is
+-- DELETED (step 9, D-f8 = (A)); the equality of two reals is the If/Gt
+-- composition (test-elim g4: 0 disagreements over 1225 reachable pairs;
+-- NaN, the sole disagreement, is not a lawful grid point, and positions
+-- are never NaN). a == b iff neither strictly exceeds the other --
+-- value-identical to the deleted 'Call IsEq', so codeWalk stays
+-- bit-for-bit with walkOn. This is EXACTLY the composition the shipped
+-- walkCode now emits (test-sentence t3MoveGolden pins its render).
+eqE :: Expr env Double -> Expr env Double -> Expr env Bool
+eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
 
--- equality in the grammar: IsEq is the option-dispatch StdName, and it is
--- what walkOn's `j == i` actually is
-eqE :: Eq a => Expr env a -> Expr env a -> Expr env Bool
-eqE a b = Call IsEq (a :* b :* ANil)
+trueE, falseE :: Expr env Bool
+trueE  = Gt k1 k0
+falseE = Gt k0 k1
 
 -- ---------------------------------------------------------------------
 -- GROUP 1 -- THE FALSIFIER.  rw as a code, against the FROZEN walkOn.
@@ -259,47 +275,19 @@ codeBernV thIx = Code thetaSpace obsSpace body
     body = Neg (Div (Log p) (Log k2))
 
 -- ---------------------------------------------------------------------
--- GROUP 3 -- expfam as a code, against the FROZEN ExpFam node.
+-- GROUP 3 -- RETIRED at the step-9 elimination freeze (D-f13; D-f10).
 --
--- Eval.hs:116-119:
---     ExpFam sp car st -> kernel sp (carrierSpace car) $ \eta ->
---       fromBits (carrierSpace car)
---         (\y -> Bits (negate (eta * statVal st y) / ln2))
---   with statVal SId = realToFrac (Eval.hs:168) and ln2 = log 2.
---
--- THIS IS THE ROW THAT FORCES `ToR`.  eta * T(y) needs T(y) :: Double, and
--- `Pos` returns a POSITION.  AGENT_PLAN sec 5b claimed Pos subsumed
--- Stats/SId; sec 5d records that it does NOT, and this group is why.
+-- This group proved "expfam IS a code": codeExpFam (a Code) reproduced
+-- the frozen ExpFam grammar node BIT-FOR-BIT. That was the
+-- demonstrated-composition half of the two-sided primitivity gate for
+-- ExpFam. The proof is frozen in the record; the ExpFam node is now
+-- DELETED (WIDE: ExpFam == Code, so the codeword was redundant). The
+-- deletion this group licensed HAS HAPPENED -- an ablation fixture's
+-- terminal state (DISCHARGED-PERMANENT, the UseBern precedent).
+-- codeExpFam itself was just a Code and needed no primitive; it leaves
+-- with its comparand. The ToR-forces-SId lesson survives next door in
+-- gReaders (group 4), which pins Pos vs ToR directly.
 -- ---------------------------------------------------------------------
-
-codeExpFam :: Int -> Expr env (Maybe (K Double Obs))
-codeExpFam etaIx = Code thetaSpace obsSpace body
-  where
-    eta = cAt etaGrid etaIx
-    y :: Expr (Obs ': Double ': env) Double
-    y = ToR (Var Z)                        -- <-- the VALUE reader, forced
-    body = Div (Neg (Mul eta y)) (Log k2)
-
-frozenExpFam :: Expr env (K Double Obs)
-frozenExpFam = ExpFam thetaSpace obsCarrier SId
-
-gExpFam :: TestTree
-gExpFam = testGroup "group 3: expfam IS a code (vs the frozen ExpFam node)"
-  [ testCase ("expfam at eta index " ++ show ix ++ " matches ExpFam BIT-FOR-BIT") $ do
-      let eta    = logit (NE.toList thetaPoints !! ix)
-          -- the eta-containing domain: the genericAt idiom, quoted from the
-          -- frozen precedent (test-expfam/ExpFam.hs:90-98) at the 6.14
-          -- re-open -- point thetaSpace (logit theta) has no mass, ever
-          etaSp  = mkSpace (eta :| [])
-          frozen = push (point etaSp eta) (eval0 frozenExpFam)
-      codedK <- orRefused ("codeExpFam at eta index " ++ show ix)
-                  (eval0 (codeExpFam ix))
-      let coded = push (point etaSp eta) codedK
-      mapM_ (\o -> assertBitEq ("P(" ++ show o ++ ") at eta=" ++ show eta)
-                     (prob frozen (is obsSpace o))
-                     (prob coded (is obsSpace o)))
-            [0, 1 :: Obs]
-  | ix <- [0 .. length thetaPoints - 1] ]
 
 -- ---------------------------------------------------------------------
 -- GROUP 4 -- Pos vs ToR.  THE SEC 5d DEFECT, PINNED AS A REGRESSION.
@@ -366,20 +354,23 @@ gArith = testGroup "group 5: the arithmetic is IEEE-754, not the reals"
   ]
 
 -- ---------------------------------------------------------------------
--- GROUP 6 -- the alphabet's new prices.
+-- GROUP 6 -- the alphabet's prices, at the step-9 END STATE.
 --
--- P5's single-site alphabet constant (Syntax.hs:355-361): a count change
--- edits exactly `prodTable` PLUS the enumerated frozen pins of the changed
--- sort -- "the P5 forward ruling's MANDATORY BOUNDARY ITEM".  This group is
--- that enumeration for step 1.
+-- P5's single-site alphabet constant (Syntax.hs): a count change edits
+-- exactly `prodTable` PLUS the enumerated frozen pins of the changed
+-- sort -- "the P5 forward ruling's MANDATORY BOUNDARY ITEM".  This group
+-- is that enumeration, RE-PRICED at the step-9 elimination boundary.
 --
---   prodExpr 10 -> 19   (Pos, ToR, Add, Sub, Mul, Div, Log, Exp, Neg)
---   prodKer   1 ->  2   (Code, BESIDE ExpFam -- step 1 is ADDITIVE)
+--   prodExpr 19 -> 20   (Expect + SawE + ElimJ landed; IsEq deleted --
+--                        ruling A, EXPR settles at 20 not 21)
+--   prodKer   2 ->  1   (ExpFam DELETED, subsumed by Code -- Code alone)
 --
--- These are the ADDITIVE step-1 counts, NOT AGENT_PLAN sec 5b's end state
--- (EXPR 21 / KER 1), which is reached only after the deletions of steps 3
--- and 9.  Recording the difference here is deliberate: an intermediate
--- alphabet is still an alphabet, and it still IS the prior.
+-- This IS AGENT_PLAN sec 5b's end state now reached (EXPR 20 / KER 1;
+-- the WIDE ruling). Two waves ride this boundary: the EXPR reprice
+-- (every node-choice leaf lg 19 -> lg 20, +0.074 bits/node) and THE KER
+-- REPRICING (§18: the kernel sort-choice leaf lg 2 -> lg 1 = 0, a -1-bit
+-- move -- WIDE's named consequence). The "Code joins ExpFam" row is
+-- RETIRED (D-f10): its claim is now false, Code is the sole KER member.
 -- ---------------------------------------------------------------------
 
 lg :: Int -> Double
@@ -389,26 +380,28 @@ unBits :: Bits -> Double
 unBits (Bits b) = b
 
 gPrices :: TestTree
-gPrices = testGroup "group 6: the new prices (P5 mandatory boundary item)"
-  [ testCase "nodeB moves lg 10 -> lg 19 (nine new EXPR productions)" $
-      assertBitEq "Get" (lg 19) (unBits (bits (Get "t" :: Expr '[] Double)))
+gPrices = testGroup "group 6: the prices at the step-9 end state (EXPR 20 / KER 1)"
+  [ testCase "nodeB is lg 20 (EXPR at 20 after the step-9 elimination)" $
+      assertBitEq "Get" (lg 20) (unBits (bits (Get "t" :: Expr '[] Double)))
   , testCase "a binary arithmetic node costs nodeB + its two subterms" $
-      assertBitEq "Add(Get,Get)" (3 * lg 19)
+      assertBitEq "Add(Get,Get)" (3 * lg 20)
         (unBits (bits (Add (Get "t") (Get "x") :: Expr '[] Double)))
   , testCase "a unary arithmetic node costs nodeB + its subterm" $
-      assertBitEq "Neg(Get)" (2 * lg 19)
+      assertBitEq "Neg(Get)" (2 * lg 20)
         (unBits (bits (Neg (Get "t") :: Expr '[] Double)))
   , testCase "Pos costs nodeB + its subterm (the Space payload prices 0)" $
-      assertBitEq "Pos(Get)" (2 * lg 19)
+      assertBitEq "Pos(Get)" (2 * lg 20)
         (unBits (bits (Pos thetaSpace (Get "t") :: Expr '[] Double)))
   , testCase "ToR costs nodeB + its subterm" $
-      assertBitEq "ToR(Get)" (2 * lg 19)
+      assertBitEq "ToR(Get)" (2 * lg 20)
         (unBits (bits (ToR (Get "t") :: Expr '[] Double)))
-  , testCase "kerB moves lg 1 -> lg 2 (Code joins ExpFam in the KER sort)" $
-      -- Code prices as kerB + its body, in the body's OWN two-binder scope
-      -- (Code binds y and x, so the body prices at scope + 2 -- the Argmax
-      -- binder discipline, twice).  Body = Var Z at scope 2 => nodeB + lg 2.
-      assertBitEq "Code(Var Z)" (lg 2 + (lg 19 + lg 2))
+  , testCase "kerB is lg 1 = 0 (Code alone in KER; the §18 -1-bit reprice)" $
+      -- RETIRE-AND-REPLACE (D-f10): the old "Code joins ExpFam" row is
+      -- gone (ExpFam deleted). Code now prices as kerB + its body, with
+      -- kerB = lg (prodKer) = lg 1 = 0 (the KER repricing). The body is
+      -- in Code's OWN two-binder scope (y and x), so Var Z pays nodeB +
+      -- lg 2 (|scope| = 2). Code(Var Z) = lg 1 + (lg 20 + lg 2).
+      assertBitEq "Code(Var Z)" (lg 1 + (lg 20 + lg 2))
         (unBits (bits (Code thetaSpace thetaSpace (Var Z)
                          :: Expr '[] (Maybe (K Double Double)))))
   ]
