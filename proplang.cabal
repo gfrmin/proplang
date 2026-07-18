@@ -286,3 +286,16 @@ test-suite elim
                     , tasty-hunit
                     , process
     default-language: GHC2021
+
+test-suite reflexive
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Reflexive.hs
+    other-modules:    Streams
+                      Anchors
+    hs-source-dirs:   test-reflexive, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
