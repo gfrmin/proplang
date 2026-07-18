@@ -112,10 +112,21 @@ gridSize (Grid _ pts) = length pts
 -- grammar-hygiene increment (R7): its only public consumer was the
 -- evaluator's dormant read, retired at Task 3 — it survives as the
 -- validator inside 'mkC'.
+--
+-- SINCE THE STEP-9 ELIMINATION (elim-freeze-r0, D-f8 = (A)): a NaN or
+-- infinite grid point DOES NOT DENOTE — 'Nothing', so a constant over
+-- it is unconstructible. This is R-C1 ruling (iii) EXTENDED from 'Code'
+-- columns to grid constants (the one other door where a Double enters a
+-- sentence): the partiality lives in the type, at the existing 'Maybe'
+-- door, and the deleted 'IsEq's If/Gt composition (test-elim g4) is
+-- therefore TOTAL on every constructible operand — NaN, its sole
+-- disagreement with '==', can never be one. The frozen worlds' grids
+-- carry only finite points, so no shipped constant moves.
 gridLookup :: Grid -> Ix -> Maybe Double
 gridLookup (Grid _ pts) k
   | k >= 0 = case drop k pts of
-      p : _ -> Just p
+      p : _ | isNaN p || isInfinite p -> Nothing
+            | otherwise               -> Just p
       []    -> Nothing
   | otherwise = Nothing
 

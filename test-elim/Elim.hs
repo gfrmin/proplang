@@ -71,7 +71,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "test-elim: the compositions as shipped sentences (20/1)"
-  [ g1Prob, g2EU, g3VAct, g4IsEq, g5Chain, g6Nothing ]
+  [ g1Prob, g2EU, g3VAct, g4IsEq, g7NaNGuard, g5Chain, g6Nothing ]
 
 -- ------------------------------------------------------------------
 -- helpers
@@ -166,6 +166,32 @@ g4IsEq = testCase "g4 IsEq == If/Gt composition: 0 disagreements (E-e2)" $
       disagreements =
         [ (a, b) | a <- pts, b <- pts, (a == b) /= eqSay a b ]
   in disagreements @?= []
+
+-- ------------------------------------------------------------------
+-- g7 — the NaN-grid guard (D-f8 = (A); R-C1 extended to mkGrid): a NaN
+-- or infinite grid point does not denote, so a constant over it is
+-- unconstructible. This is what makes g4's If/Gt composition TOTAL:
+-- NaN, its sole disagreement with ==, can never be a constructible
+-- operand. Fail-closed at the one Maybe door (mkC), which is also where
+-- every wire-declared grid value flows (parseSaid's 'c' constant).
+-- ------------------------------------------------------------------
+
+g7NaNGuard :: TestTree
+g7NaNGuard = testGroup "g7 NaN/inf grid points are unconstructible (D-f8 = (A))"
+  [ testCase "a NaN grid point: mkC returns Nothing" $
+      assertBool "NaN must be unconstructible" (isNothingE (mkC (mkGrid "bad" (nan :| [])) 0))
+  , testCase "an infinite grid point: mkC returns Nothing" $
+      assertBool "inf must be unconstructible" (isNothingE (mkC (mkGrid "bad" (inf :| [])) 0))
+  , testCase "a finite point beside a NaN one still constructs at its index" $
+      case mkC (mkGrid "mix" (0.5 :| [nan])) 0 :: Maybe (Expr '[] Double) of
+        Just e  -> evalx e (mkEnv [] VNil) @?= 0.5
+        Nothing -> assertBool "finite index 0 must construct" False
+  ]
+  where
+    nan = 0 / 0 :: Double
+    inf = 1 / 0 :: Double
+    isNothingE :: Maybe (Expr '[] Double) -> Bool
+    isNothingE = maybe True (const False)
 
 -- ------------------------------------------------------------------
 -- g5 — the evidence chain is sayable: SawE -> CondE -> ElimJ
