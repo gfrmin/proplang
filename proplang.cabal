@@ -280,4 +280,5 @@ test-suite elim
                     , proplang
                     , tasty
                     , tasty-hunit
+                    , process
     default-language: GHC2021

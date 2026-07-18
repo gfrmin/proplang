@@ -395,7 +395,7 @@ gPrices = testGroup "group 6: the prices at the step-9 end state (EXPR 20 / KER 
   , testCase "ToR costs nodeB + its subterm" $
       assertBitEq "ToR(Get)" (2 * lg 20)
         (unBits (bits (ToR (Get "t") :: Expr '[] Double)))
-  , testCase "kerB is lg 1 = 0 (Code alone in KER; the §18 -1-bit reprice)" $
+  , testCase "kerB is lg 1 = 0 (Code alone in KER; the sec 18 -1-bit reprice)" $
       -- RETIRE-AND-REPLACE (D-f10): the old "Code joins ExpFam" row is
       -- gone (ExpFam deleted). Code now prices as kerB + its body, with
       -- kerB = lg (prodKer) = lg 1 = 0 (the KER repricing). The body is

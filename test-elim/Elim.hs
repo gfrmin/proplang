@@ -58,8 +58,10 @@
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
+import System.Exit (ExitCode (..))
+import System.Process (readProcessWithExitCode)
 import Test.Tasty (TestTree, defaultMain, testGroup)
-import Test.Tasty.HUnit (assertBool, testCase, (@?=))
+import Test.Tasty.HUnit (assertBool, assertEqual, testCase, (@?=))
 
 import PropLang.Belief (Belief, Kernel, expect, is, kernel, point, prob)
 import PropLang.Enumerate (Obs, obsCarrier, obsSpace)
@@ -71,7 +73,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "test-elim: the compositions as shipped sentences (20/1)"
-  [ g1Prob, g2EU, g3VAct, g4IsEq, g7NaNGuard, g5Chain, g6Nothing ]
+  [ g1Prob, g2EU, g3VAct, g4IsEq, g7NaNGuard, g5Chain, g6Nothing, g8Ablations ]
 
 -- ------------------------------------------------------------------
 -- helpers
@@ -227,3 +229,23 @@ g6Nothing = testCase "g6 ElimJ Nothing arm shows through at impossible evidence"
       -- SawE idK 0 against a point-mass-on-1 belief => cond Nothing
       out = evalx chainSay (mkEnv [] (idK :. (0 :: Obs) :. b :. VNil))
   in out @?= 0.42            -- the Nothing arm's VALUE, not a baked constant
+
+-- ------------------------------------------------------------------
+-- g8 -- THE DELETION AUDIT for the new terminals (D-f9): the FOUR-check
+-- runner (layer absence + GENERIC/SELF-LICENSED, positive control,
+-- ablation, attribution). Expect/SawE/ElimJ each removable-and-
+-- attributable against the real grammar (gate 7 for the new alphabet).
+-- Increment-local: the frozen audit/ablation.sh never grows rows.
+-- ------------------------------------------------------------------
+
+g8Ablations :: TestTree
+g8Ablations = testGroup "g8 deletion audit: the new terminals are unutterable when dropped"
+  [ testCase (row ++ ": deletable-and-attributable (4-check)") (elimRow row)
+  | row <- ["expect", "sawe", "elimj"] ]
+
+elimRow :: String -> IO ()
+elimRow row = do
+  (rc, out, err) <- readProcessWithExitCode "sh" ["test-elim/ablation/run.sh", row] ""
+  assertEqual ("step-9 ablation row '" ++ row ++ "' (4-check: layer absence, "
+               ++ "positive control, ablation, attribution):\n" ++ out ++ err)
+              ExitSuccess rc
