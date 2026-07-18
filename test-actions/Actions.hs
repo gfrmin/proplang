@@ -54,18 +54,14 @@
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)), toList)
-import Data.Maybe (fromMaybe)
 import Test.Tasty
 import Test.Tasty.HUnit
 
-import PropLang.Belief (Belief, Bits (..), Evidence (Saw), cond, uniform)
-import PropLang.Enumerate (Obs, emit, enumerateSentences, fragFull,
-                           sentenceAgent, thetaSpace)
-import PropLang.Eval (Vals (..), evalx, mkEnv, vThinkK)
+import PropLang.Enumerate (Obs, enumerateSentences, fragFull,
+                           sentenceAgent)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           menuAssignments, runMembrane)
-import PropLang.Syntax (Args (..), B, Expr (..), Idx (..), K,
-                        StdName (..), USent (..), bits, mkC, mkGrid)
+import PropLang.Syntax (Expr (..), mkC, mkGrid)
 
 import Streams (drift400, shifted160)
 
@@ -73,11 +69,17 @@ main :: IO ()
 main = defaultMain $ testGroup "actions -- an action is an assignment (step 5)"
   [ g1Options
   , g2Tick
-  , g3LadderPins
   ]
-
-lg :: Double -> Double
-lg = logBase 2
+  -- g3LadderPins RETIRED at the step-9 elimination freeze, exactly as
+  -- this suite's header foretold ("until step 9 retires the constructor
+  -- itself"): VThinkK and VThink are DELETED (D-f1; D-f10 retire-and-
+  -- replace). The re-homed ladder price/identity pins had a named home
+  -- ONLY until this boundary; the price pin dies with the sort, and the
+  -- verb/worker identity is the D-f4 step-10 preposterior re-composition
+  -- cluster ('Real a' wall). RETIRE-UNTIL-N: return row on step 10's
+  -- checklist. The re-homed pins from the retired test-ladder end here
+  -- (DISCHARGED-PERMANENT for the sort; the deliberation capability
+  -- returns as a fresh composition oracle if step 10 re-composes it).
 
 -- ---------------------------------------------------------------------
 -- g1: the option space (menuAssignments' contract)
@@ -121,11 +123,13 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
       -- shipped route picked its first-listed counterpart on every
       -- tick (ea1-diff empty), and this row pins the ported half
       let tieMenu = [("lever", mkGrid "tie" (10 :| [20, 30]))]
-          -- RE-DERIVED at the step-8 outcome freeze (R-D22): the
-          -- 5/5/3 tie table as a sentence over Get "lever" (levers
-          -- 10/20 -> 5; 30 -> 3; y-independent as before)
-          utilTie = USent (If (Gt (Get "lever") (gkA 25))
-                              (gkA 3) (gkA 5))
+          -- RE-DERIVED (step 9, D-f1): the USent wrapper is GONE (UTIL
+          -- sort deleted; PilotEU carries the utility RESIDUE directly,
+          -- Expr '[Double, Double] Double). The 5/5/3 tie table reads
+          -- Get "lever" (a feature; levers 10/20 -> 5, 30 -> 3;
+          -- y-independent, so value-identical to the pre-step-9 USent).
+          utilTie = If (Gt (Get "lever") (gkA 25))
+                       (gkA 3) (gkA 5) :: Expr '[Double, Double] Double
           ag0 = sentenceAgent (enumerateSentences fragFull)
       case runMembrane predW { wMenu = const tieMenu }
              (PilotEU utilTie) 20 (0, shifted160) ag0 of
@@ -134,7 +138,7 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
           map ttAct trs @?= replicate 20 [("lever", 10)]
   , testCase "an all-tied EU hands the tie to wait (no new rule)" $ do
       let menu = [("lever", mkGrid "ea2" (7 :| [1, 9]))]
-          constU = USent (gkA 1)   -- re-derived: the constant sentence
+          constU = gkA 1 :: Expr '[Double, Double] Double  -- the constant residue
           ag0 = sentenceAgent (enumerateSentences fragFull)
       case runMembrane predW { wMenu = const menu }
              (PilotEU constU) 3 (0, shifted160) ag0 of
@@ -157,88 +161,11 @@ g2Tick = testGroup "g2 the tick: ties, wait, totality without the sentinel"
   ]
 
 -- ---------------------------------------------------------------------
--- g3: the re-homed ladder pins (COPIES of the retiring fixture's
--- exact expressions; provenance in the header)
+-- fixture: priced singleton-grid constants for g2's utility residues
+-- (retained from the retired g3 block, which g2 depends on)
 -- ---------------------------------------------------------------------
-
--- COPY test-ladder/fixture/Sayable.hs:42-53
-data Dir = DirL | DirR
-  deriving (Eq, Show)
-
--- RE-DERIVED at the step-8 outcome freeze (R-D22): Dir becomes the
--- residue CODE (DirL = 0, DirR = 1 — the fixture's own order); the
--- stakes as a sentence over (code, theta): DirR -> 2*theta-1,
--- DirL -> 1-2*theta. Same extension at both codes.
-stakes :: USent
-stakes = USent
-  (If (Gt (Var Z) (gkA 0.5))
-      (Sub (Mul (gkA 2) (Var (S Z))) (gkA 1))
-      (Sub (gkA 1) (Mul (gkA 2) (Var (S Z)))))
 
 gkA :: Double -> Expr env Double
 gkA v = case mkC (mkGrid "k" (v :| [])) 0 of
   Just e  -> e
   Nothing -> error "actions fixture: singleton grid index 0 must construct"
-
-dirs :: NonEmpty Double
-dirs = 0 :| [1]
-
--- COPY test-ladder/fixture/Sayable.hs:116-118
-condBatch :: Belief Double -> [Obs] -> Belief Double
-condBatch = foldl' (\bb y ->
-  fromMaybe (error "impossible evidence in batch") (cond bb (Saw emit y)))
-
--- COPY test-ladder/fixture/Sayable.hs:169-176 (the canonical
--- eight-Var VThinkK sentence for the price pin)
-priceSentence :: Expr '[ Int, B Double, K Double Obs, [Obs]
-                       , USent, NonEmpty Double, Int, Double ] Double
-priceSentence =
-  Call VThinkK (Var Z :* Var (S Z) :* Var (S (S Z)) :* Var (S (S (S Z)))
-              :* Var (S (S (S (S Z)))) :* Var (S (S (S (S (S Z)))))
-              :* Var (S (S (S (S (S (S Z))))))
-              :* Var (S (S (S (S (S (S (S Z))))))) :* ANil)
-
--- a short deterministic batch for b3 (the retiring fixture used
--- buffer36's first three; the VALUES are irrelevant to the identity
--- pins — both sides of each == receive the same belief)
-b3Batch :: [Obs]
-b3Batch = [1, 0, 1]
-
-g3LadderPins :: TestTree
-g3LadderPins = testGroup "g3 the re-homed ladder pins (until step 9 retires the name)"
-  [ testCase "price: Call VThinkK = node + lg 6 + eight Var mentions (Sayable.hs:205, the step-3 re-priced form)" $
-      assertBool "price pin (1e-12, the fixture's own gate)"
-        (abs (unBits (bits priceSentence)
-              - (lg 19 + lg 6 + 8 * (lg 19 + lg 8))) <= 1e-12)
-  , testCase "identity: the verb at depth 1 == the frozen VThink verb" $
-      assertBool "verb@1 == VThink over both beliefs, all four prices"
-        (all (\(b, p) -> verb (1 :: Int) b 3 p == vt b 3 p)
-             [ (b, p) | b <- [u0, b3], p <- [0.3, 0.05, 0.005, 0] ])
-  , testCase "identity: the verb == the exported worker at depths 1..3" $
-      assertBool "verb k == vThinkK k, k in 1..3"
-        (all (\k -> verb k b3 3 0.05
-                      == vThinkK k b3 emit ([0, 1] :: [Obs])
-                                 stakes dirs 3 0.05)
-             [1, 2, 3])
-  ]
-  where
-    unBits (Bits x) = x
-    u0 = uniform thetaSpace
-    b3 = condBatch u0 b3Batch
-    -- COPY test-ladder/fixture/Sayable.hs:185-201 (verb and vt)
-    verb k b n p =
-      evalx (Call VThinkK (Var Z :* Var (S Z) :* Var (S (S Z))
-                         :* Var (S (S (S Z))) :* Var (S (S (S (S Z))))
-                         :* Var (S (S (S (S (S Z)))))
-                         :* Var (S (S (S (S (S (S Z))))))
-                         :* Var (S (S (S (S (S (S (S Z)))))))
-                         :* ANil))
-            (mkEnv [] (k :. b :. emit :. ([0, 1] :: [Obs]) :. stakes
-                         :. dirs :. n :. p :. VNil))
-    vt b n p =
-      evalx (Call VThink (Var Z :* Var (S Z) :* Var (S (S Z))
-                        :* Var (S (S (S Z))) :* Var (S (S (S (S Z))))
-                        :* Var (S (S (S (S (S Z)))))
-                        :* Var (S (S (S (S (S (S Z)))))) :* ANil))
-            (mkEnv [] (b :. emit :. ([0, 1] :: [Obs]) :. stakes :. dirs
-                         :. n :. p :. VNil))
