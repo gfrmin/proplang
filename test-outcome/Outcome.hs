@@ -45,13 +45,23 @@ import Test.Tasty.HUnit (assertBool, testCase, (@?=))
 import PropLang.Belief (expect)
 import PropLang.Enumerate (Agent, Obs, enumerateSentencesIn,
                            fragFull, observe, predictive, sentenceAgent)
-import PropLang.Eval (Features, Vals (..), evalx, mkEnv, uAt)
+import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Host (hostStart, serveLine)
 import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
                           runMembrane)
-import PropLang.Syntax (Args (..), Expr (..), Fn (..), Grid, Idx (..),
-                        StdName (..), USent (..), mkC, mkGrid,
+import PropLang.Syntax (Expr (..), Grid, Idx (..), mkC, mkGrid,
                         mkNamespace)
+
+-- uAt RETIRED from Eval at the step-9 elimination (the VoI workers and
+-- the utility bridge deleted). The utility RESIDUE is now an ordinary
+-- Expr '[Double, Double] Double (Var Z = option code, Var (S Z) =
+-- outcome -- the residue convention step 8 established and Membrane's
+-- PilotEU carries). This IS the old bridge, inlined at the one suite
+-- that used it: evaluate the residue at the tick's features with the
+-- (code, outcome) pair in scope. R-D20-i: a copy of the deleted
+-- Eval.uAt, not a re-derivation.
+uAt :: Features -> Expr '[Double, Double] Double -> Double -> Double -> Double
+uAt fs u a y = evalx u (mkEnv fs (a :. y :. VNil))
 
 main :: IO ()
 main = defaultMain $ testGroup "outcome -- utility on world states, latent (step 8)"
@@ -75,16 +85,18 @@ w64 :: Double -> Integer
 w64 = toInteger . castDoubleToWord64
 
 -- u(feats, code, y) = y - 0.2 * Get "a": the fuse world's utility AS
--- A SENTENCE — the act read from the world (the doctrine's face)
-uFuse :: USent
-uFuse = USent (Sub (Var (S Z)) (Mul (gk 0.2) (Get "a")))
+-- A SENTENCE — the act read from the world (the doctrine's face). The
+-- USent wrapper is GONE (step 9, D-f1 UTIL sort): the utility is the
+-- bare residue Expr now, priced and carried exactly as before.
+uFuse :: Expr '[Double, Double] Double
+uFuse = Sub (Var (S Z)) (Mul (gk 0.2) (Get "a"))
 
 -- a code-dispatching utility (the residue var serving code-shaped
 -- options): u = if code > 0.5 then (2y - 1.5) else 0.1
-uCode :: USent
-uCode = USent (If (Gt (Var Z) (gk 0.5))
-                  (Sub (Mul (gk 2) (Var (S Z))) (gk 1.5))
-                  (gk 0.1))
+uCode :: Expr '[Double, Double] Double
+uCode = If (Gt (Var Z) (gk 0.5))
+           (Sub (Mul (gk 2) (Var (S Z))) (gk 1.5))
+           (gk 0.1)
 
 zG, aG :: Grid
 zG = mkGrid "zc" (0.25 :| [0.5, 0.75])
@@ -97,18 +109,16 @@ aG = mkGrid "ac" (0.5 :| [1.5])
 g1Bridge :: TestTree
 g1Bridge = testGroup "g1 the bridge: Get inside a utility reads the world"
   [ testCase "the E-d1 payload at feats=[] vs feats=[x=10]: only Get moves, by exactly the feature" $ do
-      let pay = USent (Add (Mul (Var Z) (Var (S Z))) (Get "x"))
+      let pay = Add (Mul (Var Z) (Var (S Z))) (Get "x") :: Expr '[Double, Double] Double
       uAt [] pay 2 3 @?= 6.0
       uAt [("x", 10)] pay 2 3 @?= 16.0
-  , testCase "USay evaluates to SYNTAX (the wrapper is dead): both routes bit-equal at arbitrary points" $ do
-      let pay = Sub (Var (S Z)) (Mul (gk 0.2) (Get "a"))
-          viaDoor = evalx (USay pay) (mkEnv [] VNil)
-          direct  = USent pay
-          probe u = [ uAt fs u a y | fs <- [[], [("a", 1)], [("a", 1), ("b", 7)]]
-                                   , a <- [0, 1.5], y <- [0, 1] ]
-      map w64 (probe viaDoor) @?= map w64 (probe direct)
+  -- the "USay evaluates to SYNTAX (the wrapper is dead)" row RETIRED at
+  -- step 9 (D-f1/D-f10): USay AND USent are both DELETED. Step 8 proved
+  -- the wrapper was dead (USay's payload == USent's payload); step 9
+  -- makes it true by construction -- the utility is the bare residue
+  -- Expr, no wrapper to strip, no bridge row to run.
   , testCase "the mute face: a Get on an absent name reads 0 (dormancy, unchanged by the step)" $ do
-      let u = USent (Get "ghost")
+      let u = Get "ghost" :: Expr '[Double, Double] Double
       w64 (uAt [("t", 3)] u 1 1) @?= w64 0
   ]
 
@@ -130,23 +140,15 @@ trainedTZA =
   in foldl step (sentenceAgent pop) ticks
 
 g2Seams :: TestTree
-g2Seams = testGroup "g2 the seams: the public arithmetic over USent, two-route"
-  [ testCase "EU == expect . uAt (the verb against the hand route, bit-exact)" $ do
-      let feats = [("t", 40), ("z", 0.5), ("a", 1.5)] :: Features
-          b = predictive feats trainedTZA
-          viaVerb = evalx (Call EU (Var Z :* Var (S Z) :* Var (S (S Z))
-                                    :* Var (S (S (S Z))) :* ANil))
-                          (mkEnv [] (b :. uFuse :. feats :. (0 :: Double) :. VNil))
-          byHand = expect b (\y -> uAt feats uFuse 0 (fromIntegral y))
-      w64 viaVerb @?= w64 byHand
-  , testCase "FnUtil reads the ENV's features (the seam carries the world)" $ do
-      let feats = [("t", 40), ("z", 0.5), ("a", 1.5)] :: Features
-          b = predictive feats trainedTZA
-          viaExpand = evalx (Expect (Var Z) (FnUtil uFuse 0))
-                            (mkEnv feats (b :. VNil))
-          byHand = expect b (\y -> uAt feats uFuse 0 (fromIntegral y))
-      w64 viaExpand @?= w64 byHand
-  , testCase "the fold == the public per-assignment arithmetic (the step-6 bridge, re-pinned over USent)" $ do
+g2Seams = testGroup "g2 the seams: the membrane fold + residue dispatch, two-route"
+  -- The "EU == expect . uAt" and "FnUtil reads the ENV's features" rows
+  -- RETIRED at step 9 (D-f10): EU and the FN sort (FnUtil) are DELETED.
+  -- Their composition -- EU == Expect b (utility body), FnUtil == the
+  -- prevision of the priced body -- is pinned canonically in test-elim
+  -- (g2/g1, the shipped-composition oracle). Anti-resurrection is the
+  -- deletion audit's layer-absence check, not a pin here. The membrane
+  -- fold and the residue-var dispatch SURVIVE and stay pinned below.
+  [ testCase "the fold == the public per-assignment arithmetic (the step-6 bridge, over the residue)" $ do
       let feats = [("t", 40), ("z", 0.5)] :: Features
           euPub a = expect (predictive (feats ++ a) trainedTZA)
                            (\y -> uAt (feats ++ a) uFuse 0 (fromIntegral y))
@@ -267,10 +269,10 @@ g5Latent = testGroup "g5 the latent half: the parameter behind the point-mass sh
   [ testCase "evidence moves the belief over the utility parameter; the chosen act follows it" $ do
       -- the family: u_p = if code > 0.5 then (2p - 1) * (2y - 1) else 0
       -- (act pays when p is high, costs when p is low); p in {0.2, 0.8}
-      let uP p = USent (If (Gt (Var Z) (gk 0.5))
-                           (Mul (gk (2 * p - 1))
-                                (Sub (Mul (gk 2) (Var (S Z))) (gk 1)))
-                           (gk 0))
+      let uP p = If (Gt (Var Z) (gk 0.5))
+                    (Mul (gk (2 * p - 1))
+                         (Sub (Mul (gk 2) (Var (S Z))) (gk 1)))
+                    (gk 0) :: Expr '[Double, Double] Double
           -- point-mass over the shape; the parameter latent with a
           -- declared prior; human evidence: y=1 iff the world favors
           -- high p (likelihood 0.9/0.1) — three approvals arrive
