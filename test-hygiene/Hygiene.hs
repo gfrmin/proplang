@@ -35,8 +35,6 @@ module Main (main) where
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
 import Data.Maybe (isJust)
-import System.Exit (ExitCode (..))
-import System.Process (readProcessWithExitCode)
 import Test.Tasty
 import Test.Tasty.HUnit
 import Test.Tasty.QuickCheck
@@ -51,9 +49,17 @@ main = defaultMain $ testGroup "proplang grammar hygiene (increment oracle)"
   [ groupMkC
   , groupDlPins
   , groupBits
-  , groupFn
-  , groupAblation
   ]
+  -- groupFn / groupAblation RETIRED at the step-9 elimination freeze
+  -- (D-f10 retire-and-replace; D-f13/§17): the FN sort (FnInd/FnUtil) is
+  -- DELETED -- subsumed by the Expect binder (prob b e == Expect b
+  -- (indicator), utility-prevision == Expect b (priced body); E-e1b, 42
+  -- rows bit-exact). No FN semantics remain to test and no FN choice bit
+  -- remains to price. The UseFnInd/UseFnUtil ablation fixtures are
+  -- DISCHARGED-PERMANENT (the deletion they proved possible happened).
+  -- The census's highest-risk row was here: the FN price rows RE-PRICE
+  -- rather than fail, so a mechanical port would silently pin a false
+  -- price -- retired, never re-priced.
 
 lg :: Double -> Double
 lg = logBase 2
@@ -136,97 +142,24 @@ groupDlPins = testGroup "model dl pins (derivation-relative, plan R4)"
 -- node pays log2 nExpr, Var included; content on top; nExpr = 10)
 -- ---------------------------------------------------------------------
 
+-- EXPR REPRICE (WIDE census, step 9): prodExpr 19 -> 20, so every EXPR
+-- node-choice leaf moves lg 19 -> lg 20 (+lg(20/19) = 0.074 bits/node).
+-- The FN rows RETIRED (D-f10): with the FN sort gone, Expect prices
+-- node + belief-child + body-child (an ordinary EXPR in the extended
+-- scope), no FN choice bit -- the row's asserted quantity no longer
+-- exists to pin. The retained rows re-price at 20.
 groupBits :: TestTree
-groupBits = testGroup "policy prices (amended spec S3; plan R5 as corrected)"
+groupBits = testGroup "policy prices (amended spec S3; plan R5 as corrected; EXPR at 20)"
   [ testCase "Get pays its node cost (one feature name: names free)" $
-      assertBits "Get" (lg 19) (bits (Get "t" :: Expr '[] Double))
+      assertBits "Get" (lg 20) (bits (Get "t" :: Expr '[] Double))
   , testCase "a constant pays node + grid index" $
       case mkC g4 0 :: Maybe (Expr '[] Double) of
-        Just e  -> assertBits "mkC-sentence" (lg 19 + lg 4) (bits e)
+        Just e  -> assertBits "mkC-sentence" (lg 20 + lg 4) (bits e)
         Nothing -> assertFailure "mkC rejected an in-range index"
   , testCase "argmax over a variable menu: three nodes, scope-1 name free" $
-      assertBits "Argmax(Var,Get)" (3 * lg 19)
+      assertBits "Argmax(Var,Get)" (3 * lg 20)
         (bits (Argmax (Var Z) (Get "t") :: Expr '[NonEmpty Double] Double))
   , testCase "the inner variable pays its scope" $
-      assertBits "Argmax(Var,Var)" (3 * lg 19 + 1)
+      assertBits "Argmax(Var,Var)" (3 * lg 20 + 1)
         (bits (Argmax (Var Z) (Var Z) :: Expr '[NonEmpty Double] Double))
-  , testCase "Expect pays node + child + FN choice bit (FnInd)" $
-      assertBits "Expect/FnInd" (2 * lg 19 + 1)
-        (bits (Expect (Var Z) (FnInd (is obsSpace 1))
-               :: Expr '[B Obs] Double))
-  , testCase "Expect pays node + child + FN choice bit (FnUtil)" $
-      assertBits "Expect/FnUtil" (2 * lg 19 + 1)
-        (bits (Expect (Var Z) (FnUtil constStake 0)
-               :: Expr '[B Obs] Double))
   ]
-  where
-    -- RE-DERIVED at the step-8 outcome freeze (R-D22): u(y) = y as
-    -- a sentence (the FN payload is opaque at 8 — the sort dies at 9
-    -- with the same price it carries today)
-    constStake = USent (Var (S Z))
-
--- ---------------------------------------------------------------------
--- group 4: Fn semantics — the two published expansions, extensionally
--- (both sides are the identical arithmetic path, so equality is exact)
--- ---------------------------------------------------------------------
-
-groupFn :: TestTree
-groupFn = testGroup "Fn semantics (the reported alphabet, plan Q1)"
-  [ testProperty "Expect b (FnInd e) is prob b e" propFnInd
-  , testProperty "Expect b (FnUtil u o) is expect b (uAt-at-env u o)"
-      propFnUtil
-  ]
-
-propFnInd :: Property
-propFnInd =
-  forAll (chooseInt (2, 6)) $ \n ->
-  forAll (vectorOf n (choose (0, 8))) $ \pb ->
-  forAll (sublistOf [0 .. n - 1]) $ \sub ->
-    let sp = mkSpace (NE.fromList [0 .. n - 1])
-        b = fromBits sp (\x -> Bits (pb !! x))
-        e = event sp (`elem` sub)
-    in evalx (Expect (Var Z) (FnInd e)) (mkEnv [] (b :. VNil))
-         == prob b e
-
-gkH :: Double -> Expr env Double
-gkH v = case mkC (mkGrid "k" (v :| [])) 0 of
-  Just e  -> e
-  Nothing -> error "hygiene fixture: singleton grid index 0 must construct"
-
-propFnUtil :: Property
-propFnUtil =
-  forAll (chooseInt (2, 6)) $ \n ->
-  forAll (vectorOf n (choose (0, 8))) $ \pb ->
-  forAll (vectorOf n (choose (-10, 10 :: Int))) $ \uv ->
-    let sp = mkSpace (NE.fromList [0 .. n - 1])
-        b = fromBits sp (\x -> Bits (pb !! x))
-        -- the y-indexed table as a SENTENCE: nested dispatch on the
-        -- outcome var (re-derived at the step-8 outcome freeze)
-        tableU = USent (go 0)
-          where
-            go i | i >= n - 1 = gkH (fromIntegral (uv !! (n - 1)))
-                 | otherwise =
-                     If (Gt (gkH (fromIntegral i + 0.5)) (Var (S Z)))
-                        (gkH (fromIntegral (uv !! i)))
-                        (go (i + 1))
-    in evalx (Expect (Var Z) (FnUtil tableU 0)) (mkEnv [] (b :. VNil))
-         == expect b (\y -> uAt [] tableU 0 (fromIntegral y))
-
--- ---------------------------------------------------------------------
--- group 5: Fn deletion is raises-by-type (plan R6): audit/ablation.sh
--- is frozen and cannot gain rows, so the increment carries its own
--- runner, invoked here exactly as frozen test 4 invokes the frozen one
--- ---------------------------------------------------------------------
-
-groupAblation :: TestTree
-groupAblation = testGroup "Fn deletion rows (raises-by-type, plan R6)"
-  [ ablationRow "fnind"
-  , ablationRow "fnutil"
-  ]
-
-ablationRow :: String -> TestTree
-ablationRow row = testCase ("deletion row '" ++ row ++ "'") $ do
-  (rc, out, err) <- readProcessWithExitCode
-                      "sh" ["test-hygiene/ablation.sh", row] ""
-  assertEqual ("deletion row '" ++ row ++ "':\n" ++ out ++ err)
-              ExitSuccess rc
