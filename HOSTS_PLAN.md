@@ -1,5 +1,25 @@
 # HOSTS_PLAN — the re-opening: proplang as a host-drivable agent
 
+> **[HISTORICAL from the wire boundary opening, 2026-07-20 — the
+> engine this document describes was DEMOLISHED at the step-3
+> sentence freeze (2026-07-15; issue #7 case 4).]** This plan and its
+> conformance surface (`govhost`, `table@1`, `latent@1`, the H
+> differential gate) bind on nothing current: the language was
+> re-derived under AGENT_PLAN.md (steps 1–10, closed at
+> `reflexive-freeze-r0`) and the live host surface is
+> `membrane-wire.md` §§1–3 plus WIRE_PLAN.md (2026-07-20). What
+> SURVIVES of this document: the demand shapes and increment gates
+> (A/B/routing, §9) — re-registered with live consumers as GitHub
+> issues #9–#14 and carried on WIRE_PLAN.md §5's rulings register —
+> and the D-epoch rulings (R-D*) already canonized into CLAUDE.md.
+> Known falsified-by-motion line with teeth: §"grid ceiling"
+> classifications of the theta grid as frozen alphabet data (see the
+> HOSTS_H_REPORT bracket; the emission grid has been an ordinary
+> enumerator parameter since `0170a40` — `Enumerate.hs:344` — and
+> widening is mechanically a host change plus a count re-pin, but a
+> standing author condemnation governs whether it may happen at all:
+> ruling R-W1, WIRE_PLAN.md §5).
+
 Unfrozen working document, UNTRACKED in the frozen repository. It
 proposes the lawful re-opening of the roadmap (P5's route) and the
 increments under it. Nothing in this document changes anything: it

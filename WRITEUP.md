@@ -397,6 +397,23 @@ sentences the build itself discovered.
    carried one-ulp cancellation dust. A limitation found by
    measurement and recorded rather than patched is what the residue
    discipline was for.
+
+   > **[Dated repair — the wire boundary opening, 2026-07-20, under
+   > the frozen-layer inventory clause; issue #7 of the audit
+   > batch.]** The sentences above — *"The policy fragment has no
+   > arithmetic"* and *"linear forms like 2u−1 are unsayable"* —
+   > were falsified at step 1 of the re-derivation (`code-freeze-r0`,
+   > 2026-07-14): `Add/Sub/Mul/Div/Log/Exp/Neg` are priced
+   > productions (`src/PropLang/Syntax.hs`), and `2u−1` is sayable —
+   > it is the step-10 composition's own utility body
+   > (`test-reflexive/Reflexive.hs:103`). The recorded debt this item
+   > names was PAID, exactly as promised ("a future reported alphabet
+   > change, priced like everything else"). The accidental-virtue
+   > measurement stands as history of the close-date engine. This
+   > repair binds because an honesty section that understates the
+   > engine misleads in the one place a reader goes to learn the
+   > limits.
+
 5. **The frontier.** The hypothesis space is enumerated to a fixed
    depth; the generator that should move that frontier under
    posterior pressure — the brief's §6, the belief-aware purchase of

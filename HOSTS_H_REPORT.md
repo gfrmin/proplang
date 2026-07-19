@@ -1,5 +1,28 @@
 # HOSTS increment H — as-built report (the governor host)
 
+> **[HISTORICAL from the wire boundary opening, 2026-07-20 — this
+> report measures the PRE-RE-DERIVATION engine, demolished at the
+> step-3 sentence freeze (issue #7 case 4).]** Two of its findings
+> have wire-boundary dispositions: (1) the theta-grid classification
+> at §"Not tuned away" — *"a frozen alphabet-data change"* — was TRUE
+> when written and went half-stale two days later (`0170a40`,
+> 2026-07-11, the grid parameterized): mechanically, widening is a
+> host change plus a count re-pin, no alphabet motion. What this
+> report never recorded — and what its stale mechanism-claim hid from
+> every later reader — is that the author's directive of the SAME
+> WEEK (METAREASONING_PLAN.md:30, :216) CONDEMNED the host-declared
+> emission grid outright; the live disposition is ruling R-W1,
+> WIRE_PLAN.md §5. (2) The flat-p1
+> finding (§ line 167, "the graver finding") had its STRUCTURAL half
+> re-measured on the re-derived engine at the W1 opening
+> (2026-07-20): on a synthetic perfectly-informative contrast stream
+> the engine discriminates at S = 0.794 (pinned, test-measure/ g1) —
+> the "near-constant function of context" shape does not hold of the
+> re-derived engine's mechanics. This report's CORPUS measurement
+> (real benign/attack/empty governance contexts) has NOT been re-run
+> — that requires a host and stays open. The ceiling finding stands;
+> its disposition is ruling R-W1.
+
 Builder → author, at H's implementation close. Untracked, like the
 pack. The freeze (`f989c42`, tag `govhost-freeze`) and the
 implementation (`65015f2`) are done; this reports the as-built

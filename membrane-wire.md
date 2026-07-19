@@ -86,6 +86,28 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   exists on this wire: a program is DATA, priced through the one
   mechanism — the arithmetic-free boundary stays where the record put
   it.
+
+  > **[Dated repair — the wire boundary opening, 2026-07-20;
+  > issues #1 and #3; falsified sentences quoted in place.]**
+  > Three sentences above overstate what ships at `7da274b`:
+  > (1) *"priced like any sentence"* — parsing holds, pricing does
+  > NOT: the shipped `parseSaid` gives every constant a fresh
+  > singleton grid (`Host.hs:363`, log2 1 = 0 content bits) and
+  > `Host.hs` never computes `bits` for the declared program; a
+  > baroque declaration costs what a trivial one costs. (2) *"with
+  > the grid-priced parameter latent"* — no latent exists on the
+  > wire: the world holds the program as a bare expression
+  > (`wUSaid`), a point mass, full stop. (3) *"or unpriceable
+  > declarations are validation failures"* — vacuous while nothing
+  > is priced. Additionally the wire under-exposes the priced
+  > grammar: `Div/Log/Exp/Neg` are priced productions
+  > (`Syntax.hs`) with no `said@1` form, and *"the arithmetic-free
+  > boundary stays where the record put it"* reads as if that
+  > boundary still stood — it fell at step 1. W4 of WIRE_PLAN.md
+  > implements what these sentences promise (author's ruling,
+  > 2026-07-20: implement); this bracket is the truth of the wire
+  > until the W4 freeze re-states it, and the promised sentences
+  > above bind W4's oracle, not today's callers.
 - The host sets NO priors: the terminal set is not on the wire; the
   prior over explanations is 2^(-dl) through the one prior source.
 - Value pricing (step 7, M5 repealed): an action value prices at
@@ -98,6 +120,22 @@ Validation failures answer `{"error": "<reason>"}` and the process
 stays on the handshake state.
 
 ## 3. Ticks
+
+> **[Stated at the wire boundary opening, 2026-07-20; issue #8's doc
+> half.]** THE SHIPPED DECISION RULE IS MYOPIC: `choose`
+> (`Host.hs`) is a single-shot one-step-EU argmax over the tick's
+> menu — candidate EU at the predictive under each option's
+> assignment, strict improvement displaces, first-listed wins ties.
+> The deliberation ladder (depth as `Push`-iterated sentences,
+> priced per rung, argmax across rungs — step 10's composition,
+> pinned at `test-reflexive/`) is a demonstrated CAPABILITY of the
+> grammar, NOT shipped behind this wire — myopia was ruled
+> deliberately in the H era (HOSTS_PLAN register 12; stated at
+> :214-224 of this document's HISTORICAL sections, which is why the
+> live sections read silent until this bracket). Hosts pricing
+> information-gathering against terminal actions must not plan
+> against a preposterior here unless ruling R-W2 (WIRE_PLAN.md §5)
+> opens W4c and its freeze replaces this bracket.
 
 Decision tick — features + menu, no evidence; THE AGENT DOES NOT
 MOVE:

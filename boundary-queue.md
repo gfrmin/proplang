@@ -1,5 +1,17 @@
 # Boundary queue — items awaiting the next freeze boundary's author pack
 
+> **[HISTORICAL from the wire boundary opening, 2026-07-20 — binding
+> on nothing current (the membrane-wire §§4-6 bracket form; issue #7
+> case 3).]** Last live entry 2026-07-06; the queue mechanism was
+> superseded by the per-increment author packs and per-boundary
+> sittings of the AGENT_PLAN re-derivation (2026-07-12 onward). Item
+> 5 below (the arithmetic-free expressiveness boundary) was ABOLISHED
+> by step 1 (`code-freeze-r0`, 2026-07-14) — arithmetic landed,
+> priced. Nothing below queues anything anywhere; the live queue for
+> deferred obligations is each boundary's opening checklist plus the
+> obligations ledger installed at the wire boundary (RC-2's remedy,
+> WIRE_PLAN.md §2).
+
 Unfrozen working document. Items here are queued rulings and corrections
 that touch frozen text; per the increment protocol they land only at a
 freeze boundary, only by the author, via that boundary's author pack.

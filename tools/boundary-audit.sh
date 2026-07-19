@@ -61,6 +61,30 @@ for s in $syms; do
 done
 echo "H-row: $hflags flagged (of $(echo "$syms" | wc -l) symbols scanned)"
 
+echo "--- OB-row: obligations ledger vs closed boundaries ---"
+# THE OBLIGATIONS LEDGER ROW (the wire boundary opening, 2026-07-20;
+# RC-2's remedy — the VoI-row shape mechanized: an atomic obligation
+# SCHEDULED@ or RETIRE-UNTIL- a boundary whose freeze tag already
+# exists must have been resolved; flag every one that wasn't. Run at
+# step 9's close this fires instantly on "VoI non-negativity:
+# SCHEDULED@elim, unresolved.")
+obflags=0
+if [ -f OBLIGATIONS.md ]; then
+  targets=$(grep -ohE '(SCHEDULED@|RETIRE-UNTIL-)[a-z0-9-]+' OBLIGATIONS.md \
+            | sed -E 's/(SCHEDULED@|RETIRE-UNTIL-)//' | sort -u)
+  for t in $targets; do
+    if git tag -l "${t}*" | grep -q .; then
+      rows=$(grep -nE "(SCHEDULED@|RETIRE-UNTIL-)${t}\b" OBLIGATIONS.md | cut -d: -f1 | tr '\n' ',')
+      printf 'FLAG  obligation(s) at OBLIGATIONS.md line(s) %s still open against CLOSED boundary %s\n' "${rows%,}" "$t"
+      obflags=$((obflags+1))
+    fi
+  done
+  echo "OB-row: $obflags flagged (open obligations against closed boundaries)"
+else
+  echo "OB-row: OBLIGATIONS.md missing — itself a flag (the ledger is a standing instrument)"
+  obflags=1
+fi
+
 echo "--- standing observations ---"
 echo "note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has $(grep -c '^test-suite' proplang.cabal) (dated red-by-design instrument, recorded)"
-echo "=== boundary-audit done: M5=$m5flags H=$hflags ==="
+echo "=== boundary-audit done: M5=$m5flags H=$hflags OB=$obflags ==="

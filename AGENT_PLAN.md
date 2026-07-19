@@ -861,6 +861,23 @@ close, oracle and gates green on the same signature; as-built record
 `optlaw-author-pack.md` §8–9; manifest 85 rows; the R-D22 riders for `5fa305d` and
 `0b20495` DISCHARGED by this tag) · steps 3–10 open.
 
+> **[Dated repair — the wire boundary opening, 2026-07-20; issue #7
+> case 2.]** The register line above — *"steps 3–10 open"* — was
+> written at the step-2 close and never advanced; it was false from
+> the step-3 close onward. The record as of this repair: step 3 ✅
+> (`sentence-freeze-r0/r1`, 2026-07-15) · step 4 ✅
+> (`pricing-freeze-r0/r1`, 2026-07-15) · step 5 ✅
+> (`actions-freeze-r0/r1`, 2026-07-16) · step 6 ✅
+> (`stream-freeze-r0/r1`, 2026-07-17) · step 7 ✅
+> (`unify-freeze-r0/r1`, 2026-07-17) · step 8 ✅
+> (`outcome-freeze-r0/r0a/r1`, 2026-07-17) · step 9 ✅
+> (`elim-freeze-r0`, 2026-07-18) · step 10 ✅ (`reflexive-freeze-r0`,
+> 2026-07-18; the roadmap's terminal tag). Trust the tags: the
+> per-boundary register is the SIGNED TAG LIST, and this prose
+> register is repaired to match it rather than maintained in
+> parallel — the roadmap continues at WIRE_PLAN.md (opened
+> 2026-07-20).
+
 0. **This document, signed.** (Author.) **Nothing frozen moves until the tag exists.**
 1. **`Code` + `Pos` + arithmetic** (§2a, §5). Oracle: pin the code forms of `bern`, `expfam`
    and `rw` against the engine's own `bernFast` / `ExpFam` / `walkOn`. **`rw` is the

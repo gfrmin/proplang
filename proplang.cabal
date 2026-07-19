@@ -299,3 +299,35 @@ test-suite reflexive
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- the wire boundary's W1 opening-measurement oracle (WIRE_PLAN.md
+-- section 1; issues #5/#6): contrast-context discrimination pinned on
+-- the shipped wire, the ms/tick instrument at the pinned populations.
+-- Stanza applied at the W1 freeze under the recorded delegation of
+-- 2026-07-20 ("open boundary and implement").
+test-suite measure
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Measure.hs
+    hs-source-dirs:   test-measure
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+-- the wire boundary's W2a owed-law oracle (WIRE_PLAN.md step W2;
+-- issue #2): VoI non-negativity over the frozen step-10 composition —
+-- the property AGENT_PLAN.md:1121-1126 homed at step 9, landed here
+-- with its gate derived from the W2 evidence program's measured floor.
+test-suite law
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Law.hs
+    hs-source-dirs:   test-law
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+                    , tasty-quickcheck
+    default-language: GHC2021
