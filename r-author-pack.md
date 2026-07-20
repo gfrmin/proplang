@@ -546,3 +546,63 @@ exactly by octaves (octave [2^b, 2^(b+1)) contributes 2^-(b+1)), so
 `kraftSubtree` is a true closed form (gammaTail), no truncation in
 the gap branch; the extent-chain branch truncates at +2000 extents
 (undercount only — conservative for the Kraft row; transcribed).
+
+### III.7 Tranche-2 SAT transcript (R-D21, overlay form, 2026-07-20)
+
+Surface: `src/PropLang/Purchase.hs` stubs (PurchaseWorld = stakes +
+optional surcharge, NOTHING else — the alignment statement enforced
+by type; PTick = the printed purchase log; runPurchase = the one
+decision rule; purchasePredictive = the kernel-motion door). Lattice
+gained the regions/frontier index-alignment contract and the g12
+fixture grows by VALUE (greedy evidence-weighted mass reduction).
+Overlay: the joint law realized (guard-based respond, region-straddle
+refine over value-based candidates, rung ladder under the free clock
+when blocked, pinned option order wait/externals/refine/think).
+
+Final state: **24/24 SAT-green on the overlay; 24/24 runtime-red on
+the src stubs**, both under the stanza's exact flags. All twelve
+tranche-2 behavioral rows passed on the FIRST overlay run — stakes
+buy the frontier and governor-scale stakes do not (same evidence);
+the purchase log's monotone superset chain; the no-refine-row
+residue (zero purchases, byte-static vocabulary); the
+recurring-stakes stream bought and cleared while the one-tick world
+bought nothing (the myopic case as CHOSEN rung); the 0.96 governor
+anchor cleared with no host declaration; refine-vs-think both
+directions; the emit-kernel two-route pin; the zero-stakes all-wait
+order pin.
+
+One conviction: g12b's read-door gate (1e-6) was a plucked number —
+the SAT run showed dev(150 purchases) = 2.0e-3, and the shape is the
+finding: frontier mass halves per DEPTH level while the purchases a
+level needs double, so convergence is measured in depth, not
+purchases. The row is re-derived to the true two-fidelities form:
+the read door's expectation lies INSIDE the guard bracket at every
+growth stage, the bracket tightens strictly (dev 10 -> 50 -> 150
+purchases), and the envelope gate is the measured 2.0e-3 with 2.5x
+headroom (5e-3).
+
+Tolerances derived from measurement (the cl4 lesson): g1
+scorer-vs-incremental measured floor 1.665e-16 -> gate 1e-12 (~6000x
+headroom). g11's overlay routes coincide (measured 0.0) so the
+overlay cannot discriminate that gate; 1e-12 stands as the
+one-lse-seam pattern and binds the real engine's fragment route.
+
+THE ORACLE PHASE IS COMPLETE: 24 rows across g1-g12 covering all 17
+design rows of III.2, every row red-attributable to the stubs and
+SAT-transcribed against a real overlay realization, all gates
+derived or pattern-cited, zero alphabet productions anywhere.
+
+### III.8 What the freeze sitting needs (the author)
+
+1. The author's signed tag over R_SCOPE.md as amended (carrying
+   R-R1/R-R2/R-R3) — the r-open-r1 message's "amended R_SCOPE to my
+   tag alongside the freeze".
+2. Frozen-file edits under that sitting's delegation: the `refine`
+   stanza (test-refine/stanza.cabal.draft) into proplang.cabal;
+   MANIFEST.sha256 re-signed to cover R_SCOPE.md, test-refine/
+   (Refine.hs + stanza draft), and the amended cabal.
+3. OBLIGATIONS.md ledger: OB-17 -> DISCHARGED@r-open (the author's
+   own tag exists); OB-9 -> LANDED@r1 at implementation green.
+4. Then implementation: Lattice + Purchase real bodies in src (the
+   overlay's design, re-landed properly), until 24/24 green with
+   every existing anchor byte-stable (gate 5 all suites).

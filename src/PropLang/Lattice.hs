@@ -97,7 +97,9 @@ frontier :: Owned -> [Node]
 frontier = stub "frontier"
 
 -- | A frontier region: the unowned interval it opens, with its
--- subtree Kraft mass (the rectangle bound's mass term).
+-- subtree Kraft mass (the rectangle bound's mass term). CONTRACT:
+-- 'regions' aligns index-wise with 'frontier' — the i-th region is
+-- the i-th candidate's subtree (probes pair them by zip).
 data Region = Region
   { rLoTheta :: Double
   , rHiTheta :: Double
