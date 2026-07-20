@@ -184,7 +184,127 @@ R1-before-R2 does NOT survive its own conditional.** The myopia
 limitation is EXPIRED-IN-FACT: the shipped grammar already says the
 horizon that makes the purchase pay; only the choice law is missing.
 
-Still owed by R0: Program A (the guard re-derivation, criteria at
-I.4), and the I.3 design-level re-statements. Program A is unaffected
-by B3 (the guard identity is depth-independent — the straddle/VOR
-identity binds the criterion whatever its horizon).
+### I.6 Program A — EXECUTED (satisfiability transcript, 2026-07-20)
+
+Prototype `proto_a.hs` (scratchpad, discarded per R-D21), STANDALONE
+— the guard is R1's un-landed law, there is no shipped surface to
+overlay, so every mass/code formula is declared in the prototype and
+here: owned set = integer log-odds rungs -4..4 (depth 0, theta_4 =
+16/17 ~ 0.941); gap (j, j+1) subtree Kraft mass 2^-(lmin+3); tails
+sum 1.5 x 2^-len(j) over 60 extents; likelihood sup at the clipped
+mode; utility u(theta) = sR*theta + sW*(1-theta), linear, endpoint
+extrema (the Bernoulli-instance license, METAREASONING_PLAN.md:
+181-186); stakes sR = +1, sW = -9 => p* = 0.9; both candidate codes
+run (unary |j|+2; Elias-gamma 2*floor(log2(|j|+1))+2). One run:
+
+```
+A1 global-reading releases in n=1..200: 0 (criterion: 0)
+A2 unary-code release at n=13; posterior mode rung j=4 (criterion: 4)
+A2 gamma-code release at n=7
+A2b capped-below-p* owned set: no release in n<=2000 (criterion met)
+A3 sweep: 1000 cells; straddle(region) 102; child-rescue 81; region/child disagreements 21
+A4 read-not-update: structural in the pure prototype (guard returns Double, no belief); the enforcing row is R1 oracle work
+```
+
+**Verdicts.** A1 GREEN — the global reading blocks respond at every
+evidence level; the plan's conviction (:186-190) reproduces exactly.
+A2 GREEN — the per-interval reading releases, and the posterior mode
+at release is rung j = 4, the first owned rung past p* = 0.9: the
+rung identity exact. A2b GREEN — the owned set capped below p* never
+releases: "a root-only agent under stakes correctly cannot respond
+... it must purchase" (:191-193) reproduces. The two codes' release
+economics DIFFER MEASURABLY (n = 13 unary vs n = 7 gamma): gamma's
+polynomial extent-decay keeps deep rungs influential in both
+directions (here the helpful right tail dominates under all-correct
+evidence), unary localizes influence to near-frontier rungs — D7's
+"very different stakes-to-rung economics" (:365-367) is now a
+measured fact, and the §9.4 ruling has its decision material.
+
+**A3 AS PRE-STATED IS RED — and the red is the finding.** The
+pre-stated row demanded 0 disagreements between straddle and the
+FRONTIER CHILD's rescue. Measured: 21 of 1000 cells straddle at
+region level while NO single interval's resolution rescues respond —
+only joint resolution does. The identity holds in the REGION form
+(straddle iff region-resolution flips — one quantity by
+construction) and FAILS in the child form. This quantifies amendment
+one's exact wording: "per-act adversarial placement over the
+DECISION-RELEVANT REGION" is load-bearing, not stylistic — a
+child-granular purchase criterion would under-fire in ~2% of swept
+cells. R1's criterion derives from the REGION bound; the pack
+carries this as a drafted R_SCOPE §3 amendment for the author's
+re-tag (I.8). A4: structural in a pure prototype; the enforcing form
+is an R1 oracle row (guard evaluates behind the read door —
+`predictive`/`logPredict` — and the D8 coherence identity extends to
+it).
+
+### I.7 The I.3 design re-statements (executed as prose against HEAD)
+
+- **§0 grid-as-hypothesis collapse, re-stated**: in the shipped
+  grammar a hypothesis IS a sentence priced dl with prior 2^(-dl)
+  (fromBits, Belief.hs:159; charges via chargeBits, Syntax.hs:390).
+  A "grid" is enumerator DATA (`enumerateSentencesGrid`'s egPts).
+  Grid-as-hypothesis is not merely collapsing now — it is UNSAYABLE:
+  no production takes a vocabulary to a likelihood. Over any fixed
+  superset the subgrid choice re-weights priors (the reparameterized
+  prior, as drafted) and the superset edge remains undeclarable. The
+  argument SURVIVES with a sharper type-level half.
+- **§5 graded mention pricing, re-stated**: the step-4 Charge
+  algebra already carries `CBits d` — declared bits — beside `CW`
+  (Syntax.hs:391-394). The lattice's (extent, depth) -> bits formula
+  enters as ONE frozen formula feeding CBits: no new Charge
+  constructor, no new arithmetic site; pinned by the oracle,
+  ablatable — §5's shape intact, its landing cheaper than planned.
+- **§3 canonical-scorer ruling R5, referent updated**: the cited
+  incremental path ("Belief.hs:181-182") now sits inside `push`; the
+  live incremental path is `cond`'s per-evidence log-weight addition
+  (loglik + mkBelief normalization). The ruling's content stands
+  unchanged: exchangeable families route through the canonical
+  scorer (pure function of (dl, n1, n0)) everywhere the frozen
+  goldens do not pin the legacy arithmetic; the frozen-suite anchors
+  remain the anti-mutation tripwire on the residue path. R1 design
+  work, scope bound as ruled.
+- **§8 sealing, re-stated**: gate 2 already seals `Belief`'s
+  constructor; the refine analog's obligation is that vocabulary
+  motion is consumable only by enumeration (`enumerateSentencesGrid`
+  the sole door) — an export-list fact to pin at R1, same
+  discipline, no new mechanism.
+- **§4 migration-residue referents**: the surviving referent worlds
+  are the Phase-1 goldens (test/, frozen, green) — they exist; the
+  one-sided retirement license carries with them unchanged.
+- **emit-kernel finding (from I.5)**: vocabulary motion must move
+  the emission kernel with it (`emit` is bound to the 9-point space,
+  Enumerate.hs:473-474); in the engine this rides the sentence
+  fragment, and R1's oracle owes the row proving it.
+
+### I.8 R0 CLOSE-OUT — the author decision sheet
+
+R0's mandatory outputs are delivered (I.5, I.6); the design
+re-statements are executed (I.7); every I.2 referent has a verdict.
+Zero alphabet productions were needed anywhere in R0 — the
+stop-and-report trigger never fired. Four items need the author;
+nothing else blocks.
+
+1. **The §9.4 prefix-code ruling (gates the oracle phase).** The
+   code choice is behaviorally load-bearing and now measured:
+   release at n = 13 (unary) vs n = 7 (gamma) on the same world.
+   Unary localizes frontier influence; gamma keeps deep rungs
+   influential. The plan requires this ruled deliberately, never
+   carried by "minor" (:368-371). The guard-release fixture's R-D21
+   transcript needs the RULED code before R1's oracle can freeze.
+2. **The resequencing (B3).** Measured verdict: the purchase
+   criterion needs the rung law. Builder recommendation: R1 and R2
+   land as ONE increment (the criterion and the rung-choice law are
+   one law seen at two objects; splitting them now manufactures an
+   artificial half-frozen criterion). Alternative: R2 first, R1
+   after. R_SCOPE §5 as amended licenses either; the author picks.
+3. **R_SCOPE amendments for the author's re-tag** (drafted, not yet
+   applied — frozen-adjacent text moves only under the author's
+   key): (a) §3's mandatory member re-worded to name the REGION
+   bound as the criterion's derivation with I.6's 21/1000
+   measurement as provenance; (b) §5 resequenced per item 2; (c)
+   R1's oracle row list gains the emit-kernel row (I.7) and the
+   guard-behind-the-read-door row (I.6/A4).
+4. **OB-17/OB-9 ledger state changes + R_SCOPE manifest entry** —
+   already authorized by r-open-r1's message for R0's first freeze
+   sitting; they execute at the same sitting that freezes the R1
+   oracle (no separate author act needed, listed for completeness).
