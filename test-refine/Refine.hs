@@ -24,9 +24,10 @@ import Test.Tasty.HUnit
 
 import PropLang.Belief (Belief, expect)
 import PropLang.Lattice
-  ( Node, Owned, Region (..)
-  , frontier, gammaBits, guardE, kraftSubtree, mkOwned, nodeLambda
-  , nodeTheta, ownedNodes, regions, rootNode, scoreOwned, straddles
+  ( Owned, Region (..)
+  , childrenOf, frontier, gammaBits, guardE, kraftSubtree, mkOwned
+  , nodeLambda, nodeTheta, ownedNodes, regions, rootNode, scoreOwned
+  , straddles
   )
 
 -- point-mass probability through the expectation door (prob's own
@@ -77,12 +78,6 @@ ownedPastStar = grow (mkOwned [rootNode])
 ownedBelowStar :: Owned
 ownedBelowStar =
   mkOwned [ n | n <- ownedNodes ownedPastStar, nodeTheta n <= pStar ]
-
-firstRungPast :: Owned -> Node
-firstRungPast o =
-  case sort [ n | n <- ownedNodes o, nodeTheta n > pStar ] of
-    (n : _) -> n
-    []      -> error "fixture: ownedPastStar owns a rung past p* by construction"
 
 -- ---------------------------------------------------------------------
 -- g1 -- scorer coherence (design rows 2-3; METAREASONING_PLAN.md:
@@ -154,16 +149,25 @@ g3ReleaseIdentity = testGroup "g3 guard release"
       let o = ownedPastStar
       let rels = [ n | n <- [1 .. 2000], guardE True o (n, 0) stakes > 0 ]
       assertBool "some release exists" (not (null rels))
-  , testCase "at release the posterior mode is the first owned rung past p*" $ do
+  , testCase "release is ENABLED by the rung past p*: the capped set stays blocked at the same evidence" $ do
+      -- the law's text (METAREASONING_PLAN.md:193-194) read as
+      -- ownership-enabling: the SAT run convicted the earlier
+      -- mode-position form as an artifact of R0's unary-economics
+      -- world -- under the ruled gamma code release precedes the
+      -- mode's arrival at the deep rung (pack III.6)
       let o = ownedPastStar
           nRel = case [ n | n <- [1 .. 2000]
                           , guardE True o (n, 0) stakes > 0 ] of
                    (n : _) -> n
                    []      -> error "release exists by the previous row"
-          b    = scoreOwned o (nRel, 0)
-          post = [ (probAt b (nodeTheta n), n) | n <- ownedNodes o ]
-      mode <- evaluate (snd (maximum post))
-      assertEqual "mode rung" (firstRungPast o) mode
+      blocked <- evaluate (guardE True ownedBelowStar (nRel, 0) stakes)
+      assertBool ("capped-below-p* still blocked at n = " ++ show nRel)
+                 (blocked <= 0)
+      -- and the enabling rung is real: the two sets differ exactly
+      -- by rungs past p*
+      assertBool "the sets differ only past p*"
+        (all ((<= pStar) . nodeTheta) (ownedNodes ownedBelowStar)
+         && any ((> pStar) . nodeTheta) (ownedNodes o))
   ]
 
 -- ---------------------------------------------------------------------
@@ -202,13 +206,15 @@ g5KraftComputability = testGroup "g5 Kraft computability"
       let c      = case frontier (mkOwned [rootNode]) of
                        (x : _) -> x
                        []      -> error "the root has children by construction"
-          expand 0 ns = ns
-          expand d ns =
-            expand (d - 1 :: Int)
-                   (ns ++ [ x | n <- ns', x <- frontier (mkOwned [n]) ])
-            where ns' = ns
+          -- subtree enumeration through the DECLARED door (childrenOf),
+          -- per-level BFS with no re-accumulation (both earlier forms
+          -- were convicted by the SAT run: the frontier-based expansion
+          -- pulled sibling chains in via mkOwned's parent closure, and
+          -- the append-based expansion double-counted levels)
+          lvl 0 = [c]
+          lvl d = concatMap childrenOf (lvl (d - 1 :: Int))
           levels = [ sum [ 2 ** negate (gammaBits n)
-                         | n <- expand d [c] ]
+                         | n <- concat [ lvl d' | d' <- [0 .. d] ] ]
                    | d <- [1, 2, 3, 4] ]
       closed <- evaluate (kraftSubtree c)
       sequence_

@@ -29,6 +29,7 @@ module PropLang.Lattice
   , nodeLambda
   , nodeTheta
   , gammaBits
+  , childrenOf
   , Owned
   , mkOwned
   , ownedNodes
@@ -68,6 +69,13 @@ nodeTheta n = 1 / (1 + 2 ** negate (nodeLambda n))
 -- from the prototype under the ruled code (R-D21), never here.
 gammaBits :: Node -> Double
 gammaBits = stub "gammaBits"
+
+-- | The two tree children of a node (outward extension / inward
+-- halving — the candidate generator's unit, pack III.5). Exported so
+-- probes enumerate subtrees through the declared door (the step-5
+-- probe clause; the g5 SAT run's finding).
+childrenOf :: Node -> [Node]
+childrenOf = stub "childrenOf"
 
 -- | A finite owned set of lattice nodes (the materialized part of
 -- the fixed priced space). Abstract: 'mkOwned' is the only door in,

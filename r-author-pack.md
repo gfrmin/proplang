@@ -503,3 +503,46 @@ before the SAT transcript so the design survives the sitting)
 - **scoreOwned**: fromBits over mkSpace of the owned thetas with
   per-node bits = gammaBits + n1*(-log2 th) + n0*(-log2(1-th)) — the
   sealed reasoner's own door, no Belief change (I.7).
+
+### III.6 Tranche-1 SAT transcript (R-D21, overlay form, 2026-07-20)
+
+Overlay: a throwaway real Lattice wearing `PropLang.Lattice`'s name
+(scratchpad, discarded); the EXACT oracle text compiled against it
+with the stanza's exact flags (-Werror included), src's Belief
+underneath. Final state: **11/11 SAT-green on the overlay; 11/11
+runtime-red against the src stubs** (re-run after every oracle-text
+repair; every red the stub raise).
+
+The window did its work — THREE convictions before the freeze, each
+repaired in the oracle text or the design, all recorded:
+
+1. **g5's enumeration, twice.** The frontier-based subtree expansion
+   pulled sibling chains into the sum through mkOwned's parent
+   closure (partial 0.39 > closed 0.375); the surface gained the
+   `childrenOf` door (probes enumerate subtrees through declared
+   data — the step-5 clause). The second form double-counted levels
+   by re-accumulation (partial 0.42); repaired to per-level BFS.
+2. **The code's symmetry.** The floor-based extent field priced
+   mirror nodes differently (gap (-1,0) at 7 bits, gap (0,1) at 5) —
+   breaking the root's own symmetry, the lattice's founding
+   invariant. The extent field is now the SYMMETRIC magnitude: an
+   extent node's |j|; a gap node keys on ceil|lambda| (the extent
+   whose gap it refines). Design fact for the implementation, pack
+   III.5 amended by this entry.
+3. **g3's mode-position row was R0's unary artifact.** Under gamma,
+   release precedes the posterior mode's arrival at the deep rung
+   (mode at rung 2, theta 0.8, when the guard clears) — the row
+   asserted A2's unary-world observation as law. The law's text
+   ("release occurs at the first owned rung past p*",
+   METAREASONING_PLAN.md:193-194) reads as ownership-ENABLING,
+   and the row now pins the counterfactual: at the release n, the
+   capped-below-p* set is still blocked, and the two sets differ
+   exactly by the rungs past p*. This is the gamma economics R-R1
+   ruled — earlier release through deep-rung influence — showing up
+   exactly where the ruling's ground (3) said it would.
+
+Closed-form fact banked for the implementation: gamma masses sum
+exactly by octaves (octave [2^b, 2^(b+1)) contributes 2^-(b+1)), so
+`kraftSubtree` is a true closed form (gammaTail), no truncation in
+the gap branch; the extent-chain branch truncates at +2000 extents
+(undercount only — conservative for the Kraft row; transcribed).
