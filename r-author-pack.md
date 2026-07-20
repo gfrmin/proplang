@@ -606,3 +606,72 @@ derived or pattern-cited, zero alphabet productions anywhere.
 4. Then implementation: Lattice + Purchase real bodies in src (the
    overlay's design, re-landed properly), until 24/24 green with
    every existing anchor byte-stable (gate 5 all suites).
+
+## Part IV — the R1 freeze sitting (2026-07-21, under recorded
+delegation)
+
+The author's authorization, verbatim in the operative part: "The tag
+over R_SCOPE.md as amended is authorized — sign it; the delegated
+frozen-file edits (stanza, manifest covering R_SCOPE.md,
+test-refine/, and the cabal), and both ledger changes proceed under
+the sitting's delegation, OB-9's state change landing at
+implementation green as sequenced." Three riders travel with the
+key, none blocking:
+
+**Rider 1 — the refine-before-think order gets its honest label.**
+The relative order of the two internal acts is a FRESH DECLARED
+CHOICE in the alphabet-residue class: pinned and arbitrary unless
+derived. The durable-good rationale (at an EU tie, buy the permanent
+vocabulary over the per-tick deliberation product) is recorded AS
+RATIONALE, not derivation — the next boundary inherits an open
+canonical choice, not a false theorem. The prefix code sat in
+exactly this class for nine days before R-R1 derived it; this pin
+waits its turn honestly. (Recorded in Purchase.hs's module doc at
+the order declaration.)
+
+**Rider 2 — g11's gate is PROVISIONAL until measured at its own
+seam.** The overlay's routes coincide (0.0), so the 1e-12
+pattern-cite binds a seam the overlay cannot exhibit. At
+implementation, when the fragment route exists, the actual floor is
+measured and the gate re-derived — the one row whose number was
+never measured against its own seam. (Marked in the row's comment.)
+
+**Rider 3 — endorsements of record.** The symmetry conviction is the
+SAT window's deepest catch to date: a DESIGN defect (floor-based
+extent pricing mirror nodes asymmetrically, against the root's own
+founding invariant) caught before a line of src existed. The g3
+repair is the expiry clause at row granularity: an R0 transcript
+observation nearly froze as law when it was an artifact of the code
+the sitting had just rejected; gamma's earlier-release economics
+surfacing exactly where R-R1's third ground predicted is the ruling
+corroborating itself within the day.
+
+**The author's sentence for row 9, of record:** the recurring-stakes
+myopia pin was ordered in the first review this project ever
+received, printed as a green declared-limitation with a named heir.
+Nine days and eleven boundaries later the heir arrived: the pin
+flips from asserting the agent never buys to asserting it buys and
+clears, deliberately, at a boundary, under a depth composition that
+did not exist when the debt was printed — which is precisely what
+the R-D23 discipline promised a declared limitation's death would
+look like.
+
+**Pre-freeze checklist finding: design row 10 was MISSING from the
+oracle** (the adversarial mutation tripwire, METAREASONING_PLAN.md:
+313-316). Authored at this sitting before the seal:
+test-refine/ablation/run.sh — a marked-anchor mutation (a leak
+factor on the carried count inside the canonical scorer) that must
+RED the g1 scorer-vs-incremental row while g6 stays green
+(attribution partitioned, the seeded-defect pattern). It runs
+against the implemented src (gate-7 style); its red-fires check is
+part of the implementation phase's definition of done.
+
+**Freeze execution transcript (2026-07-21):** manifest re-signed to
+73 rows (`sha256sum -c` OK: R_SCOPE.md, test-refine/Refine.hs,
+stanza.cabal.draft, ablation/run.sh added; proplang.cabal and
+OBLIGATIONS.md rows updated); refine stanza + Lattice/Purchase
+exposed-modules into proplang.cabal; OB-17 -> LANDED@r1-freeze
+(DISCHARGED at the author's re-tag, R-D22); prefreeze-lint 0 FAIL
+(the same 10 standing L6 advisories), L7 full-corpus overlay build
+PASS with test-refine in the corpus. Zero src semantic change at
+this seal (stubs as committed).

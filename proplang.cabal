@@ -24,6 +24,8 @@ library
                       PropLang.Enumerate
                       PropLang.Membrane
                       PropLang.Host
+                      PropLang.Lattice
+                      PropLang.Purchase
     hs-source-dirs:   src
     -- src depends on base ONLY (frozen-oracle decision: keeps the audit's
     -- `ghc -isrc` ablation compiles package-DB-free)
@@ -330,4 +332,23 @@ test-suite law
                     , tasty
                     , tasty-hunit
                     , tasty-quickcheck
+    default-language: GHC2021
+
+-- boundary R's R1 joint-purchase oracle (R_SCOPE.md as amended;
+-- r-author-pack Part III): the lattice law, the region guard, the
+-- one purchase rule. Stanza applied at the R1 freeze from
+-- test-refine/stanza.cabal.draft under the recorded delegation of
+-- 2026-07-21 ("the delegated frozen-file edits ... proceed under the
+-- sitting's delegation"). The row-10 mutation tripwire lives at
+-- test-refine/ablation/run.sh (gate-7 style, runs against the
+-- implemented src).
+test-suite refine
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Refine.hs
+    hs-source-dirs:   test-refine
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
     default-language: GHC2021

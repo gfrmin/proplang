@@ -449,7 +449,11 @@ g10RefineVsThink = testGroup "g10 refine vs think"
 -- (Enumerate.hs:473-474, p(y=1|th) = th), never re-derived.
 -- Tolerance 1e-12: the overlay's routes coincide (measured 0.0), so
 -- the overlay cannot discriminate this gate — it binds the REAL
--- engine's fragment route; 1e-12 is the one-lse-seam pattern (g4).)
+-- engine's fragment route; 1e-12 is the one-lse-seam pattern (g4).
+-- PROVISIONAL (freeze rider 2): at implementation, when the
+-- fragment route exists, the actual floor is measured and the gate
+-- re-derived — a pattern-cited gate never measured at its own seam
+-- is a guess, and the measurement costs one run.)
 -- ---------------------------------------------------------------------
 
 g11EmitKernelMotion :: TestTree

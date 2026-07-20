@@ -18,6 +18,14 @@
 -- only by strictly beating every external option (CL-3
 -- first-listed-wins preserved end to end). Row g12 pins this.
 --
+-- The refine-before-think RELATIVE order is a fresh declared choice
+-- in the alphabet-residue class: pinned, arbitrary unless derived
+-- (freeze rider 1, 2026-07-21). The durable-good rationale — at an
+-- EU tie, buy the permanent vocabulary over the per-tick
+-- deliberation product — is recorded AS RATIONALE, not derivation;
+-- a future boundary may derive or overturn it (the prefix code sat
+-- in this class for nine days before R-R1 derived it).
+--
 -- Prices: refine costs the clock (act-now EU forgone, endogenous —
 -- METAREASONING_PLAN.md:205-215, no new number) plus the world's
 -- optional surcharge; think-deeper costs the clock per rung (the
