@@ -453,3 +453,21 @@ against the host prototype's transcript output. Every red
 demonstrated to be the missing implementation (one deepseq per
 comparison row, frozen side forced independently). Prototypes
 discarded; transcripts ride this pack.
+
+### III.4 Tranche-1 red run (2026-07-20, flag-faithful)
+
+`test-refine/Refine.hs` (groups g1-g6 = design rows 2-7, 11) +
+`test-refine/stanza.cabal.draft` (the standard stanza). Compiled via
+`cabal exec ghc` with the stanza's EXACT flag set — -Wall -Werror
+-Wincomplete-patterns -Wincomplete-uni-patterns, GHC2021 — zero
+errors, zero warnings; run: **11 out of 11 tests failed**, every
+failure the Lattice stub raise (`Lattice.hs:137`, the stub
+mechanism) — the red is attributable to the missing implementation
+and nothing else. Two -Wx-partial `head` uses were caught BY the
+flag-faithful compile and repaired to pattern matches before the
+first red run — the step-5 flag-faithfulness clause earning its keep
+again. Still owed before freeze: tranche 2 (host-layer groups, rows
+1, 8-9, 12-17, with the membrane surface), the R-D21 SAT overlay
+transcript (a throwaway Lattice implementation wearing the module
+name, the exact oracle text compiled against it), and g1's
+scorer-vs-incremental tolerance derived from measurement.

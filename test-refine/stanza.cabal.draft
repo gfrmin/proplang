@@ -1,0 +1,10 @@
+test-suite refine
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Refine.hs
+    hs-source-dirs:   test-refine
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
