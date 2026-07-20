@@ -370,3 +370,86 @@ step-10 ruling cashing at face value — the capability was banked as
 a composition, the first boundary that needed it wrote the sentence
 down, and the compiler said yes. The corrected `predictive` row is
 the referent audit auditing itself.
+
+## Part III — R1 (the joint purchase increment): oracle design
+
+Oracle directory: `test-refine/` (the plan's own name, §7; the token
+is not on the forbidden list — noted because "trigger" IS, so the
+region-straddle code surface says "straddle"/"fires", never that
+token). One cabal test-suite stanza, the standard flag set, -Werror
+included; gate 5 absorbs it. Every pinned formula below carries
+R-D20 provenance; every red row gets an R-D21 satisfiability
+transcript (overlay form where the prototype can wear the module
+name) before the freeze seals it.
+
+### III.1 What R1 builds (the surface, drafted — oracle-phase work)
+
+Zero alphabet productions (R_SCOPE §2's expectation, R0-confirmed;
+stop-and-report armed if violated). The law lives beside the
+alphabet, not in it:
+
+- `src/PropLang/Lattice.hs` (NEW, pure law, no IO): the dyadic
+  log-odds lattice — `Node` (extent, dyadic refinement path),
+  `nodeTheta`, `gammaBits :: Node -> Double` (THE one frozen
+  formula: Elias-gamma on extent + depth cost, feeding the Charge
+  algebra's CBits — no new arithmetic case, I.7), subtree Kraft
+  sums in closed form (the guard's masses), frontier of an owned
+  set, the region bound (pessimistic/optimistic remainder per
+  METAREASONING_PLAN.md:177-181, region form per R-R3).
+- Carried counts + canonical scorer: per-channel permanent (n1, n0),
+  posterior a pure function of (dl, n1, n0) per node, folded in
+  canonical code order (METAREASONING_PLAN.md:143-150); live path
+  routed through the scorer EXCEPT where frozen goldens pin legacy
+  arithmetic (ruling R5's freeze-bounded scope, I.7).
+- The purchase law at the membrane/host layer: refine and
+  think-deeper as two internal acts in ONE option space, order pin
+  after wait (R-R2); prices — refine at the clock unless the world's
+  optional surcharge row says more (METAREASONING_PLAN.md:205-215);
+  the criterion region-derived (R-R3), the rung choice the same law
+  at the depth object.
+- Wire: NO new key (the ruled invariant). The optional
+  `{"internal": "refine"}` surcharge row parsed at the handshake
+  (economics, permitted); worlds without it: clock-default; frozen
+  worlds: static vocabulary, residue-TAGGED with the executable
+  retirement condition (METAREASONING_PLAN.md:218-226).
+
+### III.2 The oracle rows (17; plan §7's list adapted + the four
+added at the sitting)
+
+| # | row | provenance / red plan |
+|---|---|---|
+| 1 | stakes buy the frontier: u_wrong = -9 all-correct buys up the ladder, respond fires; governor-scale stakes buy nothing | METAREASONING_PLAN.md:288-290; red = purchase law missing |
+| 2 | coherence: purchase-ORDER independence, byte-identical through the canonical scorer | :291-292, D5 discipline :143-150; red = scorer missing |
+| 3 | coherence: scorer-vs-incremental at tolerance (gate from measured floor, CL-4 pattern — never byte across the seam) | :292-293; tolerance derived at freeze from prototype measurement, never guessed (cl4 lesson) |
+| 4 | the region guard: respond blocked when the region bound could flip it; the agent buys or abstains | :294-297 as amended by R-R3 (REGION form; 21/1000 provenance I.6) |
+| 5 | guard-release closed-form pin under the RULED gamma code: release at the first owned rung past p* | :298-302; pins derive from the freeze prototype under gamma (R-R1); A2's rung-identity is the R0 evidence |
+| 6 | lattice fineness-charged-once: augmented prior masses exactly the 2^-dl Kraft terms | :303-305; A8 tripwire extended |
+| 7 | prefix-freeness / Kraft-computability of gamma subtree sums | :306-308; closed-form vs enumerated partial sums |
+| 8 | the purchase log: every owned hypothesis printed at purchase | :309-310 |
+| 9 | recurring-stakes POSITIVE row (the B-world as oracle): the joint law BUYS via the rung choice where myopic would not — B1's world, k = 7 horizon; the old myopic pin holds as the depth-0 case | I.5 (B1/B2 measured); the sign FLIP from the plan's :311-312 fixture is amendment two cashing |
+| 10 | adversarial mutation (increment-local ablation): forgetting factor injected into carried stats reds purchase-path-independence | :313-316; fixture + runner inside test-refine/ |
+| 11 | Cromwell: no purchase sequence reaches certainty — cumulative gamma price along any path to a degenerate limit diverges | :317, :360-364 |
+| 12 | byte-stability residue: no-refine-row worlds replay byte-identically; row residue-TAGGED with the executable retirement condition | :318-322; one-sided license :222-226 |
+| 13 | refine-vs-think under one law: vocabulary-limited posterior => refine fires; evidence-limited => think fires | :323-325; now a SAME-LAW row (R-R2), not a two-law arbitration |
+| 14 | EMIT-KERNEL MOTION (added, mandatory): each refined hypothesis's emission comes from its own code through the sentence fragment — vocabulary motion moves the kernel | R-R3; the I.5 confession its provenance |
+| 15 | GUARD BEHIND THE READ DOOR (added): guard evaluation commutes with cond — the D8 read, enforced never structural | R-R3; I.6/A4 |
+| 16 | the SUCCESS ANCHOR: a governor-shaped 0.96-threshold stream cleared with no host declaration, the recurring-stakes shape inside it | R_SCOPE §2 as amended; the demand that created boundary R |
+| 17 | THE OPTION-ORDER PIN: both internal acts in the fold, declared slots AFTER wait; ties still break to inaction | R-R2/R_SCOPE §2; AGENT_PLAN.md:787,:1320 |
+
+Depth-0 byte-stability (R2's folded constraint — every existing
+anchor byte-stable, the myopic case the CHOSEN rung at current
+prices on the frozen worlds) is not a row: it is gate 5 itself (all
+frozen suites green throughout) plus row 9's depth-0 case.
+
+### III.3 Satisfiability-transcript plan (R-D21, overlay form)
+
+The overlay prototype wears `PropLang.Lattice`'s name so rows 4-7
+and 11 compile against it unchanged (SAT compile with the stanza's
+EXACT flags, -Werror included — the step-5 clause). Rows 1, 9, 13,
+16 run against a host-layer prototype extending proto_b's world
+harness; rows 2-3, 10 against a counts+scorer prototype; rows 14-15
+against src as shipped plus the Lattice overlay; rows 8, 12, 17
+against the host prototype's transcript output. Every red
+demonstrated to be the missing implementation (one deepseq per
+comparison row, frozen side forced independently). Prototypes
+discarded; transcripts ride this pack.
