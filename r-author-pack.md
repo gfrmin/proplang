@@ -471,3 +471,35 @@ again. Still owed before freeze: tranche 2 (host-layer groups, rows
 transcript (a throwaway Lattice implementation wearing the module
 name, the exact oracle text compiled against it), and g1's
 scorer-vs-incremental tolerance derived from measurement.
+
+### III.5 Surface decisions for the overlay/implementation (recorded
+before the SAT transcript so the design survives the sitting)
+
+- **The tree (candidate generator).** Root = log-odds 0. An extent
+  node j has two children: the next outward extent (j+1 rightward,
+  j-1 leftward — the outward CHAIN) and the halving node of its
+  inner gap (gap (j-1, j) for j > 0, mirrored leftward). A depth-k
+  gap node has its two depth-(k+1) halvings. Every node has exactly
+  two children — "the infinite binary tree rooted at theta = 1/2"
+  (METAREASONING_PLAN.md:50-52) — and every frontier child's subtree
+  spans a CONTIGUOUS theta interval (the extension child at j spans
+  (theta(j-1), 1)): regions are intervals, as the guard's law needs.
+- **The code (NOT the naive tree-path code).** The naive path code
+  prices extent j at ~j bits — unary economics, exactly what R-R1
+  rejected. The ruled form prices the (extent, depth, position)
+  TRIPLE: sign + gamma(|j|+1) + gamma(k+1) + (k-1 position bits,
+  k >= 1), gamma = Elias-gamma. Extent ~2 lg j (the ruling), depth
+  linear (fineness charged once per halving), position uniform
+  within the depth level. Exact constants are pinned by the freeze
+  prototype (R-D21), never asserted as oracle numerals — the
+  tranche-1 rows already derive their quantities in-row.
+- **mkOwned = canonical closure**: dedupe, close under tree parents
+  (root always owned), canonical code order — every constructible
+  Owned is lawful, totality by construction, no Maybe on the door.
+- **kraftSubtree**: computable form with an explicit quadratic tail
+  bound (gamma masses ~ 1/(2 m^2) per level) — summation to below
+  epsilon with the remainder bound, which is what row g5 pins
+  against enumerated partials.
+- **scoreOwned**: fromBits over mkSpace of the owned thetas with
+  per-node bits = gammaBits + n1*(-log2 th) + n0*(-log2(1-th)) — the
+  sealed reasoner's own door, no Belief change (I.7).
