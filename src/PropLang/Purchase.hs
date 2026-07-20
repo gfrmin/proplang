@@ -34,8 +34,12 @@
 -- the tagged migration residue (:218-226), one-sided retirement
 -- license, retired when the executable condition fires.
 --
--- ORACLE-PHASE STUBS: raising bodies are the red mechanism; none
--- survives the increment.
+-- The overlay's rung ladder (free clock when acting now forfeits
+-- nothing) is the shipped realization; the full rung LAW over
+-- arbitrary priced depth is the choice machinery this cap
+-- approximates — its refinement is R1 implementation freedom bounded
+-- by the frozen rows (the myopic one-tick case, the recurring-stakes
+-- buy, the order pin).
 module PropLang.Purchase
   ( PurchaseWorld (..)
   , PTick (..)
@@ -43,9 +47,15 @@ module PropLang.Purchase
   , purchasePredictive
   ) where
 
-import PropLang.Belief (Belief)
-import PropLang.Enumerate (Obs)
-import PropLang.Lattice (Node, Owned)
+import Data.List.NonEmpty (nonEmpty)
+import PropLang.Belief
+  ( Belief, Bits (..), fromBits, kernel, mkSpace, push
+  )
+import PropLang.Enumerate (Obs, obsSpace)
+import PropLang.Lattice
+  ( Node, Owned, frontier, guardE, mkOwned, nodeTheta, ownedNodes
+  , scoreOwned, straddles
+  )
 
 -- | The world's side of the purchase law: economics only.
 data PurchaseWorld = PurchaseWorld
@@ -69,21 +79,81 @@ data PTick = PTick
   }
   deriving (Eq, Show)
 
+-- the rung ladder's reach when the clock is free (respond blocked
+-- => act-now EU forgone is zero, so deliberating costs nothing and
+-- the ladder climbs to its cap; module header note)
+kLadder :: Double
+kLadder = 16
+
 -- | The pure tick loop of the joint law: one decision rule per tick
 -- over [wait, respond, refine, think-deeper] in the pinned order,
 -- counts advanced by the evidence, purchases by the region-derived
 -- criterion (R-R3: region-level straddle; the purchase's own
--- granularity is implementation freedom), depth by the rung law.
+-- granularity is implementation freedom — realized here as the
+-- VALUE-BASED candidate, the frontier node whose ownership most
+-- improves the guarded act value; cheapest-first fails, the cheap
+-- rungs are the worthless ones, pack III.7), depth by the rung law.
 runPurchase :: PurchaseWorld -> Owned -> [Obs] -> [PTick]
-runPurchase = stub "runPurchase"
+runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
+  where
+    st = pwStakes w
+
+    go :: Owned -> (Int, Int) -> [Obs] -> [PTick]
+    go _ _ [] = []
+    go o (a, b) (y : ys) =
+      let c' = if y == (1 :: Obs) then (a + 1, b) else (a, b + 1)
+          respondV = guardE True o c' st
+          forgone  = max 0 respondV
+          (cand, gain) = bestCandidate o c'
+          refineV = case pwRefine w of
+            Nothing -> negInf
+            Just s
+              | straddles o c' st -> kLadder * gain - s - forgone
+              | otherwise         -> negInf
+          -- the pinned order: wait head, externals, internal acts
+          -- LAST; strict-improvement first-listed fold (CL-3)
+          chosen = foldl pick ("wait", 0)
+                     [ ("respond", respondV), ("refine", refineV) ]
+          pick (bn, bv) (n2, v2) = if v2 > bv then (n2, v2) else (bn, bv)
+      in case fst chosen of
+           "refine" ->
+             let o' = mkOwned (cand : ownedNodes o)
+             in PTick "refine" [cand] (ownedNodes o') : go o' c' ys
+           nm -> PTick nm [] (ownedNodes o) : go o c' ys
+
+    negInf = -1 / 0
+
+    -- the value-based candidate: the frontier node whose ownership
+    -- most improves the guarded act value at the current counts
+    bestCandidate :: Owned -> (Int, Int) -> (Node, Double)
+    bestCandidate o c' =
+      let base = max 0 (guardE True o c' st)
+          val c = max 0 (guardE True (mkOwned (c : ownedNodes o)) c' st)
+                    - base
+      in case frontier o of
+           []       -> (errNoFrontier, 0)
+           (f : fs) -> foldl (\(bc, bv) c ->
+                                let v = val c
+                                in if v > bv then (c, v) else (bc, bv))
+                             (f, val f) fs
+
+    errNoFrontier :: Node
+    errNoFrontier = error "the lattice frontier is never empty"
 
 -- | The predictive after purchases: each owned hypothesis's emission
 -- comes from its own code through the sentence fragment — vocabulary
 -- motion moves the kernel (row g11; the R0 hand-built-kernel
--- confession is this door's provenance).
+-- confession is this door's provenance). The Bernoulli form is the
+-- fragment's frozen instance (Enumerate.hs emit/bernFast:
+-- p(y=1|th) = th), reached through the sealed reasoner's own doors.
 purchasePredictive :: Owned -> (Int, Int) -> Belief Obs
-purchasePredictive = stub "purchasePredictive"
-
--- oracle-phase red mechanism (no forbidden token, no IO)
-stub :: String -> a
-stub name = error ("R1 oracle phase: " ++ name ++ " not implemented")
+purchasePredictive o c =
+  case nonEmpty (map nodeTheta (ownedNodes o)) of
+    Nothing  -> error "purchasePredictive: the owned set is never empty"
+    Just pts ->
+      push (scoreOwned o c) (kernel (mkSpace pts) obsSpace bern)
+  where
+    bern th = fromBits obsSpace
+      (\y -> Bits (if y == (1 :: Obs)
+                    then negate (logBase 2 th)
+                    else negate (logBase 2 (1 - th))))

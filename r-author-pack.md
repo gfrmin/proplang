@@ -675,3 +675,30 @@ exposed-modules into proplang.cabal; OB-17 -> LANDED@r1-freeze
 (the same 10 standing L6 advisories), L7 full-corpus overlay build
 PASS with test-refine in the corpus. Zero src semantic change at
 this seal (stubs as committed).
+
+## Part V — R1 implementation green (2026-07-21)
+
+The overlay's design re-landed in src: PropLang.Lattice (the
+symmetric gamma code triple, octave-exact gammaTail, canonical
+closure, the region guard) and PropLang.Purchase (the joint law:
+one option fold wait/respond/refine in the pinned order, value-based
+candidates, the free-clock rung ladder, purchasePredictive through
+the sealed reasoner's doors). **16/16 suites PASS (cabal test all),
+refine 24/24 green, every frozen anchor byte-stable, gates 1-7 all
+PASS. The row-10 ablation fires: the leaked scorer REDS
+scorer-vs-incremental while Cromwell stays green — attribution
+clean.** g1's gate confirmed against shipped src (measured floor
+1.665e-16, gate 1e-12). Rider 2 status, honestly: the shipped
+purchasePredictive and the row's explicit route still COINCIDE by
+construction (measured 0.0) — the genuinely distinct fragment route
+(purchases flowing through enumerateSentencesGrid into wire-level
+agents) is not an R1 frozen row; the rider's re-measurement travels
+to the boundary that lands that integration, recorded here so it
+cannot evaporate (the g4Self lesson). OB-9 -> LANDED@r1-green as the
+sitting sequenced; OB-17 LANDED@r1-freeze; both DISCHARGE at the
+author's re-tag (one tag over the green commit covers the freeze
+commit through its history — R-D22, the increment's closure).
+
+Zero alphabet productions in the entire boundary: R0, the oracle,
+and the implementation moved prodExpr not at all. The language was
+already big enough; what was missing was the law.
