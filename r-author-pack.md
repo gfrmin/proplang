@@ -308,3 +308,65 @@ nothing else blocks.
    already authorized by r-open-r1's message for R0's first freeze
    sitting; they execute at the same sitting that freezes the R1
    oracle (no separate author act needed, listed for completeness).
+
+## Part II — the R0 rulings sitting (2026-07-20, in-session)
+
+**The record, set by the author before the rulings:** A3's red
+convicts the author's own phrasing — "the straddle condition and the
+frontier child's VOR are two views of one quantity" was the author's
+sentence from the second sitting the project held, and the
+measurement shows it survives only in the region form. "The
+reviewer's identity claim goes into the record raced and trimmed
+like everyone else's, which is precisely the discipline working."
+
+**R-R1 — the §9.4 prefix-code ruling: ELIAS-GAMMA, derived, not
+preferred.** Three grounds, in the author's order of force:
+(1) COORDINATE CONSISTENCY — the lattice's geometry is dyadic in
+log-odds (the founding ruling); unary's geometric extent-decay
+implies a prior approximately uniform in theta (mass 2^-j spread
+over width ~2^-j), smuggling back the very parameterization the
+lattice abandoned; gamma's polynomial decay per log-odds octave is
+the coordinate-respecting prior. (2) UNIVERSALITY — gamma is the
+universal integer code (~2 lg j), the realizable analogue of the
+complexity prior over extents; unary's exponential extent penalty is
+a material prior belief nobody derived; under the house axiom that
+the alphabet IS the prior, the code must be the universal one or the
+deviation argued — no argument exists. (3) THE MEASURED ECONOMICS
+CORROBORATE — n = 7 under all-correct evidence is the correct
+Bayesian response to extreme-consistent data; deep rungs staying
+influential is a feature, and the governor's own thresholds (0.96,
+0.9942) live exactly in the deep-rung territory unary would tax.
+The Cromwell-divergence statute holds under gamma (sum 2 lg j
+diverges). A2's 13-versus-7 stands as the ruling's corroborating
+transcript.
+
+**R-R2 — the resequencing: ONE increment.** The builder's
+recommendation concurred, with the author's own deeper ground: there
+is ONE decision rule — buy-vocabulary and think-deeper are two
+internal acts in one option space priced by one clock; two purchase
+laws would be two mechanisms, and the invariant forbids mechanisms.
+The practical clincher: the CL-3 option-order pin only exists when
+both internal acts exist — land R2 first and R1 must later slot
+refine around a frozen pin drawn with half the information. The pin
+is drawn ONCE, with both acts visible, after wait per the standing
+constraint. The joint increment is hereafter "R1" (the purchase
+increment); a half-frozen depth-0 criterion would have pinned as law
+the exact under-buyer B1 reproduced.
+
+**R-R3 — the R_SCOPE amendments: approved with one wording caveat.**
+The region is the granularity at which the STRADDLE TRIGGER is
+evaluated; whether the agent then buys the joint set or iterates
+cheapest-child-first under a region-level trigger is R1 design
+freedom the wording must not foreclose. The emit-kernel row is
+MANDATORY, not housekeeping: the prototype's declared hand-built
+kernel is the confession — vocabulary motion without kernel motion
+is a silent decoupling of exactly the class the two-route discipline
+exists to catch; the row proves each refined hypothesis's emission
+comes from its own code through the fragment, "or the purchase buys
+names without semantics."
+
+**Endorsements for the transcript:** B2's sayability half is the
+step-10 ruling cashing at face value — the capability was banked as
+a composition, the first boundary that needed it wrote the sentence
+down, and the compiler said yes. The corrected `predictive` row is
+the referent audit auditing itself.

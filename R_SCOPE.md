@@ -138,6 +138,20 @@ Dutch-book identity, unify-author-pack D-c4 / test-unify). **If R1
 lands a purchase criterion not derived from the dominance bound, it
 is a threshold wearing a criterion's clothes.**
 
+*[EXECUTED and AMENDED at the R0 rulings sitting, 2026-07-20
+(r-author-pack I.6, Part II / R-R3): the re-derivation ran, and the
+identity survives in the REGION form only — 21 of 1000 swept cells
+straddle while no single interval's resolution rescues respond; the
+child form silently under-fires. The criterion derives from the
+REGION bound. Wording caveat, the author's: the region is the
+granularity of the STRADDLE TRIGGER; whether the purchase then takes
+the joint set or iterates cheapest-child-first under the region
+trigger is R1 design freedom this sentence does not foreclose. The
+prefix code on (extent, depth) is RULED: Elias-gamma, derived
+(R-R1's three grounds — coordinate consistency, universality,
+corroborated economics), with A2's 13-vs-7 transcript as
+corroboration; the lattice is gamma-priced from here on.]*
+
 Known candidates beside it, to be swept exhaustively at R's opening
 measurement:
 
@@ -198,30 +212,46 @@ protocol unchanged)
   re-run against the shipped depth composition with the criterion's
   horizon re-derived (§3) — the latter delivering the resequencing
   verdict below.
-- **R1 — R-vocab**, oracle-first: the refinement law, the purchase
-  criterion, the vocabulary's motion under it; population/anchor
-  re-pins in the same increment (the optimisation law); the
-  governor-shaped success row (§2) as the acceptance anchor. Bound
-  by the amendments: the purchase criterion is DERIVED from the
-  dominance bound (§3's mandatory member — never a free-standing
-  threshold); the success row includes the recurring-stakes shape or
-  carries it beside as the declared falsifier (§2); the internal
-  act's declared slot sits after wait (§2's constraint).
-- **R2 — R-depth**, oracle-first: the rung-choice law over the
-  step-10 composition; the depth-0 (myopic) case pinned as the
-  chosen rung at current prices on the frozen worlds (byte-stability
-  of every existing anchor is the constraint that makes this an
-  extension, not a behavior change); membrane-wire §3 re-stated
-  truthfully at the close.
+- **R1 — THE JOINT PURCHASE INCREMENT (R-vocab + R-depth as one;
+  resequenced by R-R2 at the R0 rulings sitting)**, oracle-first:
+  the refinement law, the region-triggered purchase criterion, the
+  vocabulary's motion under it, AND the rung-choice law over the
+  step-10 composition — one law at two objects, because there is one
+  decision rule: buy-vocabulary and think-deeper are two internal
+  acts in one option space priced by one clock, and two purchase
+  laws would be two mechanisms. Population/anchor re-pins in the
+  same increment (the optimisation law); the governor-shaped success
+  row (§2) as the acceptance anchor. Bound by the amendments: the
+  purchase criterion is DERIVED from the region bound (§3's mandatory
+  member as amended — never a free-standing threshold); the success
+  row includes the recurring-stakes shape or carries it beside as
+  the declared falsifier (§2); the lattice is Elias-gamma-priced
+  (R-R1). Four rows added to the plan's §7 fixture list at the
+  sitting: (i) EMIT-KERNEL MOTION (mandatory — each refined
+  hypothesis's emission comes from its own code through the sentence
+  fragment, or the purchase buys names without semantics); (ii)
+  GUARD BEHIND THE READ DOOR (the D8 convergence as an enforced row,
+  never structural); (iii) the recurring-stakes shape inside or
+  beside the success row (amendment two's consequence); (iv) THE
+  OPTION-ORDER PIN drawn once with BOTH internal acts visible, after
+  wait (§2's constraint — the pin only exists when both acts exist).
+- **R2 — [FOLDED INTO R1 at the R0 rulings sitting (R-R2)].** Its
+  content survives inside the joint increment: the rung-choice law
+  over the step-10 composition; the depth-0 (myopic) case pinned as
+  the chosen rung at current prices on the frozen worlds
+  (byte-stability of every existing anchor is the constraint that
+  makes this an extension, not a behavior change); membrane-wire §3
+  re-stated truthfully at the close.
 
-Sequencing note — CONDITIONAL since the 2026-07-20 amendments: the
-drafted rationale (R-vocab exercises the endogenous price machinery
-on the simpler object, no lookahead; R2 reuses the proven price law)
-holds ONLY IF R0 finds the vocab criterion honest at depth 0. If the
-recurring-stakes re-run shows the criterion needs the rung law — the
-stream's value visible only under lookahead — then R2 is a
-DEPENDENCY of R1, not its successor. In the author's words: "the
-author may resequence, and R0 tells him whether he must."
+Sequencing note — RESOLVED at the R0 rulings sitting. The conditional
+as drafted ("R2 is a DEPENDENCY of R1, not its successor... R0 tells
+him whether he must") fired: Program B's B3 verdict was that the
+purchase criterion needs the rung law (myopic net(1) < 0 across all
+20 ticks while the k = 7 horizon clears — r-author-pack I.5). The
+author ruled ONE increment (R-R2), on the measured ground and the
+axiomatic one (one decision rule, one clock, no second mechanism). A
+half-frozen depth-0 criterion would have pinned as law the exact
+under-buyer B1 reproduced.
 
 ## 6. Custody
 
