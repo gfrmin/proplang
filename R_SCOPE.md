@@ -1,11 +1,18 @@
 # R_SCOPE — boundary R, the metareasoning boundary (DRAFT for the author's tag)
 
-**Status: DRAFT.** Builder-authored at the wire boundary's rulings
-sitting (2026-07-20), under the author's in-session confirmation of
-the alignment statement and the instruction to draft this scope. It
-is a PROPOSAL: R opens only when the author's own signed tag covers
-this file, as amended by the author. Until that tag this file stays
-OUT of MANIFEST.sha256 (OB-17) and binds nothing.
+**Status: AMENDED AND OPENED under recorded delegation, 2026-07-20.**
+Builder-authored at the wire boundary's rulings sitting (2026-07-20),
+under the author's in-session confirmation of the alignment statement
+and the instruction to draft this scope. Amended the same day at the
+author's dictated instruction — two amendments and one constraint
+(§2, §3, §5), the instruction's operative text recorded at §6 —
+closing: "Amend, tag, and open." The boundary is opened by the
+delegated builder tag `r-open-r0` under that instruction. Per R-D22
+the author's OWN re-tag over the opening commit is OWED and is a
+condition of R0's closure — the author's key, not the builder's,
+remains the attestation this file names. Until that re-tag this file
+stays OUT of MANIFEST.sha256 (OB-17's terms), and OB-17's ledger row
+takes its state change at the next legal frozen-layer window.
 
 ## 1. The ruling that orders this boundary
 
@@ -44,7 +51,11 @@ created the demand: on a stream where the true parameter and the
 stakes make sub-0.1-resolution near 1 decision-relevant (the
 governor's 0.96 threshold is the canonical instance), the agent
 buys the refinement and clears the threshold — with no host
-declaration anywhere.
+declaration anywhere. The success row is designed NOT to dodge the
+known failure (amendment two, §3): a world with one-tick-decisive
+stakes would pass a myopic purchaser and prove nothing — the
+canonical governor instance includes the recurring-stakes shape, or
+that shape rides beside it as the declared falsifier.
 
 **R-depth — purchased deliberation depth (discharges OB-9; the R-W2
 terminus).** Depth is a rung the same argmax chooses under prices,
@@ -73,6 +84,22 @@ ever-present internal act needs a DECLARED slot, ruled at R's
 freeze, never an accident of construction order; the plan's own
 words).
 
+**The slot constraint (the author, 2026-07-20, binding R1's design
+from the start):** the pinned slot for the always-available internal
+act may NOT precede the all-first-points element. Ties break to
+inaction is ruled law from §5c, delivered by algebra at step 5
+(AGENT_PLAN.md:787 "CL-3's first-listed-wins then hands ties to it
+automatically"; :1320 "CL-3 first-listed-wins stands. `wait` is
+core, always available (A5)"); an internal act that wins ties
+against *wait* by list position would repeal that theorem by
+construction order. The declared slot sits AFTER wait. And the
+distinction this section turns on, stated explicitly: the emission
+grid key is EPISTEMICS, banned forever (R-W1); the optional refine
+surcharge row (METAREASONING_PLAN.md:205-215) is ECONOMICS,
+permitted and defaulting to the clock. Prices yes, permissions no —
+the original permission-inversion ruling, now with nine steps of
+enforcement behind it.
+
 ## 3. What must be re-derived first (the banked-failure expiry
 clause; OB-18)
 
@@ -82,8 +109,37 @@ deleted; Expect/SawE/ElimJ/Code landed; utility became a said
 sentence). Under the clause canonized at reflexive-freeze-r0, every
 design conclusion in that plan that leaned on the pre-motion grammar
 is a HYPOTHESIS at this boundary and is re-executed against the
-shipped grammar before R relies on it. Known candidates, to be swept
-exhaustively at R's opening measurement:
+shipped grammar before R relies on it.
+
+**One member of the sweep is MANDATORY, not a candidate (amendment
+one, the author, 2026-07-20): the unowned-mass dominance guard,
+because it is the purchase criterion's DERIVATION, not an
+accessory.** The original reviews established the identity this
+scope previously omitted: the guard's straddle condition and the
+frontier child's VOR are two views of ONE quantity — `respond` fires
+only when the owned decision is robust to every admissible placement
+of unowned mass; when the interval straddles, the agent buys or
+abstains. The frozen ancestor is METAREASONING_PLAN.md:173-201 (the
+truncation-overconfidence guard as LAW: per frontier interval,
+subtree Kraft mass x interval sup-likelihood x interval
+endpoint-minimum utility, never a global worst-case; "the guard IS
+the cheap-fidelity evaluation of the ideal full-mixture argmax, and
+VOR/purchase is the decision to buy the expensive fidelity — one
+valuation at two fidelities, never a monitor"). R-vocab's success
+row ("clears the 0.96 threshold with no host declaration") is that
+identity in product clothing. R0 re-derives the guard in its final
+amended form — per-act adversarial placement over the
+DECISION-RELEVANT region, and a READ, never an update — and verifies
+the convergence the author flags: the read-not-update precision,
+argued from first principles at the original sitting, is now
+independently law via D8's frozen semantics (predictive's refusal
+branch — a per-query read, belief state untouched; the executable
+Dutch-book identity, unify-author-pack D-c4 / test-unify). **If R1
+lands a purchase criterion not derived from the dominance bound, it
+is a threshold wearing a criterion's clothes.**
+
+Known candidates beside it, to be swept exhaustively at R's opening
+measurement:
 
 - the failed-alternatives record (§0: declared-grid condemned,
   grid-as-hypothesis collapses) — the *arguments* look
@@ -100,6 +156,21 @@ exhaustively at R's opening measurement:
 - the scope caveat "R buys PRECISION, not adaptation" (§0, author
   finding 2) — carried forward unchanged unless the author re-opens
   it; drift families stay demand-gated elsewhere.
+
+**And one scope line EXPIRES under the clause itself (amendment two,
+the author, 2026-07-20): the recurring-stakes myopia.** The declared
+limitation (METAREASONING_PLAN.md:106-114: per-tick vAct gain <
+refine price < the value over the stream — the agent never buys and
+bleeds forever; its pin fixture at :311-312) was printed when depth
+was unsayable and horizon-aware VOI was demand-gated on machinery
+that did not exist. The alphabet moved: step 10 made depth-k
+lookahead a shipped composition (vThinkS, Push-iterated, pinned at
+test-reflexive/). A banked LIMITATION whose ground was the old
+grammar is exactly as expired as a banked failure — R0 re-runs the
+recurring-stakes falsifier against the shipped composition and
+re-derives the criterion's horizon. Two consequences bind: §5's
+sequencing becomes conditional on R0's verdict, and R1's success row
+must not dodge this shape (§2).
 
 ## 4. Interim brackets (outcome iii, in force from the rulings
 sitting, cited hereafter)
@@ -120,11 +191,22 @@ protocol unchanged)
   transcribed, before any R ruling freezes (the step-10 E-g1
   precedent — that audit is what stood between step 10 and a
   needless production). R0's output is the surviving design, and
-  possibly amendments to this scope for the author's re-tag.
+  possibly amendments to this scope for the author's re-tag. Two R0
+  outputs are MANDATORY since the 2026-07-20 amendments: the
+  dominance-guard re-derivation in its final amended form with the
+  D8 convergence verified (§3), and the recurring-stakes falsifier
+  re-run against the shipped depth composition with the criterion's
+  horizon re-derived (§3) — the latter delivering the resequencing
+  verdict below.
 - **R1 — R-vocab**, oracle-first: the refinement law, the purchase
   criterion, the vocabulary's motion under it; population/anchor
   re-pins in the same increment (the optimisation law); the
-  governor-shaped success row (§2) as the acceptance anchor.
+  governor-shaped success row (§2) as the acceptance anchor. Bound
+  by the amendments: the purchase criterion is DERIVED from the
+  dominance bound (§3's mandatory member — never a free-standing
+  threshold); the success row includes the recurring-stakes shape or
+  carries it beside as the declared falsifier (§2); the internal
+  act's declared slot sits after wait (§2's constraint).
 - **R2 — R-depth**, oracle-first: the rung-choice law over the
   step-10 composition; the depth-0 (myopic) case pinned as the
   chosen rung at current prices on the frozen worlds (byte-stability
@@ -132,17 +214,46 @@ protocol unchanged)
   extension, not a behavior change); membrane-wire §3 re-stated
   truthfully at the close.
 
-Sequencing note: R1 before R2 because R-vocab's purchase criterion
-exercises the endogenous price machinery on the simpler object
-(vocabulary, no lookahead), and R2 then reuses the proven price law.
-The author may resequence.
+Sequencing note — CONDITIONAL since the 2026-07-20 amendments: the
+drafted rationale (R-vocab exercises the endogenous price machinery
+on the simpler object, no lookahead; R2 reuses the proven price law)
+holds ONLY IF R0 finds the vocab criterion honest at depth 0. If the
+recurring-stakes re-run shows the criterion needs the rung law — the
+stream's value visible only under lookahead — then R2 is a
+DEPENDENCY of R1, not its successor. In the author's words: "the
+author may resequence, and R0 tells him whether he must."
 
 ## 6. Custody
 
 This boundary opens ONLY by the author's own signed tag over this
 file as amended — no delegation shortcut exists for opening a
 boundary of this scope (the choice R-W1's register called "exactly
-the kind the two-key discipline reserves"). Thereafter: the
+the kind the two-key discipline reserves").
+
+**As executed (the amendment sitting, 2026-07-20).** The author
+amended this scope by dictated in-session instruction — amendment
+one (§3's mandatory guard member: "it is the purchase criterion's
+derivation, not an accessory"), amendment two (§3's myopia expiry:
+"the myopia scope line itself expires under the clause"; §5's
+conditional sequencing), and the slot constraint (§2: "the flagged
+CL-3 pinned slot for the always-available internal act may not
+precede the all-first-points element... Prices yes, permissions no")
+— closing verbatim: **"Amend, tag, and open."** The drafted sentence
+above ("no delegation shortcut exists for opening a boundary of this
+scope") is thereby superseded by its own author, in the ONE form
+CLAUDE.md licenses: a fresh, explicit, per-instance delegation, the
+builder tagging with the BUILDER key, the delegation recorded
+verbatim in the tag message — a signature that truthfully attests
+builder action under recorded instruction and cannot mint an author
+attestation (the membrane precedent). The author's OWN re-tag over
+the opening commit is OWED (R-D22) and is a condition of R0's
+closure; until it exists, this file stays out of the manifest,
+OB-17's ledger row keeps its state pending the next legal
+frozen-layer window, and the opening's final attestation is
+outstanding — exactly the weight the drafted sentence intended,
+carried by the re-tag obligation instead of a blocked opening.
+
+Thereafter: the
 increment protocol unchanged — oracle-first, R-D20/21/22, pre-freeze
 lint, boundary audit, red-team mandates, frozen-layer inventory at
 every sitting; builder commits builder-key; every delegated freeze
