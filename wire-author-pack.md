@@ -346,3 +346,66 @@ PASS  L7 full-corpus overlay build: every test .hs builds against new src
 `cabal test all`: 15/15 suites PASS (the thirteen standing + measure
 + law). Boundary audit at the freeze: M5=0 H=4 OB=0. Zero src/ diff
 across the whole boundary opening (mandate-4 verified).
+
+## Part VI — the rulings sitting (2026-07-20, in-session)
+
+The author put the question directly ("The input to and the output
+from the agent should be crystal clear by now. Let's confirm we're
+aligned, by you stating them"), the builder stated the alignment,
+the author confirmed verbatim: **"i confirm"**. The confirmed
+statement is recorded as ruling text of record at WIRE_PLAN.md §5
+("The alignment statement"). The exchange that produced it, for the
+record:
+
+1. The author's grid argument, which DEFEATED the builder's recorded
+   recommendation (ii) for R-W1: the grid approximates a CONTINUOUS
+   latent — the world does not have nine thetas — so any finite grid
+   is the agent's representational choice, and there is no
+   world-side fact for a hello key to state. The builder conceded on
+   the spot; the concession is in the R-W1 ruling record. The same
+   argument convicts the baked `thetaPoints` (Host.hs:261) — held as
+   a bracketed interim operating point until R.
+2. The author's depth argument for R-W2: if the ladder is a
+   composition of the alphabet, depth should be decided by
+   metareasoning, not defaulted — which is CLAUDE.md porting order
+   4's own doctrine ("the myopic case must be the ladder's chosen
+   rung, not a branch"), sharpened to reject W4c's HOST-SIDE rung
+   assembly as the wrong home. Depth is an in-language purchase,
+   clock-priced, delivered at R.
+3. The unification, confirmed: both rulings instantiate one
+   invariant — the world declares economics, never epistemics;
+   everything between input and output is internal and purchased.
+
+Acts executed at the sitting (all under the "i confirm" delegation,
+author re-tag OWED per R-D22, WIRE_PLAN §8):
+
+- WIRE_PLAN.md §5: R-W1 RULED (i)+(iii-interim), R-W2 RULED
+  (depth-by-metareasoning at R), the alignment statement installed
+  as ruling text; §3 riders (W3 = arity only; W4c STRUCK); §6/§8
+  custody rows.
+- OBLIGATIONS.md: OB-4 DISCHARGED-BY-RULING; OB-5 note (arity
+  only); OB-9 re-homed SCHEDULED@r-open; OB-10 re-repair shape
+  ruled; OB-17 (R opens by author tag over R_SCOPE.md) and OB-18
+  (METAREASONING_PLAN re-derivation, banked-failure expiry) born.
+- membrane-wire.md §3 bracket: conditional resolved in place
+  (myopic until R).
+- R_SCOPE.md drafted (R0 re-derivation audit → R1 vocab → R2
+  depth), kept OUT of the manifest until the author's R-opening
+  tag.
+- Manifest re-signed for the three amended frozen files (69 rows,
+  row count unchanged — no file added or removed).
+
+### Pre-freeze lint at wire-rulings-r0
+
+```
+PASS  L1 forbidden-tokens-by-glob: 6 src files clean
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 69 rows verified
+PASS  L4 all 38 tags verify
+PASS  L5 wire-author-pack.md records the four stanza flags (incl. -Werror)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+=== prefreeze-lint: 0 FAIL, 10 WARN (the same pre-existing advisories) ===
+```
+
+Manifest 69/69 OK after the three-row re-sign. Zero src/ diff at
+this sitting (docs + ledger + scope draft only).

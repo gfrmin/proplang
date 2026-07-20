@@ -136,6 +136,12 @@ stays on the handshake state.
 > information-gathering against terminal actions must not plan
 > against a preposterior here unless ruling R-W2 (WIRE_PLAN.md §5)
 > opens W4c and its freeze replaces this bracket.
+> *[Conditional RESOLVED at the rulings sitting, 2026-07-20: R-W2
+> ruled — W4c does NOT open; depth is delivered at boundary R as an
+> in-language purchase (the agent buys deliberation depth under
+> clock-endogenous prices; WIRE_PLAN.md §5, R_SCOPE.md). The wire
+> stays myopic until R; hosts must not plan against a preposterior
+> here until R's freeze re-states this section.]*
 
 Decision tick — features + menu, no evidence; THE AGENT DOES NOT
 MOVE:

@@ -205,6 +205,9 @@ default in the same increment (the optimisation law). The emission-
 grid half (OB-4) executes here IFF the author rules R-W1 open —
 mechanically it is the same hello-field pattern, one additional
 optional key, default `thetaPoints` bit-identical.
+*[RULED 2026-07-20: the grid half does NOT execute — R-W1 held the
+condemnation (§5). W3 is the arity half only; issue #4's answer is
+boundary R.]*
 
 **W4 — wire completeness (#1, #3; #8's half CONDITIONAL on ruling
 R-W2).**
@@ -222,6 +225,9 @@ the wire — host-side assembly of the step-10 composed sentences
 productions (step 10's theorem), the myopic case remaining the
 ladder's chosen rung at depth-1 prices; membrane-wire.md then
 re-states the shipped rule truthfully.
+*[RULED 2026-07-20: (c) is STRUCK — R-W2 rejected the host-side home
+(§5); depth is delivered at boundary R as an in-language purchase.
+W4 is (a)+(b) only; the wire stays myopic until R.]*
 
 **Rulings register (§5) travels with every sitting.**
 
@@ -262,6 +268,30 @@ recommendation stated, decision the author's:**
   emission channel is a claim about the world, not about the agent's
   precision. But (i) is the deeper language; the choice is exactly
   the kind the two-key discipline reserves.
+  **RULED 2026-07-20 (the rulings sitting; author's in-session
+  confirmation "i confirm" over the builder's stated alignment):
+  outcome (i), with (iii) as the bracketed interim.** The builder
+  recommendation (ii) is REJECTED on the author's argument, conceded
+  at the sitting: the world does not have nine thetas — the latent
+  is continuous, ANY finite grid is a representational choice about
+  how finely a belief resolves it, so there is no world-side fact
+  for a hello key to state, and (ii)'s "claim about the world"
+  premise was itself the category confusion the condemnation named.
+  The membrane line, ruled: **the wire may declare the codomain of
+  observation — what the channel can emit — never the support of
+  belief about the channel's law** (which is why W3's arity half is
+  unconflicted and the grid half is closed). Consequences: no
+  emission grid key, ever, from anyone; the hard-wired `thetaPoints`
+  (Host.hs:261) is convicted by the same argument — the identical
+  illegitimate object baked by the builder rather than declared by
+  the host — and stands only as a BRACKETED INTERIM OPERATING POINT
+  until R delivers purchased refinement; high-threshold hosts
+  (0.95/0.96/0.9942) are out of scope until R — outcome (iii)'s
+  statement, made once here, citable hereafter; the delivery vehicle
+  is boundary R (METAREASONING_PLAN's purchased-edge design,
+  orphaned by V's cancellation, never refuted), scope drafted at
+  this sitting as R_SCOPE.md, opened only by the author's own tag.
+  OB-4 closes CONDEMNATION-HELD; issue #4's answer is R.
 - **R-W2 — the wire's decision rule (issue #8 / OB-9): the V-question
   re-put.** Boundary V ("the single decision rule at the wire") was
   formally cancelled 2026-07-15 because its subject (the VoI verbs)
@@ -277,6 +307,56 @@ recommendation stated, decision the author's:**
   host-side. Builder recommendation: (i), the myopic case remaining
   the chosen rung at depth-1 prices — the ladder's arrival changes no
   default behavior, only reachability.
+  **RULED 2026-07-20 (same sitting): depth by metareasoning,
+  delivered at R — neither drafted outcome verbatim.** Outcome
+  (ii)'s permanent myopia is rejected; outcome (i)'s HOST-SIDE rung
+  assembly is rejected as the wrong home for the choice — a
+  host-side ladder loop is exactly what R would immediately
+  obsolete. The ruling: depth is a rung the same argmax chooses
+  under prices — "the myopic case must be the ladder's chosen rung,
+  not a branch" (CLAUDE.md porting order 4) reaffirmed as binding
+  doctrine, the shipped `choose` acknowledged as a branch in spirit
+  — and the choice lives INSIDE the language as an always-available
+  internal act priced endogenously by the clock: the METAREASONING
+  permission-inversion ruling (:205-215) applied to depth, the cost
+  of one more rung being the act-now EU forgone this tick, already
+  computed by the same argmax, no new number anywhere. W4c is
+  STRUCK from this boundary; OB-9 re-homes to R (R_SCOPE.md). The
+  wire stays myopic until R, the W2 bracket stating so truthfully
+  in the interim; "myopic remains the chosen rung at depth-1
+  prices" stands as a PREDICTION at current prices, never a policy.
+
+**The alignment statement (the rulings sitting, 2026-07-20 — stated
+by the builder at the author's instruction, confirmed by the author
+verbatim: "i confirm". The single principle both rulings
+instantiate; ruling text of record, quoted from the sitting):**
+
+> **Input to the agent — the decision problem, its prices, and the
+> data. Nothing else.** At the handshake, the world's declaration:
+> `namespace` (the names that exist), `guards` and `menu` grids (the
+> VALUE SPACES of the world's channels and writable names —
+> codomains of what can arrive and what can be written), `utility`
+> as `said@1` (the stakes, as a priced sentence over the tick's
+> features), and prices of any resource the world charges. Per tick,
+> the stream: `features` (observations that arrived), `menu`
+> (options available this tick), `evidence` (the judged event's
+> original features re-sent with the verdict), optionally a per-tick
+> `utility` profile (lawful because stakes are world-side).
+> **Output from the agent — a choice, plus honest reports.** The
+> act: a full assignment over the published writable names, from the
+> declared option space (the empty assignment when no menu is
+> published — wait). That is the output; there is exactly one.
+> Reports: the handshake reply's `models`/`namespace_bits`, the tick
+> reply's `p1`/`entropy_bits` — the agent SHOWING its state,
+> read-only; diagnostics a host may observe, never a surface a host
+> may set, target, or contract against.
+> **And the invariant that settles both rulings:** everything
+> between input and output — prior, hypothesis space, vocabulary
+> fineness, belief representation, deliberation depth — is internal,
+> governed by frozen law, purchased by the agent when stakes make it
+> pay, and crosses the wire in NEITHER direction. The world declares
+> economics (channels, options, stakes, prices); it never declares
+> epistemics.
 
 **The demand register (issues #9-#14):**
 
@@ -302,6 +382,16 @@ tags once R-W1/R-W2 are ruled. R-D22: the boundary and each increment
 reach CLOSED only when the author's own signed tag covers them; until
 then every tag under this boundary is a delegated act awaiting
 countersignature, listed in §8.
+
+The rulings sitting of 2026-07-20 (R-W1, R-W2, the alignment
+statement — §5) landed as one commit under tag `wire-rulings-r0`:
+builder key, the author's in-session confirmation recorded verbatim
+in the tag message, author re-tag OWED (§8). Its deliverables:
+the §5 ruling records, the §3 riders, the OBLIGATIONS.md state
+changes (OB-4 discharged-by-ruling, OB-9 re-homed to R), the
+membrane-wire §3 bracket's conditional resolved, and R_SCOPE.md
+drafted (NOT in the manifest — it becomes law only at the author's
+R-opening tag).
 
 ## 7. Verification trail (the triage's evidence rows)
 
@@ -330,7 +420,10 @@ The greps behind §0's "verified" column, re-runnable:
 |---|---|---|---|
 | wire-open-r0 | the opening commit (this file's landing) | "open boundary and implement... also understand why these issues arose", author, 2026-07-20, recorded verbatim in the tag message | OWED (R-D22) |
 | wire-w2-r0 | same commit (the step-2 single-tag-close precedent; W2 executed at the opening) | same delegation | OWED (R-D22) |
+| wire-rulings-r0 | the rulings-sitting commit | author, 2026-07-20, in-session: the builder stated the input/output alignment and the three acts (record as R-W1/R-W2 ruling text; restructure W4c out of this boundary; draft R's opening scope); author: "i confirm" — recorded verbatim in the tag message | OWED (R-D22) |
 
-The author's own signed tag over the opening commit discharges both
-rows and makes the six frozen-file repairs and the two new oracle
-suites law. R-W1 and R-W2 (§5) await the same sitting.
+The author's own signed tag over the opening commit discharges the
+first two rows and makes the six frozen-file repairs and the two new
+oracle suites law; a signed tag over the rulings-sitting commit
+discharges the third and makes R-W1/R-W2 rulings of record. One
+author tag covering both commits discharges all three.
