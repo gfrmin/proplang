@@ -1,0 +1,10 @@
+test-suite arity
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Arity.hs
+    hs-source-dirs:   test-arity
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

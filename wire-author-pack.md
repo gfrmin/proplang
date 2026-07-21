@@ -409,3 +409,238 @@ PASS  L7 full-corpus overlay build: every test .hs builds against new src
 
 Manifest 69/69 OK after the three-row re-sign. Zero src/ diff at
 this sitting (docs + ledger + scope draft only).
+
+## Part VII — W3, the arity increment (oracle phase, opened 2026-07-21)
+
+Scope of record: OB-5 — "observation arity declarable at the handshake
+(K-ary carrier/space), default binary" — arity ONLY (the grid half died
+with R-W1). Zero alphabet productions (WIRE_PLAN §4: W3 moves
+enumerator data and space data). The banked HOSTS-era claim "K-ary is
+NOT a grammar change" (HOSTS_PLAN §4.1) postdates no alphabet motion it
+assumed — but per the step-10 expiry clause it is RE-EXECUTED here
+anyway: the SAT phase writes the K-ary emission as a sentence of the
+SHIPPED grammar and compiles it; the transcript in VII.5 is the
+re-execution.
+
+### VII.1 The design
+
+**The declaration.** `world` gains one optional key: `"obs_arity": K`
+— finite, integral, K >= 2, else bad hello (fail-closed; the D-f8/NaN
+door discipline). Absent => the shipped binary path, byte-identical
+(that code path is not edited). Semantics is R-W1's ruled line,
+verbatim: *the wire may declare the codomain of observation — what the
+channel can emit — never the support of belief about the channel's
+law.* The codomain is atoms 0..K-1.
+
+**The null-atom convention (builder-derived, for the author's
+endorsement at the freeze).** Atom 0 is the null emission; a
+sentence's distinguished atom is POSITIVE, j in {1..K-1}. Grounds,
+all already pinned wire law: (a) W1's measured pin "a missing feature
+reads as 0.0; the empty stream IS the all-zeros stream"
+(test-measure g1, Eval.hs:80); (b) the fragment's own reading —
+bern(theta) prices the positive event, guards modulate its RATE;
+(c) the wire's p1 diagnostic and observe's refusal row both treat 0
+as the background pole. Consequence: the arity mention is priced
+log2(K-1) — ZERO at the default, exactly the M1 namespace law's
+singleton shape ("0 while singleton", Enumerate.hs:296-298). The
+default's prices do not move, by the same law that priced guards.
+
+**The family (sentences of the shipped grammar; zero productions).**
+At arity K, distinguished atom j, rate theta:
+
+    P(y = j) = theta;  P(y /= j) = (1-theta)/(K-1) uniformly.
+
+The body is composed: If/Gt (the step-9 eqE composition), ToR, Div,
+Sub, constants through the one mkC door; the atom code j and the
+constant K-1 come from grids DERIVED FROM THE DECLARED ARITY (world
+data, not steering literals — the tauGrid/namespace precedent). At
+K=2, j=1 this is bernBody's extension exactly, and bit-exactly in
+floats ((1-theta)/1.0 == 1-theta in IEEE); the RENDER differs (Gt vs
+the eqE spelling — two spellings of one sentence). Families mirror
+the fragment: consts (K-1)x|eg|, walks (K-1)x|rho| (theta walks, atom
+fixed), guards (K-1)x per-name (context switches theta, atom fixed);
+j is the OUTERMOST loop per family (a fresh coordinate, D2, recorded).
+Charges: each K-tree is CSum <the shipped tree> (CBits jB),
+jB = 0 when K=2 else log2(K-1); chargeBits' fold (Syntax.hs:394) is a
+left sum, so the appended +0.0 is bit-exact at the default.
+
+**Routing.** Declared K (any K >= 2, including 2) routes through the
+arity enumerator; the ABSENT key routes through the shipped call,
+untouched. Declared-2 vs absent is then a COINCIDENCE THEOREM, not a
+branch — pinned extensionally per the optimisation law's shape
+(section 1b: a divergence is legal only if pinned to the general
+route): dl multiset bit-equal, emissions pointwise bit-equal, wire
+replies byte-equal on a shared stream.
+
+**Surfaces.** Enumerate.hs: `obsSpaceAt :: Int -> Space Obs`;
+`enumerateSentencesArity :: Int -> NonEmpty Double -> Namespace ->
+[(Name, Grid)] -> [FragProd] -> [Hyp]`; declared K-charge trees
+`constChargeA/walkChargeA/guardChargeA` (the step-4 doctrine: the
+oracle pins the trees themselves; the shipped `constCharge`/
+`walkCharge`/`guardCharge` are frozen-test-imported and untouched);
+`Agent` carries its observation space (new field; constructor is NOT
+exported, so no surface outside the module sees it),
+`sentenceAgentK :: Space Obs -> [Hyp] -> Agent` with
+`sentenceAgent = sentenceAgentK obsSpace` definitional, and
+`agentObsSpace :: Agent -> Space Obs`; predictive/observe/
+observeCounts/observeVia read the agent's space (extensionally inert
+at default — the field IS the old constant there). Type-derivation
+line (the section-8c audit, arriving WITH the type change): the
+agent's observation space is the codomain the world declared at the
+handshake — wire-declarable world structure under R-W1's ruled line.
+Host.hs: hello parses/validates the key; K present => arity
+enumerator + sentenceAgentK (obsSpaceAt K); tick's p1 reads
+agentObsSpace. Purchase.hs is UNTOUCHED (the R1 purchase law is the
+binary channel's; arity-vs-purchase composition travels with the
+host-wire integration residue, already declared at R1's close).
+
+### VII.2 The demand's honest scope (issue #9's register lines)
+
+Delivered: the declared codomain; per-atom concentration sentences;
+the namespace-law pricing of the atom mention; the default untouched
+and re-pinned. NOT delivered, each with its ground: (a) host-supplied
+tabular log-densities — that is the world declaring the channel's
+LAW, i.e. epistemics over the wire, refused by the alignment
+statement (the world declares economics, never epistemics); the law
+lives in-language as the family above; (b) mid-episode K growth —
+issue #10, OB-11, RULING-PENDING, untouched here; (c) the
+preposterior over K observations — composes in-language via Expect
+(step 10's theorem), not W3 scope; (d) answer-brain's P_NONE = 0.5
+prior — the dl-prior prices null-reading sentences by derivation;
+the host sets no priors (HOSTS_PLAN §4.2's line, still binding).
+
+### VII.3 The oracle (test-arity/, 8 groups)
+
+g1 the default re-pin (the optimisation law's re-pin, same
+increment): (a) the four populations 1169/1241/1529/1601 through
+serveLine hello — worlds COPIED from test-measure/Measure.hs:207-213
+(R-D20 provenance); (b) declared-2 == absent: hello + 6-tick stream,
+replies byte-equal pairwise. g2 the coincidence pin: (a) count and
+dl multiset of the arity-2 enumeration bit-equal (w64) the shipped
+enumeration's; (b) paired emissions pointwise bit-equal over probe
+features x y in {0,1}; (c) spacePoints (obsSpaceAt 2) == spacePoints
+obsSpace. g3 pricing: (a) at K=5 a cat const's dl == its declared
+tree == shipped dl + log2(4) (formula provenance: the M1 law,
+Enumerate.hs:296-298); (b) strict monotonicity K=3 < 5 < 9;
+(c) K=2 tree bit-equal the shipped tree (w64). g4 the law's shape:
+(a) enumerated masses match the closed form (theta at j, spread
+elsewhere) at K in {3,5,10}; (b) Cromwell — every atom's mass
+strictly positive at every grid theta. g5 behavior: K=4 worlds —
+(a) a stream concentrated on atom 2 makes MAP the (j=2,
+theta=0.9) sentence, render string pinned (derived from the frozen
+renderExpr in SAT); (b) a uniform stream leaves every cat sentence
+below a measured posterior bound — strict discrimination between
+the two worlds. g6 conjugacy as oracle: K=3 consts-only world, hand
+Bayes over (j, theta) — prior read from the enumerated hypBits
+themselves (R-D20: never re-derived), likelihood the closed form —
+vs agentMeta, gate from measurement. g7 wire: (a) obs_arity 4 =>
+models == (K-1)*1169 == 3507; (b) y=3 observed => finite loss_bits,
+y=7 => impossible-evidence; (c) bad declarations (1, 2.5, 1e999) =>
+bad hello; (d) p1 == P(atom 1) cross-checked against predictive.
+g8 ablation (data-form: the family is world-data-gated — the
+deletable-and-declarable criterion; no production entered, so no CPP
+row is owed): restricted enumeration (drop FBern => consts empty at
+K; drop FGuardHead => guards empty), plus test-arity/ablation/run.sh
+— the seeded-defect tripwire (spread divisor K-1 -> K) reds g2b and
+g4a while Cromwell stays green (attribution partitioned, the R1
+run.sh precedent).
+
+### VII.4 Under-determination register (for the freeze sitting)
+
+1. The null-atom convention and j in {1..K-1} (VII.1's grounds) —
+   author endorsement owed.
+2. The key's name and placement: flat `"obs_arity"` in `world`.
+3. j-outermost enumeration order (fresh coordinate, D2).
+4. The VII.2 scoping lines as the recorded answer to issue #9's
+   remainder.
+5. Frozen edits owed AT the freeze, under delegation: membrane-wire
+   §2 (the key, with R-W1's line quoted) and §3 (p1 = P(atom 1) at
+   any arity); WIRE_PLAN §8's three stale OWED marks (discharged by
+   wire-rulings-r1, author key, 2026-07-20 — the frozen-layer
+   inventory's first W3 row); MANIFEST + cabal stanza + OBLIGATIONS
+   OB-5 -> LANDED@wire-w3.
+6. observeCounts at K > 2 keeps its (n1, n0) reading as counts of
+   atoms 1 and 0 — the collapse verb is inherently binary; a K-ary
+   collapse verb is future demand, not smuggled here.
+
+### VII.5 The satisfiability transcript (R-D21, overlay form)
+
+Overlay realization: a full copy of src/ wearing the real module
+names (Enumerate + Host implemented per VII.1), under the scratchpad,
+discarded after this transcript. The EXACT oracle text of
+test-arity/Arity.hs as drafted for the freeze compiles UNCHANGED
+against both the stub src and the overlay, under the stanza's exact
+flag set `-XGHC2021 -Wall -Werror -Wincomplete-patterns
+-Wincomplete-uni-patterns` (flag-faithful, -Werror included — the
+step-5 amendment).
+
+**Red run (real src, oracle-phase stubs): 18 of 21 rows FAIL.**
+Attribution per row: g2a/g2b (enumerateSentencesArity stub error),
+g2c (obsSpaceAt stub error), g3a/g3a-wg/g3b/g3c (charge-tree stub
+errors), g4a/g4b, g5a/g5b, g6, g7d, g8a/g8b (stub errors through
+their entry point); g7a (ignored key: models 1169, wanted 3507),
+g7b (ignored key: binary world calls y=3 impossible — the red IS the
+missing codomain), g7c (ignored key: obs_arity 1 accepted). Every
+red is the missing implementation; no stub shadows a defect.
+**Green at stub, by design (the re-pin rows):** g1a (four
+populations through the wire), g1b (declared-2 byte-equal absent —
+green today because the key is ignored, green after because the
+coincidence is a theorem; its red capability is the ablation's
+demonstrated firing, below), g8c (the shipped 1169).
+
+**SAT run (overlay realization): 21 of 21 rows PASS**, same text,
+same flags. Per-row forcing (the step-2 deepseq clause): every
+comparison lands on a scalar (Double via w64/Integer, Int count, or
+String) whose (@?=) forces both sides to normal form; g2a's two
+sorted dl lists are forced end-to-end by the list equality; no lazy
+structure survives a row.
+
+**Gate floors measured on the overlay (the CL-4 discipline):**
+g4a max deviation 5.551115123125783e-16 over every (K, j, theta, y)
+cell at K in {3,5,10} — gate 1e-12 (~3.3 orders margin); g6 max
+deviation 1.1102230246251565e-16 — gate 1e-12; g5b uniform-stream
+top mass 6.2024897563036765e-2 (deterministic fixture) — bound
+0.125 = 2x measured; the concentrated world's MAP mass > 0.5 and
+its index is 17 = (j=2 block, theta=0.9), the declared coordinate.
+g5a's render literal derived by executing the FROZEN renderExpr on
+the overlay's enumerated (j=2, theta=0.9) sentence — a copy through
+the frozen artifact, not a parallel derivation (constants render as
+grid-name + index: ('c','theta',8) is theta=0.9, ('c','km1',0) is
+the K-1 constant).
+
+**The seeded-defect runner (test-arity/ablation/run.sh), fired
+against the overlay:** the spread denominator K-1 mutated to K at
+the single W3-ANCHOR site; g1b REDS (the declared-2 coincidence
+breaks), g2b REDS (arity-2 diverges from shipped), g4a REDS (the
+law's spread off by (K-1)/K), Cromwell stays GREEN — attribution
+partitioned. The render pin deliberately does NOT fire (renders
+carry grid name + index, not value): the mutation is visible only
+extensionally, which is why the extensional pins are load-bearing.
+
+**The banked-claim re-execution (the step-10 expiry clause):**
+HOSTS_PLAN §4.1's "K-ary observation is NOT a grammar change" was
+banked before the step-8/9 alphabet motion. Re-executed here: the
+K-ary emission body is written as a sentence of the SHIPPED grammar
+(If/Gt equality composition, ToR, Div, Sub, mkC constants over
+world-derived grids) and compiles + scores on the overlay with zero
+productions touched. The claim SURVIVES re-execution — the verdict
+is stronger post-demolition than when banked (the family needs no
+Model layer at all; it is enumerator data end to end).
+
+### VII.6 SAT findings (repaired before the freeze, in-window)
+
+1. **The g7d mirror defect (the SAT window's catch).** The drafted
+   mirror built its agent on namespace [t] against a wire world of
+   [t, m] and probed the predictive at feats ++ menu-name. Both are
+   wrong: the namespace mention reprices every guard sentence
+   (structural divergence, w64-visible at the 8th decimal), and the
+   wire's p1 is computed at the tick's FEATURES, pre-act. Repaired:
+   the mirror declares [t, m] and probes at features only. The row
+   now doubles as the probe-discipline lesson: a mirror is subject
+   to the same world-declaration the wire is.
+2. **g5b's drafted bound was under the measurement** (0.05 drafted,
+   6.2e-2 measured): a plucked bound, caught by the transcript and
+   re-derived as 2x measured. The row's teeth are the strict
+   concentrated-vs-uniform ordering plus the bound.
+3. **g5a's placeholder replaced** by the renderer-derived literal
+   (above), per the drafted derivation plan.

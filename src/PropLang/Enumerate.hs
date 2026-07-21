@@ -27,7 +27,7 @@
 module PropLang.Enumerate
   ( renderExpr
   , Obs
-  , obsSpace, thetaSpace
+  , obsSpace, obsSpaceAt, thetaSpace
   -- the declared grids, exported for the step-1 oracle (AGENT_PLAN, boundary
   -- agent-boundary-r1). R-D20-i mandates that an oracle row claiming a frozen
   -- quantity be checked against THE FROZEN ARTIFACT, never against a parallel
@@ -59,6 +59,11 @@ module PropLang.Enumerate
   , constCharge
   , walkCharge
   , guardCharge
+  -- THE W3 ARITY SURFACE: the declared K-charge trees (same doctrine
+  -- as the step-4 trees above — the oracle pins the trees themselves)
+  , constChargeA
+  , walkChargeA
+  , guardChargeA
 #if !defined(DROP_CODE) && !defined(DROP_POS) && !defined(DROP_TOR)
   -- the enumerators UTTER the step-1 constructors (every sentence is a
   -- code; the walk move reads positions; bern's body reads the carrier
@@ -67,6 +72,7 @@ module PropLang.Enumerate
   , enumerateSentences
   , enumerateSentencesIn
   , enumerateSentencesGrid
+  , enumerateSentencesArity
 #endif
   , filterTickFree
   -- the scoring layer dies with the carrier declaration (plan E9;
@@ -85,6 +91,8 @@ module PropLang.Enumerate
   , walkOn
   , Agent
   , sentenceAgent
+  , sentenceAgentK
+  , agentObsSpace
   , predictive
   , observe
   , observeVia
@@ -200,6 +208,13 @@ type Obs = Int
 obsSpace :: Space Obs
 obsSpace = mkSpace (0 :| [1])
 
+-- | The declared K-ary observation space (W3): atoms 0..K-1, the
+-- codomain the handshake declared (R-W1's ruled line). Total for
+-- K >= 2; 'obsSpaceAt 2' is pinned extensionally to 'obsSpace'
+-- (test-arity g2c).
+obsSpaceAt :: Int -> Space Obs
+obsSpaceAt _ = error "W3 oracle-phase stub: obsSpaceAt"
+
 #ifndef DROP_CARRIER_OBS
 -- | The demonstration domain's declared carrier (EXPFAM_PLAN E4):
 -- domain data like the grids, priced against the Syntax carrier
@@ -305,6 +320,20 @@ guardCharge ns g eg =
 lgSizeC :: Grid -> Double
 lgSizeC g = logBase 2 (fromIntegral (gridSize g))
 
+-- | The arity-relative charge trees (W3): each is CSum of the shipped
+-- tree and the atom mention CBits (log2 (K-1); 0 at the default —
+-- the M1 namespace law's singleton shape). The shipped trees above
+-- are frozen-test-imported and untouched; the oracle pins these
+-- against them (test-arity g3).
+constChargeA :: Int -> Grid -> Charge FragSort
+constChargeA _ _ = error "W3 oracle-phase stub: constChargeA"
+
+walkChargeA :: Int -> Charge FragSort
+walkChargeA _ = error "W3 oracle-phase stub: walkChargeA"
+
+guardChargeA :: Int -> Namespace -> Grid -> Grid -> Charge FragSort
+guardChargeA _ _ _ _ = error "W3 oracle-phase stub: guardChargeA"
+
 -- | A hypothesis IS a sentence — transparent, because hypotheses are
 -- world-declarable data (the deletion-test criterion): a derivation
 -- charge, a latent axis, the per-tick emission code over that axis,
@@ -407,6 +436,21 @@ enumerateSentencesGrid egPts ns extras allowed =
       , t <- [0 .. gridSize g - 1]
       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
     gsp = mkSpace (0.5 :| [])
+#endif
+
+#if !defined(DROP_CODE) && !defined(DROP_POS) && !defined(DROP_TOR)
+-- | The arity-relative enumeration (W3): at declared arity K, the
+-- fragment's families over distinguished POSITIVE atoms j in
+-- {1..K-1} — P(y=j) = theta, the rest of the codomain sharing
+-- (1-theta)/(K-1) uniformly (atom 0 is the null emission; the
+-- convention's grounds are pack Part VII.1). j is the outermost loop
+-- per family. Total for K >= 2; the K=2 instance is pinned
+-- extensionally to 'enumerateSentencesGrid' (test-arity g2 — the
+-- section-1b shape: a coincidence theorem, never a branch).
+enumerateSentencesArity :: Int -> NonEmpty Double -> Namespace
+                        -> [(Name, Grid)] -> [FragProd] -> [Hyp]
+enumerateSentencesArity _ _ _ _ _ =
+  error "W3 oracle-phase stub: enumerateSentencesArity"
 #endif
 
 -- | THE LAW'S FIRST SCHEDULED APPLICATION (the step-2 rider): drop
@@ -514,8 +558,14 @@ data HypState = HSent Hyp (Belief Double)
 
 -- | A belief over programs plus per-hypothesis filtered latent state.
 -- Type derivation (§8c audit, step 6, pack §28): the meta-belief over
--- sentences (brief §4's mixture, §9's prior).
-data Agent = Agent [HypState] (Space Int) (Belief Int)
+-- sentences (brief §4's mixture, §9's prior). The observation-space
+-- field (W3, wire boundary): the codomain the world declared at the
+-- handshake — wire-declarable world structure under R-W1's ruled line
+-- ("the wire may declare the codomain of observation — what the
+-- channel can emit — never the support of belief about the channel's
+-- law"); the constructor is not exported, so the field is invisible
+-- outside this module, and at the default it IS 'obsSpace'.
+data Agent = Agent [HypState] (Space Obs) (Space Int) (Belief Int)
 
 -- | The agent over sentences — the 'mkAgent' successor ('mkAgent' died
 -- with 'Model' at the step-3 boundary). Meta-prior 2^(-hypBits)
@@ -541,12 +591,25 @@ data Agent = Agent [HypState] (Space Int) (Belief Int)
 -- preposterior machinery already prices that as wait-and-see value,
 -- so no guard is ever owed for it.
 sentenceAgent :: [Hyp] -> Agent
-sentenceAgent hs = case nonEmpty [0 .. length hs - 1] of
+sentenceAgent = sentenceAgentK obsSpace
+
+-- | The space-relative agent constructor (W3): 'sentenceAgent' over a
+-- DECLARED observation space — the handshake's arity, R-W1's ruled
+-- codomain line. 'sentenceAgent = sentenceAgentK obsSpace' is
+-- definitional (the mkAgentIn shape HOSTS_PLAN §4.2 registered).
+sentenceAgentK :: Space Obs -> [Hyp] -> Agent
+sentenceAgentK osp hs = case nonEmpty [0 .. length hs - 1] of
   Nothing  -> error "sentenceAgent: empty enumeration"
   Just ixs ->
     let isp = mkSpace ixs
-    in Agent [ HSent h (uniform (hypSpace h)) | h <- hs ] isp
+    in Agent [ HSent h (uniform (hypSpace h)) | h <- hs ] osp isp
              (fromBits isp ((map hypBits hs) !!))
+
+-- | The agent's declared observation space (W3): the wire's tick path
+-- reads its diagnostic events against this, never against the module
+-- constant.
+agentObsSpace :: Agent -> Space Obs
+agentObsSpace (Agent _ osp _ _) = osp
 
 -- One tick of one sentence at the given features: its predictive over
 -- observations, and its absorb continuation (a state-carrying sentence
@@ -573,10 +636,10 @@ stepSent feats (HSent hy lat) =
 -- positive mass are handled by ruling D8 (the haddock on
 -- 'sentenceAgent'): condition on denotation — a READ, never an update.
 predictive :: Features -> Agent -> Belief Obs
-predictive feats (Agent hyps isp meta) =
+predictive feats (Agent hyps osp isp meta) =
   let steps = map (stepSent feats) hyps
   in case traverse (fmap fst) steps of
-       Just bs -> push meta (kernel isp obsSpace (bs !!))
+       Just bs -> push meta (kernel isp osp (bs !!))
        Nothing ->
          -- D8: the refusers' mass is conditioned away by the same
          -- public cond arithmetic the evidence path uses — locally,
@@ -592,14 +655,14 @@ predictive feats (Agent hyps isp meta) =
                          "predictive: no sentence denotes at this tick"
              row i = case steps !! i of
                        Just (b, _) -> b
-                       Nothing     -> point obsSpace 0
-         in push meta' (kernel isp obsSpace row)
+                       Nothing     -> point osp 0
+         in push meta' (kernel isp osp row)
 
 -- | One polling re-entry: returns the natural-log marginal likelihood of
 -- the observation ('LogProb') and the conditioned agent. 'Nothing' =
 -- impossible evidence (total, like 'PropLang.Belief.cond').
 observe :: Features -> Obs -> Agent -> Maybe (LogProb, Agent)
-observe feats y (Agent hyps isp meta) = do
+observe feats y (Agent hyps osp isp meta) = do
   let stepped = map (stepSent feats) hyps
       row i = case stepped !! i of
                 Just (b, _) -> b
@@ -607,8 +670,8 @@ observe feats y (Agent hyps isp meta) = do
                 -- there — likelihood exactly 0, said through public
                 -- machinery (a point row on any OTHER observation has
                 -- probability exactly 0 at y)
-                Nothing -> point obsSpace (if y == 0 then 1 else 0)
-      ev = Saw (kernel isp obsSpace row) y
+                Nothing -> point osp (if y == 0 then 1 else 0)
+      ev = Saw (kernel isp osp row) y
       lp = logPredict meta ev
   meta' <- cond meta ev
   -- a refuted or refusing sentence keeps its state at zero meta mass
@@ -617,12 +680,12 @@ observe feats y (Agent hyps isp meta) = do
                   Just (_, absorb) -> maybe h id (absorb y)
                   Nothing          -> h
               | (h, st) <- zip hyps stepped ]
-  pure (lp, Agent hyps' isp meta')
+  pure (lp, Agent hyps' osp isp meta')
 
 -- | The meta-belief over hypothesis indices (positions in the
 -- enumeration the agent was built from).
 agentMeta :: Agent -> Belief Int
-agentMeta (Agent _ _ meta) = meta
+agentMeta (Agent _ _ _ meta) = meta
 
 -- | The count-collapsed warm verb (wire v2's @observe_counts@; the
 -- second review's budget ruling): per-hypothesis likelihood
@@ -644,7 +707,7 @@ agentMeta (Agent _ _ meta) = meta
 -- is the observed-tick refusal rule, not a new mechanism).
 observeCounts :: Maybe (Kernel Double Obs) -> Features -> Int -> Int
               -> Agent -> Maybe (LogProb, Agent)
-observeCounts mk feats n1 n0 (Agent hyps isp meta) = do
+observeCounts mk feats n1 n0 (Agent hyps osp isp meta) = do
   let predOf (HSent hy lat) =
         case evalx (hypEmit hy) (mkEnv feats VNil) of
           Nothing -> Nothing
@@ -659,8 +722,8 @@ observeCounts mk feats n1 n0 (Agent hyps isp meta) = do
       term n l = if n == 0 then 0 else fromIntegral n * l
       logL Nothing = term n1 negInfD + term n0 negInfD
       logL (Just pd) =
-        let p1 = prob pd (is obsSpace 1)
-            p0 = prob pd (is obsSpace 0)
+        let p1 = prob pd (is osp 1)
+            p0 = prob pd (is osp 0)
             lg1 = if p1 > 0 then log p1 else negInfD
             lg0 = if p0 > 0 then log p0 else negInfD
         in term n1 lg1 + term n0 lg0
@@ -675,7 +738,7 @@ observeCounts mk feats n1 n0 (Agent hyps isp meta) = do
       ev = Saw synth True
       LogProb lp = logPredict meta ev
   meta' <- cond meta ev
-  pure (LogProb (lp + m), Agent hyps isp meta')
+  pure (LogProb (lp + m), Agent hyps osp isp meta')
   where
     negInfD = -1 / 0
 
@@ -686,14 +749,14 @@ observeCounts mk feats n1 n0 (Agent hyps isp meta) = do
 -- different declared channel.
 observeVia :: Kernel Double Obs -> Features -> Obs -> Agent
            -> Maybe (LogProb, Agent)
-observeVia kv feats y (Agent hyps isp meta) = do
+observeVia kv feats y (Agent hyps osp isp meta) = do
   let stepped = map via hyps
       preds = map fst stepped
-      ev = Saw (kernel isp obsSpace (preds !!)) y
+      ev = Saw (kernel isp osp (preds !!)) y
       lp = logPredict meta ev
   meta' <- cond meta ev
   hyps' <- traverse (\(_, absorb) -> absorb y) stepped
-  pure (lp, Agent hyps' isp meta')
+  pure (lp, Agent hyps' osp isp meta')
   where
     via (HSent hy lat) =
       let predLat = case hypMove hy of
