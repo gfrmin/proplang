@@ -213,7 +213,9 @@ obsSpace = mkSpace (0 :| [1])
 -- K >= 2; 'obsSpaceAt 2' is pinned extensionally to 'obsSpace'
 -- (test-arity g2c).
 obsSpaceAt :: Int -> Space Obs
-obsSpaceAt _ = error "W3 oracle-phase stub: obsSpaceAt"
+obsSpaceAt k
+  | k < 2     = error "obsSpaceAt: arity below 2 (the wire validates)"
+  | otherwise = mkSpace (0 :| [1 .. k - 1])
 
 #ifndef DROP_CARRIER_OBS
 -- | The demonstration domain's declared carrier (EXPFAM_PLAN E4):
@@ -326,13 +328,20 @@ lgSizeC g = logBase 2 (fromIntegral (gridSize g))
 -- are frozen-test-imported and untouched; the oracle pins these
 -- against them (test-arity g3).
 constChargeA :: Int -> Grid -> Charge FragSort
-constChargeA _ _ = error "W3 oracle-phase stub: constChargeA"
+constChargeA k eg = CSum (constCharge eg) (CBits (arityB k))
 
 walkChargeA :: Int -> Charge FragSort
-walkChargeA _ = error "W3 oracle-phase stub: walkChargeA"
+walkChargeA k = CSum walkCharge (CBits (arityB k))
 
 guardChargeA :: Int -> Namespace -> Grid -> Grid -> Charge FragSort
-guardChargeA _ _ _ _ = error "W3 oracle-phase stub: guardChargeA"
+guardChargeA k ns g eg = CSum (guardCharge ns g eg) (CBits (arityB k))
+
+-- the atom mention against the declared codomain's positive atoms
+-- (the M1 namespace law's shape: 0 while singleton)
+arityB :: Int -> Double
+arityB k = case k - 1 of
+  1 -> 0
+  m -> logBase 2 (fromIntegral m)
 
 -- | A hypothesis IS a sentence — transparent, because hypotheses are
 -- world-declarable data (the deletion-test criterion): a derivation
@@ -449,8 +458,67 @@ enumerateSentencesGrid egPts ns extras allowed =
 -- section-1b shape: a coincidence theorem, never a branch).
 enumerateSentencesArity :: Int -> NonEmpty Double -> Namespace
                         -> [(Name, Grid)] -> [FragProd] -> [Hyp]
-enumerateSentencesArity _ _ _ _ _ =
-  error "W3 oracle-phase stub: enumerateSentencesArity"
+enumerateSentencesArity k egPts ns extras allowed =
+    consts ++ walks ++ concatMap guardFamily (("t", tauGrid) : extras)
+  where
+    eg = mkGrid "theta" egPts
+    egSp = mkSpace egPts
+    osp = obsSpaceAt k
+    atoms = [1 .. k - 1]
+    atomGrid = mkGrid "atom" (0 :| map fromIntegral atoms)
+    -- W3-ANCHOR: the spread denominator grid (K-1)
+    km1Grid = mkGrid "km1" (fromIntegral (k - 1) :| [])
+    has t = t `elem` allowed
+    dlConst = chargeBits fragWidth (constChargeA k eg)
+    dlWalk  = chargeBits fragWidth (walkChargeA k)
+    dlGuard g = chargeBits fragWidth (guardChargeA k ns g eg)
+    cAt :: Grid -> Int -> Expr env Double
+    cAt g i = case mkC g i of
+      Just e  -> e
+      Nothing -> error "enumerateSentencesArity: on-grid index refused"
+    shGrid = mkGrid "k" (0 :| [1, 2, 8])
+    k0 = cAt shGrid 0; k1 = cAt shGrid 1; k2 = cAt shGrid 2
+    kLast = cAt shGrid 3
+    eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+      where
+        trueE = Gt k1 k0
+        falseE = Gt k0 k1
+    catBody j th = Neg (Div (Log pb) (Log k2))
+      where
+        yv = ToR (Var Z)
+        jc = cAt atomGrid j
+        spreadB = Div (Sub k1 th) (cAt km1Grid 0)
+        pb = If (eqE yv jc) th spreadB
+    consts =
+      [ Hyp (Bits dlConst) sp (Code sp osp (catBody j (cAt eg t))) Nothing
+      | has FBern, has FConst, j <- atoms, t <- [0 .. gridSize eg - 1]
+      , let v = evalx (cAt eg t :: Expr '[] Double) (mkEnv [] VNil)
+      , let sp = mkSpace (v :| []) ]
+    walks =
+      [ Hyp (Bits dlWalk) egSp (Code egSp osp (catBody j (Var (S Z))))
+            (Just (walkCode w))
+      | has FWalk, has FConst, j <- atoms, w <- [0 .. gridSize rhoGrid - 1] ]
+    walkCode w = Code egSp egSp body
+      where
+        rho = cAt rhoGrid w
+        iv = Pos egSp (Var (S Z))
+        jv = Pos egSp (Var Z)
+        lo = If (Gt iv k0)    (Sub iv k1) (Add iv k1)
+        hi = If (Gt kLast iv) (Add iv k1) (Sub iv k1)
+        mass = Add (Add (If (eqE jv iv) (Sub k1 rho) k0)
+                        (If (eqE jv lo) (Div rho k2) k0))
+                   (If (eqE jv hi) (Div rho k2) k0)
+        body = Neg (Div (Log mass) (Log k2))
+    guardFamily (nm, g) =
+      [ Hyp (Bits (dlGuard g)) gsp
+            (Code gsp osp (catBody j
+               (If (Gt (Get nm) (cAt g t)) (cAt eg a) (cAt eg b))))
+            Nothing
+      | has FBern, has FIf, has FConst, has FGuardHead
+      , j <- atoms
+      , t <- [0 .. gridSize g - 1]
+      , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+    gsp = mkSpace (0.5 :| [])
 #endif
 
 -- | THE LAW'S FIRST SCHEDULED APPLICATION (the step-2 rider): drop

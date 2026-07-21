@@ -48,7 +48,9 @@ import System.IO (isEOF)
 
 import PropLang.Belief (LogProb (LogProb), entropyBits, expect, is, prob)
 import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
-                           fragFull, observe, obsSpace, predictive,
+                           enumerateSentencesArity, fragFull, observe,
+                           obsSpaceAt, agentObsSpace, predictive,
+                           sentenceAgentK, thetaPoints,
                            sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (menuAssignments)
@@ -250,6 +252,16 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       prog <- parseSaid sexp        -- FAIL-CLOSED: unparseable => bad hello
       pure (Just prog)
     Nothing -> pure Nothing
+  arK <- case oGet "obs_arity" w of
+    Nothing -> pure Nothing
+    Just (JNum v) -> do
+      -- the door discipline (D-f8 rider 1): validation at the HELLO,
+      -- fail-closed — finite, integral, K >= 2
+      True <- pure (not (isNaN v || isInfinite v))
+      let r = round v :: Int
+      True <- pure (fromIntegral r == v && r >= 2)
+      pure (Just r)
+    Just _ -> Nothing
   n0 : nrest <- pure ns
   -- RIDER 2's validation: every guard and writable name inside the
   -- declared (completed, immutable) namespace
@@ -258,8 +270,16 @@ hello st j = maybe (st, errLine "bad hello") id $ do
     then pure (st, errLine "names outside namespace")
     else do
       let nsN = mkNamespace (n0 :| nrest)
-          pop = enumerateSentencesIn nsN gs fragFull
-          ag = sentenceAgent pop
+          -- the ABSENT key is the shipped call, untouched; a DECLARED
+          -- arity (any K >= 2) is the arity route — declared-2 vs
+          -- absent is a pinned coincidence (test-arity g1b/g2), never
+          -- a branch on 2
+          pop = case arK of
+            Nothing -> enumerateSentencesIn nsN gs fragFull
+            Just k  -> enumerateSentencesArity k thetaPoints nsN gs fragFull
+          ag = case arK of
+            Nothing -> sentenceAgent pop
+            Just k  -> sentenceAgentK (obsSpaceAt k) pop
           nsb = logBase 2 (fromIntegral (length ns) :: Double)
           reply = "{\"ok\": true, \"proto\": 1, \"models\": "
                   ++ show (length pop) ++ ", \"namespace_bits\": "
@@ -308,7 +328,7 @@ tick w ag t = maybe (HostLive w ag, errLine "bad tick") id $ do
           act = case mOpts of
             Nothing   -> []
             Just opts -> choose (wUSaid w) feats ag opts
-          p1 = prob (predictive feats ag) (is obsSpace 1)
+          p1 = prob (predictive feats ag) (is (agentObsSpace ag) 1)
           hB = entropyBits (agentMeta ag)
           decPart = case mOpts of
             Nothing -> []
