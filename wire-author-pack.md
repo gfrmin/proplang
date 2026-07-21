@@ -819,3 +819,128 @@ boundary (OB-5's own row moved to LANDED@wire-w3 at this sitting,
 which is exactly the state whose target tag does not yet exist).
 The G2 stanza note advances 16 -> 17 with the arity stanza — same
 dated instrument, same record.
+
+## Part VIII — W4, wire completeness (oracle phase, opened 2026-07-21
+after the W3 close at w3-freeze-r1)
+
+### VIII.1 Scope (frozen at WIRE_PLAN §3, as ruled)
+
+(a) `parseSaid` extended to the full priced grammar — Div/Log/Exp/
+Neg; `<` composes as swapped Gt, NOT a new form unless ruled.
+(b) said@1 priced: the declared program's bits charged against the
+declared grids and returned in the hello reply; constants priced
+against a declared constant grid rather than fresh singletons — the
+grid-priced parameter latent per membrane-wire §2's original
+promise, or that promise narrowed at the sitting (stop-and-report
+if the latent proves to want an alphabet change). (c) STRUCK by
+R-W2. Zero alphabet productions throughout (WIRE_PLAN §4).
+
+### VIII.2 Opening survey (evidence rows, file:line)
+
+1. The shipped parser: `parseSaid` (Host.hs:378-402) — nine forms
+   (var 0/1, c, +, -, *, get, if / >, =), `=` already the step-9
+   If/Gt composition. Each `["c", v]` mints a fresh singleton grid
+   (`mkC (mkGrid "k" (v :| [])) 0`, Host.hs:383) — log2 1 = 0
+   content bits, issue #1's defect.
+2. The pricing mechanism ALREADY TOTAL over the target grammar:
+   `bitsIn :: KnownScope env => Namespace -> Expr env t -> Bits`
+   (Syntax.hs:559) prices any Expr namespace-relatively; the charge
+   tree covers Div/Log/Exp/Neg (Syntax.hs:508-513). W4b is
+   host-side data threading into a frozen arithmetic — zero
+   productions, confirmed at the survey.
+3. THE BYTE-PIN CONSTRAINT (load-bearing): test-outcome g4
+   (Outcome.hs:234-240) byte-pins the hello reply for a said@1
+   hello WITH a constant and NO grid key — `{"ok": ..., "models":
+   N, "namespace_bits": B}` exactly; test-unify helloB
+   (Unify.hs:271-333) likewise exercises constants with no grid
+   key. So constants-without-a-declared-grid must stay lawful and
+   their reply byte-identical: the pricing lands behind an
+   OPTIONAL utility-block key (the W3 routing shape), never as a
+   breaking change to the shipped hello.
+4. The latent's engine surface: `uAt` was RETIRED from Eval at
+   step 9; test-outcome g5 (Outcome.hs:280-305) demonstrates the
+   parameter latent as an IN-LANGUAGE COMPOSITION — the family
+   u_p over a parameter grid, prior, likelihood, posterior mixing
+   all composed test-side; the engine contributes evaluation only.
+   The wire has no evidence-to-parameter channel: g5's likelihood
+   (0.9/0.1 per approval) is supplied BY THE COMPOSER.
+
+### VIII.3 Design of record (drafted; the sitting rules)
+
+W4a — four new forms, mechanical: `["/", a, b]` -> Div, `["log",
+a]` -> Log, `["exp", a]` -> Exp, `["neg", a]` -> Neg. Everything
+else still refuses (fail-closed). `<` is NOT added: `[">", b, a]`
+says it — a SUCCESSFUL composition, so the primitivity gate's
+mirror applies (no codeword for what the grammar already says);
+the oracle demonstrates the composition extensionally.
+
+W4b — the optional constant grid, the W3 routing shape:
+- The utility block MAY carry `"cgrid": [p1, ...]` — one declared,
+  named, finite grid for the program's constants. ABSENT: the
+  shipped path byte-identically (fresh singletons, no bits in the
+  reply — survey row 3 forces this). DECLARED: every `["c", v]`
+  must sit ON the grid (the mkC door refuses off-grid; fail-closed
+  bad hello), NaN/inf points bad hello (D-f8), and the hello reply
+  gains `"utility_bits": <bitsIn nsN program>` — the frozen
+  arithmetic end to end: constants log2 |cgrid| through their
+  grid, `get` log2 |namespace| (the M1 law), operators by the
+  frozen production charges, vars by scope. R-D20: the oracle
+  imports `bitsIn` and compares the reply against it — the
+  formula is copied by call, never re-derived.
+- Declared-singleton cgrid vs absent: the priced route with
+  log2 1 = 0 constant content — the reply differs (utility_bits
+  present), so this is NOT a coincidence theorem; the pin is that
+  dl arithmetic agrees and the ACT stream is byte-equal (pricing
+  is reply economics; the point-mass decision is unchanged).
+- The grid-priced parameter latent, honest reading: the declared
+  value's GRID-POINT IDENTITY is now priced — the declaration is
+  the degenerate (point-mass) case of the latent machinery, per
+  the doctrine, and W4 delivers exactly that degenerate case.
+
+### VIII.4 The narrowing brought to the sitting (OB-8)
+
+The OPEN parameter latent — belief over the parameter moving with
+evidence — requires an evidence-to-parameter LIKELIHOOD. On this
+wire that likelihood has exactly two possible sources, and each is
+already ruled: (i) the world declares it — the tabular-likelihood
+shape, EPISTEMICS over the wire, the alignment statement's refusal
+(R-W1; W3 scoping line (a) refused the same shape for the
+observation channel — this would be its third and identical
+application); (ii) it is composed in-language — the g5 shape,
+already a demonstrated capability (Outcome.hs:280-305), living
+where the alignment statement wants it. So the narrowed promise:
+W4 lands the grid-priced DEGENERATE latent (pricing + door);
+the open latent's wire form is REFUSED in its likelihood-declared
+shape, and its lawful in-language form is registered as future
+demand under its own gate (no host has registered it; OB-15's
+coupled latents would arrive here if ruled). NO alphabet motion is
+needed for anything delivered, so no stop-and-report — but the
+narrowing itself is the author's to rule, scheduled for the W4
+freeze sitting. membrane-wire §2's bracket (the three falsified
+sentences of 2026-07-20) is then repaired to the narrowed truth at
+the same sitting (OB-7's edit; OB-10's §3 half stays until R).
+
+### VIII.5 Opening measurement (R-D21 prototype, executed
+2026-07-21; throwaway W4Proto.hs, `cabal exec ghc -isrc`)
+
+The helloB-shaped program (if (get a > c1) then (c2*var1 - c1)
+else c0; 4 constant mentions) against ns [t,z,a]:
+
+```
+shipped-singletons bits = 45.80424344959478
+declared-cgrid    bits = 52.1440934524794   (cgrid = 3 points)
+delta = 6.339850002884624  (4 x log2 3 = 6.339850002884625)
+Neg increment = 4.321928094887363   (= log2 20, the prodTable head)
+Log increment = 4.321928094887363
+Exp increment = 4.321928094887363
+Div increment = 10.228818690495881  (= log2 20 + the operand's bits)
+Get alone     = 5.906890595608519   (= log2 20 + log2 3, the M1 law)
+```
+
+Findings: (1) the frozen `bitsIn` is the whole mechanism — every
+W4b quantity is one call against the declared namespace, no new
+arithmetic anywhere; (2) the delta row shows subtraction-level fp
+divergence at the last ulp — oracle rows pin FULL bitsIn values
+(w64 two-route), never hand-computed deltas; delta rows get gates
+derived from measured floors; (3) the operator increments confirm
+prodTable 20/1 pricing reaches the said surface unchanged.
