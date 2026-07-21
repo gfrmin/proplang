@@ -1050,3 +1050,224 @@ Banked-claim check (the step-10 expiry clause): W4 relies on no
 banked composition-failure; its one negative-shaped claim ("<" has
 no codeword) is a POSITIVE composition result re-executed live in
 g1d-ii at every run — the clause's preferred form.
+
+## VIII.9 The W4 sitting — the author's rulings, verbatim (2026-07-21)
+
+Delivered in one sitting message, two movements: the first written
+against the summary as reported (with a custody note binding the
+rulings to VIII.1–VIII.6 as recorded), the second after reading
+Part VIII in full. Both quoted verbatim.
+
+> One custody note before the rulings: the pack as uploaded
+> reproduces through VII.6 — Part VIII's text isn't before me, so
+> these rulings bind to the design as recorded in VIII.1–VIII.6
+> under the precedents each item cites; if any recorded detail
+> diverges from those precedents, the divergence comes back to the
+> sitting. On the decision sheet as put:
+>
+> **(1) The key names — endorsed, each on a stated ground.** `cgrid`
+> is right because it matches the constant-grid convention already
+> frozen in the render layer — g5a's `('c','theta',8)` spelling
+> means utility constants arriving from a grid through the one `mkC`
+> door carry the `c`-grid name as their coordinate, and the wire key
+> should say what the renderer already says. `utility_bits` appended
+> to the hello reply is the `namespace_bits` reporting law applied
+> to the next declared surface: the reply prices what the hello
+> declared, same shape, same law. And record the asymmetry that
+> makes `cgrid` lawful where the θ-grid was refused, or a future
+> boundary audit will flag R-W1 against it: a grid for *belief about
+> the world's law* is the agent's representational choice and never
+> crosses the wire; a grid for *the world's own declared
+> preferences* is the declaration itself — the principal is the
+> authority on what it values and at what resolution it cares to
+> say so. Economics, not epistemics; the same statement, fourth
+> application.
+>
+> **(2) OB-8 narrowed as recommended — and the refusal's ground
+> deserves its strongest form in the ruling text.** The open
+> parameter latent's wire form requires the world to declare
+> P(evidence | utility parameter) — how its own feedback must be
+> interpreted — and that is not merely epistemics over the wire; it
+> is the door to *authored deference*: a principal that declares
+> "read my silence as approval" has written the agent's inference
+> about the principal, which is the manipulation shape the CIRL
+> structure exists to keep out of the world's hands. The world
+> declares *what* it values, at its chosen resolution; it never
+> declares *how* evidence about its values must be read. That
+> interpretation lives in-language — priced, enumerable, revisable
+> under the same posterior as everything else — which is exactly the
+> g5 composition, registered as future demand under its own gate. W4
+> ships the grid-priced degenerate latent, the D-e5 doctrine made
+> wire-real: point-mass over the declared shape, the parameter on
+> the declared grid. Narrow OB-8 so.
+>
+> **(3) `<` stays uncoded — endorsed in one sentence.** `Lt x y` is
+> `Gt y x` by argument swap: bit-identical, not merely extensional,
+> so no disagreement case exists even in principle, and a codeword
+> for an argument permutation is pure prior distortion. The deletion
+> discipline's easiest verdict to date.
+>
+> **(4) On-grid membership as parsed-value identity — endorsed, with
+> the single-door clause.** Textual identity would make `0.5` and
+> `0.50` differ (spelling, not value); a tolerance would be a
+> plucked epsilon blurring which grid point the point-mass sits on —
+> the cl4 disease at the declaration surface. Parsed-value identity
+> is deterministic, spelling-invariant, epsilon-free, and
+> fail-closed off-grid per the D-f8 door discipline. The clause the
+> pin must state: the constant and the grid pass through the *same*
+> parse site — one JSON-to-Double door, so no two parsers can
+> disagree about one literal. If the implementation has two parse
+> sites, that is the defect the row exists to catch.
+>
+> **(5) The inventory find — bracket repair endorsed, with the
+> demand homed rather than orphaned.** Frozen prose describing an
+> unshipped per-tick utility read is falsified text; repair in place
+> with dated provenance, per the form. But "implementation on
+> demand" should not float free: a per-tick utility revision is the
+> principal changing its declaration mid-episode, which is the
+> *same class* as mid-episode K growth — so the bracket cites
+> OB-11's ruling-pending family and the demand registers beside it,
+> one doctrine for one class of mid-episode declaration change. When
+> that ruling comes, it answers both faces at once.
+>
+> **(6) The delegated frozen-edit list — proceed as enumerated**,
+> membrane-wire §2's bracket repaired to the as-ruled truth with the
+> ruling quoted, OB-6/7 to LANDED, OB-8 per ruling (2), stanza and
+> manifest rows in the standard form, the author's re-tag closing
+> the increment under R-D22.
+>
+> For the record alongside: this increment completes the wire's
+> declared-surface doctrine in its four-refusal form — no vocabulary
+> key, no tabular likelihood, no evidence-interpretation, no host
+> priors — with the two lawful declarations (codomain and
+> preferences) each priced by the law that priced everything else.
+> The alignment statement has now refused epistemics in every
+> direction the wire could carry it and admitted economics in both
+> directions it should, which is what "the world declares economics,
+> never epistemics" looks like when it has been enforced four times
+> rather than written once. Freeze on these rulings.
+
+The second movement, after Part VIII in full:
+
+> Yes — Part VIII in full, and it confirms the summary was faithful:
+> the six rulings bind as given, every cited precedent checks out,
+> and two of my conditional clauses turn out to be already satisfied
+> by the recorded design. Specifically: ruling 4's single-door
+> demand is met by the register's own wording — "exact equality of
+> two doubles parsed from the *same JSON number grammar*" — so the
+> pin freezes as written; and the byte-pin constraint (survey row 3)
+> forces exactly the optional-key routing the design chose, with the
+> absent route byte-identical because two frozen suites already pin
+> it. Four additions from the full text, none blocking:
+>
+> **First, the asymmetry line still needs recording — the pack
+> doesn't carry it.** VIII.4 states the refusal's mechanics; it
+> doesn't state why `cgrid` is lawful where the θ-grid was refused.
+> The sentence from ruling 1 rides into the freeze: a grid for
+> belief about the world's law is the agent's representation and
+> never crosses the wire; a grid for the world's *own declared
+> preferences* is the declaration itself. Without that sentence in
+> membrane-wire §2's repaired bracket, the next boundary audit will
+> flag R-W1 against `cgrid` and be right to ask.
+>
+> **Second, g2a's second route is a chain, and the row comment
+> should say so.** The oracle compares the reply against its own
+> call to `bitsIn` — one arithmetic called twice, which proves the
+> host threads the right arguments (and the ablation's
+> namespace-leak firing shows that's real content) but cannot
+> convict `bitsIn` itself. It doesn't need to: `bitsIn`'s truth is
+> pinned two-route in test-pricing, so g2a's verification is
+> *chained* through the frozen suite. State the chain in the comment
+> — "second route by composition via test-pricing" — so no reader
+> mistakes g2a for self-verification.
+>
+> **Third, the okPrefix conviction deserves its name, because it
+> identifies a defect class the red run structurally cannot catch.**
+> A helper too strict on the green side is invisible in red — the
+> row fails for the right reason and would then fail forever for the
+> wrong one. The two-run structure is load-bearing in *both*
+> directions: red catches rows that cannot fire; SAT catches rows
+> that cannot pass. Record that sentence as precedent beside the
+> "green that cannot fail" and "red that cannot fire" lessons — it
+> completes the triptych. And g2d's conviction earns a wry line in
+> the record: the draft ignored the shape its own VIII.5 measurement
+> had printed two sections earlier — a measurement not consulted is
+> a measurement not yet made.
+>
+> **Fourth, two endorsements of form.** The refusal to claim a
+> coincidence theorem for declared-singleton-versus-absent — the
+> replies differ by design, so the pin is dl-agreement plus
+> act-stream byte-equality, coincidence claimed only where true — is
+> the W3 precedent applied with exactly the discrimination it
+> demanded. And the banked-claim check's closing observation is the
+> expiry clause's best form yet: W4's one negative-shaped claim
+> ("`<` has no codeword") is not banked at all — it is re-executed
+> as a *positive* composition, live, in g1d-ii, at every run of the
+> suite. A negative result that re-proves itself on every green run
+> can never go stale, which is the terminal state the expiry clause
+> exists to push claims toward.
+>
+> With those four folded in — the asymmetry sentence into the §2
+> repair, the chain comment on g2a, the triptych line into the
+> precedent record, and the register otherwise as ruled — the W4
+> freeze proceeds on the existing rulings under the delegated edit
+> list. The wire closes complete: nine forms grown to thirteen, all
+> fail-closed; one optional grid priced by the one arithmetic; the
+> declared surface's four refusals and two admissions each enforced
+> by a row rather than remembered by anyone. Freeze it.
+
+### The precedent record (the sitting's third addition, recorded here)
+
+THE TWO-RUN TRIPTYCH: a green that cannot fail is the mirror image
+of the red that cannot fire (the step-7 instrument law); and a
+helper too strict on the GREEN side is invisible in red — the row
+fails for the right reason and would then fail forever for the
+wrong one. The two-run structure is load-bearing in BOTH
+directions: RED catches rows that cannot fire; SAT catches rows
+that cannot pass. Provenance: the W4 okPrefix conviction (VIII.8),
+named at the W4 sitting. Candidate for canonization into CLAUDE.md
+at a future boundary the author elects — the pack records it; only
+the author's key canonizes it.
+
+## VIII.10 The freeze execution record (2026-07-21, under ruling 6's delegation)
+
+Edits executed, in order:
+
+1. test-said/Said.hs — the g2a chain comment added pre-seal (the
+   sitting's addition 2, verbatim intent: "second route by
+   composition via test-pricing"; the row proves argument-threading,
+   bitsIn's truth chains through the frozen test-pricing suite).
+2. membrane-wire.md §2 — the utility bullet re-stated to the shipped
+   truth (cgrid optional key, parsed-value identity through the one
+   JSON-number door, utility_bits reply, thirteen forms, the `<`
+   refusal, absent-route byte-identity, degenerate latent per the
+   OB-8 narrowing); the 2026-07-20 bracket superseded by the W4
+   bracket carrying ruling 1's asymmetry sentence VERBATIM (the
+   sitting's addition 1) and ruling 2's refusal ground VERBATIM.
+3. membrane-wire.md §3 — the per-tick utility sentence bracketed as
+   UNSHIPPED, its demand homed beside OB-11's mid-episode
+   declaration-change family (ruling 5).
+4. proplang.cabal — the said stanza appended (text = the manifest'd
+   stanza.cabal.draft), W4 provenance comment.
+5. OBLIGATIONS.md — OB-6/OB-7 -> LANDED@wire-w4 with oracle
+   provenance; OB-8 narrowed in its own row text per ruling 2,
+   -> LANDED@wire-w4.
+6. MANIFEST.sha256 — three rows re-signed (proplang.cabal,
+   membrane-wire.md, OBLIGATIONS.md), three rows appended
+   (test-said/Said.hs, test-said/stanza.cabal.draft,
+   test-said/ablation/run.sh): 79 rows, `sha256sum -c` clean.
+7. The triptych precedent recorded at VIII.9's tail (the sitting's
+   addition 3) — pack-recorded; canonization into CLAUDE.md remains
+   the author's own future act.
+
+prefreeze-lint at the seal: 0 FAIL, 10 WARN (the standing L6
+advisory set, unchanged since step 6); L3 79 rows verified; L4 46
+tags verify; L7 full-corpus overlay build green — test-said/Said.hs
+now builds through its own stanza (compile-green, runtime-red by
+design until implementation).
+
+Custody: the freeze commit is builder-key signed; the seal tag
+w4-freeze-r0 is made with the BUILDER key under the sitting's
+recorded delegation (quoted verbatim in the tag message, the
+membrane precedent); the author's own re-tag (w4-freeze-r1) closes
+the increment under R-D22 after implementation green.

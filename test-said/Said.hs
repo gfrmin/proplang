@@ -232,7 +232,15 @@ progMeasured = If (Gt (Get "a") (cAt cg 1))
 
 g2Pricing :: TestTree
 g2Pricing = testGroup "g2 the pricing route: the declared cgrid prices through the one arithmetic"
-  [ testCase "g2a the priced hello reply carries utility_bits == the frozen bitsIn (byte-pinned)" $ do
+  [ -- Second route by composition via test-pricing (the sitting's
+    -- addition, 2026-07-21): this row calls the same frozen bitsIn the
+    -- host calls — one arithmetic, called twice — so it proves the host
+    -- threads the RIGHT ARGUMENTS (namespace, parsed program), never
+    -- that bitsIn is true. bitsIn's truth is pinned two-route in
+    -- test-pricing; g2a's verification CHAINS through that frozen
+    -- suite. The ablation's namespace-leak firing is the proof the
+    -- argument-threading content is real.
+    testCase "g2a the priced hello reply carries utility_bits == the frozen bitsIn (byte-pinned)" $ do
       let (_, r) = serveLine hostStart
             (helloWith ("{\"form\": \"said@1\", \"cgrid\": [0, 1, 2], \"said\": "
                         ++ progMeasuredJson ++ "}"))

@@ -101,37 +101,58 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   "<name>"]` reads the tick's features — UTILITY READS FEATURES,
   because features are the consequences (the step-8 repeal). The
   declaration is a POINT-MASS PRIOR over the program shape with the
-  grid-priced parameter latent (the declared-table-as-point-mass-
-  latent doctrine, applied to the first program this wire ingests):
-  a table is the degenerate case of the latent machinery, never a
-  parallel mechanism. Unparseable or unpriceable declarations are
-  validation failures — FAIL-CLOSED. A hello with no utility block
-  is lawful; decision ticks then choose `wait`. No formula language
-  exists on this wire: a program is DATA, priced through the one
-  mechanism — the arithmetic-free boundary stays where the record put
-  it.
+  parameter on its declared grid — the GRID-PRICED DEGENERATE LATENT
+  (the declared-table-as-point-mass-latent doctrine made wire-real;
+  the OB-8 narrowing, ruled 2026-07-21): a table is the degenerate
+  case of the latent machinery, never a parallel mechanism. The
+  utility block MAY carry an optional `"cgrid"` key — a nonempty
+  array of finite JSON numbers, the world's declared constant grid.
+  When present, every `["c", v]` in the program must sit ON the grid
+  by PARSED-VALUE IDENTITY: the constant and the grid pass through
+  the same JSON-number door, one parse site, exact equality of the
+  parsed doubles — spelling-invariant, epsilon-free, fail-closed
+  off-grid (the D-f8 door discipline; a tolerance would be the cl4
+  disease at the declaration surface). The hello reply then carries
+  `"utility_bits"`: the declared program's price under the one
+  arithmetic (`bitsIn` against the declared namespace and grids) —
+  the `namespace_bits` reporting law applied to the next declared
+  surface. When `cgrid` is ABSENT, each constant is its own
+  singleton grid (0 content bits) and the reply is byte-identical to
+  the pre-W4 wire. The full priced grammar parses: thirteen forms
+  (`if > + - * / log exp neg c var get`); `<` has NO codeword — `Lt
+  x y` IS `Gt y x` by argument swap, bit-identical, so a codeword
+  would be pure prior distortion. Unparseable or unpriceable
+  declarations are validation failures — FAIL-CLOSED. A hello with
+  no utility block is lawful; decision ticks then choose `wait`. No
+  formula language exists on this wire: a program is DATA, priced
+  through the one mechanism.
 
-  > **[Dated repair — the wire boundary opening, 2026-07-20;
-  > issues #1 and #3; falsified sentences quoted in place.]**
-  > Three sentences above overstate what ships at `7da274b`:
-  > (1) *"priced like any sentence"* — parsing holds, pricing does
-  > NOT: the shipped `parseSaid` gives every constant a fresh
-  > singleton grid (`Host.hs:363`, log2 1 = 0 content bits) and
-  > `Host.hs` never computes `bits` for the declared program; a
-  > baroque declaration costs what a trivial one costs. (2) *"with
-  > the grid-priced parameter latent"* — no latent exists on the
-  > wire: the world holds the program as a bare expression
-  > (`wUSaid`), a point mass, full stop. (3) *"or unpriceable
-  > declarations are validation failures"* — vacuous while nothing
-  > is priced. Additionally the wire under-exposes the priced
-  > grammar: `Div/Log/Exp/Neg` are priced productions
-  > (`Syntax.hs`) with no `said@1` form, and *"the arithmetic-free
-  > boundary stays where the record put it"* reads as if that
-  > boundary still stood — it fell at step 1. W4 of WIRE_PLAN.md
-  > implements what these sentences promise (author's ruling,
-  > 2026-07-20: implement); this bracket is the truth of the wire
-  > until the W4 freeze re-states it, and the promised sentences
-  > above bind W4's oracle, not today's callers.
+  > **[Dated repair — the W4 freeze, 2026-07-21; supersedes the
+  > 2026-07-20 bracket, whose falsified promises land here as
+  > shipped truth; author's rulings quoted.]** Why `cgrid` is
+  > lawful where the emission grid was refused (recorded against
+  > the next boundary audit, per ruling 1): *"a grid for belief
+  > about the world's law is the agent's representational choice
+  > and never crosses the wire; a grid for the world's own declared
+  > preferences is the declaration itself — the principal is the
+  > authority on what it values and at what resolution it cares to
+  > say so. Economics, not epistemics; the same statement, fourth
+  > application."* And why the parameter latent ships DEGENERATE
+  > and no further (the OB-8 narrowing, ruling 2): the open
+  > parameter latent's wire form *"requires the world to declare
+  > P(evidence | utility parameter) — how its own feedback must be
+  > interpreted — and that is not merely epistemics over the wire;
+  > it is the door to authored deference: a principal that declares
+  > 'read my silence as approval' has written the agent's inference
+  > about the principal, which is the manipulation shape the CIRL
+  > structure exists to keep out of the world's hands. The world
+  > declares WHAT it values, at its chosen resolution; it never
+  > declares HOW evidence about its values must be read."* That
+  > interpretation lives in-language — priced, enumerable,
+  > revisable under the posterior — the test-outcome g5
+  > composition, registered as future demand under its own gate.
+  > This section's promise of a parameter latent is NARROWED to the
+  > degenerate form accordingly.
 - The host sets NO priors: the terminal set is not on the wire; the
   prior over explanations is 2^(-dl) through the one prior source.
 - Value pricing (step 7, M5 repealed): an action value prices at
@@ -196,6 +217,18 @@ the verdict (waste polarity: 1 = approve):
 - `"utility"` on a tick is the per-request profile: a FULL
   replacement `said@1` declaration for this tick only (the internal
   row died with the sentinel at step 5).
+  > **[Dated repair — the W4 freeze, 2026-07-21; the frozen-layer
+  > inventory's find, falsified sentence above.]** UNSHIPPED: the
+  > shipped `tick` handler reads no utility key — this sentence
+  > describes a capability no code implements and no oracle pins.
+  > It is not deleted, because the demand has a home (ruling 5): a
+  > per-tick utility revision is the principal changing its
+  > declaration mid-episode, the SAME CLASS as mid-episode K growth
+  > — OB-11's ruling-pending family (issue #10). The demand
+  > registers beside OB-11; one doctrine for one class of
+  > mid-episode declaration change, and when that ruling comes it
+  > answers both faces at once. Until then hosts must not send
+  > per-tick utility and must treat this bullet as future surface.
 - Ordering ruling (register 8.2): evidence conditions in ARRIVAL
   order — live equals replay. Stated facts, not bugs: hmm-family
   latents advance one step per EVIDENCE tick (their clock is the

@@ -367,3 +367,19 @@ test-suite arity
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- W4 (the said increment, wire boundary): frozen at the W4 sitting
+-- 2026-07-21 on the author's rulings + four additions
+-- (wire-author-pack.md VIII.9); stanza text =
+-- test-said/stanza.cabal.draft (manifest row). Red on the shipped
+-- wire (13/17) until W4 implementation lands.
+test-suite said
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Said.hs
+    hs-source-dirs:   test-said
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
