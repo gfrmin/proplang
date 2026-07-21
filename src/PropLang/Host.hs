@@ -42,11 +42,13 @@ import PropLang.Belief (Belief, top)
 
 #if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
 import Data.Char (isDigit)
+import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
 import System.IO (isEOF)
 
-import PropLang.Belief (LogProb (LogProb), entropyBits, expect, is, prob)
+import PropLang.Belief (Bits (Bits), LogProb (LogProb), entropyBits,
+                        expect, is, prob)
 import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
                            enumerateSentencesArity, fragFull, observe,
                            obsSpaceAt, agentObsSpace, predictive,
@@ -54,7 +56,7 @@ import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
                            sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
 import PropLang.Membrane (menuAssignments)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), Name,
+import PropLang.Syntax (Expr (..), Grid, Idx (..), Name, bitsIn,
                         mkC, mkGrid, mkNamespace)
 #endif
 
@@ -245,12 +247,26 @@ hello st j = maybe (st, errLine "bad hello") id $ do
   menu <- case oGet "menu" w of
     Just (JArr ms) -> mapM pairGrid ms
     _              -> Just []
-  uSaid <- case oGet "utility" w of
+  uSaidB <- case oGet "utility" w of
     Just u -> do
       JStr "said@1" <- oGet "form" u
       sexp <- oGet "said" u
-      prog <- parseSaid sexp        -- FAIL-CLOSED: unparseable => bad hello
-      pure (Just prog)
+      -- W4b: the OPTIONAL constant grid (the W3 routing shape). ABSENT
+      -- = the shipped path byte-identically (fresh singleton constants,
+      -- no bits in the reply); DECLARED = constants must sit ON the
+      -- grid, NaN/inf points bad hello (D-f8), and the reply carries
+      -- utility_bits from the one frozen arithmetic.
+      case oGet "cgrid" u of
+        Nothing -> do
+          prog <- parseSaid sexp    -- FAIL-CLOSED: unparseable => bad hello
+          pure (Just (prog, False))
+        Just (JArr ptsJ) -> do
+          pts <- mapM jNum ptsJ
+          True <- pure (all (\v -> not (isNaN v || isInfinite v)) pts)
+          p0 : prest <- pure pts
+          prog <- parseSaidIn pts (mkGrid "u" (p0 :| prest)) sexp
+          pure (Just (prog, True))
+        Just _ -> Nothing
     Nothing -> pure Nothing
   arK <- case oGet "obs_arity" w of
     Nothing -> pure Nothing
@@ -281,9 +297,16 @@ hello st j = maybe (st, errLine "bad hello") id $ do
             Nothing -> sentenceAgent pop
             Just k  -> sentenceAgentK (obsSpaceAt k) pop
           nsb = logBase 2 (fromIntegral (length ns) :: Double)
+          uSaid = fmap fst uSaidB
+          ubPart = case uSaidB of
+            Just (prog, True) ->
+              -- W4-ANCHOR: the namespace-relative pricing call
+              let Bits ub = bitsIn nsN prog
+              in ", \"utility_bits\": " ++ show ub
+            _ -> ""
           reply = "{\"ok\": true, \"proto\": 1, \"models\": "
                   ++ show (length pop) ++ ", \"namespace_bits\": "
-                  ++ show nsb ++ "}"
+                  ++ show nsb ++ ubPart ++ "}"
       pure (HostLive (World menu uSaid) ag, reply)
   where
     pairGrid g = do
@@ -376,15 +399,32 @@ choose (Just u) feats ag opts =
 -- priced like any sentence; anything else refuses (fail-closed, the
 -- ruled doctrine)
 parseSaid :: J -> Maybe (Expr '[Double, Double] Double)
-parseSaid = pE
+parseSaid = parseSaidWith (\v -> mkC (mkGrid "k" (v :| [])) 0)
+
+-- W4b: the cgrid-bound parse — every ["c", v] must sit ON the declared
+-- grid (index by declared-point identity); off-grid refuses.
+parseSaidIn :: [Double] -> Grid -> J -> Maybe (Expr '[Double, Double] Double)
+parseSaidIn pts g = parseSaidWith (\v -> do
+  i <- elemIndex v pts
+  mkC g i)
+
+parseSaidWith :: (Double -> Maybe (Expr '[Double, Double] Double))
+              -> J -> Maybe (Expr '[Double, Double] Double)
+parseSaidWith kc = pE
   where
     pE (JArr [JStr "var", JNum 0]) = Just (Var Z)
     pE (JArr [JStr "var", JNum 1]) = Just (Var (S Z))
-    pE (JArr [JStr "c", JNum v]) = mkC (mkGrid "k" (v :| [])) 0
+    pE (JArr [JStr "c", JNum v]) = kc v
     pE (JArr [JStr "+", a, b]) = Add <$> pE a <*> pE b
     pE (JArr [JStr "-", a, b]) = Sub <$> pE a <*> pE b
     pE (JArr [JStr "*", a, b]) = Mul <$> pE a <*> pE b
     pE (JArr [JStr "get", JStr nm]) = Just (Get nm)
+    -- W4a: the full priced grammar reaches the wire (WIRE_PLAN W4 (a));
+    -- "<" is NOT a form — [">", b, a] says it (successful composition)
+    pE (JArr [JStr "/", a, b]) = Div <$> pE a <*> pE b
+    pE (JArr [JStr "log", a]) = Log <$> pE a
+    pE (JArr [JStr "exp", a]) = Exp <$> pE a
+    pE (JArr [JStr "neg", a]) = Neg <$> pE a
     pE (JArr [JStr "if", c, t, e]) = If <$> pB c <*> pE t <*> pE e
     pE _ = Nothing
     pB (JArr [JStr ">", a, b]) = Gt <$> pE a <*> pE b

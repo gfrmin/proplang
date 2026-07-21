@@ -1271,3 +1271,23 @@ w4-freeze-r0 is made with the BUILDER key under the sitting's
 recorded delegation (quoted verbatim in the tag message, the
 membrane precedent); the author's own re-tag (w4-freeze-r1) closes
 the increment under R-D22 after implementation green.
+
+## VIII.11 Implementation green (2026-07-21) — awaiting the author's re-tag
+
+The overlay design re-landed into src verbatim (Host.hs the only
+changed file; diff = exactly the W4 surface: parseSaidWith family,
+four new forms with the `<` refusal comment, the optional cgrid
+route through one JSON-number door, the W4-ANCHOR pricing call,
+utility_bits appended last). Witness set on the implemented tree:
+
+- cabal test all: 18/18 suites PASS first run (said 17/17 — the
+  seventh consecutive first-run transcription).
+- test-said/ablation/run.sh vs REAL src: tripwire fires on g2a and
+  g2c, g2b and g4a stay green — attribution partitioned as frozen.
+- MANIFEST.sha256: 79/79 verified.
+- prefreeze-lint post-implementation: 0 FAIL, 10 standing WARN;
+  L1 tokens clean over the changed src; L7 full-corpus build green
+  against the NEW src; 47 tags verify (w4-freeze-r0 among them).
+
+CLOSURE OWED (R-D22): the author's own re-tag w4-freeze-r1 over the
+implementation commit; the increment does not close until it exists.
