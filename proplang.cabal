@@ -352,3 +352,18 @@ test-suite refine
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- W3 (the arity increment, wire boundary): frozen at the W3 sitting
+-- 2026-07-21 on the author's rulings (wire-author-pack.md VII.7);
+-- stanza text = test-arity/stanza.cabal.draft (manifest row). Red
+-- against oracle-phase stubs until W3 implementation lands.
+test-suite arity
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Arity.hs
+    hs-source-dirs:   test-arity
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

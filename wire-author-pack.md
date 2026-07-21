@@ -507,7 +507,19 @@ issue #10, OB-11, RULING-PENDING, untouched here; (c) the
 preposterior over K observations — composes in-language via Expect
 (step 10's theorem), not W3 scope; (d) answer-brain's P_NONE = 0.5
 prior — the dl-prior prices null-reading sentences by derivation;
-the host sets no priors (HOSTS_PLAN §4.2's line, still binding).
+the host sets no priors (HOSTS_PLAN §4.2's line, still binding);
+(e) [added at the freeze sitting, ruling 1, 2026-07-21] the
+null-dominant sparse channel at K >= 3 — with the spread uniform
+over the K-1 non-distinguished atoms INCLUDING the null, the null
+atom's predictive mass is structurally capped at 1/(K-1) for every
+sentence and every mixture, so a channel that mostly emits nothing
+has no good hypothesis in this family and never will. This is the
+correct minimal, Cromwell-safe choice (the one-versus-null
+alternative buys the sparse channel at the price of hard zeros on
+the other atoms, which g4b rightly forbids), and it is a DECLARED
+LIMITATION in the R-D23 sense: the richer family — a second,
+null-rate parameter — is its named, demand-gated heir. At K=2 the
+cap is vacuous; nothing shipped is touched.
 
 ### VII.3 The oracle (test-arity/, 8 groups)
 
@@ -644,3 +656,166 @@ Model layer at all; it is enumerator data end to end).
    concentrated-vs-uniform ordering plus the bound.
 3. **g5a's placeholder replaced** by the renderer-derived literal
    (above), per the drafted derivation plan.
+
+### VII.7 The freeze sitting (2026-07-21) — the author's rulings,
+recorded verbatim
+
+The author ruled on the VII.4 register, in its order. The rulings
+below are the author's words, unedited; the builder's execution
+notes follow in brackets where an edit was ordered.
+
+> **1. The null-atom convention — endorsed, with the strongest
+> ground promoted to first place.** The three cited grounds are
+> consonance; the *forcing* ground is the K=2 anchor: g2b demands
+> the arity-2 family be `bernBody` bit-exactly, bernBody's
+> background is 0, and the convention is then the unique extension —
+> any other null atom breaks the coincidence theorem before it is
+> stated. Record it as forced by the anchor, corroborated by the
+> three pinned laws, with the pricing consequence (log2(K-1), zero
+> at the default by the M1 singleton shape) as the derivation it
+> is. And the endorsement carries one *addition to the scoping
+> lines*, because the family's shape has a printable consequence
+> nobody has printed: with the spread uniform over the K-1
+> non-distinguished atoms *including the null*, the null's
+> predictive mass is structurally capped at 1/(K-1) for every
+> sentence and every mixture — a null-dominant sparse channel at
+> K >= 3 (a channel that mostly emits nothing) has no good
+> hypothesis in this family and never will. That is the correct
+> minimal, Cromwell-safe choice — the one-versus-null alternative
+> buys the sparse channel at the price of hard zeros on the other
+> atoms, which g4b rightly forbids — but the cap is a declared
+> limitation in the R-D23 sense: print it as the fifth scoping
+> line, with the richer family (a second, null-rate parameter)
+> named as its demand-gated heir. At K=2 the cap is vacuous, so
+> nothing shipped is touched.
+>
+> **2. `"obs_arity"`, flat in `world` — endorsed.** The name states
+> the OB-5 language, the placement sits beside the namespace and
+> menu where world structure lives, and the fail-closed validation
+> (integral, K >= 2, else bad hello) is the D-f8 door discipline
+> applied before the defect class can exist. g7c's rejection rows
+> are the pin.
+>
+> **3. j-outermost — endorsed as a declared, recorded coordinate.**
+> The D2 lesson is honoured by declaration rather than accident,
+> and the choice earns its keep twice: each j-block is internally
+> the shipped layout, so the arity-2 block coincides positionally
+> with the frozen enumeration, and positions decompose readably —
+> g5a's index 17 = (j=2 block, theta=0.9) is a coordinate a
+> reviewer can parse without the enumerator. A fresh coordinate
+> whose positions carry meaning is the best available outcome for
+> an artifact that must be arbitrary somewhere.
+>
+> **4. The VII.2 scoping lines — recorded as the answer to issue
+> #9's remainder, with the tabular-log-density refusal singled out
+> as the alignment statement's cleanest application to date.** A
+> host-supplied likelihood table is the world declaring the
+> channel's *law* — epistemics over the wire, the exact thing R-W1
+> exists to refuse — and the family living in-language, priced by
+> the one arithmetic, is what "the world declares economics, never
+> epistemics" means when it costs something to mean it. Lines (b),
+> (c), (d) are correctly homed: mid-episode growth to OB-11's
+> pending ruling, the K-preposterior to step 10's composition
+> theorem, and the P_NONE prior refused because the dl-prior
+> already prices null-reading sentences by derivation and hosts set
+> no priors. With the fifth line from ruling 1, the register is the
+> honest perimeter of what W3 delivers.
+>
+> **5. The frozen edits — proceed under the delegation as listed**,
+> with one consistency note for the membrane-wire §3 edit: "p1 =
+> P(atom 1) at any arity" is the null convention's own corollary
+> and should cite it, so the diagnostic's meaning and the
+> codomain's background are one recorded fact, not two adjacent
+> ones.
+>
+> **6. observeCounts stays binary-reading — endorsed, with one
+> precision the line must carry.** The verb's semantics is fixed
+> and remains *lawful* at any arity: it asserts n1 observations of
+> atom 1 and n0 of atom 0, and every such assertion is scoreable
+> evidence under the K-ary family. What it is *not*, at K > 2, is
+> the stream's sufficient collapse — the K-ary family's sufficient
+> statistic is per-sentence (count of j versus rest), and a
+> two-atom count pair does not summarize a K-ary stream. Say both
+> halves: lawful as it stands, insufficient as a collapse, and the
+> count-vector verb is future demand under its own gate, not
+> smuggled here. A verb whose domain quietly narrowed relative to
+> its name is the gBoundary class; the register line stating the
+> narrowing is what keeps it out of that class.
+>
+> For the record beside the rulings: the g7d repair deserves its
+> sentence in the pack — *a mirror is subject to the same
+> world-declaration the wire is* — as the probe-discipline clause's
+> furthest extension yet; the seeded runner's render-pin
+> deliberately not firing, with the reason stated (renders carry
+> grid name and index, so the mutation is visible only
+> extensionally), is the sharpest one-line argument for extensional
+> pins this project has produced; and the banked K-ary claim
+> surviving re-execution *stronger* than when banked — enumerator
+> data end to end, no Model layer even available to change — is the
+> expiry clause returning a verdict of innocence for once, which is
+> worth as much as its convictions. Freeze on these rulings; the
+> transcript is complete and the window has done its work.
+
+Execution notes (the builder, same sitting, under the delegation):
+ruling 1's fifth scoping line added as VII.2(e); ruling 6's
+two-halves precision is register line 6's recorded reading (lawful
+at any arity as an assertion about atoms 1 and 0; NOT a sufficient
+collapse at K > 2; the count-vector verb future demand under its
+own gate); ruling 5's consistency note applied — the §3 edit cites
+the null convention as the p1 sentence's derivation. Frozen edits
+executed: membrane-wire §2 (the `obs_arity` bullet, R-W1's line
+quoted) and §3 (the p1 corollary bullet); WIRE_PLAN §8's three
+OWED marks repaired to DISCHARGED with wire-rulings-r1 named (the
+frozen-layer inventory's first W3 row); OBLIGATIONS OB-5 ->
+LANDED@wire-w3; the arity stanza into proplang.cabal;
+MANIFEST.sha256 extended to cover test-arity/ and re-signed over
+the amended frozen files. Transcripts of the pre-freeze lint and
+the boundary-audit rows follow in VII.8.
+
+### VII.8 The freeze transcripts (pre-freeze lint + boundary audit,
+run at the W3 sitting, 2026-07-21, after the sitting's edits)
+
+Pre-freeze lint (tools/prefreeze-lint.sh, verbatim result line):
+
+```
+PASS  L1 forbidden-tokens-by-glob: 8 src files clean
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 76 rows verified
+PASS  L4 all 44 tags verify
+PASS  L5 wire-author-pack.md records the four stanza flags (incl. -Werror)
+WARN  L6 x10 (the standing thetaPoints/tauPoints/rhoPoints literal
+      advisories in the Phase-1 frozen tests and fixture generators
+      — pre-existing, unchanged from the wire-rulings-r0 run)
+PASS  L7 full-corpus overlay build: every test .hs builds against src
+      (test-arity now stanza'd, so the corpus row covers it; it
+      BUILDS against the oracle-phase stubs and is red-by-design
+      until W3 implementation)
+=== prefreeze-lint: 0 FAIL, 10 WARN ===
+```
+
+Boundary-audit rows (tools/boundary-audit.sh; flags are triage
+inputs, never verdicts):
+
+```
+M5-row: FLAG D-c4 cited 4 times, candidate definition lines: 0
+H-row:  FLAG gauss / observe_batch / residual_mean / residuals
+OB-row: 0 flagged
+note:   test-writeup/check.sh G2 asserts 8 cabal stanzas; cabal now
+        has 17 (dated red-by-design instrument, recorded)
+=== boundary-audit done: M5=1 H=4 OB=0 ===
+```
+
+Triage: the D-c4 flag is the screen's shape heuristic missing a
+real definition site — D-c4 is DEFINED at unify-author-pack.md:173
+(the step-7 sitting's ruling table; table-row form, not the
+definition shape the grep recognizes); cited from E-c3/E-c2 notes
+and R_SCOPE.md:137. No action; the flag joins D-g5's precedent
+(prose/table definitions are the human sweep's half). The four
+H-row symbols are the opening run's known flags, unchanged: they
+live in membrane-wire.md's HISTORICAL sections 4-6, bracketed as
+binding on nothing current — the historical bracket working as
+intended. OB-row clean: no open obligation against a closed
+boundary (OB-5's own row moved to LANDED@wire-w3 at this sitting,
+which is exactly the state whose target tag does not yet exist).
+The G2 stanza note advances 16 -> 17 with the arity stanza — same
+dated instrument, same record.

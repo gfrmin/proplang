@@ -62,6 +62,30 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   name at the FIRST point of its grid (structural), and argmaxEU
   ties resolve first-listed (CL-3) — so wait, the option space's
   head by construction, keeps ties.
+- `obs_arity` (OPTIONAL; W3, the arity freeze, 2026-07-21;
+  delegated edit, wire-author-pack.md Part VII): the world MAY
+  declare the observation channel's arity — `"obs_arity": K`, flat
+  in `world`, K integral and >= 2. ABSENT means the shipped binary
+  channel, bit-identically (the shipped call path untouched). The
+  key declares the CODOMAIN, under R-W1's ruled line: "the wire may
+  declare the codomain of observation — what the channel can emit —
+  never the support of belief about the channel's law." The
+  codomain is atoms 0..K-1 with atom 0 the NULL emission (forced by
+  the K=2 anchor: the arity-2 family must be `bernBody` bit-exactly
+  and bernBody's background is 0 — the freeze sitting's ruling 1).
+  The channel's LAW stays in-language: per-atom concentration
+  sentences distinguishing one positive atom j in {1..K-1} at rate
+  theta, the remaining mass spread uniformly, the atom mention
+  priced log2(K-1) by the namespace law (zero at the default — the
+  M1 singleton shape, so shipped prices cannot move). Malformed
+  declarations (non-integral, K < 2, non-finite) are validation
+  failures — FAIL-CLOSED. A declared K=2 coincides with the absent
+  key EXTENSIONALLY (pinned byte-equal/bit-equal by test-arity g1b/
+  g2, never a branch). Declared limitation (R-D23): the null atom's
+  predictive mass is capped at 1/(K-1) by the family's shape, so a
+  null-dominant sparse channel at K >= 3 has no good hypothesis
+  here; the richer two-parameter family is its demand-gated heir
+  (wire-author-pack.md VII.2(e)).
 - DISJOINTNESS (ruling D-b2, the step-7 conformance sentence): the
   names a world publishes as tick features and its writable names
   are DISJOINT sets — the stream is the world's document, one
@@ -181,6 +205,13 @@ the verdict (waste polarity: 1 = approve):
   verdict outside the observation space): `{"error":
   "impossible-evidence"}`, agent UNCHANGED. The host decides what
   fail-open means at transport level; the wire never defaults it.
+- `p1` in a decision reply is P(atom 1) at ANY arity (W3, the arity
+  freeze, 2026-07-21). This is the null-atom convention's own
+  corollary, not a separate choice: atom 0 is the null emission
+  (section 2's `obs_arity` bullet), so atom 1 is the distinguished
+  positive event the diagnostic always read — the diagnostic's
+  meaning and the codomain's background are ONE recorded fact.
+  Pinned against the predictive by test-arity g7d.
 - Choice encoding: `"act"` is the full assignment object,
   `{<writable-name>: <value>, ...}` — one value per name published
   this tick (the empty object when no menu is published: the empty

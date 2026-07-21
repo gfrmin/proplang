@@ -418,12 +418,23 @@ The greps behind §0's "verified" column, re-runnable:
 
 | tag | commit | delegation | author re-tag |
 |---|---|---|---|
-| wire-open-r0 | the opening commit (this file's landing) | "open boundary and implement... also understand why these issues arose", author, 2026-07-20, recorded verbatim in the tag message | OWED (R-D22) |
-| wire-w2-r0 | same commit (the step-2 single-tag-close precedent; W2 executed at the opening) | same delegation | OWED (R-D22) |
-| wire-rulings-r0 | the rulings-sitting commit | author, 2026-07-20, in-session: the builder stated the input/output alignment and the three acts (record as R-W1/R-W2 ruling text; restructure W4c out of this boundary; draft R's opening scope); author: "i confirm" — recorded verbatim in the tag message | OWED (R-D22) |
+| wire-open-r0 | the opening commit (this file's landing) | "open boundary and implement... also understand why these issues arose", author, 2026-07-20, recorded verbatim in the tag message | DISCHARGED (wire-rulings-r1, author key, 2026-07-20) |
+| wire-w2-r0 | same commit (the step-2 single-tag-close precedent; W2 executed at the opening) | same delegation | DISCHARGED (wire-rulings-r1, author key, 2026-07-20) |
+| wire-rulings-r0 | the rulings-sitting commit | author, 2026-07-20, in-session: the builder stated the input/output alignment and the three acts (record as R-W1/R-W2 ruling text; restructure W4c out of this boundary; draft R's opening scope); author: "i confirm" — recorded verbatim in the tag message | DISCHARGED (wire-rulings-r1, author key, 2026-07-20) |
 
 The author's own signed tag over the opening commit discharges the
 first two rows and makes the six frozen-file repairs and the two new
 oracle suites law; a signed tag over the rulings-sitting commit
 discharges the third and makes R-W1/R-W2 rulings of record. One
 author tag covering both commits discharges all three.
+
+*[Dated repair — the W3 freeze sitting, 2026-07-21; the
+frozen-layer inventory's first W3 row. The paragraph above was
+written prospectively and its event has fired: the author's tag
+`wire-rulings-r1` (2026-07-20, author key SHA256:Sfh8OBG9...,
+verified) covers the rulings-sitting commit 54edfa3 and, through
+its history, the opening commit 2796c4a — its message states "This
+discharges all three R-D22 rows of WIRE_PLAN section 8." The three
+register rows above carried OWED for a day past their own
+discharge event; repaired to DISCHARGED at this sitting, under the
+sitting's recorded delegation.]*
