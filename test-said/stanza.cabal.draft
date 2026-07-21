@@ -1,0 +1,10 @@
+test-suite said
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Said.hs
+    hs-source-dirs:   test-said
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

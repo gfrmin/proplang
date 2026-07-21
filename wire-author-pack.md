@@ -944,3 +944,109 @@ divergence at the last ulp — oracle rows pin FULL bitsIn values
 (w64 two-route), never hand-computed deltas; delta rows get gates
 derived from measured floors; (3) the operator increments confirm
 prodTable 20/1 pricing reaches the said surface unchanged.
+
+### VIII.6 The oracle (test-said/, 4 groups, 17 rows)
+
+g1 the parse extension: (a1-a4) each new form ("/", "log", "exp",
+"neg") parses to an ok hello; (b) the composite -log-scored program
+(all four forms) decides like the mirror EU arithmetic (two-route,
+copied from Outcome.hs:241-253); (c) unknown forms still refuse —
+the fail-closed pin SURVIVES the extension; (d-i) `["<", a, b]` is
+NOT a form (bad hello, the primitivity mirror: successful
+composition forbids the codeword); (d-ii) less-than is SAID by the
+swap TODAY — `[">", c1, var1]` decides as the mirror y<1 utility
+(green throughout: the composition demonstration). g2 the pricing
+route: (a) the priced hello reply byte-pinned to shipped shape +
+`"utility_bits": bitsIn ns3 mirror` (R-D20 copy-by-call); (b) the
+ABSENT key byte-equal the shipped reply (the optimisation-law
+re-pin; world fixture copied Outcome.hs:216-222); (c) a singleton
+cgrid prices 0-bit constants and its act stream is byte-equal the
+absent route; (d) the Sub-wrap delta == 2 x log2 20 + log2 3, gate
+1e-12 (floor measured 0.0 at SAT — bit-exact). g3 the door: (a)
+off-grid constant bad hello; (b) non-finite cgrid point bad hello
+(D-f8); (c) empty cgrid bad hello; (d) constant-free program under
+a declared cgrid prices lawfully. g4 behavior: the priced
+log-utility's act == the mirror EU argmax. Ablation:
+test-said/ablation/run.sh — the namespace-law leak (pricing
+re-aimed at a wrong default namespace) reds g2a/g2c while
+g2b/g4a stay green: pricing is reply economics, blind to parse and
+acts, which is why the extensional pricing pins are load-bearing.
+
+### VIII.7 Under-determination register (for the W4 freeze sitting)
+
+1. The key's name and placement: `"cgrid"` inside the utility
+   block; the reply key `"utility_bits"`, appended last, hello
+   reply only.
+2. THE OB-8 NARROWING (VIII.4) — the sitting's decision item: W4
+   delivers the grid-priced DEGENERATE latent (pricing + door); the
+   open parameter latent is refused in its likelihood-declared wire
+   form (the alignment statement's third application) and its
+   lawful in-language form (the g5 composition) is future demand
+   under its own gate. membrane-wire §2's original promise is then
+   narrowed accordingly at the same sitting.
+3. `<` stays uncoded (g1d's two pins) — endorsement of the
+   primitivity-mirror reading for the wire's parse surface.
+4. On-grid membership is PARSED-VALUE IDENTITY (elemIndex over the
+   declared points — exact equality of two doubles parsed from the
+   same JSON number grammar); register the reading.
+5. The per-tick utility sentence (membrane-wire §3, "a FULL
+   replacement said@1 declaration for this tick only") is
+   UNSHIPPED — the shipped tick never reads a utility key (survey:
+   Host.hs tick, no utility path). Frozen-layer inventory row for
+   the sitting: repair the sentence (bracket, implement-on-demand)
+   or rule the implementation into W4. The builder recommends the
+   bracket: (a)+(b) are the ruled scope.
+6. Frozen edits owed AT the freeze, under delegation: membrane-wire
+   §2's dated bracket of 2026-07-20 repaired to the as-ruled truth
+   (pricing lands, the door, the degenerate latent; OB-7's edit);
+   the §3 per-tick sentence per item 5; stanza into proplang.cabal;
+   MANIFEST rows for test-said/{Said.hs, stanza.cabal.draft,
+   ablation/run.sh}; OBLIGATIONS OB-6/OB-7 -> LANDED@wire-w4 and
+   OB-8 per the narrowing ruling.
+
+### VIII.8 The satisfiability transcript (R-D21, overlay form)
+
+Red run (final row text, shipped src, exact stanza flags incl.
+-Werror): 13 out of 17 failed. Attribution on final text: g1a-1..4,
+g1b, g4a red as `bad hello`/missing act (the four forms absent from
+parseSaid); g2a, g2c, g2d, g3d red as `utility_bits` absent from
+the reply; g3a-c red as the hello wrongly ok (no door). Green by
+design: g1c, g1d-i (fail-closed pins that must survive), g1d-ii
+(the composition demonstration), g2b (the absent-route re-pin).
+
+SAT run (overlay realization wearing the real module names —
+Host.hs edited in a throwaway copy of src; oracle text UNCHANGED;
+same exact flags): 17/17 green. The overlay implementation:
+parseSaidWith parameterizing the constant rule (shipped singletons
+vs cgrid-bound elemIndex), the four new forms, the cgrid-aware
+hello with `utility_bits` from `bitsIn nsN prog` behind the
+W4-ANCHOR marker, absent-route byte-identical.
+
+Forcing: every comparison row lands on String `@?=` (both sides
+forced to normal form by equality) or a strict Double comparison
+whose frozen side is a bitsIn/expect call forced by the compare;
+no lazy field escapes (the one-deepseq-per-row clause satisfied
+structurally).
+
+Floors: g2d residual measured 0.0 (bit-exact; expected
+10.228818690495881 == measured), gate 1e-12 stands.
+
+Two convictions repaired IN-WINDOW (the SAT run's catches, the
+R-D21 purpose): (1) the okPrefix helper compared take 12 against
+an 11-character literal — it would have redded a CORRECT ok reply;
+green in the red run for the right reason, wrong on the green
+side; repaired to isPrefixOf. (2) g2d's drafted expected delta
+forgot the constant's own node head (log2 20 + log2 3 drafted;
+2 x log2 20 + log2 3 true — VIII.5's own Div-increment row showed
+the shape and the draft ignored it); repaired with the derivation
+in the row.
+
+Ablation firing record (against the overlay, W4_SRC): tripwire
+fires on g2a and g2c; g2b and g4a stay green — attribution
+partitioned exactly as designed. Runner asserts exactly one
+W4-ANCHOR before mutating.
+
+Banked-claim check (the step-10 expiry clause): W4 relies on no
+banked composition-failure; its one negative-shaped claim ("<" has
+no codeword) is a POSITIVE composition result re-executed live in
+g1d-ii at every run — the clause's preferred form.
