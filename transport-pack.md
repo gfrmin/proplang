@@ -54,8 +54,9 @@ the STANZA'S EXACT flag set `-Wall -Werror -Wincomplete-patterns
 amendment). Stanza drafted at test-transport/stanza.cabal.draft
 (new build-depends: `process`, `directory` — both GHC boot libraries;
 flagged for the author because cabal.project.freeze is frozen and does
-not pin them — no edit to the freeze file is required, but the freeze
-sitting should confirm the resolved versions ride the boot set).
+not pin them — no edit to the freeze file is required; the resolved
+versions are recorded as rider (ii) in section 5 rather than left to
+the freeze file's silence).
 
 ## 3. The red run (2026-07-22, HEAD binary, exact flags)
 
@@ -107,17 +108,58 @@ author's key or fresh per-instance delegation:
    at the sitting (falsified sentence quoted inside its own repair).
 2. membrane-wire.md §6.3 — the UNSHIPPED bracket (Part III.2, adopted).
 3. membrane-wire.md §3 — the combined-tick capability sentence (the
-   15(c) probe's product; draft in Part VI.4).
+   15(c) probe's product). RIDER (i) AT THE KEY: this is the only
+   package edit not yet seen verbatim, so it is presented in the same
+   form III.1 and III.2 received. Insertion point: immediately after
+   the §3 bullet "A tick MAY carry both menu and evidence; semantics
+   are the frozen loop's order ... The reply is the union of the two
+   shapes." (membrane-wire.md:211-213), as its continuation. Draft:
+
+   > **[Added at the transport freeze, 2026-07-22 — the capability
+   > issue #15's probes surfaced, documented here so it is not
+   > rediscovered.]** THE COMBINED TICK IS THE ACTION-CONDITIONAL
+   > CHANNEL. Evidence folds at `features ++ act` (the step-6
+   > geometry), so on a tick carrying BOTH a menu and evidence the
+   > chosen assignment is part of the observation's context. A guard
+   > declared on a WRITABLE name is therefore NOT inert: D-b2 bars a
+   > world from PUBLISHING a writable name as a tick feature, but the
+   > engine's own act supplies that name at the fold, and the guard
+   > family over it is exactly the hypothesis family "the outcome
+   > depends on what I did" — learned P(outcome | action, context).
+   > Evidence-only ticks do not feed it (no act is bound to fold
+   > against), so a host wanting the capability declares the guard on
+   > the menu name and sends combined decision+evidence ticks.
+   > Measured at this freeze (dispositions-pack.md VI.5.2): over 60
+   > rounds with evidence contingent on the act, the family's
+   > posterior mass grows 9.09e-3 -> 1.02e-1 and the act holds for 58
+   > consecutive rounds; over an act-independent stream the same
+   > family unlearns to 1.89e-9. Hosts should expect the act to
+   > alternate while the contingency is untrained — the myopic rung
+   > exploring the untried branch — and to settle when the evidence
+   > breaks the symmetry.
 4. tools/boundary-audit.sh — the OB-16 banked-failure row (flag every
    banked clause-(a) failure whose increment postdates the alphabet
    motion it assumed; the step-10 clause's scriptable half).
 5. CLAUDE.md — the triptych clause (Part V, adopted at the sitting).
 6. proplang.cabal — append test-transport/stanza.cabal.draft verbatim.
-7. MANIFEST.sha256 — re-sign rows for membrane-wire.md, CLAUDE.md,
-   tools/boundary-audit.sh, proplang.cabal; add rows for
-   test-transport/Transport.hs, test-transport/stanza.cabal.draft,
+7. OBLIGATIONS.md — OB-19, the K-ary richer-family heir class (the
+   #21 cross-citation the sitting owes; draft at section 7 below).
+8. MANIFEST.sha256 — re-sign rows for membrane-wire.md, CLAUDE.md,
+   tools/boundary-audit.sh, proplang.cabal, OBLIGATIONS.md; add rows
+   for test-transport/Transport.hs, test-transport/stanza.cabal.draft,
    test-transport/red-run.sh.
-8. tools/prefreeze-lint.sh run; transcript below rides this pack.
+9. tools/prefreeze-lint.sh run; transcript below rides this pack.
+
+**RIDER (ii) AT THE KEY — the boot-library flag, resolved and
+recorded.** The stanza's two new build-depends resolve against the
+GHC 9.10.3 global package database, NOT against cabal.project.freeze
+(which pins neither): `process-1.6.26.1`, `directory-1.3.8.5` (with
+`filepath-1.5.4.0`, `unix-2.8.7.0` beneath them). Both ship with the
+compiler the frozen gate 7 pins, so the freeze file needs no edit —
+but per the rider this is recorded as a DOCUMENTED FACT rather than
+an assumption riding a frozen file's silence: the versions above are
+what the L7 overlay build and the red/SAT runs actually resolved, and
+any future divergence is a gate-7 toolchain change, visible as such.
 
 After the tag: the builder lands the one-line implementation in
 src/PropLang/Host.hs (unfrozen; gate 3 places the loop's IO exactly
@@ -147,3 +189,19 @@ replacement-surface build, now covering the first process-level suite.
 The lint will be re-run at the freeze itself (its transcript is a
 condition of the tag); this run establishes the oracle-ready tree is
 already clean.
+
+## 7. OB-19 draft — the K-ary richer-family heir class (#21's home)
+
+The cross-citation the author called owed at the countersign: #21 is
+the FIRST FIELD DEMAND on the W3 sitting's fifth scoping line
+(wire-author-pack.md:511-522, ruling 1 of 2026-07-21), which printed
+the one-vs-rest family's structural limit and named "the richer family
+— a second, null-rate parameter" as its demand-gated heir. #21's
+atom-switching guard family (branches selecting the distinguished atom
+as well as theta) and that null-rate parameter are SIBLINGS in one
+heir class: both are the same enumeration-breadth extension of the
+same family, and both are gated on demand. One row so the gate
+accumulates in one place. Draft:
+
+| OB-19 | the K-ary richer family (enumeration breadth beyond one-vs-rest): the null-rate parameter and the atom-switching guard family, one heir class, one demand gate | RULING-PENDING | the W3 sitting's FIFTH SCOPING LINE named the heir (wire-author-pack.md:511-522, ruling 1, 2026-07-21: the null's predictive mass structurally capped at 1/(K-1), "no good hypothesis in this family and never will"); issue #21 is its FIRST FIELD DEMAND, arriving from the other side — guards move theta, never the distinguished atom, so a minority-context cell ties at (1-theta)/(K-1) while its own evidence in isolation is decisive (confirmed at 68 ticks, dispositions-pack.md VII.1); the atom-switching sentence COMPOSES from shipped constructors today (MAP 0.9996, minority P(y=3)=0.8997), so this is enumeration breadth, NOT alphabet and NOT inference; the two demands cite each other here rather than accumulating separately. CAUTION FOR THE HEIR INCREMENT (the author's rider at the transport countersign): the fix multiplies the guard family by the atom-pair choice — at arity 5 an order-of-magnitude population growth, priced lawfully by the mention bits but PAID AT EVERY TICK'S EU EVALUATION — so the increment's oracle carries a ms/tick row from the existing test-measure instrument alongside its semantics rows. Priced breadth must be MEASURED breadth. |
+

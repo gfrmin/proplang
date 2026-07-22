@@ -1121,3 +1121,41 @@ the composition attempt and its numbers, registers the demand with
 scheduling left to the author, names the interim workaround, credits
 the filer's order-flip/isolation diagnostics as the discriminating
 work.
+
+### VII.3 The cross-citation owed (the author's rider at the transport countersign)
+
+#21 is the FIRST FIELD DEMAND on the W3 sitting's FIFTH SCOPING LINE
+(wire-author-pack.md:511-522, ruling 1 of 2026-07-21), which printed
+the one-vs-rest family's structural limit — the null atom's predictive
+mass capped at 1/(K-1) for every sentence and every mixture, "no good
+hypothesis in this family and never will" — and named "the richer
+family (a second, null-rate parameter)" as its DEMAND-GATED HEIR.
+
+#21's atom-switching guard family and that null-rate parameter are
+SIBLINGS in one heir class: the same enumeration-breadth extension of
+the same one-vs-rest family, approached from opposite sides (the
+scoping line from the null's cap; #21 from the distinguished atom's
+fixity). The demands therefore accumulate in ONE register entry — the
+OB-19 draft in transport-pack.md section 7, riding the transport
+freeze — rather than in two entries that would each read as a smaller
+demand than the class actually carries.
+
+**The caution recorded for the heir increment.** The candidate fix
+multiplies the guard family by the atom-pair choice: at arity 5 an
+order-of-magnitude population growth, priced lawfully by the mention
+bits but PAID AT EVERY TICK'S EU EVALUATION. The heir increment's
+oracle therefore carries a ms/tick row drawn from the existing
+test-measure instrument alongside its semantics rows. Priced breadth
+must be MEASURED breadth — the same discipline the optimisation law
+applies to speed, applied to the prior's growth.
+
+### VII.4 #19 noted for its sitting
+
+The author's reading, recorded so it is not re-derived: #19's
+190k-decision shadow evidence is the R-residue boundary's demand
+ARRIVING FROM THE GOVERNOR ITSELF. The R_SCOPE interim bracket's lift
+now has a named consumer with field numbers (both shadow policies
+collapsed to constants; p1 a rail, not a posterior), which is how the
+fork between "schedule the fragment route" and "declare the bracket
+permanent with a named heir" was always going to be taken. Disposition
+at its sitting; no builder act pending.

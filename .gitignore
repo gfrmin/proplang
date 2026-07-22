@@ -3,3 +3,5 @@ archive/proplang.tar.xz
 dist-newstyle/
 __pycache__/
 *.pyc
+*.hi
+*.o
