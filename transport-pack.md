@@ -242,3 +242,31 @@ MANIFEST.sha256 (5 re-signs + 3 new rows = 82, verified).
 
 Lint at the tag: 0 FAIL, 12 WARN (the advisory literal class),
 L3 82 rows, L7 full-corpus overlay build clean.
+
+## 9. As-built (2026-07-22, implementation green)
+
+The implementation is ONE LINE plus its import, in the unfrozen host
+where gate 3 requires the loop's IO to live (src/PropLang/Host.hs):
+`hSetBuffering stdout LineBuffering` as hostMain's first action. Byte-
+identical to the SAT prototype, as the overlay form promised it would
+be — the prototype WAS the implementation, wearing the module's name.
+
+Gates 1-7: ALL PASS (audit/run-gates.sh).
+Suites: 19/19 PASS, transport among them — the red rows went green on
+the first run of the shipped implementation (the seventh consecutive
+transcription), with t4's partition already standing as the proof that
+the red had been buffering alone and nothing else.
+Alphabet unmoved: prodTable 20/1, zero productions, zero src semantics.
+
+Register effects at this close:
+- issue #18: FIXED (line-buffered per-reply delivery; the PTY
+  workaround is no longer required and the doc's synchronous promise
+  is now true over plain pipes).
+- the sitting's discharge marks: custody facts under
+  transport-freeze-r0.
+- OB-19: RULING-PENDING, the K-ary heir class's gate open with #21 as
+  its first field entry.
+- open registers: #11 (differential run), #14 (re-statement), #16
+  (R residue), #17 (observe_batch follow-on; observe_counts D-scoped),
+  #19 (R-residue fork, author's sitting), #20 (K-ary readout ask),
+  #21 (registered at OB-19).

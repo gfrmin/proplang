@@ -45,7 +45,7 @@ import Data.Char (isDigit)
 import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
-import System.IO (isEOF)
+import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
 import PropLang.Belief (Bits (Bits), LogProb (LogProb), entropyBits,
                         expect, is, prob)
@@ -444,7 +444,15 @@ parseSaidWith kc = pE
 -- | The executable's whole IO surface: the stdin/stdout line loop
 -- over 'serveLine' (gate 3: the loop lives here and only here).
 hostMain :: IO ()
-hostMain = go hostStart
+hostMain = do
+  -- THE TRANSPORT FIX (#18, transport-freeze-r0): GHC block-buffers
+  -- stdout off a terminal, so a pipe host never sees a reply until the
+  -- buffer fills or the process exits — the wire promises SYNCHRONOUS
+  -- JSON-lines, and the promise broke at the first exchange. Line
+  -- buffering makes putStrLn flush per reply; test-transport/ pins it
+  -- over real pipes.
+  hSetBuffering stdout LineBuffering
+  go hostStart
   where
     go st = do
       end <- isEOF
