@@ -1,0 +1,13 @@
+test-suite transport
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Transport.hs
+    hs-source-dirs:   test-transport
+    build-depends:    base
+                    , directory
+                    , process
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    build-tool-depends: proplang:proplang-host
+    default-language: GHC2021

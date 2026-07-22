@@ -1031,3 +1031,93 @@ caveat (the myopic rung exploring the untrained branch, settles when
 contingency or training breaks the symmetry); repairs var0 and
 promises the combined-tick doc sentence; credits the filer's probes
 for leading the sitting to the experiment.
+
+---
+
+## Part VII — post-sitting arrivals: #21 triaged; #19/#20 registered untriaged
+
+Three issues arrived after the sitting's postings (all 2026-07-22,
+consumer-proxy filings). The author's go-ahead ("yes, and 21 too")
+opened the #18 transport micro-increment and pulled #21 into triage;
+#19 and #20 are noted here and await author disposition — #19 asks a
+scheduling fork the builder cannot take (fragment-route integration
+scheduled vs the R_SCOPE bracket declared permanent; its new comment
+carries 190k-decision field evidence that the rail is live in
+production shadow), #20 is an observability-only reply-surface ask
+(argmax code + mass + null mass at K-ary decide) that would touch the
+frozen wire doc and the reply shape — a wire micro-increment if ruled.
+
+### VII.1 #21 — the K-ary minority-context tie: CONFIRMED, mechanism identified
+
+**The filing's claim.** Under `obs_arity: 5` with an 8:1 label
+imbalance, minority-context cells collapse to an exact four-way tie
+(p1 = 0.22499993 ~ 0.9/4) despite the same minority evidence alone
+producing decisive correct decisions; order-flip and isolation
+diagnostics included. Filer's hypotheses: model-space capacity, or a
+shared (non-per-context) concentration parameter.
+
+**Minimal reproduction (probe21.py, HEAD binary, PTY harness).**
+World: namespace [t, ctx, skill], one guard ctx@[0.5], obs_arity 5,
+menu skill [0,1,2,3], the filer's own indicator utility copied
+verbatim from the #21 hello (R-D20). Stream: 60 ticks ctx=0
+evidence 2; 8 ticks ctx=1 evidence 3. models=4964.
+
+    full stream, standard  minority ctx=1: act=0 p1=0.21190844945217382 H=1.422856786708272
+    full stream, standard  dominant ctx=0: act=1 p1=0.025088828120550976 H=1.422856786708272
+    full stream, reversed  minority ctx=1: act=3 p1=0.21190844945217382 H=1.422856786708272
+    isolation (minority)   minority ctx=1: act=2 p1=0.04338906274906268 H=3.507947586283285
+    order-flip: act 0 -> 3, p1 and entropy_bits bit-identical
+    closed forms: (1-0.1)/4 = 0.225, (1-0.9)/4 = 0.025
+
+All three of the filer's signatures reproduce at 68 ticks: the
+minority tie broken first-listed (flips under menu reversal with
+readouts bit-identical), the dominant cell decisive at ~0.025, the
+isolation run decisive and correct (act=2 = atom 3 - 1).
+
+**Mechanism (Map21.hs, library replica over the same stream).** The
+shipped K-ary enumeration families are ONE-VS-REST by construction
+(Enumerate.hs:451-458: "P(y=j) = theta, the rest of the codomain
+sharing (1-theta)/(K-1) uniformly"); the guard families move THETA,
+never the distinguished atom j (Enumerate.hs:512-520 — catBody j with
+j fixed per sentence, the guard selecting between two theta points).
+The MAP read after the stream: ~99.8% of posterior mass on j=2
+sentences guarded on ctx with theta index 8 (=0.9) in the dominant
+branch and a low theta in the minority branch. Every such sentence's
+minority-cell predictive is the uniform spread (1-theta)/(K-1) over
+ALL non-2 atoms — the exact tie is that sentence's honest prediction,
+and the posterior is Bayes-correct over the families offered. Both
+filer hypotheses are thereby replaced: not capacity (the isolation
+run succeeds with the identical 4964-sentence population), not a
+shared parameter (each sentence's latent is its own) — the population
+simply contains NO sentence that distinguishes different atoms in
+different contexts.
+
+**Composition attempt (Comp21.hs — the primitivity gate's clause (a)
+run in the succeeding direction).** The atom-switching sentence
+("atom 3 where ctx>0.5, atom 2 elsewhere") IS expressible in the
+shipped grammar with shipped constructors only — the emission code is
+a full Expr, so If switches between two catBody shapes:
+
+    composed-sentence price: 19.92 bits (guard family 15.92 + 4 surcharge)
+    posterior entropy after stream: 5.47e-3 bits
+    MAP: the composed sentence at mass 0.9996
+    minority-cell predictive: P(y=3)=0.8997, P(y=1)=0.0251
+
+The tie dissolves the moment the sentence exists. VERDICT: #21 is an
+ENUMERATION-BREADTH gap, not an alphabet gap and not an inference
+defect. The candidate fix is an enumeration-family extension — guard
+families whose branches select the distinguished atom as well as
+theta — priced breadth (the guard family multiplies by the atom-pair
+choice), zero alphabet motion, models counts move, so it is an
+oracle-first increment of its own under a demand gate whose first
+entry is #21. Scheduling is the author's. Interim workaround, proved
+by the filer's own isolation diagnostic: per-context replay sessions.
+
+### VII.2 The #21 response as posted
+
+Posted 2026-07-22: confirms at minimal scale, quotes the mechanism
+with file:line provenance, replaces both filer hypotheses, reports
+the composition attempt and its numbers, registers the demand with
+scheduling left to the author, names the interim workaround, credits
+the filer's order-flip/isolation diagnostics as the discriminating
+work.
