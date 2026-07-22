@@ -620,3 +620,252 @@ commands are named (scratchpad probes.py); every ruling that would
 touch a frozen file is custody-flagged (boundary-audit.sh row 53,
 membrane-wire.md, CLAUDE.md). `sha256sum -c MANIFEST.sha256` clean at
 assembly.*
+
+---
+
+## Part VI — the sitting record (2026-07-22)
+
+### VI.1 The rulings, verbatim
+
+> The pack's completeness check is honest — every row arrives with its
+> discrimination executed — with one exception that turns out to be the
+> sitting's most consequential item: the pack disagrees with itself
+> about 15(c), and the disagreement must be resolved by probe before
+> three of its dispositions can stand. Rulings in order.
+>
+> **OB-11 — ruled: option 3, bounded.** The namespace doctrine applied
+> to the option sort, exactly as recommended: K declared at tick 0
+> *includes* the reserved tail, so no mention ever reprices and growth
+> is publication, not membership change. Record the honest price in the
+> ruling: the tail is paid for from tick 0 — every atom mention prices
+> against the declared breadth including reservations — which is the M1
+> law's own shape and the correct cost of pre-commitment. The ledger
+> row cites both faces (this and the W4 sitting's per-tick-utility
+> homing) so one doctrine answers mid-episode declaration change
+> wherever it appears. Discovery — the moving Cromwell frontier — stays
+> out and named.
+>
+> **OB-12 — ruled: (ii), not fired.** A gate that conditions on a
+> measurement cannot fire before the measurement exists, and ruling it
+> fired on adjacent evidence would install the conclusion the
+> measurement was designed to establish — the exact shape the mandates
+> exist to catch. The differential run is named as the consumer-side
+> next act, the FBR_safety linkage acknowledged. And note what the
+> pack's annex makes visible: that run is now cited by *two* pending
+> readings (OB-12 and the A-gate exit-from-shadow). It has quietly
+> become the single highest-leverage unexecuted measurement in the
+> programme, and the ruling should say so.
+>
+> **OB-13 — ruled: both halves.** Dual-engine *declared* as the chosen
+> interim — a governor designing against a decided split rather than a
+> missing verb — with the roster registered as demand-gated future
+> scope under the consumer discipline already frozen (engine-side
+> argmax over a declared menu, never adapter scalar-branching).
+> **OB-14 — ruled: wontfix confirmed**, with rssfeed named so the cut
+> is citable; the debt line stays printed, and wontfix means *not
+> against this demand from a fail-open consumer*, re-openable through
+> the same gate if a governor-critical continuous demand ever arrives.
+> **OB-15 — ruled: solicit the re-statement**, the row executing its
+> own text. **OB-16 — ruled: both parts** — the row re-stated
+> STANDING-CONDITIONAL on the git evidence (a condition currently false
+> is not a ruling pending), and the scriptable half mechanized as the
+> boundary-audit row at the next freeze touch, custody-flagged as noted.
+>
+> **#15(c) — deferred, pending one cheap probe, and here is the
+> internal inconsistency that forces it.** II.4(c) rules the
+> guard-on-writable-name inert — "can never receive evidence" — citing
+> D-b2. But D-b2 governs *world-published* ticks; the engine's own
+> evidence law, quoted in this very pack's III.1 repair draft, is that
+> *evidence folds at feats ++ act* — the step-6 geometry through which
+> proof (ii) learned action models, and through which the a-guard
+> family (exactly 72 sentences: the probe's 1169→1241) has been a live,
+> priced fragment family since step 7's own measurements. If the wire
+> host's fold honours the engine law, a guard on the menu name is not
+> inert — it is the shipped action-conditional hypothesis family, which
+> is *precisely the capability 15(a) declares a gap*. The
+> discriminating probe is one stream where outcome depends on the
+> agent's own act, guard declared, posterior trajectory read. Two
+> branches, both material: if the guard's posterior moves, 15(c) flips
+> from reject to *document-as-capability*, 15(a)'s gap partially
+> closes, and the #15 response changes from endorsing a workaround to
+> naming the mechanism; if it doesn't move, the wire's fold diverges
+> from the step-6 law — a defect senior to the guard question, whose
+> repair carries the fail-closed rejection as a consequence. Either way
+> the builder's recommendation cannot be ruled on the current evidence,
+> and **the #15 posting is held** until the probe runs.
+>
+> **#16, #17, #18 — ruled as recommended**, with riders. #18: fix-it,
+> oracle-first, and the pipe-transport suite is a genuinely new oracle
+> class — the first process-level suite, driving the installed
+> executable — so its stanza records that shape as a declared class
+> subject to the same disciplines (flag-faithful builds, the mirror
+> lesson extended to processes). #17: split as recommended, and the
+> D-scoped `observe_counts` gate cites two standing precedents at
+> birth — the gBoundary domain statement (the warm-flattening it
+> inherits for state-carrying families) and the W3 sitting's ruling 6
+> (the binary-reading precision, since the wire verb at K > 2 must
+> answer the count-vector question before it ships). #16: as
+> templated, the demand registered against the R-boundary residue
+> where the depth purchase already lives.
+>
+> **Part III — both repairs approved** in the drafted forms, III.1
+> verbatim (it is the correct statement of the geometry, and its
+> "evidence folds at feats ++ act" sentence is the very line that
+> convicts II.4(c)'s inertness claim of needing the probe), III.2's
+> explicit bracket adopted — a reader landed on §6.3 and was misled, so
+> the section head demonstrably did not suffice, and one line is
+> cheaper than the next confused consumer.
+>
+> **Part IV — #1 through #9 approved to post verbatim**; #10 through
+> #14 and #16 through #18 approved with the rulings above filling
+> their slots; **#15 held** per the probe. **Part V — adopt**, at the
+> #18 micro-increment's freeze touch, which is now the nearest
+> boundary; the drafted clause is faithful to the named precedent and
+> the triptych completes the instrument law properly. **Annex — item 1
+> elected** (the differential run serving both readings, per OB-12);
+> items 2 and 3 recorded and deferred to their own registers.
+>
+> One closing observation for the record. Every disposition in this
+> pack except 15(c) was rulable on executed evidence — and 15(c) is
+> the exception precisely because its discrimination *wasn't*
+> executed, which the sitting caught by reading the pack against its
+> own repair draft. The machinery's maturity is no longer that it
+> executes measurements before rulings; it is that an unexecuted
+> measurement now stands out like a missing tooth. Run the probe, post
+> the seventeen, and bring 15(c) back with its transcript.
+
+### VI.2 The 15(c) probe — design, transcript, reading
+
+**Design** (scratchpad probe15c.py, run 2026-07-22 against the same
+HEAD build as II.0). Worlds: G = guard `{skill: [0.5]}` declared on
+the menu name (hello models 1241); N = no guard (1169); G2 = guard
+declared but STARVED (the issue #15 construction: evidence ticks with
+no menu, so act = [] and the fold never carries the name). Stream, all
+worlds: 40 combined ticks `{"features": {"t": n}, "menu": ["skill"],
+"evidence": 0}` then 20 with `"evidence": 1` (G2 receives the same
+evidence values menu-less, then one decision tick). Utility
+`["var", 1]`. Read per tick: act, p1, entropy_bits.
+
+**Transcript** (abridged; full output scratchpad
+probe15c-transcript.txt):
+
+```
+G hello models: 1241   N hello models: 1169
+
+tick | evid | G act              | N act
+   1 |  0   | 0                  | 0
+   2 |  0   | 1   <-- G flips    | 0
+   3 |  0   | 0   <-- G flips    | 0
+ ... G alternates 0/1 EVERY tick through the evidence=0 phase ...
+  40 |  0   | 1                  | 0
+  41 |  1   | 0   <-- G flips    | 0
+  42..60 | 1 | 0 (settled)       | 0
+
+G acts distinct values: [0, 1]; first flip at tick 2
+N acts distinct values: [0]           (never leaves the tie-break)
+
+G  final (combined): act=0 p1=0.888165 H=0.658718
+G2 final (starved):  act=1 p1=0.889563 H=0.607957
+N  final (combined): act=0 p1=0.888165 H=0.658718
+```
+
+**Reading: the guard's posterior MOVES — the first branch.** Three
+independent confirmations. (1) G's act leaves the first-listed
+tie-break at tick 2 and alternates through the negative-evidence
+phase: each fold of evidence=0 at the taken act trains that guard
+branch down, leaving the *untaken* branch nearer prior, so myopic EU
+flips — the guarded family is differentiating candidates from data,
+which is learned action-conditional structure expressed in choice.
+N, whose 1169 models contain no skill-conditioned hypothesis, never
+leaves skill:0 in 60 ticks. (2) In phase 2 (evidence=1 folding at
+skill=0) G settles on skill:0 by LEARNED value, not tie-break. (3) G2,
+the issue's own starved construction, ends at a different posterior
+and a different act (skill:1, H=0.607957) than G (skill:0,
+H=0.658718) — same declared world, same evidence values, the only
+difference being whether the fold carried the act.
+
+So the wire host's fold honours the step-6 law: `observe (feats ++
+act)` (Host.hs:368) feeds the a-guard family whenever a tick carries
+menu and evidence together; D-b2 bars only the WORLD from publishing
+the writable name. The issue's probes starved the family by
+construction — evidence-only ticks have no act to fold. Per the
+ruling's first branch: **15(c) flips from reject to
+document-as-capability; 15(a)'s gap partially closes (learned
+P(outcome | action, context) is shipped: declare a guard on the menu
+name, send combined decision+evidence ticks); the #15 response now
+names the mechanism.** The fold is convicted of nothing; the
+fail-closed rejection question dissolves — rejecting the guard would
+have deleted a shipped capability.
+
+Honest bounds, for the response and the doc sentence: the family's
+expressiveness is the priced a-guard fragment family (here 72
+sentences; granularity set by the declared guard grid), and the
+alternation under uniform negative evidence is the myopic argmax
+exploring the untrained branch — a property of the shipped myopic
+rung, not a defect.
+
+### VI.3 The re-drafted #15 response (HELD for the author's reading)
+
+> Verified at HEAD (2026-07-22), and your probes led the sitting to a
+> discriminating experiment whose result changes the answer. Three
+> dispositions. (a) **The capability you name as the gap is shipped,
+> and your own guard declaration was the mechanism**: a guard on a
+> writable (menu) name is the action-conditional hypothesis family
+> (your 1169→1241 = its 72 sentences), and it receives evidence
+> through the engine's fold law — evidence folds at features ++ act —
+> whenever a tick carries `menu` and `evidence` TOGETHER. Your probes
+> starved it by construction: an evidence-only tick has no act to
+> fold, and D-b2 bars only the world from publishing the name. In our
+> discriminating run the guarded world's act leaves the first-listed
+> tie-break at tick 2 and tracks the learned act-outcome contingency,
+> while the no-guard control never moves in 60 ticks; the starved
+> control (your construction) ends at a different posterior. Learned
+> P(outcome | action, context): declare the guard, send combined
+> decision+evidence ticks. Your did-echo + `get(<menu-name>)` pattern
+> remains correct for declared stakes and composes with this.
+> (b) The `var 0` documentation is being repaired as you recommend:
+> `["var", 0]` is reserved (the evaluator binds it to constant 0 per
+> candidate); the per-candidate read is `get(<menu-name>)`.
+> (c) The wire documentation gains the combined-tick mechanism
+> sentence at the same repair, so the capability is documented rather
+> than rediscovered.
+
+### VI.4 Execution record
+
+1. **The 15(c) probe run** (VI.2) — first branch confirmed.
+2. **OBLIGATIONS.md** rows executed as ruled: OB-11/12/13/14 →
+   `DISCHARGED@dispositions-sitting` with the rulings' own language
+   (the honest-price sentence in OB-11; the highest-leverage-
+   measurement sentence in OB-12; the re-openable scope in OB-14);
+   OB-15 stays `RULING-PENDING` re-noted as SOLICIT-ruled; OB-16 →
+   `STANDING-CONDITIONAL`, the state installed in the ledger's
+   grammar with this sitting as provenance. Manifest OBLIGATIONS row
+   re-signed under the sitting's explicit instruction (the W4-closure
+   precedent); 79/79 clean.
+3. **Seventeen responses posted** (#1–#14, #16–#18): #1–#9 verbatim
+   closers; the ruling-carriers with the sitting's rulings and riders
+   filling their slots. Closed: #1–#9 (shipped/answered), #10
+   (ruling delivered), #12 (disposition delivered), #13 (wontfix).
+   Left open: #11 (demand registered, gate awaits the differential
+   run), #14 (awaiting re-statement), #16 (registered against the R
+   residue), #17 (awaiting its increments), #18 (awaiting the
+   micro-increment). **#15 held** with its re-draft at VI.3.
+4. **Consolidated edit list for the next freeze touch** (the #18
+   transport micro-increment, now the nearest boundary; every item
+   author-key/delegation): (i) membrane-wire III.1 var0 repair,
+   verbatim as approved; (ii) membrane-wire III.2 §6.3 UNSHIPPED
+   bracket, as adopted; (iii) membrane-wire §3: the combined-tick
+   capability sentence (VI.2's mechanism — new, from the probe's
+   branch); (iv) tools/boundary-audit.sh: the OB-16 banked-failure
+   row; (v) CLAUDE.md: the triptych clause, adopted per Part V.
+5. **Annex item 1 elected**: the life-agent differential run serves
+   both pending readings (OB-12 re-entry; A-gate exit-from-shadow) —
+   the single highest-leverage unexecuted measurement in the
+   programme, so recorded in OB-12's row and on #11.
+
+**Custody note.** The rulings above bind as the author's recorded
+sitting message (reproduced verbatim at VI.1). The ledger's
+`@dispositions-sitting` discharge marks anchor to this record; an
+author tag over the record commit (the boundary-V lesson: a decision
+becomes a custody fact at its tag) — or the #18 freeze countersign
+carrying it — converts them, at the author's convenience.
