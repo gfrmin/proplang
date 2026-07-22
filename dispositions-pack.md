@@ -769,8 +769,15 @@ G2 final (starved):  act=1 p1=0.889563 H=0.607957
 N  final (combined): act=0 p1=0.888165 H=0.658718
 ```
 
-**Reading: the guard's posterior MOVES — the first branch.** Three
-independent confirmations. (1) G's act leaves the first-listed
+**Reading: the guard's posterior MOVES — the first branch.**
+[Reweighted at the sitting's second movement — VI.5: confirmation (2)
+struck as overdrawn (by tick 60 the family's mass is noise and phase 2
+is tie-break-equivalent); confirmation (3) carries an off-by-one the
+replica later exposed (the wire's tick-N entropy is PRE-fold, so G's
+tick-60 line is a 59-fold state against G2's 60-fold state) and is
+superseded by the aligned family-mass numbers; the verdict now rests
+on (1), the unlearning, and the positive-contingency run.] Three
+independent confirmations as first recorded. (1) G's act leaves the first-listed
 tie-break at tick 2 and alternates through the negative-evidence
 phase: each fold of evidence=0 at the taken act trains that guard
 branch down, leaving the *untaken* branch nearer prior, so myopic EU
@@ -869,3 +876,158 @@ sitting message (reproduced verbatim at VI.1). The ledger's
 author tag over the record commit (the boundary-V lesson: a decision
 becomes a custody fact at its tag) — or the #18 freeze countersign
 carrying it — converts them, at the author's convenience.
+
+## Part VI.5 — the second movement: reweighting, the two amendments, #15 posted
+
+### VI.5.1 The author's amendments, verbatim
+
+> The probe settles it — and the near-miss deserves saying out loud:
+> the builder's original recommendation, ruled without this probe,
+> would have *deleted the very capability 15(a) was requesting*. The
+> sitting caught it by reading the pack against its own repair draft,
+> the probe confirmed the first branch, and "rejecting the guard would
+> have deleted a shipped capability" should stand in the record as
+> this sitting's process lesson. The G2 control is the probe's best
+> design decision — reproducing the issue's own starved construction
+> as the discriminating arm is adversarial fidelity of the right kind.
+> Two amendments before #15 posts, one reweighting for the record, and
+> the rest executes as recorded.
+>
+> **The reweighting: confirmation (2) is overdrawn, and the identical
+> G/N finals tell you why — then hand you a better confirmation than
+> the one they weaken.** G and N end at *identical* p1 and entropy to
+> six decimals, which at 1241 versus 1169 models means the guard
+> family's posterior mass has collapsed to noise by tick 60. So the
+> phase-2 "settles by learned value, not tie-break" claim holds only
+> while mass persists; by the end it is tie-break-equivalent. But look
+> at what the collapse actually is: the probe world's evidence was
+> act-*independent* by construction (scripted zeros then ones
+> regardless of the act taken), so the posterior correctly concluded
+> there was no contingency and trained the family's extra complexity
+> away — G converging to N is Bayes *unlearning* conditioning that
+> isn't there. That is a fourth confirmation of liveness, and a
+> stronger one than claim (2): the family moves in both directions, up
+> under contingency and away under none. Rest the verdict on (1), (3),
+> and this.
+>
+> **Amendment one: run the positive-contingency variant before
+> posting.** The response's headline — "learned P(outcome | action,
+> context) is shipped" — currently rides on a world with *no actual
+> contingency*: the evidence shown is the exploration signature and
+> the starvation discrimination, not the capability doing its job.
+> Twenty more lines: evidence value depends on the taken act, expect G
+> to diverge from N permanently with the guard family *retaining* mass
+> (report the family mass at the final tick — the number that was
+> missing from this transcript too). The filer who reruns our recipe
+> will build exactly that world; we should have seen it first, and the
+> response should cite its transcript. Same discipline as everywhere
+> else: the headline claim gets its positive-case run.
+>
+> **Amendment two: the alternation caveat goes in the response, not
+> just the pack.** A consumer following the recipe will watch the act
+> flap 0/1 through any uniform-evidence phase and file it as issue
+> #19. One sentence from VI.2's honest-bounds paragraph — early
+> alternation is the myopic rung exploring the untrained branch, a
+> property of the shipped rung that settles as both branches train —
+> forecloses it. The response already credits the filer's probes for
+> leading the sitting to the experiment, which is the right tone; add
+> the caveat and the positive-case result and it posts.
+>
+> Everything else in VI.4 stands approved as executed [...] The
+> custody note's offer is accepted in its second form — the #18 freeze
+> countersign carrying the sitting record's tag is the economical
+> choice, one signature converting the rulings and the transport fix
+> to custody facts together.
+>
+> One line for the sitting's close. This pack began as housekeeping —
+> six ledger rows and some unposted mail — and ended by discovering a
+> shipped capability nobody knew was shipped, convicting a
+> recommendation that would have destroyed it, and correcting its own
+> probe's overclaim against its own transcript's six decimal places.
+> The machinery is no longer just catching errors; it is catching
+> *absences* — the unexecuted measurement, the starved construction,
+> the missing family-mass number. Run the contingent-world variant,
+> amend the draft, post #15, and the wire boundary's ledger is clean.
+
+**The process lesson, standing in the record as ordered: rejecting the
+guard would have deleted a shipped capability.** The builder's original
+15(c) recommendation (fail-closed rejection at hello), ruled without
+the probe, would have deleted the very capability 15(a) was requesting.
+
+### VI.5.2 The positive-contingency run (amendment one)
+
+**Design** (scratchpad probe15c2.py + FamMass.hs, 2026-07-22, same
+HEAD build). The wire's reply carries the act only after evidence is
+sent, so the world conditions evidence on the act by the PAIR TRICK:
+a decision-only tick (foldless — the frozen loop's order makes it
+side-effect-free) reads the act; the paired combined tick delivers
+evidence = 1 iff that act was skill:1. Per-round consistency (folded
+act == read act) verified: **0 mismatches in 120 rounds across both
+worlds** — the contingency claim rests on nothing weaker. Family mass
+read at the library level (FamMass.hs, ghc -isrc against shipped src):
+rebuild the host's exact populations (`enumerateSentencesIn`, 1241/
+1169; family = the 72 hypotheses of G's enumeration absent from N's),
+replay the wire-recorded fold streams through `observe`, sum
+`agentMeta`'s weight over the family indices.
+
+**Faithfulness cross-check PASSED, with the off-by-one made explicit:**
+the wire's tick-N entropy_bits is computed PRE-fold (the frozen loop:
+choice from the predictive before the observation moves the agent), so
+the replica after 59 folds must equal the wire's tick-60 line — and
+does, to all printed digits, on both arms (independent:
+0.6587181347947547 vs wire 0.658718135; contingent:
+1.9717984047907715 vs wire 1.971798405).
+
+**Results:**
+
+```
+ARM 2 (contingent: evidence = 1 iff act == skill:1), 60 rounds:
+  G discovers skill:1 at round 2, holds it 58 consecutive rounds
+    (the arm-1 alternation VANISHES under real contingency)
+  G final p1 = 0.840379114        N final p1 = 0.104107665
+  N never leaves skill:0 (no hypothesis can condition on the act)
+  divergence permanent and growing
+
+GUARD-FAMILY POSTERIOR MASS (the missing number):
+  prior (0 folds):                 9.0909e-3
+  contingent world (60 folds):     1.0170e-1   -- RETAINED AND GROWN, ~11x prior
+  act-independent world (60 folds):1.8880e-9   -- unlearned, ~5e6-fold collapse
+  starved construction (act-less): 2.4964e-12  -- see VI.5.3
+```
+
+The capability's positive case is now on the record: under a real
+act-outcome contingency the family's mass GROWS ~11x over prior while
+driving the act, and under none it is correctly unlearned — liveness
+in both directions, exactly the reweighting's fourth confirmation.
+
+### VI.5.3 Two corrections the replica surfaced (recorded against VI.2)
+
+1. **Confirmation (3)'s off-by-one.** probe15c compared G's tick-60
+   line (a PRE-fold report: 59 folds) against G2's post-stream
+   decision (60 folds). Aligned at 60 folds, the combined-vs-starved
+   discrimination SURVIVES but at family scale, not entropy scale:
+   with acts folding the family ends at 1.888e-9; act-stripped at
+   2.496e-12. The 9-decimal wire re-run confirms G/N finals differ
+   only in the 9th decimal — "collapsed to noise" is exactly right.
+2. **The starved construction does not freeze the family — it drives
+   it down harder.** Act-less evidence folds still move the guarded
+   hypotheses (prior 9.09e-3 -> 2.50e-12, ~750x below the acts-folding
+   world). The builder's provisional "annihilation at first starved
+   fold" hypothesis was WRONG (mass is tiny, never exact zero); the
+   empirical row stands without the mechanism claim. Either way the
+   issue's "never receives evidence" was false in both directions:
+   the family always updates; only combined ticks feed it the
+   act-conditional signal.
+
+### VI.5.4 The #15 response as posted (both amendments in)
+
+Posted 2026-07-22 after the runs above; #15 closed the sitting's loop.
+The response: names the mechanism (guard on a writable name = the
+action-conditional family, fed at feats ++ act by combined ticks);
+cites the positive-case transcript (0/120 mismatches, p1 0.840 vs
+0.104, 58 held rounds) and the family-mass triple (9.09e-3 prior ->
+1.02e-1 contingent vs 1.89e-9 independent); carries the alternation
+caveat (the myopic rung exploring the untrained branch, settles when
+contingency or training breaks the symmetry); repairs var0 and
+promises the combined-tick doc sentence; credits the filer's probes
+for leading the sitting to the experiment.
