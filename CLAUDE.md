@@ -321,6 +321,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
    boundary-audit candidate (flag every banked clause-(a) failure whose
    increment postdates the alphabet motion it assumed); the
    non-scriptable half stays law as prose.
+   One clause canonized at the disposition sitting of 2026-07-22 (the
+   two-run triptych, named at the W4 sitting; the okPrefix conviction
+   its provenance): A GREEN THAT CANNOT FAIL IS THE MIRROR IMAGE OF
+   THE RED THAT CANNOT FIRE — and a helper too strict on the GREEN
+   side is invisible in red, so the row fails once for the right
+   reason and then forever for the wrong one. An increment oracle's
+   two-run structure is load-bearing in BOTH directions: the red run
+   proves every row CAN fire; the SAT run proves every row CAN pass;
+   neither run alone certifies a helper, and a freeze relies on both.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

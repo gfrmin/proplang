@@ -85,6 +85,33 @@ else
   obflags=1
 fi
 
+# --- the BANKED-FAILURE row (OB-16's mechanization, ruled at the
+# 2026-07-22 disposition sitting; the step-10 clause's scriptable
+# half): a composition-failure banked under the primitivity gate's
+# clause (a) EXPIRES when the alphabet moves. Flag every banked
+# clause-(a) failure whose reliance postdates an alphabet motion it
+# assumed. The alphabet's motion is prodTable's value in Syntax.hs;
+# its last change is the commit that last touched that line.
+bfflags=0
+alphacommit=$(git log -1 --format=%H -S'prodTable = ProdTable' -- src/PropLang/Syntax.hs 2>/dev/null)
+if [ -n "$alphacommit" ]; then
+  alphadate=$(git log -1 --format=%cI "$alphacommit")
+  echo "banked-failure row: alphabet last moved at ${alphacommit%${alphacommit#???????}} ($alphadate)"
+  banked=$(grep -rlnE 'BANK(ED)?|banked composition-failure' OBLIGATIONS.md *_PLAN.md *-pack.md 2>/dev/null | sort -u)
+  for f in $banked; do
+    # a banked row is stale if the file records reliance NEWER than the
+    # alphabet motion without a re-execution note
+    if grep -qiE 'banked|BANK' "$f" && ! grep -qiE 're-execut|reexecut|re-tested|RE-EXECUTE' "$f"; then
+      printf 'FLAG  %s banks a composition-failure with no re-execution note after the alphabet moved\n' "$f"
+      bfflags=$((bfflags+1))
+    fi
+  done
+  echo "banked-failure row: $bfflags flagged"
+else
+  echo "banked-failure row: prodTable line not found in history — itself a flag"
+  bfflags=1
+fi
+
 echo "--- standing observations ---"
 echo "note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has $(grep -c '^test-suite' proplang.cabal) (dated red-by-design instrument, recorded)"
-echo "=== boundary-audit done: M5=$m5flags H=$hflags OB=$obflags ==="
+echo "=== boundary-audit done: M5=$m5flags H=$hflags OB=$obflags BF=$bfflags ==="

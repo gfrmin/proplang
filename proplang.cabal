@@ -383,3 +383,22 @@ test-suite said
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+-- the #18 transport micro-increment's oracle (the FIRST process-level
+-- suite; declared as its own oracle class at the 2026-07-22
+-- disposition sitting). Stanza applied at the transport freeze from
+-- test-transport/stanza.cabal.draft. Boot deps process/directory
+-- resolve against the gate-7 toolchain (transport-pack.md rider ii).
+test-suite transport
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Transport.hs
+    hs-source-dirs:   test-transport
+    build-depends:    base
+                    , directory
+                    , process
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    build-tool-depends: proplang:proplang-host
+    default-language: GHC2021
+

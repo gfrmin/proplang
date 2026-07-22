@@ -125,7 +125,14 @@ author's key or fresh per-instance delegation:
    > world from PUBLISHING a writable name as a tick feature, but the
    > engine's own act supplies that name at the fold, and the guard
    > family over it is exactly the hypothesis family "the outcome
-   > depends on what I did" — learned P(outcome | action, context).
+   > depends on what I did" — learned P(evidence | action, context).
+   > The conditional is over EVIDENCE ATOMS, not outcomes: the wire
+   > folds what the channel emitted, and whether that atom IS the
+   > outcome or a signal about it is the world's encoding, outside
+   > this sentence (R-W1's line — the wire may declare the codomain
+   > of observation, never the support of belief about the channel's
+   > law). The scare-quoted family name is an informal gloss, not the
+   > formal claim.
    > Evidence-only ticks do not feed it (no act is bound to fold
    > against), so a host wanting the capability declares the guard on
    > the menu name and sends combined decision+evidence ticks.
@@ -203,5 +210,35 @@ heir class: both are the same enumeration-breadth extension of the
 same family, and both are gated on demand. One row so the gate
 accumulates in one place. Draft:
 
-| OB-19 | the K-ary richer family (enumeration breadth beyond one-vs-rest): the null-rate parameter and the atom-switching guard family, one heir class, one demand gate | RULING-PENDING | the W3 sitting's FIFTH SCOPING LINE named the heir (wire-author-pack.md:511-522, ruling 1, 2026-07-21: the null's predictive mass structurally capped at 1/(K-1), "no good hypothesis in this family and never will"); issue #21 is its FIRST FIELD DEMAND, arriving from the other side — guards move theta, never the distinguished atom, so a minority-context cell ties at (1-theta)/(K-1) while its own evidence in isolation is decisive (confirmed at 68 ticks, dispositions-pack.md VII.1); the atom-switching sentence COMPOSES from shipped constructors today (MAP 0.9996, minority P(y=3)=0.8997), so this is enumeration breadth, NOT alphabet and NOT inference; the two demands cite each other here rather than accumulating separately. CAUTION FOR THE HEIR INCREMENT (the author's rider at the transport countersign): the fix multiplies the guard family by the atom-pair choice — at arity 5 an order-of-magnitude population growth, priced lawfully by the mention bits but PAID AT EVERY TICK'S EU EVALUATION — so the increment's oracle carries a ms/tick row from the existing test-measure instrument alongside its semantics rows. Priced breadth must be MEASURED breadth. |
+| OB-19 | the K-ary richer family (enumeration breadth beyond one-vs-rest): the null-rate parameter and the atom-switching guard family, one heir class, one demand gate | RULING-PENDING | the W3 sitting's FIFTH SCOPING LINE named the heir (wire-author-pack.md:511-522, ruling 1, 2026-07-21: the null's predictive mass structurally capped at 1/(K-1), "no good hypothesis in this family and never will"); issue #21 is its FIRST FIELD DEMAND, arriving from the other side — guards move theta, never the distinguished atom, so a minority-context cell ties at (1-theta)/(K-1) while its own evidence in isolation is decisive (confirmed at 68 ticks, dispositions-pack.md VII.1); the atom-switching sentence COMPOSES from shipped constructors today (MAP 0.9996, minority P(y=3)=0.8997), so this is enumeration breadth, NOT alphabet and NOT inference; the two demands cite each other here rather than accumulating separately. CAUTION FOR THE HEIR INCREMENT (the author's rider at the transport countersign): the fix multiplies the guard family by the atom-pair choice — at arity 5 an order-of-magnitude population growth, priced lawfully by the mention bits but PAID AT EVERY TICK'S EU EVALUATION — so the increment's oracle carries a ms/tick row from the existing test-measure instrument alongside its semantics rows. Priced breadth must be MEASURED breadth. THE LAW'S REACH EXTENDED (marked at the transport countersign): the optimisation law was written for SPEED — a fast path is legal iff a property pins it to the general route — and this clause applies its discipline to the PRIOR'S GROWTH instead. A family that multiplies is a family that costs EU-evaluation time at every tick, so a demand that grows the alphabet's BREADTH must measure the tick it lengthens. Not merely an instance of the law; a small extension of where it reaches. |
 
+
+## 8. The freeze executed (2026-07-22)
+
+All nine package items applied under the author's per-instance
+delegation of 2026-07-22 ("correct the one conditional in freeze item
+3, and turn the key"), the builder tagging with the BUILDER key and
+recording the delegation verbatim in the tag message (the membrane
+precedent; the signature attests builder action under recorded
+instruction and does not mint an author attestation).
+
+Item 3 carries the author's correction at the key: the formal
+conditional reads P(evidence | action, context), not P(outcome | ...)
+— the wire folds EVIDENCE ATOMS, and whether an atom is the outcome or
+a signal about it is the world's encoding (R-W1's line). The
+scare-quoted family name stays as the informal gloss it always was.
+The looser phrase would have invited a host to read the channel as
+delivering ground-truth outcomes — the tabular-likelihood confusion
+R-W1 refused.
+
+Applied: membrane-wire.md x3 (var0 repair; §6.3 UNSHIPPED bracket; §3
+combined-tick sentence as corrected); tools/boundary-audit.sh (the
+banked-failure row — alphabet motion read from prodTable's last
+touching commit, banked clause-(a) rows without a re-execution note
+flagged; fires 0 today, BF row now in the summary line);
+CLAUDE.md (the triptych clause); proplang.cabal (the transport stanza
+with its provenance comment); OBLIGATIONS.md (OB-19, 19 rows);
+MANIFEST.sha256 (5 re-signs + 3 new rows = 82, verified).
+
+Lint at the tag: 0 FAIL, 12 WARN (the advisory literal class),
+L3 82 rows, L7 full-corpus overlay build clean.

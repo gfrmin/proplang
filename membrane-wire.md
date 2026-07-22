@@ -97,9 +97,17 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   an S-expression, parsed against the priced grammar and priced like
   any sentence (`{"form": "said@1", "said": ["-", ["var", 1],
   ["*", ["c", 0.2], ["get", "a"]]]}`). Its scope is the residue pair:
-  `["var", 0]` the option code, `["var", 1]` the outcome; `["get",
-  "<name>"]` reads the tick's features — UTILITY READS FEATURES,
-  because features are the consequences (the step-8 repeal). The
+  `["var", 0]` is RESERVED on the shipped wire — the evaluator binds
+  it to the constant 0 for every candidate, so it never differentiates
+  options [the sentence this repairs read "`["var", 0]` the option
+  code" and was falsified by issue #15's probes against `choose`,
+  which binds the slot to the literal 0 — the 2026-07-22 repair];
+  `["var", 1]` the outcome. The per-candidate read is `["get",
+  "<menu-name>"]`: a candidate's assignments are features during its
+  evaluation (the step-6 geometry, evidence folds at feats ++ act), so
+  `get` on a menu name reads the option under consideration. UTILITY
+  READS FEATURES, because features are the consequences (the step-8
+  repeal). The
   declaration is a POINT-MASS PRIOR over the program shape with the
   parameter on its declared grid — the GRID-PRICED DEGENERATE LATENT
   (the declared-table-as-point-mass-latent doctrine made wire-real;
@@ -212,6 +220,35 @@ the verdict (waste polarity: 1 = approve):
   loop's order — the choice is computed from the predictive BEFORE
   the observation moves the agent. The reply is the union of the two
   shapes.
+  > **[Added at the transport freeze, 2026-07-22 — the capability
+  > issue #15's probes surfaced, documented here so it is not
+  > rediscovered.]** THE COMBINED TICK IS THE ACTION-CONDITIONAL
+  > CHANNEL. Evidence folds at `features ++ act` (the step-6
+  > geometry), so on a tick carrying BOTH a menu and evidence the
+  > chosen assignment is part of the observation's context. A guard
+  > declared on a WRITABLE name is therefore NOT inert: D-b2 bars a
+  > world from PUBLISHING a writable name as a tick feature, but the
+  > engine's own act supplies that name at the fold, and the guard
+  > family over it is exactly the hypothesis family "the outcome
+  > depends on what I did" — learned P(evidence | action, context).
+  > The conditional is over EVIDENCE ATOMS, not outcomes: the wire
+  > folds what the channel emitted, and whether that atom IS the
+  > outcome or a signal about it is the world's encoding, outside
+  > this sentence (R-W1's line — the wire may declare the codomain
+  > of observation, never the support of belief about the channel's
+  > law). The scare-quoted family name is an informal gloss, not the
+  > formal claim.
+  > Evidence-only ticks do not feed it (no act is bound to fold
+  > against), so a host wanting the capability declares the guard on
+  > the menu name and sends combined decision+evidence ticks.
+  > Measured at this freeze (dispositions-pack.md VI.5.2): over 60
+  > rounds with evidence contingent on the act, the family's
+  > posterior mass grows 9.09e-3 -> 1.02e-1 and the act holds for 58
+  > consecutive rounds; over an act-independent stream the same
+  > family unlearns to 1.89e-9. Hosts should expect the act to
+  > alternate while the contingency is untrained — the myopic rung
+  > exploring the untried branch — and to settle when the evidence
+  > breaks the symmetry.
 - A tick with neither is the silent tick: `{"ok": true}`, agent
   unmoved.
 - `"utility"` on a tick is the per-request profile: a FULL
@@ -409,6 +446,11 @@ justifies it. Its cost is measured units through the accounting
 layer, never theta_ask-denominated (rider 1).
 
 ### 6.3 observe_batch and observe_counts (the warm channel)
+
+> [UNSHIPPED — the shipped host rejects both verbs (`expected
+> tick`; issue #17, re-verified at HEAD 2026-07-22). This
+> subsection is increment D's design layer; its verbs land only
+> with a D-scoped increment under its own gate.]
 
 `observe_batch` — an array of evidence ticks, one reply each. Fixes
 ROUND-TRIPS (H's 39k-tick cost finding), not engine work:
