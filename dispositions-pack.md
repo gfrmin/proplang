@@ -1159,3 +1159,256 @@ collapsed to constants; p1 a rail, not a posterior), which is how the
 fork between "schedule the fragment route" and "declare the bracket
 permanent with a named heir" was always going to be taken. Disposition
 at its sitting; no builder act pending.
+
+## Part VIII — the R-residue sitting (2026-07-22): #19, #20, OB-19
+
+Agenda: the two author-facing dispositions left open at the transport
+close, plus OB-19's scheduling call. Every item below carries an
+EXECUTED evidence program (the standing rule: "no preference" is not
+delegation). All prototypes are throwaway, R-D21 spirit; nothing frozen
+was touched; transcripts are quoted with the commands that produced
+them. Builder recommendations are marked as such and are not rulings.
+
+Build for every probe: `PATH=$HOME/.ghcup/bin:$PATH`,
+`cabal exec -- ghc -isrc -O1`, GHC 9.10.3, HEAD = 9790089
+(`transport-freeze-r1`).
+
+### VIII.0 — the three probes, and what each was for
+
+| probe | question | file |
+|---|---|---|
+| `Readout.hs` | does the R-D23 null cap BIND at a live operating point? | scratchpad |
+| `Scale.hs` | OB-19's ms/tick instrument: population and per-tick cost vs arity | scratchpad |
+| `Ceiling.hs` / `Frag.hs` | is #19's ceiling real, and does the fragment route lift it? | scratchpad |
+| `Decomp.hs` | what fraction of the population does OB-19's multiplier hit? | scratchpad |
+
+One probe-design error is recorded rather than buried: `Readout.hs`'s
+first stream was BLOCKY (147 nulls, then 53 threes, repeating), and the
+state-carrying walk sentences tracked the blocks — correct behaviour
+answering the wrong question. The stream was re-cut interleaved and the
+measurement re-run. The blocky run's numbers are not cited anywhere
+below.
+
+### VIII.1 — #20 (K-ary readout): GRANT, and it is cheaper than filed
+
+**The mechanical facts.** `p1` is `prob (predictive feats ag) (is
+(agentObsSpace ag) 1)` — atom 1, hard-coded (`Host.hs:354`). The
+filer's R-D23 citation is CORRECT, not a misreading: `membrane-wire.md:84-85`
+declares the cap, and `Enumerate.hs:467` is its mechanism —
+`atoms = [1 .. k - 1]`, so the null atom is NEVER a distinguished `j`
+and its mass is always the spread rate `(1-theta)/(K-1)`.
+
+**Finding 1 — the whole ask is host-layer arithmetic over ALREADY
+EXPORTED verbs.** `spacePoints`, `prob`, `is`, `predictive`,
+`agentObsSpace` are all on the public surface today. The full vector is
+seven lines and needs no new export, no new constructor, no engine
+change:
+
+```haskell
+let b   = predictive feats ag
+    vec = [ (j, prob b (is (agentObsSpace ag) j)) | j <- spacePoints (agentObsSpace ag) ]
+```
+
+So #20 costs a reply-shape change and a frozen-doc edit — nothing else.
+The alphabet does not move; `prodTable` stays 20/1. This is a WIRE
+MICRO-INCREMENT of the transport's own size class.
+
+**Finding 2 (the one that changes the disposition) — the cap does not
+merely exist; it BINDS AT THE OPERATING POINT.** K=6 (atoms 0..5),
+5845 models, 400 interleaved ticks at an empirical null rate of 0.735:
+
+```
+empirical p(y=0): 0.735
+R-D23 cap 0.9/(K-1) = 0.18
+readout p0      : 0.17998972230558594
+argmax_code     : 3   p_argmax: 0.1799897224156429
+p1 (shipped)    : 0.1600051388196928
+full vector: [(0,0.17999),(1,0.16001),(2,0.16001),(3,0.17999),(4,0.16001),(5,0.16001)]
+```
+
+`p0` sits at 0.17999 against a cap of 0.18 — pinned to four significant
+figures, while the truth is 0.735. The engine is 4x under-reading the
+null atom and NO evidence can fix it, because no sentence in the family
+can say "atom 0 is likely". The filer's point (1) is also demonstrated
+in the same line: the shipped `p1` reads 0.160 for a tick whose argmax
+is atom 3.
+
+This is the finding that promotes #20. It is filed as observability;
+what it actually is, is THE INSTRUMENT THAT READS OB-19's GATE. The
+null-rate parameter (the W3 fifth scoping line) is unobservable today,
+and `p0` is exactly the number that observes it. Granting #20 is
+therefore a precondition for ruling OB-19 on evidence rather than on
+argument.
+
+**Recommendation: grant, full vector, as its own wire micro-increment.**
+The full vector over the three scalars, on two grounds: it is O(K) like
+the scalars, and the filer's report-pricing use (EU of every menu row)
+needs it. Consumer discipline as the filer themselves stated it —
+readouts land in ledger rows and footers, never in a branch
+(HOSTS_PLAN 8.12(b)) — should be quoted INTO the wire doc at the
+freeze, not left in the issue thread.
+
+**Frozen-file flag:** `membrane-wire.md` (reply shape + the readout's
+consumer discipline). Author's key or per-instance delegation.
+
+### VIII.2 — #19 (the R-residue fork): the ceiling is real, the route composes, and the fork has a third horn
+
+**Finding 3 — the ceiling is the grid's top rung, asymptotically, not
+an evidence artifact.** `Ceiling.hs`, shipped wire population
+(`enumerateSentencesIn`, `thetaPoints` hard-wired at `Host.hs:294`):
+
+```
+thetaPoints max : 0.9      models: 1169
+p1 after  10 all-1 ticks: 0.8392282590190657
+p1 after  40 all-1 ticks: 0.8918359427868011
+p1 after 120 all-1 ticks: 0.8987767351407041
+p1 after 300 all-1 ticks: 0.8998555400039286
+```
+
+p1 -> 0.9 = max(thetaPoints). The registered 0.897 is this curve read
+at finite ticks. A wire host cannot express p* = 0.96 at ANY tick
+count. `R_SCOPE.md:190-196`'s bracket is therefore load-bearing exactly
+as filed.
+
+**Finding 4 — this EXPLAINS the governor's field evidence.** With a
+threshold of 0.96 above a hard 0.9 ceiling, the predicate "is p1 >= p*?"
+is constantly false. The 190k-decision shadow observation — both
+policies collapsed to constants, p1 a rail — is the ceiling's
+fingerprint, not a governor defect. The field evidence and the
+mechanical bound are the same fact seen from two sides.
+
+**Finding 5 — the fragment route COMPOSES from shipped surface, and at
+no population cost.** `enumerateSentencesGrid`'s first argument IS the
+theta grid; `Lattice`'s `nodeTheta`/`frontier` produce exactly such
+points. Composed and measured (`Frag.hs`):
+
+```
+shipped grid : models=1169 ceiling p1=0.8998555400039286  clears 0.96? False
+refined grid : models= 912 ceiling p1=0.9891503289927357  clears 0.96? True
+```
+
+The refined grid is CHEAPER (912 vs 1169 models) because it carries
+eight points to the shipped grid's nine. The ceiling lift is a grid
+CHOICE, not a breadth expansion.
+
+**Finding 6 — but `Purchase` is a parallel engine, not a refinement of
+the sentence agent.** `runPurchase :: PurchaseWorld -> Owned -> [Obs]
+-> [PTick]` drives its own loop, and `purchasePredictive` builds a
+belief via `push (scoreOwned o c) (kernel (mkSpace pts) obsSpace bern)`
+— bern counts over owned nodes. It never touches `Agent` or
+`enumerateSentences*`. So Rider 2's fragment route is not merely
+UNROUTED, as #19 reads it; the purchased-points-into-enumeration path
+is UNBUILT. `Purchase.hs` is R1's in-language demonstration, not the
+wire route's implementation.
+
+**The fork therefore has three horns, not two.** #19 offers
+(1) schedule, or (2) declare permanent. Findings 5 and 6 together open:
+
+- **(1a) DECLARED FINER GRID — available now, ~one host line.** Replace
+  the hard-wired `thetaPoints` at `Host.hs:294-295` with a
+  hello-declared grid. Refinement stays PRICED, because grid width
+  already enters `chargeBits` through `constChargeA`/`guardChargeA` —
+  a finer grid makes every sentence mentioning it more expensive
+  automatically. Lifts the bracket for the named consumer today.
+- **(1b) THE PURCHASE ROUTE — the principled version, a real increment.**
+  Adaptive, Kraft-charged refinement: the host buys lattice regions over
+  time rather than declaring resolution up front. This is what Rider 2
+  names and what does not exist.
+- **(2) PERMANENT BRACKET with a named heir.**
+
+**Recommendation: (1a) now, (1b) scheduled behind it, and Rider 2's
+re-measurement homed to (1b).** Grounds: (1a) discharges the governor's
+actual blockage at micro-increment cost and converts "the wire is
+myopic above 0.897" from a limitation into a host declaration — which
+is the deletion test's own criterion (declarable => world data). (1b)
+remains the interesting increment and now has an honest scope
+statement: it BUILDS a route, it does not wire two modules together.
+Splitting them stops (1b)'s size from holding the governor hostage.
+
+**Against my own recommendation, stated plainly:** (1a) hands a host
+the ability to declare arbitrarily fine resolution, and while mention
+bits price it, the PURCHASE discipline exists precisely because paying
+up front and paying adaptively are different disciplines. If the author
+reads unpriced-in-time resolution as the defect purchase was built to
+prevent, (1a) is wrong and (1b) is the only honest answer. That reading
+is available on the record and I do not think the probe settles it.
+
+**Frozen-file flags:** `R_SCOPE.md` (bracket re-statement, either
+horn); `membrane-wire.md` (hello grid declaration, under 1a);
+`OBLIGATIONS.md` (the row #19 asks for, either horn).
+
+### VIII.3 — OB-19: the measured breadth the caution demanded
+
+**Finding 7 — the cost curve.** `Scale.hs`, 60 ticks per cell,
+CPU time, interleaved stream:
+
+```
+K   guards  models  ms/tick
+2   0       1169      9.98
+2   1       1241     10.77
+4   0       3507     64.99
+4   1       3723     72.94
+6   0       5845    199.04
+6   1       6205    219.08
+```
+
+Cost is superlinear in the population: models x5 and arity x3 give time
+x20, so cost ~ O(models x K).
+
+**Finding 8 — the multiplier hits essentially the whole population.**
+`Decomp.hs`, guard family as a fraction:
+
+```
+K=2  full=1241  no-guard=17  guard-portion=1224   (98.6%)
+K=4  full=3723  no-guard=51  guard-portion=3672   (98.6%)
+K=6  full=6205  no-guard=85  guard-portion=6120   (98.6%)
+```
+
+**The projection** (flagged AS a projection — it is arithmetic over
+measured quantities, not a measurement of an implementation that does
+not exist). #21's fix makes each guard branch select the atom as well
+as theta: an ordered pair (j_hi, j_lo), j_hi /= j_lo, replacing a
+single j. At K=6 that is 5x4 = 20 pairs against 5 singles, x4 on 98.6%
+of the population:
+
+- population 6205 -> ~24565 (x3.96)
+- ms/tick 219 -> ~870 at unchanged K
+
+Nearly a second per tick, against the filer's live episodes of 0.2-5s.
+General form: x(K-2) on 98.6% of the population; at K=10 it is x8.
+
+**Recommendation: OB-19 stays demand-gated, and the gate acquires a
+STATED COST BAR rather than remaining a bare "when demand arrives".**
+The measurement says the naive fix is not affordable at the arities the
+demand actually runs at, so an increment that lands it as filed would
+ship a capability its consumer cannot use. The increment's real content
+is therefore a cost-control design — candidates: restrict the atom pair
+to atoms OBSERVED in the session; or an enumeration filter under the
+optimisation law (the step-2 rider's shape, which is precisely a fast
+path pinned extensionally to the general route). Neither is designed
+here.
+
+The author's caution is vindicated numerically and can now be stated as
+a bar: **the OB-19 increment's oracle carries a ms/tick row, and the
+gate does not open until a design exists whose projected ms/tick at
+K=6 stays within a stated multiple of the shipped 219.** Naming the
+multiple is the author's call and is the one number this pack does not
+supply.
+
+### VIII.4 — the three items' interaction, stated once
+
+These are not independent. #20's `p0` is the instrument that measures
+OB-19's null-rate face (Finding 2). OB-19's cost curve (Finding 7)
+prices the fix that #21 asks for. And #19's Finding 5 shows the
+ceiling's lift is a grid choice — which is the same shape as OB-19's
+question, one level up: both are "the enumeration's resolution is
+hard-wired where it could be declared". If the author wants ONE
+doctrine out of this sitting rather than three rulings, that is the
+candidate: **declared resolution, priced by mention bits, is world
+data; hard-wired resolution is a limitation with an heir.** The
+deletion test says the same thing, and it would dispose of #19(1a),
+OB-19's design direction, and the W3 fifth scoping line together.
+
+Offered as an observation, not a recommendation. It is the kind of
+generalization that is right often enough to be dangerous, and the
+sitting may prefer three narrow rulings to one wide one.
