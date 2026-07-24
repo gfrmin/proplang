@@ -35,6 +35,40 @@ exist only to manage the lossiness. Remove the loss and the rulings
 retire with it. `Log`/`Exp`, `NaN`, `lse`, the float-order tree, `Pos`'s
 justification, and every tolerance are all one defect wearing six hats.
 
+## 1a. The second firewall: core/world (grids are not the language)
+
+The standing deletion test: a point-set that can be **declared and
+deleted** is world data, and the core keeps only laws. `thetaPoints`,
+`tauPoints`, `rhoPoints` — and, by the same law, the `obs` carrier `{0,1}`
+(already half-anticipated by W3's arity handshake, `obsSpaceAt`) — are all
+declarable, so **not one concrete point-set may live in `src/`.** The core
+holds the `Grid`/`Carrier`/`Space` *types* and the grid-agnostic engine; a
+**World** value declares the point-sets, at the boundary:
+
+```haskell
+data World = World          -- declared OUTSIDE the core, carried at the membrane
+  { wLatent :: Grid          -- was thetaPoints
+  , wTau    :: Grid          -- was tauPoints
+  , wRho    :: Grid          -- was rhoPoints
+  , wObs    :: Carrier Obs }  -- was obsCarrier / obsSpace
+```
+
+The engine (`enumerate`, `observe`) takes a `World` parameter — the hooks
+already exist (`enumerateSentencesGrid` is grid-parameterized; `obsSpaceAt`
+is arity-parameterized). The concrete worlds live in the host/wire layer,
+and — for the oracle — in the test worlds.
+
+This **dissolves the `0.1` vs `1/10` question at the language level**: the
+core never contains a grid to get wrong. The world declares its points as
+exact rationals; the language reasons exactly over whatever ℚ-points it is
+handed. The two firewalls compose — the world declares exact point-sets,
+the core does exact arithmetic, and neither holds a `Double` nor a concrete
+grid. **Open sub-decision (the boundary's reach):** the `World` rides the
+membrane wire (the principled home — it *is* the world/agent boundary, and
+W3's handshake already carries arity) versus a host-owned config as an
+interim. Recommend the wire; stage-able as config first if you want the
+smaller step.
+
 ## 2. The single ruling left to the author — emission representation
 
 Everything below is written under **(II)**. This is the only place a
@@ -136,10 +170,10 @@ The R-C1 "no `NaN`/`−∞`, some finite" predicate becomes "**all masses
 non-negative, some positive**" — an exact, decidable statement about
 rationals, replacing a statement about float bit-patterns.
 
-**Grids are re-declared as exact rational data (same count → same
-price).** `data Grid = Grid Name [Rational]`; `thetaPoints = 1%10 :| [2%10
-.. 9%10]`; `tauPoints = 5 :| [10 .. 80]`; `rhoPoints = 1%100 :| [...]`.
-Grids are "data with prices"; re-declaring the data exactly changes no
+**The `Grid`/`Carrier` types stay (now `Rational`-typed); the concrete
+point-sets LEAVE the core** (§1a). No `thetaPoints`/`tauPoints`/
+`rhoPoints`/`obs` value in `src/` — a `World` declares them at the
+boundary as exact rationals, and re-declaring a grid exactly changes no
 size and no price.
 
 ## 4. The reporting edge (the only place a `Double` may appear)
@@ -160,20 +194,30 @@ CL-1 diagnostics) move here; `top` returns exact `[(a, Rational)]`.
 
 ## 5. Alphabet consequences (the deletion audit re-run)
 
-| terminal | fate under (II) | deletion proof |
-|---|---|---|
-| `Exp` | **deleted** | already proven dead — the `DROP_EXP` ablation compiles the whole library (§ this session). |
-| `Log` | **deleted** | its sole role was `−log₂(prob)`; weight-parameterization removes it. A `DROP_LOG` ablation over the (II)-rewritten corpus must compile — the in-increment proof owed. |
-| `Pos` | **re-examined** | its FP-nonuniformity justification is void under exact grids. Survives *iff* some walked value-grid is exactly non-uniform. If all uniform, `Pos` is deleted and its deletion proof is **rewritten** ("adjacency is a value fact"); `walkOn` adjacency recovers via `ToR` + exact arithmetic. A grid-by-grid determination, made at design time, recorded in the register. |
-| `ToR` | **stays** | carrier value as `Rational` (`toRational`); statistics still need a value, not a position. |
-| `Add Sub Mul Div Neg`, `If Gt` | **stay, rational-closed** | `Div` of rationals is rational — the IEEE `1/3` problem is gone. |
+The ruthless reading of the deletion directive: weight-form + exactness +
+world-declared grids + foreclosed expfam remove the *reason* for every
+non-structural terminal. Measured this session — the walk, bern, and guard
+bodies touch exactly `{Add, Sub, Gt, If}` (`Eq`/booleans are DERIVED from
+`Gt`+`If`, `Enumerate.hs:428`, not terminals). **Seven terminals fall:**
 
-**One new partiality, honestly stated.** `Rational` division by zero is an
-error, where `Double`'s was `±∞`. So `evalx`'s arithmetic yields `Maybe
-Rational` and a division-by-zero makes a `Code` **not denote** — folded
-into the *same* `Maybe` door the denotation check already owns. Net
-partiality *shrinks*: from {NaN, +∞, −∞, no-mass} to {div-by-zero,
-no-mass}, both exact and decidable.
+| terminal | fate | status / proof |
+|---|---|---|
+| `Exp` | **deleted** | PROVEN — `DROP_EXP` compiles the whole library (this session). |
+| `Log` | **deleted** | sole role `−log₂(p)`; weight-form removes it. `DROP_LOG` owed. |
+| `Pos` | **deleted** | the only walked grid (theta) is exactly uniform; the reflected walk reproduces EXACTLY, Pos-free, in weight-form — correct boundary reflection, this session's kernel. `DROP_POS` owed. |
+| `Neg` | **deleted** | only ever inside `−log₂`; a non-negative mass never negates. `DROP_NEG` owed. |
+| `Mul` | **deleted** | only in expfam `η·T(y)` (foreclosed); no shipped weight-form body multiplies. `DROP_MUL` owed. |
+| `ToR` | **deleted** | identity under the `Rational` sort; its expfam justification is foreclosed. `DROP_TOR` owed. |
+| `Div` | **deleted** (one reparameterization) | its only shipped use is the walk's `ρ/2` (`Div rho k2`); declare the per-direction rate `q = ρ/2` in the `World` and `stay = 1 − (q+q)` — pure `Add/Sub`. `DROP_DIV` owed. |
+| **survivors** | `Add Sub Gt If` | + the leaves `Lit`/`Get`/`Var` and the grammar sorts (`Code`, `CondE`, `SawE`, `ElimJ`, `Expect`, `Argmax`). |
+
+**Partiality vanishes with `Div`.** Division-by-zero was the *only*
+arithmetic partiality (`Rational` has no `NaN`/`±∞`). Deleting `Div` makes
+`evalx` **total** — no `Maybe` arithmetic — and the sole denotation
+failure becomes "a column has no positive mass" (a decidable modeling
+condition, not a pathology). Each of the seven carries a `DROP_` ablation
+(the two-sided entry gate) in the increment; `Div`'s also carries the
+world-reparameterization.
 
 ## 6. Frozen-layer inventory (prose the re-founding falsifies)
 
@@ -211,6 +255,11 @@ structural:
 - **Gate E2 — reporting confinement.** `Double`/`logBase`/`fromRational`
   appear only in the §4 reporting module. The firewall has exactly one
   door.
+- **Gate E3 — the core/world firewall (§1a).** No concrete point-set
+  literal in `src/`: no `_ :| [_ ..]` grid/carrier value, no `mkSpace`/
+  `mkGrid`/`mkCarrier` on a literal, in any core module. Point-sets enter
+  only as `World` parameters. The checkable twin of E1 — as inexactness is
+  unsayable in the core, so is a baked world.
 - **Laws as `==`.** The lawful floor (normalization, Kraft, monotonicity,
   the introducer law) states exact rational equalities. A law that cannot
   be written as `==` is a law about a §4 display quantity, and says so.
