@@ -196,9 +196,10 @@ CL-1 diagnostics) move here; `top` returns exact `[(a, Rational)]`.
 
 The ruthless reading of the deletion directive: weight-form + exactness +
 world-declared grids + foreclosed expfam remove the *reason* for every
-non-structural terminal. Measured this session — the walk, bern, and guard
-bodies touch exactly `{Add, Sub, Gt, If}` (`Eq`/booleans are DERIVED from
-`Gt`+`If`, `Enumerate.hs:428`, not terminals). **Seven terminals fall:**
+non-structural terminal. Measured this session — the bern, walk, guard, and
+**categorical** bodies touch exactly `{Add, Sub, Mul, Gt, If}` (`Eq`/booleans
+are DERIVED from `Gt`+`If`, `Enumerate.hs:428`, not terminals). **Six
+terminals fall:**
 
 | terminal | fate | status / proof |
 |---|---|---|
@@ -206,18 +207,20 @@ bodies touch exactly `{Add, Sub, Gt, If}` (`Eq`/booleans are DERIVED from
 | `Log` | **deleted** | sole role `−log₂(p)`; weight-form removes it. `DROP_LOG` owed. |
 | `Pos` | **deleted** | the only walked grid (theta) is exactly uniform; the reflected walk reproduces EXACTLY, Pos-free, in weight-form — correct boundary reflection, this session's kernel. `DROP_POS` owed. |
 | `Neg` | **deleted** | only ever inside `−log₂`; a non-negative mass never negates. `DROP_NEG` owed. |
-| `Mul` | **deleted** | only in expfam `η·T(y)` (foreclosed); no shipped weight-form body multiplies. `DROP_MUL` owed. |
 | `ToR` | **deleted** | identity under the `Rational` sort; its expfam justification is foreclosed. `DROP_TOR` owed. |
-| `Div` | **deleted** (one reparameterization) | its only shipped use is the walk's `ρ/2` (`Div rho k2`); declare the per-direction rate `q = ρ/2` in the `World` and `stay = 1 − (q+q)` — pure `Add/Sub`. `DROP_DIV` owed. |
-| **survivors** | `Add Sub Gt If` | + the leaves `Lit`/`Get`/`Var` and the grammar sorts (`Code`, `CondE`, `SawE`, `ElimJ`, `Expect`, `Argmax`). |
+| `Div` | **deleted** | its uses (walk `ρ/2`; categorical `(1−θ)/(K−1)`) both go to the surviving `Mul` — `Mul rho ½` and the `(K−1)·θ` vs `(1−θ)` scaling. Deleting `Div` (not `Mul`) is what keeps `evalx` total. `DROP_DIV` owed. |
+| `Mul` | **SURVIVES** | FORCED by the categorical (`catBody`, K>2, `Enumerate.hs:486`): the `(1−θ)/(K−1)` spread couples a *world integer* `(K−1)` **multiplicatively** with the hypothesis variable `θ`. Weight-form scales the target atom to `(K−1)·θ` against `(1−θ)` for the rest — an irreducible `Mul` of a variable by a world constant. Validated this session (`CatBody.hs`: both `Div`- and `Mul`-forms reproduce `[7/30,7/30,3/10,7/30]` exactly; a multiplicative op is unavoidable for K>2). At K=2 `(K−1)=1`, the multiply is identity — which is why `bern` alone looked Mul-free. |
+| **survivors** | `Add Sub Mul Gt If` | + the leaves `Lit`/`Get`/`Var` and the grammar sorts (`Code`, `CondE`, `SawE`, `ElimJ`, `Expect`, `Argmax`). |
 
 **Partiality vanishes with `Div`.** Division-by-zero was the *only*
-arithmetic partiality (`Rational` has no `NaN`/`±∞`). Deleting `Div` makes
-`evalx` **total** — no `Maybe` arithmetic — and the sole denotation
-failure becomes "a column has no positive mass" (a decidable modeling
-condition, not a pathology). Each of the seven carries a `DROP_` ablation
-(the two-sided entry gate) in the increment; `Div`'s also carries the
-world-reparameterization.
+arithmetic partiality (`Rational` has no `NaN`/`±∞`; `Mul` is total).
+Deleting `Div` — and keeping `Mul` — makes `evalx` **total** (no `Maybe`
+arithmetic), and the sole denotation failure becomes "a column has no
+positive mass" (a decidable modeling condition, not a pathology). Because
+`Mul` survives, the walk's `ρ/2` is `Mul rho ½` and needs **no**
+World-reparameterization (the earlier `q = ρ/2` proposal is now
+unnecessary). Each of the six deletions carries a `DROP_` ablation (the
+two-sided entry gate) in the increment.
 
 ## 6. Frozen-layer inventory (prose the re-founding falsifies)
 
@@ -309,8 +312,11 @@ What remains genuinely primitive — the exact core of a Bayesian
 decision-theoretic agent, with nothing the compiler could have forced left
 as prose or tolerance:
 
-- exact rational arithmetic, rational-closed: `{Add, Sub, Mul, Div, Neg,
-  If, Gt}`;
+- exact rational arithmetic, shipped-body-determined: `{Add, Sub, Mul, Gt,
+  If}` (the two-sided entry gate: a terminal survives only if a shipped
+  body needs it — `Div`/`Neg` would close the rationals mathematically but
+  no shipped weight-form body divides or negates; `Mul` survives because the
+  categorical does, §5);
 - the Bayesian operations — condition, push, marginal, normalize — closed
   over the rationals on finite carriers;
 - the MDL prior: program length as an exact multiplier, mass `1/M`;
