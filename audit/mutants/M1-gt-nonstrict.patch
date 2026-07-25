@@ -1,0 +1,14 @@
+# MUTANT M1-gt-nonstrict — provenance: the CL-3/eq incident class: a non-strict Gt breaks first-listed-wins and the eq composition
+diff --git a/src/PropLang/Eval.hs b/src/PropLang/Eval.hs
+index e33dcee..da80f31 100644
+--- a/src/PropLang/Eval.hs
++++ b/src/PropLang/Eval.hs
+@@ -66,7 +66,7 @@ evalx expr env@(Env feats vals) = case expr of
+                               ++ "\" undeclared (door-unreachable)"))
+                       (lookup nm feats)
+   If c t e -> if evalx c env then evalx t env else evalx e env
+-  Gt a b -> evalx a env > evalx b env
++  Gt a b -> evalx a env >= evalx b env
+   Var ix -> lookupVal ix vals
+   Sub a b -> evalx a env - evalx b env
+   Mul a b -> evalx a env * evalx b env

@@ -1,0 +1,14 @@
+# MUTANT M7-ties-to-challenger — provenance: CL-3 inverted at ties (challenger wins): the selection pin's subject
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index 7558b03..4e0216f 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -149,7 +149,7 @@ chooseEU ns feats atomG u cands = case cands of
+     pick =
+       let vC = Expect (Var Z) uB
+           vI = Expect (Var (S Z)) uB
+-      in If (Gt vC vI) (reMint atomG 1) (reMint atomG 0)
++      in If (Gt vI vC) (reMint atomG 0) (reMint atomG 1)
+     step acc chal@(cFeats, bC) = do
+       inc@(_, bI) <- acc
+       env <- mkEnvIn ns (feats' cFeats) (bC :. bI :. VNil)

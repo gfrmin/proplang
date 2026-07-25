@@ -1,0 +1,14 @@
+# MUTANT M6-addM-degenerate — provenance: the closed form mis-spelled (a - 0 = a): the Add-deletion bank's subject
+diff --git a/src/PropLang/Syntax.hs b/src/PropLang/Syntax.hs
+index 3efb406..937b7cd 100644
+--- a/src/PropLang/Syntax.hs
++++ b/src/PropLang/Syntax.hs
+@@ -228,7 +228,7 @@ mkC g k = MkC g k <$> gridLookup g k
+ -- IS its deletion proof; there is no terminal to DROP.
+ #ifndef DROP_SUB
+ addM :: Expr env Rational -> Expr env Rational -> Expr env Rational
+-addM a b = Sub a (Sub (Sub b b) b)
++addM a b = Sub a (Sub b b)
+ #endif
+ 
+ class KnownScope (env :: [Type]) where

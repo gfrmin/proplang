@@ -29,6 +29,21 @@ same reason as OCaml: privacy yes, effect tracking no.
 
 ## 2. The sealed reasoner                                          [COMPILE]
 
+> [RE-DERIVED at the exact boundary (exact-freeze-r1, 2026-07-25;
+> ruling R12 of the repair sitting): the export list below is the
+> EXACT surface — gate 2 binds to it via audit/belief-exports.txt.
+> The Double-era list (Bits, LogProb, Evidence(..), Is, Saw,
+> fromBits, logPredict, entropyBits, event, is) is superseded:
+> fromWeights is the sole introducer (uniform/point its definitions,
+> ruling #7); Event is DELETED (ruling R3 — on a finite carrier the
+> indicator evaluates extensionally and exactly; the
+> evidence-introduction side stays closed); displays live in
+> PropLang.Report. The exact list:
+>   Space, mkSpace, spacePoints, Belief, Kernel, kernel, kernelSpace,
+>   kernelAt, fromWeights, uniform, point, expect, prob, push, condK,
+>   condV, predictMass, points, weights, top ]
+
+
 One module owns all probability arithmetic. Its export list is the whole
 ballgame — the `Belief` constructor is not in it, so no code outside the
 module can read, write, or even name a log-weight. I1 stops being a

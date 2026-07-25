@@ -11,13 +11,18 @@
 set -u
 fail=0
 core="src/PropLang/Belief.hs src/PropLang/Syntax.hs src/PropLang/Eval.hs src/PropLang/Enumerate.hs"
-e1=$(grep -nE '\bDouble\b|\blogBase\b|\bexp\b|\blog\b|\blse\b|isNaN|isInfinite' $core 2>/dev/null | grep -v '^\s*--' | wc -l)
+# [REPAIRED at the exact close (the freeze-day incident): the old
+# filter grep -v '^\s*--' never matched grep's file:line-prefixed
+# output, so comment prose counted as code tokens. The repair strips
+# each line's comment tail BEFORE matching; the two-sided seeded
+# demonstration rides the close pack.]
+e1=$(for f in $core; do sed 's/--.*$//' "$f" 2>/dev/null; done | grep -cE '\bDouble\b|\blogBase\b|\bexp\b|\blog\b|\blse\b|isNaN|isInfinite')
 echo "E1 forbidden-inexactness tokens in core: $e1 (must be 0)"
 [ "$e1" -eq 0 ] || fail=1
-e2=$(grep -nE 'fromRational' $core 2>/dev/null | grep -v '^\s*--' | wc -l)
+e2=$(for f in $core; do sed 's/--.*$//' "$f" 2>/dev/null; done | grep -cE 'fromRational')
 echo "E2 fromRational renders in core: $e2 (must be 0; display lives at the edge)"
 [ "$e2" -eq 0 ] || fail=1
-e3=$(grep -nE 'thetaPoints|tauPoints|rhoPoints|0\.1 :\||\(0 :\| \[1, 2, 8\]\)|0\.5 :\|' src/PropLang/*.hs 2>/dev/null | grep -v '^\s*--' | wc -l)
+e3=$(for f in src/PropLang/*.hs; do sed 's/--.*$//' "$f" 2>/dev/null; done | grep -cE 'thetaPoints|tauPoints|rhoPoints|0\.1 :\||\(0 :\| \[1, 2, 8\]\)|0\.5 :\|')
 echo "E3 concrete point-sets in src: $e3 (must be 0; worlds declare)"
 [ "$e3" -eq 0 ] || fail=1
 exit $fail

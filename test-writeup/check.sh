@@ -80,14 +80,27 @@ grep -oE '`[A-Za-z0-9_./-]+`' "$out/audit" | tr -d '`' | sort -u \
 # directive: the write-up describes the 2026-07-07 close; these
 # artifacts died at the re-derivation's demolitions — their citations
 # are HISTORICAL, not dangling):
-retired=" test-ladder/ test/Acceptance.hs "
+retired=" test-ladder/ test/Acceptance.hs test-cirl/ablation.sh test-cirl/ test-prepost/ test-hygiene/ "
+# SINCE the exact boundary's Part-IV sweep (exact-freeze-r1): a cited
+# document may live in archive/ under its swept name, and a bare
+# module citation resolves against src/PropLang/ — both are dated
+# resolutions, not danglers. P0 can still fail: a path with no file,
+# no archive twin, no module resolution, and no retired entry counts.
 pmiss=0
 while IFS= read -r p; do
     if [ ! -e "$p" ]; then
-        case "$retired" in
-            *" $p "*) echo "[writeup]   retired by the re-derivation (dated): $p";;
-            *) pmiss=$((pmiss+1)); echo "[writeup]   missing: $p";;
-        esac
+        arch="archive/$(printf '%s' "$p" | tr '/' '_' | sed 's/_/__/g')"
+        arch2="archive/$(printf '%s' "$p" | sed 's|/|__|g')"
+        if [ -e "$arch2" ] || [ -e "$arch" ]; then
+            echo "[writeup]   archived by the Part-IV sweep (dated): $p"
+        elif [ -e "src/PropLang/$p" ]; then
+            echo "[writeup]   bare module citation resolves: src/PropLang/$p"
+        else
+            case "$retired" in
+                *" $p "*) echo "[writeup]   retired by the re-derivation (dated): $p";;
+                *) pmiss=$((pmiss+1)); echo "[writeup]   missing: $p";;
+            esac
+        fi
     fi
 done < "$out/paths"
 [ "$pmiss" -eq 0 ] && ok "P0 all $(wc -l < "$out/paths") cited paths exist or are dated-retired" \
@@ -104,13 +117,13 @@ pin() {
         ok "$name"
     fi
 }
-pin "N1 t1 MAP posterior"  '0.6383157408996493' test/Anchors.hs
-pin "N2 t1 MAP sentence"   "('bern', ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8)))" test/Anchors.hs
-pin "N3 t2 row price 0.3"  '(0.3, 1, "L")'   test/Anchors.hs
-pin "N4 t2 row price 0.05" '(0.05, 3, "L")'  test/Anchors.hs
-pin "N5 t2 row price .005" '(0.005, 12, "L")' test/Anchors.hs
-pin "N6 t2 row price 0"    '(0.0, 12, "L")'  test/Anchors.hs
-pin "N7 t3 forgetter row"  '(0.8, 369.7929712967316, 396.60210068705993)' test/Anchors.hs
+pin "N1 t1 MAP posterior"  '0.6383157408996493' archive/Anchors-double.hs
+pin "N2 t1 MAP sentence"   "('bern', ('if', ('>', ('get', 't'), ('c', 'tau', 11)), ('c', 'theta', 0), ('c', 'theta', 8)))" archive/Anchors-double.hs
+pin "N3 t2 row price 0.3"  '(0.3, 1, "L")'   archive/Anchors-double.hs
+pin "N4 t2 row price 0.05" '(0.05, 3, "L")'  archive/Anchors-double.hs
+pin "N5 t2 row price .005" '(0.005, 12, "L")' archive/Anchors-double.hs
+pin "N6 t2 row price 0"    '(0.0, 12, "L")'  archive/Anchors-double.hs
+pin "N7 t3 forgetter row"  '(0.8, 369.7929712967316, 396.60210068705993)' archive/Anchors-double.hs
 # N8 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17): the
 # spec's STDNAME row was amended at the step-3 sentence freeze (Bern
 # left the stdlib; log2 7 -> log2 6, provenance in-file) — the

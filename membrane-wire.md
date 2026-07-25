@@ -59,6 +59,7 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
 - `menu` declares the writable names with their grids (the step-5
   shape: names and grids, nothing else). The agent's choice is a
   full ASSIGNMENT of values to the published names; `wait` is every
+> [REPAIRED at the exact close: the line below names `argmaxEU`, deleted with the Argmax terminal (opening ruling 3); the selection is Membrane.chooseEU — the sentence route.]
   name at the FIRST point of its grid (structural), and argmaxEU
   ties resolve first-listed (CL-3) — so wait, the option space's
   head by construction, keeps ties.

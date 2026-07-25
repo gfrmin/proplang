@@ -56,6 +56,11 @@ margOf hs ys =
                      ys
   in m'
 
+cAtP :: Grid -> Int -> Expr env Rational
+cAtP g k = case mkC g k of
+  Just e -> e
+  Nothing -> error "cAtP: off-codebook (unreachable)"
+
 stream20 :: [Int]
 stream20 = [1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0]
 
@@ -125,19 +130,51 @@ main = defaultMain $ testGroup "the Phase-2 pins"
                     @?= [7 % 30, 7 % 30, 3 % 10, 7 % 30]
             _ -> assertFailure "const[2,2] not found"
       ]
-  , testCase "SELECTION pin: chooseEU == the CL-3 reference fold over the same Expect values" $ do
-      let ns = mkNamespace ("t" :| [])
+  , testCase "SELECTION pin: chooseEU == the CL-3 reference fold, >= 2 candidates through the SENTENCES, tie included (the mandate-1 repair of the singleton base case)" $ do
+      -- a two-name world: "m" is writable; candidates differ, so the
+      -- fold's pick sentence, reindexUtility, and both Expects are
+      -- LIVE code on every step
+      let ns2 = mkNamespace ("t" :| ["m"])
+          w2 = World
+            { wNs = ns2
+            , wObs = wObs oracleWorld
+            , wTheta = wTheta oracleWorld
+            , wTau = wTau oracleWorld
+            , wRho = wRho oracleWorld
+            }
           atomG = atomGridOf (wObs oracleWorld)
-          u = Sub (Mul (Var (S Z)) (Var (S Z))) (Var Z)
-            -- utility = y^2 - option0: option code contributes -0
-          hs = enumerate oracleWorld fragFull
-          ag = sentenceAgent ns hs
-          feats = doorAt 3
-          mkCand c = do
-            b <- predictiveBelief feats ag
-            pure (c, b)
-      cands <- either (error) pure (mapM mkCand [[("t", 0)]])
-      -- one candidate: chooseEU must return it (CL-3 base case)
-      r <- either (error) pure (chooseEU ns feats atomG u cands)
-      fmap fst r @?= Just [("t", 0)]
+          hs2 = enumerate w2 fragFull
+          ag2 = sentenceAgent ns2 hs2
+          feats = [("t", 3)]
+          -- u = y * (2y - 1): outcome-driven, option code inert
+          u = Mul (Var (S Z))
+                  (Sub (Mul (addM oneA oneA) (Var (S Z))) oneA)
+          oneA = cAtP atomG 1
+          cands = [ [("m", 10)], [("m", 70)], [("m", 40)] ]
+      scored <- either error pure
+        (mapM (\c -> do
+            b <- predictiveBelief (feats ++ c) ag2
+            pure (c, b)) cands)
+      -- the CL-3 REFERENCE: EU per candidate via an evalx'd Expect
+      -- (an independent route through the same sentences), strict
+      -- displacement, first-listed incumbency
+      let euOf (_, b) = case mkEnvIn ns2 (feats ++ [("m", 0)])
+                               (b :. VNil) of
+            Right env -> evalx (Expect (Var Z)
+                          (Mul (Var Z)
+                               (Sub (Mul (addM oneA oneA) (Var Z)) oneA)))
+                          env
+            Left e -> error e
+          ref = fst (foldl (\(bst, bv) c ->
+                  let cv = euOf c in if cv > bv then (c, cv) else (bst, bv))
+                  (case scored of (c0 : _) -> (c0, euOf c0); [] -> error "none")
+                  (drop 1 scored))
+      got <- either error pure (chooseEU ns2 feats atomG u scored)
+      fmap fst got @?= Just (fst ref)
+      -- the TIE case: duplicated candidates — the incumbent
+      -- (first-listed) must win on both routes
+      let dup = [ scored !! 0, scored !! 0 ]
+      gotT <- either error pure (chooseEU ns2 feats atomG u dup)
+      fmap fst gotT @?= Just (fst (dup !! 0))
+
   ]

@@ -1,0 +1,16 @@
+# THE CLOSE — your commands (after reviewing pack Part X + the diff)
+cd ~/git/proplang
+git log --oneline exact-freeze-r0a..HEAD        # the Phase-2 commits
+git diff exact-freeze-r0a..HEAD --stat | tail -20
+less exact-author-pack.md                        # Part X
+
+# verify the close state yourself (all should be green)
+export PATH="$HOME/.ghcup/bin:$PATH" \
+  && cabal test all 2>&1 | grep -E 'PASS|FAIL' \
+  && audit/run-gates.sh | tail -9 \
+  && audit/gates-exact.sh \
+  && tools/prefreeze-lint.sh | tail -3
+
+# the close commit is already builder-signed; your tag seals it:
+git tag -s exact-freeze-r1 -F freeze-kit/tag-msg-r1.txt
+git verify-commit HEAD && git tag -v exact-freeze-r1

@@ -1,0 +1,23 @@
+# MUTANT M5-walk-unreflected — provenance: the reflected boundary dropped (the walk-law row's subject)
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..da5110a 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -167,7 +167,7 @@ enumerateWith _ns obsC eg guardGs mrg allowed =
+         step = Sub (cAt eg 1) (cAt eg 0)
+         minT = cAt eg 0
+         maxT = cAt eg (gridSize eg - 1)
+-        lo = If (Gt xv minT) (Sub xv step) (addM xv step)
++        lo = Sub xv step
+         hi = If (Gt maxT xv) (addM xv step) (Sub xv step)
+         two = addM one one
+         stay = Mul two (Sub one rv)
+@@ -254,7 +254,7 @@ enumerateWithArity kAr _ns obsC eg guardGs mrg allowed =
+         step = Sub (cAt eg 1) (cAt eg 0)
+         minT = cAt eg 0
+         maxT = cAt eg (gridSize eg - 1)
+-        lo = If (Gt xv minT) (Sub xv step) (addM xv step)
++        lo = Sub xv step
+         hi = If (Gt maxT xv) (addM xv step) (Sub xv step)
+         two = addM one one
+         stay = Mul two (Sub one rv)

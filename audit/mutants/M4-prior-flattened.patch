@@ -1,0 +1,14 @@
+# MUTANT M4-prior-flattened — provenance: the MDL prior replaced by uniform (the alphabet-is-the-prior incident class)
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..988a33e 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -374,7 +374,7 @@ data AgentS = AgentS Namespace Int [Rational] [HypLive]
+ 
+ sentenceAgent :: Namespace -> [Hyp] -> AgentS
+ sentenceAgent ns hs =
+-  AgentS ns 0 (map hypW hs) [ HypLive h (uniform (hypLatent h)) | h <- hs ]
++  AgentS ns 0 (map (const 1) hs) [ HypLive h (uniform (hypLatent h)) | h <- hs ]
+ 
+ -- per-tick, per-hypothesis: the predicted latent (post-transition) and
+ -- the emission kernel under a DOOR-BUILT env; Nothing = the code

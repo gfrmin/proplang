@@ -934,3 +934,378 @@ test-sentence's fixtures are green at HEAD through their own runners).
 L7 is the CLOSE's row (the full-corpus overlay build goes green when
 Phase 2 lands); its red today is the increment protocol working as
 written. lawful-author-pack.md moved to archive/ (the R16 item).
+
+## Part X — the Phase-2 close (the as-built record for exact-freeze-r1)
+
+*2026-07-25, the same day as r0/r0a. §12 executed top to bottom; every
+transcript below is verbatim from the close-state tree.*
+
+### X.1 What Phase 2 built (§12 steps 1–5, the as-built register)
+
+1. **src/ re-founded** to the 9+1 surface, NET −1087 lines at the core
+   commit; the boundary layer (Membrane/Host/Lattice/Purchase)
+   re-derived on it. The selection is THE SENTENCE ROUTE (the old host
+   fold deleted, nothing left to pin); the wire preserved except the
+   boundary-forced changes recorded in Host's header; the K-ARY ROUTE
+   IS LIVE (the author's checklist note — enumerateWithArity, the
+   SevenSeats Mul-form, K−1 read from the atom codebook's own last
+   atom; Host serves any K >= 2; the K=2 coincidence pinned exactly).
+2. **R17 landed**: corpusBodies (the frontier generator read off the
+   production table) + inCorpus (the intension's characteristic
+   function); the family enumeration is the pinned selector; the
+   fragment-vs-grammar-weight question (#5) pinned as an inequality
+   with exemplars.
+3. **Ablations**: ten seats, ten firing ablations — Cond/Expect/Code
+   (audit/ablation-exact) + the seven structural atoms
+   (test-pin/ablation); gate 7 rewritten to run both sets.
+4. **The R11 retirement EXECUTED** (IX.5 the pin list): the seventeen
+   Double-era suites DELETED; the swap into test/ done (Streams
+   byte-identical throughout; the Double Anchors ARCHIVED as
+   archive/Anchors-double.hs and test-writeup's five N-rows re-pointed
+   to the record); audit/ablation-exact + gates-exact.sh homed in
+   audit/; belief-exports.txt re-derived (gate 2 binds to the exact
+   surface); typed-port-spec S2 amended in place (R12, quoted form);
+   the Part-IV archive sweep executed (34 documents to archive/);
+   cabal: 24 stanzas -> 6 suites + the exe, extra-doc-files updated,
+   the pins stanza added. MANIFEST: 96 -> 56 rows (48 retired with
+   their subjects, 16 re-pathed; the full diff below).
+5. **KERNEL.md page 2**: the module-derivation table, one line per
+   module, nine lines.
+
+### X.2 The close-state transcripts
+
+**cabal test all (gate 5's own command):**
+    Test suite lawful: PASS
+    Test suite lawful-independence: PASS
+    Test suite transport: PASS
+    Test suite pins: PASS
+    Test suite exact-properties: PASS
+    Test suite exact-acceptance: PASS
+
+**gates 1–7:**
+    
+    === summary (phase 2) ===
+    gate 1  PASS
+    gate 2  PASS
+    gate 3  PASS
+    gate 4  PASS
+    gate 5  PASS
+    gate 6  PASS
+    gate 7  PASS
+
+**E-gates (repaired filter):**
+    E1 forbidden-inexactness tokens in core: 0 (must be 0)
+    E2 fromRational renders in core: 0 (must be 0; display lives at the edge)
+    E3 concrete point-sets in src: 0 (must be 0; worlds declare)
+
+**prefreeze-lint (L7 = the full-corpus overlay build, GREEN):**
+    === prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+    PASS  L1 forbidden-tokens-by-glob: 9 src files clean (frozen gate 4 names 5)
+    PASS  L2 ASCII test names across test*/
+    PASS  L3 MANIFEST.sha256: 56 rows verified
+    PASS  L4 all 52 tags verify
+    PASS  L5 exact-author-pack.md records the four stanza flags (incl. -Werror)
+    PASS  L6 no grid re-declaration flags (advisory heuristic)
+    PASS  L7 full-corpus overlay build: every test .hs builds against new src
+    === prefreeze-lint: 0 FAIL, 0 WARN ===
+
+**boundary audit:**
+    --- standing observations ---
+    note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has 6 (dated red-by-design instrument, recorded)
+    === boundary-audit done: M5=2 H=10 OB=0 BF=0 ===
+    Triage of the flags: M5=2 (D-a6, R-D13 — both HISTORICAL ruling
+    IDs whose definition documents moved to archive/ in the Part-IV
+    sweep; they resolve there — the audit greps the live root only:
+    a known instrument limitation, recorded, not a dangler). H=10 —
+    wire/membrane-doc symbols (bitsIn, enumerateSentencesIn, gauss,
+    observe_batch/counts, residuals...): all are DOUBLE-ERA names in
+    membrane-wire.md's unshipped/superseded sections — the
+    membrane-wire re-derivation is a registered close-sitting item
+    (Part IV approved deriving its forms table). BF=0. OB=0.
+
+**test-writeup (the record rows re-pointed, archive-aware P0):**
+    [writeup] T tag cirl-freeze verifies: PASS
+    [writeup] 33 passed, 0 failed
+
+**The gates-filter repair, two-sided (the author's note 2):**
+    === two-sided filter demonstration ===
+    --- (a) seeded COMMENT prose ('the log view') must NOT count:
+    E1 forbidden-inexactness tokens in core: 0 (must be 0)
+    --- (b) seeded CODE token (logBase in core) MUST fire:
+    E1 forbidden-inexactness tokens in core: 1 (must be 0)
+    --- restored; live run:
+    E1 forbidden-inexactness tokens in core: 0 (must be 0)
+    E2 fromRational renders in core: 0 (must be 0; display lives at the edge)
+    E3 concrete point-sets in src: 0 (must be 0; worlds declare)
+
+**The manifest diff (96 -> 56):**
+    DROPPED (retired; IX.5 the pin list):
+    audit/ablation/UseArgmax.hs
+    audit/ablation/UsePush.hs
+    test-actions/Actions.hs
+    test-actions/stanza.cabal.draft
+    test-arity/Arity.hs
+    test-arity/ablation/run.sh
+    test-arity/stanza.cabal.draft
+    test-code/Code.hs
+    test-code/stanza.cabal.draft
+    test-elim/Elim.hs
+    test-elim/ablation/UseElimJ.hs
+    test-elim/ablation/UseExpect.hs
+    test-elim/ablation/UseSawE.hs
+    test-elim/ablation/run.sh
+    test-elim/stanza.cabal.draft
+    test-exact/Streams.hs
+    test-hygiene/Hygiene.hs
+    test-law/Law.hs
+    test-measure/Measure.hs
+    test-membrane/Membrane.hs
+    test-membrane/gen_fixtures.py
+    test-membrane/no-subscription.txt
+    test-membrane/red-run.sh
+    test-membrane/stanza.cabal.draft
+    test-optlaw/OptLaw.hs
+    test-optlaw/stanza.cabal.draft
+    test-outcome/Outcome.hs
+    test-outcome/stanza.cabal.draft
+    test-pricing/Pricing.hs
+    test-pricing/stanza.cabal.draft
+    test-refine/Refine.hs
+    test-refine/ablation/run.sh
+    test-refine/stanza.cabal.draft
+    test-reflexive/Reflexive.hs
+    test-said/Said.hs
+    test-said/ablation/run.sh
+    test-said/stanza.cabal.draft
+    test-sentence/Sentence.hs
+    test-sentence/ablation/UseCode.hs
+    test-sentence/ablation/UsePos.hs
+    test-sentence/ablation/UseTor.hs
+    test-sentence/ablation/run.sh
+    test-sentence/stanza.cabal.draft
+    test-stream/Stream.hs
+    test-stream/gen_fixtures.py
+    test-stream/stanza.cabal.draft
+    test-unify/Unify.hs
+    test-unify/stanza.cabal.draft
+    
+    RE-PATHED:
+    HOSTS_PLAN.md -> archive/HOSTS_PLAN.md
+    ROADMAP.md -> archive/ROADMAP.md
+    R_SCOPE.md -> archive/R_SCOPE.md
+    WIRE_PLAN.md -> archive/WIRE_PLAN.md
+    boundary-queue.md -> archive/boundary-queue.md
+    test-exact/Acceptance.hs -> test/Acceptance.hs
+    test-exact/Anchors.hs -> test/Anchors.hs
+    test-exact/ExactReference.hs -> test/ExactReference.hs
+    test-exact/OracleWorld.hs -> test/OracleWorld.hs
+    test-exact/Properties.hs -> test/Properties.hs
+    test-exact/ablation/UseCode.hs -> audit/ablation-exact/UseCode.hs
+    test-exact/ablation/UseCond.hs -> audit/ablation-exact/UseCond.hs
+    test-exact/ablation/UseExpect.hs -> audit/ablation-exact/UseExpect.hs
+    test-exact/ablation/run.sh -> audit/ablation-exact/run.sh
+    test-exact/gates-exact.sh -> audit/gates-exact.sh
+    test/Anchors.hs -> archive/Anchors-double.hs
+    
+    ADDED:
+    test-pin/Pins.hs
+    test-pin/ablation/run.sh
+    test-pin/ablation/UseC.hs
+    test-pin/ablation/UseGet.hs
+    test-pin/ablation/UseGt.hs
+    test-pin/ablation/UseIf.hs
+    test-pin/ablation/UseMul.hs
+    test-pin/ablation/UseSub.hs
+    test-pin/ablation/UseVar.hs
+
+### X.0 The repair sitting's decision sheet, COMMITTED (the mandate-2 headline repair)
+
+*The freeze-sitting review that produced R1–R16 ran in-session and its
+sheet was never committed — every later citation resolved to
+assertions. The sheet's operative content, committed verbatim here as
+the definition site (each ruled AS RECOMMENDED by the author,
+2026-07-25):*
+
+- **R1** Cond's outcome-as-Rational accepted (forced; completes the
+  ToR story) + riders: the off-codebook-outcome row (all-zero column
+  ⇒ the Nothing arm — pinned in test/Properties.hs) and Code's
+  Rational-crossing binder signature recorded as amendment #3.
+- **R2** Mass/Prob newtypes dropped: bare Rational as amendment #2;
+  non-negativity enforced at the introducers' doors, not by wrappers.
+- **R3** Event DELETED from the reasoner surface; prob is
+  predicate-typed (finite carrier: the indicator evaluates
+  extensionally and exactly; evidence-introduction stays closed).
+- **R4** the five-field World adopted (wNs/wObs/wTheta/wTau/wRho);
+  §1a's sketch repaired; the wire is World's home; Host's old World
+  subsumed (SessionW).
+- **R5** env construction DOOR-ONLY: the door is an Env invariant
+  (mkEnvIn the sole constructor, Either with three named refusals);
+  evalx total on door-built envs; refusal rows in the oracle; t2 under
+  its own World. Geometry: EXACT_PLAN §11d.
+- **R6** the obs mention codebook derives from the declared carrier
+  (atomGridOf); world constants live in ONE declaration (OracleWorld).
+- **R7** displays == under the pinned toolchain (+ the libm extension
+  recorded at the close); §4 amended honestly.
+- **R8** noget collapsed to one row recording the extensional
+  coincidence; Get's structural proof = DROP_GET (gate 7).
+- **R9** the composed batch-3 preposterior sentence row.
+- **R10** the forgetter relation rows restored; every anchor consumed.
+- **R11** the seventeen-suite mass retirement at the Phase-2 close,
+  IX.5 the pin list (EXECUTED, X.1).
+- **R12** typed-port-spec S2 re-derives under the author's key
+  (EXECUTED in place, quoted form).
+- **R13** swap mechanics (as corrected by IX.8a: composed with R11).
+- **R14** the generator lands in-tree; the R-D21 generator exemption.
+- **R15** the seven remaining clause-(a) attempts executed (IX.1/IX.3;
+  the Add sitting their consequence).
+- **R16** the minors bundle (IX.7).
+
+### X.0a Mandate-2's residual notes, dispositioned
+
+The R1-boundary vs R1-repair name collision is RECORDED (bare "R1" in
+Lattice/Purchase/KERNEL means boundary R's increment; "R1"-the-ruling
+is always cited as "R1 rider"/"the repair sitting"). The minimality
+criterion's zero-citation note is correct and unalarming: its
+enforcement is structural (the attempts and ablations), not
+citational.
+
+### X.3 The six red-team mandates (fresh-context reviewers; findings and dispositions)
+
+**M1 (theorem-as-definition):** three CONFIRMED, all REPAIRED in-tree:
+T1 restated prob's own definition (same route both sides) — now
+compares against the view-summed mass (an independent route through
+points/weights); the SELECTION pin was a singleton base case that
+never entered the fold — now three live candidates through the pick
+sentences plus a duplicated-candidate tie; the Independence
+register-correction row was constants-only — now also asserts
+fromWeights REFUSES the signed assignment (the implementation side).
+The reviewer verified the anchors' independence (ExactReference has
+its own engine, imports Streams only) and the genuinely falsifiable
+shape of the load-bearing rows.
+
+**M2 (asserted-not-derived):** HEADLINE — the R1-R16 decision sheet
+existed only in-session; every citation resolved to assertions.
+REPAIRED: the sheet is committed as X.0 (the definition site); R5's
+GEOMETRY (minted by a code comment) is now DERIVED at EXACT_PLAN
+§11d; the R1-boundary/R1-repair name collision recorded (X.0a).
+
+**M3 (undefined load-bearing quantities):** kLadder = 16 CONFIRMED —
+a bare steering constant, unpinned after the retirement; REPAIRED:
+deleted from src, now pwLadderCap, WORLD ECONOMICS the caller
+declares (the same class as the stakes). The 1e15 rendering cliff
+REPAIRED to the derived 2^53 (binary64's integral bound). The
+j0+2000 extent truncation stays flagged: its conservative-direction
+argument covers the Kraft row but NOT guardE's adversarial region
+terms (anti-conservative there) — joins the dyadic-lattice sitting
+item. Everything else traced clean to stated derivations.
+
+**M4 (types without derivations):** ten re-landed surface types
+lacked lines (not grandfathered — the forward rule binds the landing
+increment); ALL TEN REPAIRED in-file, plus the falsified Lattice
+comment citing the dead CBits (repaired, quoted form).
+
+**M5 (overloaded conventions):** the historic dormancy overload
+RECURRED as doc-vs-code contradiction — membrane-wire.md still
+promised the 0.0 read the code refuses; REPAIRED with the dated
+quoted-falsified-sentence bracket (the full wire re-derivation stays
+a registered sitting item), argmaxEU likewise bracketed. The
+"impossible evidence" naming split (declaration-refusal vs
+observation-refusal) repaired at the introducer; the duplicate
+atom-grid mint DELETED (Host imports Enumerate.atomGridOf — the
+probe-discipline clause applied to src itself); "the system's one
+division" precised to the sentence-reachable conditioning division;
+the host-minted singleton codebooks annotated as the W4b convention.
+condK/condV, wait-as-head, weight/mass/price: verified clean.
+
+**M6 (what is it a function of):** the tick's evidence coercion was
+FAIL-OPEN (banker's rounding) — REPAIRED: non-integral evidence is
+refused, matching obs_arity's exactness check; bitsView's IEEE -0.0
+normalized. DECLARED (not code-fixable): the Double displays are a
+function of GHC + the host libm — recorded in R7's amendment (a libm
+motion is a re-measurement event); the lattice's theta saturation at
+extreme extents joins the dyadic sitting item. chooseEU,
+predictiveBelief, runEpisode, serveLine, corpusBodies, draw,
+gammaBits integrality: verified clean.
+
+### X.5 The close sitting's agenda (author items, each with its record)
+
+1. The process deletion audit, per-item (IX.6's five candidates).
+2. The oracle-row verdicts from the kill matrix (X.4) — triage, never
+   auto-deletion; plus canonizing the drafted unique-kill clause.
+3. The dyadic lattice coordinate (R-R1 re-open) — now carrying THREE
+   grounds: the irrationality proof (A7), the j0+2000 anti-conservative
+   direction (M3), and the theta-saturation collision (M6).
+4. The membrane-wire re-derivation (Part IV's approved item; the
+   dormancy and argmaxEU brackets are its urgency evidence).
+5. CLAUDE.md canonizations at your key: the unique-kill clause; the
+   generator exemption and R17 are already in from r0.
+6. OB-16: FIRED and RE-EXECUTED at this boundary (the wall stands,
+   three walls now — transcript below); the condition resets.
+
+**OB-16 / GetV re-execution transcript:**
+    TryGetV.hs:15:13: error: Couldn't match type: Expr (t0 : env10) t0
+                      with: [Char]  — Expected: Name; Actual: Expr ...
+    (no String sort, no name-producing constructor, Get's argument is
+    a host Name: the banked wall holds, stronger than at step 10)
+
+### X.4 The oracle-row kill matrix, first run (§12 step 7; triage inputs for your verdicts)
+
+Six declared mutants (audit/mutants/ — each a named minimal patch
+instantiating a recorded failure shape), run by tools/oracle-audit.sh
+against every frozen suite AFTER the retirement (the IX.8a
+composition: the matrix covers exactly the surviving law):
+
+    === matrix summary ===
+    --- M1-gt-nonstrict: 19 lines
+    [exact-acceptance]     probe rows: p1 exact, action, H display:                                        FAIL
+    [exact-acceptance]     consult ticks (exact list):                                                     FAIL (0.61s)
+    [exact-acceptance]     MAP is the change-point guard; exact posterior:                                 FAIL (0.33s)
+    [exact-acceptance]     cumulative marginal (exact):                                                    FAIL (0.34s)
+    [exact-acceptance]     entropy pre/post (display):                                                     FAIL (0.11s)
+    [exact-acceptance]     tick counts and final acts (exact prices):                                      FAIL
+    --- M2-cond-unnormalized: 5 lines
+    [exact-acceptance] TIMEOUT-KILL (the suite cannot terminate under the mutant — intractability is a kill)
+    [exact-properties]   CL-4': conditioning IS Bayes (division-free, all points, a belief battery):         FAIL
+    [exact-properties] SUITE-FAIL
+    [lawful]     T3 conditioning IS Bayes (division-free):                                                                                                                     FAIL
+    [lawful] SUITE-FAIL
+    --- M4-prior-flattened: 9 lines
+    [exact-acceptance]     probe rows: p1 exact, action, H display:                                        FAIL
+    [exact-acceptance]     consult ticks (exact list):                                                     FAIL (5.10s)
+    [exact-acceptance]     MAP is the change-point guard; exact posterior:                                 FAIL (2.69s)
+    [exact-acceptance]     cumulative marginal (exact):                                                    FAIL (2.70s)
+    [exact-acceptance]     entropy pre/post (display):                                                     FAIL (0.59s)
+    [exact-acceptance]     agent marginals over drift400/flat400 (exact):                                  FAIL (14.53s)
+    --- M5-walk-unreflected: 1 lines
+    M5-walk-unreflected: DOES NOT COMPILE (a compile-kill; every suite counts)
+    --- M6-addM-degenerate: 13 lines
+    [exact-acceptance]     probe rows: p1 exact, action, H display:                                        FAIL (0.11s)
+    [exact-acceptance]     consult ticks (exact list):                                                     FAIL (2.42s)
+    [exact-acceptance]     MAP is the change-point guard; exact posterior:                                 FAIL (1.29s)
+    [exact-acceptance]     cumulative marginal (exact):                                                    FAIL (1.30s)
+    [exact-acceptance]     entropy pre/post (display):                                                     FAIL (0.33s)
+    [exact-acceptance]     the batch-1 preposterior is ONE SENTENCE == the engine (door-served):           FAIL
+    --- M7-ties-to-challenger: 2 lines
+    [pins]   SELECTION pin: chooseEU == the CL-3 reference fold, >= 2 candidates through the SENTENCES, tie included (the mandate-1 repair of the singleton base case): FAIL (0.04s)
+    [pins] SUITE-FAIL
+
+**Triage reading (verdicts are YOURS at the sitting):**
+- Every mutant is killed — no live mutant survives the oracle.
+- **The exemplar**: M7 (CL-3 inverted at ties) is killed by EXACTLY
+  ONE row — the multi-candidate selection pin that mandate 1 forced
+  into existence THIS close (the old singleton pin would have stayed
+  green). The unique-kill concept demonstrated on its first run, by
+  the row that exists because a reviewer asked whether the pins touch
+  the grammar.
+- M2's acceptance kill is BY INTRACTABILITY (timeout): without
+  normalization the exact arithmetic cannot terminate — §8.1's honest
+  cost claim, executable.
+- **Matrix-quality note**: M5 (walk-unreflected) kills at COMPILE, not
+  through the walk-law row — the patch is defective as a semantic
+  mutant; a well-typed variant is owed so the walk-law row's unique
+  kill is demonstrated (a pool-repair item, the clause's own
+  pool-coarseness question).
+- Rows unkilled by this pool (most lawful/independence rows, the R17
+  membership rows) are UNREACHED — which convicts the POOL first (six
+  mutants is a floor, not a census); the pool grows from the operator
+  list before any row-deletion verdict is honest.

@@ -1,166 +1,221 @@
+{-# LANGUAGE GHC2021 #-}
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE GADTs #-}
-
--- | The frozen property suite (typed-port-spec §5): the two invariants
--- types cannot see, pinned by QuickCheck against the PUBLIC Belief API
--- only. Frozen under MANIFEST.sha256 after human review.
---
--- 1. CL-4, conjugacy equivalence — stated extensionally: 'cond' must
---    agree with Bayes' theorem computed through the public accessors
---    ('expect' / 'prob' / 'push' / 'point'). Any Phase-2 conjugate fast
---    path behind the opaque Belief handle is legal iff this property
---    still passes: the fast path buys speed, never semantics.
---
--- 2. Fineness charged once — refining a grid redistributes (nearly) the
---    same predictive mass over more, individually costlier sentences;
---    the entire charge is the prior route (design.md §5). Tolerance
---    delta = 0.02 bits/observation, calibrated against the Python
---    oracle (observed maximum 0.0025 bits/obs on the shifted-world and
---    iid streams, 9-point vs midpoint-refined 17-point theta grid —
---    8x headroom). Per the tolerance protocol, delta is part of the
---    oracle and is never widened in place.
+-- The EXACT law suite (successor of test/Properties.hs; repaired at
+-- the R1-R16 sitting). Every law an exact (==); no tolerance constant
+-- exists in this file. THE B2 REPAIR governs its shape: every
+-- compensating pin EVALUATES THE GRAMMAR — the eq-theorem row builds
+-- If/Gt sentences and runs evalx; the choice-family row builds the
+-- If/Gt-over-Expects sentences; a pin that never touches a sentence
+-- is a green that cannot fail, and none ships here.
 module Main (main) where
 
-import qualified Data.List.NonEmpty as NE
+import Data.List.NonEmpty (NonEmpty ((:|)))
 import Data.Maybe (fromMaybe)
+import Data.Ratio ((%))
+
 import Test.Tasty
-import Test.Tasty.QuickCheck
+import Test.Tasty.HUnit
+
+import OracleWorld
 
 import PropLang.Belief
+import PropLang.Enumerate
+import PropLang.Eval
+import PropLang.Syntax
+
+hyps :: [Hyp]
+hyps = enumerate oracleWorld fragFull
+
+thetaPts :: [Rational]
+thetaPts = spacePoints egSpace
+
+-- a probe WORLD for value batteries: the battery points are a
+-- declared codebook (test-side world data), mentioned — never typed
+-- into sentences by hand
+probeG :: Grid
+probeG = mkGrid "probe"
+  (-3 :| [-1 % 2, 0, 1 % 7, 1 % 10, 1 % 2, 1, 9 % 10, 82944 % 55])
+
+probeEnv :: Vals env -> Env env
+probeEnv vals = case mkEnvIn (mkNamespace ("u" :| [])) [("u", 0)] vals of
+  Right e -> e
+  Left m -> error ("probe door (unreachable): " ++ m)
 
 main :: IO ()
-main = defaultMain $ testGroup "proplang properties (frozen oracle)"
-  [ testProperty "CL-4: cond agrees with extensional Bayes (Saw evidence)"
-                 propCl4Saw
-  , testProperty "CL-4: cond agrees with extensional Bayes (Is evidence)"
-                 propCl4Is
-  , testProperty "fineness charged once: predictive mass invariant under grid refinement"
-                 propFineness
+main = defaultMain $ testGroup "exact properties (laws by ==)"
+  [ testCase "CL-4': conditioning IS Bayes (division-free, all points, a belief battery)" $ do
+      let beliefs = uniform egSpace
+            : [ b | ys <- [[1], [1, 0], [1, 1, 0, 1]]
+              , Just b <- [foldl (\mb y -> mb >>= \bb -> condK bb emitK y)
+                             (Just (uniform egSpace)) ys] ]
+      mapM_ (\b -> mapM_ (\y -> do
+              let ms x = prob b (== x) * prob (kernelAt emitK x) (== y)
+                  z = sum (map ms thetaPts)
+              case condK b emitK y of
+                Nothing -> assertBool "unexpected refusal" False
+                Just b' -> mapM_ (\x ->
+                    assertEqual "p'(x) * Z == w(x) * L(x)"
+                      (ms x) (prob b' (== x) * z))
+                  thetaPts)
+            [0, 1])
+        beliefs
+  , testCase "L4': prob * Z == w on fromWeights; uniform/point are its definitions" $ do
+      let sp = mkSpace (0 :| [1, 2 :: Int])
+          ws = [3, 1, 2] :: [Rational]
+          z = sum ws
+      case fromWeights sp (\i -> ws !! i) of
+        Nothing -> assertBool "refused" False
+        Just b -> mapM_ (\i ->
+            assertEqual "p*Z == w" (ws !! i) (prob b (== i) * z)) [0 .. 2]
+      assertEqual "uniform == fromWeights(const 1)"
+        (map (\i -> prob (uniform sp) (== i)) [0 .. 2]) [1 % 3, 1 % 3, 1 % 3]
+      case point sp 1 of
+        Nothing -> assertBool "point refused" False
+        Just b -> assertEqual "point == fromWeights(indicator)"
+          (map (\i -> prob b (== i)) [0 .. 2]) [0, 1, 0]
+  , testCase "Kraft: the enumeration sums to EXACTLY 55/72" $
+      kraftSum hyps @?= 55 % 72
+  , testCase "corpus law: every weight == its family's 1/M (A2-pinned widths)" $ do
+      let mFam tag = case tag of
+            "const" -> 36
+            "walk"  -> 16
+            "guard" -> 82944
+            _       -> 0 :: Integer
+      mapM_ (\h -> assertEqual "w == 1/M"
+              (1 % mFam (fst (hypTag h))) (hypW h))
+            hyps
+  , testCase "fineness charged once: doubling a mention codebook halves the weight, exactly" $ do
+      let ns = wNs oracleWorld
+          g9 = wTheta oracleWorld
+          g18 = mkGrid "theta18" (1 % 20 :| [ k % 20 | k <- [2 .. 18] ])
+          s g = Sub (Get "t") (cAtG g 0) :: Expr '[] Rational
+      gridSize g18 @?= 2 * gridSize g9
+      weightIn ns (s g9) @?= 2 * weightIn ns (s g18)
+  , testCase "pricing: a hand-computable sentence at node 1/9 (the 9/1 table)" $ do
+      let ns = wNs oracleWorld
+          s = Sub (Get "t") (cAtG (wTheta oracleWorld) 0) :: Expr '[] Rational
+      -- three Expr nodes (Sub, Get, C), namespace singleton, grid 9:
+      -- node(Sub) * node(Get)*1 * node(C)*(1/9)
+      weightIn ns s @?= (1 % 9) * (1 % 9) * ((1 % 9) * (1 % 9))
+  , testCase "eq-THEOREM: the If/Gt SENTENCE == (==), evalx over mention pairs (B2 repair)" $ do
+      -- the equality composition AS A SENTENCE over codebook mentions,
+      -- evaluated by the grammar's own Gt/If — a wrong Gt reds this row
+      let n = gridSize probeG
+          eqSent i j =
+            let a = cAtG probeG i
+                b = cAtG probeG j
+                trueE = Gt (cAtG probeG 6) (cAtG probeG 2)   -- 1 > 0
+                falseE = Gt (cAtG probeG 2) (cAtG probeG 6)  -- 0 > 1
+            in If (Gt a b) falseE (If (Gt b a) falseE trueE)
+          valAt i = case mkC probeG i of
+            Just (C _ _ v) -> v
+            _ -> error "probe read (unreachable)"
+      mapM_ (\(i, j) ->
+              assertEqual "sentence-eq == (==)"
+                (valAt i == valAt j)
+                (evalx (eqSent i j) (probeEnv VNil)))
+        [ (i, j) | i <- [0 .. n - 1], j <- [0 .. n - 1] ]
+  , testCase "the derived CHOICE SENTENCES are CL-3-faithful, ties included (B2 repair)" $ do
+      -- the per-K argmax family AS SENTENCES: values are Expects over
+      -- an env-bound belief, options are codebook mentions, the fold
+      -- is If/Gt — evaluated by evalx and pinned to the CL-3 reference
+      -- fold over the SAME evalx'd values
+      let optG = mkGrid "opt" (1 % 4 :| [1 % 2, 1])
+          oneE = cAtG obsAtoms 1
+          -- value of option c: E_b[c * (2*theta - 1)] — the mass x
+          -- value shape (Mul's preposterior keep, exercised)
+          vOf :: Int -> Expr '[B Rational] Rational
+          vOf i = Expect (Var Z)
+                    (Mul (cAtG optG i)
+                         (Sub (Mul (addM oneE oneE) (Var Z)) oneE))
+          am3 :: Expr '[B Rational] Rational
+          am3 = If (Gt (vOf 2) bv2) (cAtG optG 2) b2
+            where
+              bv2 = If (Gt (vOf 1) (vOf 0)) (vOf 1) (vOf 0)
+              b2 = If (Gt (vOf 1) (vOf 0)) (cAtG optG 1) (cAtG optG 0)
+          env b = probeEnv (b :. VNil)
+          optAt i = case mkC optG i of
+            Just (C _ _ v) -> v
+            _ -> error "opt read (unreachable)"
+          cl3 b = fst (foldl (\(w, wv) i ->
+                    let cv = evalx (vOf i) (env b)
+                    in if cv > wv then (optAt i, cv) else (w, wv))
+                    (optAt 0, evalx (vOf 0) (env b)) [1, 2])
+          beliefs = uniform egSpace       -- E[2th-1] == 0: ALL TIE
+            : [ b | ys <- [[1], [0], [1, 1], [0, 1, 0, 0]]
+              , Just b <- [foldl (\mb y -> mb >>= \bb -> condK bb emitK y)
+                             (Just (uniform egSpace)) ys] ]
+      mapM_ (\b -> assertEqual "choice sentence == CL-3 reference"
+                     (cl3 b) (evalx am3 (env b)))
+            beliefs
+      -- the full-tie case pinned explicitly: uniform belief values all
+      -- options at 0; the first-listed (1/4) must win on both routes
+      assertEqual "full tie -> first-listed"
+        (1 % 4) (evalx am3 (env (uniform egSpace)))
+  , testCase "g5': the fused round trip is sayable (Cond -> Expect), exactly" $ do
+      let b0 = uniform egSpace
+          sent = Cond (Var (S Z)) (Var Z) (cAtG obsAtoms 1)
+                      (Expect (Var Z) (Var Z))
+                      (cAtG obsAtoms 0)
+                 :: Expr '[K Rational Int, B Rational] Rational
+          engine = case condK b0 emitK 1 of
+            Just b' -> expect b' id
+            Nothing -> 0
+      assertEqual "sentence == engine"
+        engine (evalx sent (probeEnv (emitK :. b0 :. VNil)))
+  , testCase "g6': the Nothing arm is load-bearing, through the DERIVED indicator kernel" $ do
+      let half = Sub (cAtG obsAtoms 1) (Expect (Var (S (S Z))) (Var Z))
+          indBody = If (Gt (Var (S Z)) half)
+                       (If (Gt (Var Z) (cAtG obsAtoms 0))
+                           (cAtG obsAtoms 1) (cAtG obsAtoms 0))
+                       (If (Gt (Var Z) (cAtG obsAtoms 0))
+                           (cAtG obsAtoms 0) (cAtG obsAtoms 1))
+          kInd = fromMaybe (error "indicator code refused")
+                   (evalx (Code egSpace (carrierSpace (wObs oracleWorld)) indBody)
+                          (probeEnv (uniform egSpace :. VNil)))
+          bLow = fromMaybe (error "point refused") (point egSpace (1 % 10))
+          sentinelG = mkGrid "sentinel" (7 % 10 :| [])
+          sent = Cond (Var (S Z)) (Var Z) (cAtG obsAtoms 1)
+                      (Expect (Var Z) (Var Z))
+                      (cAtG sentinelG 0)
+      -- theta = 1/10 < 1/2: the indicator column is a point at 0;
+      -- observing 1 is IMPOSSIBLE evidence — the Nothing arm shows
+      assertEqual "Nothing arm shows through"
+        (7 % 10) (evalx sent (probeEnv (kInd :. bLow :. VNil)))
+  , testCase "R1 rider: an OFF-CODEBOOK outcome is impossible evidence - the Nothing arm, pinned" $ do
+      let b0 = uniform egSpace
+          offG = mkGrid "off" (7 % 2 :| [])   -- 7/2 matches NO obs atom
+          sent = Cond (Var (S Z)) (Var Z) (cAtG offG 0)
+                      (Expect (Var Z) (Var Z))
+                      (cAtG obsAtoms 0)
+                 :: Expr '[K Rational Int, B Rational] Rational
+      assertEqual "off-codebook outcome -> all-zero column -> Nothing arm"
+        0 (evalx sent (probeEnv (emitK :. b0 :. VNil)))
+  , testCase "the walk law from the SHIPPED move sentences: Mul-form normalizes exactly" $ do
+      let walks = [ h | h <- hyps, fst (hypTag h) == "walk" ]
+      length walks @?= 8
+      mapM_ (\h -> case (hypMove h, hypTag h) of
+        (Just mv, (_, [j])) -> do
+          let rho = case mkC (wRho oracleWorld) j :: Maybe (Expr '[] Rational) of
+                Just (C _ _ v) -> v
+                _ -> error "rho read (unreachable)"
+              mk = fromMaybe (error "move refused")
+                     (evalx mv (probeEnv VNil))
+              rowAt x = [ prob (kernelAt mk x) (== y) | y <- thetaPts ]
+              lawAt x = [ mass y | y <- thetaPts ]
+                where
+                  n = length thetaPts
+                  i = length (takeWhile (/= x) thetaPts)
+                  lo = if i > 0 then i - 1 else i + 1
+                  hi = if i < n - 1 then i + 1 else i - 1
+                  mass y
+                    | y == x = 1 - rho
+                    | idx y == lo && idx y == hi = rho
+                    | idx y == lo || idx y == hi = rho / 2
+                    | otherwise = 0
+                  idx y = length (takeWhile (/= y) thetaPts)
+          mapM_ (\x -> assertEqual "row == law" (lawAt x) (rowAt x)) thetaPts
+        _ -> assertBool "walk without move (unreachable)" False)
+        walks
   ]
-
-ln2 :: Double
-ln2 = log 2
-
--- ---------------------------------------------------------------------
--- generators (finite spaces over Int points; all masses strictly
--- positive, so conditioning is always possible)
--- ---------------------------------------------------------------------
-
-genSpaceSize :: Gen Int
-genSpaceSize = chooseInt (2, 6)
-
-genObsSize :: Gen Int
-genObsSize = chooseInt (2, 4)
-
-genBits :: Int -> Gen [Double]
-genBits n = vectorOf n (choose (0, 8))
-
--- ---------------------------------------------------------------------
--- CL-4: cond == Bayes, computed only through the public accessors
---
--- TOLERANCE PROVENANCE (repaired at the step-2 boundary, the
--- optimisation-law freeze; an author re-open of Phase-1 frozen text --
--- AGENT_PLAN section 2b): the original 1e-9 was chosen before any
--- measurement and stood 360,000x wider than the machine's noise floor,
--- on the very property that enforces the optimisation law. Measured
--- floors: 2.76e-15 (2026-07-12, 100k cases); re-measured as-built at
--- step 1's close: 2.971229e-15 (Saw) / 1.190530e-15 (Is) over 200k
--- cases (code-task2-author-pack.md section 7). The repaired gate 1e-12
--- carries documented headroom x336.6 / x840.0 over the measured floors
--- -- a gate is born from a measurement, never from a round guess.
--- ---------------------------------------------------------------------
-
--- | Saw evidence: posterior expectation of f must equal
--- E[lik . f] / E[lik], with the likelihood recovered publicly as
--- lik x = prob (push (point x) k) (is o).
-propCl4Saw :: Property
-propCl4Saw =
-  forAll genSpaceSize $ \n ->
-  forAll genObsSize $ \m ->
-  forAll (genBits n) $ \pb ->
-  forAll (vectorOf n (genBits m)) $ \kb ->
-  forAll (chooseInt (0, m - 1)) $ \o ->
-  forAll (vectorOf n (choose (-10, 10))) $ \fv ->
-    let sp  = mkSpace (NE.fromList [0 .. n - 1])
-        osp = mkSpace (NE.fromList [0 .. m - 1])
-        b   = fromBits sp (\x -> Bits (pb !! x))
-        k   = kernel sp osp (\x -> fromBits osp (\y -> Bits (kb !! x !! y)))
-        lik x = prob (push (point sp x) k) (is osp o)
-        f x = fv !! x
-        rhs = expect b (\x -> lik x * f x) / expect b lik
-    in case cond b (Saw k o) of
-         Nothing -> counterexample
-           "cond returned Nothing on strictly-positive-mass evidence" False
-         Just b' ->
-           let lhs = expect b' f
-           in counterexample ("cond: " ++ show lhs ++ " vs Bayes: " ++ show rhs)
-                (abs (lhs - rhs) <= 1e-12 * (1 + abs rhs))
-
--- | Is evidence: conditioning on a declared event must equal the
--- renormalized restriction.
-propCl4Is :: Property
-propCl4Is =
-  forAll genSpaceSize $ \n ->
-  forAll (genBits n) $ \pb ->
-  forAll (sublistOf [0 .. n - 1] `suchThat` (not . null)) $ \sub ->
-  forAll (vectorOf n (choose (-10, 10))) $ \fv ->
-    let sp = mkSpace (NE.fromList [0 .. n - 1])
-        b  = fromBits sp (\x -> Bits (pb !! x))
-        e  = event sp (`elem` sub)
-        f x = fv !! x
-        ind x = if x `elem` sub then 1 else 0
-        rhs = expect b (\x -> ind x * f x) / prob b e
-    in case cond b (Is e) of
-         Nothing -> counterexample
-           "cond returned Nothing on a nonempty positive-mass event" False
-         Just b' ->
-           let lhs = expect b' f
-           in counterexample ("cond: " ++ show lhs ++ " vs Bayes: " ++ show rhs)
-                (abs (lhs - rhs) <= 1e-12 * (1 + abs rhs))
-
--- ---------------------------------------------------------------------
--- fineness charged once
--- ---------------------------------------------------------------------
-
--- the reference theta grid and its midpoint refinement
-grid9 :: [Double]
-grid9 = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-
-grid17 :: [Double]
-grid17 = [ 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5
-         , 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9 ]
-
--- | Cumulative predictive log-loss (bits) of a bern-constant ensemble
--- over a grid, priced exactly as the reference model fragment prices a
--- constant sentence: 1 (MODEL choice) + 1 (PARAM choice) + log2 n (grid
--- index) bits, through 'fromBits' — the only prior source.
-ensembleLogloss :: [Double] -> [Int] -> Double
-ensembleLogloss grid ys = fst (foldl' step (0, prior) ys)
-  where
-    n    = length grid
-    sp   = mkSpace (NE.fromList [0 .. n - 1])
-    osp  = mkSpace (NE.fromList [0, 1])
-    prior = fromBits sp (\_ -> Bits (2 + logBase 2 (fromIntegral n)))
-    bern th = fromBits osp
-      (\y -> Bits (negate (logBase 2 (if y == 1 then th else 1 - th))))
-    k = kernel sp osp (\i -> bern (grid !! i))
-    step (ll, b) y =
-      let LogProb lp = logPredict b (Saw k y)
-          b' = fromMaybe (error "impossible evidence in ensemble") (cond b (Saw k y))
-      in (ll - lp / ln2, b')
-
--- | Refine the theta grid 9 -> 17 points: the cumulative predictive
--- mass on any Bernoulli stream moves by less than 0.02 bits per
--- observation. There is no separate fineness-penalty axis; the grid's
--- log2 n enters through the prior and nowhere else.
-propFineness :: Property
-propFineness =
-  forAll (chooseInt (50, 200)) $ \tLen ->
-  forAll (choose (0.05, 0.95)) $ \theta ->
-  forAll (vectorOf tLen (choose (0, 1))) $ \us ->
-    let ys  = [ if u < (theta :: Double) then 1 else 0 :: Int | u <- us ]
-        l9  = ensembleLogloss grid9 ys
-        l17 = ensembleLogloss grid17 ys
-    in counterexample
-         ("9-pt: " ++ show l9 ++ " bits, 17-pt: " ++ show l17
-          ++ " bits over " ++ show tLen ++ " obs")
-         (abs (l9 - l17) <= 0.02 * fromIntegral tLen)

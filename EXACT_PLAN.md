@@ -188,7 +188,11 @@ size and no price.
 
 [AMENDED 2026-07-25 (R7): displays are asserted (==) UNDER THE PINNED
 TOOLCHAIN (gate 7 pins GHC 9.10.3) — the display function, including
-its summation order, IS part of the spec; the earlier "N digits with a
+its summation order, IS part of the spec; AND (the mandate-6 finding
+of the close) the pin extends to the host libm — logBase compiles to
+the C library's log, so the pinned Double displays are a function of
+GHC + libm; a libm motion that moves a display is a re-measurement
+event, not a defect; the earlier "N digits with a
 derived bound" convention is retired as buying no oracle value. The
 overlay's PropLang.Report is the staged form: entropy and bits views
 derive from exact read-only views (weights, metaPosterior); the core
@@ -523,6 +527,19 @@ superseded at the repair sitting) +
 Namespace, World` (Namespace added at the review sitting — the mandate-3
 census omission; its line rides pack IX.2 B4) — each type with its
 derivation line, each production with its transcript.
+
+## 11d. R5's geometry (the door's consequence — DEFINED here; the
+## mandate-2 close finding: code cited it, no document derived it)
+
+R5 ruled env construction door-only with exact namespace coverage.
+Its GEOMETRY follows: every intra-tick read carries a FULL assignment,
+so (i) a candidate's EU reads at feats ++ candidate (the exogenous
+read, coverage supplied by the candidate's own writable names);
+(ii) the reported predictive reads at feats ++ act — POST-CHOICE,
+PRE-OBSERVATION (choice still precedes observation; the report
+references the acted-upon world); (iii) dormant partial reads died
+with the 0.0 default. Menu-less worlds are byte-unchanged (feats
+alone covers). Membrane.hs and Host.hs cite this section.
 
 ## 12. Phase 2 — the work order (drafted at the review sitting of 2026-07-25; executes only after the author's exact-freeze-r0 tag)
 

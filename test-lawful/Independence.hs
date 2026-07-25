@@ -114,6 +114,13 @@ main = defaultMain $ testGroup "independence (the exact core four are irreducibl
           assertBool "signed ratio is negative" ((2 :: Rational) / (-1) < 0)
           assertBool "every lawful weight ratio is nonneg"
             (and [ wVar x / wVar y > 0 | x <- [0 .. 2], y <- [0 .. 2] ])
+          -- the IMPLEMENTATION side (mandate-1 repair): the introducer's
+          -- own door REFUSES the signed assignment — fromWeights is
+          -- where the 3+1 structure lives, and this can fail
+          assertBool "fromWeights refuses signed weights"
+            (case fromWeights sp3 (\i -> [2, -1, 0] !! i) of
+               Nothing -> True
+               Just _ -> False)
       ]
   , testCase "red mirror: a genuine measure passes every eliminator law" $ do
       assertBool "eBase satisfies L1" (satL1 eBase)

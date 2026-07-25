@@ -90,10 +90,11 @@ main = defaultMain $ testGroup "the exact lawful floor (satisfaction)"
             wBatts
       ]
   , testGroup "conformance theorems"
-      [ testCase "T1 prob == E[indicator]" $
+      [ testCase "T1 prob == the weight mass at matching points (INDEPENDENT route: the read-only views, never expect - the mandate-1 repair of the Savage-shaped restatement)" $
           mapM_ (\b -> mapM_ (\i ->
-                  assertEqual "prob == expect ind"
-                    (expect b (\x -> if x == i then 1 else 0))
+                  assertEqual "prob == view-summed mass"
+                    (sum [ w | (x, w) <- zip (points b) (weights b)
+                         , x == i ])
                     (prob b (== i)))
                 pts)
             beliefs

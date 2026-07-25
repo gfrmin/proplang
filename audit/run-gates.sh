@@ -77,9 +77,7 @@ fi
 # -- gate 4: forbidden tokens in src/ ----------------------------------------
 echo "--- gate 4: forbidden tokens (audit/forbidden.txt) in src/"
 if "$PY" audit/strip_comments.py --forbidden audit/forbidden.txt \
-        src/PropLang/Belief.hs src/PropLang/Syntax.hs \
-        src/PropLang/Eval.hs src/PropLang/Enumerate.hs \
-        src/PropLang/Host.hs; then
+        src/PropLang/*.hs; then
     note 4 PASS
 else
     note 4 FAIL

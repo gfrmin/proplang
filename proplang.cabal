@@ -10,7 +10,7 @@ extra-doc-files:    CLAUDE.md
                     design.md
                     interface.md
                     typed-port-spec.md
-                    HOSTS_PLAN.md
+                    KERNEL.md
                     membrane-wire.md
 
 common warnings
@@ -33,228 +33,6 @@ library
     build-depends:    base >=4.16 && <5
     default-language: GHC2021
 
-test-suite properties
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Properties.hs
-    hs-source-dirs:   test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-quickcheck
-                    , QuickCheck
-    default-language: GHC2021
-
--- The grammar-hygiene increment oracle (GRAMMAR_HYGIENE_PLAN Q2):
--- frozen test/ cannot grow, so each increment carries its own suite;
--- the frozen gate 5 (`cabal test all`) absorbs it automatically.
-test-suite hygiene
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Hygiene.hs
-    hs-source-dirs:   test-hygiene
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
-
--- (test-expfam RETIRED at the step-9 elimination freeze — DISCHARGED-
--- PERMANENT, WIDE ruling / D-f13/D-f14. The ExpFam grammar node and the
--- SId statistic are DELETED: ExpFam == Code bit-for-bit (test-code
--- Code.hs:284-296), SId = realToFrac = ToR (§5d). The KER sort holds
--- only Code now; STATS is gone. The suite's subject no longer exists;
--- the deletion it proved possible became the deletion that happened —
--- an ablation fixture's terminal state, so the files are removed, not
--- kept as dead code, exactly as UseBern was. The Carrier machinery it
--- exercised survives at the Belief layer, un-graded by the alphabet.)
-
--- The membrane increment's suite (MEMBRANE_PLAN; drafted in the oracle
--- phase as test-membrane/stanza.cabal.draft, landed at the Task 2
--- freeze). hs-source-dirs includes test/ ONLY for the frozen Streams
--- and Anchors modules — the parity group pins against the same anchor
--- constants the acceptance suite used (retired at the step-3 freeze;
--- its four deliverables live on in test-sentence/ g1 with lineage
--- headers).
-test-suite membrane
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Membrane.hs
-    other-modules:    Streams
-                      Anchors
-    hs-source-dirs:   test-membrane, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-                    , process
-    default-language: GHC2021
-
--- (test-ladder RETIRED at the step-5 freeze — the Rung machinery
--- died with the action apparatus; its six pins are listed with
--- destinations in actions-author-pack.md Part I SS3: the VThinkK
--- price and verb/worker identity pins re-homed into test-actions g3
--- until step 9 retires the constructor.)
-
--- (test-prepost RETIRED at the step-9 elimination freeze — its subject,
--- the VPre preposterior verb, is DELETED (D-f1, one of the five VoI
--- verbs). The preposterior CAPABILITY is not lost forever: its
--- arbitrary-depth re-composition is the D-f4 step-10 cluster (the
--- 'Real a' wall — world-rollforward endo-kernel + sentence-level
--- expectation over structured carriers). RETIRE-UNTIL-N, UNCONDITIONAL
--- return (rider 2): VPre's preposterior identity is proof (i)'s content,
--- and its permanent home is the step-10 oracle, not an "if" — step 10
--- LANDS the re-composition and the identity returns against it (as a
--- FRESH shipped-composition oracle, the test-elim form, never by
--- un-retiring this file), or step 10 STALLS HONESTLY; the darkness is
--- declared and bounded to one window. The VPre ablation fixture is
--- discharged-permanent — the verb never returns as a primitive. Return
--- row on step 10's opening checklist.)
-
--- (test-cirl RETIRED at the step-9 elimination freeze — its subject,
--- utility-as-latent through the USay UTIL sort, is DELETED (D-f1 UTIL
--- sort; utility is now an ordinary Expect-body EXPR). The pointer /
--- CIRL deliverable (increment 6) leaves the corpus with its vehicle;
--- if a belief-over-utility surface returns it does so over the new
--- Expect surface as a fresh oracle. The USay ablation fixture +
--- SayableC are discharged-permanent.)
-
--- THE HOST-LESS WINDOW (stated at the step-3 freeze, D3 rider 2, here
--- where the host stanzas stood): the govhost executable, its wire
--- modules (host-governor/Wire.hs, WireU.hs), test-govhost, and test-d
--- retired at this boundary — their obligations ported or discharged
--- (sentence-author-pack.md sections 8 and 20). From this freeze until
--- the hosts boundary re-opens (step 5/7), the engine carries NO host
--- driver in-tree; host conformance binds to membrane-wire.md, never
--- to GHC artifacts.
-
--- the step-1 increment oracle (AGENT_PLAN, boundary agent-boundary-r1);
--- stanza applied at code-freeze-r0 from test-code/stanza.cabal.draft
--- under the recorded delegation (pack sections 3 and 6.10)
-test-suite code
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Code.hs
-    hs-source-dirs:   test-code
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the step-2 increment oracle (AGENT_PLAN section 7 step 2, the
--- optimisation law enforced); stanza applied at the step-2 freeze from
--- test-optlaw/stanza.cabal.draft under the recorded Phase-B delegation
--- (optlaw-author-pack.md sections 5.3 and 8)
-test-suite optlaw
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          OptLaw.hs
-    hs-source-dirs:   test-optlaw
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the step-3 increment oracle (AGENT_PLAN section 7 step 3, a
--- hypothesis becomes a sentence); stanza applied at the step-3 freeze
--- from test-sentence/stanza.cabal.draft under the recorded Phase-B
--- delegation (sentence-author-pack.md sections 20 and 25).
--- hs-source-dirs reaches test/ for the FROZEN Streams and Anchors
--- modules: anchor values are imported from the frozen artifact itself,
--- never copied (R-D20-i).
-test-suite sentence
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Sentence.hs
-    other-modules:    Streams
-                      Anchors
-    hs-source-dirs:   test-sentence, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , process
-    default-language: GHC2021
-
--- the step-4 increment oracle (AGENT_PLAN section 7 step 4, one
--- pricing mechanism, two declared tables); stanza applied at the
--- step-4 freeze from test-pricing/stanza.cabal.draft under the
--- recorded delegation (pricing-author-pack.md sections 10 and 12)
-test-suite pricing
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Pricing.hs
-    hs-source-dirs:   test-pricing
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the step-5 increment oracle (AGENT_PLAN section 7 step 5, actions
--- become features); stanza applied at the step-5 freeze from
--- test-actions/stanza.cabal.draft under the recorded delegation
--- (actions-author-pack.md sections 13-14). hs-source-dirs reaches
--- test/ for the FROZEN Streams module only.
-test-suite actions
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Actions.hs
-    other-modules:    Streams
-    hs-source-dirs:   test-actions, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the step-6 increment oracle (AGENT_PLAN section 7 step 6, actions
--- in the feature stream); stanza applied at the step-6 freeze from
--- test-stream/stanza.cabal.draft under the recorded delegation
--- (stream-author-pack.md Part V section 35). hs-source-dirs reaches
--- test/ for the FROZEN Streams module only (the control stream is
--- imported, never re-declared — the probe-discipline clause).
-test-suite stream
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Stream.hs
-    other-modules:    Streams
-    hs-source-dirs:   test-stream, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-                    , QuickCheck
-    default-language: GHC2021
-
--- the step-7 increment oracle (AGENT_PLAN section 7 step 7, pricing
--- unified / M5 repealed); stanza applied at the step-7 freeze from
--- test-unify/stanza.cabal.draft under the recorded delegation
--- (unify-author-pack.md Part V). Every fixture inline.
-test-suite unify
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Unify.hs
-    hs-source-dirs:   test-unify
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- THE DRIVER RETURNS (step 7, the host-less window's exit — "no
--- driver returns until 7", actions-author-pack.md:176, discharged
--- here). The executable is PropLang.Host.hostMain: the pure session
--- core behind a line loop; it serves the oracle-phase stub until the
--- step-7 implementation lands serveLine's body.
 executable proplang-host
     import:           warnings
     main-is:          Main.hs
@@ -263,132 +41,6 @@ executable proplang-host
                     , proplang
     default-language: GHC2021
 
--- the step-8 increment oracle (AGENT_PLAN section 7 step 8, utility on
--- world states / latent); stanza applied at the step-8 freeze from
--- test-outcome/stanza.cabal.draft under the recorded delegation
--- (outcome-author-pack.md Part VIII). Every fixture inline.
-test-suite outcome
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Outcome.hs
-    hs-source-dirs:   test-outcome
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
-test-suite elim
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Elim.hs
-    hs-source-dirs:   test-elim
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , process
-    default-language: GHC2021
-
-test-suite reflexive
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Reflexive.hs
-    other-modules:    Streams
-                      Anchors
-    hs-source-dirs:   test-reflexive, test
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the wire boundary's W1 opening-measurement oracle (WIRE_PLAN.md
--- section 1; issues #5/#6): contrast-context discrimination pinned on
--- the shipped wire, the ms/tick instrument at the pinned populations.
--- Stanza applied at the W1 freeze under the recorded delegation of
--- 2026-07-20 ("open boundary and implement").
-test-suite measure
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Measure.hs
-    hs-source-dirs:   test-measure
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- the wire boundary's W2a owed-law oracle (WIRE_PLAN.md step W2;
--- issue #2): VoI non-negativity over the frozen step-10 composition —
--- the property AGENT_PLAN.md:1121-1126 homed at step 9, landed here
--- with its gate derived from the W2 evidence program's measured floor.
-test-suite law
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Law.hs
-    hs-source-dirs:   test-law
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-                    , tasty-quickcheck
-    default-language: GHC2021
-
--- boundary R's R1 joint-purchase oracle (R_SCOPE.md as amended;
--- r-author-pack Part III): the lattice law, the region guard, the
--- one purchase rule. Stanza applied at the R1 freeze from
--- test-refine/stanza.cabal.draft under the recorded delegation of
--- 2026-07-21 ("the delegated frozen-file edits ... proceed under the
--- sitting's delegation"). The row-10 mutation tripwire lives at
--- test-refine/ablation/run.sh (gate-7 style, runs against the
--- implemented src).
-test-suite refine
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Refine.hs
-    hs-source-dirs:   test-refine
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- W3 (the arity increment, wire boundary): frozen at the W3 sitting
--- 2026-07-21 on the author's rulings (wire-author-pack.md VII.7);
--- stanza text = test-arity/stanza.cabal.draft (manifest row). Red
--- against oracle-phase stubs until W3 implementation lands.
-test-suite arity
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Arity.hs
-    hs-source-dirs:   test-arity
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
-
--- W4 (the said increment, wire boundary): frozen at the W4 sitting
--- 2026-07-21 on the author's rulings + four additions
--- (wire-author-pack.md VIII.9); stanza text =
--- test-said/stanza.cabal.draft (manifest row). Red on the shipped
--- wire (13/17) until W4 implementation lands.
-test-suite said
-    import:           warnings
-    type:             exitcode-stdio-1.0
-    main-is:          Said.hs
-    hs-source-dirs:   test-said
-    build-depends:    base
-                    , proplang
-                    , tasty
-                    , tasty-hunit
-    default-language: GHC2021
--- the #18 transport micro-increment's oracle (the FIRST process-level
--- suite; declared as its own oracle class at the 2026-07-22
--- disposition sitting). Stanza applied at the transport freeze from
--- test-transport/stanza.cabal.draft. Boot deps process/directory
--- resolve against the gate-7 toolchain (transport-pack.md rider ii).
 test-suite transport
     import:           warnings
     type:             exitcode-stdio-1.0
@@ -414,7 +66,7 @@ test-suite exact-acceptance
     type:             exitcode-stdio-1.0
     main-is:          Acceptance.hs
     other-modules:    Anchors, Streams, OracleWorld
-    hs-source-dirs:   test-exact
+    hs-source-dirs:   test
     build-depends:    base
                     , proplang
                     , tasty
@@ -426,7 +78,7 @@ test-suite exact-properties
     type:             exitcode-stdio-1.0
     main-is:          Properties.hs
     other-modules:    OracleWorld
-    hs-source-dirs:   test-exact
+    hs-source-dirs:   test
     build-depends:    base
                     , proplang
                     , tasty
@@ -449,6 +101,17 @@ test-suite lawful-independence
     type:             exitcode-stdio-1.0
     main-is:          Independence.hs
     hs-source-dirs:   test-lawful
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+test-suite pins
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Pins.hs
+    hs-source-dirs:   test-pin
     build-depends:    base
                     , proplang
                     , tasty
