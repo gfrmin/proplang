@@ -1,23 +1,23 @@
 {-# LANGUAGE GHC2021 #-}
 {-# LANGUAGE DataKinds #-}
 -- The EXACT acceptance oracle (Phase-1 of the exact re-founding;
--- successor of test/Acceptance.hs, staged in test-exact/ until the
--- author's freeze swaps it into place and re-signs MANIFEST).
+-- successor of test/Acceptance.hs; repaired at the R1-R16 sitting).
 --
--- Anchors are GENERATED from the executed A1 reference (Anchors.hs
--- header); streams are the frozen streams BYTE-IDENTICAL. Exact
--- quantities are asserted with (==) — no tolerance exists for an
--- exact quantity; Double rows are reporting-edge displays, computed
--- deterministically under the pinned toolchain and asserted (==).
+-- Anchors are GENERATED from the executed reference (the generator
+-- ships in-tree: ExactReference.hs — R14); streams are the frozen
+-- streams BYTE-IDENTICAL. Exact quantities are asserted (==); Double
+-- rows are reporting-edge displays (PropLang.Report), deterministic
+-- under the pinned toolchain and asserted (==) — ruling R7.
 --
 -- Runtime status by design: GREEN against the exact surface (the
 -- Phase-D overlay carries the SAT transcript; Phase-2 src replays
 -- it); COMPILE-RED against the shipped Double src, attributable to
--- the missing exact surface (the red transcript names the seam).
+-- the missing exact surface.
 --
--- The AGENT CRITERION rides in group t2s: the batch-1 preposterior is
--- SAYABLE in the 10+1 grammar and the sentence route equals the
--- engine route exactly — deliberation lives in the language.
+-- THE AGENT CRITERION rides in t2: the batch-1 AND the composed
+-- BATCH-3 preposterior are sentences of the 9+1 grammar, equal to
+-- the engine route exactly (R9) — and both go through THE DOOR under
+-- t2's own declared World (R5): no doorless env exists in this file.
 module Main (main) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -27,33 +27,14 @@ import Test.Tasty
 import Test.Tasty.HUnit
 
 import qualified Anchors
+import OracleWorld
 import Streams (buffer36, drift400, flat400, shifted160)
 
 import PropLang.Belief
 import PropLang.Enumerate
 import PropLang.Eval
+import PropLang.Report (entropyAgent)
 import PropLang.Syntax
-
--- ---------------------------------------------------------------------
--- THE ORACLE WORLD (test-side world data — the E3-legal home; the
--- core below never names a point-set)
--- ---------------------------------------------------------------------
-
-oracleWorld :: World
-oracleWorld = World
-  { wNs = mkNamespace ("t" :| [])
-  , wObs = mkCarrier "obs" (0 :| [1])
-  , wTheta = mkGrid "theta" (1 % 10 :| [ k % 10 | k <- [2 .. 9] ])
-  , wTau = mkGrid "tau"
-      (5 :| [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])
-  , wRho = mkGrid "rho"
-      (1 % 100 :| [2 % 100, 5 % 100, 1 % 10, 2 % 10, 3 % 10, 4 % 10, 5 % 10])
-  }
-
-featsAt :: Int -> [(Name, Rational)]
-featsAt t = case doorFeatures (wNs oracleWorld) [("t", fromIntegral t)] of
-  Just fs -> fs
-  Nothing -> error "door refused the oracle tick (unreachable)"
 
 -- the test-1 policy: EU argmax under CL-3 (first-listed incumbent)
 t1Act :: Rational -> String
@@ -62,60 +43,46 @@ t1Act p1 =
         ("predict1", 2 * p1 - 1)
         [ ("predict0", 1 - 2 * p1), ("consult", 35 % 100) ])
 
+hyps :: [Hyp]
+hyps = enumerate oracleWorld fragFull
+
+orDie :: Either String a -> a
+orDie = either (\m -> error ("oracle run refused: " ++ m)) id
+
 -- run the sentence engine over a stream, learning
 runStream :: [Int] -> ([(Int, Rational, String, Double)], AgentS, Rational)
 runStream ys =
   let step (ag, t, m, acc) y =
-        let p1 = predictive1S (featsAt t) ag
-            h = entropyS ag
-            (mm, ag') = observeS (featsAt t) y ag
+        let p1 = orDie (predictMassS (doorAt t) 1 ag)
+            h = entropyAgent ag
+            (mm, ag') = orDie (observeS (doorAt t) y ag)
         in (ag', t + 1, m * mm, (t, p1, t1Act p1, h) : acc)
       (agF, _, marg, accR) =
-        foldl' step (sentenceAgent hyps, 0 :: Int, 1, []) ys
+        foldl' step (sentenceAgent (wNs oracleWorld) hyps, 0 :: Int, 1, []) ys
   in (reverse accR, agF, marg)
-
-hyps :: [Hyp]
-hyps = enumerate oracleWorld fragFull
 
 margOver :: [FragProd] -> Bool -> [Int] -> Rational
 margOver allowed learn ys =
   let hs = enumerate oracleWorld allowed
       step (ag, t, m) y =
-        let (mm, ag') = (if learn then observeS else stepFrozenS)
-                          (featsAt t) y ag
+        let (mm, ag') = orDie ((if learn then observeS else stepFrozenS)
+                                 (doorAt t) y ag)
         in (ag', t + 1, m * mm)
-      (_, _, m') = foldl' step (sentenceAgent hs, 0 :: Int, 1) ys
+      (_, _, m') = foldl' step (sentenceAgent (wNs oracleWorld) hs, 0 :: Int, 1) ys
   in m'
 
 -- ---------------------------------------------------------------------
--- TEST 2 machinery: the deliberation engine over the sealed exact
--- reasoner, with the emission kernel built FROM A SENTENCE
+-- TEST 2: t2's OWN World (R5) — the deliberation world declares the
+-- price feature; every env in this file passes a door
 -- ---------------------------------------------------------------------
 
-egSpace :: Space Rational
-egSpace = case [ v | k <- [0 .. gridSize (wTheta oracleWorld) - 1]
-               , Just e <- [mkC (wTheta oracleWorld) k]
-               , let v = evalx (e :: Expr '[] Rational) (mkEnv [] VNil) ] of
-  [] -> error "empty theta codebook (unreachable)"
-  (p : ps) -> mkSpace (p :| ps)
+t2Ns :: Namespace
+t2Ns = mkNamespace ("price" :| [])
 
-atomG :: Grid
-atomG = mkGrid "obs-atoms" (0 :| [1])
-
-cAtG :: Grid -> Int -> Expr env Rational
-cAtG g k = case mkC g k of
-  Just e -> e
-  Nothing -> error "cAtG: off-codebook (unreachable)"
-
-emitK :: Kernel Rational Int
-emitK =
-  let zero = cAtG atomG 0
-      one = cAtG atomG 1
-      body = If (Gt (Var Z) zero) (Var (S Z)) (Sub one (Var (S Z)))
-      sent = Code egSpace (carrierSpace (wObs oracleWorld)) body
-  in case evalx sent (mkEnv [] VNil) of
-       Just k -> k
-       Nothing -> error "emission code refused (unreachable)"
+t2Env :: Rational -> Vals env -> Env env
+t2Env p vals = case mkEnvIn t2Ns [("price", p)] vals of
+  Right e -> e
+  Left m -> error ("t2 door (unreachable): " ++ m)
 
 vActB :: Belief Rational -> Rational
 vActB b =
@@ -153,35 +120,93 @@ runDelibX price buf0 = go (uniform egSpace) buf0 (0 :: Int)
           eL = negate eR
       in if eR > eL then "R" else "L"
 
--- THE SAYABLE PREPOSTERIOR (the agent-criterion row): batch-1 vThink
--- as ONE SENTENCE of the 10+1 grammar — Expect for the predictive
--- masses, the fused Cond for the posteriors, If/Gt-over-Expects for
--- the inner choice, Get for the world's price. No host fold.
+-- shared sayable pieces (polymorphic in the env tail)
+zeroE, oneE, twoE :: Expr env Rational
+zeroE = cAtG obsAtoms 0
+oneE = cAtG obsAtoms 1
+twoE = addM oneE oneE
+
+-- choice over the posterior bound at Z: If/Gt over two Expects (the
+-- step-10 idiom — ruling 3's surviving route)
+vActS :: Expr (B Rational ': env) Rational
+vActS =
+  let eR = Expect (Var Z) (Sub (Mul twoE (Var Z)) oneE)
+      eL = Expect (Var Z) (Sub oneE (Mul twoE (Var Z)))
+  in If (Gt eR eL) eR eL
+
+mass1, mass0 :: Expr env (B Rational) -> Expr env Rational
+mass1 b = Expect b (Var Z)
+mass0 b = Expect b (Sub oneE (Var Z))
+
+-- THE SAYABLE PREPOSTERIOR, batch 1 (one sentence; door-served price)
 vThink1Sentence :: Expr '[K Rational Int, B Rational] Rational
 vThink1Sentence =
-  Sub (Add (Mul m1 (v 1)) (Mul m0 (v 0))) (Get "price")
+  Sub (addM (Mul (mass1 b) (v 1)) (Mul (mass0 b) (v 0))) (Get "price")
   where
-    zero = cAtG atomG 0
-    one = cAtG atomG 1
-    two = Add one one
     b = Var (S Z)
     kv = Var Z
-    m1 = Expect b (Var Z)
-    m0 = Expect b (Sub one (Var Z))
-    -- Cond binds the posterior at Var Z in the Just arm; the choice
-    -- there is If/Gt over two Expects (the step-10 idiom, ruling 3)
-    v y = Cond b kv (cAtG atomG y) inner zero
-    inner =
-      let post = Var Z
-          eR = Expect post (Sub (Mul two (Var Z)) one)
-          eL = Expect post (Sub one (Mul two (Var Z)))
-      in If (Gt eR eL) eR eL
+    v y = Cond b kv (cAtG obsAtoms y) vActS zeroE
+
+-- THE SAYABLE PREPOSTERIOR, batch 3 (R9): the full composed sentence —
+-- eight branches of nested Cond, masses by Expect, choice by
+-- If/Gt-over-Expects, the price by Get. The de Bruijn spellings track
+-- the kernel as the scope grows: Z, S Z, S (S Z).
+vThink3Sentence :: Expr '[K Rational Int, B Rational] Rational
+vThink3Sentence = Sub (lvl1 (Var (S Z)) (Var Z)) (Get "price")
+  where
+    lvl1 :: Expr '[K Rational Int, B Rational] (B Rational)
+         -> Expr '[K Rational Int, B Rational] (K Rational Int)
+         -> Expr '[K Rational Int, B Rational] Rational
+    lvl1 b k = addM (Mul (mass1 b) (Cond b k oneE lvl2 zeroE))
+                    (Mul (mass0 b) (Cond b k zeroE lvl2 zeroE))
+    lvl2 :: Expr '[B Rational, K Rational Int, B Rational] Rational
+    lvl2 = let b = Var Z
+               k = Var (S Z)
+           in addM (Mul (mass1 b) (Cond b k oneE lvl3 zeroE))
+                   (Mul (mass0 b) (Cond b k zeroE lvl3 zeroE))
+    lvl3 :: Expr '[B Rational, B Rational, K Rational Int, B Rational] Rational
+    lvl3 = let b = Var Z
+               k = Var (S (S Z))
+           in addM (Mul (mass1 b) (Cond b k oneE vActS zeroE))
+                   (Mul (mass0 b) (Cond b k zeroE vActS zeroE))
+
+-- ---------------------------------------------------------------------
+-- TEST 3's quarantined foil: the exact Beta tracker (test-side ONLY —
+-- never part of the language; the brief's acceptance test 3 is the
+-- comparison, so the foil runs live and its anchors are consumed)
+-- ---------------------------------------------------------------------
+
+forgetterLL :: Rational -> [Int] -> Double
+forgetterLL gamma ys = negate (logBase 2 (fromRational prod))
+  where
+    (_, _, prod) = foldl' step (1, 1, 1 :: Rational) ys
+    step (a, b, acc) y =
+      let p = a / (a + b)
+          term = if y == 1 then p else 1 - p
+      in (gamma * a + fromIntegral y, gamma * b + fromIntegral (1 - y),
+          acc * term)
 
 -- ---------------------------------------------------------------------
 
 main :: IO ()
 main = defaultMain $ testGroup "exact acceptance (the re-founded oracle)"
-  [ testGroup "t1 changing world"
+  [ testGroup "the door (ruling 8: fail-closed, refusals named)"
+      [ testCase "a full tick passes; missing/undeclared/duplicate are refused" $ do
+          let d fs = case mkEnvIn (wNs oracleWorld) fs VNil
+                            :: Either String (Env '[]) of
+                Right _ -> Nothing
+                Left m -> Just m
+          d [("t", 3)] @?= Nothing
+          d [] @?= Just "tick refused: missing declared [\"t\"]"
+          d [("t", 3), ("x", 1)] @?= Just "tick refused: undeclared [\"x\"]"
+          d [("t", 3), ("t", 4)] @?= Just "tick refused: duplicate [\"t\"]"
+      , testCase "the engine refuses an under-specified tick (no dormancy)" $ do
+          let ag = sentenceAgent (wNs oracleWorld) hyps
+          case observeS [] 1 ag of
+            Left m -> m @?= "tick refused: missing declared [\"t\"]"
+            Right _ -> assertFailure "a doorless tick was served"
+      ]
+  , testGroup "t1 changing world"
       [ testCase "enumeration count" $ length hyps @?= 1169
       , testCase "probe rows: p1 exact, action, H display" $ do
           let (timeline, _, _) = runStream shifted160
@@ -201,7 +226,8 @@ main = defaultMain $ testGroup "exact acceptance (the re-founded oracle)"
       , testCase "MAP is the change-point guard; exact posterior" $ do
           let (_, agF, _) = runStream shifted160
               (tag, post) = mapS agF
-          tag @?= ("guard", [ i | i <- tupToList Anchors.t1MapIndicesX ])
+              (i, j, k) = Anchors.t1MapIndicesX
+          tag @?= ("guard", [i, j, k])
           post @?= Anchors.t1MapPosteriorX
       , testCase "cumulative marginal (exact)" $ do
           let (_, _, marg) = runStream shifted160
@@ -212,37 +238,60 @@ main = defaultMain $ testGroup "exact acceptance (the re-founded oracle)"
           maximum [ h | (t, _, _, h) <- timeline, t >= 60, t < 90 ]
             @?= Anchors.t1HPostMaxX
       ]
-  , testGroup "t2 lazy genius"
+  , testGroup "t2 lazy genius (the agent criterion)"
       [ testCase "tick counts and final acts (exact prices)" $
-          [ (p, n, a) | (p, _) <- prices, let (n, a) = runDelibX p buffer36 ]
+          [ (p, n, a) | p <- [3 % 10, 5 % 100, 5 % 1000, 0]
+          , let (n, a) = runDelibX p buffer36 ]
             @?= Anchors.t2RowsX
-      , testCase "AGENT CRITERION: the batch-1 preposterior is sayable, and the sentence route == the engine route (exact)" $ do
+      , testCase "the batch-1 preposterior is ONE SENTENCE == the engine (door-served)" $ do
           let beliefs = uniform egSpace
                 : [ b | y <- [1, 1, 0, 1]
                   , Just b <- [condK (uniform egSpace) emitK y] ]
-              psx = [0, 5 % 1000, 5 % 100, 3 % 10]
           mapM_ (\(b, p) ->
                   assertEqual "sentence == engine (batch 1)"
                     (vThinkB b 1 p)
-                    (evalx vThink1Sentence
-                       (mkEnv [("price", p)] (emitK :. b :. VNil))))
-            [ (b, p) | b <- beliefs, p <- psx ]
+                    (evalx vThink1Sentence (t2Env p (emitK :. b :. VNil))))
+            [ (b, p) | b <- beliefs, p <- [0, 5 % 1000, 5 % 100, 3 % 10] ]
+      , testCase "the COMPOSED BATCH-3 preposterior is ONE SENTENCE == the engine (R9)" $ do
+          let beliefs = uniform egSpace
+                : [ b | y <- [1, 0]
+                  , Just b <- [condK (uniform egSpace) emitK y] ]
+          mapM_ (\(b, p) ->
+                  assertEqual "sentence == engine (batch 3)"
+                    (vThinkB b 3 p)
+                    (evalx vThink3Sentence (t2Env p (emitK :. b :. VNil))))
+            [ (b, p) | b <- beliefs, p <- [0, 5 % 100, 3 % 10] ]
       ]
   , testGroup "t3 forgetting trap"
       [ testCase "agent marginals over drift400/flat400 (exact)" $ do
           margOver fragFull True drift400 @?= Anchors.t3AgentDriftMargX
           margOver fragFull True flat400 @?= Anchors.t3AgentFlatMargX
+      , testCase "the quarantined forgetter reproduces its anchors, and the RELATIONS hold (R10)" $ do
+          let rows = [ (g, forgetterLL g drift400, forgetterLL g flat400)
+                     | (g, _, _) <- Anchors.t3ForgetterRowsX ]
+          rows @?= Anchors.t3ForgetterRowsX
+          -- the brief's test-3 story, asserted from consumed anchors:
+          assertBool "agent beats every forgetter on the drifting world"
+            (all (\(_, d, _) -> d > Anchors.t3AgentDriftLLX)
+                 Anchors.t3ForgetterRowsX)
+          assertBool "a tuned forgetter beats the agent on the flat world"
+            (any (\(_, _, f) -> f < Anchors.t3AgentFlatLLX)
+                 Anchors.t3ForgetterRowsX)
       ]
   , testGroup "t4 deletion audit"
-      [ testCase "frozen agent: marginal == 2^-160 EXACTLY" $ do
-          Anchors.t4FrozenIsExactlyHalfPerTickX @?= True
+      [ testCase "frozen agent: the engine's 160-tick marginal == 2^-160 EXACTLY" $
           margOver fragFull False shifted160 @?= 1 % (2 ^ (160 :: Int))
-      , testCase "full/noif/noget marginals (exact)" $ do
+      , testCase "full and no-if marginals (exact); no-get COINCIDES (R8)" $ do
           margOver fragFull True shifted160 @?= Anchors.t4MargFullX
+          -- The fragment vocabulary has ONE ablation for both if and
+          -- get (the guard family needs both), so noif and noget are
+          -- THE SAME enumeration {consts, walks} and their anchors are
+          -- byte-identical — an extensional COINCIDENCE recorded here,
+          -- not two facts. Get's structural deletion proof is Phase
+          -- 2's DROP_GET ablation (gate 7).
+          Anchors.t4MargNoifX @?= Anchors.t4MargNogetX
           margOver [FBern, FWalk, FConst] True shifted160
             @?= Anchors.t4MargNoifX
-          margOver [FBern, FWalk, FConst] True shifted160
-            @?= Anchors.t4MargNogetX
       , testCase "drift250 full/nohmm marginals (exact)" $ do
           let d250 = take 250 drift400
           margOver fragFull True d250 @?= Anchors.t4MargFullDX
@@ -256,6 +305,3 @@ main = defaultMain $ testGroup "exact acceptance (the re-founded oracle)"
           length (enumerate oracleWorld [FIf, FConst, FGuardHead]) @?= nb
       ]
   ]
-  where
-    prices = [ (3 % 10, ()), (5 % 100, ()), (5 % 1000, ()), (0, ()) ]
-    tupToList (a, b, c) = [a, b, c]

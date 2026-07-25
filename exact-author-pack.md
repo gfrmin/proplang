@@ -502,3 +502,364 @@ E2 is already 0; E1's 103 and E3's 19 are Phase 2's work orders.
    reference, discarded per R-D21 — Phase 2 rebuilds under gates);
    gates 1-7 + E1/E2/E3 green; the selection-fold re-homing (ruling 3)
    lands with its opt-law pin; the full-corpus overlay build closes it.
+
+## Part IX — the repair pass (R1–R16 + the Add sitting), executed and re-witnessed
+
+*2026-07-25, after the freeze-sitting review (six mandates, five
+blockers). The author ruled ALL SIXTEEN as recommended, then — on the
+R15 re-execution's findings — ruled the Add sitting. Everything below
+is the executed record; every transcript is verbatim; the staged
+oracle at this commit is the repaired one.*
+
+### IX.1 The Add sitting (the ruling the R15 attempts forced)
+
+The seven remaining clause-(a) attempts EXECUTED (SevenSeats, MulBank,
+TryNoIf/TryNoGt/TryNoCode — transcripts in IX.3). Two came back
+positive and the author ruled:
+
+- **Add DELETED — the table ships 9/1.** The author's algebra, now the
+  bank's canonical form (no codebook zero borrowed — addition is
+  sayable in EVERY declarable world): `Sub x x == 0`;
+  `Sub (Sub b b) b == −b`; `Sub a (Sub (Sub b b) b) == a + b`.
+  "Keep Add, delete Sub" does not exist: Sub is a GENERATOR; every
+  Add/Mul/If/Gt composition over non-negative codebook points is
+  piecewise a polynomial with non-negative coefficients — monotone
+  non-decreasing — and `1 − θ`, the Bernoulli complement, is strictly
+  decreasing. That same argument is Sub's own clause-(a) bank,
+  transcribed. Add ships as the stdlib macro `addM` (overlay
+  Syntax.hs), priced at its expansion; its derivation row IS its
+  deletion proof — no terminal to DROP. The mixture-pricing worry is
+  REGISTERED beside the two-width-tables and pruning questions: if a
+  measurement ever shows 9/1 mis-biasing a shipped additive body, Add
+  re-enters through the two-sided gate carrying that measurement.
+- **Mul HOLDS on corrected provenance.** The categorical does NOT
+  force it ((K−1)·θ is an Add-chain; the Mul-free categorical column
+  reproduces [7/30,7/30,3/10,7/30] exactly) — the banked CatBody claim
+  expired under the boundary's own clause. The real ground: the
+  preposterior's mass×value products are BILINEAR, and every Mul-free
+  term is piecewise-affine in its free reads (MulBank: mixed second
+  differences vanish; the target's is d·s ≠ 0). §5/§11c repaired
+  in place, falsified sentences quoted.
+
+Part VII ruling 2 carries the dated supersession (10/1 → 9/1, sealed
+by the same freeze tag). ERRATA to Part VIII: its "deletion counts
+17/0/0" line conflated the noif count with the (full, noc, nobern)
+triple (1169, 0, 0); its "ONE surface amendment" claim was false —
+the amendments are three (IX.2).
+
+### IX.2 The blockers, repaired (B1–B5)
+
+**B1.** Displays left the core: PropLang.Report (entropy views, bits
+view) derives from exact read-only views (`weights`, `metaPosterior`);
+`entropyS`/`entropyBits` no longer exist in E1-firewalled modules.
+Env construction is DOOR-ONLY: `mkEnvIn :: Namespace -> Features ->
+Vals env -> Either String (Env env)` is the sole constructor, with the
+three named refusals (the A5 Either form); the engine carries its
+namespace and refuses under-specified ticks; t2 declares its own World
+(namespace {price}) — NO doorless env exists in the staged oracle, and
+the door has its own refusal rows.
+
+**B2.** Every compensating pin now EVALUATES THE GRAMMAR: the
+eq-THEOREM row builds If/Gt sentences over codebook mentions and runs
+evalx (81 pairs, negatives and ties included); the choice row builds
+the If/Gt-over-Expects sentences (values as Expects over env-bound
+beliefs, options as mentions) against the CL-3 reference fold over the
+same evalx'd values, full-tie pinned; noget COLLAPSED to one row
+recording the extensional coincidence (Get's structural proof =
+Phase-2 DROP_GET, gate 7); and the COMPOSED BATCH-3 preposterior is
+one sentence — eight Cond branches, masses by Expect, choice by
+If/Gt-over-Expects, price by Get — equal to the engine exactly (R9).
+The t4 frozen row asserts only the engine run (the literal readback
+trimmed).
+
+**B3.** All transcripts land verbatim (IX.3). The generator lands
+in-tree (test-exact/ExactReference.hs, emit-only, probe rule DECLARED)
+and the REGENERATION IDENTITY is verified: its emitted module equals
+the staged Anchors.hs byte-for-byte modulo comment header. condK
+(Eq-keyed, engine) and condV (Rational-keyed, the Cond verb's binder
+convention) are both documented in Belief with the distinction stated.
+
+**B4.** The derivation-line table (the forward law, discharged):
+
+| name | one-line derivation (function of) |
+|---|---|
+| `World` | the world's declarations: namespace, carrier, three codebooks (R4; five fields) |
+| `Namespace` | the declared feature names — the door's law (unchanged role) |
+| `AgentS` | the engine's live state: its namespace + the enumeration + the observation history |
+| `mkEnvIn` | THE DOOR: the sole Env constructor; Either with three named refusals (R5) |
+| `observeS` | one Bayes step of AgentS; Either (a refused tick is Left — total, where shipped observe's Maybe carried impossible-evidence: that case is per-hypothesis here, weight 0) |
+| `stepFrozenS` | observeS with the update deleted (the t4 frozen agent) |
+| `predictMassS` | the exact predictive mass of a PARAMETER outcome (R16: no baked event) |
+| `metaPosterior` | the exact normalized meta weights (read-only view; displays derive at the edge) |
+| `mapS` | the top hypothesis's declared tag + exact posterior |
+| `weights` | Belief's exact read-only weight view (the seal guards construction, not reading) |
+| `weightIn` | the exact raw-sentence weight relative to a namespace (∏ 1/width; node 1/9) |
+| `hypTag` | the hypothesis's declared identity (family, mention indices) — introspectable data so probes never re-derive |
+| `addM` | the Add macro in the author's closed form — priced at its expansion |
+| `Cond` | the fused conditioning verb; outcome AS Rational (amendment #1); off-codebook outcome = all-zero column = Nothing arm (R1 rider, pinned) |
+| `Code` | binders cross latent and outcome AS Rational (amendment #3 — the ToR conversion is the binder's) |
+| `Mass/Prob` | DROPPED as newtypes (amendment #2): non-negativity is enforced at the introducers' doors (fromWeights/Code refusal), not by a wrapper |
+| `Report.*` | displays as pure functions of exact views; == under the pinned toolchain (R7) |
+
+**B5.** The S2 re-derivation draft and the pin census follow (IX.4,
+IX.5).
+
+### IX.3 Transcripts (verbatim)
+
+**SAT: exact-acceptance (17/17, 63 s at -O1):**
+    exact acceptance (the re-founded oracle)
+      the door (ruling 8: fail-closed, refusals named)
+        a full tick passes; missing/undeclared/duplicate are refused:                   OK
+        the engine refuses an under-specified tick (no dormancy):                       OK
+      t1 changing world
+        enumeration count:                                                              OK
+        probe rows: p1 exact, action, H display:                                        OK (1.45s)
+        consult ticks (exact list):                                                     OK (3.81s)
+        MAP is the change-point guard; exact posterior:                                 OK (1.28s)
+        cumulative marginal (exact):                                                    OK (2.74s)
+        entropy pre/post (display):                                                     OK (0.85s)
+      t2 lazy genius (the agent criterion)
+        tick counts and final acts (exact prices):                                      OK (0.01s)
+        the batch-1 preposterior is ONE SENTENCE == the engine (door-served):           OK
+        the COMPOSED BATCH-3 preposterior is ONE SENTENCE == the engine (R9):           OK (0.01s)
+      t3 forgetting trap
+        agent marginals over drift400/flat400 (exact):                                  OK (29.42s)
+        the quarantined forgetter reproduces its anchors, and the RELATIONS hold (R10): OK (10.77s)
+      t4 deletion audit
+        frozen agent: the engine's 160-tick marginal == 2^-160 EXACTLY:                 OK (0.84s)
+        full and no-if marginals (exact); no-get COINCIDES (R8):                        OK (3.98s)
+        drift250 full/nohmm marginals (exact):                                          OK (8.09s)
+        deletion counts:                                                                OK
+    
+    All 17 tests passed (63.29s)
+
+**SAT: exact-properties (12/12):**
+    exact properties (laws by ==)
+      CL-4': conditioning IS Bayes (division-free, all points, a belief battery):         OK
+      L4': prob * Z == w on fromWeights; uniform/point are its definitions:               OK
+      Kraft: the enumeration sums to EXACTLY 55/72:                                       OK
+      corpus law: every weight == its family's 1/M (A2-pinned widths):                    OK
+      fineness charged once: doubling a mention codebook halves the weight, exactly:      OK
+      pricing: a hand-computable sentence at node 1/9 (the 9/1 table):                    OK
+      eq-THEOREM: the If/Gt SENTENCE == (==), evalx over mention pairs (B2 repair):       OK
+      the derived CHOICE SENTENCES are CL-3-faithful, ties included (B2 repair):          OK
+      g5': the fused round trip is sayable (Cond -> Expect), exactly:                     OK
+      g6': the Nothing arm is load-bearing, through the DERIVED indicator kernel:         OK
+      R1 rider: an OFF-CODEBOOK outcome is impossible evidence — the Nothing arm, pinned: OK
+      the walk law from the SHIPPED move sentences: Mul-form normalizes exactly:          OK
+    
+    All 12 tests passed (0.01s)
+
+**SAT: lawful (8/8) + lawful-independence (7/7):**
+    the exact lawful floor (satisfaction)
+      axioms
+        L1 normalization: E[1] == 1, every belief:                       OK
+        L2 linearity: exact, declared probes:                            OK
+        L3 monotonicity: exact <=:                                       OK
+        L4' the introducer law: prob * Z == w, per point, every battery: OK
+      conformance theorems
+        T1 prob == E[indicator]:                                         OK
+        T2 uniform/point ARE fromWeights (ruling #7):                    OK
+        T3 conditioning IS Bayes (division-free):                        OK
+        T4 push obeys the tower, exactly:                                OK
+    
+    All 8 tests passed (0.00s)
+    independence (the exact core four are irreducible)
+      Riesz triple: L1,L2,L3 separated among the eliminator laws
+        wL1 fails L1, satisfies L2 & L3:                                              OK
+        wL2 fails L2, satisfies L1 & L3:                                              OK
+        wL3 fails L3, satisfies L1 & L2:                                              OK
+      introducer: L4' separated from the eliminator laws
+        the weighted prior obeys L4' (the law is satisfiable), exactly:               OK
+        uniform is a valid measure (L1-L3) yet fails L4' on varying weights, exactly: OK
+      register correction (why 3+1, not 4 peers)
+        the signed L3-witness cannot be a measure (exact negative ratio):             OK
+      red mirror: a genuine measure passes every eliminator law:                      OK
+    
+    All 7 tests passed (0.00s)
+
+**R15 banks (SevenSeats + MulBank):**
+    Add-from-Sub (CLOSED FORM) reproduces (+) exactly: True
+      Sub x x == 0 and Sub (Sub b b) b == -b, full battery: True
+    (K-1)*theta == Add-chain (K=4), exactly: True
+    Mul-free categorical column == [7/30,7/30,3/10,7/30]: True
+    walk stay 2*(1-rho) == Add of two Subs, exactly: True
+    Sub-free candidates all non-decreasing at (1/10, 9/10): True; 1-theta decreases (9/10 > 1/10): True -> the Bernoulli complement is uncoverable; Sub's seat HOLDS
+    Get-free bodies are feature-invariant: True -> no world contact without Get; the seat HOLDS
+    Mul-free candidates: mixed second differences all vanish: True
+    the target mass*value (Mul (Get a) (Get b)): mixed == d*s /= 0: True
+    -> bilinear products are outside the piecewise-affine closure; Mul's seat HOLDS (the preposterior forces it)
+
+**R15 compile-red banks (If, Gt, Code):**
+    === TryNoIf (EXPECT RED) ===
+    /tmp/claude-1000/-home-g-git-proplang/634d1373-74f5-4627-92a1-15651d705356/scratchpad/a3/TryNoIf.hs:11:19: error: [GHC-83865]
+        • Couldn't match type ‘Bool’ with ‘GHC.Internal.Real.Ratio Integer’
+          Expected: Expr '[] Rational
+            Actual: Expr '[] Bool
+        • In the first argument of ‘Mul’, namely ‘(Gt (Get "a") (Get "b"))’
+          In the expression: Mul (Gt (Get "a") (Get "b")) (Get "c")
+          In an equation for ‘branchless’:
+              branchless = Mul (Gt (Get "a") (Get "b")) (Get "c")
+    === TryNoGt (EXPECT RED) ===
+    /tmp/claude-1000/-home-g-git-proplang/634d1373-74f5-4627-92a1-15651d705356/scratchpad/a3/TryNoGt.hs:13:18: error: [GHC-83865]
+        • Couldn't match type: Bool : env10
+                         with: '[]
+          Expected: Idx '[] Bool
+            Actual: Idx (Bool : env10) Bool
+        • In the first argument of ‘Var’, namely ‘Z’
+          In the expression: Var Z
+          In an equation for ‘closedBool’: closedBool = Var Z
+    === TryNoCode (EXPECT RED) ===
+    /tmp/claude-1000/-home-g-git-proplang/634d1373-74f5-4627-92a1-15651d705356/scratchpad/a3/TryNoCode.hs:11:11: error: [GHC-83865]
+        • Couldn't match type: K Rational Int : env10
+                         with: '[]
+          Expected: Idx '[] (K Rational Int)
+            Actual: Idx (K Rational Int : env10) (K Rational Int)
+        • In the first argument of ‘Var’, namely ‘Z’
+          In the expression: Var Z
+          In an equation for ‘mkK’: mkK = Var Z
+
+**Ablations (9/1 surface):**
+    PASS  UseCOND compiles against the surface
+    PASS  UseCOND fails under -DDROP_COND (ablation fires)
+    PASS  UseEXPECT compiles against the surface
+    PASS  UseEXPECT fails under -DDROP_EXPECT (ablation fires)
+    PASS  UseCODE compiles against the surface
+    PASS  UseCODE fails under -DDROP_CODE (ablation fires)
+
+**Red-run vs shipped src (attributed):**
+    === RED RUN r2: the exact oracle vs SHIPPED src (COMPILE-RED, attributed) ===
+    Loaded package environment from /home/g/git/proplang/dist-newstyle/tmp/environment.-3161835/.ghc.environment.x86_64-linux-9.10.3
+    [1 of 8] Compiling Anchors          ( test-exact/Anchors.hs, nothing ) [Optimisation flags changed]
+    [6 of 8] Compiling OracleWorld      ( test-exact/OracleWorld.hs, nothing ) [Optimisation flags changed]
+    test-exact/OracleWorld.hs:23:28: error: [GHC-61689]
+        Module ‘PropLang.Enumerate’ does not export ‘atomGridOf’.
+       |
+    23 | import PropLang.Enumerate (atomGridOf)
+       |                            ^^^^^^^^^^
+    
+    [7 of 8] Compiling Streams          ( test-exact/Streams.hs, nothing ) [Optimisation flags changed]
+
+**Gates (red by design pre-Phase-2):**
+    E1 forbidden-inexactness tokens in core: 103 (must be 0)
+    E2 fromRational renders in core: 0 (must be 0; display lives at the edge)
+    E3 concrete point-sets in src: 19 (must be 0; worlds declare)
+    (regeneration identity: /tmp scratch run — 'REGENERATION IDENTITY: emitted == staged (mod comments)')
+
+### IX.4 The S2 re-derivation draft (R12 — for your key at the freeze)
+
+typed-port-spec S2's export list re-derives to the exact surface, and
+audit/belief-exports.txt follows it (gate 2 then binds to the exact
+reasoner). The drafted list — exactly the staged overlay's:
+
+    Space, mkSpace, spacePoints,
+    Belief,                    -- abstract; constructor never exported
+    Kernel, kernel, kernelSpace, kernelAt,
+    fromWeights,               -- the SOLE introducer (L4')
+    uniform, point,            -- its definitions (ruling #7)
+    expect, prob,              -- prob predicate-typed (R3: Event DELETED;
+                               -- on a finite carrier the indicator is
+                               -- evaluated extensionally and exactly;
+                               -- the evidence-introduction side stays
+                               -- closed — I2's concern guards there)
+    push,                      -- engine machinery (agent criterion note)
+    condK, condV,              -- Bayes: engine-keyed / verb-keyed
+    predictMass,
+    weights, top               -- exact read-only views
+
+Retired from S2: Bits, LogProb, Evidence(..), Is, Saw, fromBits,
+logPredict, entropyBits (a Report function now), event, is (Event died
+with R3 — `prob b (== x)` is the idiom).
+
+### IX.5 The pin census (R11 — the 17-suite mass retirement at the Phase-2 close)
+
+Universe: the stanza'd suites at HEAD minus transport/writeup (which pin
+wire bytes / stanza counts and move under their own rows). Destinations:
+PORTED (the exact oracle already carries the pin), PHASE-2 GATE (the pin
+re-homes as a gate row on the exact src), DISCHARGED-PERMANENT (the pin
+died with its subject; file DELETED at the retirement).
+
+| suite | what it pins | destination |
+|---|---|---|
+| test/ (old Acceptance+Anchors) | the Double anchors | RETIRED at the swap (superseded by the exact oracle; streams byte-survive) |
+| test-hygiene | grammar hygiene rows on the Double surface | PHASE-2 GATE (re-derive the greps over the exact src) |
+| test-code | Code/Pos/ToR semantics, kGrid, walk golden | PORTED in part (walk law, eq-theorem now sentence rows); Pos/ToR rows DISCHARGED-PERMANENT (terminals gone) |
+| test-optlaw | observeCounts fast-path pin (1e-11 gates) | PHASE-2 GATE: the opt-law pin re-executes EXACTLY (==) against the exact route when the fast path re-lands; until then the fast path does not ship |
+| test-sentence | sentence-scoping, prodTable 6-era pins | DISCHARGED-PERMANENT (superseded tables) + the ablation RUNNER pattern PORTED (audit/) |
+| test-pricing | chargeBits/two-table rows, float-order mirror | DISCHARGED-PERMANENT (the float-order apparatus is vacuous under CMul; the two-table QUESTION stays registered #5) |
+| test-actions | menu/assignment/wait rows | PORTED to Phase-2 membrane rows (actions unchanged semantically; Double reads re-derive exact) |
+| test-stream | actions-in-stream, EXOGENOUS-READ falsifier | PORTED to Phase-2 membrane rows (the falsifier re-executes exact) |
+| test-unify | pricing unification + Dutch-book row | Dutch-book PORTED exact; unification rows DISCHARGED-PERMANENT (one arithmetic already) |
+| test-outcome | USent utility rows | PORTED exact (utility is an ordinary sentence — unchanged) |
+| test-elim | Expect/SawE/ElimJ rows, g5/g6 | g5'/g6' PORTED (fused); SawE/ElimJ rows DISCHARGED-PERMANENT (fused away); ablation fixtures for the dead verbs DELETED |
+| test-reflexive | the step-10 composition + t2Rows via sentences | PORTED: the batch-3 preposterior sentence row IS its successor (stronger: exact) |
+| test-said | the 13-form wire grammar, log2-20 pricing gates | PHASE-2 GATE on the wire's exact re-pricing (said layer; wire out of scope otherwise — ruling 2 of the opening sitting) |
+| test-arity | K-ary handshake, arity charges | PORTED to Phase-2 wire rows (obs_arity unchanged; charges re-derive exact) |
+| test-refine | R1 lattice rows (log-odds coordinate) | PHASE-2 GATE under R6-of-Part-III (dyadic coordinate re-derivation; R-R1 re-opens under the author's key) |
+| test-measure | wire discrimination/timing instruments | PORTED as instruments (report rows; gates re-measure on the exact engine) |
+| test-law | VoI non-negativity over the composition | PORTED exact (the composition survives; the -1e-13 gate becomes >= 0 EXACTLY — the tolerance dies) |
+| test-lawful | the exact floor (already rewritten) | STAYS (this boundary's own) |
+| test-transport | pipe transport bytes | STAYS (transport; re-witness at Phase-2 close) |
+| test-writeup | WRITEUP pins incl. retired DROP count | PHASE-2 GATE: rows re-derive or gain RECORD brackets (the fourteen-flags pin already self-documents as RECORD) |
+
+Each PORTED/GATE row lands as a named row in Phase 2's checklist; each
+DISCHARGED-PERMANENT file is DELETED at the retirement commit under
+your key, with this table as the retirement's pin list (the
+retirement-lists-its-pins clause discharged by construction).
+
+### IX.6 CLAUDE.md drafts (your key; the freeze's process half)
+
+**The R-D21 generator exemption (R14):** "A generator of frozen data
+is not a prototype: it lands in-tree with the artifact it generates,
+and regenerating the artifact from it is a standing identity row
+(capture_oracle.py the precedent; ExactReference.hs the second
+instance)."
+
+**The process deletion audit (the third move; candidates — you rule
+each, retirements list their pins):**
+1. The NaN-door case law (R-C1's reading, the step-9 NaN guard rows):
+   NaN is unconstructible over Rational — vacuous; retire with a
+   two-sided record row.
+2. The float-order/tree-shape law (step 4's "the tree shape IS the
+   float order"; the E-s1 mirror pins): CMul is associative — the
+   apparatus is vacuous; retire (the pricing-tree DATA stays).
+3. The tolerance case law (CL-4 1e-12's repair lineage, tolProb/
+   tolBits conventions): exact quantities assert (==); tolerances
+   survive ONLY as display-edge conventions under R7 — trim the
+   clause to that residue.
+4. The dormancy-as-wait convention (mandate-5's overload): the door
+   kills dormancy — retire with the wire's Phase-2 repair.
+5. The lse/log-space riders wherever they bind (skip-on-negInf rules):
+   vacuous; retire.
+Each retirement executes at a boundary under your key, pins listed,
+never by builder discretion — the process getting the deletion test
+the language already passed.
+
+### IX.7 The R16 bundle + notes, discharged
+
+100× → 81× at width 9 (both quoted figures repaired in place);
+"census F2" citations replaced by the in-tree facts (the F2 violations
+are GONE from the staged surface — no shGrid copy, no 0.5 literal, no
+Pos); §5's phantom `Lit` leaf corrected to `C`; the 46 s / 63 s
+timings transcribed (IX.3); interface.md:117's gauss promise in §6's
+inventory; condK/condV documented with the distinction; predictive1S
+RENAMED predictMassS with the outcome a parameter; emitK declared once
+in OracleWorld with provenance; the sentinel one-point grid annotated
+as test-side convention at its use sites; hypTag carries its
+derivation line (IX.2); lawful-author-pack.md moves to archive/ at the
+freeze (the superseded sitting's custody record); OB-16/GetV: this
+boundary IS the alphabet motion its row waits on — the re-execution
+lands on Phase 2's opening checklist. KERNEL.md is drafted at the root
+(the one page; the standing test is in its header).
+
+### IX.8 Sequence
+
+1. You review this pack part and the staged diff.
+2. The swap under your key or per-instance delegation (R13's corrected
+   mechanics: the four files + OracleWorld + ExactReference into test/;
+   ablation/ + gates-exact.sh into audit/; stanzas pasted; MANIFEST
+   extended + re-signed; your tag — suggested exact-freeze-r0).
+3. Phase 2 (builder): src/ to the proven 9/1 surface; gates 1-7 +
+   E1/E2/E3; the selection-fold re-homing with its opt-law pin; the
+   R11 retirement with IX.5 as its pin list; the full-corpus overlay
+   build closes it.

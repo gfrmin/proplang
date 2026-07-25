@@ -46,12 +46,20 @@ holds the `Grid`/`Carrier`/`Space` *types* and the grid-agnostic engine; a
 **World** value declares the point-sets, at the boundary:
 
 ```haskell
+-- [REPAIRED 2026-07-25 (R4): the four-field sketch below was staged as
+-- FIVE fields — the namespace joins the World (the door needs it), and
+-- wLatent is renamed wTheta, a CODEBOOK (mention domain), never a
+-- reasoning-fineness config. The staged form:]
 data World = World          -- declared OUTSIDE the core, carried at the membrane
-  { wLatent :: Grid          -- was thetaPoints
-  , wTau    :: Grid          -- was tauPoints
-  , wRho    :: Grid          -- was rhoPoints
-  , wObs    :: Carrier Obs }  -- was obsCarrier / obsSpace
+  { wNs    :: Namespace      -- the declared feature names (the door's law)
+  , wObs   :: Carrier Int    -- was obsCarrier / obsSpace
+  , wTheta :: Grid           -- was thetaPoints (a codebook)
+  , wTau   :: Grid           -- was tauPoints
+  , wRho   :: Grid }         -- was rhoPoints
 ```
+The §1a open sub-decision is RULED (R4): the wire is World's home;
+host-config acceptable as interim. Host.hs's existing `World` renames
+or subsumes in Phase 2.
 
 The engine (`enumerate`, `observe`) takes a `World` parameter — the hooks
 already exist (`enumerateSentencesGrid` is grid-parameterized; `obsSpaceAt`
@@ -178,6 +186,14 @@ size and no price.
 
 ## 4. The reporting edge (the only place a `Double` may appear)
 
+[AMENDED 2026-07-25 (R7): displays are asserted (==) UNDER THE PINNED
+TOOLCHAIN (gate 7 pins GHC 9.10.3) — the display function, including
+its summation order, IS part of the spec; the earlier "N digits with a
+derived bound" convention is retired as buying no oracle value. The
+overlay's PropLang.Report is the staged form: entropy and bits views
+derive from exact read-only views (weights, metaPosterior); the core
+never renders.]
+
 A small, named boundary — living in the host/reporting layer, **never** in
 `Belief`/`Syntax`/`Eval`/`Enumerate`:
 
@@ -209,8 +225,9 @@ terminals fall:**
 | `Neg` | **deleted** | only ever inside `−log₂`; a non-negative mass never negates. `DROP_NEG` owed. |
 | `ToR` | **deleted** | identity under the `Rational` sort; its expfam justification is foreclosed. `DROP_TOR` owed. |
 | `Div` | **deleted** | its uses (walk `ρ/2`; categorical `(1−θ)/(K−1)`) both go to the surviving `Mul` — `Mul rho ½` and the `(K−1)·θ` vs `(1−θ)` scaling. Deleting `Div` (not `Mul`) is what keeps `evalx` total. `DROP_DIV` owed. |
-| `Mul` | **SURVIVES** | FORCED by the categorical (`catBody`, K>2, `Enumerate.hs:486`): the `(1−θ)/(K−1)` spread couples a *world integer* `(K−1)` **multiplicatively** with the hypothesis variable `θ`. Weight-form scales the target atom to `(K−1)·θ` against `(1−θ)` for the rest — an irreducible `Mul` of a variable by a world constant. Validated this session (`CatBody.hs`: both `Div`- and `Mul`-forms reproduce `[7/30,7/30,3/10,7/30]` exactly; a multiplicative op is unavoidable for K>2). At K=2 `(K−1)=1`, the multiply is identity — which is why `bern` alone looked Mul-free. |
-| **survivors** | `Add Sub Mul Gt If` | + the leaves `Lit`/`Get`/`Var` and the grammar sorts (`Code`, `CondE`, `SawE`, `ElimJ`, `Expect`, `Argmax`). |
+| `Mul` | **SURVIVES** | [REPAIRED 2026-07-25, the R15 re-execution: this row originally read "FORCED by the categorical (`catBody`, K>2): ... a multiplicative op is unavoidable for K>2" — FALSIFIED: the banked CatBody attempt never tried repeated addition, and `(K−1)·θ` composes as an Add-chain (the Mul-free categorical column reproduces `[7/30,7/30,3/10,7/30]` exactly; SevenSeats transcript). The banked-failure-expiry clause fired on this boundary's own headline evidence.] The seat HOLDS on the CORRECTED provenance: **the preposterior's mass×value products** — `vThink`'s terms multiply two FREE quantities, and every Mul-free term is piecewise-AFFINE in its free reads (MulBank transcript: mixed second differences vanish; the bilinear target's is d·s ≠ 0). The agent's own deliberation composition forces Mul; the categorical's world-integer coupling stands as the secondary, composable ground. |
+| `Add` | **deleted** (ruled 2026-07-25, the repair sitting: 9/1) | The clause-(a) attempt SUCCEEDS in the author's CLOSED FORM — `Sub x x == 0`, `Sub (Sub b b) b == −b`, `Sub a (Sub (Sub b b) b) == a + b` — borrowing no codebook zero, total, exact in every declarable world (SevenSeats transcript). Add ships as the stdlib macro `addM`, priced at its expansion (three Sub nodes, b's subtree paid three times — the honest cost of a 9-letter alphabet). Its derivation row IS its deletion proof; no terminal to DROP. Sub is the GENERATOR (Add cannot generate Sub: non-negative coefficients, 1−θ unsayable). |
+| **survivors** | `Sub Mul Gt If` | + the leaves `C`/`Get`/`Var` and the verbs (`Expect`, the fused `Cond` | `Code`). |
 
 **Partiality vanishes with `Div`.** Division-by-zero was the *only*
 arithmetic partiality (`Rational` has no `NaN`/`±∞`; `Mul` is total).
@@ -223,6 +240,11 @@ unnecessary). Each of the six deletions carries a `DROP_` ablation (the
 two-sided entry gate) in the increment.
 
 ## 6. Frozen-layer inventory (prose the re-founding falsifies)
+
+[EXTENDED 2026-07-25 (R16): interface.md:117's `gauss` expfam promise
+joins the inventory — the exact boundary forecloses expfam, so the
+promise is falsified prose and repairs under the author's key at the
+freeze, in the §6 form.]
 
 Repaired under the boundary's key at the Phase-1 freeze, in the form each
 text class demands (the step-7 clause):
@@ -316,8 +338,10 @@ What remains genuinely primitive — the exact core of a Bayesian
 decision-theoretic agent, with nothing the compiler could have forced left
 as prose or tolerance:
 
-- exact rational arithmetic, shipped-body-determined: `{Add, Sub, Mul, Gt,
-  If}` (the two-sided entry gate: a terminal survives only if a shipped
+- exact rational arithmetic, attempt-determined: `{Sub, Mul, Gt, If}`
+  [REPAIRED 2026-07-25: originally `{Add, Sub, Mul, Gt, If}` with Mul
+  credited to the categorical — Add fell to the closed-form composition
+  (9/1) and Mul's ground is the preposterior, §5] (the two-sided entry gate: a terminal survives only if a shipped
   body needs it — `Div`/`Neg` would close the rationals mathematically but
   no shipped weight-form body divides or negates; `Mul` survives because the
   categorical does, §5);
@@ -386,8 +410,9 @@ have documents?") — the census (72 tracked .md, ~26k lines, universe by
   lives); (B) the corridor SawE→CondE→ElimJ is NEVER separated outside
   its own ablation fixtures (census over all 38 tracked .hs) — the FUSION
   of three constructors + two corridor sorts into one conditioning
-  primitive is the headline compression candidate (196× cheaper in the
-  prior at width 14; loses only env-bound corridor sentences no wire can
+  primitive is the headline compression candidate (one fused node vs the three-node chain — 81× at the shipped width 9
+  [figure repaired 2026-07-25; originally quoted at the voided width
+  14 as 196×]; loses only env-bound corridor sentences no wire can
   produce); (C) unearned seats — **Push is uttered only by its own
   fixture**; **Argmax's executable route bypasses it** and the per-K
   index-menu family is DERIVED and extensionally identical (ties
@@ -457,7 +482,10 @@ oracle):
    later questions. Part IV (archive sweep; membrane-wire forms table
    derived) approved as freeze items.
 2. **prodTable leaves 20** — and, composed with rulings 3 and 4, the
-   SHIPPED table is **10/1**: the six-cut (−6), Push and Argmax deleted
+   SHIPPED table is ~~10/1~~ **[SUPERSEDED 2026-07-25 at the repair
+   sitting, sealed by the same freeze tag: 9/1 — Add's seat fell to
+   the executed closed-form composition (R15; §5's Add row); every
+   Phase-D pin prices the node at 1/9]**. The original composition: the six-cut (−6), Push and Argmax deleted
    (−2), the corridor fused three-into-one (−2). The 1/14 figure was the
    six-cut intermediate and never ships; every Phase-D pin prices the
    node at **1/10** (KER at 1/1). The P5 single-site edit lands 20→10 in
@@ -489,7 +517,8 @@ corridor + Expect. The selection-fold re-homing of ruling 3 is this
 clause's first enforcement.
 
 **Post-ruling alphabet (the Phase-2 target):**
-`C(MkC), Get, Var, If, Gt, Add, Sub, Mul, Expect, Cond` (EXPR, 10) +
+`C(MkC), Get, Var, If, Gt, Sub, Mul, Expect, Cond` (EXPR, 9 — as
+superseded at the repair sitting) +
 `Code` (KER, 1) + the sorts `Rational, Bool, B, K, Space, Grid, Carrier,
 World` — each type with its derivation line, each production with its
 transcript.

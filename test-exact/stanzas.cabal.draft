@@ -3,11 +3,16 @@
 -- The four suites of the exact oracle; the test/ swap retires the old
 -- acceptance stanza in the same edit.
 
+-- R13: the four files land IN test/ at the swap (hs-source-dirs: test)
+-- so CLAUDE.md's frozen references to test/ stay true; the drafts below
+-- say test-exact only while staged. ExactReference.hs (the generator,
+-- R14) moves with them; ablation/ + gates-exact.sh join audit/.
+
 test-suite exact-acceptance
     import: warnings
     type: exitcode-stdio-1.0
     main-is: Acceptance.hs
-    other-modules: Anchors, Streams
+    other-modules: Anchors, Streams, OracleWorld
     hs-source-dirs: test-exact
     build-depends: base, proplang, tasty, tasty-hunit
     default-language: GHC2021
@@ -16,6 +21,7 @@ test-suite exact-properties
     import: warnings
     type: exitcode-stdio-1.0
     main-is: Properties.hs
+    other-modules: OracleWorld
     hs-source-dirs: test-exact
     build-depends: base, proplang, tasty, tasty-hunit
     default-language: GHC2021
