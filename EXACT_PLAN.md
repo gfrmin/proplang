@@ -270,12 +270,16 @@ structural:
 ## 8. Costs, stated without flinching
 
 1. **Bignum growth over long streams.** Exact rationals never over/underflow,
-   but a cumulative marginal is a product of per-tick rationals whose
-   denominators grow with stream length. Confined: the per-tick **belief
-   state** is renormalized each tick (denominators bounded by the grid);
-   only the **reporting** loss accumulator would grow, and it is display —
-   report per-tick loss exactly, accumulate for display in §4. State stays
-   exact and bounded; nothing unbounded is load-bearing.
+   but denominators grow with stream length. [REPAIRED 2026-07-25, the
+   minimal-basis sitting: this section originally claimed "the per-tick
+   belief state is renormalized each tick (denominators bounded by the
+   grid)" — FALSE. Renormalization does not bound a posterior's reduced
+   denominator: after n Bernoulli ticks it grows ~linearly in bit-length
+   with n (a walk latent's likewise). The honest statement: growth is
+   POLYNOMIAL (O(n) bits per weight) and measured acceptable — the full
+   four-test exact pipeline (1169 hypotheses, 160+36+800+660 ticks,
+   §11 A1) runs in ~46 s at -O1; the per-tick cost is the price of
+   exactness and it is affordable where it matters, the oracle.]
 2. **Continuous / max-entropy / expfam models are foreclosed.** Their
    weights (`e^{−η·T(y)}`) are genuinely transcendental. proplang is
    finite and discrete; it never shipped them, and `Exp`'s door is proven
@@ -325,3 +329,117 @@ as prose or tolerance:
   display number is rendered, with its exact rational retained beside it.
 
 Everything else was scaffolding for `Double`, and comes down with it.
+
+## 11. The minimal-basis amendment (2026-07-25, the planning sitting)
+
+The author's organizing criterion, stated at this sitting and governing
+every section above: **as few primitives as possible, EVERYTHING else
+derived — and FORCED to be derived** ("we rely too much on our
+intelligence when we should be relying on 'compilation'"; "greppable is a
+hacky way to assert truths"; "unproven statements wont even be sayable").
+
+> **THE MINIMALITY CRITERION.** A primitive exists only under a
+> demonstrated failed composition (clause (a), applied to the STANDING
+> stock — every pre-boundary bank EXPIRED when this boundary moved the
+> alphabet) plus its ablation fixture (clause (b)). Everything else is a
+> derived name: a macro whose expansion is a sentence of the primitive
+> grammar, priced at its expansion. **ENFORCEMENT LADDER**: (i) unsayable
+> at compile; (ii) derived at build from declared data; (iii) frozen
+> oracle row; (iv) prose — only for what provably can't climb.
+> "Derive" is pinned as SYNTACTIC macro expansion (decidable, mechanical);
+> primitivity claims are extensional, hence *executed* attempts.
+
+Three author rulings of the sitting: the Double lawful floor NEVER
+freezes ("never freeze incorrect code") — test-lawful/ is re-derived
+exact inside this boundary, its 4-axiom + 4-theorem structure and 3+1
+independence ported, u/tol/near deleted; the WIRE is out of scope
+(transport, not language — it changes only where the World declaration
+requires); and DOCUMENTS owe their existence a justification ("why do we
+have documents?") — the census (72 tracked .md, ~26k lines, universe by
+`git ls-files`) rides the pack with per-class dispositions.
+
+### 11a. Evidence executed at this sitting (R-D21 throwaways; transcripts in the pack)
+
+- **A2, the exact prior.** Weight-as-Rational CONFIRMED end-to-end on the
+  shipped corpus: every one of the 1169 prices is log₂ of an integer
+  (M ∈ {16, 36, 82944}); the exported charge trees fold exactly to 1/M;
+  the exact Expr-weight recursion reproduces the shipped `bitsAt` on all
+  corpus bodies (0/1169 failures). **Kraft is exactly 55/72** (deficiency
+  17/72 — the HEAD debt made visible, printed not absorbed).
+  **L4′ stated and verified**: `prob B (is sp x) · Z == w x` exact, and
+  the corpus law `p_i · M_i ≡ 1/S` exactly (the Double route already
+  drifts by one ulp). `uniform`/`point` verified as DEFINITIONS over
+  `fromWeights`. Corrections adopted from the design review: the per-node
+  factor is **1/14** post-cut (prodTable 20→14, the P5 single-site edit);
+  `Charge`'s content constructor becomes `CMass Rational` (a stored
+  `CBits :: Double` cannot be inverted); the float-order tree dies.
+  **FINDING — two width tables under one mechanism**: the corpus prior is
+  priced by `fragWidth` (MODEL/THETA/HEAD/RATE) while raw said-sentences
+  are priced by `prodTable`; whether they unify is a sitting question.
+  The 20→14 re-pricing moves relative raw-Expr prices by up to
+  (10/7)^115 ≈ 6.5e17 across corpus bodies (node counts 15–130) — it
+  binds the said/utility layer, not the corpus prior.
+- **A3, the binder basis.** The 12 survivors split three ways, every
+  verdict EXECUTED: (A) compile-fact primitives — Expect, CondE, Code,
+  Get, Var, MkC, If, Gt (negative compile transcripts + the ghci-extracted
+  sort-role table; CondE is where the language's one remaining division
+  lives); (B) the corridor SawE→CondE→ElimJ is NEVER separated outside
+  its own ablation fixtures (census over all 38 tracked .hs) — the FUSION
+  of three constructors + two corridor sorts into one conditioning
+  primitive is the headline compression candidate (196× cheaper in the
+  prior at width 14; loses only env-bound corridor sentences no wire can
+  produce); (C) unearned seats — **Push is uttered only by its own
+  fixture**; **Argmax's executable route bypasses it** and the per-K
+  index-menu family is DERIVED and extensionally identical (ties
+  included, CL-3-faithful by construction; battery green). MkC's scope
+  shrinks by NORMALIZATION, not derivation: Mul-form walk masses
+  (2−2ρ, ρ, ρ) and categorical ((K−1)θ, 1−θ, …) normalize exactly to the
+  shipped laws — the ½ and 1/(K−1) mentions die. Gt's derived-equality
+  upgrades from measurement (0/1225) to THEOREM (exact trichotomy;
+  17,689-pair exhaustive check). Is-evidence is derivable through an
+  indicator kernel — I2's closed variant can shrink.
+- **A1, the exact reference pipeline.** The full four-test suite,
+  grid-agnostic over a declared World, exact end-to-end, against the
+  FROZEN streams (imported from test/Streams.hs — the artifact itself):
+  **every discrete anchor reproduces** — 1169/0/0 enumeration counts, all
+  probe actions, consult ticks [0,1,3,4,65–70], the τ=60 MAP change-point
+  sentence, tick counts 1/3/12/12 with act L, the full deletion table —
+  and the continuous anchors move only at the last ulp (max |ΔP| =
+  3.3e-16, log-losses to ~1e-13). **The frozen agent's marginal is
+  EXACTLY 2⁻¹⁶⁰** where the Python anchor carried float error
+  (160.00000000000003). The re-founding changes no story; it makes the
+  numbers definitional.
+- **A4/A5.** The engine is codebook-parametric (same engine, 9-point and
+  5-point θ worlds; the t4 symmetry marginal exact in both). The
+  fail-closed feature door executes: a tick must cover the declared
+  namespace exactly — missing/undeclared/duplicate all refused; the
+  0.0-dormancy default dies at the door (the author's standing
+  discomfort, resolved structurally). Rider: the `Code` space payload is
+  priced 0 (opaque-payload convention) — under the criterion that free
+  ride is a subsidy; re-price or derive from the World declaration.
+- **A7, the lattice coordinate.** `nodeTheta = 1/(1+2^(−p/2^k))` is
+  irrational for every depth ≥ 1 node (2^k-th root of an odd power of 2);
+  the dyadic-in-theta ladder (odd p / 2^(k+1)) is exact, root 1/2, mirror
+  θ↔1−θ exact, denominators dyadic (compatible with 2^-gammaBits
+  weights), same tree so gammaBits carries unchanged. The R-R1 log-odds
+  spacing derivation is what the re-ruling must re-derive — author item.
+
+### 11b. Items put to the author at the Phase-1 freeze sitting
+
+1. World/grid reading: World = CODEBOOKS (mention domains); fineness
+   remains the agent's, priced (fineness-charged-once exact; R1's lattice
+   the shipped refinement mechanism). Recommendation: adopt; wLatent's
+   carrier derives from the θ codebook, no separate reasoning-grid config.
+2. prodTable 20→14 now; written-alternatives vs type-pruned widths as a
+   SEPARATE ruling with the exact ratio-drift table (a prior re-weighting
+   is adjudication, not porting).
+3. Push's seat (fixture-only vs the step-10 cluster's credit) and
+   Argmax's seat (per-K derived family + host fold) — keep or delete,
+   demand-gated re-entry via the entry gate.
+4. The corridor fusion (SawE/CondE/ElimJ → one conditioning primitive).
+5. The two-width-tables question (fragment prior vs Expr pricer).
+6. The lattice coordinate re-ruling (dyadic-in-theta; re-opens R-R1).
+7. uniform/point as fromWeights definitions (Belief export shrink) and
+   I2's Is shrink.
+8. Document dispositions (the census table) and the CLAUDE.md minimality
+   clause's canonization text.
