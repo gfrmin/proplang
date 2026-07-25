@@ -373,3 +373,132 @@ Phase D begins under these rulings: the exact oracle (test/ re-derived
 from the A1 reference, the exact lawful floor, the audit increment
 oracle over the 10+1 grammar with the fused verb), oracle-first,
 R-D20/21/22 throughout, your key at the freeze.
+
+## Part VIII — the Phase-D record (the exact oracle, built and SAT-proven)
+
+*Executed 2026-07-25 under the Part-VII rulings. The overlay — an R-D21
+throwaway realization of the 10+1 surface wearing the real module names
+(PropLang.Belief/Syntax/Eval/Enumerate), living in the session scratchpad
+and discarded on close — carries every SAT transcript below; the oracle
+files themselves are staged in test-exact/ and test-lawful/ and are what
+your freeze seals.*
+
+### VIII.1 The surface (D2) and its proof of semantics
+
+The 10+1 grammar as ruled: C(MkC), Get, Var, If, Gt, Add, Sub, Mul,
+Expect, Cond | Code; prodTable 10/1; CMass Rational pricing; World as
+codebooks; fromWeights the sole introducer with uniform/point as its
+definitions; the fail-closed door (no 0.0 default). Every constant in
+every enumerated body is DERIVED from world declarations (obs atoms give
+0/1; two = Add one one; the walk step = Sub theta1 theta0; equality =
+If/Gt) — the census F2 violations (shGrid copy, the 0.5 literal, Pos)
+are gone by construction.
+
+ONE SURFACE AMENDMENT, found by the oracle's own type-checking and
+recorded for your freeze review: Cond's observed-outcome argument is
+Expr env Rational (Real b carrier) — the outcome crosses into the
+sentence AS A RATIONAL, the deleted ToR's conversion living in the
+verb's binder exactly as Expect's and Code's already do. The grammar
+has no Int-sort expressions, so this is forced, and it completes the
+ToR-deletion story rather than amending it.
+
+SAT smoke (SmokeExact): the sentence-driven engine on the oracle world
+reproduces the A1 reference EXACTLY — count 1169; Kraft == 55/72; every
+probe p1, action, and H display ==; consult ticks ==; MAP guard[11,0,8]
+with exact posterior; the 160-tick marginal ==; frozen == 2^-160;
+deletion counts 17/0/0. 4.8 s.
+
+### VIII.2 The suites (D3, D4) — all green on the SAT run
+
+    exact-acceptance  13/13  (44.8 s; t3 through the sentence engine 26.9 s)
+      exact acceptance (the re-founded oracle)
+        t1 changing world
+          enumeration count:                                                                                        OK
+          probe rows: p1 exact, action, H display:                                                                  OK (1.00s)
+          consult ticks (exact list):                                                                               OK (2.90s)
+          MAP is the change-point guard; exact posterior:                                                           OK (0.83s)
+          cumulative marginal (exact):                                                                              OK (2.23s)
+          entropy pre/post (display):                                                                               OK (0.61s)
+        t2 lazy genius
+          tick counts and final acts (exact prices):                                                                OK (0.01s)
+          AGENT CRITERION: the batch-1 preposterior is sayable, and the sentence route == the engine route (exact): OK
+        t3 forgetting trap
+          agent marginals over drift400/flat400 (exact):                                                            OK (26.92s)
+        t4 deletion audit
+          frozen agent: marginal == 2^-160 EXACTLY:                                                                 OK (0.39s)
+          full/noif/noget marginals (exact):                                                                        OK (2.84s)
+          drift250 full/nohmm marginals (exact):                                                                    OK (7.01s)
+          deletion counts:                                                                                          OK
+      
+      All 13 tests passed (44.75s)
+
+    exact-properties  11/11  — CL-4' Bayes by ==, L4', Kraft 55/72 with
+    deficiency 17/72 asserted, corpus law w == 1/M per family, fineness
+    exact halving, node-price 1/10 hand-check, eq-THEOREM (exhaustive),
+    the derived choice family CL-3-faithful with exact ties, g5' fused
+    round trip sayable, g6' Nothing arm through the DERIVED indicator
+    kernel (the Is-derivation executed), the walk law from the SHIPPED
+    move sentences.
+
+    lawful 8/8 + lawful-independence 7/7 — the exact floor: 4 axioms
+    (L1-L3 + L4') + 4 conformance theorems (T1-T4), 3+1 independence
+    with exact witnesses; u/tol/near DELETED; no tolerance constant in
+    either file. The Double floor is superseded per your ruling and its
+    files are archived in the session record only.
+
+THE AGENT CRITERION row (Acceptance t2): the batch-1 preposterior is
+ONE SENTENCE of the 10+1 grammar (Expect for the predictive masses, the
+fused Cond for the posteriors, If/Gt-over-Expects for the inner choice,
+Get for the world's price) and the sentence route == the engine route
+EXACTLY over a belief/price battery. Deliberation lives in the language.
+
+### VIII.3 The ablations (D5) and the red
+
+    PASS  UseCOND compiles against the surface
+PASS  UseCOND fails under -DDROP_COND (ablation fires)
+PASS  UseEXPECT compiles against the surface
+PASS  UseEXPECT fails under -DDROP_EXPECT (ablation fires)
+PASS  UseCODE compiles against the surface
+PASS  UseCODE fails under -DDROP_CODE (ablation fires)
+    PASS  UseCOND compiles against the surface
+    PASS  UseCOND fails under -DDROP_COND (ablation fires)
+    PASS  UseEXPECT compiles against the surface
+    PASS  UseEXPECT fails under -DDROP_EXPECT (ablation fires)
+    PASS  UseCODE compiles against the surface
+    PASS  UseCODE fails under -DDROP_CODE (ablation fires)
+
+Cond is the ENTRANT (clause (b) discharged in-increment); Expect and
+Code re-earn their flags on the exact surface. The remaining seven
+structural atoms carry their A3 compile-fact transcripts; their DROP
+flags land with Phase 2's src (each is uttered by the whole corpus, so
+their ablations fire trivially — recorded as a Phase-2 gate-7 row).
+
+RED RUN (the oracle against SHIPPED src): compile-red, attributed to
+the missing exact surface — the first errors name World and its fields;
+the exact grammar (Cond, condV, weightIn, the Rational sort) follows.
+Transcript in the session record; the red is the missing constructor,
+not an accident.
+
+GATES (test-exact/gates-exact.sh; RED BY DESIGN pre-Phase-2):
+    E1 forbidden-inexactness tokens in core: 103 (must be 0)
+    E2 fromRational renders in core: 0 (must be 0; display lives at the edge)
+    E3 concrete point-sets in src: 19 (must be 0; worlds declare)
+E2 is already 0; E1's 103 and E3's 19 are Phase 2's work orders.
+
+### VIII.4 What your freeze seals (the choreography)
+
+1. Review this pack + the staged oracle (test-exact/, test-lawful/,
+   EXACT_PLAN §11c incl. the Cond-outcome amendment).
+2. The swap, under your key (or delegated with the R-D22 re-tag):
+   test/ := {test-exact/Streams.hs (byte-identical), Anchors.hs,
+   Acceptance.hs, Properties.hs}; test-exact/ablation + gates-exact.sh
+   join audit/'s runner set; the four stanzas
+   (test-exact/stanzas.cabal.draft) paste into proplang.cabal; the old
+   Double-anchor test/ retires.
+3. MANIFEST extended + re-signed over the exact oracle; your tag
+   (suggested: exact-freeze-r0) from your shell; prefreeze-lint +
+   boundary-audit ride the close.
+4. Phase 2: src/ re-founded to the proven surface (the overlay is its
+   reference, discarded per R-D21 — Phase 2 rebuilds under gates);
+   gates 1-7 + E1/E2/E3 green; the selection-fold re-homing (ruling 3)
+   lands with its opt-law pin; the full-corpus overlay build closes it.

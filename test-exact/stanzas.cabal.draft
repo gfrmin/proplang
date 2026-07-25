@@ -1,0 +1,37 @@
+-- STANZA DRAFTS for the author's paste at the exact freeze (cabal is
+-- manifest-frozen; edits only at freeze boundaries under your key).
+-- The four suites of the exact oracle; the test/ swap retires the old
+-- acceptance stanza in the same edit.
+
+test-suite exact-acceptance
+    import: warnings
+    type: exitcode-stdio-1.0
+    main-is: Acceptance.hs
+    other-modules: Anchors, Streams
+    hs-source-dirs: test-exact
+    build-depends: base, proplang, tasty, tasty-hunit
+    default-language: GHC2021
+
+test-suite exact-properties
+    import: warnings
+    type: exitcode-stdio-1.0
+    main-is: Properties.hs
+    hs-source-dirs: test-exact
+    build-depends: base, proplang, tasty, tasty-hunit
+    default-language: GHC2021
+
+test-suite lawful
+    import: warnings
+    type: exitcode-stdio-1.0
+    main-is: Lawful.hs
+    hs-source-dirs: test-lawful
+    build-depends: base, proplang, tasty, tasty-hunit
+    default-language: GHC2021
+
+test-suite lawful-independence
+    import: warnings
+    type: exitcode-stdio-1.0
+    main-is: Independence.hs
+    hs-source-dirs: test-lawful
+    build-depends: base, proplang, tasty, tasty-hunit
+    default-language: GHC2021
