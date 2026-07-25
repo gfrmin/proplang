@@ -1,0 +1,51 @@
+
+-- THE EXACT ORACLE (frozen at exact-freeze-r0; red by design until
+-- Phase 2 lands src — the increment-protocol form). The R13 swap into
+-- test/ composes with the R11 retirement at the Phase-2 close (five
+-- green suites import the old Anchors until they retire).
+
+test-suite exact-acceptance
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Acceptance.hs
+    other-modules:    Anchors, Streams, OracleWorld
+    hs-source-dirs:   test-exact
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+test-suite exact-properties
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Properties.hs
+    other-modules:    OracleWorld
+    hs-source-dirs:   test-exact
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+test-suite lawful
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Lawful.hs
+    hs-source-dirs:   test-lawful
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
+test-suite lawful-independence
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Independence.hs
+    hs-source-dirs:   test-lawful
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

@@ -872,3 +872,20 @@ author's freeze verification re-run prints the ASCII name).
    E1/E2/E3; the selection-fold re-homing with its opt-law pin; the
    R11 retirement with IX.5 as its pin list; the full-corpus overlay
    build closes it.
+
+### IX.8a Erratum to the swap mechanics (found drafting the freeze commands)
+
+IX.8/R13 as drafted would BREAK five green suites at the freeze:
+test-actions, test-membrane, test-reflexive, test-sentence, and
+test-stream import the old Anchors (and test-writeup greps its
+literals), so replacing test/ files now violates "existing frozen
+suites stay green." The corrected mechanics, encoded in freeze-kit/:
+the exact oracle FREEZES WHERE IT STANDS (test-exact/, test-lawful/;
+four new stanzas, red by design — the increment-protocol form); the
+swap into test/ AND the S2/gate-2 re-binding compose with the R11
+seventeen-suite retirement at the Phase-2 close, one motion under this
+boundary's key, IX.5 the pin list. The Part IV archive sweep
+recommends the same home (the case-law documents archive together with
+the suites whose law they record). freeze-kit/apply-1-oracle.sh is the
+mechanical half, dry-run-verified in a worktree: manifest 96/96, cabal
+parses, no green suite touched.
