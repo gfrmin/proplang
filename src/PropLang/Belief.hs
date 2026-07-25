@@ -1,227 +1,126 @@
-{-# LANGUAGE DerivingStrategies #-}
-
--- | The sealed reasoner (typed-port-spec §2).
---
--- One module owns all probability arithmetic. The 'Belief' constructor is
--- NOT exported: no code outside this module can read, write, or name a
--- log-weight (invariant I1 as a compile fact). The export list below is
--- frozen verbatim from typed-port-spec §2 (as amended) and checked by
--- audit gate 2.
---
--- The arithmetic mirrors the Python reference (proplang.py) operation for
--- operation: the same log-sum-exp, the same left-to-right summation order,
--- the same skip rules on zero-mass points, the same normalization at
--- construction. Cross-language float agreement is therefore at the
--- unit-in-last-place level, orders of magnitude inside the frozen anchor
--- tolerances.
+{-# LANGUAGE GHC2021 #-}
+-- The sealed exact reasoner (Phase 2 of the exact re-founding;
+-- exact-freeze-r0). This surface is the one the frozen oracle's SAT
+-- transcripts ran against (pack IX.3); S2 re-binds to it at the close.
 module PropLang.Belief
   ( Space, mkSpace, spacePoints
-  , Belief                      -- abstract: constructor NOT exported
-  , Event, is, event            -- host-layer smart constructors
-  , Kernel, kernel
-  , Evidence(..)                -- closed variant: I2
-  , Bits(..), LogProb(..)       -- newtypes; derived numeric instances
-  , uniform, point, fromBits    -- the ONLY prior sources in the system
-  , expect, prob, push, cond, logPredict
-  , entropyBits, top            -- CL-1 diagnostics, read-only by type
+  , Belief                       -- abstract: constructor NOT exported
+  , Kernel, kernel, kernelSpace, kernelAt
+  , fromWeights                  -- the ONLY prior source (L4' introducer)
+  , uniform, point               -- DEFINITIONS over fromWeights (ruling #7)
+  , expect, prob
+  , push                         -- engine/host machinery (the grammar
+                                 -- verb died; prediction stays sayable
+                                 -- via Expect/Cond — the agent criterion)
+  , condK, condV, predictMass    -- conditioning / marginal mass, exact
+  , points, weights, top         -- CL-1 diagnostics: exact read-only views
+                                 -- (entropy DISPLAY lives in Report — E1)
   ) where
 
-import Data.List (sortOn)
+import Data.List (sortBy)
 import Data.List.NonEmpty (NonEmpty, toList)
+import Data.Ord (comparing, Down (..))
 
--- | Description length in bits. Newtype (not a synonym): confusing bits
--- with nats at the module boundary is a bug class this port makes
--- unwritable (typed-port-spec §2, amended).
--- Type derivation (§8c audit, step 6, pack §28): description length is
--- the prior's only currency (brief: 2^-L).
-newtype Bits = Bits Double
-  deriving stock (Show)
-  deriving newtype (Eq, Ord, Num, Fractional, Floating, Real, RealFrac)
-
--- | Natural-log probability (the marginal likelihood returned by
--- 'logPredict' is a natural log; consumers convert to bits explicitly).
--- Type derivation (§8c audit, step 6, pack §28): observe returns the log
--- marginal — the polling contract's only score.
-newtype LogProb = LogProb Double
-  deriving stock (Show)
-  deriving newtype (Eq, Ord, Num, Fractional, Floating, Real, RealFrac)
-
--- | A set of possibilities. Finite in the reference implementation, and
--- nonempty by construction ('mkSpace').
--- Type derivation (§8c audit, step 6, pack §28): belief is over DECLARED
--- finite carriers, never invented points.
 data Space a = Space [a]
-
--- | A coherent prevision on a finite Space. Opaque handle (I1): the
--- log-weights are normalized at construction and never leave this module.
--- Type derivation (§8c audit, step 6, pack §28): probability is the logic
--- (brief §4); the sealed reasoner's one object.
-data Belief a = Belief (Space a) [Double]
-
--- | A declared proposition over a Space. Peer primitive (design §3).
--- Type derivation (§8c audit, step 6, pack §28): a query is a prevision
--- of an indicator (CL-1 read-only diagnostics).
-data Event a = Event (a -> Bool)
-
--- | A Prevision-valued arrow between Spaces. Peer primitive (design §3).
--- The codomain rides along because 'push' accumulates over its points;
--- a kernel's output beliefs are over the codomain, in its point order.
--- Type derivation (§8c audit, step 6, pack §28): conditional belief as
--- data — transition/emission kernels (interface).
-data Kernel a b = Kernel (Space b) (a -> Belief b)
-
--- | Evidence carries its algebra in its type (invariant I2): an Event, or
--- a (Kernel, observation) pair. No third constructor — in particular no
--- function case; the engine can never receive an opaque closure.
--- Type derivation (§8c audit, step 6, pack §28): Saw is the ONLY door a
--- belief changes through (brief §6).
-data Evidence a where
-  Is  :: Event a -> Evidence a
-  Saw :: Eq o => Kernel a o -> o -> Evidence a
-
--- ---------------------------------------------------------------------
--- private arithmetic (the reference's _lse and summation conventions)
--- ---------------------------------------------------------------------
-
-negInf :: Double
-negInf = -1 / 0
-
-ln2 :: Double
-ln2 = log 2
-
--- left-to-right summation from zero, as Python's sum()
-sumL :: [Double] -> Double
-sumL = foldl' (+) 0
-
--- log-sum-exp over a nonempty list (every call site supplies one)
-lse :: [Double] -> Double
-lse xs =
-  let m = maximum xs
-  in if m == negInf
-       then negInf
-       else m + log (sumL [exp (x - m) | x <- xs])
-
--- Normalize log-weights into a Belief; 'Nothing' when the total mass is
--- zero (the reference constructor raises "conditioned on an impossible
--- evidence" here; the public surface exposes this only through 'cond',
--- whose Maybe is the frozen totality story).
-mkBelief :: Space a -> [Double] -> Maybe (Belief a)
-mkBelief sp ws =
-  let z = lse ws
-  in if z == negInf
-       then Nothing
-       else Just (Belief sp [w - z | w <- ws])
-
--- The three prior constructors and 'push' return bare 'Belief' by frozen
--- signature; on zero total mass they can only mirror the reference's
--- raise. Every such site is unreachable from the frozen suites.
-orImpossible :: String -> Maybe (Belief a) -> Belief a
-orImpossible site Nothing  = error (site ++ ": belief has no mass")
-orImpossible _ (Just b) = b
-
--- ---------------------------------------------------------------------
--- constructors
--- ---------------------------------------------------------------------
 
 mkSpace :: NonEmpty a -> Space a
 mkSpace = Space . toList
 
--- | The point list a Space was declared with ('mkSpace''s own argument,
--- declaration order). Amended into the frozen export list at
--- code-freeze-r0 (step 1; pack §6.10 item 6, the author's ruling):
--- 'Code'/'Pos' evaluation enumerates a Space's points, and nothing
--- sealed leaks — a Space IS its declared points; the WEIGHTS stay
--- inside this module.
 spacePoints :: Space a -> [a]
 spacePoints (Space pts) = pts
 
--- | The event "equals x".
-is :: Eq a => Space a -> a -> Event a
-is _ x = Event (== x)
+-- normalized: every weight >= 0, sum == 1, EXACTLY
+data Belief a = Belief (Space a) [Rational]
 
--- | An event from a predicate (host-layer smart constructor).
-event :: Space a -> (a -> Bool) -> Event a
-event _ = Event
+data Kernel a b = Kernel (Space b) (a -> Belief b)
 
 kernel :: Space a -> Space b -> (a -> Belief b) -> Kernel a b
-kernel _ = Kernel
+kernel _ cod f = Kernel cod f
 
+kernelSpace :: Kernel a b -> Space b
+kernelSpace (Kernel cod _) = cod
+
+kernelAt :: Kernel a b -> a -> Belief b
+kernelAt (Kernel _ f) = f
+
+-- | The introducer. Refuses (Nothing) iff no positive mass — the
+-- impossible-evidence value; otherwise normalizes exactly.
+fromWeights :: Space a -> (a -> Rational) -> Maybe (Belief a)
+fromWeights sp@(Space pts) f =
+  let ws = map f pts
+      z = sum ws
+  in if any (< 0) ws || z <= 0
+       then Nothing
+       else Just (Belief sp [ w / z | w <- ws ])
+
+-- | DERIVED (ruling #7): uniform is fromWeights of the constant mass.
+-- Total: a Space is nonempty by construction (mkSpace/NonEmpty).
 uniform :: Space a -> Belief a
-uniform sp@(Space pts) =
-  orImpossible "uniform" (mkBelief sp (map (const 0) pts))
+uniform sp = case fromWeights sp (const 1) of
+  Just b  -> b
+  Nothing -> error "uniform: empty space (unreachable: mkSpace is NonEmpty)"
 
-point :: Eq a => Space a -> a -> Belief a
-point sp@(Space pts) x =
-  orImpossible "point" (mkBelief sp [if p == x then 0 else negInf | p <- pts])
+-- | DERIVED (ruling #7): point is fromWeights of the indicator.
+point :: Eq a => Space a -> a -> Maybe (Belief a)
+point sp x = fromWeights sp (\y -> if y == x then 1 else 0)
 
--- | The prior @2^(-|program|)@: description lengths in, prevision out.
--- This is the ONLY place a prior comes from (design §5).
-fromBits :: Space h -> (h -> Bits) -> Belief h
-fromBits sp@(Space pts) f =
-  orImpossible "fromBits"
-    (mkBelief sp [negate b * ln2 | p <- pts, let Bits b = f p])
-
--- ---------------------------------------------------------------------
--- verbs
--- ---------------------------------------------------------------------
-
--- | push to R: the prevision of a test function. Prediction, expected
--- utility, and marginal likelihood are all this.
-expect :: Belief a -> (a -> Double) -> Double
+expect :: Belief a -> (a -> Rational) -> Rational
 expect (Belief (Space pts) ws) f =
-  sumL [exp w * f x | (x, w) <- zip pts ws, w > negInf]
+  sum [ w * f x | (x, w) <- zip pts ws ]
 
--- | Probability derived from prevision: E[indicator] (design §3).
-prob :: Belief a -> Event a -> Double
-prob b (Event p) = expect b (\x -> if p x then 1.0 else 0.0)
+-- | DERIVED from prevision: E[indicator] (design §3, unchanged).
+prob :: Belief a -> (a -> Bool) -> Rational
+prob b p = expect b (\x -> if p x then 1 else 0)
 
--- | Pushforward along a Kernel: belief over the codomain. Positional over
--- the codomain's points, in source-point order per accumulator, exactly
--- as the reference's per-point append lists.
+-- | The exact forward marginal (engine machinery; see export note).
 push :: Belief a -> Kernel a b -> Belief b
-push (Belief (Space xs) ws) (Kernel cod@(Space cs) f) =
-  orImpossible "push" (mkBelief cod logw)
-  where
-    rows = [ (w, bws) | (x, w) <- zip xs ws, w > negInf
-                      , let Belief _ bws = f x ]
-    col j = [ w + wy | (w, bws) <- rows, let wy = bws !! j, wy > negInf ]
-    logw = [ if null cj then negInf else lse cj
-           | j <- [0 .. length cs - 1], let cj = col j ]
+push (Belief (Space pts) ws) k =
+  let cod@(Space cps) = kernelSpace k
+      colWs x = let Belief _ cws = kernelAt k x in cws
+      out = foldr (zipWith (+)) (map (const 0) cps)
+                  [ map (w *) (colWs x) | (x, w) <- zip pts ws ]
+  in Belief cod out
 
--- Log-likelihood of the evidence at each point of the belief's space
--- (the reference's _loglik; private).
-loglik :: Belief a -> Evidence a -> [Double]
-loglik (Belief (Space pts) _) ev = case ev of
-  Is (Event p) -> [if p x then 0 else negInf | x <- pts]
-  Saw (Kernel cod f) o ->
-    [ let p = prob (f x) (is cod o)
-      in if p > 0 then log p else negInf
-    | x <- pts ]
+-- | Conditioning through a kernel on an observed outcome — the sealed
+-- Bayes step (the system's one division lives here, in normalization).
+-- Nothing = impossible evidence. A Properties row pins this
+-- extensionally to fromWeights over the product masses (CL-4 exact).
+condK :: Eq b => Belief a -> Kernel a b -> b -> Maybe (Belief a)
+condK (Belief sp@(Space pts) ws) k y =
+  let ms = [ w * prob (kernelAt k x) (== y) | (x, w) <- zip pts ws ]
+      z = sum ms
+  in if z <= 0 then Nothing else Just (Belief sp [ m / z | m <- ms ])
 
--- | The Bayesian update: the unique diachronically coherent rule.
--- 'Nothing' = impossible evidence (conditioning-on-the-impossible is a
--- value, not an exception: totality).
-cond :: Belief a -> Evidence a -> Maybe (Belief a)
-cond b@(Belief sp ws) ev = mkBelief sp (zipWith (+) ws (loglik b ev))
+-- | Value-matched conditioning: the observed outcome arrives as the
+-- RATIONAL the sentence said (the Cond verb's binder convention);
+-- the carrier match is realToFrac-exact (Int and Rational both embed
+-- exactly).
+condV :: Real b => Belief a -> Kernel a b -> Rational -> Maybe (Belief a)
+condV (Belief sp@(Space pts) ws) k v =
+  let ms = [ w * prob (kernelAt k x) (\o -> realToFrac o == v)
+           | (x, w) <- zip pts ws ]
+      z = sum ms
+  in if z <= 0 then Nothing else Just (Belief sp [ m / z | m <- ms ])
 
--- | log marginal likelihood of the evidence: log E[likelihood], natural
--- log. This is push-to-R; it exists so no consumer needs the weights.
-logPredict :: Belief a -> Evidence a -> LogProb
-logPredict b@(Belief _ ws) ev =
-  LogProb (lse (zipWith (+) ws (loglik b ev)))
+-- | The marginal MASS of an outcome under belief-through-kernel:
+-- sum_x w(x) * P_k(x)(y). Exact; the bits view is reporting-edge.
+predictMass :: Eq b => Belief a -> Kernel a b -> b -> Rational
+predictMass (Belief (Space pts) ws) k y =
+  sum [ w * prob (kernelAt k x) (== y) | (x, w) <- zip pts ws ]
 
--- ---------------------------------------------------------------------
--- diagnostics
--- ---------------------------------------------------------------------
+-- | The carrier's points (read-only view; with 'weights' the sampling
+-- basis of the host's draw — CL-2's boundary reads, never writes).
+points :: Belief a -> [a]
+points (Belief (Space pts) _) = pts
 
--- | Posterior entropy in bits. CL-1: read-only diagnostic for display;
--- must never feed action selection.
-entropyBits :: Belief a -> Double
-entropyBits (Belief _ ws) =
-  negate (sumL [exp w * w | w <- ws, w > negInf]) / ln2
+-- | Exact read-only weight view (the seal guards CONSTRUCTION, not
+-- reading — 'top' already reads; displays derive from this at the
+-- reporting edge, never here: E1).
+weights :: Belief a -> [Rational]
+weights (Belief _ ws) = ws
 
--- | CL-1 diagnostic: the n highest-posterior points with probabilities.
--- Stable descending sort, as the reference's sorted(key = -weight).
-top :: Belief a -> Int -> [(a, Double)]
-top (Belief (Space pts) ws) n =
-  [ (x, exp w) | (x, w) <- take n (sortOn (negate . snd) (zip pts ws)) ]
+-- | CL-1 diagnostic: the n highest-posterior indices (read-only;
+-- index-keyed so Eq is not demanded of the carrier).
+top :: Int -> Belief a -> [(Int, Rational)]
+top n (Belief _ ws) =
+  take n (sortBy (comparing (Down . snd)) (zip [0 ..] ws))

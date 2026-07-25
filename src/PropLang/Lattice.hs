@@ -44,7 +44,7 @@ module PropLang.Lattice
 
 import Data.List (nub, sortOn)
 import Data.List.NonEmpty (nonEmpty)
-import PropLang.Belief (Belief, Bits (..), fromBits, mkSpace)
+import PropLang.Belief (Belief, fromWeights, mkSpace)
 
 -- | A lattice node: log-odds lambda = num / 2^depth, in lowest terms
 -- (depth == 0 or num odd — the canonical dyadic representation).
@@ -210,7 +210,9 @@ extChain j0 =
 -- | The canonical scorer: the posterior over an owned set given the
 -- permanent counts (n1, n0), a pure function of (dl, n1, n0) per
 -- node, built through the sealed reasoner's own prior door
--- ('fromBits': dl + n1*(-log2 th) + n0*(-log2 (1-th)) per node) —
+-- (SINCE exact-freeze-r0, weight form: mass = 2^-gamma * th^n1 *
+-- (1-th)^n0 per node, exact — dyadic prior, binary64-embedded theta;
+-- the ideal dyadic coordinate is the close's author item) —
 -- one construction, one normalization, canonical code order
 -- (METAREASONING_PLAN.md:143-150; ruling R5's scope, r-author-pack
 -- I.7). The n1 weight term is the row-10 ablation's marked anchor.
@@ -219,14 +221,16 @@ scoreOwned o (n1, n0) =
   case nonEmpty (map nodeTheta (ownedNodes o)) of
     Nothing  -> error "scoreOwned: the owned set is never empty (root closure)"
     Just pts ->
-      fromBits (mkSpace pts)
-        (\th -> Bits ( bitsAt th
-                     + fromIntegral n1 * negate (logBase 2 th)
-                     + fromIntegral n0 * negate (logBase 2 (1 - th)) ))
+      case fromWeights (mkSpace pts)
+             (\th -> let thQ = realToFrac th :: Rational
+                     in dyadicAt th * thQ ^ n1 * (1 - thQ) ^ n0) of
+        Just b  -> b
+        Nothing -> error "scoreOwned: no mass (unreachable: interior thetas)"
   where
-    bitsAt th =
+    dyadicAt th =
       case [ gammaBits n | n <- ownedNodes o, nodeTheta n == th ] of
-        (b : _) -> b
+        (g : _) -> 1 / 2 ^ (round g :: Integer)   -- gammaBits is
+                   -- integer-valued by construction; round is exact
         []      -> error "scoreOwned: theta not in the owned set"
 
 likeAt :: Int -> Int -> Double -> Double

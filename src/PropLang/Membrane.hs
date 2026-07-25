@@ -1,253 +1,216 @@
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE EmptyCase #-}
 {-# LANGUAGE GADTs #-}
-
--- | The membrane (interface.md §1–§3, §5) — SINCE THE STEP-5 FREEZE:
--- ACTIONS BECOME FEATURES. An action is an assignment of values to
--- the names the agent controls (AGENT_PLAN §3: "choice is the last
--- private wire", dissolved); the writable names and their grids are
--- the world's declared 'Menu'; 'wait' is every action name at the
--- FIRST point of its grid (§5c — structural, never a convention:
--- grids are nonempty by construction, so wait exists in every world
--- with no handshake, and CL-3's first-listed-wins hands ties to it
--- because it is the option space's HEAD by construction).
+-- The membrane (Phase 2 of the exact re-founding; exact-freeze-r0).
+-- Carried doctrines: ACTIONS ARE FEATURES (step 5 — the writable
+-- names and their codebooks are the world's Menu; wait is every name
+-- at its codebook's head, the option space's first element by
+-- construction); actions enter the tick's stream with no lag (step 6
+-- — evidence folds at feats ++ act); the scoring rule is
+-- EXOGENOUS-READ (a candidate's EU reads the predictive at augmented
+-- features with weights and latents untouched by the contemplation).
 --
--- DELETED at the step-5 boundary: the five action types ('Choice',
--- 'Affordance', 'AffId', 'Slot', 'InternalAct'), the echo path
--- ('EchoSpec', 'echoFeatures', 'lastActionCode',
--- ticks_spent_thinking — the agent echoing ITSELF; worlds remain
--- free, under CL-1-at-the-echo, to measure the agent's latency from
--- outside the membrane and publish it as an ordinary feature), the
--- 'Rung' machinery, and THE SENTINEL — the fabricated internal think
--- row that existed to make an act table total. Totality needs no
--- fabrication now: the empty Cartesian product has exactly one
--- element, and that element is wait, so a menuless world's option
--- space is a THEOREM of the representation (A5' by algebra).
+-- NEW AT THIS BOUNDARY — THE RE-HOMED SELECTION (opening ruling 3):
+-- every candidate value is an Expect SENTENCE and every comparison is
+-- the binary If/Gt choice sentence, iterated (CL-3: the challenger
+-- displaces iff strictly greater); the host carries beliefs between
+-- evaluations and never decides. The Double era's host-side fold
+-- (its §1b classification deferred at step 6 and never resolved) is
+-- DEAD — no fast path remains here to pin.
 --
--- SINCE THE STEP-6 FREEZE (stream-freeze-r0): ACTIONS ENTER THE
--- TICK'S FEATURE STREAM, no lag — 'observe' folds evidence at
--- @feats ++ c@, the chosen assignment appended to the world's
--- published features (world-first, ruling D-b2: the stream is the
--- world's document, one authority, no merge semantics; on a
--- conforming world the names are disjoint by handshake, and the wire
--- sentence lands at 7). THE SCORING RULE IS EXOGENOUS-READ (ruling
--- D-b3, 6b's survivor): a candidate's EU reads 'predictive' at the
--- augmented features with hypothesis weights and latents untouched
--- by the contemplation — functionally an intervention semantics at
--- decision time, achieved with NO do-operator in the language (the
--- ruled clauses: test-stream's g2 header; pack Part V §32). Mention
--- prices bound at 6; value prices still bind at 7 (RIDER 2). The M5
--- guardian retired with its subject; M5 itself is repealed only at
--- 7, and the interregnum is guarded by RIDER 2's negative obligation
--- itself.
+-- THE DOOR'S GEOMETRY (R5's consequence, recorded for the close
+-- sitting): every intra-tick read carries a FULL assignment (the door
+-- demands exact namespace coverage), so the per-candidate EU reads at
+-- feats ++ candidate, and the reported predictive is at feats ++ act
+-- — post-choice, pre-observation. Choice still precedes observation;
+-- dormant reads died with the 0.0 default. Menu-less worlds (the
+-- frozen oracle's) are byte-unchanged: feats alone covers.
+--
+-- Type derivations (§8c forward rule):
+--   Menu      — the writable names with declared codebooks (step 5).
+--   PureWorld — the test-side world harness (features now exact).
+--   Pilot     — a simulated principal's declared policy.
+--   TickTrace — a REPORT record: the loop is exact, the trace fields
+--               are edge displays (PropLang.Report).
 module PropLang.Membrane
   ( Menu
-  , menuAssignments
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
-  -- the agent-facing surface dies with the scoring layer or with
-  -- 'PropLang.Syntax.Argmax' (nothing may select an action but
-  -- expected value, so no argmax means no choice flow) — the
-  -- deletion coupling the retired layer recorded, carried forward
-  , Pilot (..)
-  , argmaxEU
   , PureWorld (..)
+  , Pilot (..)
   , TickTrace (..)
-  , runMembrane
-#endif
+  , gridPoints
+  , menuAssignments
+  , reindexUtility
+  , chooseEU
+  , predictiveBelief
+  , runEpisode
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
 
-import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
-import PropLang.Syntax (Grid, Name, gridSize, mkC)
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
-import Data.Maybe (fromMaybe)
-import PropLang.Belief (LogProb (LogProb), entropyBits, expect, is, prob)
-import PropLang.Enumerate (Agent, Obs, agentMeta, observe, obsSpace,
-                           predictive)
-import PropLang.Syntax (B, Expr (..), Idx (..))
-#endif
+import PropLang.Belief
+import PropLang.Enumerate
+import PropLang.Eval
+import PropLang.Report (bitsView, entropyAgent)
+import PropLang.Syntax
 
--- | The writable names and their grids — a SYNONYM, not a type
--- (AGENT_PLAN §5: the only new name). Identical in shape to
--- 'enumerateSentencesIn''s extras: one shape, two readers, shared by
--- construction. (If 'Menu' ever becomes a @data@ type, ruling D-a3's
--- home question reopens — the sitting's note.)
---
--- Type derivation (step 6, pack §28): DERIVES — the world's declared
--- writable names (AGENT_PLAN §5's one new name; grids are data with
--- prices).
 type Menu = [(Name, Grid)]
 
--- | The option space of a menu: every FULL assignment (one value per
--- writable name — ruling D-a1: a partial assignment would
--- re-introduce exactly the unset-vs-set ambiguity §5c killed), grid
--- points entering through the grammar's only constant door ('mkC'
--- then the real evaluator) in declaration order, first names varying
--- slowest — so the HEAD is the all-first-points assignment: 'wait'.
--- The empty menu's sole option is the empty assignment (the empty
--- product's one element IS wait; nothing fabricated remains).
--- The option space is exponential in menu names: EXHAUSTIVE argmax
--- over it is the GENERAL ROUTE, and any future factored or greedy
--- evaluation is a fast path under the §1b law and arrives with its
--- pin (the pricing freeze's caution, third statement).
-menuAssignments :: Menu -> NonEmpty Features
-menuAssignments menu = case go menu of
-  a : as -> a :| as
-  []     -> [] :| []
-  where
-    go [] = [[]]
-    go ((nm, g) : rest) =
-      [ (nm, v) : more | v <- points g, more <- go rest ]
-    points g =
-      [ evalx e (mkEnv [] VNil)
-      | k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
+data PureWorld s = PureWorld
+  { wFeats :: s -> Features
+  , wEvidence :: s -> Maybe Int
+  , wMenu :: s -> Menu
+  , wStep :: s -> Features -> s
+  }
 
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
--- | Defunctionalized pilots, 'Choice' deleted: the same three shapes
--- over assignments. No internal act exists to value — the sentinel is
--- dead, and 'argmax' stays total because wait is always options'
--- head.
---
--- Type derivation (the §8c audit, first pass at step 6 — pack §28,
--- adopted at the sitting): 'PilotEU' DERIVES — "nothing may select an
--- action but expected value", the doctrinal arm and the only one on
--- the agent path. 'PilotIdle' and 'PilotThreshold' are FENCED:
--- scripted competitor policies, simulator scaffolding OUTSIDE the
--- language (the raw Double is a script parameter, never a priced
--- quantity). Their move out of src is a SCHEDULED step-8
--- opening-checklist row (RE-HOMED from 7 at the step-7 sitting on
--- the census's cost: constructors cannot leave their type's module,
--- three frozen oracles construct these arms, and step 8 rewrites
--- interpretPilot's arms for utility-on-outcomes anyway — the split
--- folds into re-opens already owed there).
 data Pilot
   = PilotIdle
-  | PilotThreshold Name Double Features Features
-  -- SINCE STEP 9: the utility is the residue program directly (the
-  -- 'USent' wrapper died with the UTIL sort); 'Var Z' the option code,
-  -- 'Var (S Z)' the outcome (the surviving two-variable residue scope).
-  | PilotEU (Expr '[Double, Double] Double)
+  | PilotEU (Expr '[Rational, Rational] Rational)
 
--- | Expected-utility action selection AS A SAYABLE PROGRAM (step 9:
--- 'Call EU' died; EU is now the 'Expect' binder). Parameterized by the
--- utility BODY — utility is inline syntax now, not a threaded value —
--- so this is the doctrinal composition 'Argmax opts (Expect belief
--- body)': the option is bound at 'Var Z', the belief read at
--- 'Var (S (S Z))', and the binder pushes the outcome atop the body's
--- scope. The exogenous-read fold below is the executable route (a read
--- of the agent's own meta-state, unsayable until reflexive closure);
--- this is the general-route sentence it is pinned against.
-argmaxEU :: Expr (Double ': o ': '[NonEmpty o, B Obs]) Double
-         -> Expr '[NonEmpty o, B Obs] o
-argmaxEU body =
-  Argmax (Var Z) (Expect (Var (S (S Z))) body)
-
--- | A pure world behind the membrane: what it publishes, what its one
--- explained sensor reads (Nothing = a silent tick), which names it
--- lets the agent write (per tick — menu growth is a world's own
--- declaration), and how it moves when an assignment lands. 'wStep'
--- returning only @s@ is §1's "actions have no return values" as a
--- type.
---
--- Type derivation (step 6, pack §28): FENCE — simulator scaffolding,
--- outside the language. The real boundary is the wire (host
--- conformance binds to membrane-wire.md, never GHC artifacts); the
--- engine needs SOME in-process world to fold against, and this is
--- that harness.
-data PureWorld s = PureWorld
-  { wFeats    :: s -> Features
-  , wEvidence :: s -> Maybe Obs
-  , wMenu     :: s -> Menu
-  , wStep     :: s -> Features -> s
-  }
-
--- | One tick's public record, the frozen loop's own order and
--- arithmetic: features published, predictive and meta-entropy BEFORE
--- the observation moves the agent, the assignment selected and
--- fired, evidence folded through 'observe' at @negate lp / log 2@
--- bits.
---
--- Type derivation (step 6, pack §28): DERIVES — the tick's public
--- record mirrors the wire's readouts (interface §1 observables: p1,
--- entropy, act, loss); the wire-mirror argument is a real derivation
--- (the sitting's ruling on the borderline).
 data TickTrace = TickTrace
-  { ttT        :: Int
-  , ttP1       :: Double
-  , ttEntropy  :: Double
-  , ttAct      :: Features
+  { ttT :: Int
+  , ttP1 :: Double
+  , ttEntropy :: Double
+  , ttAct :: Features
   , ttLossBits :: Double
   }
-  deriving (Eq, Show)
 
--- | The polling contract (§1), pure — the shipped fold minus the echo
--- append and the internal-act arm; consequences only ever arrive
--- inside a LATER tick's features ("actions have no return values"),
--- while the CHOSEN assignment joins THIS tick's observation features
--- (step 6: 'observe' at @feats ++ c@; the trace records the
--- pre-choice predictive — ruling D-b1's geometry, E-b1-verified).
--- The E-a1-verified prototype is the executable design: features ->
--- predictive/entropy -> menuAssignments -> interpretPilot -> observe
--- at negate lp / ln2 -> wStep.
-runMembrane :: PureWorld s -> Pilot -> Int -> s -> Agent
-            -> Maybe (Agent, [TickTrace])
-runMembrane w pilot n s0 ag0 = go 0 s0 ag0
+-- | A codebook's points, read through the one door (the C pattern —
+-- declared data, never re-typed).
+gridPoints :: Grid -> [Rational]
+gridPoints g =
+  [ v | k <- [0 .. gridSize g - 1], Just (C _ _ v) <- [mkC g k] ]
+
+-- | Every full assignment of the menu (the step-5 shape): the
+-- cartesian product of the declared codebooks, declaration order; the
+-- empty menu's one assignment is wait.
+menuAssignments :: Menu -> [Features]
+menuAssignments = foldr row [[]]
   where
-    go t s ag
-      | t >= n = Just (ag, [])
-      | otherwise = do
-          let feats = wFeats w s
-              pr = predictive feats ag
-              p1 = prob pr (is obsSpace 1)
-              h = entropyBits (agentMeta ag)
-              opts = menuAssignments (wMenu w s)
-              c = interpretPilot ag pilot feats pr opts
-          (lossBits, ag') <- case wEvidence w s of
-            Nothing -> Just (0, ag)
-            Just y  -> case observe (feats ++ c) y ag of
-              Nothing              -> Nothing
-              Just (LogProb lp, a) -> Just (negate lp / ln2, a)
-          (agF, rest) <- go (t + 1) (wStep w s c) ag'
-          Just (agF, TickTrace t p1 h c lossBits : rest)
+    row (nm, g) rest = [ (nm, v) : asn | v <- gridPoints g, asn <- rest ]
 
-ln2 :: Double
-ln2 = log 2
+-- | Re-mint a mention through the door (total on mentions that came
+-- FROM the door — the source expression's own invariant).
+reMint :: Grid -> Ix -> Expr env Rational
+reMint g k = case mkC g k of
+  Just e -> e
+  Nothing -> error "reMint: off-codebook (unreachable: source was on-codebook)"
 
--- One pilot decision: the doctrinal argmax-EU program over the whole
--- option space; the scripted threshold read; the first-listed option
--- (= wait, by construction) for idle worlds.
-interpretPilot :: Agent -> Pilot -> Features -> B Obs -> NonEmpty Features
-               -> Features
-interpretPilot ag p feats _pr opts = case p of
-  PilotIdle -> let c :| _ = opts in c
-  PilotThreshold nm th a b ->
-    if fromMaybe 0 (lookup nm feats) > th then a else b
-  PilotEU u ->
-    -- per-assignment exogenous-read scoring (6b's survivor): each
-    -- candidate's EU is taken against predictive (feats ++ candidate)
-    -- at current weights, through the public 'expect' verb over the
-    -- utility residue (bit-identical to the pre-step-9 'Call EU', which
-    -- was 'expect b (\y -> uAt fs u 0 y)' — the verb died, the
-    -- arithmetic did not: 'Var Z' the option code 0, 'Var (S Z)' the
-    -- outcome).
-    -- THE SELECTION IS A HOST-SIDE FOLD, not an evaluation of the
-    -- doctrinal 'argmaxEU' Expr — and today it is the ONLY executable
-    -- route: the per-candidate predictive read is a read of the
-    -- agent's own meta-state, which the Expr language lacks BY DESIGN
-    -- until reflexive closure (A7, step 10). Pinned two-route by
-    -- test-stream g2 and law-checked by g6. Its §1b classification is
-    -- DEFERRED to step 10 (the step-6 r2 direction: finish the language
-    -- first — whether this fold is a fast path or the general route
-    -- itself is undetermined until reflexivity decides what the
-    -- language can say).
-    let euAt a = expect (predictive (feats ++ a) ag)
-                        (\y -> evalx u (mkEnv (feats ++ a)
-                                         (0 :. realToFrac y :. VNil)))
-        c0 :| cs = opts
-        go best _bv [] = best
-        go best bv (c : rest) =
-          let cv = euAt c
-          in if cv > bv then go c cv rest else go best bv rest
-    in go c0 (euAt c0) cs
-#endif
+-- | The wire's utility convention is a sentence over
+-- [option-code, outcome] with Var Z the option code, bound to the
+-- CONSTANT 0 (the dispositions-sitting fact). Under Expect the
+-- outcome binds at Z, so the utility REINDEXES: the option code
+-- becomes an explicit mention of the obs zero atom (the convention
+-- made visible as syntax); the outcome moves to Z. A total structural
+-- map over the wire-sayable grammar — host-side syntax transport,
+-- like the parser that built the sentence.
+reindexUtility :: Grid
+               -> Expr '[Rational, Rational] Rational
+               -> Expr (Rational ': env) Rational
+reindexUtility atomG = go
+  where
+    zeroM :: Expr env' Rational
+    zeroM = reMint atomG 0
+    go :: Expr '[Rational, Rational] Rational
+       -> Expr (Rational ': env') Rational
+    go e = case e of
+      C g k _ -> reMint g k
+      Get nm -> Get nm
+      Var Z -> zeroM
+      Var (S Z) -> Var Z
+      Var (S (S ix)) -> case ix of {}
+      If c a b -> If (goB c) (go a) (go b)
+      Sub a b -> Sub (go a) (go b)
+      Mul a b -> Mul (go a) (go b)
+      Expect {} -> error "reindexUtility: Expect is not wire-sayable (unreachable)"
+      Cond {} -> error "reindexUtility: Cond is not wire-sayable (unreachable)"
+    goB :: Expr '[Rational, Rational] Bool
+        -> Expr (Rational ': env') Bool
+    goB e = case e of
+      Gt a b -> Gt (go a) (go b)
+      If c a b -> If (goB c) (goB a) (goB b)
+      Var ix -> case ix of
+        S (S ix') -> case ix' of {}
+      Cond {} -> error "reindexUtility: Cond is not wire-sayable (unreachable)"
+
+-- | THE SELECTION: CL-3 as the binary choice sentence, iterated. The
+-- door serves the sentence the same features the candidates were
+-- scored under (exact coverage of the declared namespace).
+chooseEU :: Namespace -> Features -> Grid
+         -> Expr '[Rational, Rational] Rational
+         -> [(Features, Belief Int)]
+         -> Either String (Maybe (Features, Belief Int))
+chooseEU ns feats atomG u cands = case cands of
+  [] -> Right Nothing
+  (c0 : rest) -> Just <$> foldl' step (Right c0) rest
+  where
+    uB :: Expr (Rational ': env) Rational
+    uB = reindexUtility atomG u
+    pick :: Expr '[B Int, B Int] Rational
+    pick =
+      let vC = Expect (Var Z) uB
+          vI = Expect (Var (S Z)) uB
+      in If (Gt vC vI) (reMint atomG 1) (reMint atomG 0)
+    step acc chal@(cFeats, bC) = do
+      inc@(_, bI) <- acc
+      env <- mkEnvIn ns (feats' cFeats) (bC :. bI :. VNil)
+      pure (if evalx pick env == 1 then chal else inc)
+      where
+        -- the sentence reads no features, but the door's law is
+        -- coverage: serve it the challenger's own scored assignment
+        feats' c = mergeCover c
+    mergeCover c = feats ++ [ p | p <- c, fst p `notElem` map fst feats ]
+
+-- | The predictive BELIEF over the obs carrier at given features —
+-- the EXOGENOUS-READ (weights and latents untouched): a derived,
+-- normalized view of the per-outcome exact masses.
+predictiveBelief :: Features -> AgentS -> Either String (Belief Int)
+predictiveBelief feats ag = do
+  let pts = agentObsPoints ag
+  ms <- mapM (\y -> predictMassS feats y ag) pts
+  case pts of
+    [] -> Left "predictive: empty obs carrier (unreachable)"
+    (p : ps) ->
+      case fromWeights (mkSpace (p :| ps))
+             (\y -> sum [ m | (y', m) <- zip pts ms, y' == y ]) of
+        Just b -> Right b
+        Nothing -> Left "predictive: no mass (every hypothesis refused)"
+
+-- | One library episode over a pure world (the frozen loop's order,
+-- under the door's geometry): candidates scored EXOGENOUSLY at
+-- feats ++ candidate; the winner chosen through the sentences; the
+-- trace's predictive read at feats ++ act (post-choice,
+-- pre-observation); evidence folded at feats ++ act. Left on any
+-- door refusal (fail-closed).
+runEpisode :: World -> Pilot -> PureWorld s -> s -> Int
+           -> Either String [TickTrace]
+runEpisode w pilot pw s0 nTicks =
+  go s0 (sentenceAgent ns (enumerate w fragFull)) 0 []
+  where
+    ns = wNs w
+    atomG = atomGridOf (wObs w)
+    go _ _ t acc | t >= nTicks = Right (reverse acc)
+    go s ag t acc = do
+      let feats = wFeats pw s
+          menu = wMenu pw s
+          cands = menuAssignments menu
+      act <- case pilot of
+        PilotIdle -> Right (waitOf menu)
+        PilotEU u -> do
+          scored <- mapM (\c -> do
+                      b <- predictiveBelief (feats ++ c) ag
+                      Right (c, b))
+                    cands
+          picked <- chooseEU ns feats atomG u scored
+          Right (maybe (waitOf menu) fst picked)
+      let full = feats ++ act
+      p1 <- predictMassS full 1 ag
+      let h = entropyAgent ag
+      (loss, ag') <- case wEvidence pw s of
+        Nothing -> Right (1, ag)
+        Just y -> observeS full y ag
+      let tr = TickTrace t (fromRational p1) h act (bitsView loss)
+      go (wStep pw s full) ag' (t + 1) (tr : acc)
+    -- wait: every menu name at its codebook's head (step 5, structural)
+    waitOf menu = case menuAssignments menu of
+      (w0 : _) -> w0
+      [] -> []

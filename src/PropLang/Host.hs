@@ -1,30 +1,32 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE DataKinds #-}
 
--- | The host boundary (typed-port-spec §2/§6): the ONLY module in src/
--- whose types may mention IO. 'draw' is CL-2 made compiler-checked — the
--- language cannot utter it, because uttering it would change the
--- evaluator's type.
+-- | The host boundary (Phase 2 of the exact re-founding;
+-- exact-freeze-r0): the ONLY module in src/ whose types may mention
+-- IO. 'draw' is CL-2 made compiler-checked. The wire (membrane-wire
+-- v1 as amended through the exact boundary) is the pure session core
+-- 'serveLine'; 'hostMain' is the line loop (gate 3).
 --
--- SINCE THE STEP-7 FREEZE (unify-freeze-r0): THE DRIVER RETURNS — the
--- host-less window ("no runnable host until the step-5/7 host rework",
--- stated at the step-3 demolition; "no driver returns until 7") exits
--- here. The ENTIRE wire protocol (membrane-wire.md v1 as amended
--- through step 7) is the PURE session core 'serveLine'; 'hostMain' is
--- the stdin/stdout line loop over it, and the `proplang-host`
--- executable is that loop behind a front door (app/Main.hs). The
--- engine is reached ONLY through the public verbs; the decision fold
--- copies the pinned exogenous-read shape (Membrane.interpretPilot's
--- PilotEU arm; test-stream g2's public arithmetic — the §1b register
--- row names this loop as the pin's SECOND citing consumer). The
--- implementation is the E-c-verified overlay of the step-7 oracle
--- phase, transcribed node for node under unify-freeze-r0.
+-- WIRE CHANGES AT THIS BOUNDARY (each World-required or forced by a
+-- deletion; the close pack records all):
+--   * hello REQUIRES world.codebooks.theta (the emission codebook) —
+--     the baked theta point-set left src (E3); codebooks.rho optional
+--     (absent = no walk family); every guard family's codebook comes
+--     from world.guards, which must COVER the namespace's guard use.
+--   * the said forms "/", "log", "exp", "neg" are GONE with their
+--     terminals (unknown form = bad hello, fail-closed); "+" parses
+--     to the addM macro (priced at its expansion, like "=").
+--   * ticks pass THE DOOR: features must cover the declared
+--     namespace exactly (with the tick's assignment supplying the
+--     writable names) — the 0.0-dormancy default is dead; an
+--     under-specified tick is an error reply.
+--   * selection runs through Membrane.chooseEU — the SENTENCE route
+--     (opening ruling 3); the host fold is dead.
 module PropLang.Host
   ( draw
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
-  -- the wire session dies with the scoring layer or with argmax
-  -- (no scoring, no agent; no argmax, no choice flow) — the same
-  -- deletion coupling the membrane's agent-facing surface records
+#if !defined(DROP_CODE) && !defined(DROP_EXPECT) && !defined(DROP_COND)
+  -- the wire session dies with the likelihood layer, the prevision,
+  -- or conditioning — the agent's three load-bearing verbs
   , HostState
   , hostStart
   , serveLine
@@ -38,35 +40,26 @@ import Foreign.Ptr (Ptr, castPtr)
 import Foreign.Storable (peek)
 import System.IO (IOMode (ReadMode), hGetBuf, withBinaryFile)
 
-import PropLang.Belief (Belief, top)
+import PropLang.Belief (Belief, points, spacePoints, weights)
 
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CODE) && !defined(DROP_EXPECT) && !defined(DROP_COND)
 import Data.Char (isDigit)
-import Data.List (elemIndex)
 import Data.List.NonEmpty (NonEmpty ((:|)))
-import qualified Data.List.NonEmpty as NE
 import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
-import PropLang.Belief (Bits (Bits), LogProb (LogProb), entropyBits,
-                        expect, is, prob)
-import PropLang.Enumerate (Agent, Obs, agentMeta, enumerateSentencesIn,
-                           enumerateSentencesArity, fragFull, observe,
-                           obsSpaceAt, agentObsSpace, predictive,
-                           sentenceAgentK, thetaPoints,
-                           sentenceAgent)
-import PropLang.Eval (Features, Vals (..), evalx, mkEnv)
-import PropLang.Membrane (menuAssignments)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), Name, bitsIn,
-                        mkC, mkGrid, mkNamespace)
+import PropLang.Enumerate (AgentS, enumerateWith, fragFull, observeS,
+                           predictMassS, sentenceAgent)
+import PropLang.Eval (Features)
+import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief)
+import PropLang.Report (bitsView, entropyAgent)
+import PropLang.Syntax
 #endif
 
 -- | The sole source of randomness, host-side, called AFTER the language
 -- has finished constructing the belief. Used only to simulate worlds.
 --
--- Sampling goes through the sealed reasoner's public diagnostics ('top'
--- ranks every point with its probability): a cumulative walk over the
--- ranked points is the same categorical draw as the reference's walk in
--- space order — the host cannot see log-weights any more than a program
+-- Sampling goes through the sealed reasoner's public read-only views
+-- ('points'/'weights'): a cumulative walk in space order — the host cannot see log-weights any more than a program
 -- can. Entropy comes from the operating system; src/ depends on base
 -- only, so there is no in-process generator (and hence no seed) anywhere
 -- in the language or its host boundary.
@@ -78,7 +71,7 @@ draw b = do
       walk acc ((x, p) : rest) =
         let acc' = acc + p
         in if u <= acc' then x else walk acc' rest
-  pure (walk 0 (top b maxBound))
+  pure (walk 0 (zip (points b) (map fromRational (weights b))))
 
 -- A uniform draw in [0, 1) from /dev/urandom.
 unitSample :: IO Double
@@ -92,7 +85,7 @@ unitSample =
           w <- peek (castPtr buf :: Ptr Word64)
           pure (fromIntegral w / 2 ^^ (64 :: Int))
 
-#if !defined(DROP_CARRIER_OBS) && !defined(DROP_ARGMAX)
+#if !defined(DROP_CODE) && !defined(DROP_EXPECT) && !defined(DROP_COND)
 -- ------------------------- mini JSON -------------------------------
 -- The wire is JSON-lines (membrane-wire.md §1); the reader below
 -- covers the whole grammar the wire can utter, hand-rolled so no
@@ -190,7 +183,8 @@ rNum d
 
 rAct :: Features -> String
 rAct asg =
-  "{" ++ commaSep [ "\"" ++ nm ++ "\": " ++ rNum v | (nm, v) <- asg ] ++ "}"
+  "{" ++ commaSep [ "\"" ++ nm ++ "\": " ++ rNum (fromRational v)
+                  | (nm, v) <- asg ] ++ "}"
 
 commaSep :: [String] -> String
 commaSep [] = ""
@@ -201,23 +195,21 @@ errLine m = "{\"error\": \"" ++ m ++ "\"}"
 
 -- ------------------------- the session ------------------------------
 
--- The world as the handshake declared it: the writable names with
--- their grids (the step-5 shape), and the utility as THE PRINCIPAL'S
--- DECLARATION (step 8, said@1: a priced sentence parsed against the
--- grammar — a POINT-MASS PRIOR over the program shape, the ruled
--- doctrine; assign@1 died here with Util, on its printed date).
-data World = World
-  { wMenuGrids :: [(Name, Grid)]
-  , wUSaid     :: Maybe (Expr '[Double, Double] Double)
+-- | The world as the handshake declared it (R4: the old Host 'World'
+-- record is SUBSUMED — the declared codebooks build a Syntax-level
+-- enumeration; this record keeps only what ticks need).
+--
+-- Type derivation (§8c forward rule): FENCE — host machinery, the
+-- wire's own session state, outside the language (gate 3's module).
+data SessionW = SessionW
+  { swNs :: Namespace
+  , swAtom :: Grid                 -- the obs atom codebook (derived
+                                   -- from the declared carrier)
+  , swMenu :: [(Name, Grid)]
+  , swUSaid :: Maybe (Expr '[Rational, Rational] Rational)
   }
 
--- | The wire session state (membrane-wire v1 as amended through step
--- 7). Opaque; a session starts at 'hostStart'.
---
--- Type derivation (§8c audit, step 7): FENCE — host machinery, the
--- wire's own state machine, outside the language (the membrane
--- harness class; gate 3's module).
-data HostState = HostAwait | HostLive World Agent
+data HostState = HostAwait | HostLive SessionW AgentS
 
 -- | The pre-handshake state.
 hostStart :: HostState
@@ -233,10 +225,14 @@ serveLine st line = case parseLine line of
       Just t  -> tick w ag t
       Nothing -> (st, errLine "expected tick")
 
--- The handshake (membrane-wire §2 as repaired at step 7): namespace,
--- guards, menu (names and grids), optional assign@1 utility.
--- Validation failures answer an error line and the process stays on
--- the handshake state.
+-- exact embed of a wire number (binary64 embeds exactly in Q)
+jQ :: J -> Maybe Rational
+jQ v = do
+  d <- jNum v
+  if isNaN d || isInfinite d then Nothing else Just (realToFrac d)
+
+-- The handshake. Validation failures answer an error line and the
+-- process stays on the handshake state.
 hello :: HostState -> J -> (HostState, String)
 hello st j = maybe (st, errLine "bad hello") id $ do
   w <- oGet "world" j
@@ -247,22 +243,23 @@ hello st j = maybe (st, errLine "bad hello") id $ do
   menu <- case oGet "menu" w of
     Just (JArr ms) -> mapM pairGrid ms
     _              -> Just []
+  -- THE WORLD'S CODEBOOKS (E3: the emission codebook is world data;
+  -- theta REQUIRED, rho optional — absent means no walk family)
+  cbs <- oGet "codebooks" w
+  thetaG <- pairGridNamed "theta" =<< oGet "theta" cbs
+  mRhoG <- case oGet "rho" cbs of
+    Nothing -> pure Nothing
+    Just rj -> Just <$> pairGridNamed "rho" rj
   uSaidB <- case oGet "utility" w of
     Just u -> do
       JStr "said@1" <- oGet "form" u
       sexp <- oGet "said" u
-      -- W4b: the OPTIONAL constant grid (the W3 routing shape). ABSENT
-      -- = the shipped path byte-identically (fresh singleton constants,
-      -- no bits in the reply); DECLARED = constants must sit ON the
-      -- grid, NaN/inf points bad hello (D-f8), and the reply carries
-      -- utility_bits from the one frozen arithmetic.
       case oGet "cgrid" u of
         Nothing -> do
-          prog <- parseSaid sexp    -- FAIL-CLOSED: unparseable => bad hello
+          prog <- parseSaid sexp
           pure (Just (prog, False))
         Just (JArr ptsJ) -> do
-          pts <- mapM jNum ptsJ
-          True <- pure (all (\v -> not (isNaN v || isInfinite v)) pts)
+          pts <- mapM jQ ptsJ
           p0 : prest <- pure pts
           prog <- parseSaidIn pts (mkGrid "u" (p0 :| prest)) sexp
           pure (Just (prog, True))
@@ -271,166 +268,152 @@ hello st j = maybe (st, errLine "bad hello") id $ do
   arK <- case oGet "obs_arity" w of
     Nothing -> pure Nothing
     Just (JNum v) -> do
-      -- the door discipline (D-f8 rider 1): validation at the HELLO,
-      -- fail-closed — finite, integral, K >= 2
       True <- pure (not (isNaN v || isInfinite v))
       let r = round v :: Int
       True <- pure (fromIntegral r == v && r >= 2)
       pure (Just r)
     Just _ -> Nothing
   n0 : nrest <- pure ns
-  -- RIDER 2's validation: every guard and writable name inside the
-  -- declared (completed, immutable) namespace
   let inNs nm = nm `elem` ns
   if not (all (inNs . fst) gs && all (inNs . fst) menu)
     then pure (st, errLine "names outside namespace")
     else do
-      let nsN = mkNamespace (n0 :| nrest)
-          -- the ABSENT key is the shipped call, untouched; a DECLARED
-          -- arity (any K >= 2) is the arity route — declared-2 vs
-          -- absent is a pinned coincidence (test-arity g1b/g2), never
-          -- a branch on 2
-          pop = case arK of
-            Nothing -> enumerateSentencesIn nsN gs fragFull
-            Just k  -> enumerateSentencesArity k thetaPoints nsN gs fragFull
-          ag = case arK of
-            Nothing -> sentenceAgent pop
-            Just k  -> sentenceAgentK (obsSpaceAt k) pop
-          nsb = logBase 2 (fromIntegral (length ns) :: Double)
-          uSaid = fmap fst uSaidB
-          ubPart = case uSaidB of
-            Just (prog, True) ->
-              -- W4-ANCHOR: the namespace-relative pricing call
-              let Bits ub = bitsIn nsN prog
-              in ", \"utility_bits\": " ++ show ub
-            _ -> ""
-          reply = "{\"ok\": true, \"proto\": 1, \"models\": "
-                  ++ show (length pop) ++ ", \"namespace_bits\": "
-                  ++ show nsb ++ ubPart ++ "}"
-      pure (HostLive (World menu uSaid) ag, reply)
+      -- K > 2 is the arity route; the exact K-ary family lands with
+      -- the close (the wire capability is retained; until the family
+      -- ports, a K > 2 hello refuses rather than mis-serving)
+      case arK of
+        Just k | k /= 2 -> pure (st, errLine "obs_arity > 2 pending the K-ary family port")
+        _ -> do
+          let nsN = mkNamespace (n0 :| nrest)
+              obsC = mkCarrier "obs" (0 :| [1])
+              atomG = atomGridOfC obsC
+              pop = enumerateWith nsN obsC thetaG gs mRhoG fragFull
+              ag = sentenceAgent nsN pop
+              uSaid = fmap fst uSaidB
+              ubPart = case uSaidB of
+                Just (prog, True) ->
+                  ", \"utility_bits\": "
+                  ++ show (bitsView (weightIn nsN prog))
+                _ -> ""
+              nsb = bitsView (1 / fromIntegral (length ns))
+              reply = "{\"ok\": true, \"proto\": 1, \"models\": "
+                      ++ show (length pop) ++ ", \"namespace_bits\": "
+                      ++ show nsb ++ ubPart ++ "}"
+          pure (HostLive (SessionW nsN atomG menu uSaid) ag, reply)
   where
     pairGrid g = do
       nm <- jStr =<< oGet "name" g
-      JArr vsJ <- oGet "grid" g
-      vs <- mapM jNum vsJ
-      -- D-f8 (A), RIDER 1 (the pin on the door): a NaN or infinite grid
-      -- point is a DECLARATION-TIME validation failure -- the world's
-      -- declared carrier must denote, and it must fail at the HELLO, not
-      -- mid-episode (R-C1 refuses ill-formedness at construction, not
-      -- merely at the read). A hello carrying such a point is bad hello,
-      -- full stop; 'reads' can produce +/-Infinity (e.g. 1e999). The
-      -- gridLookup guard stays as defence-in-depth for the read site.
-      True <- pure (all (\v -> not (isNaN v || isInfinite v)) vs)
+      grid <- pairGridNamed nm =<< oGet "grid" g
+      pure (nm, grid)
+    pairGridNamed nm (JArr vsJ) = do
+      vs <- mapM jQ vsJ            -- jQ refuses NaN/inf AT THE DOOR
       v0 : vrest <- pure vs
-      pure (nm, mkGrid nm (v0 :| vrest))
+      pure (mkGrid nm (v0 :| vrest))
+    pairGridNamed _ _ = Nothing
 
--- One tick (membrane-wire §3): the frozen loop's order — the choice
--- is computed from the predictive BEFORE the observation moves the
--- agent; evidence folds at feats ++ act (step 6's geometry); a tick
--- with neither menu nor evidence is silent and the agent is unmoved.
-tick :: World -> Agent -> J -> (HostState, String)
-tick w ag t = maybe (HostLive w ag, errLine "bad tick") id $ do
-  feats <- case oGet "features" t of
-    Just (JObj kvs) -> mapM (\(k, v) -> (,) k <$> jNum v) kvs
+-- the obs atom codebook from a declared carrier (the same derivation
+-- Enumerate uses; minted here for the session record)
+atomGridOfC :: Carrier Int -> Grid
+atomGridOfC c =
+  case map fromIntegral (spacePoints (carrierSpace c)) of
+    (p : ps) -> mkGrid (carrierName c ++ "-atoms") (p :| ps)
+    [] -> error "atomGridOfC: empty carrier (unreachable: mkCarrier is NonEmpty)"
+
+-- One tick under THE DOOR: the tick's features plus its assignment
+-- must cover the declared namespace exactly; the choice runs through
+-- the SENTENCES (Membrane.chooseEU); the reported predictive reads at
+-- feats ++ act (post-choice, pre-observation — R5's geometry);
+-- evidence folds at feats ++ act; a refused door or impossible
+-- evidence is an error reply and the agent is unmoved.
+tick :: SessionW -> AgentS -> J -> (HostState, String)
+tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
+  feats <- note "bad tick" $ case oGet "features" t of
+    Just (JObj kvs) -> mapM (\(k, v) -> (,) k <$> jQ v) kvs
     Nothing         -> Just []
     _               -> Nothing
-  menuNames <- case oGet "menu" t of
+  menuNames <- note "bad tick" $ case oGet "menu" t of
     Just (JArr ms) -> Just <$> mapM jStr ms
     Nothing        -> pure Nothing
     _              -> Nothing
-  let evid = oGet "evidence" t >>= jNum
-      writable = map fst (wMenuGrids w)
-  -- D-b2 disjointness: a tick may not publish a writable name
+  let evid = oGet "evidence" t >>= jQ
+      writable = map fst (swMenu w)
   if any ((`elem` writable) . fst) feats
-    then pure (HostLive w ag, errLine "feature/assignment collision")
+    then Left "feature/assignment collision"
     else do
-      let mOpts = do
-            nms <- menuNames
-            grids <- mapM (\nm -> (,) nm <$> lookup nm (wMenuGrids w)) nms
-            pure (menuAssignments grids)
-          act = case mOpts of
-            Nothing   -> []
-            Just opts -> choose (wUSaid w) feats ag opts
-          p1 = prob (predictive feats ag) (is (agentObsSpace ag) 1)
-          hB = entropyBits (agentMeta ag)
-          decPart = case mOpts of
-            Nothing -> []
-            Just _  -> [ "\"act\": " ++ rAct act
-                       , "\"p1\": " ++ show p1
-                       , "\"entropy_bits\": " ++ show hB ]
+      mOpts <- note "bad tick" $ case menuNames of
+        Nothing -> Just Nothing
+        Just nms -> do
+          grids <- mapM (\nm -> (,) nm <$> lookup nm (swMenu w)) nms
+          Just (Just (menuAssignments grids))
+      act <- case mOpts of
+        Nothing -> Right []
+        Just [] -> Right []
+        Just opts@(o0 : _) -> case swUSaid w of
+          Nothing -> Right o0          -- wait: the option space's head
+          Just u -> do
+            scored <- mapM (\c -> do
+                        b <- predictiveBelief (feats ++ c) ag
+                        Right (c, b))
+                      opts
+            picked <- chooseEU (swNs w) feats (swAtom w) u scored
+            Right (maybe o0 fst picked)
+      let full = feats ++ act
+      decPart <- case mOpts of
+        Nothing -> Right []
+        Just _ -> do
+          p1 <- predictMassS full 1 ag
+          let hB = entropyAgent ag
+          Right [ "\"act\": " ++ rAct act
+                , "\"p1\": " ++ show (fromRational p1 :: Double)
+                , "\"entropy_bits\": " ++ show hB ]
       case evid of
         Nothing
-          | null decPart -> pure (HostLive w ag, "{\"ok\": true}")
+          | null decPart -> Right (HostLive w ag, "{\"ok\": true}")
           | otherwise ->
-              pure (HostLive w ag, "{" ++ commaSep decPart ++ "}")
-        Just yD -> do
-          let y = round yD :: Obs
-          case observe (feats ++ act) y ag of
-            Nothing -> pure (HostLive w ag, errLine "impossible evidence")
-            Just (LogProb lp, ag') ->
-              let evPart = [ "\"observed\": " ++ show y
-                           , "\"loss_bits\": " ++ show (negate lp / log 2) ]
-              in pure ( HostLive w ag'
-                      , "{" ++ commaSep (decPart ++ evPart) ++ "}" )
+              Right (HostLive w ag, "{" ++ commaSep decPart ++ "}")
+        Just yQ -> do
+          let y = round (fromRational yQ :: Double) :: Int
+          (m, ag') <- observeS full y ag
+          let evPart = [ "\"observed\": " ++ show y
+                       , "\"loss_bits\": " ++ show (bitsView m) ]
+          Right ( HostLive w ag'
+                , "{" ++ commaSep (decPart ++ evPart) ++ "}" )
+  where
+    note m = maybe (Left m) Right
 
--- the pinned exogenous-read choice (COPY of the shape at
--- src/PropLang/Membrane.hs interpretPilot PilotEU / test-stream g2's
--- public arithmetic): candidate EU at predictive (feats ++ a), current
--- weights; strict > displaces, first-listed wins ties (= wait). No
--- utility rows => wait (the option space's head). SINCE STEP 9: the EU
--- is the public 'expect' verb over the utility residue (bit-identical
--- to the pre-step-9 'Call EU' = 'expect b (\y -> uAt fs u 0 y)').
-choose :: Maybe (Expr '[Double, Double] Double) -> Features -> Agent
-       -> NonEmpty Features -> Features
-choose Nothing _ _ opts = NE.head opts
-choose (Just u) feats ag opts =
-  let euAt a = expect (predictive (feats ++ a) ag)
-                      (\y -> evalx u (mkEnv (feats ++ a)
-                                       (0 :. realToFrac y :. VNil)))
-      c0 :| cs = opts
-      go best _bv [] = best
-      go best bv (c : rest) =
-        let cv = euAt c
-        in if cv > bv then go c cv rest else go best bv rest
-  in go c0 (euAt c0) cs
-
--- said@1: the declaration parsed against the residue-scope grammar
--- subset (var, c, add, sub, mul, if, gt, eq, get) — a SENTENCE,
--- priced like any sentence; anything else refuses (fail-closed, the
--- ruled doctrine)
-parseSaid :: J -> Maybe (Expr '[Double, Double] Double)
+-- said@1: the declaration parsed against the exact grammar's
+-- wire-sayable forms — var, c, +, -, *, get, if, >, = . The forms
+-- "/", "log", "exp", "neg" died with their terminals (unknown form =
+-- refuse, fail-closed); "+" parses to the addM MACRO (priced at its
+-- expansion, exactly as "=" parses to the If/Gt composition).
+parseSaid :: J -> Maybe (Expr '[Rational, Rational] Rational)
 parseSaid = parseSaidWith (\v -> mkC (mkGrid "k" (v :| [])) 0)
 
--- W4b: the cgrid-bound parse — every ["c", v] must sit ON the declared
--- grid (index by declared-point identity); off-grid refuses.
-parseSaidIn :: [Double] -> Grid -> J -> Maybe (Expr '[Double, Double] Double)
+parseSaidIn :: [Rational] -> Grid -> J
+            -> Maybe (Expr '[Rational, Rational] Rational)
 parseSaidIn pts g = parseSaidWith (\v -> do
-  i <- elemIndex v pts
+  i <- elemIndexQ v pts
   mkC g i)
+  where
+    elemIndexQ v = go 0
+      where
+        go _ [] = Nothing
+        go i (x : xs) = if x == v then Just i else go (i + 1) xs
 
-parseSaidWith :: (Double -> Maybe (Expr '[Double, Double] Double))
-              -> J -> Maybe (Expr '[Double, Double] Double)
+parseSaidWith :: (Rational -> Maybe (Expr '[Rational, Rational] Rational))
+              -> J -> Maybe (Expr '[Rational, Rational] Rational)
 parseSaidWith kc = pE
   where
     pE (JArr [JStr "var", JNum 0]) = Just (Var Z)
     pE (JArr [JStr "var", JNum 1]) = Just (Var (S Z))
-    pE (JArr [JStr "c", JNum v]) = kc v
-    pE (JArr [JStr "+", a, b]) = Add <$> pE a <*> pE b
+    pE (JArr [JStr "c", v]) = kc =<< jQ v
+    pE (JArr [JStr "+", a, b]) = addM <$> pE a <*> pE b
     pE (JArr [JStr "-", a, b]) = Sub <$> pE a <*> pE b
     pE (JArr [JStr "*", a, b]) = Mul <$> pE a <*> pE b
     pE (JArr [JStr "get", JStr nm]) = Just (Get nm)
-    -- W4a: the full priced grammar reaches the wire (WIRE_PLAN W4 (a));
-    -- "<" is NOT a form — [">", b, a] says it (successful composition)
-    pE (JArr [JStr "/", a, b]) = Div <$> pE a <*> pE b
-    pE (JArr [JStr "log", a]) = Log <$> pE a
-    pE (JArr [JStr "exp", a]) = Exp <$> pE a
-    pE (JArr [JStr "neg", a]) = Neg <$> pE a
     pE (JArr [JStr "if", c, t, e]) = If <$> pB c <*> pE t <*> pE e
     pE _ = Nothing
     pB (JArr [JStr ">", a, b]) = Gt <$> pE a <*> pE b
-    -- SINCE STEP 9: '=' is the If/Gt composition (E-e2; IsEq deleted):
-    -- x == y iff neither x > y nor y > x. trueE/falseE are constant
-    -- guards over singleton grids (the same 'mkC' door 'c' uses).
     pB (JArr [JStr "=", a, b]) = do
       x <- pE a
       y <- pE b
@@ -445,12 +428,8 @@ parseSaidWith kc = pE
 -- over 'serveLine' (gate 3: the loop lives here and only here).
 hostMain :: IO ()
 hostMain = do
-  -- THE TRANSPORT FIX (#18, transport-freeze-r0): GHC block-buffers
-  -- stdout off a terminal, so a pipe host never sees a reply until the
-  -- buffer fills or the process exits — the wire promises SYNCHRONOUS
-  -- JSON-lines, and the promise broke at the first exchange. Line
-  -- buffering makes putStrLn flush per reply; test-transport/ pins it
-  -- over real pipes.
+  -- THE TRANSPORT FIX (#18, transport-freeze-r0): line buffering so a
+  -- pipe host sees each reply as it is written; test-transport pins it.
   hSetBuffering stdout LineBuffering
   go hostStart
   where

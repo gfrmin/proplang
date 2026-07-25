@@ -49,9 +49,8 @@ module PropLang.Purchase
 
 import Data.List.NonEmpty (nonEmpty)
 import PropLang.Belief
-  ( Belief, Bits (..), fromBits, kernel, mkSpace, push
+  ( Belief, Space, fromWeights, kernel, mkSpace, push
   )
-import PropLang.Enumerate (Obs, obsSpace)
 import PropLang.Lattice
   ( Node, Owned, frontier, guardE, mkOwned, nodeTheta, ownedNodes
   , scoreOwned, straddles
@@ -93,15 +92,15 @@ kLadder = 16
 -- VALUE-BASED candidate, the frontier node whose ownership most
 -- improves the guarded act value; cheapest-first fails, the cheap
 -- rungs are the worthless ones, pack III.7), depth by the rung law.
-runPurchase :: PurchaseWorld -> Owned -> [Obs] -> [PTick]
+runPurchase :: PurchaseWorld -> Owned -> [Int] -> [PTick]
 runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
   where
     st = pwStakes w
 
-    go :: Owned -> (Int, Int) -> [Obs] -> [PTick]
+    go :: Owned -> (Int, Int) -> [Int] -> [PTick]
     go _ _ [] = []
     go o (a, b) (y : ys) =
-      let c' = if y == (1 :: Obs) then (a + 1, b) else (a, b + 1)
+      let c' = if y == (1 :: Int) then (a + 1, b) else (a, b + 1)
           respondV = guardE True o c' st
           forgone  = max 0 respondV
           (cand, gain) = bestCandidate o c'
@@ -142,18 +141,21 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
 
 -- | The predictive after purchases: each owned hypothesis's emission
 -- comes from its own code through the sentence fragment — vocabulary
--- motion moves the kernel (row g11; the R0 hand-built-kernel
--- confession is this door's provenance). The Bernoulli form is the
--- fragment's frozen instance (Enumerate.hs emit/bernFast:
--- p(y=1|th) = th), reached through the sealed reasoner's own doors.
-purchasePredictive :: Owned -> (Int, Int) -> Belief Obs
-purchasePredictive o c =
+-- motion moves the kernel (row g11). SINCE exact-freeze-r0: the
+-- Bernoulli form is WEIGHT-FORM through the sole introducer
+-- (fromWeights masses (1-th, th), exact via the binary64 embed), and
+-- the obs carrier is DECLARED BY THE CALLER (E3: no baked point-set
+-- in src — the old Enumerate.obsSpace died with it).
+purchasePredictive :: Space Int -> Owned -> (Int, Int) -> Belief Int
+purchasePredictive obsSp o c =
   case nonEmpty (map nodeTheta (ownedNodes o)) of
     Nothing  -> error "purchasePredictive: the owned set is never empty"
     Just pts ->
-      push (scoreOwned o c) (kernel (mkSpace pts) obsSpace bern)
+      push (scoreOwned o c) (kernel (mkSpace pts) obsSp bern)
   where
-    bern th = fromBits obsSpace
-      (\y -> Bits (if y == (1 :: Obs)
-                    then negate (logBase 2 th)
-                    else negate (logBase 2 (1 - th))))
+    bern th =
+      let thQ = realToFrac th :: Rational
+      in case fromWeights obsSp
+                (\y -> if y == (1 :: Int) then thQ else 1 - thQ) of
+           Just b  -> b
+           Nothing -> error "purchasePredictive: no mass (unreachable: interior theta)"
