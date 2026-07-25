@@ -347,3 +347,29 @@ membrane-wire's forms table; everything else stays.*
 
 *Local path: /home/g/git/proplang/exact-author-pack.md — also sent to
 pixel6 by Taildrop with this commit.*
+
+## Part VII — rulings record (the opening sitting, 2026-07-25)
+
+Ruled by the author at the planning session (sealed by the Phase-1 freeze
+tag when the exact oracle is reviewed):
+
+1. BOUNDARY OPEN as chartered; #6/#7/#8 as recommended; #5 + pruning
+   registered; Part IV approved as freeze items.
+2. prodTable ships **10/1** (six-cut −6, Push/Argmax −2, fusion −2; the
+   1/14 intermediate never ships — Phase-D pins price the node 1/10).
+3. Push and Argmax DELETED, with the selection-fold re-homing obligation
+   (the general route becomes the derived sayable composition; the host
+   fold survives only opt-law-pinned).
+4. The corridor FUSES inside this boundary (one conditioning primitive;
+   Ev and Maybe(B) sorts leave the grammar; g5/g6 port as the pin).
+
+Plus THE AGENT CRITERION (EXACT_PLAN §11c): a deletion is legal only if
+the agent capability it served remains sayable and the executable route
+runs through the sentence — host folds only as pinned fast paths. Its
+provenance is the author's directive at this sitting: "lets make sure
+we're building a bayesian AGENT, not a calculator."
+
+Phase D begins under these rulings: the exact oracle (test/ re-derived
+from the A1 reference, the exact lawful floor, the audit increment
+oracle over the 10+1 grammar with the fused verb), oracle-first,
+R-D20/21/22 throughout, your key at the freeze.

@@ -443,3 +443,53 @@ have documents?") — the census (72 tracked .md, ~26k lines, universe by
    I2's Is shrink.
 8. Document dispositions (the census table) and the CLAUDE.md minimality
    clause's canonization text.
+
+### 11c. The rulings of the opening sitting (author, 2026-07-25, recorded)
+
+The author ruled the Part-III sheet at the planning session (decision
+record; the tag that seals them is the Phase-1 freeze tag over the exact
+oracle):
+
+1. **The boundary is OPEN as chartered** (§0–§11). #6 (dyadic-in-theta
+   lattice), #7 (uniform/point as fromWeights definitions; I2's Is
+   shrink), #8 (the fail-closed door) ruled AS RECOMMENDED. #5 (two width
+   tables) and the type-pruned-widths half of #2 REGISTERED as named
+   later questions. Part IV (archive sweep; membrane-wire forms table
+   derived) approved as freeze items.
+2. **prodTable leaves 20** — and, composed with rulings 3 and 4, the
+   SHIPPED table is **10/1**: the six-cut (−6), Push and Argmax deleted
+   (−2), the corridor fused three-into-one (−2). The 1/14 figure was the
+   six-cut intermediate and never ships; every Phase-D pin prices the
+   node at **1/10** (KER at 1/1). The P5 single-site edit lands 20→10 in
+   Phase 2.
+3. **Push and Argmax DELETED** — the criterion without fear or favor:
+   both banks expired, both named futures were discharged without them
+   (step 10's vActS is If/Gt-over-Expects; vThinkS is corridor+Add/Sub;
+   Reflexive.hs:99-120). WITH the re-homing obligation: the wire's
+   selection fold (Membrane.hs:234-252, the deferred-and-never-resolved
+   classification — the calculator residue) is re-homed in Phase 2 so
+   the GENERAL route is the derived sayable composition and the host
+   fold survives only as an optimisation-law-pinned fast path.
+4. **The corridor FUSES INSIDE THIS BOUNDARY**: SawE/CondE/ElimJ become
+   one conditioning primitive (working name `Cond`: belief, kernel,
+   observed outcome, Just-arm binder, Nothing-arm — g6's load-bearing
+   Nothing arm retained); the `Ev` and `Maybe (B a)` corridor sorts
+   leave the grammar. Phase D writes the fused grammar's oracle rows
+   directly; g5/g6 port as the pin.
+
+**THE AGENT CRITERION** (companion clause, drafted at this sitting under
+the author's "lets make sure we're building a bayesian AGENT, not a
+calculator"): a deletion is legal only if the agent capability it served
+remains SAYABLE, and the executable route runs through the sentence — a
+host fold is legal only as a fast path pinned to the sayable route by
+the optimisation law. Applied to this boundary: choice → the If/Gt
+family (CL-3-pinned, ArgmaxK battery); preposterior deliberation → the
+step-10 composition; conditioning → the fused verb; prediction → the
+corridor + Expect. The selection-fold re-homing of ruling 3 is this
+clause's first enforcement.
+
+**Post-ruling alphabet (the Phase-2 target):**
+`C(MkC), Get, Var, If, Gt, Add, Sub, Mul, Expect, Cond` (EXPR, 10) +
+`Code` (KER, 1) + the sorts `Rational, Bool, B, K, Space, Grid, Carrier,
+World` — each type with its derivation line, each production with its
+transcript.
