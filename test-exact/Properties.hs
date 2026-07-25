@@ -183,7 +183,7 @@ main = defaultMain $ testGroup "exact properties (laws by ==)"
       -- observing 1 is IMPOSSIBLE evidence — the Nothing arm shows
       assertEqual "Nothing arm shows through"
         (7 % 10) (evalx sent (probeEnv (kInd :. bLow :. VNil)))
-  , testCase "R1 rider: an OFF-CODEBOOK outcome is impossible evidence — the Nothing arm, pinned" $ do
+  , testCase "R1 rider: an OFF-CODEBOOK outcome is impossible evidence - the Nothing arm, pinned" $ do
       let b0 = uniform egSpace
           offG = mkGrid "off" (7 % 2 :| [])   -- 7/2 matches NO obs atom
           sent = Cond (Var (S Z)) (Var Z) (cAtG offG 0)

@@ -852,6 +852,15 @@ boundary IS the alphabet motion its row waits on — the re-execution
 lands on Phase 2's opening checklist. KERNEL.md is drafted at the root
 (the one page; the standing test is in its header).
 
+### IX.7a Erratum (the review sitting's re-lint, 2026-07-25)
+
+The repair pass introduced one ASCII-clause violation: the R1-rider
+row's test name carried an em-dash (Properties.hs:186; prefreeze-lint
+L2, the membrane locale clause). Fixed to ASCII at the review sitting;
+the IX.3 transcript's row label differs from the staged name by that
+one character (the transcript records the run that happened; the
+author's freeze verification re-run prints the ASCII name).
+
 ### IX.8 Sequence
 
 1. You review this pack part and the staged diff.

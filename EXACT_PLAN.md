@@ -520,5 +520,63 @@ clause's first enforcement.
 `C(MkC), Get, Var, If, Gt, Sub, Mul, Expect, Cond` (EXPR, 9 — as
 superseded at the repair sitting) +
 `Code` (KER, 1) + the sorts `Rational, Bool, B, K, Space, Grid, Carrier,
-World` — each type with its derivation line, each production with its
-transcript.
+Namespace, World` (Namespace added at the review sitting — the mandate-3
+census omission; its line rides pack IX.2 B4) — each type with its
+derivation line, each production with its transcript.
+
+## 12. Phase 2 — the work order (drafted at the review sitting of 2026-07-25; executes only after the author's exact-freeze-r0 tag)
+
+**R17 — THE AGENT IS A DERIVATION (drafted for the author's adoption at
+the freeze tag; the organizing principle of Phase 2).** The agent
+layer's normative definition is four derivations over the sealed
+reasoner's API — never trusted engine code:
+
+    corpus W  = the sentences of the grammar sayable under W's
+                codebooks, within a declared frontier parameter
+    agent W   = fromWeights (corpus W) (\h -> 1 / M h)
+    tick y    = Cond (agent) (interp-kernel feats) y
+                  where interp = evalx of each hypothesis's Code at
+                  the door-served features
+    predict   = Expect over the pushforward
+    choose    = the If/Gt family over Expects (CL-3-pinned)
+
+Engine code implementing any of these is a fast path under the
+optimisation law (S1b), pinned extensionally to the derivation in the
+same increment. The fragment/fragWidth apparatus either DERIVES from
+the price bound or dies — this resolves registered question #5's shape
+(the fragment table is an optimisation of the frontier-parameterized
+enumeration, so it owes a derivation or a pin; it cannot remain a
+second hand-declared shape of the hypothesis space).
+
+**The work order (builder; the oracle is frozen before any of this):**
+
+1. **Opening checklist.** OB-16/GetV re-executes (this boundary moved
+   the alphabet — the banked-failure expiry clause); the R-R1 dyadic
+   spacing re-derivation lands under opening ruling #6 (author item,
+   brought to the close); the two R15 positive banks (the addM closed
+   form; Mul's bilinearity) are this increment's standing banks.
+2. **src/ re-founds to the proven 9/1 surface** under gates 1-7 +
+   E1/E2/E3: modules Belief / Syntax / Eval / Enumerate / Report (+ the
+   boundary layer). Enumerate re-founds PER R17: (i) the corpus
+   generator derived from the grammar's own declared production table
+   under a frontier parameter (enforcement rung ii); (ii) every engine
+   fast path opt-law-pinned to the R17 derivation (the oracle's
+   agent-criterion rows are the precedent and the first pins). The
+   derivation-line table (pack IX.2 B4) lands as in-file lines at each
+   definition site. Host.hs's `World` renames or subsumes (R4). The
+   selection-fold re-homing lands with its pin (opening ruling 3).
+3. **Ablations.** DROP flags for the six structural atoms + DROP_GET
+   (gate-7 rows); every ablation demonstrably fires.
+4. **The R11 mass retirement** executes with pack IX.5 as its pin
+   list: PORTED/GATE rows land as named rows in this increment;
+   DISCHARGED-PERMANENT files are DELETED; the manifest re-signs at
+   the close (author key or recorded delegation + re-tag, R-D22).
+5. **KERNEL.md page 2** — the module-derivation table describing the
+   as-built architecture, one line per module; a module without a line
+   is collapsed, not documented.
+6. **Close.** Full-corpus overlay build green (lint L7); prefreeze-lint
+   + boundary-audit transcripts ride the close; the red-team mandates
+   are put to the increment (S9.4); the as-built report answers this
+   section's register; the author countersigns (suggested tag
+   exact-freeze-r1). The process-deletion-audit candidates (pack IX.6)
+   are brought to that sitting for the author's per-item ruling.
