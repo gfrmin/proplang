@@ -114,6 +114,7 @@ expressions (drawn from the same ATOM grammar as everything else), and the
 PARAMs are ordinary parameter expressions. Then:
 
 - `bern(p)`   = expfam over {0,1}, stats T(y)=y — a stdlib *name* (`call`)
+> [FALSIFIED at the exact boundary (exact-freeze-r0, 2026-07-25): the line below promised a gauss/expfam family; the exact re-founding forecloses expfam (transcendental weights) — the promise is withdrawn, not deferred.]
 - `gauss(m,s)` = expfam over a real carrier, stats (y, y^2) — stdlib name
 - transitions = the *partial* unification, amended on proof (EXPFAM_PLAN
   T1): an expfam-shaped transition kernel is an expfam whose parameter

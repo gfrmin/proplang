@@ -1,3 +1,5 @@
+> [SUPERSEDED IN PART at the exact boundary (exact-freeze-r0, 2026-07-25): the Double anchors and tolerance conventions this document quotes are superseded by the exact oracle (EXACT_PLAN, KERNEL.md, exact-author-pack Parts VII-IX); its narrative remains the close-date record of the Double era.]
+
 # proplang — the write-up
 
 The record's face. This document consolidates `design.md` (the
