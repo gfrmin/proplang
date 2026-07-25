@@ -835,6 +835,36 @@ Each retirement executes at a boundary under your key, pins listed,
 never by builder discretion — the process getting the deletion test
 the language already passed.
 
+**The oracle-row deletion audit (the fourth move; drafted at the
+review sitting on the author's "let's do that" — the deletion test
+applied to the law itself):**
+
+> AN ORACLE ROW EARNS ITS SEAT BY A UNIQUE KILL. The mutant pool is
+> DECLARED — audit/mutants/, each mutant a named minimal patch
+> instantiating a recorded failure shape, the pool derived from the
+> incident case law plus a declared operator list (the sweep-universe
+> law; hand-enumeration is the disease). The audit runs the frozen
+> suites against every mutant and records the KILL MATRIX. Verdicts
+> are triage inputs for the sitting, never auto-deletions (the
+> boundary-audit's own discipline): EARNED — a nonempty unique-kill
+> set; SHADOWED — every kill covered by other rows (a deletion
+> candidate; uniqueness is pool-relative, so the sitting asks first
+> whether the pool is too coarse); UNREACHED — no mutant kills it
+> (either the pool is deficient or the row is a green-that-cannot-
+> fail; both convict something, and which one is the sitting's
+> question). Deletions execute only at a boundary under the author's
+> key, pins listed. FORWARD HALF: a new oracle row arrives WITH its
+> kill — the triptych proves a row CAN fire; the kill proves it fires
+> for a reason no standing row covers (the two-sided entry gate,
+> extended from terminals to the law). First run at the Phase-2 close
+> (mutation needs a green src to mutate); thereafter standing wherever
+> rows land or leave; the kill matrix rides the boundary's pack.
+
+Its precedent is the step-2 pin-freeze seeded-defect form (every red
+reachable, attribution partitioned); its tool half is
+tools/oracle-audit.sh + the mutant registry, deliverables of the
+Phase-2 close increment.
+
 ### IX.7 The R16 bundle + notes, discharged
 
 100× → 81× at width 9 (both quoted figures repaired in place);

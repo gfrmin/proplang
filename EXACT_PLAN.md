@@ -580,3 +580,19 @@ second hand-declared shape of the hypothesis space).
    section's register; the author countersigns (suggested tag
    exact-freeze-r1). The process-deletion-audit candidates (pack IX.6)
    are brought to that sitting for the author's per-item ruling.
+7. **The oracle-row deletion audit, first run** (pack IX.6, the fourth
+   move — the deletion test applied to the law itself). Deliverables
+   of this close: tools/oracle-audit.sh and the DECLARED mutant
+   registry (audit/mutants/ — each mutant a named minimal patch
+   instantiating a recorded failure shape; the pool derived from the
+   incident case law plus a declared operator list, never
+   hand-enumerated). The audit runs every frozen suite against every
+   mutant and brings the KILL MATRIX to the close sitting: EARNED /
+   SHADOWED / UNREACHED per row, flags as triage inputs never
+   verdicts; any row deletion executes under the author's key with
+   its pins listed. The drafted clause (including the forward half —
+   a new oracle row arrives WITH its unique kill) is put to the
+   author for CLAUDE.md canonization at the same sitting. Note the
+   composition with IX.8a: the audit runs AFTER the R11 retirement,
+   so the matrix covers exactly the surviving law, not rows already
+   leaving.
