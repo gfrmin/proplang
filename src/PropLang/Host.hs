@@ -20,6 +20,9 @@
 --     namespace exactly (with the tick's assignment supplying the
 --     writable names) — the 0.0-dormancy default is dead; an
 --     under-specified tick is an error reply.
+--   * obs_arity serves ANY K >= 2 through the exact K-ary route
+--     (enumerateWithArity; the SevenSeats Mul-form) — the W3
+--     capability carried, the K=2 coincidence pinned exactly.
 --   * selection runs through Membrane.chooseEU — the SENTENCE route
 --     (opening ruling 3); the host fold is dead.
 module PropLang.Host
@@ -47,8 +50,9 @@ import Data.Char (isDigit)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
-import PropLang.Enumerate (AgentS, enumerateWith, fragFull, observeS,
-                           predictMassS, sentenceAgent)
+import PropLang.Enumerate (AgentS, enumerateWith, enumerateWithArity,
+                           fragFull, observeS, predictMassS,
+                           sentenceAgent)
 import PropLang.Eval (Features)
 import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief)
 import PropLang.Report (bitsView, entropyAgent)
@@ -278,16 +282,18 @@ hello st j = maybe (st, errLine "bad hello") id $ do
   if not (all (inNs . fst) gs && all (inNs . fst) menu)
     then pure (st, errLine "names outside namespace")
     else do
-      -- K > 2 is the arity route; the exact K-ary family lands with
-      -- the close (the wire capability is retained; until the family
-      -- ports, a K > 2 hello refuses rather than mis-serving)
-      case arK of
-        Just k | k /= 2 -> pure (st, errLine "obs_arity > 2 pending the K-ary family port")
-        _ -> do
+      do
           let nsN = mkNamespace (n0 :| nrest)
-              obsC = mkCarrier "obs" (0 :| [1])
+              kA = maybe 2 id arK
+              obsC = mkCarrier "obs" (0 :| [1 .. kA - 1])
               atomG = atomGridOfC obsC
-              pop = enumerateWith nsN obsC thetaG gs mRhoG fragFull
+              -- the ABSENT key is the plain route; a DECLARED arity
+              -- (any K >= 2) is the K-ary route — declared-2 vs
+              -- absent is the g2 coincidence, pinned EXACTLY in
+              -- test-pin/Arity, never a branch on 2
+              pop = case arK of
+                Nothing -> enumerateWith nsN obsC thetaG gs mRhoG fragFull
+                Just k -> enumerateWithArity k nsN obsC thetaG gs mRhoG fragFull
               ag = sentenceAgent nsN pop
               uSaid = fmap fst uSaidB
               ubPart = case uSaidB of

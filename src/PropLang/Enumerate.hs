@@ -10,6 +10,9 @@ module PropLang.Enumerate
   , constCharge, walkCharge, guardCharge
   , enumerate
   , enumerateWith
+  , enumerateWithArity
+  , corpusBodies
+  , inCorpus
   , AgentS
   , agentObsPoints
   , atomGridOf
@@ -180,6 +183,168 @@ enumerateWith _ns obsC eg guardGs mrg allowed =
       | has FBern, has FIf, has FConst, has FGuardHead
       , kt <- [0 .. gridSize tg - 1]
       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+
+-- | The K-ary route (W3's arity capability, exact): at declared arity
+-- K >= 2 the families run over distinguished POSITIVE atoms
+-- j in {1..K-1}, j outermost per family — P(y = j) = theta with the
+-- rest of the codomain sharing (1 - theta) uniformly. Weight-form and
+-- Mul-form: the target atom's mass is (K-1)*theta with the world
+-- integer K-1 READ FROM THE ATOM CODEBOOK'S OWN LAST ATOM (atoms are
+-- 0..K-1, so the last atom's value IS K-1 — no second declaration);
+-- the spread atoms carry (1 - theta); fromWeights normalizes to the
+-- law (theta target, (1-theta)/(K-1) spread — the SevenSeats/CatBody
+-- bank). The arity charge is the shipped tree times the atom mention
+-- 1/(K-1) (the M1 namespace-law shape: 1 at K = 2). At K = 2 this
+-- route coincides with 'enumerateWith' extensionally (the old g2
+-- coincidence, now pinned EXACTLY in test-pin/Arity).
+enumerateWithArity :: Int -> Namespace -> Carrier Int -> Grid
+                   -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
+enumerateWithArity kAr _ns obsC eg guardGs mrg allowed =
+    concat [ constsJ j | j <- posAtoms ]
+    ++ concat [ walksJ j | j <- posAtoms ]
+    ++ concat [ guardFamilyJ j g | j <- posAtoms, g <- guardGs ]
+  where
+    has t = t `elem` allowed
+    posAtoms = [1 .. kAr - 1]
+    obsSp = carrierSpace obsC
+    atomG = atomGridOf obsC
+    cAt :: Grid -> Int -> Expr env Rational
+    cAt g k = case mkC g k of
+      Just e -> e
+      Nothing -> error "enumerateWithArity: off-codebook (unreachable)"
+    zero = cAt atomG 0
+    one = if gridSize atomG > 1 then cAt atomG 1 else zero
+    eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+      where
+        trueE = Gt one zero
+        falseE = Gt zero one
+    km1 = cAt atomG (kAr - 1)          -- the world integer K-1, read
+                                       -- from the carrier's own atoms
+    catBody j th =
+      If (eqE (Var Z) (cAt atomG j)) (Mul km1 th) (Sub one th)
+    arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1)))
+    unitLatent = mkSpace (thetaPt 0 :| [])
+    thetaPt k = case mkC eg k :: Maybe (Expr '[] Rational) of
+      Just (C _ _ v) -> v
+      _ -> error "enumerateWithArity: theta codebook too small"
+    egSp = mkSpace (case [ thetaPt k | k <- [0 .. gridSize eg - 1] ] of
+                      [] -> error "enumerateWithArity: empty codebook"
+                      (q : qs) -> q :| qs)
+    constsJ j =
+      [ Hyp ("const", [j, k])
+            (chargeMass fragWidth (CMul (constCharge eg) arityMass))
+            unitLatent
+            (Code unitLatent obsSp (catBody j (cAt eg k)))
+            Nothing
+      | has FBern, has FConst, k <- [0 .. gridSize eg - 1] ]
+    walksJ j = case mrg of
+      Nothing -> []
+      Just rg ->
+        [ Hyp ("walk", [j, r])
+              (chargeMass fragWidth (CMul (walkCharge rg) arityMass))
+              egSp
+              (Code egSp obsSp (catBody j (Var (S Z))))
+              (Just (walkMoveA rg r))
+        | has FWalk, has FConst, r <- [0 .. gridSize rg - 1] ]
+    walkMoveA rg r = Code egSp egSp mass
+      where
+        rv = cAt rg r
+        xv = Var (S Z)
+        jv = Var Z
+        step = Sub (cAt eg 1) (cAt eg 0)
+        minT = cAt eg 0
+        maxT = cAt eg (gridSize eg - 1)
+        lo = If (Gt xv minT) (Sub xv step) (addM xv step)
+        hi = If (Gt maxT xv) (addM xv step) (Sub xv step)
+        two = addM one one
+        stay = Mul two (Sub one rv)
+        mass = addM (addM (If (eqE jv xv) stay zero)
+                          (If (eqE jv lo) rv zero))
+                    (If (eqE jv hi) rv zero)
+    guardFamilyJ j (nm, tg) =
+      [ Hyp ("guard", [j, kt, a, b])
+            (chargeMass fragWidth (CMul (guardCharge _ns tg eg) arityMass))
+            unitLatent
+            (Code unitLatent obsSp
+               (catBody j (If (Gt (Get nm) (cAt tg kt))
+                              (cAt eg a) (cAt eg b))))
+            Nothing
+      | has FBern, has FIf, has FConst, has FGuardHead
+      , kt <- [0 .. gridSize tg - 1]
+      , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+
+-- ---------------------------------------------------------------------
+-- R17: THE CORPUS IS A DERIVATION. The normative hypothesis space is
+-- the grammar's own sayable sentences under the World's codebooks,
+-- within a declared FRONTIER (here: a node budget; the weight bound
+-- derives from it — n nodes cost at least (1/prodExpr)^n times the
+-- smallest mention factor). 'enumerate' (the family route) is a
+-- SELECTOR over this intension — a fast path under the optimisation
+-- law, pinned by test-pin/R17: every family body is 'inCorpus' (the
+-- intensional membership check over declared data), and the small-
+-- frontier extension of 'corpusBodies' is exhaustively pinned.
+-- The fragment table (fragWidth) is the selector's own declared
+-- weighting, NOT the grammar weight — the registered question #5's
+-- shape, pinned as an inequality in test-pin/R17.
+-- ---------------------------------------------------------------------
+
+-- | Every Code-body sentence (scope: outcome, latent — the likelihood
+-- shape) up to a node budget, over the declared mention codebooks and
+-- the declared namespace. The generator IS the production table read
+-- as a recipe: each hole filled by each written alternative.
+corpusBodies :: Namespace -> [Grid] -> Int
+             -> [Expr '[Rational, Rational] Rational]
+corpusBodies ns gs budget = genR budget
+  where
+    leavesR :: [Expr '[Rational, Rational] Rational]
+    leavesR =
+      [ e | g <- gs, k <- [0 .. gridSize g - 1], Just e <- [mkC g k] ]
+      ++ [ Get nm | nm <- nsNames ns ]
+      ++ [ Var Z, Var (S Z) ]
+    genR :: Int -> [Expr '[Rational, Rational] Rational]
+    genR n
+      | n < 1 = []
+      | otherwise =
+          leavesR
+          ++ [ op a b | n >= 3, (i, j) <- splits2 (n - 1)
+             , a <- genR i, b <- genR j, op <- [Sub, Mul] ]
+          ++ [ If c t e | n >= 6, (i, j, k) <- splits3 (n - 1)
+             , c <- genB i, t <- genR j, e <- genR k ]
+    genB :: Int -> [Expr '[Rational, Rational] Bool]
+    genB n
+      | n < 3 = []
+      | otherwise =
+          [ Gt a b | (i, j) <- splits2 (n - 1)
+          , a <- genR i, b <- genR j ]
+          ++ [ If c t e | n >= 10, (i, j, k) <- splits3 (n - 1)
+             , c <- genB i, t <- genB j, e <- genB k ]
+    splits2 m = [ (i, m - i) | i <- [1 .. m - 1] ]
+    splits3 m = [ (i, j, m - i - j)
+                | i <- [1 .. m - 2], j <- [1 .. m - i - 1] ]
+
+-- | Intensional corpus membership: the body is a sentence of the
+-- grammar whose every mention sits on a DECLARED codebook and whose
+-- every read names the DECLARED namespace — checked structurally over
+-- declared data (never by enumeration; the corpus is an intension and
+-- this is its characteristic function).
+inCorpus :: Namespace -> [Grid] -> Expr env t -> Bool
+inCorpus ns gs = goT
+  where
+    okGrid g k = any (\g' -> gridName g' == gridName g
+                             && gridSize g' == gridSize g) gs
+                 && k >= 0 && k < gridSize g
+    goT :: Expr env' t' -> Bool
+    goT e = case e of
+      C g k _ -> okGrid g k
+      Get nm -> nm `elem` nsNames ns
+      Var _ -> True
+      If c t f -> goT c && goT t && goT f
+      Gt a b -> goT a && goT b
+      Sub a b -> goT a && goT b
+      Mul a b -> goT a && goT b
+      Expect b body -> goT b && goT body
+      Cond b k y j n -> goT b && goT k && goT y && goT j && goT n
+      Code _ _ body -> goT body
 
 -- | The obs carrier's atoms as a codebook (world-DERIVED, not a new
 -- declaration): the source of every 0/1 mention.

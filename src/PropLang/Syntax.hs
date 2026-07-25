@@ -14,20 +14,42 @@ module PropLang.Syntax
   , Namespace, mkNamespace, nsNames, nsSize
   , World (..)
   , Idx (..)
-  , Expr ( Get, If, Gt, Var, Sub, Mul
+  , Expr (
+#ifndef DROP_GET
+           Get,
+#endif
+#ifndef DROP_IF
+           If,
+#endif
+#ifndef DROP_GT
+           Gt,
+#endif
+#ifndef DROP_VAR
+           Var,
+#endif
+#ifndef DROP_SUB
+           Sub,
+#endif
+#ifndef DROP_MUL
+           Mul,
+#endif
 #ifndef DROP_EXPECT
-         , Expect
+           Expect,
 #endif
 #ifndef DROP_COND
-         , Cond
+           Cond,
 #endif
 #ifndef DROP_CODE
-         , Code
+           Code,
 #endif
-         , C
+           C
          )
+#ifndef DROP_C
   , mkC
+#endif
+#ifndef DROP_SUB
   , addM
+#endif
   , KnownScope (..)
   , ProdTable (..), prodTable
   , Charge (..), chargeMass
@@ -105,12 +127,27 @@ data Idx (env :: [Type]) t where
 
 -- The grammar. Rational is the language's numeric sort.
 data Expr (env :: [Type]) t where
+#ifndef DROP_C
   MkC :: Grid -> Ix -> Rational -> Expr env Rational
+#endif
+#ifndef DROP_GET
   Get :: Name -> Expr env Rational
+#endif
+#ifndef DROP_IF
   If :: Expr env Bool -> Expr env t -> Expr env t -> Expr env t
+#endif
+#ifndef DROP_GT
   Gt :: Expr env Rational -> Expr env Rational -> Expr env Bool
+#endif
+#ifndef DROP_VAR
   Var :: Idx env t -> Expr env t
-  Sub, Mul :: Expr env Rational -> Expr env Rational -> Expr env Rational
+#endif
+#ifndef DROP_SUB
+  Sub :: Expr env Rational -> Expr env Rational -> Expr env Rational
+#endif
+#ifndef DROP_MUL
+  Mul :: Expr env Rational -> Expr env Rational -> Expr env Rational
+#endif
 #ifndef DROP_EXPECT
   -- the prevision atom: the belief's carrier bound AS Rational (the
   -- deleted ToR's conversion moved into the binder — fixed machinery,
@@ -142,16 +179,43 @@ data Expr (env :: [Type]) t where
        -> Expr env (Maybe (K a b))
 #endif
 
+#ifndef DROP_C
 pattern C :: () => t ~ Rational => Grid -> Ix -> Rational -> Expr env t
 pattern C g k v <- MkC g k v
-
-#if !defined(DROP_EXPECT) && !defined(DROP_COND) && !defined(DROP_CODE)
-{-# COMPLETE C, Get, If, Gt, Var, Sub, Mul, Expect, Cond, Code #-}
 #endif
 
+#if !defined(DROP_EXPECT) && !defined(DROP_COND) && !defined(DROP_CODE) && !defined(DROP_GET) && !defined(DROP_IF) && !defined(DROP_GT) && !defined(DROP_VAR) && !defined(DROP_SUB) && !defined(DROP_MUL) && !defined(DROP_C)
+{-# COMPLETE C, Get, If, Gt, Var, Sub, Mul, Expect, Cond, Code #-}
+#endif
+-- single-flag ablation builds keep an exhaustive pragma (the runner
+-- never sets two flags; a multi-flag build is not a supported form)
+#if defined(DROP_GET)
+{-# COMPLETE C, If, Gt, Var, Sub, Mul, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_IF)
+{-# COMPLETE C, Get, Gt, Var, Sub, Mul, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_GT)
+{-# COMPLETE C, Get, If, Var, Sub, Mul, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_VAR)
+{-# COMPLETE C, Get, If, Gt, Sub, Mul, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_SUB)
+{-# COMPLETE C, Get, If, Gt, Var, Mul, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_MUL)
+{-# COMPLETE C, Get, If, Gt, Var, Sub, Expect, Cond, Code #-}
+#endif
+#if defined(DROP_C)
+{-# COMPLETE Get, If, Gt, Var, Sub, Mul, Expect, Cond, Code #-}
+#endif
+
+#ifndef DROP_C
 -- | The one door to a priced constant: on-codebook mentions only.
 mkC :: Grid -> Ix -> Maybe (Expr env Rational)
 mkC g k = MkC g k <$> gridLookup g k
+#endif
 
 -- | DERIVED NAME (the stdlib layer; the Add deletion's macro, in the
 -- author's CLOSED FORM — it borrows no codebook zero, so addition is
@@ -162,8 +226,10 @@ mkC g k = MkC g k <$> gridLookup g k
 -- Priced at its expansion (three Sub nodes; b's subtree paid three
 -- times — the honest cost of a 9-letter alphabet). Its derivation row
 -- IS its deletion proof; there is no terminal to DROP.
+#ifndef DROP_SUB
 addM :: Expr env Rational -> Expr env Rational -> Expr env Rational
 addM a b = Sub a (Sub (Sub b b) b)
+#endif
 
 class KnownScope (env :: [Type]) where
   scopeLen :: Proxy env -> Int
@@ -211,13 +277,27 @@ weightIn ns = go (scopeLen (Proxy :: Proxy env))
     nameW = 1 / fromIntegral (nsSize ns)
     go :: forall env' t'. Int -> Expr env' t' -> Rational
     go sc e = case e of
+#ifndef DROP_C
       C g _ _ -> node / fromIntegral (gridSize g)
+#endif
+#ifndef DROP_GET
       Get _ -> node * nameW
+#endif
+#ifndef DROP_IF
       If c t f -> node * go sc c * go sc t * go sc f
+#endif
+#ifndef DROP_GT
       Gt a b -> node * go sc a * go sc b
+#endif
+#ifndef DROP_VAR
       Var _ -> node / fromIntegral sc
+#endif
+#ifndef DROP_SUB
       Sub a b -> node * go sc a * go sc b
+#endif
+#ifndef DROP_MUL
       Mul a b -> node * go sc a * go sc b
+#endif
 #ifndef DROP_EXPECT
       Expect a b -> node * go sc a * go (sc + 1) b
 #endif
