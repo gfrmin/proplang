@@ -919,3 +919,18 @@ recommends the same home (the case-law documents archive together with
 the suites whose law they record). freeze-kit/apply-1-oracle.sh is the
 mechanical half, dry-run-verified in a worktree: manifest 96/96, cabal
 parses, no green suite touched.
+
+### IX.9 The freeze-day lint transcript (attribution on the record)
+
+Run by the author at the freeze sitting: L1-L5 PASS (manifest 96 rows;
+all 50 tags verify; ASCII clean; the stanza flags recorded). L6: 40
+advisory WARNs — the anchors/streams files carry literal points BY
+DESIGN (they are anchors; the heuristic is doing its job), plus noise
+from stray .hi/.o build artifacts since removed. L7: 11 FAIL, ALL
+attributable to the oracle-phase form — `cabal build all` includes the
+four red-by-design stanzas (the exact suites await Phase-2 src), and
+the old-fixture rows cascade from that failed build (test-elim's and
+test-sentence's fixtures are green at HEAD through their own runners).
+L7 is the CLOSE's row (the full-corpus overlay build goes green when
+Phase 2 lands); its red today is the increment protocol working as
+written. lawful-author-pack.md moved to archive/ (the R16 item).
