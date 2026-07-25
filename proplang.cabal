@@ -22,6 +22,7 @@ library
                       PropLang.Syntax
                       PropLang.Eval
                       PropLang.Enumerate
+                      PropLang.Report
                       PropLang.Membrane
                       PropLang.Host
                       PropLang.Lattice
