@@ -1,0 +1,14 @@
+# MUTANT M29-chooseKS-returns-value-not-code — provenance: the code-carrier convention (register R3): returning the winning VALUE instead of the winning CODE type-checks and dispatches garbage
+diff --git a/src/PropLang/Syntax.hs b/src/PropLang/Syntax.hs
+index 88b912b..35c8e94 100644
+--- a/src/PropLang/Syntax.hs
++++ b/src/PropLang/Syntax.hs
+@@ -251,7 +251,7 @@ addM a b = Sub a (Sub (Sub b b) b)
+ #if !defined(DROP_IF) && !defined(DROP_GT)
+ chooseKS :: NonEmpty (Expr env Rational, Expr env Rational)
+          -> Expr env Rational
+-chooseKS ((c0, v0) :| rest) = fst (foldl step (c0, v0) rest)
++chooseKS ((c0, v0) :| rest) = snd (foldl step (c0, v0) rest)
+   where
+     step (cw, vw) (c, v) = (If (Gt v vw) c cw, If (Gt v vw) v vw)
+ #endif

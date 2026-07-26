@@ -1,9 +1,12 @@
 # MUTANT M6-addM-degenerate — provenance: the closed form mis-spelled (a - 0 = a): the Add-deletion bank's subject
+# [RE-CUT at the trampoline close, 2026-07-27: context drift only — the
+# chooseKS block above addM changed at the re-land; the semantic line is
+# byte-identical to the original cut]
 diff --git a/src/PropLang/Syntax.hs b/src/PropLang/Syntax.hs
-index 3efb406..937b7cd 100644
+index 88b912b..e41ed2c 100644
 --- a/src/PropLang/Syntax.hs
 +++ b/src/PropLang/Syntax.hs
-@@ -228,7 +228,7 @@ mkC g k = MkC g k <$> gridLookup g k
+@@ -231,7 +231,7 @@ mkC g k = MkC g k <$> gridLookup g k
  -- IS its deletion proof; there is no terminal to DROP.
  #ifndef DROP_SUB
  addM :: Expr env Rational -> Expr env Rational -> Expr env Rational
@@ -11,4 +14,4 @@ index 3efb406..937b7cd 100644
 +addM a b = Sub a (Sub b b)
  #endif
  
- class KnownScope (env :: [Type]) where
+ -- | DERIVED NAME (the trampoline boundary, EXACT_PLAN 13.2): the

@@ -1,0 +1,14 @@
+# MUTANT M35-clock-row-ignored — provenance: the wire's internal reply suppressed: the think win delivered as wait, so the declared clock never fires on the wire
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 28a21fe..dea27c6 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -398,7 +398,7 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
+                 tv <- thinkValue d (swNs w) feats (swAtom w) u opts ag
+                 r <- pickWire (swNs w) feats (swAtom w) u scored price tv
+                 case r of
+-                  PickThink   -> Right (Right o0)
++                  PickThink   -> Right (Left o0)
+                   PickExt a _ -> Right (Left a)
+       case actOrThink of
+         Right waitH -> case evid of

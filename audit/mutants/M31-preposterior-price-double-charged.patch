@@ -1,0 +1,14 @@
+# MUTANT M31-preposterior-price-double-charged — provenance: the pricing-charged-once law at the think row: the clock's price folded twice
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index ed936f4..297c584 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -362,7 +362,7 @@ runTrampoline ns sp k w buf0 = go (uniform sp) buf0
+     twoM = addM oneM oneM
+     eR = Expect (Var (S Z)) (Sub (Mul twoM (Var Z)) oneM)
+     eL = Expect (Var (S Z)) (Sub oneM (Mul twoM (Var Z)))
+-    thinkRow = Sub (Var Z) (Get "price")
++    thinkRow = Sub (Sub (Var Z) (Get "price")) (Get "price")
+     codeG = mkGrid "acts" (0 :| [1, 2])
+     codeM i = case mkC codeG i of
+       Just e  -> e

@@ -1,0 +1,14 @@
+# MUTANT M37-utility-bits-drifts — provenance: the g6.2 seed KEPT: utility_bits drifts by one bit off the weightIn identity
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 28a21fe..ed5ff74 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -320,7 +320,7 @@ hello st j = maybe (st, errLine "bad hello") id $ do
+               ubPart = case uSaidB of
+                 Just (prog, True) ->
+                   ", \"utility_bits\": "
+-                  ++ show (bitsView (weightIn nsN prog))
++                  ++ show (1 + bitsView (weightIn nsN prog))
+                 _ -> ""
+               nsb = bitsView (1 / fromIntegral (length ns))
+               reply = "{\"ok\": true, \"proto\": 1, \"models\": "

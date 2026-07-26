@@ -1,0 +1,14 @@
+# MUTANT M30-policy-internal-first — provenance: the menu-order doctrine (F2, frozen membrane section 2): internal acts at the HEAD win ties they must lose
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index ed936f4..f121abb 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -368,7 +368,7 @@ runTrampoline ns sp k w buf0 = go (uniform sp) buf0
+       Just e  -> e
+       Nothing -> error "runTrampoline: on-codebook index (unreachable)"
+     policy :: Expr '[Rational, B Rational] Rational
+-    policy = chooseKS ((codeM 0, eL) :| [(codeM 1, eR), (codeM 2, thinkRow)])
++    policy = chooseKS ((codeM 2, thinkRow) :| [(codeM 0, eL), (codeM 1, eR)])
+     go b buf = do
+       tv <- preposteriorV ns feats (min (dwBatch w) (length buf)) b k
+       env <- mkEnvIn ns feats (tv :. b :. VNil)

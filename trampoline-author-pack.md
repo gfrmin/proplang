@@ -578,3 +578,164 @@ report, and the author's r1 countersign.
   gate-e4.sh's mandate-2 NOTE to the R11 category law as ruled;
   membrane-wire-install.md's Edit 7 bracket dated the freeze day
   with the reflow convention recorded.
+
+## Part XII — the implementation and the close-out (2026-07-27, on the same recorded delegation)
+
+**The implementation (commit 278b721).** The SAT overlay's semantics
+re-landed under src's kept derivation comments (the overlay is the
+prototype, not the code): chooseKS's real tournament — with its CPP
+guard NARROWED to If/Gt (the oracle-phase stub transiently used Sub;
+keeping DROP_SUB would state a false dependency in the derivation
+surface); Membrane's syntax transport (renameE/underR/weakenE, mintQ,
+substW, withRows — the four helpers exported for the Host's wire
+route, the one consumer), policyPick, actValueS, preposteriorV,
+runTrampoline; Host's clock route (swClock, the hello clock parse
+WITH the mandate-5 collision check the overlay predated, the
+actOrThink split with the overlay's placeholder binding cleaned away,
+tickExternal, note hoisted, WirePick/pickWire/thinkValue). And R7 AS
+RULED: runPurchaseS is the sentence route, and runPurchase's body
+RE-LANDED as a delegation through an INERT internal door (the frozen
+d6 suite's signature carries no door; g5's payload-independence row
+pins that the door is R5 ceremony, not data; the door's shape copies
+the oracle's pNs/pFeats fixture) — THE FOLD DIED, its duplicate
+bestCandidate and the straddles import with it. 8/8 suites PASS
+(trampoline 17/17 green on the first run after re-land); gates 1-7
+PASS; prefreeze-lint 0 FAIL; E1/E2/E3 = 0.
+
+**E4 — STOP-AND-REPORT (the increment's one open item; not
+papered).** At implementation E4 counts 4: Host's `bI >= 1` (the
+clock-batch wire validation — category (a), the arity check's exact
+sibling), thinkValue's and preposteriorV's `d <= 0` recursion bases,
+and runTrampoline's `min (dwBatch w) (length buf)` (the loop clock —
+and the min IS the frozen `min 3 bufLen` law whose t2 lineage g3.1's
+anchor pins). Every occupant sits in a category the frozen E4 header
+itself LICENSES; the scriptable allowlist was enumerated against the
+STUB surface at the oracle phase and the overlay was never E4-scanned
+— a two-sidedness gap in the E4 seeding, owned here. Growing a frozen
+allowlist mid-increment is a protocol violation, and token-free
+disguises (`signum bI == 1` and friends) are the forbidden elegant
+workaround; per the FROZEN-LAYER INVENTORY clause the repair executes
+under the author's key at the r1 sitting. THE STAGED REPAIR (both
+audit/gates-exact.sh and the staged copy test-trampoline/freeze/
+gate-e4.sh, which is the block's single byte-source; manifest rows
+for both re-signed at r1): three grep -v rows appended to the E4
+pipeline after the existing four —
+
+```
+  | grep -vE '&& bI >= 1' \
+  | grep -vE '\| d <= 0 =' \
+  | grep -vE 'min \(dwBatch w\) \(length buf\)' \
+```
+
+plus the header's occupant list gaining the three names (batch
+validation — category (a); the recursion bases and the batch-law min
+— the loop clock).
+
+**The close matrix (cut against the COMMITTED baseline 278b721; the
+dyadic incident's law observed).** Pool = M28-M40 + the M6 re-cut
+(audit/mutants/, each compile-checked; two re-cuts recorded in their
+headers). Verdicts:
+
+- M28 ties-to-challenger: KILLED — dyadic d6.2/d6.4 + trampoline
+  g1.1/g1.2/g2.1/g2.2 red, then the suite DIVERGES at g3.1 (finding
+  F4 below); g5.3's masked kill measured by targeted row run
+  (tasty -p g5.3: FAIL), method disclosed.
+- M29 value-not-code: KILLED — 4 dyadic + 10 trampoline rows.
+- M30 policy-internal-first: KILLED by DIVERGENCE alone — every row
+  before g3.1 green, then the free-clock loop never terminates.
+- M31 price-double-charged: KILLED — g3.1 uniquely.
+- M32 dispatch-codes-swapped: KILLED — g3.1 uniquely.
+- M33 straddle-gate-inverted (M22's heir): KILLED — d6.1/d6.2 +
+  g5.1/g5.2.
+- M34 forgone-dropped: UNREACHED, WITH THE STRUCTURAL PROOF (finding
+  F5): the mutant is extensionally IDENTICAL to shipped src. First
+  cut refused by -Werror (the deleted mention left forgoneS unused —
+  a mutant must compile); the re-cut (forgoneS = zeroM) is killed by
+  NOTHING because the formula arm evaluates only where pess <= 0,
+  and there the clamp is identically zero.
+- M35 clock-ignored: KILLED — g6.4 uniquely.
+- M36 hello-refuses-codebooks (the g6.1 seed): KILLED — g6.1-g6.4
+  (transport t1's refusal side untouched, exactly the OB-22
+  asymmetry).
+- M37 utility-bits-drifts (the g6.2 seed): KILLED — g6.2 uniquely.
+- M38 publication-folds-phantom (the g6.3 seed): KILLED — g6.3
+  uniquely.
+- M39 ladder-cap-baked (M19's heir): KILLED — d6.1/d6.2/d6.4 +
+  g5.1/g5.2.
+- M40 norefine-buys-free (M27's heir): KILLED — d6.3.
+- M6 re-cut (context drift only): KILLED — 12 exact-acceptance rows
+  + exact-properties walk law + trampoline g3.1/g3.2/g3.4/g6.4 (the
+  standing reach RESTORED, now extended into the trampoline rows).
+
+**The forward half (R7 pre-ruling: unique kills vs the STANDING
+corpus).** EARNED: g3.1 (M31, M32, and both divergences attribute to
+its loop), g6.1 (M36), g6.2 (M37), g6.3 (M38), g6.4 (M35). g2.3
+carries its by-construction anti-delegation kill (Part VI) beside a
+shadowed M29 kill. SHADOWED-BY-STANDING, structural: g1.1, g1.2,
+g2.1, g2.2, g3.2, g3.3, g3.4, g5.1, g5.2, g5.3 — because R7's
+re-land routes the STANDING dyadic suite through the very code the
+new rows pin (runPurchase -> runPurchaseS -> chooseKS), every
+choice/purchase mutant now reddens dyadic transcripts too. This is
+the x5 vocabulary's STRUCTURAL SHADOWING — an answer, not a failure:
+the new rows are the unit-level attribution instruments (g1.1 points
+AT the macro; a d6 transcript diff points at a 96-tick episode), and
+the row-value ruling is the sitting's per the x5 amendment. g5.4's
+declared kill is the anchor-applicability witness, DELIVERED: see
+the sweep.
+
+**The standing-pool applicability sweep (the custody-derived
+universe).** 22 of 27 standing mutants still apply. NO-LONGER-APPLY:
+M19, M20, M22, M27 — all four targeted the fold R7 killed (heirs:
+M39, M28-at-chooseKS, M33, M40 respectively — the four shapes'
+REACH is restored in the successor site); and M6 (diff context
+drift only — re-cut in place, semantic line byte-identical). The
+four dead fold-patches' deletion is an r1-sitting item (deletions
+at a boundary under the author's key, pins listed: each shape's
+heir named above).
+
+**Findings at close (beyond Part V):**
+
+- F4 — TIE-TO-INCUMBENT IS THE TRAMPOLINE'S TERMINATION ARGUMENT.
+  At buffer exhaustion the price-0 think row TIES the best external
+  act and must LOSE to the incumbent; M28 (ties surrender) and M30
+  (internal act first) both turn the free clock into a
+  non-terminating deliberator — the matrix's two divergences, both
+  at g3.1's loop. F2's availability-from-pricing law is also a
+  LIVENESS law: menu order is not just semantics, it is why the
+  loop halts. The first matrix run stalled 24 minutes on exactly
+  this (no per-suite timeout); the runner now records HANG as a
+  kill mode — a process lesson the runner keeps.
+- F5 — THE FORGONE TERM IS DEAD UNDER THE SHIPPED GATE. In
+  refineRow the formula arm is guarded by pess <= 0, where
+  `If (Gt pessV zeroM) pessV zeroM` is identically zeroM; the
+  fold's `max 0 respondV` was equally dead under `straddles`. The
+  term survives from the pre-straddle lineage as a priced mention
+  that buys nothing (If/Gt/pessV nodes in the sentence's
+  expansion). Its deletion is a sitting item: it would MOVE THE
+  SENTENCE'S PRICE, so it is adjudication, not cleanup.
+- F6 — THE RE-LAND COLLAPSED THE KILL-UNIQUENESS GEOMETRY. At the
+  dyadic close, kills were "structurally unique" because the
+  suites exercised disjoint code; R7's re-land made the standing
+  suite a consumer of the new macro, so shadowing is now the
+  EXPECTED shape for engine-level mutants. Future forward-half
+  measurements should read uniqueness per-ROW against the pool,
+  not per-SUITE against the corpus.
+
+**Charter edits at close (builder edits under the author's eye):**
+EXACT_PLAN section 13's heading carries the boundary record
+(opening, freeze, implementation, the E4 stop-and-report); 13.2's
+"deepen one rung" phrase amended per R9 as ruled — the shipped face
+of think is the t2 batch-fold act, the lattice face and the
+think/refine unification named as the completeness suite's standing
+question.
+
+**Custody at close.** Builder commits (builder key): e4f41f3 the
+freeze, 278b721 the implementation, the close-out commit carrying
+this Part, the mutant pool, and the charter edits. Tag
+trampoline-freeze-r0 = BUILDER key over e4f41f3 on the recorded
+delegation, `git tag -v` GOOD. Manifest 71/71 verifies at close.
+NOT pushed. THE INCREMENT CLOSES (R-D22) at the author's own
+trampoline-freeze-r1 over the close-out commit — the sitting that
+also executes the E4 allowlist repair (the staged diff above), rules
+the four dead mutants' deletion, and receives F4/F5/F6 with the
+shadowing verdicts. Push on the author's word after r1.

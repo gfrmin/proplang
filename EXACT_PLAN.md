@@ -614,7 +614,25 @@ second hand-declared shape of the hypothesis space).
    so the matrix covers exactly the surviving law, not rows already
    leaving.
 
-## 13. The trampoline boundary (DRAFTED at the X.5 preparation, 2026-07-26; opens NOTHING — the author's ruling opens it)
+## 13. The trampoline boundary (DRAFTED at the X.5 preparation, 2026-07-26; OPENED by the author's instruction of 2026-07-26 per the dyadic ruling 8; the boundary record below)
+
+> **The boundary record (builder edit at close, under the author's
+> eye).** OPENED 2026-07-26 ("open the trampoline boundary" —
+> recorded verbatim in trampoline-author-pack.md Part I). Oracle
+> phase: test-trampoline/ 17 rows in five groups, red 14/17 + 3
+> capability pins seeded, SAT 17/17 on the flag-faithful overlay;
+> six red-team mandates ran; pre-tag review round folded in. FROZEN
+> at trampoline-freeze-r0 (2026-07-27, BUILDER key on the recorded
+> delegation "you write everything, i just sign — execute the freeze
+> on delegation"; manifest 71/71; the register R1-R11 ruled — R4
+> substitution normative, R11 license-by-name, pack Part XI).
+> IMPLEMENTATION GREEN at 278b721: 8/8 suites, gates 1-7 PASS,
+> E1-E3 0; E4 STOP-AND-REPORT — four tokens, all in categories E4's
+> own frozen prose licenses, the scriptable allowlist enumerated
+> against the stub surface; the three-row repair staged for the r1
+> sitting under the frozen-layer inventory clause. The close matrix
+> and close-out ride the pack; the increment closes at the author's
+> trampoline-freeze-r1 (R-D22).
 
 ### 13.0 THE DESTINATION MAP (charter preamble; installed verbatim from the author's directive of 2026-07-26 so the roadmap lives in the tree, never in a transcript)
 
@@ -683,7 +701,13 @@ Expect over the predictive at feats ++ option — the chooseEU
 composition generalized to the whole menu, INCLUDING the internal
 rows.
 
-**Internal acts STANDING on the menu.** think (deepen one rung) and
+**Internal acts STANDING on the menu.** think (deepen one rung
+[2026-07-27, the trampoline close, register R9 as ruled: the SHIPPED
+face of think is the t2 lineage's BATCH-FOLD act — fold the world's
+declared batch of the evidence stream, the frozen `min 3 bufLen`
+law — not the lattice rung-deepening this draft phrase names; that
+face, and the think/refine unification on ONE declared tick's menu,
+are the completeness suite's standing question]) and
 refine (buy one vocabulary node) are menu rows like any other,
 priced by the world's declared clock (the R1 joint law's option
 order: wait head, externals, internals LAST; CL-3 ties to

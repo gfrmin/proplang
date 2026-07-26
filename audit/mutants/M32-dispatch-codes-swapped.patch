@@ -1,0 +1,14 @@
+# MUTANT M32-dispatch-codes-swapped — provenance: the ==-table dispatch (register R3): a swapped code table fires the wrong external act
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index ed936f4..41ab5a7 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -373,7 +373,7 @@ runTrampoline ns sp k w buf0 = go (uniform sp) buf0
+       tv <- preposteriorV ns feats (min (dwBatch w) (length buf)) b k
+       env <- mkEnvIn ns feats (tv :. b :. VNil)
+       let code = evalx policy env
+-      case lookup code [(0, "L"), (1, "R"), (2, "think")] of
++      case lookup code [(0, "R"), (1, "L"), (2, "think")] of
+         Just "think" -> do
+           let b' = foldl (\bb y -> case condK bb k y of
+                             Just bb2 -> bb2

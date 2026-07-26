@@ -1,0 +1,14 @@
+# MUTANT M28-chooseKS-ties-to-challenger — provenance: the CL-3 incident class (M7's sibling at the K-ary macro): a non-strict tournament surrenders ties to the challenger
+diff --git a/src/PropLang/Syntax.hs b/src/PropLang/Syntax.hs
+index 88b912b..dfde3bf 100644
+--- a/src/PropLang/Syntax.hs
++++ b/src/PropLang/Syntax.hs
+@@ -253,7 +253,7 @@ chooseKS :: NonEmpty (Expr env Rational, Expr env Rational)
+          -> Expr env Rational
+ chooseKS ((c0, v0) :| rest) = fst (foldl step (c0, v0) rest)
+   where
+-    step (cw, vw) (c, v) = (If (Gt v vw) c cw, If (Gt v vw) v vw)
++    step (cw, vw) (c, v) = (If (Gt vw v) cw c, If (Gt vw v) vw v)
+ #endif
+ 
+ class KnownScope (env :: [Type]) where

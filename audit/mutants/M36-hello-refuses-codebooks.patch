@@ -1,0 +1,14 @@
+# MUTANT M36-hello-refuses-codebooks — provenance: the g6.1 seed KEPT (the oracle-phase seeded demonstration, pack Part IV): the positive hello side dies
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 28a21fe..3318ded 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -255,7 +255,7 @@ hello st j = maybe (st, errLine "bad hello") id $ do
+     _              -> Just []
+   -- THE WORLD'S CODEBOOKS (E3: the emission codebook is world data;
+   -- theta REQUIRED, rho optional — absent means no walk family)
+-  cbs <- oGet "codebooks" w
++  cbs <- oGet "codebooksX" w
+   thetaG <- pairGridNamed "theta" =<< oGet "theta" cbs
+   mRhoG <- case oGet "rho" cbs of
+     Nothing -> pure Nothing

@@ -1,0 +1,17 @@
+# MUTANT M38-publication-folds-phantom — provenance: the g6.3 seed KEPT: a publication event folds phantom evidence, breaking namespace-immutability's invariance
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 28a21fe..baaa0d8 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -430,8 +430,9 @@ tickExternal w ag feats mOpts evid act = do
+       case evid of
+         Nothing
+           | null decPart -> Right (HostLive w ag, "{\"ok\": true}")
+-          | otherwise ->
+-              Right (HostLive w ag, "{" ++ commaSep decPart ++ "}")
++          | otherwise -> do
++              (_, agX) <- observeS full 0 ag
++              Right (HostLive w agX, "{" ++ commaSep decPart ++ "}")
+         Just yQ -> do
+           let y = round (fromRational yQ :: Double) :: Int
+           (m, ag') <- observeS full y ag
