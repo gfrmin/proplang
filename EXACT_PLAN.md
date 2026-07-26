@@ -743,6 +743,23 @@ trampoline; any surviving host-side max/min falls to E4. Candidate
 process deletions ride their own sitting (x5 Track 1 item 1), not
 this boundary.
 
+BANKED OBSERVATION, registered here so it is not rediscovered (the
+GroundC run, 2026-07-26, x5 pack 3.6a; COORDINATE-INDEPENDENT, so it
+belongs to the boundary that next touches Purchase — this one): the
+shipped value-based purchase candidate DEADLOCKS from root-only
+vocabulary at deep-threshold stakes on BOTH coordinates — `val`'s
+max-0 clamp zeroes the single-step gain whenever no one purchase
+takes the pessimistic guard positive, so refine never fires and the
+agent waits forever (measured: 40-60 all-correct ticks at stakes
+(1,-24)/(1,-171), zero refines, both engines identically). The
+trampoline's internal-act pricing must either (a) let the rung
+ladder see multi-step purchase value (the kLadder multiplier's
+original role, generalized lawfully), or (b) accept and DOCUMENT the
+root-vocabulary deadlock as the myopic single-step candidate's
+honest behavior. Per the banked-failure expiry clause, this
+observation is re-executed against the dyadic Lattice as shipped
+before this boundary relies on it.
+
 ### 13.4 The closed-loop lazy-genius oracle shape (drafted rows; oracle-first binds when the boundary opens)
 
 - **The price-only differential:** the SAME trampoline binary against

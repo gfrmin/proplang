@@ -775,7 +775,13 @@ dyadic mention, Kraft exactly 1). The prior re-weighting is owned
 with its measured face: zero act changes across the battery, ~3.75x
 evidence-to-act latency at deep-threshold territory (3.6a) — the
 linear extreme-theta price is Cromwell strengthened, and the latency
-is the honest cost of saying what the lattice means.* — YOUR CALL:
+is the honest cost of saying what the lattice means. The deciding
+asymmetry (the position-sheet review's framing, adopted): the two
+coordinates fail in OPPOSITE directions — the dyadic tax DELAYS
+confidence at the extremes, the shipped truncation MANUFACTURES it
+(the flipped straddle, 3.2). A guard whose failure mode is
+slower-to-trust is on the right side of its own purpose; one whose
+failure mode is falsely-certifies is not.* — YOUR CALL:
 adopt / keep log-odds (ships all three pathologies knowingly) /
 defer (trampoline stays gated; the guard keeps certifying false
 robustness).
