@@ -1,0 +1,42 @@
+CLAUDE.md install (X.5 ruling 5 + ruling 2's rider; STAGED — applies
+at dyadic-freeze-r0 under the sitting's key; CLAUDE.md is frozen, so
+the edit lands in the freeze commit and the manifest re-signs).
+
+Insertion point: the increment-protocol clause list (section
+"Increment protocol"), appended after the two-run-triptych clause of
+2026-07-22, as one new paragraph:
+
+---8<---
+   One clause canonized at the X.5 sitting (x5-sitting-r0,
+   2026-07-26; drafted at the exact close, first run r2 at the X.5
+   pack). AN ORACLE ROW EARNS ITS SEAT BY A UNIQUE KILL. The mutant
+   pool is DECLARED — audit/mutants/, each mutant a named minimal
+   patch instantiating a recorded failure shape, the pool derived
+   from the incident case law plus a declared operator list (the
+   sweep-universe law; hand-enumeration is the disease). The audit
+   runs the frozen suites against every mutant and records the KILL
+   MATRIX. Verdicts are triage inputs for the sitting, never
+   auto-deletions: EARNED — a nonempty unique-kill set; SHADOWED —
+   every kill covered by other rows; UNREACHED — no mutant kills it
+   (either the pool is deficient or the row is a
+   green-that-cannot-fail; both convict something, and which one is
+   the sitting's question). Deletions execute only at a boundary
+   under the author's key, pins listed. FORWARD HALF: a new oracle
+   row arrives WITH its kill — the triptych proves a row CAN fire;
+   the kill proves it fires for a reason no standing row covers.
+   Two amendment lines purchased by the r2 run: A VERDICT IS
+   POOL-RELATIVE AND A POOL IS GROWN, NEVER ASSUMED — three rows
+   moved to EARNED at the first pool growth; a deletion verdict read
+   off a single pool is the two-run triptych's mistake wearing the
+   matrix's hat. And STRUCTURAL SHADOWING IS AN ANSWER, NOT A
+   FAILURE — rows differing only in test-side data cannot be
+   separated by a test-blind src mutant; for such rows the
+   pool-coarseness question closes by demonstration, and the
+   residual question (is the redundancy wanted?) is a row-VALUE
+   ruling, never a pool obligation. And THE RECORDED-REPAIRS RIDER
+   (ruling 2, the pwLadderCap stale-green's purchase): a repair
+   recorded in a pack CITES ITS COMMIT HASH in the repair row, and
+   the pre-freeze checklist verifies every cited hash touches the
+   file the row names — recorded repairs are verified against the
+   tree, mechanically, so the stale-green class dies structurally.
+---8<---

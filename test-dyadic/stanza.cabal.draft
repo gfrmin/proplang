@@ -1,0 +1,10 @@
+test-suite dyadic
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Dyadic.hs
+    hs-source-dirs:   test-dyadic
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

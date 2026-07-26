@@ -1,0 +1,49 @@
+# The probe-row SPLIT (X.5 ruling 4's mechanical item; STAGED — a
+# FROZEN-suite edit, applies only in the dyadic-freeze-r0 commit
+# under the sitting's key; test/Acceptance.hs manifest row re-signs).
+# One bundled testCase becomes three rows (p1 / action / H-display),
+# each keeping the alignment assertions so it stands alone; two of
+# the three earn immediately on the existing pool (M12's p1 kill,
+# M8's H kill — re-verified by the matrix run at the increment's
+# close, per the forward half).
+--- a/test/Acceptance.hs
++++ b/test/Acceptance.hs
+@@ -211,11 +211,29 @@
+-      , testCase "probe rows: p1 exact, action, H display" $ do
+-          let (timeline, _, _) = runStream shifted160
+-              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
+-              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
+-          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
+-          mapM_ (\((t, p, a, h), (t', p', a', h')) -> do
+-                  assertEqual "t" t' t
+-                  assertEqual "p1 (exact)" p' p
+-                  assertEqual "action" a' a
+-                  assertEqual "H (display)" h' h)
+-            (zip mine Anchors.t1ProbeRowsX)
++      , testCase "probe rows: p1 exact" $ do
++          let (timeline, _, _) = runStream shifted160
++              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
++              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
++          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
++          mapM_ (\((t, p, _, _), (t', p', _, _)) -> do
++                  assertEqual "t" t' t
++                  assertEqual "p1 (exact)" p' p)
++            (zip mine Anchors.t1ProbeRowsX)
++      , testCase "probe rows: action" $ do
++          let (timeline, _, _) = runStream shifted160
++              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
++              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
++          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
++          mapM_ (\((t, _, a, _), (t', _, a', _)) -> do
++                  assertEqual "t" t' t
++                  assertEqual "action" a' a)
++            (zip mine Anchors.t1ProbeRowsX)
++      , testCase "probe rows: H display" $ do
++          let (timeline, _, _) = runStream shifted160
++              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
++              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
++          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
++          mapM_ (\((t, _, _, h), (t', _, _, h')) -> do
++                  assertEqual "t" t' t
++                  assertEqual "H (display)" h' h)
++            (zip mine Anchors.t1ProbeRowsX)

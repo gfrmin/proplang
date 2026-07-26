@@ -1,0 +1,34 @@
+# dyadic-freeze-r0 — the freeze commit's mechanical sequence
+# (executed at the freeze under the sitting's key: either the author
+# in person, or the builder on FRESH, EXPLICIT, PER-INSTANCE
+# delegation recorded verbatim in the tag message — the membrane
+# precedent; the R-D22 re-tag obligation then binds within the
+# increment)
+
+1. Apply test-dyadic/stanza.cabal.draft to proplang.cabal (append
+   the stanza; the draft file stays in-tree as the staged record,
+   the transport precedent, manifest row 34's form).
+2. Apply test-dyadic/freeze/membrane-wire-install.md to
+   membrane-wire.md (edits 1-8 + identity table + amendment head;
+   FLAGGED F-a/F-b as the author rules).
+3. Apply test-dyadic/freeze/claude-md-clause.txt to CLAUDE.md.
+4. Append test-dyadic/freeze/obligations-rows.md rows to
+   OBLIGATIONS.md (state letters as the author rules).
+5. Apply test-dyadic/freeze/acceptance-probe-split.diff to
+   test/Acceptance.hs.
+6. Re-derive MANIFEST.sha256: update rows for the five frozen files
+   touched (proplang.cabal, membrane-wire.md, CLAUDE.md,
+   OBLIGATIONS.md, test/Acceptance.hs) and EXTEND with rows for
+   test-dyadic/Dyadic.hs, test-dyadic/stanza.cabal.draft, and every
+   file under test-dyadic/freeze/. sha256sum -c MANIFEST.sha256
+   green before the tag.
+7. cabal test all — the six standing suites green; the dyadic suite
+   RED BY DESIGN until implementation (the full-corpus overlay-build
+   lint row builds it; its red is the increment's phase state, the
+   exact-oracle precedent at the cabal comment for test/).
+   NOTE: gate 5 therefore runs as `cabal test all` MINUS the dyadic
+   stanza until implementation lands, exactly as the exact oracle
+   did (proplang.cabal:59-62 records that form).
+8. tools/prefreeze-lint.sh — transcript into the pack.
+9. Commit; the author's signed tag `dyadic-freeze-r0` over it. From
+   that signature test-dyadic/ is frozen and implementation opens.

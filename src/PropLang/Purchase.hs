@@ -1,45 +1,33 @@
 -- | PropLang.Purchase — the joint purchase law (boundary R,
--- increment R1): ONE decision rule pricing external acts and the two
--- internal acts (refine, think-deeper) by one clock (ruling R-R2).
+-- increment R1; re-founded exact at the dyadic increment, the X.5
+-- sitting's rulings 1-3 sealed at x5-sitting-r0).
+--
+-- ORACLE PHASE (dyadic increment): stub semantics — total,
+-- deliberately wrong — behind the drafted type surface, so
+-- test-dyadic/ runs RED before the freeze. Implementation follows
+-- the author's freeze tag.
 --
 -- Type-derivation audit (the step-6 clause):
 --   'PurchaseWorld' — the world's ECONOMICS row and nothing else
---       (the alignment statement, WIRE_PLAN §5): stakes and an
---       optional refine surcharge. No vocabulary, no grid, no depth
---       — epistemics never cross the wire in either direction.
---   'PTick' — METAREASONING_PLAN.md:309-310 and §8:336-338: the
---       purchase log is part of the transcript; a tick row prints
---       the act, what was bought, and the complete owned set.
+--       (the alignment statement): stakes, an optional refine
+--       surcharge, and the rung ladder's cap — ALL world-declared.
+--       'pwLadderCap' lands the X.3 repair the record claimed
+--       (x5 pack 3.4, ruling 2): the ladder's reach is world
+--       economics the caller declares, never a baked constant.
+--   'PTick' — unchanged seat: the purchase log is part of the
+--       transcript; a tick row prints the act, what was bought,
+--       and the complete owned set.
 --
--- Option order (ruling R-R2 / R_SCOPE §2, drawn ONCE with both
--- internal acts visible): wait is the head (A5, ties break to
--- inaction), the world's external options follow, and the internal
--- acts sit LAST — refine then think-deeper. An internal act fires
--- only by strictly beating every external option (CL-3
--- first-listed-wins preserved end to end). Row g12 pins this.
+-- Option order (ruling R-R2, unchanged): wait is the head (A5,
+-- ties break to inaction), externals follow, internal acts LAST.
+-- An internal act fires only by strictly beating every external
+-- option (CL-3 first-listed-wins preserved end to end).
 --
--- The refine-before-think RELATIVE order is a fresh declared choice
--- in the alphabet-residue class: pinned, arbitrary unless derived
--- (freeze rider 1, 2026-07-21). The durable-good rationale — at an
--- EU tie, buy the permanent vocabulary over the per-tick
--- deliberation product — is recorded AS RATIONALE, not derivation;
--- a future boundary may derive or overturn it (the prefix code sat
--- in this class for nine days before R-R1 derived it).
---
--- Prices: refine costs the clock (act-now EU forgone, endogenous —
--- METAREASONING_PLAN.md:205-215, no new number) plus the world's
--- optional surcharge; think-deeper costs the clock per rung (the
--- step-10 composition's Get "price", the same law at the depth
--- object). A world with NO refine row keeps a static vocabulary —
--- the tagged migration residue (:218-226), one-sided retirement
--- license, retired when the executable condition fires.
---
--- The overlay's rung ladder (free clock when acting now forfeits
--- nothing) is the shipped realization; the full rung LAW over
--- arbitrary priced depth is the choice machinery this cap
--- approximates — its refinement is R1 implementation freedom bounded
--- by the frozen rows (the myopic one-tick case, the recurring-stakes
--- buy, the order pin).
+-- The refine option is a Maybe ARM of the fold, present only when
+-- the world declares a refine row AND the straddle fires — the
+-- last skip-on-negInf sentinel left src with the exact re-founding
+-- (X.5 ruling 3, candidate 5: no -Infinity in shipped source; an
+-- absent option is absent, never a poisoned value).
 module PropLang.Purchase
   ( PurchaseWorld (..)
   , PTick (..)
@@ -56,21 +44,22 @@ import PropLang.Lattice
   , scoreOwned, straddles
   )
 
--- | The world's side of the purchase law: economics only.
+-- | The world's side of the purchase law: economics only, EXACT.
 data PurchaseWorld = PurchaseWorld
-  { pwStakes :: (Double, Double)
-    -- ^ (sRight, sWrong): the respond stakes row (utility as world
-    -- data, said at the tick's features — the step-8 reading)
-  , pwRefine :: Maybe Double
-    -- ^ Nothing = no refine row: STATIC vocabulary (the tagged
-    -- migration residue); Just s = the optional surcharge charged
-    -- ABOVE the clock (class-1 interface data)
+  { pwStakes :: (Rational, Rational)
+    -- ^ (sRight, sWrong): the respond stakes row, wire rationals
+  , pwRefine :: Maybe Rational
+    -- ^ Nothing = no refine row: STATIC vocabulary; Just s = the
+    -- optional surcharge charged ABOVE the clock
+  , pwLadderCap :: Rational
+    -- ^ the rung ladder's reach when the clock is free — WORLD
+    -- ECONOMICS, declared by the caller (the X.3 repair landed;
+    -- the baked kLadder constant is dead)
   }
   deriving (Eq, Show)
 
--- | One transcript row: the act taken, the nodes bought this tick
--- (empty when none), and the COMPLETE owned set after the tick (the
--- purchase log printed, never summarized).
+-- | One transcript row: the act taken, the nodes bought this tick,
+-- and the COMPLETE owned set after the tick.
 data PTick = PTick
   { ptAct    :: String
   , ptBought :: [Node]
@@ -78,20 +67,11 @@ data PTick = PTick
   }
   deriving (Eq, Show)
 
--- the rung ladder's reach when the clock is free (respond blocked
--- => act-now EU forgone is zero, so deliberating costs nothing and
--- the ladder climbs to its cap; module header note)
-kLadder :: Double
-kLadder = 16
-
 -- | The pure tick loop of the joint law: one decision rule per tick
--- over [wait, respond, refine, think-deeper] in the pinned order,
--- counts advanced by the evidence, purchases by the region-derived
--- criterion (R-R3: region-level straddle; the purchase's own
--- granularity is implementation freedom — realized here as the
--- VALUE-BASED candidate, the frontier node whose ownership most
--- improves the guarded act value; cheapest-first fails, the cheap
--- rungs are the worthless ones, pack III.7), depth by the rung law.
+-- over [wait, respond, refine] in the pinned order, counts advanced
+-- by the evidence, purchases by the region-derived criterion (the
+-- VALUE-BASED candidate), the refine arm present only when priced
+-- and straddling. STUB: the guard stubs to 0, so every tick waits.
 runPurchase :: PurchaseWorld -> Owned -> [Int] -> [PTick]
 runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
   where
@@ -104,15 +84,20 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
           respondV = guardE True o c' st
           forgone  = max 0 respondV
           (cand, gain) = bestCandidate o c'
-          refineV = case pwRefine w of
-            Nothing -> negInf
-            Just s
-              | straddles o c' st -> kLadder * gain - s - forgone
-              | otherwise         -> negInf
+          -- STUB, SEEDED DEFECT for the red run: the refine arm is
+          -- offered UNCONDITIONALLY (no refine row required, no
+          -- straddle consulted, a large bias added) so the static-
+          -- vocabulary and cap rows demonstrably fire. The real arm
+          -- is the Maybe form gated on pwRefine and the straddle.
+          mRefine = if straddles o c' st || True
+            then Just (100 + pwLadderCap w * gain
+                        - maybe 0 id (pwRefine w) - forgone)
+            else Nothing
           -- the pinned order: wait head, externals, internal acts
           -- LAST; strict-improvement first-listed fold (CL-3)
           chosen = foldl pick ("wait", 0)
-                     [ ("respond", respondV), ("refine", refineV) ]
+                     (("respond", respondV)
+                       : maybe [] (\v -> [("refine", v)]) mRefine)
           pick (bn, bv) (n2, v2) = if v2 > bv then (n2, v2) else (bn, bv)
       in case fst chosen of
            "refine" ->
@@ -120,11 +105,9 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
              in PTick "refine" [cand] (ownedNodes o') : go o' c' ys
            nm -> PTick nm [] (ownedNodes o) : go o c' ys
 
-    negInf = -1 / 0
-
     -- the value-based candidate: the frontier node whose ownership
     -- most improves the guarded act value at the current counts
-    bestCandidate :: Owned -> (Int, Int) -> (Node, Double)
+    bestCandidate :: Owned -> (Int, Int) -> (Node, Rational)
     bestCandidate o c' =
       let base = max 0 (guardE True o c' st)
           val c = max 0 (guardE True (mkOwned (c : ownedNodes o)) c' st)
@@ -139,13 +122,12 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
     errNoFrontier :: Node
     errNoFrontier = error "the lattice frontier is never empty"
 
--- | The predictive after purchases: each owned hypothesis's emission
--- comes from its own code through the sentence fragment — vocabulary
--- motion moves the kernel (row g11). SINCE exact-freeze-r0: the
--- Bernoulli form is WEIGHT-FORM through the sole introducer
--- (fromWeights masses (1-th, th), exact via the binary64 embed), and
--- the obs carrier is DECLARED BY THE CALLER (E3: no baked point-set
--- in src — the old Enumerate.obsSpace died with it).
+-- | The predictive after purchases: each owned hypothesis's
+-- emission through the sentence fragment, weight form through the
+-- sole introducer, the obs carrier DECLARED BY THE CALLER (E3) —
+-- and now the theta column is the EXACT coordinate: no realToFrac,
+-- no binary64 embed, the Bernoulli masses are the sayable rationals
+-- themselves.
 purchasePredictive :: Space Int -> Owned -> (Int, Int) -> Belief Int
 purchasePredictive obsSp o c =
   case nonEmpty (map nodeTheta (ownedNodes o)) of
@@ -154,8 +136,7 @@ purchasePredictive obsSp o c =
       push (scoreOwned o c) (kernel (mkSpace pts) obsSp bern)
   where
     bern th =
-      let thQ = realToFrac th :: Rational
-      in case fromWeights obsSp
-                (\y -> if y == (1 :: Int) then thQ else 1 - thQ) of
-           Just b  -> b
-           Nothing -> error "purchasePredictive: no mass (unreachable: interior theta)"
+      case fromWeights obsSp
+             (\y -> if y == (1 :: Int) then th else 1 - th) of
+        Just b  -> b
+        Nothing -> error "purchasePredictive: no mass (unreachable: interior theta)"
