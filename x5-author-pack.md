@@ -134,6 +134,49 @@ R-R1's three grounds (r-author-pack.md:322-341), re-argued:
    keeping log-odds — keeps the lattice a Double island with all
    three convicted pathologies (3.1-3.3).
 
+### 3.6a THE BEHAVIORAL DIFFERENTIAL (added at the position-sheet review: the ruling's one open judgment, measured)
+
+The forwarded position sheet rested ruling 1's residual judgment on
+"nothing in the packs suggests those thresholds are price-sensitive
+at that margin" — an unexecuted claim, so it was executed (GroundC:
+the staged 3.6 diff realized as a throwaway dyadic prototype whose
+purchase mirror keeps the SHIPPED fold semantics exactly — kLadder
+16, value-based candidate, straddle trigger, strict > — so the
+comparison isolates the COORDINATE; pre-stated materiality: a cell
+where the engines differ on whether respond ever fires or on the
+terminal act; refine count/timing = coordinate-structural, reported).
+Eight cells: governor-threshold streams (0.96, 0.9942), moderate,
+adversarial, dear-refine, and three DEEP-VOCAB cells with pre-owned
+coordinate-native chains to ~0.984 resolution.
+
+    every cell: MATERIAL DIVERGENCE = False  (same acts, same
+      terminal act; the moderate cell matches to the TICK —
+      wait 2 / respond 35 / refine 3, first respond @5, both sides)
+    the one number that moves — DEEP t96-allcorrect (chains to
+      ~0.984, stakes (1,-24), 60x1):
+        shipped: first respond @12   (respond x48)
+        dyadic:  first respond @45   (respond x15)
+
+Reading: the ACT SET is coordinate-insensitive on the whole battery
+— wherever respond fires at all, it fires on both sides, same
+terminal act. The tax's real face is EVIDENCE-TO-ACT LATENCY at
+deep-threshold territory: the dyadic depth-6 node costs 11 bits
+where the shipped extent-6 costs 7, the deficit compounds along the
+owned chain's posterior weights, and the pessimistic guard needs
+~33 more all-correct ticks to clear at stakes (1,-24). THAT is the
+prior re-weighting you are ruling on, as a number: ~3.75x the
+evidence latency on this cell, zero act changes anywhere. (Also
+banked from the run, coordinate-INDEPENDENT so not ruling-1
+material: from root-only vocabulary at deep-threshold stakes, the
+shipped value-based candidate deadlocks on BOTH coordinates — the
+max-0-clamped single-step gain is zero when no one purchase crosses
+the guard to positive, so refine never fires; the R1-era success
+anchor must have cleared its 0.96 stream with richer machinery.
+An observation about the purchase law, recorded for whichever
+boundary next touches it. And one free fact: the dyadic ladder's
+Kraft sum is EXACTLY 1 — gamma is complete over depths — where the
+shipped lattice carries a printed deficiency.)
+
 ### 3.6 The concrete diff the ruling would force (STAGED, not landed)
 
 `PropLang.Lattice` (every change downstream of `nodeTheta ::
@@ -713,3 +756,101 @@ assignment (M3 = frozen-agent-learns; registry contiguous M1-M14).
 Session custody: every commit builder-key signed; nothing frozen
 touched; the OB-12 protocol's pre-statement is commit b4753bf,
 its execution the commit after.
+
+---
+
+## The drafted sitting record (edit and sign; prepared after the forwarded position sheet of 2026-07-26)
+
+Six rulings are drafted AS RECOMMENDED per the position sheet, with
+its riders folded in; rulings 1 and 7 are structured for your
+judgment, each now carrying its executed discriminating evidence.
+Nothing below binds until your key seals the sitting.
+
+**Ruling 1 — the lattice coordinate (R-R1 re-open).**
+DRAFT: *Dyadic-in-theta is ADOPTED. The three grounds (unsayable
+points; the executed straddle-flip; the 18-node price collision)
+convict the log-odds coordinate; the re-derivation stands
+(consistency inverts under exactness, universality transfers to the
+dyadic mention, Kraft exactly 1). The prior re-weighting is owned
+with its measured face: zero act changes across the battery, ~3.75x
+evidence-to-act latency at deep-threshold territory (3.6a) — the
+linear extreme-theta price is Cromwell strengthened, and the latency
+is the honest cost of saying what the lattice means.* — YOUR CALL:
+adopt / keep log-odds (ships all three pathologies knowingly) /
+defer (trampoline stays gated; the guard keeps certifying false
+robustness).
+
+**Ruling 2 — the stale-green repair (pwLadderCap).**
+DRAFT: *Lands WITH the dyadic diff — one Purchase surface motion.
+RIDER (process line, for CLAUDE.md at this sitting or the next
+freeze): a repair recorded in a pack CITES ITS COMMIT HASH in the
+repair row; the pre-freeze checklist verifies every cited hash
+touches the file the row names — recorded repairs are verified
+against the tree, mechanically, so this class dies structurally.*
+
+**Ruling 3 — the five process deletions.**
+DRAFT: *Candidates 1 (NaN case law) and 2 (float-order law):
+RETIRED, vacuous over Rational, two-sided record rows as drafted.
+Candidate 3 (tolerance case law): TRIMMED to R7's display-edge
+residue. Candidate 5 (lse/negInf riders): RETIRED; the one live pin
+(negInf) leaves with ruling 2's diff. Candidate 4 (dormancy-as-wait):
+RETIRED; brief.md:133 and design.md:197 take the
+quoted-falsified-sentence INVENTORY form — the brief itself stays
+untouched (the founding document is never edited; its falsified
+sentence is marked from outside, the project's standing treatment of
+frozen prose).*
+
+**Ruling 4 — oracle-row verdicts.**
+DRAFT: *NO deletions this sitting: 28 rows unreached where the pool
+has no operator classes — a deletion now would convict rows for the
+pool's gaps. The PROBE SPLIT is ORDERED (three rows: p1 / action /
+H-display; two earn immediately on the existing pool) as the next
+oracle-bearing increment's mechanical item, oracle-first discipline
+applying. TWO NAMED OWED ITEMS registered on the ledger: the
+reasoner mutant pool (Belief-level operator class — the lawful and
+independence suites' shapes) and the enumeration mutant pool
+(gating/combinatorics class — the count and membership pins); each
+enters OBLIGATIONS.md at this sitting under the author's key.*
+
+**Ruling 5 — the unique-kill clause.**
+DRAFT: *CANONIZED into CLAUDE.md with both amendment lines
+(pool-relativity; structural-shadowing-is-an-answer) — every
+sentence of the clause carries an executed exhibit from the r2 run.*
+
+**Ruling 6 — the membrane-wire re-derivation.**
+DRAFT: *INSTALLED at this sitting under the author's key: sections
+1-3 replaced by the staged re-derivation (pack item 4) — the
+current example is refused by the shipped code and the form census
+is wrong twice; waiting makes the doc more wrong. The one unpinned
+row (utility_bits) arrives with its kill at the next oracle-bearing
+increment, per ruling 5's forward half. Manifest row 25 re-signs.*
+
+**Ruling 7 — OB-12's consumers.**
+DRAFT for the two evidence-decided halves: *A STAYS CLOSED (demand
+not measured on 95k live events); B STAYS OUT (underpowered by
+measurement, n_inv = 0).* — YOUR CALL, decomposed per the position
+sheet, with one new fact: (a) build the Phase-3 form (stake-bearing
+said + learned theta_ask)? — a governor-programme priority call
+committing field work; if NO, the honest companion act is retiring
+the exit-from-shadow apparatus rather than keeping a permanently
+unreadable bar. (b) re-register the 0.05% FBR bar? — every engine
+misses it by two-plus orders under BOTH recorded operationalizations
+(6.5% R-D14-era; 84.91% this run's pre-stated definition); a
+re-registration needs a definition first (the two differ in
+denominator), and re-registering honestly is not rounding failure to
+pass. (c) the verdict stream: user-responded records exist ONLY via
+explicit /feedback calls (daemon.py:479-501 — no passive stream), so
+NO resumed shadow can power B by running longer; powering B requires
+first deploying a second verdict source (an LLM-judge or reviewer
+channel) — which is exactly the evidence shape B itself would model.
+(c) is therefore upstream of (a), and both are upstream of any
+shadow resumption. RECOMMENDED SEQUENCING ONLY: rule (a) at a
+governor sitting, not this one — it is the only decision on this
+sheet committing future field work.
+
+**Ruling 8 — the trampoline.**
+DRAFT: *Rule 1 first; the boundary OPENS AT THE SITTING AFTER the
+dyadic freeze, not at it — one boundary at a time, and the
+trampoline's rungs live in exactly the modules the dyadic diff
+rewrites. The charter (EXACT_PLAN section 13) loses nothing by
+waiting; it opens nothing until ruled open.*
