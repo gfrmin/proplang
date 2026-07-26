@@ -11,7 +11,12 @@
 #   Membrane: runEpisode's tick-count loop bound (the clock's
 #         index, never an engine-derived value).
 # The non-scriptable half (what "engine provenance" means) is law as
-# prose with the E-gate register. AT THE FREEZE this block is
+# prose with the E-gate register. NOTE (mandate 2): the charter
+# licenses only (a) wire-input validation and (b) constructor-tag
+# dispatch; the four occupants below span THREE further categories
+# (host randomness after the belief, display render, the loop
+# clock) — register R11 puts each to the author: license the
+# category, or order the occupant's eviction from the E4 modules. AT THE FREEZE this block is
 # spliced into audit/gates-exact.sh before its `exit $fail` (the
 # charter: E4 lands beside E1-E3); this staged copy is the single
 # source of the block's bytes.

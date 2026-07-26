@@ -1,9 +1,15 @@
 # The trampoline boundary — author pack (oracle phase)
 
-Builder-prepared, 2026-07-26. The boundary OPENED on the author's
-instruction of 2026-07-26 ("open the trampoline boundary") — ruling
-8's condition met: it opens at the sitting AFTER the dyadic freeze,
-and dyadic-freeze-r1 (author key, verified) closed that increment.
+Builder-prepared, 2026-07-26. THE OPENING RECORD (mandate-2's
+demand — the authority recorded in-tree, not in a transcript): the
+author wrote, in-session, 2026-07-26, immediately after the
+dyadic-freeze-r1 push: "open the trampoline boundary". That
+instruction IS the ruling ruling 8 requires ("the boundary OPENS AT
+THE SITTING AFTER the dyadic freeze... it opens nothing until ruled
+open") — its condition met at dyadic-freeze-r1 (author key,
+verified). Per the V-cancellation lesson, the opening becomes a
+CUSTODY fact only at the freeze tag; until then this record and the
+builder commits carry it.
 The charter is EXACT_PLAN section 13; per its own last line, this
 oracle was written oracle-first, runtime-red against type-surface
 stubs, SAT-transcribed in overlay form, and now awaits the author's
@@ -22,10 +28,10 @@ demonstration tier, then the roadmap terminates.
 
 | artifact | state |
 |---|---|
-| test-trampoline/Trampoline.hs | the 15-row oracle, six groups; R-D20 copy table in the header |
+| test-trampoline/Trampoline.hs | the 17-row oracle, five groups; R-D20 copy table in the header |
 | test-trampoline/stanza.cabal.draft | the draft stanza (flag-faithful red used its exact flags) |
 | test-trampoline/freeze/gate-e4.sh | E4's scriptable half (green on shipped src; seeded red demonstrated) |
-| test-trampoline/freeze/membrane-wire-install.md | six staged edits + the immutability flip |
+| test-trampoline/freeze/membrane-wire-install.md | seven staged edits + the immutability flip |
 | test-trampoline/freeze/kernel-residues.md | the fourth residue (the floor) |
 | test-trampoline/freeze/obligations-rows.md | OB-22/23 discharge; OB-24 registered |
 | test-trampoline/freeze/freeze-commands.txt | the 9-step freeze sequence |
@@ -135,8 +141,9 @@ author's (register).
 **Red run** (stub surface; the stanza's EXACT flags via
 `cabal exec ghc -- --make ... -XGHC2021 -Wall -Werror
 -Wincomplete-patterns -Wincomplete-uni-patterns`; transcript
-scratchpad tramp-red/red-run.txt): **12/15 FAIL, 3/15 OK** — the
-declared partition. The 12 implementation rows (g1.1-g3.4, g5.1-3,
+scratchpad tramp-red/red-run.txt): **14/17 FAIL, 3/17 OK** — the
+declared partition. The 14 implementation rows (g1.1-g3.4 incl.
+the g2.3 divergence witness, g5.1-g5.4 incl. the deadlock cell,
 g6.4) are red against tuned stubs (chooseKS returns a value-mangled
 code — last-minus-first, never colliding with any battery's
 expected code; the loop stubs refuse with named messages; the
@@ -160,7 +167,7 @@ Transcripts: scratchpad tramp-seeds/seeded-defects.txt.
 
 **SAT run** (R-D21 overlay form: prototypes wearing the real module
 names — Syntax/Membrane/Purchase/Host overlaid, oracle text compiled
-UNCHANGED, the stanza's exact flags, -Werror included): **15/15 OK**.
+UNCHANGED, the stanza's exact flags, -Werror included): **17/17 OK**.
 The overlay is the discarded prototype; what it proved:
 
 - g3.1: the trampoline loop reproduces Anchors.t2RowsX EXACTLY —
@@ -194,9 +201,14 @@ expansion ("actions are features" done consistently), which REPAIRS
 the degeneracy — and therefore diverges from the fold exactly on
 Get-of-writable utilities. No frozen row pins the degenerate
 behavior (every shipped world's utility follows the wire convention:
-option code bound to 0, outcome + non-writable reads only). The g2
-composition pin is scoped to the convention; the ruling on which
-semantics is normative is the author's — register R4, OB-24.
+option code bound to 0, outcome + non-writable reads only). The
+demonstration is EXECUTED as oracle row g2.3 (both behaviors
+asserted: the fold keeps the head where substitution's winner
+differs — confirmed against shipped chooseEU at the SAT run); the
+g2 composition pin is scoped to the convention; the ruling on which
+semantics is normative is the author's — register R4, OB-24. g2.3
+doubles as the ANTI-DELEGATION witness (mandate 1): a fraudulent
+policyPick = chooseEU cannot pass it.
 
 **F2 — availability emerges from pricing** (Part III): no think
 toggle exists anywhere; the empty-buffer tie plus CL-3's order does
@@ -229,6 +241,8 @@ this increment's failure shapes:
 | M36 hello-refuses-codebooks | the g6.1 seed, kept | g6.1 |
 | M37 utility-bits-drifts | the g6.2 seed, kept | g6.2 |
 | M38 publication-folds-phantom | the g6.3 seed, kept | g6.3 |
+| (g2.3's kill) | any policyPick = chooseEU delegation | g2.3 — by construction |
+| (g5.4's kill) | M33/M34 anchor-applicability + the d6.2 pool | g5.4 rides the g5 pool |
 
 Structural note: g1-g5 rows exercise NEW code (chooseKS, the
 Membrane/Purchase additions) — the standing corpus does not import
@@ -290,17 +304,134 @@ and the fold dies. DRAFTED: re-land; the alternative (keep the fold
 as an optimisation-law fast path with g5 as its pin) is the
 fallback if the author prefers zero motion in shipped bodies.
 
+**R9 — the unified internal menu (mandates 4/5/6, one voice).**
+The charter's full vision puts think AND refine on ONE tick's menu;
+this increment lands each through the one-sentence law separately
+(g3's think row on the t2 substrate; g5's refine row in the
+purchase law) and NO type can yet declare a world carrying both.
+The word "think" itself spans the t2 batch-fold act (the frozen
+lineage this oracle pins) and the charter's "deepen one rung"
+phrase (13.2) whose lattice machinery no row exercises. DRAFTED:
+the unification is the COMPLETENESS SUITE's standing question (the
+next destination step) or a named follow-on — this boundary pins
+the one-chooser LAW on both faces without unifying their worlds;
+the charter's "deepen one rung" phrase is amended at close to name
+the shipped face (a builder edit under the author's eye).
+
+**R10 — the pinned batch regime.** vThinkB (the frozen route)
+self-caps at min 3; g3.4 pins preposteriorV at d in {1,2,3}; the
+wire's B >= 1 is unbounded. A world declaring B > 3 exits the
+pinned regime silently (mandates 5/6). DRAFTED: the regime stated
+here honestly; no cap is baked into src (a cap would be a kLadder);
+extending the pin to deeper batches is a measurement a future
+increment buys when a world demands it.
+
+**R11 — E4's allowlist categories (mandate 2).** The charter
+licenses the tokens only in (a) wire-input validation and (b)
+constructor-tag dispatch; the four shipped occupants span three
+FURTHER categories — host randomness after the belief (draw's
+walk, CL-2's side), display render (rNum), and the loop clock
+(runEpisode's tick bound). DRAFTED: license the three categories
+by name at the freeze (the gate script's header already carries
+them); the alternative is eviction (draw and rNum leaving Host for
+a sim/report module) — a src motion the author may order instead.
+
 **R8 — the lookahead's future-fold features.** thinkValue folds
 lookahead evidence at feats ++ the wait head. For
 emission-feats-independent populations (every clock world in this
 oracle) the choice is inert; for feats-dependent kernels it is a
 real modeling choice. DRAFTED: wait-head, with the general case
 demand-gated (the Code-built feats-aware kernel is the banked
-sayable route, step-10 lineage).
+sayable route, step-10 lineage). Mandate 5 names the consequence
+honestly: at an action-conditional channel, thinking and waiting
+collapse into one fold context (distinguished only in the reply) —
+the dormancy-as-wait shape, here CHOSEN and recorded rather than
+silent; g6.4's evidence-on-internal assert is its executed smoke.
 
-## Part VIII — the red-team mandates
+## Part VIII — the red-team mandates (six fresh-context reviewers,
+## one mandate each; findings, dispositions, and the repairs they
+## bought — all repairs executed BEFORE this pack finalized, the
+## oracle being builder-owned until the freeze)
 
-[appended when the six fresh-context reviewers return]
+**Mandate 1 (theorem-as-definition): five findings.** (1) The
+route claims were satisfiable by delegation (policyPick =
+chooseEU) — REPAIRED: g2.3 is the anti-delegation witness; for
+runPurchaseS the close matrix's M33/M34 anchors ARE the in-sentence
+gate text, so a delegation fraud makes them unappliable and the
+matrix flags it (recorded here as the structural witness). (2)
+One-evaluation-per-tick defined not measured — REPAIRED: g3.3
+renamed to what it measures (the transcript partition); the
+loop-structure half is implementation-review law, stated so. (3)
+E4's universal claim under-covers — register R2 (the reviewer's
+cites appended); the charter's "no line COULD exist" sentence is
+amended to its module scope at close. (4) Staged wire text asserted
+unpinned semantics — REPAIRED: g2.3 pins the substitution sentence
+Edit 1 cites; g6.4 gained the evidence-on-internal assert Edit 2
+needed; OB-24 cites the executed row. (5) vThinkB's copy re-derived
+vActB — REPAIRED: vActB byte-copied (expect and all), copy table
+row added; the finding is R-D20 case law working as designed.
+
+**Mandate 2 (asserted-not-derived): eight findings.** (1) The
+opening authority unrecorded — REPAIRED: Part I carries the
+instruction verbatim; the freeze tag is its custody attestation.
+(2) = mandate 1's (2). (3) E4 allowlist categories underived —
+register R11. (4) = mandate 1's (5). (5) Copy-table labels not
+grep-verifiable — REPAIRED: labels corrected (tNs, hiChild-half,
+inlined-harness, fixture deltas disclosed), citation :262-279
+fixed. (6) The degeneracy "demonstrated" cited nothing executed —
+REPAIRED: g2.3. (7) "Free-clock climbs rungs"/"ExactReference
+extended" overdrawn — the climb IS the count moving 1->12 against
+the frozen anchor; the charter phrase is amended at close; the
+unified-menu half is R9. (8) The deadlock's (b) branch undocumented
+— REPAIRED: g5.4 executes the documentation as an oracle row.
+
+**Mandate 3 (undefined quantities): no findings** against the final
+state; its conditional (the install and manifest steps MUST execute
+at the freeze or g6.4 pins bytes with no contract) is
+freeze-commands steps 2 and 6 — confirmed present.
+
+**Mandate 4 (type derivations): five findings.** dwBatch underived
+— REPAIRED (the min-3 lineage cited); dwBuffer contradicted the
+economics-only derivation — REPAIRED (the stream is now a separate
+runTrampoline argument, mirroring runPurchase exactly); the think
+overload — register R9; the [String] transcript — REPAIRED (the
+carrier derived from the frozen t2RowsX act column, stated on the
+signature); the code-return vs constructor dispatch — provenance
+added on chooseKS, register R3.
+
+**Mandate 5 (overloaded conventions): ten findings.** think
+(three senses) — R9; wait-at-the-fold — R8's amended text;
+purchase-wait (0) vs menu-wait (EU-scored) — recorded here: two
+declared laws, held apart by the g5 pins, unification = R9's
+sitting; price's two homes (door-served library / clock-row wire)
+— two DECLARED worlds, the macro is per-declaration, recorded;
+batch's three readings — R10; menu membership vs the internal row
+— REPAIRED: Edit 2 forbids clock-name collision with the
+namespace, fail-closed; the dead internal-think sentences —
+REPAIRED: install Edit 7 brackets both; act-as-string — the frozen
+carrier, collision impossible in-scope (the substrate's menu is
+L/R), noted; the g5 door named "clock" — REPAIRED: renamed
+"door"; the price-0-only pin hiding a door-price reader —
+REPAIRED: g3.4's served-price independence point.
+
+**Mandate 6 (function-of): ten findings.** runTrampoline's baked
+menu/utility/price-name — the t2 SUBSTRATE'S OWN frozen data
+(vActS shape, t2Ns), now cited on the signature; the general
+standing sentence lives on the wire route; recorded, with R9
+carrying the generalization. DelibWorld/PurchaseWorld partition —
+R9. preposteriorV's payload — REPAIRED: the independence point +
+the R5-door-ceremony note; its batch range — R10. policyPick's
+code-grid mint — REPAIRED: documented (the atomGridOfC precedent).
+runPurchaseS's payload — REPAIRED: the second-door-payload
+equality assert; its wait-zero mention — the frozen ("wait", 0)
+head row's copy, noted. Clean: chooseKS honest, E3 held, dwPrice/
+pwLadderCap genuine world data, g3's zero-diff by construction.
+
+The mandates bought TWO new oracle rows (g2.3, g5.4), one type
+repair (the buffer out of DelibWorld), one staged-install edit
+(Edit 7 + the collision clause), three register items (R9-R11),
+and four honesty repairs in labels and names. The two-run record
+above is the POST-REPAIR record (red 14+3, SAT 17/17).
 
 ## Part IX — what the freeze seals
 

@@ -182,22 +182,33 @@ predictiveBelief feats ag = do
 -- ------------------- the trampoline surface (EXACT_PLAN 13) --------
 -- Type derivations (the step-6 forward rule):
 --   DelibWorld — the deliberation world's ECONOMICS row and nothing
---       else (the PurchaseWorld precedent, charter 13.2): the
---       declared clock (price of think, door-served as the world's
---       "price" feature — the frozen t2 idiom), the batch depth, and
---       the world-side evidence buffer. World data; never engine
---       state.
+--       else (the PurchaseWorld precedent, charter 13.2: "priced by
+--       the world's declared clock"): dwPrice is the clock row's
+--       value, door-served as the world's "price" feature (the
+--       frozen t2 idiom, test/Acceptance.hs:79-80); dwBatch is the
+--       think act's fold depth, descending from the frozen batch
+--       law `min 3 bufLen` (test/Acceptance.hs:95 — the t2 lineage
+--       charter 13.4 invokes for the differential's anchors). The
+--       evidence stream is NOT here: it is world dynamics, passed
+--       separately exactly as runPurchase takes its obs stream.
+--
+-- The internal act this surface serves is the t2 lineage's think
+-- (the batch-fold deliberation of the frozen acceptance test);
+-- charter 13.2's other internal act (refine, the vocabulary
+-- purchase) runs through the same one-sentence law in Purchase
+-- (runPurchaseS). Their UNIFICATION on a single tick's menu is the
+-- boundary register's R9.
 --
 -- ORACLE-PHASE STUBS (test-trampoline red): each body below refuses
 -- or returns the neutral value so every frozen row's red is
 -- attributable to the missing trampoline, while the standing suites
 -- (which never call these names) stay green.
 
--- | The deliberation world: clock, batch, buffer — all declared.
+-- | The deliberation world: the clock row (price, batch) — declared
+-- economics, nothing else.
 data DelibWorld = DelibWorld
   { dwPrice :: Rational
   , dwBatch :: Int
-  , dwBuffer :: [Int]
   }
   deriving (Eq, Show)
 
@@ -205,7 +216,12 @@ data DelibWorld = DelibWorld
 -- successor): same signature, same CL-3 semantics, but the whole
 -- menu compared inside a single standing sentence (chooseKS) with
 -- every candidate's belief bound in one env — the charter's single
--- chooser. chooseEU remains the frozen binary special case.
+-- chooser. The option-code grid is MINTED from the declared
+-- candidate list (mkGrid over 0..K-1 — the atomGridOfC precedent:
+-- derived at build from declared data, never a baked point-set);
+-- the winning code decodes by ==-table against the same list (a
+-- tag read — register R3). chooseEU remains the frozen binary
+-- special case.
 policyPick :: Namespace -> Features -> Grid
            -> Expr '[Rational, Rational] Rational
            -> [(Features, Belief Int)]
@@ -222,14 +238,16 @@ preposteriorV :: Namespace -> Features -> Int -> Belief Rational
 preposteriorV _ _ _ _ _ = Right 0
 
 -- | The closed-loop trampoline over the frozen t2 substrate (theta
--- space + emission kernel): ONE policy evaluation per tick over the
--- standing sentence [L, R, think], internal act LAST (CL-3 ties to
--- inaction); think folds the world's batch and re-enters. Returns
--- the per-tick chosen-option transcript ("think" rows then the
--- final act).
+-- space + emission kernel + the world's evidence stream, passed
+-- separately like runPurchase's): ONE policy evaluation per tick
+-- over the standing sentence [L, R, think], internal act LAST
+-- (CL-3 ties to inaction); think folds the world's batch and
+-- re-enters. Returns the per-tick chosen-option transcript — the
+-- carrier is the frozen artifact's own (Anchors.t2RowsX's String
+-- act column): "think" rows then the final act.
 runTrampoline :: Namespace -> Space Rational -> K Rational Int
-              -> DelibWorld -> Either String [String]
-runTrampoline _ _ _ _ =
+              -> DelibWorld -> [Int] -> Either String [String]
+runTrampoline _ _ _ _ _ =
   Left "runTrampoline: not implemented (oracle-phase stub)"
 
 -- | One library episode over a pure world (the frozen loop's order,

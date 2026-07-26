@@ -40,7 +40,8 @@ sentence carries the pin citation from this freeze)
 | OB-24 | the Get-of-writable utility ruling (register R4): under the
 shipped chooseEU fold both sides of every comparison are served the
 CHALLENGER's assignment, so action-dependent utilities degenerate to
-ties (demonstrated, trampoline pack Part V); the one-sentence route
+ties (demonstrated EXECUTED: oracle row g2.3, the divergence
+witness; prose record trampoline pack Part V); the one-sentence route
 substitutes each option's own values. The composition pin g2 is
 scoped to the wire's utility convention until the author rules which
 semantics is normative; if substitution is ruled normative, chooseEU

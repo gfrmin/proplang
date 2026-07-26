@@ -239,7 +239,12 @@ addM a b = Sub a (Sub (Sub b b) b)
 -- incumbent, a challenger displaces iff strictly greater (CL-3),
 -- expands to the nested If/Gt tournament and returns the WINNING
 -- ROW'S CODE. A macro priced at its expansion, never a codeword;
--- the chooseEU binary pick generalized to the whole menu.
+-- the chooseEU binary pick generalized to the whole menu. The
+-- code-return carrier descends from the frozen binary idiom (the
+-- pick sentence's reMint atomG 1/0, Membrane.hs chooseEU): the
+-- caller dispatches on the code by EQUALITY against its declared
+-- table — a tag read, never an ordering (the boundary register's
+-- R3; E4 convicts ordering comparisons, not table dispatch).
 --
 -- ORACLE-PHASE STUB (test-trampoline red): returns a value-mangled
 -- code (last minus first) so every frozen row's red is attributable

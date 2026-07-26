@@ -26,8 +26,10 @@ NEW:
   boundary): `Membrane.policyPick` expands the whole published menu
   into a single chooseKS tournament — every candidate's belief
   bound in one env, each option's utility reading the option's OWN
-  assignment by expansion, CL-3 first-listed wins ties (pinned by
-  trampoline g1/g2) — so wait, the option space's head by
+  assignment by expansion (the substitution semantics, pinned by
+  trampoline g2.3 — the divergence witness; ruling R4/OB-24), CL-3
+  first-listed wins ties (pinned by trampoline g1/g2) — so wait,
+  the option space's head by
   construction, keeps ties. `Membrane.chooseEU` (Membrane.hs) is
   the binary special case, retained and pinned (the SELECTION row,
   EARNED, unique kill M7; trampoline g2 pins the composition on the
@@ -42,7 +44,10 @@ NEW:
   the agent's internal acts — `"clock": [{"name": "think",
   "price": P, "batch": B}]`, exactly one row, name `think`, P a
   wire number, B integral and >= 1 (any other shape or internal
-  name = bad hello, fail-closed). When declared, every decision
+  name = bad hello, fail-closed; an internal name COLLIDING with
+  any namespace name is likewise bad hello — the wire never lets
+  `{"act": {"think": v}}` and `{"internal": "think"}` denote in one
+  session — the mandate-5 repair). When declared, every decision
   tick's option space is the published assignments PLUS the
   standing think row (the engine's preposterior at batch depth B,
   minus P, said in-sentence; internal acts LAST — CL-3 ties to
@@ -127,3 +132,22 @@ NEW:
 ```
 | namespace immutability under publication | Host.hs handshake + tick dispatch | trampoline g6.3 (OB-23 DISCHARGED) |
 ```
+
+## Edit 7 — the dead internal-think sentences bracketed (the
+## mandate-5 frozen-layer find: one document, two senses)
+
+The two step-5-era sentences (membrane-wire.md ~:330 and ~:339,
+"the fire/slots and internal-think encodings died at step 5" / "The
+internal think row is RETIRED") each gain a dated bracket at the
+freeze:
+
+```
+[2026-07-26, the trampoline boundary: the sense that died here is
+the step-5 echo-sentinel ENCODING. The clock row's
+`{"internal": "think"}` (section 2) is a NEW, unrelated sense — an
+internal act priced by the world, chosen by the one policy
+sentence, firing nothing on the wire.]
+```
+
+The apply step locates both sentences by their quoted text and
+appends the bracket after each.

@@ -1,7 +1,11 @@
 {-# LANGUAGE DataKinds #-}
--- test-trampoline/Trampoline.hs — the trampoline boundary's oracle
--- (EXACT_PLAN section 13, opened by the author's ruling of
--- 2026-07-26; ruling 8's condition met at dyadic-freeze-r1).
+-- test-trampoline/Trampoline.hs — the trampoline boundary's oracle.
+-- OPENED by the author's instruction of 2026-07-26 ("open the
+-- trampoline boundary") — the ruling that ruling 8 (x5 record)
+-- requires, its condition met at dyadic-freeze-r1; the instruction
+-- is recorded verbatim in trampoline-author-pack.md Part I, and the
+-- freeze tag is its custody attestation (the V-cancellation lesson:
+-- no boundary decision is a custody fact until its tag exists).
 --
 -- THE CLOSED-LOOP LAZY GENIUS (13.4's drafted rows, frozen here):
 --   g1  the K-ary choice macro (chooseKS) — CL-3 as ONE sentence
@@ -37,13 +41,17 @@
 -- R-D20 copy table (byte-wise copies, reviewable by grep):
 --   pin helper                    <- test-dyadic/Dyadic.hs:38-41
 --   argmaxCL3 (reference fold)    <- test/ExactReference.hs:154-157
---   t2Ns (the declared world)     <- test/Acceptance.hs:79-80
+--   tNs (the declared t2 world)   <- test/Acceptance.hs:79-80
+--   vActB (the engine act value)  <- test/Acceptance.hs:87-91
 --   vThinkB (the engine route)    <- test/Acceptance.hs:93-103
---   loChild/hiChild + deepChain   <- test-dyadic/Dyadic.hs:52-64
+--   hiChild + deepChain (hi half) <- test-dyadic/Dyadic.hs:52-64
 --   d6.1 moderate-cell quantities <- test-dyadic/Dyadic.hs:213-227
 --   d6.2 DEEP-cell quantities     <- test-dyadic/Dyadic.hs:228-240
 --   hello fixture base            <- test-transport/Transport.hs:70-76
---   pipe harness (spawnHost)      <- test-transport/Transport.hs:100-115
+--     (second guard row + utility DROPPED, codebooks row ADDED per
+--      membrane-wire section 2 — the deltas disclosed, not silent)
+--   pipe harness (inlined spawn/exchange; waitForProcess dropped,
+--     terminateProcess used)      <- test-transport/Transport.hs:100-115
 --   enumeration call shape        <- src/PropLang/Host.hs:288-295
 --   utility_bits formula          <- membrane-wire.md:394 (identity
 --                                    table; Host.hs:300-302)
@@ -76,8 +84,8 @@ import qualified Anchors
 import OracleWorld (egSpace, emitK)
 import Streams (buffer36)
 
-import PropLang.Belief (Belief, condK, points, predictMass, uniform,
-                        weights)
+import PropLang.Belief (Belief, condK, expect, points, predictMass,
+                        uniform, weights)
 import PropLang.Enumerate (enumerateWith, fragFull)
 import PropLang.Eval (Env, Features, Vals (..), evalx, mkEnvIn)
 import PropLang.Host (hostStart, serveLine)
@@ -108,6 +116,15 @@ argmaxCL3 ((a0, v0) : r) = foldl' step (a0, v0) r
 tNs :: Namespace
 tNs = mkNamespace ("price" :| [])
 
+-- the engine act value. COPY test/Acceptance.hs:87-91 (byte-wise,
+-- expect and all — the mandate-1 repair: the first draft re-derived
+-- this body and R-D20 forbids exactly that).
+vActB :: Belief Rational -> Rational
+vActB b =
+  let eR = expect b (\th -> 2 * th - 1)
+      eL = negate eR
+  in if eR > eL then eR else eL   -- CL-3: L incumbent, R displaces on >
+
 -- the engine route of the preposterior (price folded in). COPY
 -- test/Acceptance.hs:93-103.
 vThinkB :: Belief Rational -> Int -> Rational -> Rational
@@ -121,12 +138,6 @@ vThinkB b bufLen price =
                   Nothing -> (bb, 0))
                 (b, 1) s
   in sum [ m * vActB bb | s <- seqs, let (bb, m) = run s ] - price
-  where
-    vActB bb =
-      let eR = sum [ w * (2 * th - 1)
-                   | (th, w) <- zip (points bb) (weights bb) ]
-          eL = negate eR
-      in if eR > eL then eR else eL
 
 -- the higher-theta child + the DEEP pre-owned chain (the hiChild
 -- half of the pair). COPY test-dyadic/Dyadic.hs:52-64.
@@ -235,6 +246,28 @@ g2 = testGroup "g2 policyPick == chooseEU (extensional on the wire convention)"
       pin "the winner is CL-3's (challenger m=1 on strict >)"
           (Right (Just ([("m", 1)], [0, 1], [1 % 4, 3 % 4])))
           (normSel (policyPick ns [] atomG u cands2))
+  , testCase "g2.3 the substitution witness: a writable-reading utility DIVERGES from the fold (pins the R4 draft; kills any policyPick = chooseEU delegation)" $ do
+      -- fold (challenger-served env): both sides read the
+      -- challenger's m, so with cands [(m=0, E[y]=3/4), (m=1,
+      -- E[y]=1/4)] the challenger's value 1*1/4 < 1*3/4 and the
+      -- incumbent m=0 stays; substitution values each option at its
+      -- OWN m: [0, 1/4] and m=1 wins. Both behaviors asserted — the
+      -- divergence IS the row (the sitting may strike it under R4).
+      let ns = mkNamespace ("m" :| [])
+          g2g = mkGrid "m" (0 :| [1])
+          atomG = mkGrid "obs-atoms" (0 :| [1])
+          uRW = Mul (Get "m") (Var (S Z))
+          bOf w1 = case fromWeights (mkSpace ((0 :: Int) :| [1]))
+                          (\y -> if y == 1 then w1 else 1 - w1) of
+            Just b  -> b
+            Nothing -> error "bOf: lawful weights (unreachable)"
+          cands = zip (menuAssignments [("m", g2g)]) [bOf (3 % 4), bOf (1 % 4)]
+      pin "the fold keeps the head (the challenger-served degeneracy)"
+          (Right (Just ([("m", 0)], [0, 1], [1 % 4, 3 % 4])))
+          (normSel (chooseEU ns [] atomG uRW cands))
+      pin "the sentence route picks the option's OWN value (substitution)"
+          (Right (Just ([("m", 1)], [0, 1], [3 % 4, 1 % 4])))
+          (normSel (policyPick ns [] atomG uRW cands))
   , testCase "g2.2 four candidates with a mid-list duplicate value" $ do
       let ns = mkNamespace ("m" :| [])
           g4g = mkGrid "m" (0 :| [1, 2, 3])
@@ -260,8 +293,8 @@ g2 = testGroup "g2 policyPick == chooseEU (extensional on the wire convention)"
 g3 :: TestTree
 g3 = testGroup "g3 the price-only differential (the closed-loop lazy genius)"
   [ testCase "g3.1 think-counts and final acts == the frozen artifact itself (Anchors.t2RowsX)" $ do
-      let base = DelibWorld { dwPrice = 0, dwBatch = 3, dwBuffer = buffer36 }
-          run p = case runTrampoline tNs egSpace emitK base { dwPrice = p } of
+      let base = DelibWorld { dwPrice = 0, dwBatch = 3 }
+          run p = case runTrampoline tNs egSpace emitK base { dwPrice = p } buffer36 of
             Right tr -> ( p
                         , length (filter (== "think") tr)
                         , case reverse tr of
@@ -272,16 +305,16 @@ g3 = testGroup "g3 the price-only differential (the closed-loop lazy genius)"
           Anchors.t2RowsX
           [ run p | (p, _, _) <- Anchors.t2RowsX ]
   , testCase "g3.2 the free-clock rung climb: the full buffer in batches (derived, never hand-written)" $ do
-      let base = DelibWorld { dwPrice = 0, dwBatch = 3, dwBuffer = buffer36 }
-      case runTrampoline tNs egSpace emitK base of
+      let base = DelibWorld { dwPrice = 0, dwBatch = 3 }
+      case runTrampoline tNs egSpace emitK base buffer36 of
         Left m -> assertFailure m
         Right tr ->
           pin "thinks at price 0 = |buffer| / batch"
               (length buffer36 `div` dwBatch base)
               (length (filter (== "think") tr))
-  , testCase "g3.3 the partition identity: one policy evaluation per tick" $ do
-      let base = DelibWorld { dwPrice = 0, dwBatch = 3, dwBuffer = buffer36 }
-          check p = case runTrampoline tNs egSpace emitK base { dwPrice = p } of
+  , testCase "g3.3 the transcript partition (the single-evaluation identity's scriptable half; the loop-structure half is implementation-review law)" $ do
+      let base = DelibWorld { dwPrice = 0, dwBatch = 3 }
+          check p = case runTrampoline tNs egSpace emitK base { dwPrice = p } buffer36 of
             Left m -> assertFailure m
             Right tr -> do
               assertBool "transcript nonempty" (not (null tr))
@@ -298,7 +331,7 @@ g3 = testGroup "g3 the price-only differential (the closed-loop lazy genius)"
   , testCase "g3.4 the preposterior fast path is PINNED to the frozen route (section 1b, in-increment)" $ do
       -- chain: preposteriorV == vThinkB(price 0) here; vThinkB ==
       -- the ONE-SENTENCE route in the frozen acceptance suite
-      -- (test/Acceptance.hs:262-276) — the pin composes.
+      -- (test/Acceptance.hs:262-279) — the pin composes.
       let beliefs = uniform egSpace
             : [ b | y <- [1, 1, 0, 1]
               , Just b <- [condK (uniform egSpace) emitK y] ]
@@ -306,18 +339,27 @@ g3 = testGroup "g3 the price-only differential (the closed-loop lazy genius)"
               pin ("belief fold, batch " ++ show d)
                   (Right (vThinkB b d 0))
                   (preposteriorV tNs [("price", 0)] d b emitK))
-        [ (b, d) | b <- beliefs, d <- [1, 3] ]
+        [ (b, d) | b <- beliefs, d <- [1, 2, 3] ]
+      -- the door payload is R5 ceremony, not an input: the total is
+      -- price-FREE, so a differently-served price changes nothing
+      -- (the mandate-6 independence point)
+      pin "served-price independence (the payload is a door, not data)"
+          (preposteriorV tNs [("price", 0)] 3 (uniform egSpace) emitK)
+          (preposteriorV tNs [("price", 3 % 10)] 3 (uniform egSpace) emitK)
   ]
 
 -- ---------------------------------------------------------------------
 -- g5 — R1's buy/stay shapes through the ONE sentence
 -- ---------------------------------------------------------------------
 
+-- the R5 door payload for the purchase rows: a NEUTRAL declared
+-- name (the sentence reads no features; "door" avoids overloading
+-- the wire's clock row — the mandate-5 repair)
 pNs :: Namespace
-pNs = mkNamespace ("clock" :| [])
+pNs = mkNamespace ("door" :| [])
 
 pFeats :: Features
-pFeats = [("clock", 0)]
+pFeats = [("door", 0)]
 
 g5 :: TestTree
 g5 = testGroup "g5 the purchase shapes through the sentence (the last host fold's pin)"
@@ -341,6 +383,12 @@ g5 = testGroup "g5 the purchase shapes through the sentence (the last host fold'
           pin "act-for-act == runPurchase (the retirement pin)"
             (map ptAct (runPurchase w (mkOwned [rootNode]) stream))
             (map ptAct ticks)
+          -- the door payload is R5 ceremony (the sentence reads no
+          -- features): a different declared payload, same transcript
+          pin "door-payload independence"
+            (Right ticks)
+            (runPurchaseS (mkNamespace ("w" :| [])) [("w", 7)]
+               w (mkOwned [rootNode]) stream)
   , testCase "g5.2 the myopic stay: the d6.2 DEEP cell (COPY test-dyadic/Dyadic.hs:228-240)" $ do
       let w = PurchaseWorld { pwStakes = (1, -24)
                             , pwRefine = Just (1 % 20)
@@ -359,6 +407,24 @@ g5 = testGroup "g5 the purchase shapes through the sentence (the last host fold'
             (length [ () | (_, a) <- acts, a == "respond" ])
           pin "transcript == runPurchase (full rows)"
             (runPurchase w owned stream) ticks
+  , testCase "g5.4 the banked deadlock cell DOCUMENTED (13.3 branch (b)): root-only vocabulary, deep stakes, 60 all-correct ticks, zero refines" $ do
+      -- the GroundC observation (re-executed at the dyadic close)
+      -- reproduced through the ONE sentence: the max-0 clamp zeroes
+      -- every single-step gain, refine never fires, the agent waits
+      -- forever — the myopic single-step candidate's HONEST
+      -- behavior, now an oracle row (register R1 drafts (b); the
+      -- (a) route re-enters only with a measurement)
+      let w = PurchaseWorld { pwStakes = (1, -24)
+                            , pwRefine = Just (1 % 20)
+                            , pwLadderCap = 16 }
+          stream = replicate 60 1
+      case runPurchaseS pNs pFeats w (mkOwned [rootNode]) stream of
+        Left m -> assertFailure m
+        Right ticks -> do
+          pin "wait 60 / respond 0 / refine 0 (the deadlock, verbatim)"
+              (replicate 60 "wait") (map ptAct ticks)
+          pin "== runPurchase (the fold agrees: the behavior is the law's)"
+              (runPurchase w (mkOwned [rootNode]) stream) ticks
   , testCase "g5.3 the wait head owns ties through the sentence (stakes (0,0): every guard exactly 0)" $ do
       let w = PurchaseWorld { pwStakes = (0, 0)
                             , pwRefine = Just (1 % 20)
@@ -389,7 +455,11 @@ helloCB = "{\"membrane\": 1, \"world\": {\"namespace\": [\"t\", \"z\", \"a\"], "
 
 -- the t2-lineage wire world: bern family, the L/R menu, the said
 -- utility move*(2y-1), and the clock row (the trampoline's wire
--- form, staged install; price 0 => the internal act wins tick one)
+-- form, staged install; price 0 => the internal act wins tick one).
+-- SITTING FLAG (mandate 2): the utility reads the writable "move" —
+-- the R4-pending semantics — but every assertion below is
+-- INSENSITIVE to that ruling (at the uniform first tick both
+-- readings give the externals EU 0, and think wins strictly).
 helloClock :: String
 helloClock = "{\"membrane\": 1, \"world\": {\"namespace\": [\"move\"], "
     ++ "\"guards\": [], "
@@ -480,6 +550,17 @@ g6 = testGroup "g6 the wire rows (OB-22, OB-23, the clock)"
         ("\"ok\": true" `isInfixOf` r1)
       assertBool ("the internal act crosses: " ++ r2)
         ("\"internal\": \"think\"" `isInfixOf` r2)
+      -- evidence on an internal tick folds (at feats ++ the wait
+      -- head — register R8); the reply carries the fold's record
+      let (_, r3) = serveLine st1 tick
+          tickEv = "{\"tick\": {\"features\": {}, \"menu\": [\"move\"], \"evidence\": 1}}"
+          (_, r4) = serveLine st1 tickEv
+      assertBool ("stateless recheck: " ++ r3)
+        ("\"internal\": \"think\"" `isInfixOf` r3)
+      assertBool ("evidence folds on the internal tick: " ++ r4)
+        ("\"internal\": \"think\"" `isInfixOf` r4
+         && "\"observed\": 1" `isInfixOf` r4
+         && "loss_bits" `isInfixOf` r4)
   ]
 
 main :: IO ()
