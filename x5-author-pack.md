@@ -98,11 +98,23 @@ R-R1's three grounds (r-author-pack.md:322-341), re-argued:
    fromWeights weighs — and every log-odds node is UNSAYABLE (no
    Rational mention can name it). The coordinate-consistency
    argument now runs the other way: the lattice must live where the
-   language lives. Dyadic-in-theta is the unique choice whose nodes
-   are exactly the sayable dyadic rationals: depth k holds the 2^k
-   points odd/2^(k+1); root 1/2; mirror theta <-> 1-theta is
-   positional (same depth, same price) — the founding symmetry
-   survives exactly.
+   language lives. Dyadic-in-theta is an AXIOM CHOICE within an
+   admissible family, elected for stated reasons — NOT a derived
+   unique optimum; no such theorem exists (Kraft's converse gives
+   non-unique code assignments, and universal-code non-uniqueness —
+   omega* beating Elias omega — denies a canonical rational code;
+   the signing-review repair, 2026-07-26). The axioms: exact-rational
+   SAYABILITY (compile-level — this one ground convicts log-odds AND
+   the arcsine/Jeffreys warp alike, both irrational-noded), Kraft
+   EXACTLY 1, MIRROR symmetry theta <-> 1-theta, and
+   INTERVAL-REFINEMENT (the guard's rectangle law needs region
+   spans). These select a family — dyadic and Stern-Brocot/Farey its
+   serious members — and dyadic is ELECTED within it: depth k holds
+   the 2^k points odd/2^(k+1); root 1/2; mirror is positional (same
+   depth, same price) — the founding symmetry survives exactly; and
+   the extreme-theta economics are the family's CHEAP end (1/2^k at
+   ~k + 2 lg k bits dyadic vs ~2^k Stern-Brocot mediant steps —
+   reasoning strength, a two-line probe on demand).
 2. **Universality TRANSFERS, with its object renamed.** The original
    ground priced INTEGER EXTENTS by the universal integer code.
    Dyadic-in-theta has no extents (theta is bounded); the object
@@ -794,6 +806,64 @@ the right battery (governor-threshold streams and adversarial cells
 included), but if the live governor ever operates sustained at
 deep-threshold stakes, the latency face is the one to watch.
 
+ADDENDUM AT THE SIGNING REVIEW (2026-07-26, pre-tag; three review
+rounds folded in — the canonicity memo, the metareasoning
+assessment, the floor exchange — so the record carries its own
+claim-strength audit):
+
+- CLAIM STRENGTH REPAIRED AT SOURCE (3.5 ground 1): the dyadic
+  ladder is an axiom choice within an admissible family, elected
+  for stated reasons, never a derived unique optimum. The verdict
+  is untouched; the label is corrected (the Savage-shape
+  discipline: a chosen thing may not wear a proven thing's name).
+- O(1)-EQUIVALENCE AND GUARD SAFETY, AT HONEST STRENGTH: any two
+  admissible floors differ by O(1) bits per theta-mention against
+  data terms growing with n; and no Kraft-complete floor can make
+  the guard anti-conservative (the Ville/mSPRT shape — the prior
+  moves latency and power, never validity). NEITHER is canonized
+  by assertion (mandate 2's shape). The executable core is
+  SCHEDULED instead: a property row in the dyadic increment's
+  oracle — pessimistic guard <= exact mixture value <= optimistic
+  guard on every battery cell, under a region system of Kraft mass
+  exactly 1 with nothing dropped. Its violation is precisely
+  GroundB's flipped straddle: the +2000 truncation dropped mass,
+  so no proper-prior guarantee ever applied to the shipped guard.
+  The sequential (anytime-validity) strengthening stays at
+  reasoning strength until derived or executed.
+- KT/SNML CHARTERED as a named future entry-gate candidate: the
+  one-part sequential code for estimated theta (exact rational
+  recurrence, predictive (2*n1+1)/(2n+2); minimax-regret theorem
+  behind it; structurally the rw family — count-dependent, non-
+  expfam). It is ALPHABET MOTION, so it enters only through the
+  two-sided gate: clause (a) = the executed demonstration that no
+  finite grid mixture reproduces the KT predictive at every count
+  vector; clause (b) = its ablation fixture. Demand-gated; it can
+  never arrive as an optimisation (it changes the prior). Every
+  use it absorbs is a use where the ladder choice has zero stakes.
+- THE ASSERTED-THETA CENSUS registered as an owed evidence item
+  (execution increment): universe derived from the declared
+  corpora and World declarations, never hand-enumerated; counts
+  sites where a theta constant is ASSERTED against sites where
+  theta is estimated from outcomes. If assertion is rare, the
+  residue is institutionally trivial and the dyadic freeze is
+  permanent at near-zero stakes.
+- THE LADDER MIXTURE (a priced posterior over coordinate systems)
+  CONSIDERED AND DECLINED: alphabet motion with the entry gate
+  unmet; O(1) savings exactly where the O(1) is the decision
+  margin (deep-threshold, evidence-poor territory — where 12
+  ticks became 45); and the lattice is the guard's SOUNDNESS
+  apparatus, so the coordinate must be one fixed public fact — a
+  robustness certificate depending on a posterior over coordinates
+  is unauditable by construction.
+- ONE NAMED CONTINGENCY, stated against the shipped system: TODAY
+  a non-dyadic constant (1/3) remains sayable via a World-declared
+  grid at grid price — the lattice prices the GUARD's region
+  vocabulary, not hypothesis constants. IF mention-pricing ever
+  unifies onto the dyadic ladder, non-dyadic rationals become
+  linearly expensive to assert; the census sizes that demand, and
+  the remedy is a demand-gated rational-constant seat under the
+  door discipline — never a floor redesign.
+
 **Ruling 2 — the stale-green repair (pwLadderCap).**
 RULED (as drafted): *Lands WITH the dyadic diff — one Purchase surface motion.
 RIDER (process line, for CLAUDE.md at this sitting or the next
@@ -893,6 +963,10 @@ waiting; it opens nothing until ruled open.*
 4. The trampoline WAITS: it opens at the sitting AFTER the dyadic
    freeze (ruling 8). The governor docket — 7(a)/(b)/(c) — waits for
    a governor sitting, (c) before (a).
+5. From the signing-review addendum: the guard-safety two-sided-
+   bound property row rides the dyadic increment's ORACLE; the
+   asserted-theta census rides the execution increment as an owed
+   evidence item, universe script-derived.
 
 ## Post-sitting verification checklist (mechanical; the next session opens here, pass/fail, no re-read)
 
@@ -928,4 +1002,10 @@ pinned against HEAD at sitting time):
       brackets; the brief's own sentence untouched (ruling 3).
 - [ ] The GroundC deadlock re-execution transcript rides the dyadic
       increment's pack (§13.3's expiry rider).
+- [ ] The dyadic increment's oracle carries the guard-safety
+      two-sided-bound property row (pess <= exact <= opt, Kraft
+      mass exactly 1) — the signing-review addendum's scheduled
+      row.
+- [ ] The asserted-theta census transcript rides the execution
+      increment's pack, universe script-derived (addendum).
 - [ ] `cabal test all` exit 0; `tools/prefreeze-lint.sh` 0 FAIL.
