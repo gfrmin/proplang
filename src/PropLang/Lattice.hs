@@ -3,13 +3,6 @@
 -- R-R1 re-open, dyadic-in-theta ADOPTED; the staged diff is
 -- x5-author-pack.md 3.6, this module is that diff landing).
 --
--- ORACLE PHASE (dyadic increment): the bodies below are
--- compile-enabling STUBS — total, deliberately wrong — so that
--- test-dyadic/ runs RED against this surface before the freeze
--- seals it (the increment protocol's two-run structure). The
--- implementation replaces the stub bodies after the author's
--- freeze tag; the type surface is the increment's drafted surface.
---
 -- Type-derivation audit (the step-6 clause — every type on a frozen
 -- surface carries its one-line derivation):
 --   'Node'   — ruling 1 (x5 record) via 3.5 ground 1: a lattice
@@ -26,9 +19,13 @@
 -- gammaLen(k+1) + k — Elias-gamma on the one remaining integer
 -- (depth) times uniform position within the level. Integer-valued;
 -- mirror-positional (same depth, same price — the founding symmetry
--- survives exactly). Kraft over the tree is EXACTLY 1 (3.6a's free
--- fact): the extent chain, the +2000 truncation, and ground M3's
--- entire apparatus cease to exist.
+-- survives exactly). Kraft over the tree is EXACTLY 1 (pinned by
+-- test-dyadic d2.3/d2.4): the extent chain, the +2000 truncation,
+-- and ground M3's apparatus ceased to exist. The coordinate is an
+-- AXIOM CHOICE within the admissible family (exact-rational
+-- sayability, Kraft 1, mirror symmetry, interval refinement),
+-- elected for stated reasons — the ruling-1 signing-review repair;
+-- no uniqueness theorem is claimed.
 module PropLang.Lattice
   ( Node
   , rootNode
@@ -67,10 +64,9 @@ rootNode :: Node
 rootNode = Node 1 0
 
 -- | The EXACT coordinate (ruling 1): num/2^(depth+1), a sayable
--- rational. STUB: constant 1/3 (non-dyadic, wrong for EVERY node,
--- interior so downstream masses stay positive and total).
+-- rational — what C-mentions say, what fromWeights weighs.
 nodeTheta :: Node -> Rational
-nodeTheta (Node _ _) = 1 % 3
+nodeTheta (Node p k) = p % (2 ^ (k + 1))
 
 -- Elias-gamma length of a positive integer (integer-valued).
 gammaLen :: Integer -> Integer
@@ -80,11 +76,11 @@ ilog2 :: Integer -> Int
 ilog2 m | m <= 1    = 0
         | otherwise = 1 + ilog2 (m `div` 2)
 
--- | THE pricing formula (3.6): gammaLen(depth+1) + depth, integer,
--- mirror-safe — the sign bit died with the signed extents. STUB:
--- constant 2 (wrong at every depth).
+-- | THE pricing formula (3.6): gammaLen(depth+1) + depth — integer,
+-- mirror-safe; the sign bit died with the signed extents. Pinned by
+-- d2.1/d2.2 (the sealed economics table).
 gammaBits :: Node -> Integer
-gammaBits (Node _ k) = 2 + 0 * gammaLen (fromIntegral k + 1)
+gammaBits (Node _ k) = gammaLen (fromIntegral k + 1) + fromIntegral k
 
 -- | The two dyadic refinements of a node — the only generator
 -- besides the root, so num stays odd by construction.
@@ -99,10 +95,9 @@ parentOf (Node p k) =
   in Just (Node (if odd a then a else b) (k - 1))
 
 -- theta span of a node's subtree: the exact dyadic interval
--- ((num-1)/2^(depth+1), (num+1)/2^(depth+1)). STUB: the inverted
--- interval (1, 0), so no candidate lies in its own region.
+-- ((num-1)/2^(depth+1), (num+1)/2^(depth+1)); the root spans (0,1).
 spanOf :: Node -> (Rational, Rational)
-spanOf (Node _ _) = (1, 0)
+spanOf (Node p k) = ((p - 1) % (2 ^ (k + 1)), (p + 1) % (2 ^ (k + 1)))
 
 -- | A finite owned set (the materialized part of the fixed priced
 -- space). Abstract: 'mkOwned' is the only door in.
@@ -144,8 +139,7 @@ regions o =
   | c <- frontier o, let (lo, hi) = spanOf c ]
 
 -- exact gamma tail: sum_{m >= m0} 2^-gammaLen(m), by octaves —
--- octave b contributes 2^b * 2^-(2b+1) = 2^-(b+1). STUB inside
--- 'kraftSubtree'.
+-- octave b contributes 2^b * 2^-(2b+1) = 2^-(b+1).
 gammaTailQ :: Integer -> Rational
 gammaTailQ m0 =
   let b0   = ilog2 m0
@@ -157,9 +151,10 @@ gammaTailQ m0 =
 -- | Kraft mass of the subtree at (and below) a node, exact closed
 -- form: 2^-depth * gammaTail(depth+1) — the position count cancels
 -- the position bits per level, the sum telescopes, NOTHING is
--- truncated (Kraft over the whole tree is exactly 1). STUB: 0.
+-- truncated (Kraft over the whole tree is exactly 1, d2.3; the
+-- recursion own + children is d2.4).
 kraftSubtree :: Node -> Rational
-kraftSubtree (Node _ _) = 0 * gammaTailQ 1
+kraftSubtree (Node _ k) = (1 % (2 ^ k)) * gammaTailQ (fromIntegral k + 1)
 
 -- | The canonical scorer: the posterior over an owned set given the
 -- permanent counts, through the sealed reasoner's own prior door —
@@ -200,14 +195,21 @@ uOf (sR, sW) th = sR * th + sW * (1 - th)
 -- pessimistic, False = optimistic — every region placed at
 -- (sup-likelihood, endpoint-extremum utility), the rectangle bound,
 -- all comparisons EXACT: the guard is a theorem-grade bound, not a
--- float estimate. STUB: a size-decreasing pessimistic value and its
--- negation — wrong everywhere, and it VIOLATES interval nesting
--- under refinement, so the guard-safety row's red is demonstrated.
+-- float estimate (d4's hand instances; d5's two-sided-bound rows —
+-- owned + region mass exactly 1, intervals nest under refinement).
 guardE :: Bool -> Owned -> (Int, Int) -> (Rational, Rational) -> Rational
 guardE pess o (n1, n0) st =
-  let z    = 0 * uOf st (supLike n1 n0 (spanOf rootNode))
-      size = fromIntegral (length (ownedNodes o))
-  in z + (if pess then 15 % 2 - size else size - 15 % 2)
+  let ws   = [ (1 % (2 ^ gammaBits n) * likeQ n1 n0 th, th)
+             | n <- ownedNodes o, let th = nodeTheta n ]
+      num0 = sum [ w * uOf st th | (w, th) <- ws ]
+      den0 = sum [ w | (w, _) <- ws ]
+      pick (Region a b m) =
+        let l  = supLike n1 n0 (a, b)
+            us = [uOf st a, uOf st b]
+            u  = if pess then minimum us else maximum us
+        in (m * l * u, m * l)
+      parts = map pick (regions o)
+  in (num0 + sum (map fst parts)) / (den0 + sum (map snd parts))
 
 -- | The straddle: pessimistic <= 0 < optimistic — the owned
 -- decision is not robust to admissible placements of unowned mass.

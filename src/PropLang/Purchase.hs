@@ -2,11 +2,6 @@
 -- increment R1; re-founded exact at the dyadic increment, the X.5
 -- sitting's rulings 1-3 sealed at x5-sitting-r0).
 --
--- ORACLE PHASE (dyadic increment): stub semantics — total,
--- deliberately wrong — behind the drafted type surface, so
--- test-dyadic/ runs RED before the freeze. Implementation follows
--- the author's freeze tag.
---
 -- Type-derivation audit (the step-6 clause):
 --   'PurchaseWorld' — the world's ECONOMICS row and nothing else
 --       (the alignment statement): stakes, an optional refine
@@ -71,7 +66,10 @@ data PTick = PTick
 -- over [wait, respond, refine] in the pinned order, counts advanced
 -- by the evidence, purchases by the region-derived criterion (the
 -- VALUE-BASED candidate), the refine arm present only when priced
--- and straddling. STUB: the guard stubs to 0, so every tick waits.
+-- and straddling (d6.1-d6.4; the root-vocabulary deep-stakes
+-- deadlock of the max-0 clamp is the BANKED observation,
+-- EXACT_PLAN 13.3 — re-executed against this module at the
+-- increment close, the trampoline boundary's design input).
 runPurchase :: PurchaseWorld -> Owned -> [Int] -> [PTick]
 runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
   where
@@ -84,15 +82,10 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
           respondV = guardE True o c' st
           forgone  = max 0 respondV
           (cand, gain) = bestCandidate o c'
-          -- STUB, SEEDED DEFECT for the red run: the refine arm is
-          -- offered UNCONDITIONALLY (no refine row required, no
-          -- straddle consulted, a large bias added) so the static-
-          -- vocabulary and cap rows demonstrably fire. The real arm
-          -- is the Maybe form gated on pwRefine and the straddle.
-          mRefine = if straddles o c' st || True
-            then Just (100 + pwLadderCap w * gain
-                        - maybe 0 id (pwRefine w) - forgone)
-            else Nothing
+          mRefine = case pwRefine w of
+            Just s | straddles o c' st ->
+              Just (pwLadderCap w * gain - s - forgone)
+            _ -> Nothing
           -- the pinned order: wait head, externals, internal acts
           -- LAST; strict-improvement first-listed fold (CL-3)
           chosen = foldl pick ("wait", 0)
