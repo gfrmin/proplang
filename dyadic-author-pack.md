@@ -183,16 +183,50 @@ R9. **Gate-5 form during the red phase**: the dyadic stanza enters
     proplang.cabal:59-62); freeze-commands.txt item 7 records the
     running form.
 
-## 5. The freeze ask
+## 5. The drafted freeze record (prepared after the freeze review of 2026-07-26; binds at your `dyadic-freeze-r0` tag)
 
-Review the oracle (24 rows), the staged installs under
-`test-dyadic/freeze/`, and this register; rule R1-R9; then the
-freeze commit executes `freeze-commands.txt` (stanza + five frozen
-files + manifest extension over test-dyadic/) and your signed tag
-`dyadic-freeze-r0` seals it. From that tag: implementation (the
-overlay semantics land in src), gates 1-7 green, anchors
-byte-stable, the mutant pool + matrix run, the GroundC
-re-execution, and the increment report close it out.
+The independent freeze review verified the chain (custody, the red
+run reproduced flag-faithfully from the oracle's identical text,
+every hand derivation re-derived, the R-D20 copies checked against
+the sealed pack) and recommended verdicts; the two substantive
+additions are FOLDED INTO THE STAGED KIT (OB-22/23; the R7
+pre-ruling below). Nothing binds until your tag.
+
+- **R1 ACCEPT**: `gammaBits :: Integer` — the honest sort for a
+  bit-length; no consumer exists.
+- **R2 ACCEPT**: `nodeLambda` leaves the exports; no display
+  demands it; Report-edge re-entry if one ever does.
+- **R3 ACCEPT**: `rLo`/`rHi`/`rMass` per the staged diff.
+- **R4 ACCEPT, CONVERTED**: the owed positive-hello pin is an
+  OBLIGATIONS row at this freeze (OB-22, with the utility_bits
+  row), not a pack parenthetical — the parenthetical-evaporation
+  shape refused.
+- **R5 ACCEPT as staged**: SCHEDULED with named discharge events;
+  no new state letter minted.
+- **R6 ACCEPT both**: F-b's repair cites the live test-pin row;
+  F-a's owed pin is OB-23.
+- **R7 ACCEPT, PRE-RULED**: a new row's unique kill is measured
+  against the STANDING (pre-increment) corpus; sibling shadowing
+  within the new suite is recorded as verdicts at the next matrix
+  run, never a close-blocker. The M15-M22 pool lands with
+  implementation; the increment does not close without the matrix
+  run recording the new rows' kills.
+- **R8 ACCEPT**: the GroundC re-execution transcript rides this
+  pack before the trampoline boundary relies on the observation
+  (banked-failure expiry, applied as canonized).
+- **R9 ACCEPT**: the exact oracle's precedent; freeze-commands.txt
+  item 7 the running form.
+
+**The seal**: the freeze commit executes `freeze-commands.txt`
+(stanza + five frozen files + OB-20..23 + manifest extension over
+test-dyadic/), and the attestation is your signed tag
+`dyadic-freeze-r0` — in person, or executed by the builder on
+fresh, explicit, per-instance delegation recorded verbatim in the
+tag message (the membrane precedent; R-D22's re-tag obligation
+then binds within the increment). From that tag: implementation
+(the overlay semantics land in src), gates 1-7 green, the mutant
+pool + matrix run, the GroundC re-execution, and the increment
+report close it out.
 
 Session custody at this commit: builder key, signed; frozen
 manifest 56/56 intact; the six standing suites green; the oracle

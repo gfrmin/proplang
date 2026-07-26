@@ -13,7 +13,8 @@
    FLAGGED F-a/F-b as the author rules).
 3. Apply test-dyadic/freeze/claude-md-clause.txt to CLAUDE.md.
 4. Append test-dyadic/freeze/obligations-rows.md rows to
-   OBLIGATIONS.md (state letters as the author rules).
+   OBLIGATIONS.md (FOUR rows, OB-20..OB-23; state letters as the
+   author rules).
 5. Apply test-dyadic/freeze/acceptance-probe-split.diff to
    test/Acceptance.hs.
 6. Re-derive MANIFEST.sha256: update rows for the five frozen files

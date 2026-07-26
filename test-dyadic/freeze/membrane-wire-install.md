@@ -79,10 +79,9 @@ NEW:
     `bitsView (weightIn ns prog)` (Host.hs:300-302), the exact 9/1
     weight; the Double pricer (`bitsIn`) died at the re-founding —
     the `namespace_bits` reporting law applied to the next declared
-    surface. [This sentence's oracle row is OWED: the one unpinned
-    identity-table row, landing with its kill at the next
-    oracle-bearing increment per the unique-kill clause's forward
-    half.]
+    surface. [This sentence's oracle row is OWED: OB-22, landing
+    with its kill at the next oracle-bearing increment per the
+    unique-kill clause's forward half.]
 
 ## Edit 4 — the door enters section 3 (three NAMED refusals; no default read)
 
@@ -154,7 +153,7 @@ NEW SENTENCE (appended to the §2 `obs_arity` bullet, before the
 | K=2 arity == plain route | Host.hs:292-296 | pins ARITY K=2 (==) |
 | K=4 categorical law | Enumerate.hs catBody | pins K=4 (EARNED, M14) |
 | p1 = P(atom 1) at any arity | Host.hs reply builder | acceptance probe rows |
-| utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | OWED (arrives with its kill, next oracle-bearing increment) |
+| utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | OWED (OB-22; arrives with its kill, next oracle-bearing increment) |
 | rendering cliff 2^53 | Host.hs:182-183 | transport t4 (parity partition) |
 
 ## FLAGGED beyond the ruled eight (found at staging; author accepts or strikes at the freeze)
@@ -162,8 +161,7 @@ NEW SENTENCE (appended to the §2 `obs_arity` bullet, before the
 F-a. §2 namespace bullet (:55) cites "pinned bit-exact by
      test-unify" — test-unify RETIRED at the exact boundary. Staged
      repair: "(the namespace-immutability conformance sentence; its
-     live pin is OWED per the forward half, registered beside the
-     utility_bits row)".
+     live pin is OWED — OB-23)".
 F-b. §2 obs_arity bullet (:84-85) cites "test-arity g1b/g2" —
      test-arity RETIRED. Staged repair: "(pinned == by the K=2
      coincidence row in test-pin)".
