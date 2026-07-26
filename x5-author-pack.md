@@ -759,12 +759,17 @@ its execution the commit after.
 
 ---
 
-## The drafted sitting record (edit and sign; prepared after the forwarded position sheet of 2026-07-26)
+## The X.5 sitting record (RULED 2026-07-26; binds at the author's signed tag `x5-sitting-r0` over the commit carrying this record)
 
-Six rulings are drafted AS RECOMMENDED per the position sheet, with
-its riders folded in; rulings 1 and 7 are structured for your
-judgment, each now carrying its executed discriminating evidence.
-Nothing below binds until your key seals the sitting.
+All eight rulings are RULED. Rulings 2-6 and 8 seal as drafted per
+the position sheet with its riders folded in; ruling 7 seals its two
+evidence-decided halves and formally defers (a)/(b)/(c) to a governor
+sitting; ruling 1 was ruled by the author in-session on 2026-07-26
+(ADOPT, with one recorded caveat). Verdicts are the author's, stated
+in-session and transcribed by the builder; the attestation is the
+author's signed tag, never this text or its commit signature (the
+custody rule — the tag, not any commit signature, is the attestation
+of author review and approval).
 
 **Ruling 1 — the lattice coordinate (R-R1 re-open).**
 DRAFT: *Dyadic-in-theta is ADOPTED. The three grounds (unsayable
@@ -781,13 +786,16 @@ coordinates fail in OPPOSITE directions — the dyadic tax DELAYS
 confidence at the extremes, the shipped truncation MANUFACTURES it
 (the flipped straddle, 3.2). A guard whose failure mode is
 slower-to-trust is on the right side of its own purpose; one whose
-failure mode is falsely-certifies is not.* — YOUR CALL:
-adopt / keep log-odds (ships all three pathologies knowingly) /
-defer (trampoline stays gated; the guard keeps certifying false
-robustness).
+failure mode is falsely-certifies is not.*
+RULED: **ADOPTED**, 2026-07-26. One caveat owned at signature,
+recorded here so it is owned rather than discovered later: the
+zero-act-change result is scoped to the eight-cell battery (3.6a) —
+the right battery (governor-threshold streams and adversarial cells
+included), but if the live governor ever operates sustained at
+deep-threshold stakes, the latency face is the one to watch.
 
 **Ruling 2 — the stale-green repair (pwLadderCap).**
-DRAFT: *Lands WITH the dyadic diff — one Purchase surface motion.
+RULED (as drafted): *Lands WITH the dyadic diff — one Purchase surface motion.
 RIDER (process line, for CLAUDE.md at this sitting or the next
 freeze): a repair recorded in a pack CITES ITS COMMIT HASH in the
 repair row; the pre-freeze checklist verifies every cited hash
@@ -795,7 +803,7 @@ touches the file the row names — recorded repairs are verified
 against the tree, mechanically, so this class dies structurally.*
 
 **Ruling 3 — the five process deletions.**
-DRAFT: *Candidates 1 (NaN case law) and 2 (float-order law):
+RULED (as drafted): *Candidates 1 (NaN case law) and 2 (float-order law):
 RETIRED, vacuous over Rational, two-sided record rows as drafted.
 Candidate 3 (tolerance case law): TRIMMED to R7's display-edge
 residue. Candidate 5 (lse/negInf riders): RETIRED; the one live pin
@@ -807,7 +815,7 @@ sentence is marked from outside, the project's standing treatment of
 frozen prose).*
 
 **Ruling 4 — oracle-row verdicts.**
-DRAFT: *NO deletions this sitting: 28 rows unreached where the pool
+RULED (as drafted): *NO deletions this sitting: 28 rows unreached where the pool
 has no operator classes — a deletion now would convict rows for the
 pool's gaps. The PROBE SPLIT is ORDERED (three rows: p1 / action /
 H-display; two earn immediately on the existing pool) as the next
@@ -819,12 +827,12 @@ independence suites' shapes) and the enumeration mutant pool
 enters OBLIGATIONS.md at this sitting under the author's key.*
 
 **Ruling 5 — the unique-kill clause.**
-DRAFT: *CANONIZED into CLAUDE.md with both amendment lines
+RULED (as drafted): *CANONIZED into CLAUDE.md with both amendment lines
 (pool-relativity; structural-shadowing-is-an-answer) — every
 sentence of the clause carries an executed exhibit from the r2 run.*
 
 **Ruling 6 — the membrane-wire re-derivation.**
-DRAFT: *INSTALLED at this sitting under the author's key: sections
+RULED (as drafted): *INSTALLED at this sitting under the author's key: sections
 1-3 replaced by the staged re-derivation (pack item 4) — the
 current example is refused by the shipped code and the form census
 is wrong twice; waiting makes the doc more wrong. The one unpinned
@@ -832,10 +840,11 @@ row (utility_bits) arrives with its kill at the next oracle-bearing
 increment, per ruling 5's forward half. Manifest row 25 re-signs.*
 
 **Ruling 7 — OB-12's consumers.**
-DRAFT for the two evidence-decided halves: *A STAYS CLOSED (demand
+RULED, the two evidence-decided halves: *A STAYS CLOSED (demand
 not measured on 95k live events); B STAYS OUT (underpowered by
-measurement, n_inv = 0).* — YOUR CALL, decomposed per the position
-sheet, with one new fact: (a) build the Phase-3 form (stake-bearing
+measurement, n_inv = 0).* The three remaining decisions are FORMALLY
+DEFERRED to a governor sitting; the docket rides with the deferral,
+with its one new fact: (a) build the Phase-3 form (stake-bearing
 said + learned theta_ask)? — a governor-programme priority call
 committing field work; if NO, the honest companion act is retiring
 the exit-from-shadow apparatus rather than keeping a permanently
@@ -850,13 +859,73 @@ NO resumed shadow can power B by running longer; powering B requires
 first deploying a second verdict source (an LLM-judge or reviewer
 channel) — which is exactly the evidence shape B itself would model.
 (c) is therefore upstream of (a), and both are upstream of any
-shadow resumption. RECOMMENDED SEQUENCING ONLY: rule (a) at a
-governor sitting, not this one — it is the only decision on this
-sheet committing future field work.
+shadow resumption. SEQUENCING SEALED WITH THE DEFERRAL: the governor
+sitting rules (c) before (a), both before any shadow resumption;
+(a) is the only item on this sheet committing future field work, and
+it is ruled there, not here.
 
 **Ruling 8 — the trampoline.**
-DRAFT: *Rule 1 first; the boundary OPENS AT THE SITTING AFTER the
+RULED (as drafted): *Rule 1 first; the boundary OPENS AT THE SITTING AFTER the
 dyadic freeze, not at it — one boundary at a time, and the
 trampoline's rungs live in exactly the modules the dyadic diff
 rewrites. The charter (EXACT_PLAN section 13) loses nothing by
 waiting; it opens nothing until ruled open.*
+
+---
+
+## The execution order (triggered by the seal; builder work, next increment)
+
+1. The dyadic + Purchase diff lands (ruling 1), carrying the
+   pwLadderCap repair (ruling 2) and the negInf departure (ruling 3
+   candidate 5) — one Purchase/Lattice surface motion, oracle-first
+   under the increment protocol. Before EXACT_PLAN §13 relies on it,
+   the banked GroundC deadlock observation re-executes against the
+   shipped dyadic Lattice (§13.3's expiry rider).
+2. Frozen-layer installs under this sitting's key: membrane-wire
+   §§1-3 replaced (ruling 6; manifest row 25 re-signs), the
+   unique-kill clause canonized into CLAUDE.md with both amendment
+   lines plus ruling 2's recorded-repairs rider (rulings 5, 2), the
+   two owed mutant pools entered in OBLIGATIONS.md (ruling 4), the
+   candidate-4 inventory brackets on brief.md:133 / design.md:197
+   (ruling 3).
+3. The probe-row SPLIT (ruling 4) rides the next oracle-bearing
+   increment as its mechanical item, its two earned kills with it.
+4. The trampoline WAITS: it opens at the sitting AFTER the dyadic
+   freeze (ruling 8). The governor docket — 7(a)/(b)/(c) — waits for
+   a governor sitting, (c) before (a).
+
+## Post-sitting verification checklist (mechanical; the next session opens here, pass/fail, no re-read)
+
+At the seal (before any execution):
+
+- [ ] `git tag -v x5-sitting-r0` — Good signature, AUTHOR key
+      (ED25519 SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY).
+- [ ] `sha256sum -c MANIFEST.sha256` — 56/56 OK (the seal itself
+      moves nothing frozen).
+- [ ] Every post-r1 commit verifies under the BUILDER key
+      (SHA256:fPqrWnQhp0Ds+8MkMIDMUZzdRGviyfwt2BjsSaXAmgc).
+
+After the execution increment (each row names its ruling; greps
+pinned against HEAD at sitting time):
+
+- [ ] `grep -n pwLadderCap src/PropLang/Purchase.hs` nonempty AND
+      `grep -n "kLadder" src/PropLang/Purchase.hs` empty — the
+      stale-green repair finally landed (rulings 1+2; today:
+      kLadder=16 at Purchase.hs:84-85, no pwLadderCap).
+- [ ] `grep -rn negInf src/` empty — the last log-space sentinel
+      left with the diff (ruling 3 candidate 5; today: three sites,
+      all Purchase.hs).
+- [ ] membrane-wire §§1-3 = the pack item-4 staged text; its
+      greppable-identity rows all hold against the shipped parser
+      (nine forms derived from the parse table, not prose); manifest
+      re-signed, row count still 56 (ruling 6).
+- [ ] CLAUDE.md carries the unique-kill clause with BOTH amendment
+      lines and the recorded-repairs rider, quoted against the pack
+      text (rulings 5, 2).
+- [ ] OBLIGATIONS.md carries the two owed pool rows: the reasoner
+      mutant pool and the enumeration mutant pool (ruling 4).
+- [ ] brief.md:133 and design.md:197 wear the dated inventory
+      brackets; the brief's own sentence untouched (ruling 3).
+- [ ] The GroundC deadlock re-execution transcript rides the dyadic
+      increment's pack (§13.3's expiry rider).
+- [ ] `cabal test all` exit 0; `tools/prefreeze-lint.sh` 0 FAIL.
