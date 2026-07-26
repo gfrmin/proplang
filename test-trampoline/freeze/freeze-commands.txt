@@ -3,15 +3,16 @@
 # recorded verbatim in the tag message; the dyadic precedent).
 #
 # Pre-conditions: the register (pack Part VII) RULED; the two-run
-# record verified (red 12/15 stub + 3 seeded, SAT 15/15 overlay);
+# record verified (red 14/17 stub + 3 seeded, SAT 17/17 overlay —
+# counts as amended at the mandate pass, which added g2.3 and g5.4);
 # mandates and boundary-audit triage read.
 
 1. Splice test-trampoline/stanza.cabal.draft's stanza into
    proplang.cabal (after the dyadic stanza).
 
-2. Apply test-trampoline/freeze/membrane-wire-install.md (six edits
-   + the immutability-row flip; atomic apply — every anchor asserted
-   before any write).
+2. Apply test-trampoline/freeze/membrane-wire-install.md (seven
+   edits + the immutability-row flip; atomic apply — every anchor
+   asserted before any write).
 
 3. Apply test-trampoline/freeze/kernel-residues.md (the fourth
    residue).
@@ -31,7 +32,7 @@
    and every file under test-trampoline/freeze/. Verify N/N.
 
 7. Run: cabal test all  — expected form: the seven standing suites
-   PASS; the trampoline suite compiles and runs RED on its 12
+   PASS; the trampoline suite compiles and runs RED on its 14
    implementation rows (red-by-design until implementation; the
    exact/dyadic precedent), g6.1-g6.3 green (capability pins).
 

@@ -34,7 +34,9 @@ under interleaved mid-episode publication; membrane section 2's
 sentence carries the pin citation from this freeze)
 ```
 
-## OB-24 (NEW row, registered at this freeze)
+## OB-24 (NEW row, registered at this freeze; text amended at apply
+## time to the RULED form — the register was ruled before this kit
+## sealed, pack Part XI, so the row is born true, not stale)
 
 ```
 | OB-24 | the Get-of-writable utility ruling (register R4): under the
@@ -42,12 +44,15 @@ shipped chooseEU fold both sides of every comparison are served the
 CHALLENGER's assignment, so action-dependent utilities degenerate to
 ties (demonstrated EXECUTED: oracle row g2.3, the divergence
 witness; prose record trampoline pack Part V); the one-sentence route
-substitutes each option's own values. The composition pin g2 is
-scoped to the wire's utility convention until the author rules which
-semantics is normative; if substitution is ruled normative, chooseEU
-migrates with its own pin row in a follow-on increment. | RULING-AT-
-THE-FREEZE (register R4) | the trampoline boundary's opening finding |
+substitutes each option's own values. RULED at this freeze (pack Part
+XI): SUBSTITUTION IS NORMATIVE; the composition pin g2 is scoped to
+the wire's utility convention; chooseEU keeps its shipped fold this
+increment and migrates, with its own pin row, only at a named
+boundary. | RULED@trampoline-freeze (register R4) | the trampoline
+boundary's opening finding |
 ```
+
+(The table row lands as ONE line; the wrap above is display only.)
 
 Note: OB-20 and OB-21 (the reasoner and enumeration mutant pools,
 SCHEDULED@x5-sitting-r0) do NOT ride this boundary — their operator

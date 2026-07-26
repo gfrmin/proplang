@@ -149,7 +149,7 @@ internal think row is RETIRED") each gain a dated bracket at the
 freeze:
 
 ```
-[2026-07-26, the trampoline boundary: the sense that died here is
+[2026-07-27, the trampoline boundary: the sense that died here is
 the step-5 echo-sentinel ENCODING. The clock row's
 `{"internal": "think"}` (section 2) is a NEW, unrelated sense — an
 internal act priced by the world, chosen by the one policy
@@ -157,4 +157,9 @@ sentence, firing nothing on the wire.]
 ```
 
 The apply step locates both sentences by their quoted text and
-appends the bracket after each.
+appends the bracket after each, reflowed to the enclosing context
+(bullet indentation for the first, `>` blockquote markers for the
+second — mechanical reflow only, the words byte-identical). The
+bracket is dated the freeze commit's day (2026-07-27; the boundary
+opened 2026-07-26, the freeze executed the following day on the
+recorded delegation).

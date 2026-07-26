@@ -54,8 +54,13 @@ EDGE       one reporting module renders displays (entropy, bits) from
 HOST       fires actions, owns randomness — after the language has
            built the belief; a host fold is legal only as a fast path
            pinned to the sayable route (the agent criterion)
-RESIDUES   the alphabet, the clock, the pointer — physics, named,
-           not hidden
+RESIDUES   the alphabet, the clock, the pointer, the floor — physics,
+           named, not hidden; the floor is the ONE un-deliberated
+           policy evaluation per tick (the trampoline must evaluate
+           the standing sentence to learn what the agent wants,
+           including whether to deliberate, and THAT evaluation is
+           not itself deliberated — else regress; priced at zero by
+           construction, removable only by removing the agent)
 ```
 
 The anchors that pin all of this are generated from an in-tree exact

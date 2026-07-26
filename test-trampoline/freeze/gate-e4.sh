@@ -11,15 +11,18 @@
 #   Membrane: runEpisode's tick-count loop bound (the clock's
 #         index, never an engine-derived value).
 # The non-scriptable half (what "engine provenance" means) is law as
-# prose with the E-gate register. NOTE (mandate 2): the charter
-# licenses only (a) wire-input validation and (b) constructor-tag
-# dispatch; the four occupants below span THREE further categories
-# (host randomness after the belief, display render, the loop
-# clock) — register R11 puts each to the author: license the
-# category, or order the occupant's eviction from the E4 modules. AT THE FREEZE this block is
-# spliced into audit/gates-exact.sh before its `exit $fail` (the
-# charter: E4 lands beside E1-E3); this staged copy is the single
-# source of the block's bytes.
+# prose with the E-gate register. CATEGORY LAW (register R11, RULED
+# at the trampoline freeze: license-by-name — pack Part XI): beyond
+# the charter's two licensed categories, (a) wire-input validation
+# and (b) constructor-tag dispatch, THREE further categories are
+# licensed by name at this freeze — host randomness AFTER the
+# belief (draw's walk, CL-2's side), display render (rNum), and the
+# loop clock (the tick bound, never an engine-derived value);
+# eviction of the occupants to a sim/report module is REGISTERED as
+# a demonstration-tier candidate, not ordered here. AT THE FREEZE
+# this block is spliced into audit/gates-exact.sh before its
+# `exit $fail` (the charter: E4 lands beside E1-E3); this staged
+# copy is the single source of the block's bytes.
 set -u
 fail=0
 e4files="src/PropLang/Host.hs src/PropLang/Membrane.hs"

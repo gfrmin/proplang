@@ -132,3 +132,25 @@ test-suite dyadic
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- THE TRAMPOLINE ORACLE (frozen at trampoline-freeze-r0; red by
+-- design until the trampoline implementation lands — the
+-- increment-protocol form, the exact/dyadic precedent above; stanza
+-- bytes from test-trampoline/stanza.cabal.draft).
+
+test-suite trampoline
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Trampoline.hs
+    other-modules:    Anchors
+                    , OracleWorld
+                    , Streams
+    hs-source-dirs:   test-trampoline, test
+    build-depends:    base
+                    , directory
+                    , process
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    build-tool-depends: proplang:proplang-host
+    default-language: GHC2021

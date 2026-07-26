@@ -441,7 +441,8 @@ above is the POST-REPAIR record (red 14+3, SAT 17/17).
 ## Part IX — what the freeze seals
 
 test-trampoline/ (oracle + stanza draft + freeze kit) into the
-manifest; the six membrane-wire edits; the fourth residue; the
+manifest; the seven membrane-wire edits plus the immutability-row
+flip; the fourth residue; the
 OBLIGATIONS motions; E4 into gates-exact.sh; the register as ruled.
 Then implementation (the overlay's semantics re-land into src),
 gates 1-7 + E1-E4, the close matrix, and the close-out under R-D22's
@@ -476,3 +477,104 @@ Custody per the review: opening record verbatim (Part I), base
 manifest verified, nothing frozen touched, stubs additive, seven
 suites green throughout, all four seeded demonstrations two-sided
 on disk. The pack awaits the register ruling and the tag.
+
+## Part XI — the register ruled and the freeze executed (2026-07-27, on the recorded delegation)
+
+The delegation, verbatim, received in the author's channel after
+the pre-tag review round: **"you write everything, i just sign —
+execute the freeze on delegation"** — fresh, explicit, per-instance
+(the dyadic-freeze-r0 pattern exactly; the membrane precedent's
+custody clause). The review's closing line is the ruling
+instruction: "rule the register — R4 and R11 are the two with
+content, the rest accept as drafted — and tag." The register is
+accordingly ruled as follows; the tag `trampoline-freeze-r0` is
+made with the BUILDER key, the delegation recorded verbatim in the
+tag message, and per R-D22 the increment does not close until the
+author's own signed tag (`trampoline-freeze-r1`) covers the oracle
+as frozen.
+
+- **R1 RULED (b)**: the root-vocabulary deep-stakes deadlock is the
+  myopic candidate's honest behavior, documented and reproduced
+  (g5.4); (a) re-enterable through the demand gate with a
+  measurement.
+- **R2 RULED**: E4 scope = Host+Membrane as chartered; the Purchase
+  extension stays a named candidate the author may order
+  post-re-land.
+- **R3 RULED**: ==-table lookup on the returned code is
+  constructor-tag dispatch; ordering comparisons remain convicted.
+- **R4 RULED (content)**: SUBSTITUTION IS NORMATIVE — each option
+  valued at its own assignment (g2.3 the executed divergence
+  witness). chooseEU keeps its shipped fold THIS increment (no
+  frozen behavior moves silently); it migrates, with its own pin
+  row, only under this ruling at a named boundary. OB-24 carries
+  the ruling into OBLIGATIONS.md at this freeze.
+- **R5 RULED**: the wire form as staged in Edit 2 (clock row shape,
+  `{"internal": "think"}`, evidence-on-internal at feats ++ the
+  wait head, the menu-order doctrine sentence).
+- **R6 RULED**: the differential's home as built — the library loop
+  over the frozen t2 substrate; the full wire choreography is
+  g6.4's smoke plus demand-gated extension.
+- **R7 RULED**: RE-LAND — runPurchase's body becomes the sentence
+  route at implementation (g5 pins act-for-act, d6 co-pins); the
+  fold dies rather than staying as a pinned fast path.
+- **R8 RULED**: wait-head folding for lookahead evidence; the
+  feats-dependent general case demand-gated (the Code-built
+  feats-aware kernel the banked sayable route); the
+  dormancy-as-wait consequence chosen and recorded, g6.4 its smoke.
+- **R9 RULED**: the unified internal menu (think AND refine on one
+  declared tick) is the COMPLETENESS SUITE's standing question or a
+  named follow-on — this boundary pins the one-chooser law on both
+  faces without unifying their worlds; the charter's "deepen one
+  rung" phrase is amended at close to name the shipped face (a
+  builder edit under the author's eye).
+- **R10 RULED**: the pinned batch regime d in {1,2,3} stated
+  honestly; NO cap baked into src (a cap would be a kLadder);
+  deeper batches are a measurement a future increment buys when a
+  world demands it.
+- **R11 RULED (content)**: LICENSE-BY-NAME — the three categories
+  beyond the charter's two (host randomness after the belief,
+  display render, the loop clock) are licensed at this freeze, each
+  occupant defensible in its category; EVICTION (draw/rNum leaving
+  Host for a sim/report module) is REGISTERED as a
+  demonstration-tier candidate, not ordered as src motion at the
+  terminal language increment. The allowlist is category law, not
+  four unexplained lines.
+
+**The seal**: this freeze commit executes freeze-commands.txt steps
+1-8 (stanza; the seven membrane-wire edits + immutability flip,
+anchors asserted; the fourth residue; the OBLIGATIONS motions
+OB-22/23 discharge + OB-24; E4 into gates-exact.sh; manifest
+extended and verified; the red-by-design test run; prefreeze-lint
+0 FAIL). From the tag: implementation
+re-lands the SAT-proven overlay semantics, gates 1-7 + E1-E4, the
+M28+ pool cut against the COMMITTED green baseline, the close
+matrix vs the standing corpus (R7 pre-ruling), the close-out
+report, and the author's r1 countersign.
+
+**THE FREEZE EXECUTED (2026-07-27) — observed values:**
+
+- The membrane install: all 9 anchors asserted (count == 1 each)
+  before any write, one write (the atomic-apply precedent);
+  membrane-wire.md +53/-10.
+- E-gates on shipped src at the seal: E1 0, E2 0, E3 0, E4 0
+  (audit/gates-exact.sh exit 0 — E4 lands green on the shipped
+  modules, its red side already proven by the seeded `if euA > euB`
+  demonstration in Part IV).
+- `cabal test all`: the seven standing suites PASS; trampoline FAIL
+  red-by-design — 14/17 implementation rows FAIL, g6.1/g6.2/g6.3
+  OK (the capability pins) — the two-run record's partition
+  reproduced exactly at the freeze commit.
+- MANIFEST.sha256: 71/71 verified (64 + 7 added: Trampoline.hs,
+  stanza.cabal.draft, the five freeze/ files; 5 updated:
+  proplang.cabal, membrane-wire.md, KERNEL.md, OBLIGATIONS.md,
+  audit/gates-exact.sh).
+- prefreeze-lint: 0 FAIL / 0 WARN (L3 manifest 71 rows; L4 all 56
+  tags verify; L7 full-corpus overlay build green).
+- Kit amendments executed BEFORE the seal (the kit is builder-owned
+  until this commit; each recorded in place so the sealed kit is
+  born true, never stale): freeze-commands.txt's pre-mandate counts
+  12/15 -> 14/17 (the mandate pass added g2.3 and g5.4 after the
+  kit was drafted); obligations-rows.md's OB-24 to the RULED form;
+  gate-e4.sh's mandate-2 NOTE to the R11 category law as ruled;
+  membrane-wire-install.md's Edit 7 bracket dated the freeze day
+  with the reflow convention recorded.
