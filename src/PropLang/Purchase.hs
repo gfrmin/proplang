@@ -18,11 +18,13 @@
 -- An internal act fires only by strictly beating every external
 -- option (CL-3 first-listed-wins preserved end to end).
 --
--- The refine option is a Maybe ARM of the fold, present only when
--- the world declares a refine row AND the straddle fires — the
--- last skip-on-negInf sentinel left src with the exact re-founding
--- (X.5 ruling 3, candidate 5: no -Infinity in shipped source; an
--- absent option is absent, never a poisoned value).
+-- The refine option is a row present only when the world declares
+-- one; since the trampoline boundary (register R7, RULED at
+-- trampoline-freeze-r0: the fold dies) its straddle gate and max-0
+-- forgone are said IN-SENTENCE — If/Gt arms inside the one standing
+-- chooseKS sentence — never folded host-side. The no-poisoned-value
+-- line (X.5 ruling 3, candidate 5) holds as before: an absent
+-- option is an absent row, never -Infinity.
 module PropLang.Purchase
   ( PurchaseWorld (..)
   , PTick (..)
@@ -31,16 +33,16 @@ module PropLang.Purchase
   , purchasePredictive
   ) where
 
-import Data.List.NonEmpty (nonEmpty)
+import Data.List.NonEmpty (NonEmpty ((:|)), nonEmpty)
 import PropLang.Belief
   ( Belief, Space, fromWeights, kernel, mkSpace, push
   )
-import PropLang.Eval (Features)
+import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
 import PropLang.Lattice
   ( Node, Owned, frontier, guardE, mkOwned, nodeTheta, ownedNodes
-  , scoreOwned, straddles
+  , scoreOwned
   )
-import PropLang.Syntax (Namespace)
+import PropLang.Syntax
 
 -- | The world's side of the purchase law: economics only, EXACT.
 data PurchaseWorld = PurchaseWorld
@@ -65,58 +67,33 @@ data PTick = PTick
   }
   deriving (Eq, Show)
 
--- | The pure tick loop of the joint law: one decision rule per tick
--- over [wait, respond, refine] in the pinned order, counts advanced
--- by the evidence, purchases by the region-derived criterion (the
+-- | The tick loop of the joint law: one decision rule per tick over
+-- [wait, respond, refine] in the pinned order, counts advanced by
+-- the evidence, purchases by the region-derived criterion (the
 -- VALUE-BASED candidate), the refine arm present only when priced
--- and straddling (d6.1-d6.4; the root-vocabulary deep-stakes
--- deadlock of the max-0 clamp is the BANKED observation,
--- EXACT_PLAN 13.3 — re-executed against this module at the
--- increment close, the trampoline boundary's design input).
+-- (its straddle gate said in-sentence; d6.1-d6.4; the
+-- root-vocabulary deep-stakes deadlock of the max-0 clamp is the
+-- BANKED observation, EXACT_PLAN 13.3 — re-executed against this
+-- module at the dyadic close, documented by trampoline g5.4).
+--
+-- RE-LANDED at the trampoline implementation (register R7, RULED:
+-- "the fold dies"): the body IS the sentence route, reached through
+-- an INERT internal door — the frozen d6 suite's signature carries
+-- no door, and trampoline g5's payload-independence row pins that
+-- the door is R5 ceremony, not data (the sentence reads no
+-- features). The door's shape is a COPY of the oracle's fixture
+-- (test-trampoline/Trampoline.hs pNs/pFeats: a single neutral
+-- declared name). The unwrap is total: the covering door cannot
+-- refuse, and off-code dispatch is unreachable (both branches carry
+-- the error text that says so).
 runPurchase :: PurchaseWorld -> Owned -> [Int] -> [PTick]
-runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
+runPurchase w owned0 obsStream =
+  case runPurchaseS doorNs doorFeats w owned0 obsStream of
+    Right ticks -> ticks
+    Left m -> error ("runPurchase (unreachable: the door covers) " ++ m)
   where
-    st = pwStakes w
-
-    go :: Owned -> (Int, Int) -> [Int] -> [PTick]
-    go _ _ [] = []
-    go o (a, b) (y : ys) =
-      let c' = if y == (1 :: Int) then (a + 1, b) else (a, b + 1)
-          respondV = guardE True o c' st
-          forgone  = max 0 respondV
-          (cand, gain) = bestCandidate o c'
-          mRefine = case pwRefine w of
-            Just s | straddles o c' st ->
-              Just (pwLadderCap w * gain - s - forgone)
-            _ -> Nothing
-          -- the pinned order: wait head, externals, internal acts
-          -- LAST; strict-improvement first-listed fold (CL-3)
-          chosen = foldl pick ("wait", 0)
-                     (("respond", respondV)
-                       : maybe [] (\v -> [("refine", v)]) mRefine)
-          pick (bn, bv) (n2, v2) = if v2 > bv then (n2, v2) else (bn, bv)
-      in case fst chosen of
-           "refine" ->
-             let o' = mkOwned (cand : ownedNodes o)
-             in PTick "refine" [cand] (ownedNodes o') : go o' c' ys
-           nm -> PTick nm [] (ownedNodes o) : go o c' ys
-
-    -- the value-based candidate: the frontier node whose ownership
-    -- most improves the guarded act value at the current counts
-    bestCandidate :: Owned -> (Int, Int) -> (Node, Rational)
-    bestCandidate o c' =
-      let base = max 0 (guardE True o c' st)
-          val c = max 0 (guardE True (mkOwned (c : ownedNodes o)) c' st)
-                    - base
-      in case frontier o of
-           []       -> (errNoFrontier, 0)
-           (f : fs) -> foldl (\(bc, bv) c ->
-                                let v = val c
-                                in if v > bv then (c, v) else (bc, bv))
-                             (f, val f) fs
-
-    errNoFrontier :: Node
-    errNoFrontier = error "the lattice frontier is never empty"
+    doorNs = mkNamespace ("door" :| [])
+    doorFeats = [("door", 0)]
 
 -- | The joint purchase law THROUGH THE ONE SENTENCE (the trampoline
 -- boundary, EXACT_PLAN 13.3): the same law as 'runPurchase' with the
@@ -128,12 +105,74 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
 -- covering features), per R5: every evalx passes a door. Pinned
 -- extensionally to 'runPurchase' by test-trampoline g5 (the d6-cell
 -- transcripts, act-for-act).
---
--- ORACLE-PHASE STUB (test-trampoline red).
 runPurchaseS :: Namespace -> Features -> PurchaseWorld -> Owned
              -> [Int] -> Either String [PTick]
-runPurchaseS _ _ _ _ _ =
-  Left "runPurchaseS: not implemented (oracle-phase stub)"
+runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
+  where
+    st = pwStakes w
+
+    mintQ v = case mkC (mkGrid "k" (v :| [])) 0 of
+      Just e  -> e
+      Nothing -> error "runPurchaseS: singleton mint (unreachable)"
+    codeM i = case mkC (mkGrid "pacts" (0 :| [1, 2])) i of
+      Just e  -> e
+      Nothing -> error "runPurchaseS: on-codebook index (unreachable)"
+
+    zeroM = mintQ 0
+    capM = mintQ (pwLadderCap w)
+    pessV = Var Z
+    optV = Var (S Z)
+    gainV = Var (S (S Z))
+    forgoneS = If (Gt pessV zeroM) pessV zeroM
+    -- the straddle gate and the refine formula, said in-sentence:
+    -- pess > 0 or opt <= 0 => the neutral zero row (never displaces
+    -- the wait incumbent); straddle => cap*gain - s - forgone
+    refineRow s =
+      If (Gt pessV zeroM) zeroM
+        (If (Gt optV zeroM)
+            (Sub (Sub (Mul capM gainV) (mintQ s)) forgoneS)
+            zeroM)
+    rows = case pwRefine w of
+      Nothing -> (codeM 0, zeroM) :| [(codeM 1, pessV)]
+      Just s  -> (codeM 0, zeroM) :| [(codeM 1, pessV), (codeM 2, refineRow s)]
+    policy = chooseKS rows
+
+    go _ _ [] = Right []
+    go o (a, b) (y : ys) = do
+      let c' = if y == (1 :: Int) then (a + 1, b) else (a, b + 1)
+          pess = guardE True o c' st
+          opt = guardE False o c' st
+          (cand, gain) = bestCandidateS o c'
+      env <- mkEnvIn ns feats (pess :. opt :. gain :. VNil)
+      let code = evalx policy env
+      case lookup code (zip (map fromIntegral [0 :: Int ..])
+                            ["wait", "respond", "refine"]) of
+        Just "refine" -> do
+          let o' = mkOwned (cand : ownedNodes o)
+          rest <- go o' c' ys
+          pure (PTick "refine" [cand] (ownedNodes o') : rest)
+        Just nm -> do
+          rest <- go o c' ys
+          pure (PTick nm [] (ownedNodes o) : rest)
+        Nothing -> Left "runPurchaseS: off-code dispatch (unreachable)"
+
+    -- the value-based candidate: the frontier node whose ownership
+    -- most improves the guarded act value at the current counts
+    -- (the law's engine data — the refine row's PAYLOAD, like the
+    -- guard's supLike clip, never a tick-act choice; register R2)
+    bestCandidateS o c' =
+      let base = max 0 (guardE True o c' st)
+          val c = max 0 (guardE True (mkOwned (c : ownedNodes o)) c' st)
+                    - base
+      in case frontier o of
+           []       -> (errNoFrontierS, 0)
+           (f : fs) -> foldl (\(bc, bv) c ->
+                                let v = val c
+                                in if v > bv then (c, v) else (bc, bv))
+                             (f, val f) fs
+
+    errNoFrontierS :: Node
+    errNoFrontierS = error "the lattice frontier is never empty"
 
 -- | The predictive after purchases: each owned hypothesis's
 -- emission through the sentence fragment, weight form through the

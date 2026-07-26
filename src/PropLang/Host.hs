@@ -50,11 +50,13 @@ import Data.Char (isDigit)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
-import PropLang.Enumerate (AgentS, enumerateWith, enumerateWithArity,
-                           fragFull, observeS, predictMassS,
-                           sentenceAgent)
-import PropLang.Eval (Features)
-import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief)
+import PropLang.Enumerate (AgentS, agentObsPoints, enumerateWith,
+                           enumerateWithArity, fragFull, observeS,
+                           predictMassS, sentenceAgent)
+import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
+import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
+                          mintQ, policyPick, reindexUtility, substW,
+                          weakenE, withRows)
 import PropLang.Report (bitsView, entropyAgent)
 import PropLang.Syntax
 #endif
@@ -211,6 +213,10 @@ data SessionW = SessionW
                                    -- from the declared carrier)
   , swMenu :: [(Name, Grid)]
   , swUSaid :: Maybe (Expr '[Rational, Rational] Rational)
+  , swClock :: Maybe (Rational, Int)
+    -- ^ the declared internal-act row: (price of think, batch) —
+    -- the wire's clock (frozen membrane section 2, the trampoline
+    -- boundary); Nothing means the shipped selection byte-identically
   }
 
 data HostState = HostAwait | HostLive SessionW AgentS
@@ -269,6 +275,21 @@ hello st j = maybe (st, errLine "bad hello") id $ do
           pure (Just (prog, True))
         Just _ -> Nothing
     Nothing -> pure Nothing
+  clockRow <- case oGet "clock" w of
+    Nothing -> pure Nothing
+    Just (JArr [row]) -> do
+      JStr "think" <- oGet "name" row
+      -- the internal name may not collide with any declared
+      -- namespace name (frozen membrane section 2, the mandate-5
+      -- repair): {"act": {"think": v}} and {"internal": "think"}
+      -- never denote in one session — collision is a bad hello
+      True <- pure ("think" `notElem` ns)
+      pQ <- jQ =<< oGet "price" row
+      JNum bN <- oGet "batch" row
+      let bI = round bN :: Int
+      True <- pure (fromIntegral bI == bN && bI >= 1)
+      pure (Just (pQ, bI))
+    Just _ -> Nothing
   arK <- case oGet "obs_arity" w of
     Nothing -> pure Nothing
     Just (JNum v) -> do
@@ -305,7 +326,7 @@ hello st j = maybe (st, errLine "bad hello") id $ do
               reply = "{\"ok\": true, \"proto\": 1, \"models\": "
                       ++ show (length pop) ++ ", \"namespace_bits\": "
                       ++ show nsb ++ ubPart ++ "}"
-          pure (HostLive (SessionW nsN atomG menu uSaid) ag, reply)
+          pure (HostLive (SessionW nsN atomG menu uSaid clockRow) ag, reply)
   where
     pairGrid g = do
       nm <- jStr =<< oGet "name" g
@@ -327,10 +348,15 @@ atomGridOfC c =
 
 -- One tick under THE DOOR: the tick's features plus its assignment
 -- must cover the declared namespace exactly; the choice runs through
--- the SENTENCES (Membrane.chooseEU); the reported predictive reads at
--- feats ++ act (post-choice, pre-observation — R5's geometry);
--- evidence folds at feats ++ act; a refused door or impossible
--- evidence is an error reply and the agent is unmoved.
+-- the SENTENCES (chooseEU when no clock is declared — byte-identical
+-- to the pre-clock wire; pickWire's extended one-sentence tournament
+-- when the world declared its clock, the think row LAST); the
+-- reported predictive reads at feats ++ act (post-choice,
+-- pre-observation — R5's geometry); evidence folds at feats ++ act
+-- (at feats ++ the wait head on an internal tick: inaction while
+-- thinking, register R8); a refused door or impossible evidence is
+-- an error reply and the agent is unmoved. A tick the internal act
+-- wins replies {"internal": "think"} — nothing fires on the wire.
 tick :: SessionW -> AgentS -> J -> (HostState, String)
 tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
   feats <- note "bad tick" $ case oGet "features" t of
@@ -351,18 +377,47 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
         Just nms -> do
           grids <- mapM (\nm -> (,) nm <$> lookup nm (swMenu w)) nms
           Just (Just (menuAssignments grids))
-      act <- case mOpts of
-        Nothing -> Right []
-        Just [] -> Right []
+      -- Left act = an external assignment fires; Right waitH = the
+      -- internal act won (the wait head rides along for the
+      -- evidence fold)
+      actOrThink <- case mOpts of
+        Nothing -> Right (Left [])
+        Just [] -> Right (Left [])
         Just opts@(o0 : _) -> case swUSaid w of
-          Nothing -> Right o0          -- wait: the option space's head
+          Nothing -> Right (Left o0)   -- wait: the option space's head
           Just u -> do
             scored <- mapM (\c -> do
                         b <- predictiveBelief (feats ++ c) ag
                         Right (c, b))
                       opts
-            picked <- chooseEU (swNs w) feats (swAtom w) u scored
-            Right (maybe o0 fst picked)
+            case swClock w of
+              Nothing -> do
+                picked <- chooseEU (swNs w) feats (swAtom w) u scored
+                Right (Left (maybe o0 fst picked))
+              Just (price, d) -> do
+                tv <- thinkValue d (swNs w) feats (swAtom w) u opts ag
+                r <- pickWire (swNs w) feats (swAtom w) u scored price tv
+                case r of
+                  PickThink   -> Right (Right o0)
+                  PickExt a _ -> Right (Left a)
+      case actOrThink of
+        Right waitH -> case evid of
+          Nothing -> Right (HostLive w ag, "{\"internal\": \"think\"}")
+          Just yQ -> do
+            let y = round (fromRational yQ :: Double) :: Int
+            (m, ag') <- observeS (feats ++ waitH) y ag
+            Right ( HostLive w ag'
+                  , "{" ++ commaSep [ "\"internal\": \"think\""
+                                    , "\"observed\": " ++ show y
+                                    , "\"loss_bits\": " ++ show (bitsView m)
+                                    ] ++ "}" )
+        Left act -> tickExternal w ag feats mOpts evid act
+
+-- the external half of the tick (the pre-clock reply, byte-identical)
+tickExternal :: SessionW -> AgentS -> Features -> Maybe [Features]
+             -> Maybe Rational -> Features
+             -> Either String (HostState, String)
+tickExternal w ag feats mOpts evid act = do
       let full = feats ++ act
       decPart <- case mOpts of
         Nothing -> Right []
@@ -384,8 +439,82 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
                        , "\"loss_bits\": " ++ show (bitsView m) ]
           Right ( HostLive w ag'
                 , "{" ++ commaSep (decPart ++ evPart) ++ "}" )
-  where
-    note m = maybe (Left m) Right
+
+note :: String -> Maybe a -> Either String a
+note m = maybe (Left m) Right
+
+-- the wire policy's outcome: an external assignment or the internal act
+data WirePick = PickExt Features (Belief Int) | PickThink
+
+-- the standing wire sentence extended by the think row (bound value
+-- minus the declared price), think LAST; ONE evalx, code dispatch
+pickWire :: Namespace -> Features -> Grid
+         -> Expr '[Rational, Rational] Rational
+         -> [(Features, Belief Int)] -> Rational -> Rational
+         -> Either String WirePick
+pickWire ns feats atomG u cands price tv = case cands of
+  [] -> Right PickThink
+  ((asn0, _) : _) ->
+    let n = length cands
+        codeG = mkGrid "options" (0 :| map fromIntegral [1 .. n])
+        codeM :: forall e2. Ix -> Expr e2 Rational
+        codeM i = case mkC codeG i of
+          Just e  -> e
+          Nothing -> error "pickWire: on-codebook index (unreachable)"
+        uB :: forall e. Expr (Rational ': e) Rational
+        uB = reindexUtility atomG u
+        cover = feats ++ [ p | p <- asn0, fst p `notElem` map fst feats ]
+    in withRows uB cands (\vals rows ->
+         let rowsW = map weakenE rows ++ [Sub (Var Z) (mintQ price)]
+         in case zipWith (\i r -> (codeM i, r)) [0 ..] rowsW of
+              [] -> Right PickThink
+              (r0 : rs) -> do
+                env <- mkEnvIn ns cover (tv :. vals)
+                let code = evalx (chooseKS (r0 :| rs)) env
+                if code == fromIntegral n
+                  then Right PickThink
+                  else case lookup code
+                              (zip (map fromIntegral [0 :: Int ..]) cands) of
+                         Just (a, b) -> Right (PickExt a b)
+                         Nothing -> Left "pickWire: off-code (unreachable)")
+
+-- the AgentS-level preposterior (the engine lookahead, a fast path;
+-- future folds at feats ++ the wait head — inaction while thinking,
+-- register R8)
+thinkValue :: Int -> Namespace -> Features -> Grid
+           -> Expr '[Rational, Rational] Rational
+           -> [Features] -> AgentS -> Either String Rational
+thinkValue d ns feats atomG u opts ag
+  | d <= 0 = do
+      scored <- mapM (\c -> do
+                  b <- predictiveBelief (feats ++ c) ag
+                  Right (c, b))
+                opts
+      best <- policyPick ns feats atomG u scored
+      case best of
+        Nothing -> Right 0
+        Just (asn, b) -> do
+          let uB :: forall e. Expr (Rational ': e) Rational
+              uB = reindexUtility atomG u
+              cover = feats ++ [ p | p <- asn
+                               , fst p `notElem` map fst feats ]
+          env <- mkEnvIn ns cover (b :. VNil)
+          pure (evalx (Expect (Var Z) (substW asn uB)) env)
+  | otherwise = do
+      let waitH = case opts of
+            (o : _) -> o
+            []      -> []
+          full = feats ++ waitH
+      parts <- mapM (\y -> do
+                 m <- predictMassS full y ag
+                 if m == 0
+                   then pure 0
+                   else do
+                     (_, ag') <- observeS full y ag
+                     v <- thinkValue (d - 1) ns feats atomG u opts ag'
+                     pure (m * v))
+               (agentObsPoints ag)
+      pure (sum parts)
 
 -- said@1: the declaration parsed against the exact grammar's
 -- wire-sayable forms — var, c, +, -, *, get, if, >, = . The forms

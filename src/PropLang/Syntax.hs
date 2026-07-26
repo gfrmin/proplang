@@ -50,7 +50,7 @@ module PropLang.Syntax
 #ifndef DROP_SUB
   , addM
 #endif
-#if !defined(DROP_IF) && !defined(DROP_GT) && !defined(DROP_SUB)
+#if !defined(DROP_IF) && !defined(DROP_GT)
   , chooseKS
 #endif
   , KnownScope (..)
@@ -244,17 +244,16 @@ addM a b = Sub a (Sub (Sub b b) b)
 -- pick sentence's reMint atomG 1/0, Membrane.hs chooseEU): the
 -- caller dispatches on the code by EQUALITY against its declared
 -- table — a tag read, never an ordering (the boundary register's
--- R3; E4 convicts ordering comparisons, not table dispatch).
---
--- ORACLE-PHASE STUB (test-trampoline red): returns a value-mangled
--- code (last minus first) so every frozen row's red is attributable
--- to the missing tournament, not shadowed by a lucky constant.
-#if !defined(DROP_IF) && !defined(DROP_GT) && !defined(DROP_SUB)
+-- R3, RULED at trampoline-freeze-r0; E4 convicts ordering
+-- comparisons, not table dispatch). The expansion uses If and Gt
+-- only, so those two flags alone guard the name (the oracle-phase
+-- stub transiently needed Sub; the false dependency died with it).
+#if !defined(DROP_IF) && !defined(DROP_GT)
 chooseKS :: NonEmpty (Expr env Rational, Expr env Rational)
          -> Expr env Rational
-chooseKS ((c0, _) :| rest) = case rest of
-  [] -> Sub c0 c0
-  _  -> Sub (fst (last rest)) c0
+chooseKS ((c0, v0) :| rest) = fst (foldl step (c0, v0) rest)
+  where
+    step (cw, vw) (c, v) = (If (Gt v vw) c cw, If (Gt v vw) v vw)
 #endif
 
 class KnownScope (env :: [Type]) where

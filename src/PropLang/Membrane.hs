@@ -47,6 +47,14 @@ module PropLang.Membrane
   , policyPick
   , preposteriorV
   , runTrampoline
+    -- the syntax-transport helpers (typed renaming, the priced
+    -- mention, the substitution expansion, the one-env binder) —
+    -- exported for the Host's wire policy route (pickWire /
+    -- thinkValue), the same one-sentence law at the membrane
+  , weakenE
+  , withRows
+  , mintQ
+  , substW
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -199,11 +207,6 @@ predictiveBelief feats ag = do
 -- (runPurchaseS). Their UNIFICATION on a single tick's menu is the
 -- boundary register's R9.
 --
--- ORACLE-PHASE STUBS (test-trampoline red): each body below refuses
--- or returns the neutral value so every frozen row's red is
--- attributable to the missing trampoline, while the standing suites
--- (which never call these names) stay green.
-
 -- | The deliberation world: the clock row (price, batch) — declared
 -- economics, nothing else.
 data DelibWorld = DelibWorld
@@ -211,6 +214,66 @@ data DelibWorld = DelibWorld
   , dwBatch :: Int
   }
   deriving (Eq, Show)
+
+-- typed de Bruijn renaming (syntax transport, the reindexUtility
+-- precedent): total, sort-preserving; C re-minted through the door.
+renameE :: (forall s. Idx env s -> Idx env' s) -> Expr env t -> Expr env' t
+renameE r e = case e of
+  C g k _ -> reMint g k
+  Get nm -> Get nm
+  Var ix -> Var (r ix)
+  If c a b -> If (renameE r c) (renameE r a) (renameE r b)
+  Gt a b -> Gt (renameE r a) (renameE r b)
+  Sub a b -> Sub (renameE r a) (renameE r b)
+  Mul a b -> Mul (renameE r a) (renameE r b)
+  Expect b body -> Expect (renameE r b) (renameE (underR r) body)
+  Cond b k y j n -> Cond (renameE r b) (renameE r k) (renameE r y)
+                         (renameE (underR r) j) (renameE r n)
+  Code d c body -> Code d c (renameE (underR (underR r)) body)
+
+underR :: (forall s. Idx env s -> Idx env' s)
+       -> Idx (u ': env) s2 -> Idx (u ': env') s2
+underR _ Z = Z
+underR r (S i) = S (r i)
+
+weakenE :: Expr env t -> Expr (u ': env) t
+weakenE = renameE S
+
+-- a priced mention through the singleton mint (the parseSaid
+-- precedent, Host.hs:396)
+mintQ :: Rational -> Expr env Rational
+mintQ v = case mkC (mkGrid "k" (v :| [])) 0 of
+  Just e  -> e
+  Nothing -> error "mintQ: singleton mint (unreachable: index 0)"
+
+-- substitute the OPTION'S OWN VALUES for its writable reads: the
+-- expansion that lets every option's utility coexist inside ONE
+-- standing sentence (non-writable Gets stay door-served)
+substW :: Features -> Expr env t -> Expr env t
+substW asn e = case e of
+  C g k _ -> reMint g k
+  Get nm -> case lookup nm asn of
+    Just v  -> mintQ v
+    Nothing -> Get nm
+  Var ix -> Var ix
+  If c a b -> If (substW asn c) (substW asn a) (substW asn b)
+  Gt a b -> Gt (substW asn a) (substW asn b)
+  Sub a b -> Sub (substW asn a) (substW asn b)
+  Mul a b -> Mul (substW asn a) (substW asn b)
+  Expect b body -> Expect (substW asn b) (substW asn body)
+  Cond b k y j n -> Cond (substW asn b) (substW asn k) (substW asn y)
+                         (substW asn j) (substW asn n)
+  Code d c body -> Code d c (substW asn body)
+
+-- bind every candidate's belief in one env; one value row per
+-- option (Expect over ITS belief of ITS substituted utility)
+withRows :: (forall e. Expr (Rational ': e) Rational)
+         -> [(Features, Belief Int)]
+         -> (forall env. Vals env -> [Expr env Rational] -> r) -> r
+withRows _ [] k = k VNil []
+withRows uB ((asn, b) : rest) k =
+  withRows uB rest (\vals rows ->
+    k (b :. vals) (Expect (Var Z) (substW asn uB) : map weakenE rows))
 
 -- | The wire-menu ONE-SENTENCE selection (chooseEU's K-ary
 -- successor): same signature, same CL-3 semantics, but the whole
@@ -226,7 +289,41 @@ policyPick :: Namespace -> Features -> Grid
            -> Expr '[Rational, Rational] Rational
            -> [(Features, Belief Int)]
            -> Either String (Maybe (Features, Belief Int))
-policyPick _ _ _ _ _ = Right Nothing
+policyPick ns feats atomG u cands = case cands of
+  [] -> Right Nothing
+  ((asn0, _) : _) ->
+    let n = length cands
+        codeG = mkGrid "options" (0 :| map fromIntegral [1 .. n - 1])
+        codeM :: forall e2. Ix -> Expr e2 Rational
+        codeM i = case mkC codeG i of
+          Just e  -> e
+          Nothing -> error "policyPick: on-codebook index (unreachable)"
+        uB :: forall e. Expr (Rational ': e) Rational
+        uB = reindexUtility atomG u
+        cover = feats ++ [ p | p <- asn0, fst p `notElem` map fst feats ]
+    in withRows uB cands (\vals rows ->
+         case zipWith (\i row -> (codeM i, row)) [0 ..] rows of
+           [] -> Right Nothing
+           (r0 : rs) -> do
+             env <- mkEnvIn ns cover vals
+             let code = evalx (chooseKS (r0 :| rs)) env
+             case lookup code (zip (gridPoints codeG) cands) of
+               Just picked -> Right (Just picked)
+               Nothing -> Left "policyPick: off-code dispatch (unreachable)")
+
+-- the sayable act-choice value (the vActS shape, evaluated — the
+-- sentence route; the comparison lives in evalx)
+actValueS :: Namespace -> Features -> Belief Rational
+          -> Either String Rational
+actValueS ns feats b = do
+  let oneM = mintQ 1
+      twoM = addM oneM oneM
+      eR = Expect (Var Z) (Sub (Mul twoM (Var Z)) oneM)
+      eL = Expect (Var Z) (Sub oneM (Mul twoM (Var Z)))
+      vS :: Expr '[B Rational] Rational
+      vS = If (Gt eR eL) eR eL
+  env <- mkEnvIn ns feats (b :. VNil)
+  pure (evalx vS env)
 
 -- | The engine's preposterior lookahead (price-free total): the
 -- value of one think at batch depth d — a FAST PATH under the
@@ -235,7 +332,17 @@ policyPick _ _ _ _ _ = Right Nothing
 -- g3.4.
 preposteriorV :: Namespace -> Features -> Int -> Belief Rational
               -> K Rational Int -> Either String Rational
-preposteriorV _ _ _ _ _ = Right 0
+preposteriorV ns feats d b k
+  | d <= 0 = actValueS ns feats b
+  | otherwise = do
+      parts <- mapM
+        (\y -> case condK b k y of
+           Just b' -> do
+             v <- preposteriorV ns feats (d - 1) b' k
+             pure (predictMass b k y * v)
+           Nothing -> pure 0)
+        [0, 1]
+      pure (sum parts)
 
 -- | The closed-loop trampoline over the frozen t2 substrate (theta
 -- space + emission kernel + the world's evidence stream, passed
@@ -247,8 +354,36 @@ preposteriorV _ _ _ _ _ = Right 0
 -- act column): "think" rows then the final act.
 runTrampoline :: Namespace -> Space Rational -> K Rational Int
               -> DelibWorld -> [Int] -> Either String [String]
-runTrampoline _ _ _ _ _ =
-  Left "runTrampoline: not implemented (oracle-phase stub)"
+runTrampoline ns sp k w buf0 = go (uniform sp) buf0
+  where
+    price = dwPrice w
+    feats = [("price", price)]
+    oneM = mintQ 1
+    twoM = addM oneM oneM
+    eR = Expect (Var (S Z)) (Sub (Mul twoM (Var Z)) oneM)
+    eL = Expect (Var (S Z)) (Sub oneM (Mul twoM (Var Z)))
+    thinkRow = Sub (Var Z) (Get "price")
+    codeG = mkGrid "acts" (0 :| [1, 2])
+    codeM i = case mkC codeG i of
+      Just e  -> e
+      Nothing -> error "runTrampoline: on-codebook index (unreachable)"
+    policy :: Expr '[Rational, B Rational] Rational
+    policy = chooseKS ((codeM 0, eL) :| [(codeM 1, eR), (codeM 2, thinkRow)])
+    go b buf = do
+      tv <- preposteriorV ns feats (min (dwBatch w) (length buf)) b k
+      env <- mkEnvIn ns feats (tv :. b :. VNil)
+      let code = evalx policy env
+      case lookup code [(0, "L"), (1, "R"), (2, "think")] of
+        Just "think" -> do
+          let b' = foldl (\bb y -> case condK bb k y of
+                            Just bb2 -> bb2
+                            Nothing  -> bb)
+                         b (take (dwBatch w) buf)
+          rest <- go b' (drop (dwBatch w) buf)
+          pure ("think" : rest)
+        Just a  -> pure [a]
+        Nothing -> Left "runTrampoline: off-code dispatch (unreachable)"
+
 
 -- | One library episode over a pure world (the frozen loop's order,
 -- under the door's geometry): candidates scored EXOGENOUSLY at
