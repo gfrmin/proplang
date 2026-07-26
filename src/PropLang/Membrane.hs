@@ -43,6 +43,10 @@ module PropLang.Membrane
   , chooseEU
   , predictiveBelief
   , runEpisode
+  , DelibWorld (..)
+  , policyPick
+  , preposteriorV
+  , runTrampoline
   ) where
 
 import Data.List.NonEmpty (NonEmpty ((:|)))
@@ -174,6 +178,59 @@ predictiveBelief feats ag = do
              (\y -> sum [ m | (y', m) <- zip pts ms, y' == y ]) of
         Just b -> Right b
         Nothing -> Left "predictive: no mass (every hypothesis refused)"
+
+-- ------------------- the trampoline surface (EXACT_PLAN 13) --------
+-- Type derivations (the step-6 forward rule):
+--   DelibWorld — the deliberation world's ECONOMICS row and nothing
+--       else (the PurchaseWorld precedent, charter 13.2): the
+--       declared clock (price of think, door-served as the world's
+--       "price" feature — the frozen t2 idiom), the batch depth, and
+--       the world-side evidence buffer. World data; never engine
+--       state.
+--
+-- ORACLE-PHASE STUBS (test-trampoline red): each body below refuses
+-- or returns the neutral value so every frozen row's red is
+-- attributable to the missing trampoline, while the standing suites
+-- (which never call these names) stay green.
+
+-- | The deliberation world: clock, batch, buffer — all declared.
+data DelibWorld = DelibWorld
+  { dwPrice :: Rational
+  , dwBatch :: Int
+  , dwBuffer :: [Int]
+  }
+  deriving (Eq, Show)
+
+-- | The wire-menu ONE-SENTENCE selection (chooseEU's K-ary
+-- successor): same signature, same CL-3 semantics, but the whole
+-- menu compared inside a single standing sentence (chooseKS) with
+-- every candidate's belief bound in one env — the charter's single
+-- chooser. chooseEU remains the frozen binary special case.
+policyPick :: Namespace -> Features -> Grid
+           -> Expr '[Rational, Rational] Rational
+           -> [(Features, Belief Int)]
+           -> Either String (Maybe (Features, Belief Int))
+policyPick _ _ _ _ _ = Right Nothing
+
+-- | The engine's preposterior lookahead (price-free total): the
+-- value of one think at batch depth d — a FAST PATH under the
+-- optimisation law, pinned in-increment to the frozen sayable route
+-- (vThinkB == vThink3Sentence, test/Acceptance.hs) by test-trampoline
+-- g3.4.
+preposteriorV :: Namespace -> Features -> Int -> Belief Rational
+              -> K Rational Int -> Either String Rational
+preposteriorV _ _ _ _ _ = Right 0
+
+-- | The closed-loop trampoline over the frozen t2 substrate (theta
+-- space + emission kernel): ONE policy evaluation per tick over the
+-- standing sentence [L, R, think], internal act LAST (CL-3 ties to
+-- inaction); think folds the world's batch and re-enters. Returns
+-- the per-tick chosen-option transcript ("think" rows then the
+-- final act).
+runTrampoline :: Namespace -> Space Rational -> K Rational Int
+              -> DelibWorld -> Either String [String]
+runTrampoline _ _ _ _ =
+  Left "runTrampoline: not implemented (oracle-phase stub)"
 
 -- | One library episode over a pure world (the frozen loop's order,
 -- under the door's geometry): candidates scored EXOGENOUSLY at

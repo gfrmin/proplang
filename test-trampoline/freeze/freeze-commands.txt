@@ -1,0 +1,54 @@
+# The trampoline freeze sequence (executes only under the author's
+# ruling — in person or on fresh, explicit, per-instance delegation
+# recorded verbatim in the tag message; the dyadic precedent).
+#
+# Pre-conditions: the register (pack Part VII) RULED; the two-run
+# record verified (red 12/15 stub + 3 seeded, SAT 15/15 overlay);
+# mandates and boundary-audit triage read.
+
+1. Splice test-trampoline/stanza.cabal.draft's stanza into
+   proplang.cabal (after the dyadic stanza).
+
+2. Apply test-trampoline/freeze/membrane-wire-install.md (six edits
+   + the immutability-row flip; atomic apply — every anchor asserted
+   before any write).
+
+3. Apply test-trampoline/freeze/kernel-residues.md (the fourth
+   residue).
+
+4. Apply test-trampoline/freeze/obligations-rows.md (OB-22/23
+   discharge, OB-24 per the R4 ruling).
+
+5. Splice test-trampoline/freeze/gate-e4.sh's E4 block into
+   audit/gates-exact.sh before its `exit $fail` (the staged file
+   stays in-tree as the block's provenance; the header comment says
+   so).
+
+6. Extend MANIFEST.sha256: update rows for proplang.cabal,
+   membrane-wire.md, KERNEL.md... [KERNEL.md IS a manifest row],
+   OBLIGATIONS.md, audit/gates-exact.sh; add rows for
+   test-trampoline/Trampoline.hs, test-trampoline/stanza.cabal.draft,
+   and every file under test-trampoline/freeze/. Verify N/N.
+
+7. Run: cabal test all  — expected form: the seven standing suites
+   PASS; the trampoline suite compiles and runs RED on its 12
+   implementation rows (red-by-design until implementation; the
+   exact/dyadic precedent), g6.1-g6.3 green (capability pins).
+
+8. Run: tools/prefreeze-lint.sh  — 0 FAIL (L7 absorbs the suite via
+   the stanza; ASCII names; manifest; tags).
+
+9. Commit (builder key, or the author's) with the freeze message;
+   tag trampoline-freeze-r0 per custody (author key in person, or
+   BUILDER key with the delegation recorded verbatim). R-D22: the
+   increment does not close until the author's own signed tag
+   (trampoline-freeze-r1 or an in-person r0) covers the oracle as
+   frozen.
+
+From the tag: implementation replaces the stub bodies with the
+SAT-proven overlay semantics (the overlay is the prototype, not the
+code — re-land, don't copy blindly), gates 1-7 + E1-E4 green, the
+M28+ mutant pool cut against the COMMITTED green baseline (the
+dyadic incident's law), the close matrix records every new row's
+kill vs the standing corpus (R7 pre-ruling), and the close-out
+report rides the pack.

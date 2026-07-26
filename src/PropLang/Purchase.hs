@@ -27,6 +27,7 @@ module PropLang.Purchase
   ( PurchaseWorld (..)
   , PTick (..)
   , runPurchase
+  , runPurchaseS
   , purchasePredictive
   ) where
 
@@ -34,10 +35,12 @@ import Data.List.NonEmpty (nonEmpty)
 import PropLang.Belief
   ( Belief, Space, fromWeights, kernel, mkSpace, push
   )
+import PropLang.Eval (Features)
 import PropLang.Lattice
   ( Node, Owned, frontier, guardE, mkOwned, nodeTheta, ownedNodes
   , scoreOwned, straddles
   )
+import PropLang.Syntax (Namespace)
 
 -- | The world's side of the purchase law: economics only, EXACT.
 data PurchaseWorld = PurchaseWorld
@@ -114,6 +117,23 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
 
     errNoFrontier :: Node
     errNoFrontier = error "the lattice frontier is never empty"
+
+-- | The joint purchase law THROUGH THE ONE SENTENCE (the trampoline
+-- boundary, EXACT_PLAN 13.3): the same law as 'runPurchase' with the
+-- per-tick choice re-homed into a single standing chooseKS sentence —
+-- wait head (a zero mention), respond (the bound pessimistic guard),
+-- refine LAST (the straddle gate and the max-0 forgone both said as
+-- If/Gt inside the sentence; the engine binds only the guard scalars
+-- pess/opt/gain). The caller passes the door payload (namespace +
+-- covering features), per R5: every evalx passes a door. Pinned
+-- extensionally to 'runPurchase' by test-trampoline g5 (the d6-cell
+-- transcripts, act-for-act).
+--
+-- ORACLE-PHASE STUB (test-trampoline red).
+runPurchaseS :: Namespace -> Features -> PurchaseWorld -> Owned
+             -> [Int] -> Either String [PTick]
+runPurchaseS _ _ _ _ _ =
+  Left "runPurchaseS: not implemented (oracle-phase stub)"
 
 -- | The predictive after purchases: each owned hypothesis's
 -- emission through the sentence fragment, weight form through the

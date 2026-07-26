@@ -50,6 +50,9 @@ module PropLang.Syntax
 #ifndef DROP_SUB
   , addM
 #endif
+#if !defined(DROP_IF) && !defined(DROP_GT) && !defined(DROP_SUB)
+  , chooseKS
+#endif
   , KnownScope (..)
   , ProdTable (..), prodTable
   , Charge (..), chargeMass
@@ -57,7 +60,7 @@ module PropLang.Syntax
   ) where
 
 import Data.Kind (Type)
-import Data.List.NonEmpty (NonEmpty, toList)
+import Data.List.NonEmpty (NonEmpty ((:|)), toList)
 import Data.Proxy (Proxy (..))
 import PropLang.Belief (Belief, Kernel, Space, mkSpace)
 
@@ -229,6 +232,24 @@ mkC g k = MkC g k <$> gridLookup g k
 #ifndef DROP_SUB
 addM :: Expr env Rational -> Expr env Rational -> Expr env Rational
 addM a b = Sub a (Sub (Sub b b) b)
+#endif
+
+-- | DERIVED NAME (the trampoline boundary, EXACT_PLAN 13.2): the
+-- K-ary choice family over (code, value) rows — first-listed
+-- incumbent, a challenger displaces iff strictly greater (CL-3),
+-- expands to the nested If/Gt tournament and returns the WINNING
+-- ROW'S CODE. A macro priced at its expansion, never a codeword;
+-- the chooseEU binary pick generalized to the whole menu.
+--
+-- ORACLE-PHASE STUB (test-trampoline red): returns a value-mangled
+-- code (last minus first) so every frozen row's red is attributable
+-- to the missing tournament, not shadowed by a lucky constant.
+#if !defined(DROP_IF) && !defined(DROP_GT) && !defined(DROP_SUB)
+chooseKS :: NonEmpty (Expr env Rational, Expr env Rational)
+         -> Expr env Rational
+chooseKS ((c0, _) :| rest) = case rest of
+  [] -> Sub c0 c0
+  _  -> Sub (fst (last rest)) c0
 #endif
 
 class KnownScope (env :: [Type]) where
