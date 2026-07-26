@@ -331,10 +331,15 @@ licenses the tokens only in (a) wire-input validation and (b)
 constructor-tag dispatch; the four shipped occupants span three
 FURTHER categories — host randomness after the belief (draw's
 walk, CL-2's side), display render (rNum), and the loop clock
-(runEpisode's tick bound). DRAFTED: license the three categories
-by name at the freeze (the gate script's header already carries
-them); the alternative is eviction (draw and rNum leaving Host for
-a sim/report module) — a src motion the author may order instead.
+(runEpisode's tick bound). DRAFTED (sharpened at the
+pre-tag review round): LICENSE the three categories by name at the
+freeze — each occupant is defensible in its category (draw's walk
+is CL-2's side of the line, randomness AFTER the belief; rNum is
+display; the tick bound is the loop clock, not a choice) — and
+REGISTER eviction (draw/rNum leaving Host for a sim/report module)
+as a demonstration-tier candidate rather than ordering src motion
+at the terminal language increment. Either way the allowlist stops
+being four unexplained lines and becomes category law.
 
 **R8 — the lookahead's future-fold features.** thinkValue folds
 lookahead evidence at feats ++ the wait head. For
@@ -441,3 +446,33 @@ OBLIGATIONS motions; E4 into gates-exact.sh; the register as ruled.
 Then implementation (the overlay's semantics re-land into src),
 gates 1-7 + E1-E4, the close matrix, and the close-out under R-D22's
 chain.
+
+## Part X — the pre-tag review round (2026-07-26, forwarded by the
+## author; recommendations recorded, one amendment executed)
+
+The independent review's triage: R4 and R11 are the two rulings
+with content; the rest is the author's own canon applied, verdicts
+checked (R1's (b)-with-g5.4 = the banked-failure discipline to the
+letter; R7's re-land safe under the two independent witnesses;
+R10's no-baked-cap = the kLadder lesson at the right moment; R9's
+deferral = correct scoping). On R4 it endorses the drafted
+disposition (substitution normative — "actions are features"
+applied consistently; chooseEU's shipped fold unmoved this
+increment; migration under its own pin at a named boundary; OB-24
+carrying it) and names g2.3's double duty as the mandate process
+at its best. On R11 it recommends LICENSE-BY-NAME + eviction
+registered as a demonstration-tier candidate — the R11 draft above
+is amended to that form at this round.
+
+ONE AMENDMENT EXECUTED (the review's F2 point): menu order is now
+load-bearing doctrine, and the staged Edit 2 said it only
+implicitly ("internal acts LAST"). Edit 2 now carries the sentence
+in so many words: "Menu ORDER is SEMANTICS, not style: internal
+acts stand at the menu's TAIL, and their availability IS their
+price" — a future editor reordering a menu trips over doctrine,
+not over a surprising test failure.
+
+Custody per the review: opening record verbatim (Part I), base
+manifest verified, nothing frozen touched, stubs additive, seven
+suites green throughout, all four seeded demonstrations two-sided
+on disk. The pack awaits the register ruling and the tag.

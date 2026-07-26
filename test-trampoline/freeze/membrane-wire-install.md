@@ -51,7 +51,14 @@ NEW:
   tick's option space is the published assignments PLUS the
   standing think row (the engine's preposterior at batch depth B,
   minus P, said in-sentence; internal acts LAST — CL-3 ties to
-  inaction), through the SAME one policy sentence. A tick the
+  inaction), through the SAME one policy sentence. Menu ORDER is
+  SEMANTICS, not style: internal acts stand at the menu's TAIL,
+  and their availability IS their price — an internal row never
+  fires on a tie, so a zero-valued or empty-lookahead think loses
+  to the standing incumbent with zero branches (the
+  availability-from-pricing law; pinned by trampoline g1's tie
+  rows and g3's differential — reordering a menu moves meaning).
+  A tick the
   internal act wins replies `{"internal": "think"}` — nothing
   fires on the wire; evidence on such a tick folds at feats ++ the
   wait head (inaction while thinking). ABSENT means the shipped
