@@ -1,6 +1,6 @@
-# MUTANT M5-walk-unreflected — provenance: the reflected boundary dropped (the walk-law row's subject)
+# MUTANT M5-walk-unreflected — provenance: the reflected boundary dropped (the walk-law row's subject). r1 REPLACEMENT (the X.4 pool-repair item): the reflection guard INVERTED — Gt minT xv is strict and minT <= xv always, so the reflection arm exists, well-typed, and never fires; the boundary down-move walks off the codebook while the interior is untouched. The r0 patch deleted minT's only use and died at compile (-Werror unused-binds): a compiler kill, not the law's.
 diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
-index e2bb556..da5110a 100644
+index e2bb556..de80f8d 100644
 --- a/src/PropLang/Enumerate.hs
 +++ b/src/PropLang/Enumerate.hs
 @@ -167,7 +167,7 @@ enumerateWith _ns obsC eg guardGs mrg allowed =
@@ -8,7 +8,7 @@ index e2bb556..da5110a 100644
          minT = cAt eg 0
          maxT = cAt eg (gridSize eg - 1)
 -        lo = If (Gt xv minT) (Sub xv step) (addM xv step)
-+        lo = Sub xv step
++        lo = If (Gt minT xv) (addM xv step) (Sub xv step)
          hi = If (Gt maxT xv) (addM xv step) (Sub xv step)
          two = addM one one
          stay = Mul two (Sub one rv)
@@ -17,7 +17,7 @@ index e2bb556..da5110a 100644
          minT = cAt eg 0
          maxT = cAt eg (gridSize eg - 1)
 -        lo = If (Gt xv minT) (Sub xv step) (addM xv step)
-+        lo = Sub xv step
++        lo = If (Gt minT xv) (addM xv step) (Sub xv step)
          hi = If (Gt maxT xv) (addM xv step) (Sub xv step)
          two = addM one one
          stay = Mul two (Sub one rv)

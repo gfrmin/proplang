@@ -1,0 +1,17 @@
+# MUTANT M14-arity-km1-dropped — provenance: the K-ary world integer dropped from the emission body — extensionally INVISIBLE at K=2 (Mul by the atom value 1) and fatal at K>2 (the K=4 CatBody pin's subject; the close's K-ary live-regression caution made executable).
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..b9aae16 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -218,10 +218,8 @@ enumerateWithArity kAr _ns obsC eg guardGs mrg allowed =
+       where
+         trueE = Gt one zero
+         falseE = Gt zero one
+-    km1 = cAt atomG (kAr - 1)          -- the world integer K-1, read
+-                                       -- from the carrier's own atoms
+     catBody j th =
+-      If (eqE (Var Z) (cAt atomG j)) (Mul km1 th) (Sub one th)
++      If (eqE (Var Z) (cAt atomG j)) th (Sub one th)
+     arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1)))
+     unitLatent = mkSpace (thetaPt 0 :| [])
+     thetaPt k = case mkC eg k :: Maybe (Expr '[] Rational) of

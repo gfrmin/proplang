@@ -1,0 +1,14 @@
+# MUTANT M12-predictmass-unnormalized — provenance: the predictive mass unnormalized — p1 and the preposterior's engine route scale by the surviving prior mass (the probe/preposterior rows' subject; predictiveBelief is invariant because fromWeights re-normalizes).
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..4fa2c15 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -435,7 +435,7 @@ predictMassS feats y (AgentS ns _ ws lives) = do
+   let pm hl = case tickPred env hl of
+         Nothing -> 0
+         Just (predLat, k) -> predictMass predLat k y
+-  Right (sum (zipWith (*) ws (map pm lives)) / sum ws)
++  Right (sum (zipWith (*) ws (map pm lives)))
+ 
+ -- | The exact normalized meta posterior (read-only view; displays —
+ -- entropy — derive from this at the reporting edge, never here: E1).

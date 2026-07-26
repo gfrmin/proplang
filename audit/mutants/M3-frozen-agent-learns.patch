@@ -1,0 +1,14 @@
+# MUTANT M3-frozen-agent-learns — provenance: the quarantine breach — the deletion audit's frozen agent silently updating its weights (R10's forgetter-quarantine discipline applied to the freeze; the 2^-160 row's subject). Fills the registry's numbering gap (no M3 was ever declared at the close).
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..f87c5c0 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -425,7 +425,7 @@ stepFrozenS feats y (AgentS ns t ws lives) = do
+         Nothing -> 0
+         Just (predLat, k) -> predictMass predLat k y
+       marginal = sum (zipWith (*) ws (map pm lives)) / sum ws
+-  Right (marginal, AgentS ns (t + 1) ws lives)
++  Right (marginal, AgentS ns (t + 1) (zipWith (*) ws (map pm lives)) lives)
+ 
+ -- | The exact predictive mass of an OUTCOME (R16: the outcome is a
+ -- parameter — no event baked into a core name).

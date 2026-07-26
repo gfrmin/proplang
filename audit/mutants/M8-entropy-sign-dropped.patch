@@ -1,0 +1,14 @@
+# MUTANT M8-entropy-sign-dropped — provenance: the display edge renders the exact view with the right magnitude and the wrong sign (R7's display class; the H-display rows' subject — a defect no marginal row can see).
+diff --git a/src/PropLang/Report.hs b/src/PropLang/Report.hs
+index 9ffe5d2..0e4b1f0 100644
+--- a/src/PropLang/Report.hs
++++ b/src/PropLang/Report.hs
+@@ -13,7 +13,7 @@ import PropLang.Enumerate (AgentS, metaPosterior)
+ 
+ entropyOf :: [Rational] -> Double
+ entropyOf ps =
+-  sum [ negate (p * logBase 2 p)
++  sum [ p * logBase 2 p
+       | w <- ps, w > 0, let p = fromRational w :: Double ]
+ 
+ -- | Belief entropy in bits (display).

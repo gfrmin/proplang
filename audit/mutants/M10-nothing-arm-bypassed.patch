@@ -1,0 +1,17 @@
+# MUTANT M10-nothing-arm-bypassed — provenance: impossible evidence read through — the Nothing arm skipped and the PRIOR bound where the posterior belongs (the fail-open class, mandate 6; the Nothing-arm rows' subject).
+diff --git a/src/PropLang/Eval.hs b/src/PropLang/Eval.hs
+index e33dcee..bede933 100644
+--- a/src/PropLang/Eval.hs
++++ b/src/PropLang/Eval.hs
+@@ -79,9 +79,9 @@ evalx expr env@(Env feats vals) = case expr of
+   -- the fused conditioning verb: condition the belief through the
+   -- kernel on the observed outcome; Just-arm binds the posterior,
+   -- Nothing-arm is the impossible-evidence sentence (load-bearing).
+-  Cond b k y j n -> case condV (evalx b env) (evalx k env) (evalx y env) of
++  Cond b k y j _n -> case condV (evalx b env) (evalx k env) (evalx y env) of
+     Just b' -> evalx j (Env feats (b' :. vals))
+-    Nothing -> evalx n env
++    Nothing -> evalx j (Env feats (evalx b env :. vals))
+ #endif
+ #ifndef DROP_CODE
+   -- weight-form denotation: a code denotes iff every column is lawful

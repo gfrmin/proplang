@@ -1,0 +1,14 @@
+# MUTANT M13-condv-unnormalized — provenance: Bayes without normalization at the FUSED VERB's own division (M2's shape on condV, the sentence-reachable conditioning — the other half of the one-division claim; the Cond sentence rows' subject).
+diff --git a/src/PropLang/Belief.hs b/src/PropLang/Belief.hs
+index 5e9e4a4..4353125 100644
+--- a/src/PropLang/Belief.hs
++++ b/src/PropLang/Belief.hs
+@@ -100,7 +100,7 @@ condV (Belief sp@(Space pts) ws) k v =
+   let ms = [ w * prob (kernelAt k x) (\o -> realToFrac o == v)
+            | (x, w) <- zip pts ws ]
+       z = sum ms
+-  in if z <= 0 then Nothing else Just (Belief sp [ m / z | m <- ms ])
++  in if z <= 0 then Nothing else Just (Belief sp ms)
+ 
+ -- | The marginal MASS of an outcome under belief-through-kernel:
+ -- sum_x w(x) * P_k(x)(y). Exact; the bits view is reporting-edge.

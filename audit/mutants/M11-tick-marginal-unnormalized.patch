@@ -1,0 +1,15 @@
+# MUTANT M11-tick-marginal-unnormalized — provenance: the tick marginal reported unnormalized while the update stays lawful — a pure evidence-stream reporting defect (the cumulative/episode marginal rows' subject; separates the marginal cluster from every other path).
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..405a8f3 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -401,8 +401,7 @@ observeS feats y (AgentS ns t ws lives) = do
+         Nothing -> 0
+         Just (predLat, k) -> predictMass predLat k y
+       masses = map pm preds
+-      z = sum ws
+-      marginal = sum (zipWith (*) ws masses) / z
++      marginal = sum (zipWith (*) ws masses)
+       ws' = zipWith (*) ws masses
+       lives' = zipWith absorb lives preds
+       absorb hl@(HypLive h _) p = case (hypMove h, p) of

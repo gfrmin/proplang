@@ -1,0 +1,12 @@
+# MUTANT M9-map-inverted — provenance: MAP reads the wrong end of the meta posterior (the change-point guard's subject: the argmax that is secretly an argmin).
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+index e2bb556..8ca893b 100644
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -458,5 +458,5 @@ agentObsPoints (AgentS _ _ _ lives) = case lives of
+ -- | MAP: the top hypothesis's declared tag and exact posterior.
+ mapS :: AgentS -> ((String, [Int]), Rational)
+ mapS (AgentS _ _ ws lives) =
+-  let (HypLive h _, w) = maximumBy (comparing snd) (zip lives ws)
++  let (HypLive h _, w) = maximumBy (comparing (negate . snd)) (zip lives ws)
+   in (hypTag h, w / sum ws)
