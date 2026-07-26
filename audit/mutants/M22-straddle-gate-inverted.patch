@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Purchase.hs b/src/PropLang/Purchase.hs
+index 0018686..2215eef 100644
+--- a/src/PropLang/Purchase.hs
++++ b/src/PropLang/Purchase.hs
+@@ -83,7 +83,7 @@ runPurchase w owned0 obsStream = go owned0 (0, 0) obsStream
+           forgone  = max 0 respondV
+           (cand, gain) = bestCandidate o c'
+           mRefine = case pwRefine w of
+-            Just s | straddles o c' st ->
++            Just s | not (straddles o c' st) ->
+               Just (pwLadderCap w * gain - s - forgone)
+             _ -> Nothing
+           -- the pinned order: wait head, externals, internal acts

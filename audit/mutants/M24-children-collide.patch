@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..81e6ee9 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -85,7 +85,7 @@ gammaBits (Node _ k) = gammaLen (fromIntegral k + 1) + fromIntegral k
+ -- | The two dyadic refinements of a node — the only generator
+ -- besides the root, so num stays odd by construction.
+ childrenOf :: Node -> [Node]
+-childrenOf (Node p k) = [Node (2 * p - 1) (k + 1), Node (2 * p + 1) (k + 1)]
++childrenOf (Node p k) = [Node (2 * p - 1) (k + 1), Node (2 * p - 1) (k + 1)]
+ 
+ parentOf :: Node -> Maybe Node
+ parentOf (Node _ 0) = Nothing

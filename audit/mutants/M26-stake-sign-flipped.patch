@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..3242aa4 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -189,7 +189,7 @@ supLike n1 n0 (a, b) =
+   in likeQ n1 n0 p
+ 
+ uOf :: (Rational, Rational) -> Rational -> Rational
+-uOf (sR, sW) th = sR * th + sW * (1 - th)
++uOf (sR, sW) th = sR * th - sW * (1 - th)
+ 
+ -- | The region guard's expectation under a placement: True =
+ -- pessimistic, False = optimistic — every region placed at

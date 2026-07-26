@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..1a1fcac 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -206,7 +206,7 @@ guardE pess o (n1, n0) st =
+       pick (Region a b m) =
+         let l  = supLike n1 n0 (a, b)
+             us = [uOf st a, uOf st b]
+-            u  = if pess then minimum us else maximum us
++            u  = if pess then maximum us else minimum us
+         in (m * l * u, m * l)
+       parts = map pick (regions o)
+   in (num0 + sum (map fst parts)) / (den0 + sum (map snd parts))

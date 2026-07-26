@@ -11,7 +11,7 @@ set -u
 cd "$(dirname "$0")/.." || exit 2
 OUT="${1:-/tmp/oracle-audit}"
 mkdir -p "$OUT"
-suites="exact-acceptance exact-properties lawful lawful-independence pins"
+suites="exact-acceptance exact-properties lawful lawful-independence pins dyadic"
 for p in audit/mutants/*.patch; do
   m=$(basename "$p" .patch)
   echo "=== mutant $m ==="

@@ -228,6 +228,68 @@ then binds within the increment). From that tag: implementation
 pool + matrix run, the GroundC re-execution, and the increment
 report close it out.
 
-Session custody at this commit: builder key, signed; frozen
-manifest 56/56 intact; the six standing suites green; the oracle
-red 24/24 with both transcripts on disk.
+## 6. THE FREEZE EXECUTED AND THE IMPLEMENTATION CLOSED (2026-07-26, on the recorded delegation)
+
+**The freeze**: commit `1b8827d` landed the five frozen installs +
+the stanza + manifest 64/64; tag `dyadic-freeze-r0` made with the
+BUILDER key, the delegation ("you write everything, i just sign —
+execute the freeze on delegation") recorded verbatim in the tag
+message. Gate state at the tag: six standing suites PASS (the probe
+split green), dyadic FAIL red-by-design 24/24, prefreeze-lint
+0 FAIL / 0 WARN.
+
+**The implementation** (commit `4d20083`): the stub bodies replaced
+by the SAT-proven semantics. ALL SEVEN SUITES PASS — dyadic 24/24
+green; audit/gates-exact.sh exit 0 with E1/E2/E3 clean (the last
+Double island in core is gone); prefreeze-lint clean. One
+sequencing incident, recorded: the first mutant-cutting attempt ran
+BEFORE the implementation was committed, and the runner's
+git-checkout revert wiped the uncommitted implementation — nothing
+lost (re-applied from the SAT-proven text), and the lesson is
+mechanical: MUTANTS ARE CUT AGAINST A COMMITTED GREEN BASELINE,
+never a working tree.
+
+**The forward half discharged — 13 mutants, 24/24 rows reached, no
+survivors.** The pool (audit/mutants/M15-M27, each a named minimal
+semantic patch, each compile-checked in isolation): M15 gamma
+position dropped, M16 kraft tail halved, M17 guard extrema swapped,
+M18 supLike clip to midpoint, M19 ladder cap baked to 1, M20 wait
+tie surrendered, M21 canonical order inverted, M22 straddle gate
+inverted, M23 theta denominator tripled, M24 children collide, M25
+regions reversed, M26 stake sign flipped, M27 no-refine world buys
+free. The first eight reached 16 rows and left the coordinate rows,
+the zip contract, d4.3 and d6.3 unreached — the pool grew five
+mutants ON THAT FINDING (the pool-is-grown amendment applied to the
+pool's own increment) to 24/24. STANDING-CORPUS UNIQUENESS IS
+STRUCTURAL: zero standing test files import PropLang.Lattice or
+PropLang.Purchase (grep count 0, in the matrix transcript), so no
+standing row can fire under any of these mutants — every dyadic
+kill is unique against the standing corpus, per R7's pre-ruling.
+Per-mutant kill sets: scratchpad dyadic-matrix/*.kills. Sibling
+shadowing within the suite (e.g. the d6.1/d6.2 pair killed by every
+purchase-path mutant) is recorded as R7 provides, for the next full
+matrix run — tools/oracle-audit.sh's declared universe now includes
+the dyadic suite for that run.
+
+**The GroundC re-execution (13.3's expiry rider, DISCHARGED)**: the
+banked deadlock observation re-executed against the SHIPPED dyadic
+Lattice — root-only vocabulary, cap 16, surcharge 1/20:
+
+    t96  (1,-24),  60x1: wait 60 respond 0 refine 0
+    t994 (1,-171), 60x1: wait 60 respond 0 refine 0
+
+The max-0 clamp deadlock REPRODUCES on the shipped module exactly
+as banked: from root-only vocabulary at deep-threshold stakes,
+refine never fires. The trampoline boundary may now rely on the
+observation (its design choice: rung ladder sees multi-step value,
+or the deadlock documented as the myopic candidate's honest
+behavior).
+
+**What remains for this increment's close**: your countersigning
+tag `dyadic-freeze-r1` over the implementation-green history — the
+R-D22 re-tag obligation, the discharge event for the delegated r0
+(the w3/w4 precedent: the author's r1 over the green commit).
+
+Session custody: builder key on every commit; manifest 64/64 green
+from the freeze commit forward; all transcripts on disk in the
+session scratchpad and quoted here.

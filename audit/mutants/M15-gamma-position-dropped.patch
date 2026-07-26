@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..5b8ae86 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -80,7 +80,7 @@ ilog2 m | m <= 1    = 0
+ -- mirror-safe; the sign bit died with the signed extents. Pinned by
+ -- d2.1/d2.2 (the sealed economics table).
+ gammaBits :: Node -> Integer
+-gammaBits (Node _ k) = gammaLen (fromIntegral k + 1) + fromIntegral k
++gammaBits (Node _ k) = gammaLen (fromIntegral k + 1)
+ 
+ -- | The two dyadic refinements of a node — the only generator
+ -- besides the root, so num stays odd by construction.

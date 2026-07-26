@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..08cb89f 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -108,7 +108,7 @@ newtype Owned = Owned [Node]
+ -- is always owned), canonical code order (price, then theta).
+ mkOwned :: [Node] -> Owned
+ mkOwned ns =
+-  Owned (sortOn (\c -> (gammaBits c, nodeTheta c))
++  Owned (sortOn (\c -> (nodeTheta c, gammaBits c))
+            (nub (concatMap ancestry (rootNode : ns))))
+   where
+     ancestry n = n : maybe [] ancestry (parentOf n)

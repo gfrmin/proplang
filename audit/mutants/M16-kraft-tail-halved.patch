@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..4bc5878 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -154,7 +154,7 @@ gammaTailQ m0 =
+ -- truncated (Kraft over the whole tree is exactly 1, d2.3; the
+ -- recursion own + children is d2.4).
+ kraftSubtree :: Node -> Rational
+-kraftSubtree (Node _ k) = (1 % (2 ^ k)) * gammaTailQ (fromIntegral k + 1)
++kraftSubtree (Node _ k) = (1 % (2 ^ (k + 1))) * gammaTailQ (fromIntegral k + 1)
+ 
+ -- | The canonical scorer: the posterior over an owned set given the
+ -- permanent counts, through the sealed reasoner's own prior door —

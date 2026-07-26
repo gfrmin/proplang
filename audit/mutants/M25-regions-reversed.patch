@@ -1,0 +1,13 @@
+diff --git a/src/PropLang/Lattice.hs b/src/PropLang/Lattice.hs
+index 2518a0e..257cd3c 100644
+--- a/src/PropLang/Lattice.hs
++++ b/src/PropLang/Lattice.hs
+@@ -134,7 +134,7 @@ data Region = Region
+   deriving (Eq, Show)
+ 
+ regions :: Owned -> [Region]
+-regions o =
++regions o = reverse
+   [ Region lo hi (kraftSubtree c)
+   | c <- frontier o, let (lo, hi) = spanOf c ]
+ 
