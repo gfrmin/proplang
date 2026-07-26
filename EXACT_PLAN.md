@@ -613,3 +613,161 @@ second hand-declared shape of the hypothesis space).
    composition with IX.8a: the audit runs AFTER the R11 retirement,
    so the matrix covers exactly the surviving law, not rows already
    leaving.
+
+## 13. The trampoline boundary (DRAFTED at the X.5 preparation, 2026-07-26; opens NOTHING — the author's ruling opens it)
+
+### 13.0 THE DESTINATION MAP (charter preamble; installed verbatim from the author's directive of 2026-07-26 so the roadmap lives in the tree, never in a transcript)
+
+The project's destination has four clauses, each completed by exactly
+one remaining piece:
+
+| destination clause                        | status                    | completed by        |
+|-------------------------------------------|---------------------------|---------------------|
+| "can ONLY be used for EU-maximal          | structural in the core;   | the trampoline (E4) |
+|  decisions" (soundness)                   | the host can still choose |                     |
+| "to CREATE Bayesian-optimal agents"       | witnessed by 4 tests,     | the completeness    |
+|  (sufficiency)                            | unproven in general       | suite               |
+| "INCLUDING METAREASONING" (closure)       | sayable + pinned, not     | the trampoline      |
+|                                           | automatic                 | (same boundary)     |
+| agents in the WORLD, not oracle worlds    | governor in shadow        | the demonstration   |
+|                                           |                           | tier                |
+
+The sequence, and why: (1) the X.5 sitting — chartered residue,
+mostly author rulings; its lattice item GATES the trampoline
+(think/refine rungs live in Lattice/Purchase). (2) OB-12's
+differential run — a MEASUREMENT, not a boundary; the ledger's
+highest-leverage unexecuted measurement, cited by two pending
+readings; runs in parallel, waits for nothing. (3) The trampoline
+boundary — the LAST language increment: completes soundness and
+closure at once, and is the final surface motion. (4) The
+completeness suite — proves sufficiency ONCE, against the final
+surface (certifying before the trampoline would mean certifying
+twice). (5) The demonstration tier — A-gate reading with OB-12's
+result in hand, the benchmark, the paper; the paper's claim set is
+then: necessity by executed deletion, sufficiency by executed
+interpolation, soundness by four gates, exactness by ==, closure by
+E4, and a live host. AFTER 5 THE ROADMAP TERMINATES. Everything else
+is named demand-gated residue re-entering only through the two-sided
+gate with a measurement: the quine face, OB-15, OB-19, continuous
+carriers (foreclosed), and brief §6's self-compression (the agent
+buying its own macros) — a research programme, named not scheduled.
+
+*(Status annotations as of this draft: the X.5 sitting is PREPARED —
+x5-author-pack.md; OB-12's run is EXECUTED — the pack's Track 2:
+A-gate demand NOT MEASURED on 95k live events, B-gate UNDERPOWERED
+at n_inv = 0, no engine passes the registered loss bar.)*
+
+### 13.1 The dependency, recorded
+
+This boundary DEPENDS ON X.5 ITEM 3 (the dyadic lattice coordinate).
+The internal acts think/refine are priced menu rows whose machinery
+is Lattice/Purchase; chartering metareasoning over a module whose
+points are Double lies about irrational reals (pack x5 3.1), whose
+guard can certify false robustness (3.2, the flip witness), and
+whose scorer collides saturated thetas (3.3) would build the
+closed-system agent on the one convicted island. The coordinate
+ruling lands first; this charter assumes its diff (x5 3.6) as the
+substrate.
+
+### 13.2 The charter body
+
+**The standing POLICY sentence.** The agent's per-tick behavior is
+ONE derived macro — a sentence of the 9+1 grammar with the agent's
+own belief bound in its env (the reflexive composition step 10
+proved sayable) — evaluated once per tick by the host. The policy
+sentence is data: priced at its expansion like every derived name,
+declared once, never rebuilt per tick by host logic. Its shape: the
+If/Gt-over-Expects choice family over the tick's full option menu
+(external assignments ++ internal acts), each option's value an
+Expect over the predictive at feats ++ option — the chooseEU
+composition generalized to the whole menu, INCLUDING the internal
+rows.
+
+**Internal acts STANDING on the menu.** think (deepen one rung) and
+refine (buy one vocabulary node) are menu rows like any other,
+priced by the world's declared clock (the R1 joint law's option
+order: wait head, externals, internals LAST; CL-3 ties to
+inaction). Metareasoning is therefore NEVER INVOKED and NEVER
+EXCLUDABLE: there is no "decide whether to deliberate" host branch —
+deliberation wins a tick exactly when its priced EU says so, through
+the same one chooser as everything else. A world that prices the
+clock at zero gets a maximal deliberator; a world that prices it
+dear gets the myopic rung — with ZERO code difference (13.4's
+oracle shape).
+
+**The host reduced to a decision-free polling trampoline.** The loop
+is: read line -> door -> ONE evalx of the standing policy sentence
+with the belief in env -> execute by CONSTRUCTOR DISPATCH on the
+result (an assignment fires on the wire; an internal act re-enters
+the evaluator) -> fold evidence -> reply. The host branches ONLY on
+constructor tags and wire input — never on any engine-derived
+quantity. The Membrane's chooseEU fold (host carries beliefs between
+binary evaluations) collapses INTO the policy sentence; what remains
+of Membrane/Host is transport and the door.
+
+**Gate E4 — THE SINGLE CHOOSER.** No comparison on any
+engine-derived quantity outside evalx. Scriptable half (lands beside
+E1-E3 in audit/gates-exact.sh, same sed-comment-strip discipline):
+in src/PropLang/{Host,Membrane}.hs (the modules outside the
+evaluator), zero occurrences of the comparison/ordering tokens
+` > `, ` < `, ` >= `, ` <= `, `max `, `min `, `maximumBy`,
+`minimumBy`, `compare` applied to values of engine provenance —
+enforced as: those tokens may appear ONLY in (a) wire-input
+validation (parse-layer, before the engine exists) and (b)
+constructor-tag dispatch; the gate greps the stripped source for
+the tokens and an allowlist of validation sites, exactly as E1
+carries its Report allowlist. The non-scriptable half (what
+"engine provenance" means) stays law as prose with the E-gate's
+register. E4 upgrades lazy-genius from "no line chooses outside the
+sentence that we could find" to "no line COULD exist without
+failing a frozen gate."
+
+**THE FLOOR — the fourth residue, named.** One un-deliberated policy
+evaluation per tick. The trampoline must evaluate the standing
+sentence to learn what the agent wants to do — including whether to
+deliberate — and THAT evaluation is not itself deliberated (else
+regress). This is the brief's laws-of-thought residue in
+operational face: alongside the alphabet, the clock, and the
+pointer, the floor is physics — named, priced at zero by
+construction, and impossible to remove without removing the agent.
+The charter records it beside the other three residues; KERNEL.md's
+RESIDUES line gains "the floor" when this boundary's freeze touches
+that page (frozen-layer inventory, under the author's key).
+
+### 13.3 What dies
+
+The last host folds: chooseEU's Either-fold (Membrane.hs) and the
+Host's per-tick selection plumbing become the policy sentence's
+expansion or leave; runEpisode's pilot dispatch reduces to the
+trampoline; any surviving host-side max/min falls to E4. Candidate
+process deletions ride their own sitting (x5 Track 1 item 1), not
+this boundary.
+
+### 13.4 The closed-loop lazy-genius oracle shape (drafted rows; oracle-first binds when the boundary opens)
+
+- **The price-only differential:** the SAME trampoline binary against
+  two worlds differing ONLY in declared prices (the clock row's
+  values in the world declaration; zero code diff, zero flag diff):
+  think-counts MOVE — the dear-clock world reproduces the myopic
+  anchors (t2's 1/3/12/12 lineage), the free-clock world climbs
+  rungs — and every movement is attributable to the declared price
+  alone. The row asserts both count vectors exactly (the anchors
+  derive from ExactReference extended to the trampoline loop).
+- **E4's grep row:** the scriptable half above, run as a gate row
+  (red on any engine-derived comparison outside evalx; the seeded-
+  defect demonstration: a one-line host-side `if euA > euB` planted
+  and caught — the pin-freeze red-run clause's shape).
+- **The single-evaluation row:** the trampoline performs exactly ONE
+  policy evaluation per tick (counted through a transcript identity,
+  not instrumentation inside src — CL-1 reads at the boundary).
+- **Composition rows:** the policy sentence's expansion == the
+  shipped chooseEU route on menu-only worlds (the retirement's pin:
+  the old selection is the new sentence's special case, extensional
+  ==); internal-act rows reproduce R1's recurring-stakes buy and
+  myopic-stay shapes as sentences (the R1-era suites retired at R11;
+  their shapes return as trampoline rows under the new coordinate).
+
+Per the increment protocol: the oracle for this boundary is written
+oracle-first, runtime-red against type-surface stubs, SAT-transcribed
+(overlay form, flag-faithful), frozen by the author, THEN
+implemented. This section is a charter, not an oracle.
