@@ -15,8 +15,10 @@ IGNORED — they parse and drop, never error (new-key negotiation:
 optional keys degrade by scalar fallback, never by capability probe).
 
 Canonical rendering (what the driver emits): no whitespace outside
-strings; object keys in insertion order; a numerically integral value
-renders without a decimal point (`1`, not `1.0`); any other value
+strings; object keys in insertion order; a numerically integral value below
+2^53 renders without a decimal point (`1`, not `1.0`; binary64's
+integral bound — rNum, Host.hs:182-183; at and above it e-notation
+is honest); any other value
 renders as Haskell `show` (shortest round-trip; values below 0.1 use
 e-notation, which is legal JSON); strings escape `"` `\` and newline.
 The parser additionally tolerates whitespace between tokens.
@@ -26,6 +28,7 @@ The parser additionally tolerates whitespace between tokens.
 ```json
 {"membrane": 1, "world": {
   "namespace": ["t", "<feature>=<value>", "..."],
+  "codebooks": {"theta": [0.1, 0.3, 0.5, 0.7, 0.9], "rho": [0.01, 0.1]},
   "guards":    [{"name": "<feature>=<value>", "grid": [0.5]}, "..."],
   "menu":      [{"name": "<writable-name>", "grid": [0.5, 1.5]}, "..."],
   "utility":   {"form": "said@1",
@@ -42,6 +45,17 @@ outcome freeze the `assign@1` rows died on their printed date and
 always shows the current contract; the historical shapes live in this
 file's git history and its dated notes.)*
 
+> **[X.5 amendment — ruling 6, sealed x5-sitting-r0, 2026-07-26;
+> delegated edit, dyadic increment freeze kit
+> (test-dyadic/freeze/membrane-wire-install.md).]** Sections 1-3
+> re-derived against the shipped exact engine: every load-bearing
+> sentence names its definition site (the greppable-identity table
+> at the end of section 3). Provenance: x5-author-pack.md item 4.
+> Section 4's historical "absent names read 0.0" (:346) is hereby
+> one bracket deeper: the door (section 3) is the shipped truth,
+> and the founding documents' dormancy sentences carry inventory
+> entries at this freeze (test-dyadic/freeze/inventory-entries.md).*
+
 Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
 
 - `namespace` is the world's declared name set under ONE law: every
@@ -51,18 +65,26 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   not yet in any published menu — a world may not conjure a name
   mid-episode. Membership is declared here and is IMMUTABLE:
   publication toggles availability, not membership, so owned
-  posterior odds are invariant under mid-episode publication (pinned
-  bit-exact by test-unify).
+  posterior odds are invariant under mid-episode publication (the
+  namespace-immutability conformance sentence; its live pin is
+  OWED — OB-23).
+- `codebooks` (REQUIRED; the exact boundary's E3 face): the world's
+  declaration of the emission codebook (`theta`, mandatory,
+  nonempty) and the walk codebook (`rho`, optional) — the baked
+  point-set left src, so the world must say it (Host.hs:12-13; the
+  handshake validator at Host.hs:252 refuses a hello without
+  `codebooks.theta` as `{"error": "bad hello"}`).
 - `guards` extend the model fragment's guard families
   (`enumerateSentencesIn`), one `(name, threshold grid)` pair each;
   grids nonempty.
 - `menu` declares the writable names with their grids (the step-5
   shape: names and grids, nothing else). The agent's choice is a
   full ASSIGNMENT of values to the published names; `wait` is every
-> [REPAIRED at the exact close: the line below names `argmaxEU`, deleted with the Argmax terminal (opening ruling 3); the selection is Membrane.chooseEU — the sentence route.]
-  name at the FIRST point of its grid (structural), and argmaxEU
-  ties resolve first-listed (CL-3) — so wait, the option space's
-  head by construction, keeps ties.
+  name at the FIRST point of its grid (structural), and selection
+  is `Membrane.chooseEU` (Membrane.hs:138-161) — the binary
+  If/Gt-over-Expects pick sentence iterated under CL-3, first-listed
+  wins ties (pinned by the SELECTION row, EARNED, unique kill M7) —
+  so wait, the option space's head by construction, keeps ties.
 - `obs_arity` (OPTIONAL; W3, the arity freeze, 2026-07-21;
   delegated edit, wire-author-pack.md Part VII): the world MAY
   declare the observation channel's arity — `"obs_arity": K`, flat
@@ -81,8 +103,10 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   M1 singleton shape, so shipped prices cannot move). Malformed
   declarations (non-integral, K < 2, non-finite) are validation
   failures — FAIL-CLOSED. A declared K=2 coincides with the absent
-  key EXTENSIONALLY (pinned byte-equal/bit-equal by test-arity g1b/
-  g2, never a branch). Declared limitation (R-D23): the null atom's
+  key EXTENSIONALLY (pinned == by the K=2 coincidence row in
+  test-pin, never a branch). The route is shipped: absent = the
+  plain binary route; declared K = the arity route
+  (Host.hs:292-296). Declared limitation (R-D23): the null atom's
   predictive mass is capped at 1/(K-1) by the family's shape, so a
   null-dominant sparse channel at K >= 3 has no good hypothesis
   here; the richer two-parameter family is its demand-gated heir
@@ -122,15 +146,22 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   parsed doubles — spelling-invariant, epsilon-free, fail-closed
   off-grid (the D-f8 door discipline; a tolerance would be the cl4
   disease at the declaration surface). The hello reply then carries
-  `"utility_bits"`: the declared program's price under the one
-  arithmetic (`bitsIn` against the declared namespace and grids) —
-  the `namespace_bits` reporting law applied to the next declared
-  surface. When `cgrid` is ABSENT, each constant is its own
+  `"utility_bits"`: the declared program's grammar weight rendered
+  at the display edge — `bitsView (weightIn ns prog)`
+  (Host.hs:300-302), the exact 9/1 weight; the Double pricer
+  (`bitsIn`) died at the re-founding — the `namespace_bits`
+  reporting law applied to the next declared surface [this
+  sentence's oracle row is OWED: OB-22, arriving with its kill at
+  the next oracle-bearing increment]. When `cgrid` is ABSENT, each constant is its own
   singleton grid (0 content bits) and the reply is byte-identical to
-  the pre-W4 wire. The full priced grammar parses: thirteen forms
-  (`if > + - * / log exp neg c var get`); `<` has NO codeword — `Lt
-  x y` IS `Gt y x` by argument swap, bit-identical, so a codeword
-  would be pure prior distortion. Unparseable or unpriceable
+  the pre-W4 wire. The full priced grammar parses: NINE forms
+  (`var c + - * get if > =`) — the definition site is the shipped
+  parser's `JStr` patterns (Host.hs parseSaidWith, :395-432); `+`
+  parses to the `addM` MACRO and `=` to the If/Gt composition, both
+  priced at their expansions; `/ log exp neg` FAIL CLOSED (they
+  left the alphabet at the exact boundary); `<` has NO codeword —
+  `Lt x y` IS `Gt y x` by argument swap, bit-identical, so a
+  codeword would be pure prior distortion (W4's ruling stands). Unparseable or unpriceable
   declarations are validation failures — FAIL-CLOSED. A hello with
   no utility block is lawful; decision ticks then choose `wait`. No
   formula language exists on this wire: a program is DATA, priced
@@ -272,9 +303,17 @@ the verdict (waste polarity: 1 = approve):
   latents advance one step per EVIDENCE tick (their clock is the
   evidence-stream index), and the t-guard family reads the re-sent
   original `t`.
-- Impossible evidence (zero marginal likelihood — includes any
+- THE DOOR: a tick's features must cover the declared namespace
+  EXACTLY — missing name / undeclared name / duplicate name are
+  three NAMED refusals (`Eval.mkEnvIn`, the sole env constructor;
+  pinned by both acceptance door rows). No default read exists
+  anywhere on this wire.
+- A non-integral evidence value is refused as `{"error":
+  "non-integral evidence"}` BEFORE the observation-space check.
+  Impossible evidence (zero marginal likelihood — includes any
   verdict outside the observation space): `{"error":
-  "impossible-evidence"}`, agent UNCHANGED. The host decides what
+  "impossible-evidence"}`, agent UNCHANGED (`observeS` refuses
+  WITHOUT update, Enumerate.hs:413-417). The host decides what
   fail-open means at transport level; the wire never defaults it.
 - `p1` in a decision reply is P(atom 1) at ANY arity (W3, the arity
   freeze, 2026-07-21). This is the null-atom convention's own
@@ -339,6 +378,22 @@ the verdict (waste polarity: 1 = approve):
 > sentence of the one grammar, priced by the one mechanism, not a
 > formula hatch — and the host cannot smuggle arithmetic through it,
 > because everything it can say, the language could already say.
+
+### The greppable-identity table (installed at the X.5 amendment: every normative sentence above, its definition site, its pin)
+
+| normative sentence | definition site | pinned by |
+|---|---|---|
+| nine said-forms, exact list | Host.hs parseSaidWith `JStr` patterns | transport t2 (said on the wire); fail-closed forms refuse |
+| hello requires codebooks.theta | Host.hs:252 | transport t1 (the REFUSAL side; positive-hello pin OWED, OB-22) |
+| three door refusals, named | Eval.mkEnvIn `Left` strings | acceptance door rows (2) |
+| impossible evidence refuses WITHOUT update | Enumerate.hs:413-417 | properties R1 rider (REACHED, M10) |
+| choice = chooseEU sentence route | Membrane.hs:138-161 | pins SELECTION (EARNED, M7) |
+| K=2 arity == plain route | Host.hs:292-296 | pins ARITY K=2 (==) |
+| K=4 categorical law | Enumerate.hs catBody | pins K=4 (EARNED, M14) |
+| p1 = P(atom 1) at any arity | Host.hs reply builder | acceptance probe rows |
+| utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | OWED (OB-22) |
+| namespace immutability under publication | Host.hs handshake + tick dispatch | OWED (OB-23) |
+| rendering cliff 2^53 | Host.hs:182-183 | transport t4 (parity partition) |
 
 ## 4. Features (the governor's encoding, HOSTS_PLAN 2.4)
 

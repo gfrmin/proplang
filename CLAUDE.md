@@ -330,6 +330,43 @@ Every step-6+ increment follows the recursive two-phase discipline:
    two-run structure is load-bearing in BOTH directions: the red run
    proves every row CAN fire; the SAT run proves every row CAN pass;
    neither run alone certifies a helper, and a freeze relies on both.
+   One clause canonized at the dyadic freeze under the X.5 sitting's
+   rulings 5 and 2 (x5-sitting-r0, 2026-07-26; drafted at the exact
+   close, first run r2 at the X.5 pack; delegated edit, the dyadic
+   freeze kit). AN ORACLE ROW EARNS ITS SEAT BY A UNIQUE KILL. The
+   mutant pool is DECLARED — audit/mutants/, each mutant a named
+   minimal patch instantiating a recorded failure shape, the pool
+   derived from the incident case law plus a declared operator list
+   (the sweep-universe law; hand-enumeration is the disease). The
+   audit runs the frozen suites against every mutant and records the
+   KILL MATRIX. Verdicts are triage inputs for the sitting, never
+   auto-deletions: EARNED — a nonempty unique-kill set; SHADOWED —
+   every kill covered by other rows; UNREACHED — no mutant kills it
+   (either the pool is deficient or the row is a
+   green-that-cannot-fail; both convict something, and which one is
+   the sitting's question). Deletions execute only at a boundary
+   under the author's key, pins listed. FORWARD HALF: a new oracle
+   row arrives WITH its kill — the triptych proves a row CAN fire;
+   the kill proves it fires for a reason no standing row covers; a
+   new row's unique kill is measured against the STANDING
+   (pre-increment) corpus, and sibling shadowing within a new suite
+   is recorded as verdicts at the next matrix run, never a
+   close-blocker (the dyadic R7 pre-ruling). Two amendment lines
+   purchased by the r2 run: A VERDICT IS POOL-RELATIVE AND A POOL IS
+   GROWN, NEVER ASSUMED — three rows moved to EARNED at the first
+   pool growth; a deletion verdict read off a single pool is the
+   two-run triptych's mistake wearing the matrix's hat. And
+   STRUCTURAL SHADOWING IS AN ANSWER, NOT A FAILURE — rows differing
+   only in test-side data cannot be separated by a test-blind src
+   mutant; for such rows the pool-coarseness question closes by
+   demonstration, and the residual question (is the redundancy
+   wanted?) is a row-VALUE ruling, never a pool obligation. And THE
+   RECORDED-REPAIRS RIDER (ruling 2, the pwLadderCap stale-green's
+   purchase): a repair recorded in a pack CITES ITS COMMIT HASH in
+   the repair row, and the pre-freeze checklist verifies every cited
+   hash touches the file the row names — recorded repairs are
+   verified against the tree, mechanically, so the stale-green class
+   dies structurally.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then

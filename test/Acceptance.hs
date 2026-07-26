@@ -208,15 +208,31 @@ main = defaultMain $ testGroup "exact acceptance (the re-founded oracle)"
       ]
   , testGroup "t1 changing world"
       [ testCase "enumeration count" $ length hyps @?= 1169
-      , testCase "probe rows: p1 exact, action, H display" $ do
+      , testCase "probe rows: p1 exact" $ do
           let (timeline, _, _) = runStream shifted160
               probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
               mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
           assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
-          mapM_ (\((t, p, a, h), (t', p', a', h')) -> do
+          mapM_ (\((t, p, _, _), (t', p', _, _)) -> do
                   assertEqual "t" t' t
-                  assertEqual "p1 (exact)" p' p
-                  assertEqual "action" a' a
+                  assertEqual "p1 (exact)" p' p)
+            (zip mine Anchors.t1ProbeRowsX)
+      , testCase "probe rows: action" $ do
+          let (timeline, _, _) = runStream shifted160
+              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
+              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
+          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
+          mapM_ (\((t, _, a, _), (t', _, a', _)) -> do
+                  assertEqual "t" t' t
+                  assertEqual "action" a' a)
+            (zip mine Anchors.t1ProbeRowsX)
+      , testCase "probe rows: H display" $ do
+          let (timeline, _, _) = runStream shifted160
+              probeTs = [ t | (t, _, _, _) <- Anchors.t1ProbeRowsX ]
+              mine = [ r | r@(t, _, _, _) <- timeline, t `elem` probeTs ]
+          assertEqual "row count" (length Anchors.t1ProbeRowsX) (length mine)
+          mapM_ (\((t, _, _, h), (t', _, _, h')) -> do
+                  assertEqual "t" t' t
                   assertEqual "H (display)" h' h)
             (zip mine Anchors.t1ProbeRowsX)
       , testCase "consult ticks (exact list)" $ do

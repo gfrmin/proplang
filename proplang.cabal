@@ -117,3 +117,18 @@ test-suite pins
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+
+-- THE DYADIC ORACLE (frozen at dyadic-freeze-r0; red by design
+-- until the dyadic implementation lands — the increment-protocol
+-- form, the exact oracle's precedent above).
+
+test-suite dyadic
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Dyadic.hs
+    hs-source-dirs:   test-dyadic
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
