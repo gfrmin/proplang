@@ -1,0 +1,31 @@
+M41-forgone-restored (DRAFT — the forward half's kill for f1/f2;
+finalized and verified at the increment's CLOSE, cut against the
+COMMITTED post-implementation baseline per the dyadic incident's
+law; this draft is the reverse of freeze/deletion.diff).
+
+Shape: re-add the forgone term to the shipped refine arm — the F5
+disease resurrected. KILLED BY: f1 (the price moves back to the
+pre-deletion value) and f2 (the ratio returns to 1). The STANDING
+corpus provably CANNOT kill it: M34's UNREACHED disposition (the
+trampoline close matrix) is the executed proof that this mutation
+is extensionally invisible — the new rows' unique kill is exactly
+the kill the standing corpus cannot make, the strongest forward-half
+story the register recognizes. M34 itself reaches
+DISCHARGED-PERMANENT at this increment's close (the deletion it
+proved possible becomes the deletion that happened; the file is
+DELETED per the step-9 clause).
+
+--- a/src/PropLang/Purchase.hs
++++ b/src/PropLang/Purchase.hs
+@@ (purchaseRows, the refine arm)
+     gainV = Var (S (S Z))
++    forgoneS = If (Gt pessV zeroM) pessV zeroM
+     -- the straddle gate and the refine formula, said in-sentence:
+     -- pess > 0 or opt <= 0 => the neutral zero row (never displaces
+     -- the wait incumbent); straddle => cap*gain - s - forgone
+     refineRow s =
+       If (Gt pessV zeroM) zeroM
+         (If (Gt optV zeroM)
+-            (Sub (Mul capM gainV) (mintQ s))
++            (Sub (Sub (Mul capM gainV) (mintQ s)) forgoneS)
+             zeroM)

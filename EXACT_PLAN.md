@@ -963,6 +963,28 @@ price delta is computed ONCE, against a known surface: delete on the
 shipped surface where M34's extensional pin already holds, then
 unify, then certify.
 
+RULED IN-SESSION 2026-07-27 (the author, direction recorded in pack
+Part VI; each ruling RATIFIES at its increment's freeze tag): the
+boundary executes as THREE INCREMENTS, EACH UNDER ITS OWN TAG —
+(1) the F5-deletion increment (smallest motion, pin in hand);
+(2) the joint-preposterior increment (its own oracle, its own
+mandate round, its own freeze: EV-CR1 falsified the record-merge
+premise, and a reflexive preposterior — think's value defined over
+the menu that contains think — is a novel semantic composition
+whose liveness must be re-argued, not inherited; folding it into
+the battery's freeze would mean drafting battery rows against a
+surface still being designed); (3) the certification battery
+against the then-final surface. This is 14.4's own logic applied at
+increment granularity, and the X.5 ruling-8 precedent (one boundary
+at a time; smaller bets localize). Certify-as-is was CONVICTED by
+the contrapositive, its only defense removed by EV-CR1 (the
+unification is no longer speculative — its object is identified and
+measured). RECORDED WITH THE RULING: the joint-preposterior
+increment discharges the GroundC deadlock fork THROUGH THE FRONT
+DOOR — the demand gate asked for a measurement and EV-CR1 is that
+measurement; R1's "documented myopic behavior" gets its named
+successor rather than a silent upgrade.
+
 ### 14.5 What this boundary does NOT do
 
 No alphabet motion (prodTable stays 9/1; a needed production is
@@ -1010,12 +1032,23 @@ implementation. This section is a charter, not an oracle.
 
 ### 14.7 The register (drafted defaults; the author rules at the freeze)
 
-- **CR1** — R9's unification: UNIFY HERE with the joint
-  preposterior (default; the size measured at EV-CR1) vs
-  certify-as-is with a named follow-on.
-- **CR2** — F5's forgone term: DELETE (default; XIII.3's argument,
-  M34's proof, the delta measured at EV-CR2: exactly 3^16 in
-  weight, ~25.36 bits) vs keep-with-record.
+- **CR1** — R9's unification: RULED IN-SESSION 2026-07-27 — UNIFY
+  HERE, SPLIT INCREMENTS (the joint-preposterior increment gets its
+  own oracle, mandate round, and freeze; the battery certifies the
+  then-final surface). Ratifies at the increments' freeze tags;
+  the direction and its grounds in pack Part VI.
+- **CR2** — F5's forgone term: RULED IN-SESSION 2026-07-27 —
+  DELETE. Two statements the ruling text carries (the author's
+  words, pack Part VI): deletion re-prices the purchase sentence
+  downward and thereby SHIFTS PRIOR MASS toward it — deleting dead
+  weight is still PRIOR MOTION, which is exactly why it is the
+  author's signature and not cleanup; and the re-derivation
+  discipline — every price-mentioning oracle row re-derives from
+  the frozen pricing artifact POST-deletion, no row inherits a
+  pre-deletion number, with M34's identity pinning that the
+  extensional surface did not move while the price did (EXTENSION
+  FIXED, PRICE MOVED is the deletion's complete signature).
+  Ratifies at the F5 increment's freeze tag.
 - **CR3** — the family's axes and size: which declaration axes the
   generator walks, at what density; the printed residual's form.
   [MEASURED at EV-CR3: the walk's proof of concept is green — 72

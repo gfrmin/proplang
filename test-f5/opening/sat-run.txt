@@ -1,0 +1,5 @@
+f5 the forgone term's deletion (price half; extension = the standing corpus)
+  f1 the standing sentence's price, re-derived POST-deletion (no inherited number):                  OK
+  f2 extension fixed, price moved: live sentence vs the pinned pre-deletion referent = 3^16 exactly: OK
+
+All 2 tests passed (0.00s)

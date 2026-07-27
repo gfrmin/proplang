@@ -1,3 +1,4 @@
+{-# LANGUAGE DataKinds #-}
 -- | PropLang.Purchase — the joint purchase law (boundary R,
 -- increment R1; re-founded exact at the dyadic increment, the X.5
 -- sitting's rulings 1-3 sealed at x5-sitting-r0).
@@ -28,6 +29,7 @@
 module PropLang.Purchase
   ( PurchaseWorld (..)
   , PTick (..)
+  , purchaseRows
   , runPurchase
   , runPurchaseS
   , purchasePredictive
@@ -105,18 +107,24 @@ runPurchase w owned0 obsStream =
 -- covering features), per R5: every evalx passes a door. Pinned
 -- extensionally to 'runPurchase' by test-trampoline g5 (the d6-cell
 -- transcripts, act-for-act).
-runPurchaseS :: Namespace -> Features -> PurchaseWorld -> Owned
-             -> [Int] -> Either String [PTick]
-runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
+-- | The standing per-tick sentence's ROWS, as data. Exported at the
+-- completeness boundary's F5 increment so the sentence's PRICE is
+-- readable through the pricing artifact (weightIn over
+-- @chooseKS (purchaseRows w)@) — the agent criterion: the sentence,
+-- not the engine, is the normative object, and its price is part of
+-- its meaning. No new type, no behavior motion: 'runPurchaseS'
+-- consumes exactly this construction.
+purchaseRows :: PurchaseWorld
+             -> NonEmpty ( Expr '[Rational, Rational, Rational] Rational
+                         , Expr '[Rational, Rational, Rational] Rational )
+purchaseRows w = rows
   where
-    st = pwStakes w
-
     mintQ v = case mkC (mkGrid "k" (v :| [])) 0 of
       Just e  -> e
-      Nothing -> error "runPurchaseS: singleton mint (unreachable)"
+      Nothing -> error "purchaseRows: singleton mint (unreachable)"
     codeM i = case mkC (mkGrid "pacts" (0 :| [1, 2])) i of
       Just e  -> e
-      Nothing -> error "runPurchaseS: on-codebook index (unreachable)"
+      Nothing -> error "purchaseRows: on-codebook index (unreachable)"
 
     zeroM = mintQ 0
     capM = mintQ (pwLadderCap w)
@@ -135,7 +143,13 @@ runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
     rows = case pwRefine w of
       Nothing -> (codeM 0, zeroM) :| [(codeM 1, pessV)]
       Just s  -> (codeM 0, zeroM) :| [(codeM 1, pessV), (codeM 2, refineRow s)]
-    policy = chooseKS rows
+
+runPurchaseS :: Namespace -> Features -> PurchaseWorld -> Owned
+             -> [Int] -> Either String [PTick]
+runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
+  where
+    st = pwStakes w
+    policy = chooseKS (purchaseRows w)
 
     go _ _ [] = Right []
     go o (a, b) (y : ys) = do

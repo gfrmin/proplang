@@ -350,7 +350,7 @@ never assumed.
    CR1's ruling — so the cheap moment for the author's direction
    on CR1 (and the docket order's CR2) is BEFORE the oracle is
    drafted, not at the freeze.
-2. The oracle: test-completeness/ as the ninth stanza — family
+2. The oracle: test-completeness/ as a new stanza — family
    rows, law rows, unification rows, F5 rows, pool matrix — written
    runtime-red against type-surface stubs, SAT in overlay form
    flag-faithful, E-gate allowlists against the overlay, every red
@@ -362,3 +362,115 @@ never assumed.
    if CR1, the tool repairs); the author's sitting rules CR1-CR7;
    the freeze extends and re-signs the manifest; implementation
    only after the tag.
+
+## Part VI — CR1/CR2 ruled in-session (the author, 2026-07-27; asked and answered in the working session; each ruling RATIFIES at its increment's freeze tag)
+
+**CR1 — UNIFY HERE, SPLIT INCREMENTS.** The author's grounds,
+recorded: EV-CR1's finding is what decides between one increment
+and two, because it FALSIFIED THE PREMISE of the drafted default —
+"unify here" was priced as a small motion (record merge, one
+sentence, zero alphabet motion) and the measurement says the real
+object is a REFLEXIVE PREPOSTERIOR: think's value defined over the
+menu that contains think. That is a novel semantic composition, not
+a type repair — it will generate its own findings (F4's liveness
+clause must be RE-ARGUED on the reflexive object; the fixpoint's
+termination is a fresh question, not an inherited one) and it
+deserves its own oracle, its own mandate round, and its own freeze.
+Folding it into the battery's freeze would mean drafting battery
+rows against a surface still being designed — and a mid-battery
+discovery about the reflexive object would force exactly the choice
+the discipline exists to prevent: re-open the frozen oracle or
+paper over. Split is 14.4's own logic applied at increment
+granularity (surface-final motions first, THEN the battery), and
+the precedent is the author's own: X.5 ruling 8 chose one boundary
+at a time over a combined opening, and both incidents since (the
+checkout wipe, the E4 gap) happened inside large increments —
+smaller bets localize. Certify-as-is is CONVICTED by the charter's
+contrapositive (it certifies twice by construction) and EV-CR1
+removed its only defense: the unification is no longer speculative,
+its object identified and measured. RECORDED IN THE RULING: the
+joint-preposterior increment discharges the GroundC deadlock fork
+THROUGH THE FRONT DOOR — the demand gate asked for a measurement,
+EV-CR1 is that measurement, and R1's "documented myopic behavior"
+gets its NAMED SUCCESSOR rather than a silent upgrade.
+
+**CR2 — DELETE.** The author: the most pre-decided ruling of the
+sequence — vacuity proven (M34's extensional identity, the
+strongest form: the "changed" program is behavior-identical),
+doctrine settled (a priced mention that buys nothing is the
+prodTable conviction, ruled the same way at three prior
+boundaries), price measured (3^16 in weight, ~25.36 bits charged to
+every expansion for an alternative that cannot fire under the
+shipped gate). Keep-with-record would be the first time the project
+KNOWINGLY accepted the HEAD-debt shape after convicting it, with no
+argument why 25 dead bits are acceptable here when six unutterable
+alternatives were not at prodTable. Deferral buys nothing: every
+fact this ruling needs is already executed. TWO STATEMENTS THE
+RULING TEXT CARRIES (the author's words): (1) deletion re-prices
+the purchase sentence downward, which SHIFTS PRIOR MASS toward it —
+deleting dead weight is still PRIOR MOTION, which is exactly why it
+is the author's signature and not cleanup; (2) the re-derivation
+discipline — every price-mentioning row in the oracle re-derives
+from the frozen pricing artifact POST-deletion, no row inherits a
+pre-deletion number, and M34's identity pin guarantees the
+EXTENSIONAL surface did not move while the price did. That pair —
+EXTENSION FIXED, PRICE MOVED — is the deletion's complete
+signature, and both halves are already in hand.
+
+**The ruled sequence**: the F5-deletion increment (first, smallest
+motion, pin in hand) -> the joint-preposterior increment -> the
+certification battery, EACH UNDER ITS OWN TAG.
+
+## Part VII — the F5-deletion increment, ORACLE PHASE DONE (builder, 2026-07-27; stopped for the key)
+
+The ruled sequence's first increment, executed to the freeze door:
+
+| artifact | state |
+|---|---|
+| src: purchaseRows exported (Purchase.hs) | the compile-enabling surface (the trampoline stub precedent): the standing sentence's rows extracted to a top-level export so the PRICE is readable through weightIn — no new type, zero behavior motion, dyadic + trampoline suites re-run GREEN |
+| test-f5/F5.hs | the oracle: TWO rows, the ruling's two statements in the header |
+| test-f5/stanza.cabal.draft | flag-faithful stanza (the warnings import: -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns) |
+| test-f5/opening/red-run.txt | RED 2/2 on shipped src, attributably: f1 shows the SHIPPED price (1 % 35917...043), f2 shows ratio 1 % 1 |
+| test-f5/opening/sat-run.txt | SAT 2/2 on the deletion overlay, the oracle's EXACT text, the stanza's exact flags incl. -Werror |
+| test-f5/freeze/deletion.diff | the implementation (applies clean; matches the SAT overlay byte-for-byte) |
+| test-f5/freeze/M41-forgone-restored.draft.patch | the forward half's kill draft |
+| test-f5/freeze/freeze-commands.txt | the sitting's sequence; the tag message carries the ruling's two statements |
+
+**The two rows.** f1 pins the standing sentence's price RE-DERIVED
+POST-DELETION (1 % 834385168331080533771857328695283 — the frozen
+pricing artifact executed over the post-deletion construction,
+EV-CR2's transcript the provenance; no inherited number, the
+ruling's discipline). f2 pins EXTENSION FIXED, PRICE MOVED as one
+expression: the live sentence's weight over a pre-deletion referent
+held fixed (R-D20 copy pinned to commit 3835952) == 3^16 exactly.
+The pin helper forces the frozen side (the evaluate-show idiom, the
+dyadic convention) — one force per row per the step-2 clause.
+
+**The extensional half is the STANDING corpus, by design.** M34's
+close-matrix disposition (extensionally identical, killed by
+nothing) is the executed proof that no new extensional row could be
+anything but a green-that-cannot-fail — so the d6 cells and
+trampoline g5 police that half by STAYING green through the
+deletion, and this oracle carries only the price half, which M34
+proves the standing corpus cannot see. The kill story inverts the
+same fact: M41 (the term restored) is killed by f1/f2 and by
+NOTHING standing — the unique kill is exactly the kill the corpus
+provably cannot make.
+
+**An incident, recorded (the overlay-hygiene cousin).** The first
+SAT compile failed loudly: the scratch overlay directory carried a
+STALE pre-trampoline module set from earlier session work, and the
+-i ordering handed the oracle an old Syntax with no chooseKS. The
+overlay was wiped and rebuilt with ONLY the Purchase overlay; the
+SAT run then passed 2/2 with zero warnings. The lesson is the
+overlay-scan law's sibling stated for surfaces: AN OVERLAY IS
+BUILT FRESH FROM THE SHIPPED TREE PLUS THE ONE PROPHESIED DIFF —
+a persistent overlay directory is a stale-surface generator. Noted
+for the joint-preposterior increment, whose overlay will be larger.
+
+**Open for the sitting**: the mandate round's depth for an
+increment this small (the ruling ordered a full round for the
+joint-preposterior increment specifically; the sitting calls it
+here), and M34's DISCHARGED-PERMANENT execution at the close
+(deletion of the file, per the step-9 clause, pins listed: M41 the
+heir).

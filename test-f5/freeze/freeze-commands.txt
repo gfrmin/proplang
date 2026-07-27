@@ -1,0 +1,54 @@
+# THE F5-DELETION INCREMENT FREEZE (run from the author's shell; the
+# repo's local user.signingkey is the author's own, so plain -S/-s is
+# the author's attestation. CR2 was ruled in-session 2026-07-27, pack
+# Part VI; this tag is its ratification.)
+#
+# The two-phase order (the frozen protocol): the FREEZE seals the
+# oracle FIRST; the deletion (freeze/deletion.diff) is IMPLEMENTATION
+# and lands in a BUILDER commit only AFTER the tag. Do not apply
+# deletion.diff at this sitting.
+
+export PATH="$HOME/.ghcup/bin:$PATH"
+
+# 0. see what you are signing
+git log --oneline 627bb12..HEAD
+sha256sum --quiet -c MANIFEST.sha256 && echo "manifest OK pre-freeze"
+cat test-f5/opening/red-run.txt          # 2/2 RED on shipped src
+cat test-f5/opening/sat-run.txt          # 2/2 GREEN on the deletion overlay
+
+# 1. the stanza splice (proplang.cabal is frozen; this is the
+#    freeze-boundary cabal edit, the trampoline precedent)
+cat test-f5/stanza.cabal.draft >> proplang.cabal
+tail -16 proplang.cabal
+
+# 2. extend the manifest over the increment oracle, then re-sign
+for f in test-f5/F5.hs test-f5/stanza.cabal.draft \
+         test-f5/freeze/deletion.diff \
+         test-f5/freeze/M41-forgone-restored.draft.patch \
+         test-f5/opening/red-run.txt test-f5/opening/sat-run.txt; do
+  sha256sum "$f" >> MANIFEST.sha256
+done
+sed -i "s|^[0-9a-f]*  proplang.cabal\$|$(sha256sum proplang.cabal)|" MANIFEST.sha256
+sha256sum --quiet -c MANIFEST.sha256 && echo "manifest re-signed OK"
+
+# 3. the pre-freeze lint (its transcript rides the pack)
+tools/prefreeze-lint.sh | tee test-f5/freeze/lint-transcript.txt
+
+# 4. the freeze commit + tag (the ruling's two statements in the message)
+git add proplang.cabal MANIFEST.sha256 test-f5/freeze/lint-transcript.txt
+git commit -S -m "f5 freeze: the deletion oracle sealed (2 rows red on shipped src, SAT 2/2 on the deletion overlay; stanza spliced; manifest extended)"
+git tag -s f5-freeze-r0 -m "CR2 ratified: the forgone term DELETED. Deletion re-prices the
+purchase sentence downward, which shifts prior mass toward it -
+deleting dead weight is still PRIOR MOTION, which is exactly why
+this is the author's signature and not cleanup. Every
+price-mentioning row re-derives from the pricing artifact
+POST-deletion; no row inherits a pre-deletion number; M34's
+identity pins that the extensional surface did not move while the
+price did. EXTENSION FIXED, PRICE MOVED - the deletion's complete
+signature, both halves executed before this tag."
+git tag -v f5-freeze-r0
+
+# 5. hand back to the builder: implementation = apply
+#    freeze/deletion.diff, cabal test all (f5 goes green, standing
+#    suites stay green), gates, M34 deleted + M41 finalized at the
+#    close, close-out report, author r1 countersign per R-D22.

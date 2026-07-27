@@ -1,0 +1,20 @@
+diff --git a/src/PropLang/Purchase.hs b/src/PropLang/Purchase.hs
+index dd83fc5..362a104 100644
+--- a/src/PropLang/Purchase.hs
++++ b/src/PropLang/Purchase.hs
+@@ -131,14 +131,13 @@ purchaseRows w = rows
+     pessV = Var Z
+     optV = Var (S Z)
+     gainV = Var (S (S Z))
+-    forgoneS = If (Gt pessV zeroM) pessV zeroM
+     -- the straddle gate and the refine formula, said in-sentence:
+     -- pess > 0 or opt <= 0 => the neutral zero row (never displaces
+     -- the wait incumbent); straddle => cap*gain - s - forgone
+     refineRow s =
+       If (Gt pessV zeroM) zeroM
+         (If (Gt optV zeroM)
+-            (Sub (Sub (Mul capM gainV) (mintQ s)) forgoneS)
++            (Sub (Mul capM gainV) (mintQ s))
+             zeroM)
+     rows = case pwRefine w of
+       Nothing -> (codeM 0, zeroM) :| [(codeM 1, pessV)]

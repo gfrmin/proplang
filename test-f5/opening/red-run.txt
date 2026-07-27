@@ -1,0 +1,15 @@
+f5 the forgone term's deletion (price half; extension = the standing corpus)
+  f1 the standing sentence's price, re-derived POST-deletion (no inherited number):                  FAIL
+    test-f5/F5.hs:59:
+    weightIn of chooseKS (purchaseRows w61)
+    expected: 1 % 834385168331080533771857328695283
+     but got: 1 % 35917545547686059365808220080151141317043
+    Use -p '/f1 the standing sentence'\''s price, re-derived POST-deletion (no inherited number)/' to rerun this test only.
+  f2 extension fixed, price moved: live sentence vs the pinned pre-deletion referent = 3^16 exactly: FAIL
+    test-f5/F5.hs:59:
+    weight ratio live/pre-deletion
+    expected: 43046721 % 1
+     but got: 1 % 1
+    Use -p '/f2 extension fixed, price moved: live sentence vs the pinned pre-deletion referent = 3^16 exactly/' to rerun this test only.
+
+2 out of 2 tests failed (0.00s)
