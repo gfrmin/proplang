@@ -2,16 +2,17 @@
 # register R7's re-land: a world that declared NO refine row gets the
 # refine option anyway, surcharge zero — the absent-option law violated
 # in the declared rows
+# RE-CUT at the f5 close (context drift only: the rows moved to purchaseRows)
 diff --git a/src/PropLang/Purchase.hs b/src/PropLang/Purchase.hs
-index d8975db..8aaf59e 100644
+index 362a104..b9673ec 100644
 --- a/src/PropLang/Purchase.hs
 +++ b/src/PropLang/Purchase.hs
-@@ -133,7 +133,7 @@ runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
-             (Sub (Sub (Mul capM gainV) (mintQ s)) forgoneS)
+@@ -140,7 +140,7 @@ purchaseRows w = rows
+             (Sub (Mul capM gainV) (mintQ s))
              zeroM)
      rows = case pwRefine w of
 -      Nothing -> (codeM 0, zeroM) :| [(codeM 1, pessV)]
 +      Nothing -> (codeM 0, zeroM) :| [(codeM 1, pessV), (codeM 2, refineRow 0)]
        Just s  -> (codeM 0, zeroM) :| [(codeM 1, pessV), (codeM 2, refineRow s)]
-     policy = chooseKS rows
  
+ runPurchaseS :: Namespace -> Features -> PurchaseWorld -> Owned

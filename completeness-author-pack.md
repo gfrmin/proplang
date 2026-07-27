@@ -474,3 +474,76 @@ joint-preposterior increment specifically; the sitting calls it
 here), and M34's DISCHARGED-PERMANENT execution at the close
 (deletion of the file, per the step-9 clause, pins listed: M41 the
 heir).
+
+## Part VIII — the F5-deletion increment CLOSE-OUT (builder, 2026-07-27; closes at the author's f5-freeze-r1)
+
+**The freeze** was the author's own: f5-freeze-r0 over 8437a2b
+(author key, `tag -v` GOOD), the ruling's two statements in the tag
+message, manifest extended to 77 rows, prefreeze-lint 0 FAIL (its
+transcript frozen with the kit). No delegation anywhere in this
+increment — R-D22's re-tag obligation never arises; the r1
+countersign below is the close's ratification in the
+dyadic/trampoline pattern, not a delegated-edit cure.
+
+**The implementation** (ccc2256, builder key): freeze/deletion.diff
+applied byte-for-byte — the SAT overlay's prophecy, 1 insertion,
+2 deletions. 9/9 suites pass (f5 red -> green; the STANDING corpus
+green through the deletion — M34's identity working as the pin,
+extension fixed while the price moved). Gates 1-7 PASS, E1-E4 all
+0, manifest 77/77.
+
+**The applicability sweep** (the custody-derived universe: every
+audit/mutants/*.patch against the post-implementation tree): 32 of
+36 standing mutants still apply. The four stale, dispositioned:
+
+- **M34 -> DISCHARGED-PERMANENT, the file DELETED** (the step-9
+  clause: the deletion it proved possible became the deletion that
+  happened; its mutation IS the shipped tree). The register
+  category's second instance after UseBern.
+- **M33, M39, M40 -> RE-CUT IN PLACE** (context drift only: the
+  rows moved to purchaseRows and the forgone term died; each
+  semantic line preserved, the M6 precedent). Kills RE-VERIFIED
+  against the committed baseline: each applied, dyadic run, FAIL
+  confirmed, reverted.
+
+**M41-forgone-restored LANDED with its kill measured** (the
+forward half): applied to the committed baseline — f5 FAILS (both
+price rows fire), dyadic PASSES, trampoline PASSES, reverted. The
+unique-kill claim is now an EXECUTED fact: f1/f2's kill is exactly
+the kill the standing corpus cannot make, demonstrated on the tree
+rather than inferred from M34's record.
+
+**A near-miss, caught by the standing check**: the close-out's
+first commit attempt deleted test-f5/freeze/M41-forgone-restored.
+draft.patch on the reading that the finalized M41 supersedes it —
+but the DRAFT entered the manifest at the freeze and is FROZEN; the
+pre-commit `sha256sum -c` failed and the file was restored from the
+freeze commit before anything landed. The lesson, one line: A
+FREEZE-KIT ARTIFACT IS A MANIFEST ROW — supersession by a live file
+does not un-freeze the draft; its disposition belongs to a sitting.
+
+**A dated instrument fires as designed**: test-writeup/check.sh
+pins 8 cabal stanzas and the cabal now carries 9 (the f5 stanza).
+The instrument is frozen and self-documented as a dated
+red-by-design record; its repair (if wanted) is a frozen-layer
+inventory row for a future sitting, not this close's business.
+
+**The close**: the author's own signed tag over the close-out
+commit —
+
+    git tag -s f5-freeze-r1 -m "the deletion reviewed; extension
+    fixed, price moved, both halves verified on the tree. M34
+    discharged-permanent, M41 standing with its kill measured."
+    git tag -v f5-freeze-r1
+
+Push remains withheld until the author's word (the boundary's five
+opening commits, the freeze, the implementation, and this close-out
+are all local).
+
+**The residue handed forward**: the joint-preposterior increment
+opens NEXT on this post-deletion surface (the ruled sequence's
+second act) — its charter work order is EV-CR1's measurement, its
+liveness question is fresh (F4 re-argued on the reflexive object),
+and it carries its own mandate round per the ruling. Then the
+battery. CR3/CR4/CR5/CR6/CR7 and the OB-20/21 discharge ride the
+battery's sitting as chartered.

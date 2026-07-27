@@ -2,12 +2,13 @@
 # register R7's re-land (the fold died and took M19's target text with it;
 # the kLadder lesson's shape re-cut against the sentence route): the
 # world-declared ladder cap baked to 1 at the capM mint
+# RE-CUT at the f5 close (context drift only: the mint moved to purchaseRows)
 diff --git a/src/PropLang/Purchase.hs b/src/PropLang/Purchase.hs
-index d8975db..e2f32fd 100644
+index 362a104..8bc5584 100644
 --- a/src/PropLang/Purchase.hs
 +++ b/src/PropLang/Purchase.hs
-@@ -119,7 +119,7 @@ runPurchaseS ns feats w owned0 obsStream = go owned0 (0, 0) obsStream
-       Nothing -> error "runPurchaseS: on-codebook index (unreachable)"
+@@ -127,7 +127,7 @@ purchaseRows w = rows
+       Nothing -> error "purchaseRows: on-codebook index (unreachable)"
  
      zeroM = mintQ 0
 -    capM = mintQ (pwLadderCap w)
