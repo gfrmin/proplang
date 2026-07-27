@@ -747,3 +747,65 @@ EV-JP2c/JP3/JP4's three-way conviction), and the sayable route
 (EV-JP5). What remains is construction: the stub surface, the
 oracle pinning these transcripts, the FULL mandate round, the
 freeze kit, and the sitting over JP1-JP8.
+
+## Part X — the construction design (builder, 2026-07-27; the surface the oracle's stubs enable)
+
+**The E4 resolution: THE ONE CHOOSER CHOOSES EVERYWHERE.** The DP's
+Bellman backups are max-comparisons on engine-derived quantities —
+exactly what E4 exists to forbid outside evalx. The lawful
+implementation therefore routes EVERY backup through evalx of the
+standing chooser sentence with that state's row values bound — not
+just the top-level tick (EV-JP5's demonstration) but every
+hypothetical state inside the lookahead: the sentence chooses in
+its own preposterior. The engine's licensed remainder is exactly
+the shipped pattern: the clock fold (state enumeration over the
+declared horizon) and value ARITHMETIC (sums/products building
+env-bound scalars — pess/opt/gain's precedent); zero ordering
+tokens outside evalx, E4 green by construction.
+
+**The surface (stubs land now, red-attributable; types arrive WITH
+their derivation lines per the audit):**
+
+- `ExtOpt` (OWait | OLeft | ORight | ORespond) — derivation: the R1
+  law's menu-as-world-data, now as a declared external option sort.
+- `EpisodeShape` (DecideOnce | Standing) — derivation: JP5's
+  episode-shape law (the two shipped faces' shapes, declared).
+- `JointWorld` — the field union (EV-CR1 P4's pin): the declared
+  external menu (order = incumbency), think (price, batch), refine
+  (mint), stakes, shape. The horizon is the declared stream's
+  length — NO new field kind.
+- `runJointW :: Namespace -> Space Rational -> Kernel Rational Int
+  -> JointWorld -> [Int] -> Either String [String]` — the one loop,
+  both shapes; internal-act values per the MEASURED forms (think =
+  the base-fix preposterior, EV-JP1; refine = the DP continuation,
+  EV-JP4/5); the value-unification of both internals under one DP
+  stays registered (JP4, demand-gated).
+- `jointPolicyWeight :: JointWorld -> Rational` — the standing
+  sentence's price for a declared world, built by the engine from
+  the declaration and priced through the frozen weightIn (the F5
+  lesson: price rows read src, never a test-side copy).
+
+**A tension recorded for the sitting (JP9, registered here).** R7's
+victory said the straddle gate IN-SENTENCE; the JP refine row's
+value is an env-bound DP continuation, so the joint sentence says
+LESS than purchaseRows' sentence does. The line drawn by precedent:
+guard machinery outputs were always engine data (pess/opt/gain,
+R2's payload ruling); what E4 and the agent criterion protect is
+the CHOICE, and the one-chooser-everywhere law protects it at every
+depth. Whether the straddle gate should ALSO reappear in-sentence
+on the joint surface (a priced mention the DP route makes
+extensionally redundant) is a row-value question for the sitting —
+the F5 doctrine cuts AGAINST a priced mention that buys nothing.
+
+**The oracle (test-jointprep/, the increment's stanza):** g-jp1 the
+four anchors-by-declaration (transcripts derived from the frozen
+t2RowsX via g3.3's partition law); g-jp2 the phantom-cure (habitat
+transcript == ["wait"] at three prices); g-jp3 the DP cells (the
+three jp4/jp5 transcripts, full act-lists); g-jp4 liveness
+(standing |transcript| == |stream|; decide-once external-final; the
+honest-decline row); g-jp5 the sayable-route/reference pin
+(runJointW == the oracle-side reference that recomputes values by
+the quoted formulas and chooses via evalx — EV-CR3's
+reference-equality form carrying EV-JP5's identity); g-jp6 the
+price rows (jointPolicyWeight pinned per canonical cell, literals
+derived at SAT time per R-D21). Kills per row at the close.
