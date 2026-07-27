@@ -944,6 +944,14 @@ After both rulings the surface is FINAL; any later motion re-opens
 certification by construction, which is the destination map's
 termination argument in contrapositive.
 
+The dockets' MUTUAL order is also fixed (the review of 2026-07-27):
+CR2 FIRST, then CR1, then the battery. They interact through price —
+F5's deletion moves the purchase sentence's price, and CR1's
+unification rows re-derive prices on the joint surface — so the
+price delta is computed ONCE, against a known surface: delete on the
+shipped surface where M34's extensional pin already holds, then
+unify, then certify.
+
 ### 14.5 What this boundary does NOT do
 
 No alphabet motion (prodTable stays 9/1; a needed production is
@@ -956,7 +964,10 @@ flagged symbols — the governor-features face and the founding
 interface's dormant sentences — stay untouched; that vocabulary is
 destination step 5's). No wire change beyond what the joint world
 declaration requires (transport unbroken; the 2026-07-25 ruling 2
-stands). OB-15, OB-19, the quine face, continuous carriers:
+stands) — and that clause is not left open-ended: the CR1 prototype
+transcript PINS exactly what the wire face gains (the joint
+declaration's fields, enumerated), so the sitting rules on a
+measured surface, never on this carve-out sentence. OB-15, OB-19, the quine face, continuous carriers:
 demand-gated, untouched.
 
 ### 14.6 The oracle shape (drafted rows; oracle-first binds)

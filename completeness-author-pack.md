@@ -73,7 +73,12 @@ were first applied directly to tools/boundary-audit.sh on the
 reading — recorded at the trampoline opening (Part II) — that
 "tools are unfrozen". That reading is FALSE: tools/boundary-audit.sh
 is MANIFEST ROW 28 and tools/prefreeze-lint.sh row 27, both frozen
-since the step-6 sitting (06a8424, the manifest 71->76 extension).
+since the step-6 sitting — 06a8424, 2026-07-16, where they entered
+as rows 75-76 of THAT ERA's 76-row manifest (the sitting's "71->76"
+extension; the coincidence with today's 71-row post-re-founding
+manifest is accidental, verified at the review's flag) — and
+continuously covered since: the -S query over MANIFEST.sha256 shows
+exactly one occurrence-count change per tool, the addition.
 The edit was REVERTED (`git restore`; manifest re-verified 71/71),
 the diff staged as test-completeness/freeze/boundary-audit-repair.patch
 for the sitting under the author's key (register CR7), and the
@@ -154,8 +159,13 @@ host-less window at step 7 — are all discharged at max span).
   oracle phase brings the evidence: a joint-world prototype
   transcript (R-D21) showing both rows priced on one menu, the
   incumbent tie-law intact (F4's liveness clause binds the joint
-  order too). Certify-once is the argument for HERE; the
-  alternative re-opens certification at the follow-on.
+  order too), and the WIRE FACE PINNED — the prototype enumerates
+  exactly which fields the joint declaration adds to the wire, so
+  the sitting rules on a measured surface, not on 14.5's carve-out
+  clause (the review of 2026-07-27). Certify-once is the argument
+  for HERE; the alternative re-opens certification at the
+  follow-on. Order per 14.4 as amended: CR2 executes FIRST, so the
+  price delta lands once, against a known surface.
 - **CR2 (F5's deletion — default DELETE).** The argument is
   pre-written (trampoline pack XIII.3) and the proof executed
   (M34: extensionally identical to shipped src). The oracle phase
