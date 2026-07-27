@@ -366,7 +366,20 @@ Every step-6+ increment follows the recursive two-phase discipline:
    the repair row, and the pre-freeze checklist verifies every cited
    hash touches the file the row names — recorded repairs are
    verified against the tree, mechanically, so the stale-green class
-   dies structurally.
+   dies structurally. AND, amended at the trampoline r1 sitting
+   (2026-07-27, F6's canonization): AN ENGINE-LEVEL RE-LAND COLLAPSES
+   KILL GEOMETRY BY DESIGN — when a re-land routes standing suites
+   through the very macro the new rows pin, shadowing is the EXPECTED
+   verdict shape for engine-level mutants, and the honest uniqueness
+   reading is per-ROW against the pool, never per-suite against the
+   corpus (the trampoline close, F6, its provenance).
+   One line canonized at the trampoline r1 sitting (2026-07-27, the
+   E4 stop-and-report its provenance): E-GATE ALLOWLISTS ARE
+   ENUMERATED AGAINST THE SAT OVERLAY, not the stub surface alone —
+   the overlay is the implementation's prophecy, and a token gate
+   whose allowlist saw only stubs has a one-sided green; the gate's
+   oracle-phase run executes against the overlay exactly as the SAT
+   compile does (flag-faithful, surface-faithful).
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
