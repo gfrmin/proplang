@@ -154,3 +154,17 @@ test-suite trampoline
                     , tasty-hunit
     build-tool-depends: proplang:proplang-host
     default-language: GHC2021
+-- THE F5-DELETION ORACLE (to be frozen at this increment's freeze;
+-- red by design until the deletion lands — the increment-protocol
+-- form; stanza bytes spliced into proplang.cabal at the freeze,
+-- cabal edits only at freeze boundaries per the manifest law)
+test-suite f5
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          F5.hs
+    hs-source-dirs:   test-f5
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
