@@ -264,12 +264,92 @@ merge); the honest smaller alternative remains certify-as-is with
 the unification a named follow-on. The sitting chooses with the
 size known.
 
+**EV-CR3 — the family generator's axis walk (transcript:
+test-completeness/opening/family-walk-transcript.txt).** The family
+DERIVES from four declared axis lists (3 theta grids x 4 prices x
+3 batches x 2 streams = 72 cells; the walk is the product, never
+hand-enumeration) and every cell is checked against an INDEPENDENT
+reference calculator — plain (theta, weight) lists, no engine call
+on the reference side, the frozen choice/preposterior formulas
+quoted with provenance (Membrane.hs:361-373). Pre-stated criteria,
+all met on the first run:
+
+- **G1 PASSES**: the four t2 anchor cells fall OUT OF THE WALK and
+  equal Anchors.t2RowsX exactly — the acceptance anchors are now
+  four MEMBERS of a 72-cell family (charter 14.1's sentence,
+  demonstrated).
+- **G2 PASSES**: 72/72 cells agree shipped-vs-reference at exact
+  transcript ==. Sixty-eight cells are NEW evidence — interpolation
+  the four anchors never covered.
+- **G3**: the residual printed — purchase/refine worlds (await
+  CR1), K>2 arities and the t1/t3 faces, other stream
+  lengths/compositions, the decision-law rows.
+
+**EV-CR4 — the decision laws, measured before pinned (transcript:
+test-completeness/opening/decision-laws-transcript.txt).** The
+2026-07-16 gap's rows, run over the EV-CR3 family:
+
+- **V1 (VoI >= 0) PASSES**: 227 decision points across 72 cells,
+  ZERO violations; the minimum gap is EXACTLY 0 — the saturation
+  ties (information exhaustion) appearing as exact zeros, the F4
+  generalization's arithmetic face.
+- **V2 (scaling invariance) PASSES**: the d6.1 purchase transcript
+  is act-for-act invariant under joint positive scaling of the
+  declared economics (stakes AND mint, a in {2, 7, 1/3}: 3/3). The
+  honest scope is SCALING: a shift b breaks the menu's declared
+  zero row (wait), so the b-half of affine invariance is a
+  menu-convention question FOR THE SITTING, not a law violation —
+  CR4's register entry carries it.
+- **V3 (admissibility)**: SUBSUMED at this surface — EV-CR3's
+  equality rows already check every chosen act against the
+  reference's exact Bayes act; Wald's face gains independent
+  content only with richer menus (the oracle's business).
+
+**The CR5 pool drafts (OB-20/21; operator lists DECLARED here, the
+pools land with the oracle increment and their matrix run, cut
+against the committed baseline — the dyadic incident's law).**
+
+The reasoner pool (OB-20; the target is the lawful + independence
+stanzas' 14 unreached rows; lineage: the engine-level unnormalized
+family M2/M11/M12/M13, now cut INSIDE Belief.hs):
+
+| operator | the cut | reaches |
+|---|---|---|
+| MR1 | fromWeights skips normalization | L1/L2, the Kraft rows |
+| MR2 | fromWeights accepts negative weight | the refusal law |
+| MR3 | condK skips renormalization | conditioning laws |
+| MR4 | predictMass unnormalized at source | marginal-mass rows |
+| MR5 | point spreads (point = uniform) | the ruling-#7 definition rows |
+| MR6 | expect ignores weights (plain average) | expectation laws |
+| MR7 | points/weights views misaligned | the CL-1 view rows |
+
+The enumeration pool (OB-21; gating/combinatorics over
+Enumerate.hs; the t2-price-path gap is the first named candidate,
+per the ledger):
+
+| operator | the cut | reaches |
+|---|---|---|
+| ME1 | frontier off-by-one | the count pins |
+| ME2 | membership widened (a filter dropped) | membership rows |
+| ME3 | membership narrowed (a legal production filtered) | counts, the deletion table |
+| ME4 | fragment-table rows swapped | the fragment-derivation pin |
+| ME5 | a charge site skipped | the pricing rows (the t2-price-path gap) |
+| ME6 | one sentence enumerated twice | the Kraft-deficiency row |
+
+Verdicts stay pool-relative and sitting-triaged; a pool is grown,
+never assumed.
+
 ## Part V — what happens next (the oracle phase; nothing binds until the key)
 
-1. Remaining evidence programs (R-D21 throwaways, transcripts to
-   this pack): the family generator's axis walk (CR3), the
-   reference extension's first cells, the pool operator drafts
-   (CR5). The CR1 and CR2 programs are executed (Part IV).
+1. Phase-A evidence is COMPLETE: EV-CR1/CR2/CR3/CR4 executed
+   (Part IV), the CR5 operator lists drafted above. What remains
+   before the freeze is ORACLE work, and its shape FORKS on CR1:
+   the family rows, law rows, F5 rows, and pools are
+   rulings-independent in form, but the certified surface differs
+   by an entire joint-preposterior implementation depending on
+   CR1's ruling — so the cheap moment for the author's direction
+   on CR1 (and the docket order's CR2) is BEFORE the oracle is
+   drafted, not at the freeze.
 2. The oracle: test-completeness/ as the ninth stanza — family
    rows, law rows, unification rows, F5 rows, pool matrix — written
    runtime-red against type-surface stubs, SAT in overlay form

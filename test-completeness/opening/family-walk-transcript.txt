@@ -1,0 +1,10 @@
+family size (the axis product): 72 = 3 grids x 4 prices x 3 batches x 2 streams
+G2 shipped == reference (exact, per transcript): 72/72
+G1 the anchor cells fall out of the walk == Anchors.t2RowsX: True
+    walked: [(3 % 10,1,"L"),(1 % 20,3,"L"),(1 % 200,12,"L"),(0 % 1,12,"L")]
+    frozen: [(3 % 10,1,"L"),(1 % 20,3,"L"),(1 % 200,12,"L"),(0 % 1,12,"L")]
+G3 the residual (axes NOT walked, printed not absorbed):
+  - purchase/refine worlds (stakes, mint, cap): await CR1's ruling on the joint surface
+  - K>2 arities and guard/tau/rho families (the t1/t3 faces): the reference extension's next cells
+  - stream lengths other than 36; adversarial stream compositions beyond the two declared
+  - the decision-law rows (VoI/affine/admissibility) ride the oracle, not this walk

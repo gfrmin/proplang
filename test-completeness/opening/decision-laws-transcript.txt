@@ -1,0 +1,3 @@
+V1 VoI >= 0: 227 decision points across 72 cells, violations = 0 (min gap = 0 % 1)
+V2 scaling invariance (stakes+mint jointly, a in [2 % 1,7 % 1,1 % 3]): 3/3 transcripts act-for-act equal to unscaled (base: wait=2 respond=35 refine=3)
+V3 admissibility: SUBSUMED by EV-CR3's per-cell reference equality (the chosen act IS the reference's exact Bayes act in all 72 cells); independent content arrives with richer menus at the oracle

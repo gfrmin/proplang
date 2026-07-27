@@ -1018,9 +1018,21 @@ implementation. This section is a charter, not an oracle.
   weight, ~25.36 bits) vs keep-with-record.
 - **CR3** — the family's axes and size: which declaration axes the
   generator walks, at what density; the printed residual's form.
+  [MEASURED at EV-CR3: the walk's proof of concept is green — 72
+  cells from four declared axes, shipped == independent reference
+  at exact == in all 72, the four t2 anchors falling out of the
+  walk byte-equal to Anchors.t2RowsX. The register question is now
+  EXTENSION (the residual's axes: purchase worlds post-CR1, K>2,
+  the t1/t3 faces, stream compositions), not feasibility.]
 - **CR4** — the decision-law row set: VoI/affine/admissibility in
   or out, each with its ground (the 2026-07-16 assessment the
-  provenance).
+  provenance). [MEASURED at EV-CR4: VoI >= 0 exact at all 227
+  decision points of the family, minimum gap exactly 0 (the
+  saturation ties); scaling invariance act-for-act at 3/3. Two
+  sharpened sub-questions: the SHIFT half of affine invariance is a
+  menu-convention ruling (the declared wait row pins zero); and
+  admissibility's independent content needs richer menus than the
+  binary face.]
 - **CR5** — OB-20/21: discharge at this boundary (default; the
   OB-row flag is the trigger) vs a separate increment.
 - **CR6** — the sufficiency claim's prose form for the paper: what
