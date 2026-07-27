@@ -693,3 +693,26 @@ Transcripts: jp3-amortized-run.txt, jp4-dp-run.txt
 (test-completeness/opening/). Next: the stub surface + the oracle
 (the DP rows pin these transcripts), the FULL mandate round, the
 freeze kit, the sitting over JP1-JP8.
+
+**The sayable-route fork (JP3's register item, sharpened by JP4;
+EV-JP5 is its evidence program, next).** The DP's naive sayable
+form — the unrolled sentence — is priced at its expansion, and a
+120-tick horizon's unrolling is astronomically priced: the
+unrolling route works only for small declared horizons (the g3.4
+precedent pinned depth <= 3). But step 10's banked POSITIVE result
+points at the lawful form: THE HORIZON IS A COMPOSITION — the
+frozen walk move-code has been a Pos-index ROLLFORWARD kernel since
+step 1, and t3MoveGolden ships it; iterated structure is said in
+ONE sentence with the index as data, priced at the composition, not
+the unrolling. If the DP recursion composes as a Pos-rollforward
+sentence (value-iteration as rollforward over the declared
+horizon), the agent criterion closes cleanly: the engine's memoized
+DP is a fast path pinned to a SMALL sentence, and the policy's
+price stays sane. Per the banked-failure expiry clause (applied to
+a banked positive, the step-10 amendment's own reading), the
+step-10 composition is RE-EXECUTED against the shipped grammar as
+EV-JP5 before the oracle relies on it. If it composes: the oracle's
+sayable-route rows pin engine == rollforward-sentence at the JP4
+cells. If it does not: the fork goes to the sitting as an
+alphabet-adjacent question (the two-sided gate's territory), with
+the failed attempt transcribed.
