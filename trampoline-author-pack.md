@@ -739,3 +739,129 @@ trampoline-freeze-r1 over the close-out commit — the sitting that
 also executes the E4 allowlist repair (the staged diff above), rules
 the four dead mutants' deletion, and receives F4/F5/F6 with the
 shadowing verdicts. Push on the author's word after r1.
+
+## Part XIII — the review of Parts X–XII received (2026-07-27): staged drafts for the r1 sitting
+
+The author-side review of Parts X–XII arrived after the close-out
+commit. Everything in it that is signature-shaped is staged HERE, in
+draft form, under the standing delegation's "you write everything"
+half: nothing frozen has been touched, and nothing below is ruled
+until the author's key says so. Each item names its instrument and
+its key.
+
+### XIII.1 — the overlay-scan law (the E4 root cause, generalized)
+
+The review's verdict on the E4 stop-and-report: the root cause —
+the allowlist enumerated against the STUB surface, the overlay never
+E4-scanned — deserves to become law, not remain a confession.
+Drafted line for the increment protocol's oracle-phase text
+(CLAUDE.md; only the author's key canonizes):
+
+> E-GATE ALLOWLISTS ARE ENUMERATED AGAINST THE SAT OVERLAY, not the
+> stub surface alone — the overlay is the implementation's prophecy,
+> and a token gate whose allowlist saw only stubs has a one-sided
+> green (the trampoline E4 stop-and-report its provenance).
+
+One line, riding beside the staged three-row repair (Part XII). If
+taken, the E4 incident closes with both halves: the repair (the
+instance) and the law (the class) — the prefreeze-lint pattern,
+"remembered law converted into enforced law," applied to the gate
+that missed.
+
+### XIII.2 — F4's doctrine upgrade (a drafted frozen-layer inventory row)
+
+Edit 2 installed menu order as SEMANTICS; the matrix proved it is
+LIVENESS — M28 (ties surrender) and M30 (internal act first) both
+turn the free clock into a non-terminating deliberator. The review:
+a future reader weighing a reorder against "semantics" might
+negotiate; against "termination" they won't. Drafted second clause
+for membrane-wire.md's Edit 2 sentence (frozen; executes under the
+author's key, at this sitting or a later boundary's inventory):
+
+> ...and the internal-acts-last, tie-to-incumbent order is the
+> trampoline loop's TERMINATION argument: a reorder that lets the
+> price-0 think row survive its tie is a divergence, not a
+> preference (M28/M30, the close matrix of 2026-07-27).
+
+Noted with the review's approval and kept as precedent: the runner
+mechanized this lesson (HANG as a recorded kill mode) rather than
+leaving it as prose.
+
+### XIII.3 — F5's adjudication, its argument named
+
+When the forgone term's deletion is adjudicated, the argument
+arrives pre-written: A PRICED MENTION THAT BUYS NOTHING is the
+prodTable conviction relocated INSIDE a sentence — charging real
+bits for an unutterable alternative. The review counts three prior
+rulings behind it (the minimality criterion's unnecessary-codeword
+clause; the mention-prices-bind law; the prodTable conviction
+itself), and M34's disposition supplies the proof of vacuity: the
+"mutant" is extensionally identical to shipped src, so the term is
+not semantically present at all. The deletion moves the sentence's
+price and is therefore the author's; the case is assembled here, not
+decided.
+
+### XIII.4 — F6's canonization candidate (the unique-kill clause's second amendment)
+
+The review: F6 should graduate from pack prose to an amendment
+candidate — the clause's second amendment, after pool-relativity.
+Drafted text (CLAUDE.md; only the author's key canonizes):
+
+> AND AN ENGINE-LEVEL RE-LAND COLLAPSES KILL GEOMETRY BY DESIGN:
+> when a re-land routes standing suites through the very macro the
+> new rows pin, shadowing is the EXPECTED verdict shape for
+> engine-level mutants, and the honest uniqueness reading is
+> per-ROW against the pool, never per-suite against the corpus
+> (the trampoline close, F6, its provenance).
+
+Better canonized at a sitting than rediscovered from this pack in
+six months (the review's words).
+
+### XIII.5 — custody: the two notes, staged
+
+(1) THE DELEGATION WORDING. Twice now the identical generic sentence
+("you write everything, i just sign") has licensed a delegated
+freeze tag without naming its tag. Each instance was received fresh,
+so per-instance is satisfied in substance — but a third repetition
+makes the generic wording a standing arrangement by accretion,
+which is precisely what "fresh, explicit, per-instance" was written
+to prevent. The review's cure: the r1 tag message names both
+delegated tags it ratifies. Drafted r1 tag message for the author's
+shell (a draft, never a form to sign unread; brackets are the
+author's rulings):
+
+    the close-out reviewed; the trampoline stands. The per-instance
+    delegations recorded in dyadic-freeze-r0 and trampoline-freeze-r0
+    are ratified BY NAME — each was fresh at its instance; neither
+    is, nor becomes, a standing arrangement. R4 (substitution
+    normative) and R11 (license-by-name) ratified as ruled. The E4
+    allowlist repair executed under this key at this sitting.
+    [dead-mutant deletion: M19/M20/M22/M27 ...] [F5's forgone term:
+    ...] [F6's amendment: ...]
+
+(2) R4/R11 RATIFICATION. The two rulings with content entered the
+record via the forwarded review's closing line — within the
+delegation's terms, but the r1 countersign therefore carries
+ratification weight beyond the chain-of-custody check.
+Substitution-is-normative is a semantic commitment of exactly the
+kind the architecture routes to the author's key; the minimum
+sufficient words at r1 are "R4 and R11 ratified as ruled," in the
+author's own.
+
+### XIII.6 — the r1 agenda, as assembled by the review
+
+1. Countersign over the close-out commit (R-D22 closes).
+2. Execute the staged E4 three-row repair (Part XII) under the
+   author's key; if taken, add XIII.1's overlay-scan line beside it.
+3. Rule the four dead fold-patches' deletion (M19/M20/M22/M27;
+   heirs M39/M28/M33/M40 all in place).
+4. Receive F4/F5/F6 with the shadowing verdicts; consider XIII.2's
+   inventory row and XIII.4's canonization.
+5. Ratify R4 and R11 explicitly (XIII.5).
+6. Push on the author's word (master, three builder commits from the
+   freeze through the close-out, + trampoline-freeze-r0 + r1).
+
+After r1 the increment ledger is empty. The roadmap's residue is the
+completeness suite — which inherits R9's unification question and
+F5's deletion docket — and the demonstration tier. The destination
+map's last line is in sight (the review's close).
