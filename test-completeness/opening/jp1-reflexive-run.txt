@@ -1,0 +1,10 @@
+J1 anchors by declaration == t2RowsX: True
+   walked: [(3 % 10,1,"L"),(1 % 20,3,"L"),(1 % 200,12,"L"),(0 % 1,12,"L")]
+J2 habitat price 0 % 1: |tr|=1 think=0 refine=0 final=wait
+J2 habitat price 1 % 20: |tr|=1 think=0 refine=0 final=wait
+J2 habitat price 3 % 10: |tr|=1 think=0 refine=0 final=wait
+J3 deep r=0: |tr|=1 think=0 refine=0 final=wait
+J3 deep r=1: |tr|=1 think=0 refine=0 final=wait
+J3 deep r=2: |tr|=1 think=0 refine=0 final=wait
+J3 deep r=3: |tr|=1 think=0 refine=0 final=wait
+J4 = J2/J3 rows with think>=1 AND refine>=1 (read off above)

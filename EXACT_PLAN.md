@@ -1074,3 +1074,108 @@ implementation. This section is a charter, not an oracle.
 - **CR7** — the frozen-tool repairs staged at the opening
   (boundary-audit BF-row -S->-G; M5-row mutant-file definition
   sites): execute at the freeze under the key (default) vs decline.
+
+### 14.8 The joint-preposterior increment (OPENED by the author's instruction of 2026-07-27 — "push, then open the joint-preposterior increment", immediately after the f5-freeze-r1 countersign; the ruled sequence's second act, on the post-deletion surface)
+
+**The object.** EV-CR1 measured that no naive tick law is coherent
+on the union surface; the unification's real object is the
+REFLEXIVE VALUE — think's value defined over the menu that contains
+think. The increment's design, drafted from the opening's evidence
+programs (pack Part IX) and BUILT ORACLE-FIRST like everything
+else:
+
+1. **THE BASE-FIX** (EV-JP1): the preposterior's base case is the
+   best external row OF THE DECLARED MENU. Measured: J1 — the four
+   t2 anchors reproduce EXACTLY under the reflexive design, because
+   menus are world-declared (the R1 law) and t2 worlds declare
+   [L, R]: ANCHORS PRESERVED BY DECLARATION, not by luck. J2 — the
+   phantom-value divergence is cured AT THE ROOT: EV-CR1's
+   500-think diverger now waits at tick 0, because think's honest
+   VoI over the actual menu is zero (the phantom 0.4 was actValueS
+   evaluating acts not on the menu; honest VoI of a menu no
+   evidence can improve IS zero, and the agent rationally waits).
+2. **THE LOOKAHEAD REFINE ROW** (EV-JP2/JP2c, the front-door
+   discharge — with the opening's OWN correction). The myopic
+   single-step clamp (the deadlock's mechanism, EV-JP0 re-confirmed
+   on the closed tree: wait 60/0/0 both deep cells) is replaced by
+   a lookahead over buy-chains — but the opening MEASURED that
+   chain-depth alone does not cure: at the deep cell's best counts
+   (60,0) the guard goes positive with the chain (pess +0.0173 at
+   k=4, +0.145 at k=5) yet the ONE-TICK chain value is negative at
+   every (counts, depth) probed — THE MINTS EAT A SINGLE RESPOND'S
+   VALUE. The frozen d6.2 world profits from its chain over
+   FIFTEEN responds: vocabulary value AMORTIZES over the episode's
+   remaining ticks. The cure is therefore lookahead-over-buys
+   TIMES the declared-horizon amortization — and this is the
+   kLadder multiplier's original role, generalized lawfully,
+   exactly as 13.3's remedy (a) phrased it: pwLadderCap was a
+   BAKED HORIZON (16 ~ the future responds a purchase amortizes
+   over), convicted for bakedness, not for the horizon idea. The
+   joint design derives the amortization from the WORLD-DECLARED
+   episode length (already on the wire), never a constant.
+3. **THE JOINT WORLD RECORD** with the wire face as pinned at
+   EV-CR1 P4: the pure field union plus the declared lookahead
+   depth — no other new field kind.
+
+**The liveness argument, re-argued fresh (the ruling's demand).**
+Think terminates by the honest-VoI tie — with the base equal to the
+menu's own best external, prepost >= bestExt always (VoI >= 0,
+EV-CR4's law) and equality at information exhaustion makes think
+TIE and lose to the incumbent, structurally — plus row-absence at
+buffer exhaustion. Refine's lookahead recursion is well-founded (r
+strictly decreases to the external-only base). LOOP-level refine
+termination is an oracle obligation, not an assumption: the
+transcript rows pin it.
+
+**The register (JP1-JP7; the author rules at this increment's freeze):**
+
+- **JP1** — the lookahead depth r: a world-declared field (the
+  kLadder lesson: never baked); its wire name and default-absent
+  semantics.
+- **JP2** — pwLadderCap's fate: the cap was the myopic route's
+  approximation of multi-step reach; the lookahead prices reach
+  exactly. But frozen d6 rows CONSUME the cap (d6.4 pins cap-0
+  kills / cap-16 buys), so deletion moves frozen anchors —
+  adjudication. Drafted: the shipped myopic route keeps its cap and
+  its pins; the JOINT world's refine row is the lookahead form; the
+  cap's deletion is docketed to the battery sitting with the d6
+  re-open priced.
+- **JP3** — the sayable route: the reflexive value as a SENTENCE by
+  d-unrolling (the vThink3Sentence precedent, g3.4's pin chain);
+  the engine recursion is a fast path pinned extensionally to the
+  unrolled sentence in the same increment (the optimisation law);
+  the unrolled sentence's form, env-binding of the per-branch guard
+  scalars, and its PRICE are this register item's content.
+- **JP4** — cross-nesting (think inside refine's lookahead,
+  think-of-think): EXCLUDED from this increment's draft — J1/J2
+  hold without it and the deadlock's cure needs only buy-chains
+  (EV-JP2); re-enters demand-gated with a measurement.
+- **JP5** — the episode-shape law (CR1a's answer): the WORLD
+  declares its episode shape — decide-once (the t2 face) or
+  standing-service (the purchase face) — exactly as it declares its
+  menu; both shapes carried by the one loop, the shape a
+  declaration field.
+- **JP6** — the mandate round: FULL, per the ruling (fresh-context
+  reviewers, one mandate each), run against the drafted oracle.
+- **JP7** — the mutant pool's heirs: the M28/M30 class (ties,
+  internal-first) re-cut against the joint loop, plus every new
+  oracle row's forward-half kill.
+- **JP8** — THE HORIZON IS THE CAP'S TRUE NAME (the opening's
+  finding, EV-JP2c): refine's value in a standing world =
+  (lookahead over buy-chains) x (the declared remaining-episode
+  amortization); pwLadderCap is the baked ghost of that horizon.
+  The register item: the amortization's exact form (remaining
+  ticks x per-tick external value vs an evidence-aware forecast),
+  its declared wire field (the episode length is already
+  declared), and the cap's retirement path (JP2's d6 re-open
+  pricing now has its ground).
+
+**The oracle shape (drafted; oracle-first binds).** The
+anchors-by-declaration rows (J1's four cells); the phantom-cure row
+(the habitat cell's tick-0 wait, the honest-VoI value pinned
+exactly); the deadlock-cure row (the deep cell's first-refine tick
+and full transcript); the liveness rows (tie-structural,
+absence-structural, loop-termination); the sayable-route pin
+(engine == unrolled sentence, extensional, in-increment); the joint
+sentence's price rows (re-derived post-F5, the ruling's
+discipline); kills per row, read per-row against the pool.

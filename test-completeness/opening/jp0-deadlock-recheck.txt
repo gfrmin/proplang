@@ -1,0 +1,2 @@
+stakes (1 % 1,(-24) % 1): wait=60 respond=0 refine=0
+stakes (1 % 1,(-171) % 1): wait=60 respond=0 refine=0

@@ -547,3 +547,94 @@ liveness question is fresh (F4 re-argued on the reflexive object),
 and it carries its own mandate round per the ruling. Then the
 battery. CR3/CR4/CR5/CR6/CR7 and the OB-20/21 discharge ride the
 battery's sitting as chartered.
+
+## Part IX — the joint-preposterior increment OPENED (the author: "push, then open the joint-preposterior increment", 2026-07-27, immediately after the f5-freeze-r1 countersign; base = 362e1c4, pushed)
+
+The ruled sequence's second act. The charter is EXACT_PLAN 14.8
+(builder-unfrozen, drafted at this opening); the register JP1-JP7;
+the mandate round FULL per the ruling. The opening's evidence
+programs (R-D21 throwaways, prototypes discarded, transcripts in
+test-completeness/opening/):
+
+**EV-JP0 — the GroundC reliance re-check on the closed tree.** The
+refine arm moved twice since the dyadic transcript (the
+purchaseRows refactor, the forgone deletion), so the bank was
+re-executed before this increment relies on it: shipped
+runPurchase, deep root-only cells, stakes (1,-24) and (1,-171),
+60 all-1 obs — **wait=60 refine=0 respond=0 in both**, byte-equal
+to the dyadic close's shape. The bank is CURRENT; the deadlock this
+increment discharges is real on today's tree.
+
+**EV-JP1 — the reflexive prototype (the base-fix measured).**
+Pre-stated J1-J4; results:
+
+- **J1 PASSES EXACTLY**: with the preposterior's base = the best
+  external OF THE DECLARED MENU, the four t2 anchor cells (which
+  declare menu [L, R] — no wait, no respond) reproduce
+  Anchors.t2RowsX byte-for-byte. ANCHORS PRESERVED BY DECLARATION:
+  the joint design changes nothing t2's declaration doesn't ask
+  for.
+- **J2 CURED AT THE ROOT, better than drafted**: EV-CR1's habitat
+  diverger (500 thinks to the driver cap) now ends at tick 0 with
+  wait — think's value under the base-fix is HONEST VoI over the
+  actual menu, and honest VoI of a menu no evidence can improve is
+  ZERO. The divergence was never a termination bug; it was a
+  PHANTOM VALUE (a base evaluating acts not on the menu), and the
+  base-fix deletes the phantom rather than taming it. VoI >= 0
+  (EV-CR4's law) plus tie-to-incumbent is the whole liveness story.
+- **J3 (decide-once) correctly negative**: in the decide-once
+  shape the deep cell rationally ends at wait on tick 0 — ambient
+  evidence hasn't arrived, and the lookahead over buys alone sees
+  nothing at counts (0,0). The deadlock's habitat is the
+  STANDING-SERVICE purchase shape; measured there in EV-JP2.
+
+**EV-JP2 — the front-door discharge (the lookahead refine row in
+the shipped standing loop).** The one change from shipped
+runPurchaseS: the myopic clamp row replaced by refineVal r (max
+over frontier chains of best-menu-external-after-buys minus the
+mints, r declared); counts law and loop shape byte-faithful to the
+shipped route (ambient, counts advance before the choice,
+externals pass the tick). The frozen deepChain is SIX nodes, so
+the sweep runs r past the chain's depth.
+Results, and the opening's own correction:
+
+- **The loop sweep (one-tick base): refine NEVER fires** — r = 1..3
+  measured at both deep stakes (wait=60 refine=0 respond=0
+  throughout), and the r = 4..7 sweep was cut short by cost, then
+  EXPLAINED AND MOOTED by the chain probe below.
+- **EV-JP2c, the chain probe (the decisive cell,
+  jp2c-chain-probe.txt)**: at arrived counts (60,0), stakes
+  (1,-24), the guard DOES go positive with the high chain — pess =
+  +0.0173 at depth 4, +0.145 at depth 5 (the multi-step value is
+  real, remedy (a)'s premise confirmed) — but the ONE-TICK chain
+  value max(0,pess) - k*s is NEGATIVE at every (counts, depth)
+  probed: THE MINTS EAT A SINGLE RESPOND'S VALUE. The frozen d6.2
+  world profits from its pre-owned chain over FIFTEEN responds
+  (respond x15 after tick 45): vocabulary value AMORTIZES over the
+  episode's remaining ticks, and a one-tick-base lookahead can
+  never see it at any depth.
+
+**The finding, named (JP8 — THE HORIZON IS THE CAP'S TRUE NAME).**
+The cure for the deadlock is (lookahead over buy-chains) x (the
+declared remaining-episode amortization). pwLadderCap = 16 was the
+BAKED GHOST of exactly that horizon (16 ~ the future responds a
+purchase amortizes over) — convicted at X.3 for bakedness, not for
+the horizon idea; 13.3's remedy (a) even named it ("the kLadder
+multiplier's original role, generalized lawfully"). The joint
+design derives the amortization from the WORLD-DECLARED episode
+length, already on the wire. Charter 14.8 item 2 and register JP8
+carry it; JP2's cap-retirement path now has its ground.
+
+**The opening's scoreboard**: J1 PASSED exactly (anchors by
+declaration); J2 CURED at the root (the phantom deleted, honest
+VoI); J3's cure condition IDENTIFIED and measured (chain positivity
+real, amortization required) — the deadlock-cure oracle row will
+pin the amortized form; J4 rides J3's cell. Transcripts:
+jp0-deadlock-recheck.txt, jp1-reflexive-run.txt,
+jp2c-chain-probe.txt (test-completeness/opening/).
+
+**Next in this increment**: the amortized-form evidence program
+(the deadlock-cure demonstrated end-to-end on the standing loop),
+then the oracle (14.8's drafted shape + the JP8 rows), the FULL
+mandate round per the ruling, the freeze kit, and the author's
+sitting over JP1-JP8.
