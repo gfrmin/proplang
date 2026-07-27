@@ -809,3 +809,61 @@ the quoted formulas and chooses via evalx — EV-CR3's
 reference-equality form carrying EV-JP5's identity); g-jp6 the
 price rows (jointPolicyWeight pinned per canonical cell, literals
 derived at SAT time per R-D21). Kills per row at the close.
+
+## Part XI — the oracle phase executed; the SAT run's finding (2026-07-27)
+
+**The oracle** (test-jointprep/, 15 rows in six groups) went RED
+15/15 against the stub surface (ExtOpt/EpisodeShape/JointWorld +
+runJointW/jointPolicyWeight stubs in Membrane, each failure
+attributable to the stub's own message; E4 stayed 0 and the
+standing suites green through the stub landing). The overlay — the
+implementation as prophecy, built FRESH per the stale-overlay law —
+implements both episode shapes with THE ONE CHOOSER EVERYWHERE:
+every tick menu, every Bellman backup, and every refine payload
+selection is evalx of a chooseKS sentence over env-bound values
+(chooseIdx + the scalar one-env binder withQVals); the engine keeps
+arithmetic and the clock only.
+
+**The SAT run CAUGHT A PROBE ARTIFACT (12/15, then 15/15).** The
+first satisfiability run failed exactly the three DP-transcript
+rows: the overlay's DIRECTION-NEUTRAL exploration (both children
+per extension, depth-capped) fires one tick earlier and buys one
+node deeper than the hi-spine probe the pins were drafted from
+(44 waits/6 refines vs 45/5 on the 60-cell; 44/7 vs 45/6 on the
+120-cell). EV-JP6 — an independent plain-max both-children DP —
+settled which side is right BY DOMINANCE: it reproduces the
+overlay's transcripts exactly with episode values STRICTLY GREATER
+than the probe's (0.6064... > 0.5212...; 24.9357... > 24.7828...).
+The probe's hi-spine restriction UNDER-BOUGHT; the baked direction
+dies by dominance, exactly as baked constants die. The pins were
+re-derived from EV-JP6's transcript, the oracle's inlined reference
+rewritten to the same declared scope (both children, depth cap,
+memoized, still sentence-choosing), and the red run re-verified
+15/15 against the stubs before the corrected SAT run.
+
+**JP10 sharpened.** The direction half of the exploration-scope
+question is CLOSED (neutrality wins by dominance); the DEPTH half
+remains the register's: the cap (7, probe-inherited, the frozen
+deepChain's depth plus one) lives in the OVERLAY only — the sitting
+rules its lawful form (world-declared vs derived) before the
+implementation lands in src.
+
+**E4 at the overlay (the canonized enumeration law).** The joint
+code's comparison tokens are: the recursion bases written in the
+allowlisted `| d <= 0 =` form (the loop clock, the existing row's
+category and text), and `min (jwBatch w) (length buf)` (the batch
+law's joint face) — ONE new allowlist row, enumerated against this
+overlay, staged for the freeze beside the stanza.
+
+**The corrected SAT: 15/15 (transcript
+test-jointprep/opening/sat-run.txt).** One residual defect between
+the runs, caught and fixed inside the oracle phase: the reference's
+4-ary chooser minted its fourth code from a 3-point grid (mkC
+refused index 3 — the door doing its job); per-arity grids fixed
+it; the red run re-verified 15/15 against the stubs before the
+final SAT. The freeze kit stands: implementation.diff (the overlay
+prophecy, 291 lines, applies clean), e4-extension.patch (the three
+enumerated loop-clock rows, both gate copies together),
+stanza.cabal.draft. Remaining before the sitting: the FULL mandate
+round (the ruling's demand) and freeze-commands; the sitting rules
+JP1-JP10.

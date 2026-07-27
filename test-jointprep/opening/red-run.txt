@@ -44,16 +44,16 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp2 habitat price 3 % 10/' to rerun this test only.
   g-jp3 the deadlock cured (the DP: just-in-time chain, no spree, honest decline)
-    g-jp3.1 (1,-24) 60-stream: wait 45, refine 5 just-in-time, respond 10:          FAIL
+    g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10:          FAIL
       test-jointprep/JointPrep.hs:60:
-      the full transcript (EV-JP4/JP5, byte-identical routes)
-      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
+      the full transcript (EV-JP6's both-children optimum; dominance over the hi-spine probe verified: V0 0.6064... > 0.5212...)
+      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
-      Use -p '/g-jp3.1 (1,-24) 60-stream: wait 45, refine 5 just-in-time, respond 10/' to rerun this test only.
+      Use -p '/g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10/' to rerun this test only.
     g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE:                               FAIL
       test-jointprep/JointPrep.hs:60:
-      the full transcript
-      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
+      the full transcript (EV-JP6; V0 24.9357... > 24.7828...)
+      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE/' to rerun this test only.
     g-jp3.3 (1,-171) 120-stream: the honest decline:                                FAIL
@@ -72,10 +72,10 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
       runJointW: the joint-preposterior increment's implementation is not yet landed
       Use -p '/g-jp4.2 decide-once: the final row is an external (F4'\''s law on the joint menu)/' to rerun this test only.
   g-jp5 the sayable-route pin (the reference recomputes the values by the quoted formulas and chooses via evalx; EV-JP5's identity as a standing row)
-    g-jp5.1 the DP cells against the sentence-choosing reference:                   FAIL (0.31s)
+    g-jp5.1 the DP cells against the sentence-choosing reference:                   FAIL (8.48s)
       test-jointprep/JointPrep.hs:60:
       stakes (1 % 1,(-24) % 1)
-      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
+      expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp5.1 the DP cells against the sentence-choosing reference/' to rerun this test only.
   g-jp6 the price rows (jointPolicyWeight reads src; the ruling's re-derivation discipline)
@@ -102,4 +102,4 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
       
       Use -p '/g-jp6.2 the t2 world'\''s chooser prices identically (same 3-row form)/' to rerun this test only.
 
-15 out of 15 tests failed (0.31s)
+15 out of 15 tests failed (8.48s)

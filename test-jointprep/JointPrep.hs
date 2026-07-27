@@ -44,7 +44,7 @@ import Test.Tasty.HUnit
 import Data.List (sortOn)
 import qualified Data.Map as M
 import PropLang.Eval (Vals (..), evalx, mkEnvIn)
-import PropLang.Lattice (Node, childrenOf, guardE, mkOwned, nodeTheta,
+import PropLang.Lattice (childrenOf, guardE, mkOwned, nodeTheta,
                          rootNode)
 import PropLang.Membrane (EpisodeShape (..), ExtOpt (..),
                           JointWorld (..), jointPolicyWeight,
@@ -99,15 +99,15 @@ main = defaultMain $ testGroup "jointprep (the reflexive increment: one menu, on
               (runJointW tNs egSpace emitK (habitatWorld p) d61buf)
       | p <- [0, 1 % 20, 3 % 10] ]
   , testGroup "g-jp3 the deadlock cured (the DP: just-in-time chain, no spree, honest decline)"
-      [ testCase "g-jp3.1 (1,-24) 60-stream: wait 45, refine 5 just-in-time, respond 10" $
-          pin "the full transcript (EV-JP4/JP5, byte-identical routes)"
-              (Right (replicate 45 "wait" ++ replicate 5 "refine"
+      [ testCase "g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10" $
+          pin "the full transcript (EV-JP6's both-children optimum; dominance over the hi-spine probe verified: V0 0.6064... > 0.5212...)"
+              (Right (replicate 44 "wait" ++ replicate 6 "refine"
                       ++ replicate 10 "respond"))
               (runJointW tNs egSpace emitK (dpWorld (1, -24))
                          (replicate 60 1))
       , testCase "g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE" $
-          pin "the full transcript"
-              (Right (replicate 45 "wait" ++ replicate 6 "refine"
+          pin "the full transcript (EV-JP6; V0 24.9357... > 24.7828...)"
+              (Right (replicate 44 "wait" ++ replicate 7 "refine"
                       ++ replicate 69 "respond"))
               (runJointW tNs egSpace emitK (dpWorld (1, -24))
                          (replicate 120 1))
@@ -172,66 +172,86 @@ refJoint st stream = Right (fst (refSolve st (1 % 20) stream))
 
 refSolve :: (Rational, Rational) -> Rational -> [Int]
          -> ([String], Rational)
-refSolve st s stream0 = goRun [] 0
+refSolve st s stream0 = (runFrom [] 0, tblGet [] total)
   where
     total = length stream0
-    path = refSpine rootNode (7 :: Int)
-    chains = [] : [ reverse (take k path) | k <- [1 .. 7] ]
-    candidates ch = case ch of
-      [] -> childrenOf rootNode
-      (top : _) -> childrenOf top
-    memo = M.fromList [ ((ch, t), value ch t)
-                      | t <- [0 .. total], ch <- chains ]
-    vOf ch t = M.findWithDefault 0 (ch, t) memo
-    pessAt ch c = guardE True (mkOwned (rootNode : ch)) c st
-    value ch t
-      | t >= total = 0
+    countsAt = scanl (\(a, b2) y ->
+                        if y == (1 :: Int) then (a + 1, b2)
+                                           else (a, b2 + 1))
+                     (0, 0) stream0
+    cAt t = case drop (t + 1) countsAt of
+      (c : _) -> c
+      []      -> (total, 0)
+    nodeAt path = go2 rootNode path
+      where
+        go2 n [] = n
+        go2 n (hi : rest) = case sortOn nodeTheta (childrenOf n) of
+          [lo, hi2] -> go2 (if hi then hi2 else lo) rest
+          _ -> n
+    ownedOf path = mkOwned (rootNode : [ nodeAt (take i path)
+                                       | i <- [1 .. length path] ])
+    depthCap = 7 :: Int
+    paths = concat [ allP n | n <- [0 .. depthCap] ]
+    allP :: Int -> [[Bool]]
+    allP 0 = [[]]
+    allP n = [ b2 : p2 | p2 <- allP (n - 1), b2 <- [False, True] ]
+    pessOf path t = guardE True (ownedOf path) (cAt t) st
+    pick vs = either error id (chooseIdxRef vs)
+    at i xs = case drop i xs of
+      (x : _) -> x
+      []      -> error "refSolve: index (unreachable)"
+    tbl = M.fromList [ ((path, d), val path d)
+                     | d <- [0 .. total], path <- paths ]
+    tblGet p2 d2 = M.findWithDefault 0 (p2, d2) tbl
+    val path d
+      | d <= (0 :: Int) = 0
       | otherwise =
-          let c = (t + 1, 0)
-              wait = vOf ch (t + 1)
-              resp = pessAt ch c + vOf ch (t + 1)
-              refs = [ (-s) + vOf (cand : ch) (t + 1)
-                     | cand <- candidates ch, (cand : ch) `elem` chains ]
-          in maximum (wait : resp : refs)
-    goRun ch t
-      | t >= total = ([], 0)
+          let t = total - d
+              waitV = tblGet path (d - 1)
+              respV = pessOf path t + tblGet path (d - 1)
+              refVs = [ (-s) + tblGet (path ++ [b2]) (d - 1)
+                      | length path < depthCap, b2 <- [False, True] ]
+              vs = waitV : respV : refVs
+          in at (pick vs) vs
+    runFrom path t
+      | t >= total = []
       | otherwise =
-          let c = (t + 1, 0)
-              wait = vOf ch (t + 1)
-              resp = pessAt ch c + vOf ch (t + 1)
-              refs = [ ((-s) + vOf (cand : ch) (t + 1), cand)
-                     | cand <- candidates ch, (cand : ch) `elem` chains ]
-              -- THE SENTENCE CHOOSES (EV-JP5's identity): evalx of
-              -- the shipped-form chooseKS over env-bound values
-              code = case refs of
-                [] -> case mkEnvIn refNs [("door", 0)]
-                             (wait :. resp :. VNil) of
-                  Right env -> evalx refPolicy2 env
-                  Left m -> error m
-                _  -> let refv = maximum (map fst refs)
-                      in case mkEnvIn refNs [("door", 0)]
-                                 (wait :. resp :. refv :. VNil) of
-                           Right env -> evalx refPolicy3 env
-                           Left m -> error m
-              cn = case lookup code (zip (map fromIntegral
-                                           [0 :: Int ..])
-                                         ["wait", "respond", "refine"]) of
-                Just nm -> nm
-                Nothing -> error "off-code (unreachable)"
-              ch' = case cn of
-                "refine" -> snd (maximum refs) : ch
-                _ -> ch
-              step = case cn of
-                "respond" -> pessAt ch c
-                "refine"  -> -s
-                _         -> 0
-              (rest, tot) = goRun ch' (t + 1)
-          in (cn : rest, step + tot)
+          let d = total - t
+              waitV = tblGet path (d - 1)
+              respV = pessOf path t + tblGet path (d - 1)
+              refs = [ (path ++ [b2], (-s) + tblGet (path ++ [b2]) (d - 1))
+                     | length path < depthCap, b2 <- [False, True] ]
+              refRow = case refs of
+                [] -> []
+                _  -> [ at (pick (map snd refs)) refs ]
+              vs = [waitV, respV] ++ map snd refRow
+              nms = ["wait", "respond"] ++ [ "refine" | not (null refRow) ]
+              nm = at (pick vs) nms
+          in case nm of
+               "refine" -> case refRow of
+                 ((p2, _) : _) -> "refine" : runFrom p2 (t + 1)
+                 [] -> error "refSolve: refine row (unreachable)"
+               _ -> nm : runFrom path (t + 1)
 
-refSpine :: Node -> Int -> [Node]
-refSpine n k = case sortOn nodeTheta (childrenOf n) of
-  [_, hi] | k > 0 -> hi : refSpine hi (k - 1)
-  _ -> []
+-- THE SENTENCE CHOOSES (EV-JP5's identity, the reference's own
+-- route): evalx of the shipped-form chooseKS over env-bound values
+chooseIdxRef :: [Rational] -> Either String Int
+chooseIdxRef vs = case vs of
+  [v0, v1] -> do
+    env <- mkEnvIn refNs [("door", 0)] (v0 :. v1 :. VNil)
+    decode (evalx refPolicy2 env)
+  [v0, v1, v2] -> do
+    env <- mkEnvIn refNs [("door", 0)] (v0 :. v1 :. v2 :. VNil)
+    decode (evalx refPolicy3 env)
+  [v0, v1, v2, v3] -> do
+    env <- mkEnvIn refNs [("door", 0)] (v0 :. v1 :. v2 :. v3 :. VNil)
+    decode (evalx refPolicy4 env)
+  _ -> Left "chooseIdxRef: unhandled arity (the reference's cells use 2..4)"
+  where
+    decode code = case lookup code (zip (map fromIntegral [0 :: Int ..])
+                                        [0 ..]) of
+      Just i  -> Right i
+      Nothing -> Left "chooseIdxRef: off-code (unreachable)"
 
 refNs :: Namespace
 refNs = mkNamespace ("door" :| [])
@@ -248,3 +268,14 @@ refPolicy3 = chooseKS ((refCodeM 0, Var Z)
 
 refPolicy2 :: Expr '[Rational, Rational] Rational
 refPolicy2 = chooseKS ((refCodeM 0, Var Z) :| [(refCodeM 1, Var (S Z))])
+
+refCodeM4 :: Int -> Expr env Rational
+refCodeM4 i = case mkC (mkGrid "jacts" (0 :| [1, 2, 3])) i of
+  Just e  -> e
+  Nothing -> error "refCodeM4 (unreachable)"
+
+refPolicy4 :: Expr '[Rational, Rational, Rational, Rational] Rational
+refPolicy4 = chooseKS ((refCodeM4 0, Var Z)
+                   :| [ (refCodeM4 1, Var (S Z))
+                      , (refCodeM4 2, Var (S (S Z)))
+                      , (refCodeM4 3, Var (S (S (S Z)))) ])

@@ -1,0 +1,39 @@
+# THE E4 ALLOWLIST EXTENSION (the joint-preposterior increment;
+# enumerated against the SAT overlay per the canonized overlay-scan
+# law — the enumeration transcript rides pack Part XI). Three rows,
+# all in R11's licensed loop-clock category: the joint batch law
+# (min (jwBatch w) (length buf) — the dwBatch row's sibling), the
+# episode clock's recursion base (| t >= total — the nTicks row's
+# sibling), and the exploration-depth bound (| length path <
+# depthCap — JP10's object; the row enters WITH the register item
+# that rules the bound's lawful form). Applies at the freeze under
+# the author's key; both gate copies move together (the staged copy
+# is the block's byte source).
+diff --git a/audit/gates-exact.sh b/audit/gates-exact.sh
+index a6bcc16..52747fe 100755
+--- a/audit/gates-exact.sh
++++ b/audit/gates-exact.sh
+@@ -64,6 +64,9 @@ e4=$(for f in $e4files; do sed 's/--.*$//' "$f" 2>/dev/null; done \
+   | grep -vE '&& bI >= 1' \
+   | grep -vE '\| d <= 0 =' \
+   | grep -vE 'min \(dwBatch w\) \(length buf\)' \
++  | grep -vE 'min \(jwBatch w\) \(length buf\)' \
++  | grep -vE '\| t >= total = ' \
++  | grep -vE '\| length path < depthCap, ' \
+   | grep -c .)
+ echo "E4 engine-derived comparisons outside evalx: $e4 (must be 0; allowlist: draw walk, rNum display, arity validation, tick bound)"
+ [ "$e4" -eq 0 ] || fail=1
+diff --git a/test-trampoline/freeze/gate-e4.sh b/test-trampoline/freeze/gate-e4.sh
+index 363a8c4..b048b98 100755
+--- a/test-trampoline/freeze/gate-e4.sh
++++ b/test-trampoline/freeze/gate-e4.sh
+@@ -40,6 +40,9 @@ e4=$(for f in $e4files; do sed 's/--.*$//' "$f" 2>/dev/null; done \
+   | grep -vE '&& bI >= 1' \
+   | grep -vE '\| d <= 0 =' \
+   | grep -vE 'min \(dwBatch w\) \(length buf\)' \
++  | grep -vE 'min \(jwBatch w\) \(length buf\)' \
++  | grep -vE '\| t >= total = ' \
++  | grep -vE '\| length path < depthCap, ' \
+   | grep -c .)
+ echo "E4 engine-derived comparisons outside evalx: $e4 (must be 0; allowlist: draw walk, rNum display, arity validation, tick bound)"
+ [ "$e4" -eq 0 ] || fail=1
