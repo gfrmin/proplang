@@ -47,6 +47,11 @@ module PropLang.Membrane
   , policyPick
   , preposteriorV
   , runTrampoline
+  , ExtOpt (..)
+  , EpisodeShape (..)
+  , JointWorld (..)
+  , runJointW
+  , jointPolicyWeight
     -- the syntax-transport helpers (typed renaming, the priced
     -- mention, the substitution expansion, the one-env binder) —
     -- exported for the Host's wire policy route (pickWire /
@@ -424,3 +429,57 @@ runEpisode w pilot pw s0 nTicks =
     waitOf menu = case menuAssignments menu of
       (w0 : _) -> w0
       [] -> []
+
+
+-- =====================================================================
+-- THE JOINT SURFACE (the completeness boundary's joint-preposterior
+-- increment; stubs land at the oracle phase, red-attributable —
+-- the trampoline precedent. Bodies arrive only after the author's
+-- freeze; every row of test-jointprep/ is red against these.)
+--
+-- Type-derivation audit (the step-6 clause; each type WITH its line):
+--   'ExtOpt'       — the R1 law's menu-as-world-data, as a declared
+--                    external option sort (the world SAYS its menu).
+--   'EpisodeShape' — JP5's episode-shape law: the two shipped faces'
+--                    episode forms (decide-once = the t2 lineage,
+--                    standing = the purchase lineage), DECLARED.
+--   'JointWorld'   — the field union of the two shipped world faces
+--                    (EV-CR1 P4's wire pin): menu, think economics,
+--                    refine economics, stakes, shape. The horizon is
+--                    the declared stream's length — no new field kind.
+-- =====================================================================
+
+data ExtOpt = OWait | OLeft | ORight | ORespond
+  deriving (Eq, Show)
+
+data EpisodeShape = DecideOnce | Standing
+  deriving (Eq, Show)
+
+data JointWorld = JointWorld
+  { jwExts   :: [ExtOpt]
+    -- ^ the declared external menu, order = incumbency (R1's order)
+  , jwThink  :: Bool
+  , jwPrice  :: Rational
+  , jwBatch  :: Int
+  , jwRefine :: Maybe Rational
+  , jwStakes :: (Rational, Rational)
+  , jwShape  :: EpisodeShape
+  }
+  deriving (Eq, Show)
+
+-- | The one joint loop (stub): both episode shapes, both internal
+-- acts declarable on one tick's menu, every choice — including every
+-- Bellman backup inside the lookahead — through evalx of the
+-- standing chooser (the one-chooser-everywhere law, pack Part X).
+runJointW :: Namespace -> Space Rational -> Kernel Rational Int
+          -> JointWorld -> [Int] -> Either String [String]
+runJointW _ _ _ _ _ =
+  Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
+
+-- | The standing sentence's price for a declared world (stub): built
+-- by the engine from the declaration, priced through the frozen
+-- weightIn — price rows read src, never a test-side copy (the F5
+-- lesson).
+jointPolicyWeight :: JointWorld -> Rational
+jointPolicyWeight _ =
+  error "jointPolicyWeight: the joint-preposterior increment's implementation is not yet landed"

@@ -1,0 +1,14 @@
+-- THE JOINT-PREPOSTERIOR ORACLE (to be frozen at this increment's
+-- freeze; red by design against the stub surface until the
+-- implementation lands — the increment-protocol form)
+test-suite jointprep
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          JointPrep.hs
+    hs-source-dirs:   test-jointprep
+    build-depends:    base
+                    , containers
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
