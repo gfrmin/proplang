@@ -11,6 +11,9 @@
 # messages before running. Aborts hard on any failure (set -euo).
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
+# The ghcup toolchain is not on the default PATH (the first-run
+# abort's lesson: lint's L7 corpus build needs ghc and cabal).
+export PATH="$HOME/.ghcup/bin:$PATH"
 
 echo "== 0: see what you are signing =="
 [ -z "$(git status --porcelain)" ] || { echo "tree not clean — aborting"; exit 1; }
