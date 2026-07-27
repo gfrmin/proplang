@@ -1,0 +1,70 @@
+P4 wire face (the union, field kinds enumerated):
+  price=Rational batch=Int  <- DelibWorld (both fields)
+  stakes=(Rational,Rational) refine_mint=Maybe Rational ladder_cap=Rational  <- PurchaseWorld (all three fields)
+  new field kinds: NONE
+price 0 % 1: |tr|=13 think=12 refine=0 final=wait thinkBound(<=12)=True
+price 1 % 20: |tr|=4 think=3 refine=0 final=L thinkBound(<=12)=True
+price 3 % 10: |tr|=2 think=1 refine=0 final=L thinkBound(<=12)=True
+criteria: P1 = this program compiled; P2 = some cell has think>=1 AND refine>=1 AND external final; P3 = thinkBound True everywhere, refine divergence (DRIVER-CAP) reported as CR1a if present
+
+the discriminating cell: the SAME joint loop, d6.1's own stream
+as the buffer (take 36 (cycle [1,1,0,1,0]) — the refine-firing
+composition; COPY test-dyadic/Dyadic.hs:218)
+price 0 % 1: |tr|=4 think=3 refine=0 final=R
+price 1 % 20: |tr|=3 think=2 refine=0 final=R
+price 3 % 10: |tr|=2 think=1 refine=0 final=R
+
+the batch-1 cells: jwBatch is DECLARED world data; batch 1 walks
+the same count-path as the purchase loop (single-obs ticks),
+reaching the small unbalanced counts where d6.1's refines fire
+price 0 % 1 batch 1: |tr|=2 think=1 refine=0 final=R
+price 1 % 20 batch 1: |tr|=2 think=1 refine=0 final=R
+price 3 % 10 batch 1: |tr|=1 think=0 refine=0 final=wait
+
+batch-1 d6.1-stream count-path guard economics:
+  counts (0,0) pess=(-1) % 4 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (1,0) pess=(-1) % 5 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (2,0) pess=(-1) % 7 bestGain=1 % 189 refineValue=131 % 3780
+  counts (2,1) pess=(-27) % 113 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (3,1) pess=(-16) % 75 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (3,2) pess=(-3125) % 12831 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (4,2) pess=(-729) % 3211 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (5,2) pess=(-823543) % 4070629 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (5,3) pess=(-65536) % 280983 bestGain=0 % 1 refineValue=(-1) % 20
+  counts (6,3) pess=(-19683) % 91817 bestGain=0 % 1 refineValue=(-1) % 20
+
+the stakes-scaled cells (six-row union, batch 1, d6.1 stream):
+refine's window value scales with declared stakes while eL/eR do
+not (t2's +-1 payoff convention) — P2's candidate cells
+stakes (10 % 1,(-10) % 1) price 0 % 1: |tr|=2 think=1 refine=0 final=R
+stakes (10 % 1,(-10) % 1) price 1 % 20: |tr|=2 think=1 refine=0 final=R
+stakes (10 % 1,(-1) % 1) price 0 % 1: |tr|=1 think=0 refine=0 final=respond
+stakes (10 % 1,(-1) % 1) price 1 % 20: |tr|=1 think=0 refine=0 final=respond
+stakes (100 % 1,(-100) % 1) price 0 % 1: |tr|=2 think=1 refine=0 final=R
+stakes (100 % 1,(-100) % 1) price 1 % 20: |tr|=2 think=1 refine=0 final=R
+
+the purchase-habitat cell (menu = wait/respond/think/refine, the
+t2 externals L/R absent): PREDICTED IN ADVANCE = DRIVER-CAP at
+price 0 — think's preposterior base (actValueS) evaluates acts
+NOT on this menu, so the F4 tie-to-incumbent can never fire and
+the think row crowns every tick, an empty-buffer fold re-entering
+an identical state. The termination law REQUIRES the preposterior's
+base to be the menu's own best row (the joint preposterior).
+price 0 habitat: |tr|=501 think=500 refine=0 final=DRIVER-CAP (DRIVER-CAP hit: True)
+
+diagnostic: guard economics along the bought-clock trajectory
+(counts = folds of buffer36 prefixes, batch 3; root vocabulary,
+ stakes (1,-1) — is the refine row EVER value-positive here?)
+  counts (0,0) pess=(-1) % 4 opt=1 % 4 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (1,2) pess=(-32) % 113 opt=27 % 113 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (3,3) pess=(-1) % 4 opt=1 % 4 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (4,5) pess=(-409600000) % 1571861467 opt=387420489 % 1571861467 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (5,7) pess=(-2573571875) % 9103918883 opt=2176782336 % 9103918883 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (7,8) pess=(-452747552236765184) % 1766429223379343309 opt=437893890380859375 % 1766429223379343309 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (9,9) pess=(-1) % 4 opt=1 % 4 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (10,11) pess=(-5983419406451998720000000000) % 23511180461609946284143373263 opt=5842587018385982521381124421 % 23511180461609946284143373263 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (11,13) pess=(-86413802648320402620376583) % 324904344258492935020701191 opt=79496847203390844133441536 % 324904344258492935020701191 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (14,13) pess=(-443426488243037769948249630619149892803) % 1781995972988118601564761281752711329353 opt=451716508259005291720012389895261650944 % 1781995972988118601564761281752711329353 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (16,14) pess=(-191751059232884086668491363525390625) % 780233523755034678971190978930725731 opt=204980346056382418965716888354553856 % 780233523755034678971190978930725731 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (17,16) pess=(-129110040087761027839616029934664535539337183380513) % 518411572077429643615763991762421121983300013968483 opt=131081451814146560096915901958427515365288463826944 % 518411572077429643615763991762421121983300013968483 straddle=True bestGain=0 % 1 refineValue=(-1) % 20
+  counts (18,18) pess=(-1) % 4 opt=1 % 4 straddle=True bestGain=0 % 1 refineValue=(-1) % 20

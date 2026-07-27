@@ -188,12 +188,88 @@ host-less window at step 7 — are all discharged at max span).
   declining costs nothing but keeps the false alphabet date in the
   BF row's output.
 
-## Part IV — what happens next (the oracle phase; nothing binds until the key)
+## Part IV — the evidence programs (R-D21 throwaways, executed 2026-07-27; transcripts in test-completeness/opening/, prototypes discarded)
 
-1. Evidence programs (R-D21 throwaways, transcripts to this pack):
-   the joint-world prototype (CR1), the F5 price delta (CR2), the
-   family generator's axis walk (CR3), the reference extension's
-   first cells, the pool operator drafts (CR5).
+**EV-CR2 — the F5 price delta (transcript:
+test-completeness/opening/f5-price-delta-transcript.txt).**
+Pre-stated criterion: deleting the forgone term moves the shipped
+policy sentence's weight by exactly 9^7 * 3^2 = 3^16 (seven removed
+nodes at 1/9 each, two of them scope-3 Vars) — computed from the
+FROZEN pricing artifact (Syntax.weightIn), the row construction a
+COPY of Purchase.hs:115-139 with provenance. RESULT: holds at
+exact == — ratio 43046721 % 1, i.e. the term charges 16*log2(3)
+~ 25.36 bits for an unutterable alternative. The single-mention
+structure of the folded sentence is confirmed by the ratio itself
+(a k-fold duplication would give 3^16k). CR2's adjudication now has
+its number beside XIII.3's argument and M34's identity.
+
+**EV-CR1 — the joint-world program (transcript:
+test-completeness/opening/joint-world-run.txt).** Pre-stated
+criteria P1-P4 in the program header; row bodies COPIES with
+provenance (Membrane.hs:361-365, Purchase.hs:115-172, reindexed
+into the joint env); fixtures IMPORTED from the frozen test modules
+(egSpace/emitK/buffer36 — the probe-reads-declared-data law);
+economics from the d6.1 refine-firing cell (Dyadic.hs:214-218).
+
+- **P1 (type) PASSES.** The joint record — the pure UNION of
+  DelibWorld and PurchaseWorld's fields — plus ONE chooseKS
+  sentence over the six-row menu (wait head, L/R/respond
+  externals, think/refine LAST) COMPILES. The R9 type gap closes
+  with zero alphabet motion.
+- **P4 (wire) PASSES.** The joint declaration's wire face is
+  enumerated: price, batch | stakes, refine_mint, ladder_cap — NO
+  new field kind. 14.5's carve-out is now a measured surface.
+- **P3 (think liveness) PASSES, and the F4 law GENERALIZES.** The
+  think bound holds in every terminating cell, and the tie fires at
+  BOTH exhaustion faces: buffer exhaustion (price 0, buffer36: 12 =
+  36/3 thinks then tie) and INFORMATION exhaustion (d6.1's decisive
+  stream: tv saturates to the best act's value after 3 folds, think
+  ties, the incumbent ends the episode — the lazy genius stopping
+  because further evidence cannot flip the act).
+- **P2 (both internals fire) FAILS IN EVERY NAIVE CELL — and the
+  failure LOCALIZES.** Three knob families executed and refuted:
+  (i) the evidence clock is not the blocker — batch 1 walks the
+  purchase loop's exact count-path and refine still never fires;
+  (ii) the stream is not the blocker — on d6.1's own stream the
+  gain-positive window EXISTS (counts (2,0): bestGain 1/189,
+  refineValue +131/3780, the only positive point measured) but lies
+  beyond the first decisive tick; (iii) stakes scaling is not the
+  escape — refine's window and respond's guard row scale TOGETHER
+  ((10,-1) crowns respond at tick 0; (10,-10) and (100,-100) end
+  at final=R before the window). The blocker is the EPISODE SHAPE:
+  the decide-once loop (t2's) ends at the first decisive external,
+  and the refine window sits past it, structurally.
+- **The predicted divergence CONFIRMED.** The purchase-habitat menu
+  (wait/respond/think/refine — the t2 externals absent) was
+  PREDICTED IN ADVANCE to diverge at price 0: think's preposterior
+  base (actValueS) evaluates L/R, acts NOT on that menu, so the F4
+  tie can never fire. Measured: 500 thinks, DRIVER-CAP, exactly as
+  predicted. THE TERMINATION LAW IS CONDITIONAL: think terminates
+  only when the menu CONTAINS the acts its value function
+  evaluates.
+
+**The finding, named (CR1a).** R9's unification has NO coherent
+naive form: the record merge type-checks (P1) but the naive union
+either starves refine (decide-once) or diverges (habitat menus).
+The unification's real object is THE JOINT PREPOSTERIOR — think's
+value must be the preposterior of the MENU'S OWN best row, i.e. the
+policy sentence evaluated preposteriorly over itself (step 10's
+reflexive composition, now demanded by LIVENESS, not aspiration).
+This CONVERGES with the banked GroundC remedy (a) (EXACT_PLAN 13.3:
+"let the rung ladder see multi-step purchase value") — the joint
+preposterior is exactly that remedy, generalized to the whole menu.
+CR1's register consequence: the UNIFY-HERE default now carries this
+measured work order (a joint preposterior increment, not a record
+merge); the honest smaller alternative remains certify-as-is with
+the unification a named follow-on. The sitting chooses with the
+size known.
+
+## Part V — what happens next (the oracle phase; nothing binds until the key)
+
+1. Remaining evidence programs (R-D21 throwaways, transcripts to
+   this pack): the family generator's axis walk (CR3), the
+   reference extension's first cells, the pool operator drafts
+   (CR5). The CR1 and CR2 programs are executed (Part IV).
 2. The oracle: test-completeness/ as the ninth stanza — family
    rows, law rows, unification rows, F5 rows, pool matrix — written
    runtime-red against type-surface stubs, SAT in overlay form

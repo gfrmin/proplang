@@ -923,10 +923,21 @@ inherited dockets to run BEFORE the battery:
   economics. The unification is a JOINT WORLD RECORD plus the one
   standing chooseKS sentence carrying wait head, externals, think,
   and refine rows through the same one chooser — a world-type and
-  sentence motion, ZERO alphabet motion. DRAFT DEFAULT: unify at
-  this boundary, before certification; the alternative (certify
-  as-is, unification a named follow-on) re-opens certification
-  later by construction.
+  sentence motion, ZERO alphabet motion. [MEASURED at the opening
+  (EV-CR1, pack Part IV): the record merge is NECESSARY BUT NOT
+  SUFFICIENT — the naive union type-checks and its wire face is
+  the pure field union, but every naive tick law fails (decide-once
+  starves refine past the first decisive tick, three knob families
+  refuted; habitat menus diverge exactly as predicted, 500 thinks
+  to the driver cap). The unification's real object is THE JOINT
+  PREPOSTERIOR: think's value = the preposterior of the menu's own
+  best row — the policy sentence evaluated over itself, step 10's
+  reflexive composition demanded by LIVENESS; convergent with the
+  banked GroundC remedy (a).] DRAFT DEFAULT: unify at this
+  boundary, before certification, WITH the joint preposterior as
+  the measured work order; the alternative (certify as-is,
+  unification a named follow-on) re-opens certification later by
+  construction but is the honest smaller increment.
 - **CR2, F5's deletion** (the r1 tag's docket, argument pre-written
   at trampoline pack XIII.3): forgoneS (Purchase.hs:126) is
   mentioned only in refineRow's arm reachable where pess <= 0, on
@@ -999,10 +1010,12 @@ implementation. This section is a charter, not an oracle.
 
 ### 14.7 The register (drafted defaults; the author rules at the freeze)
 
-- **CR1** — R9's unification: UNIFY HERE (default) vs certify-as-is
-  with a named follow-on.
+- **CR1** — R9's unification: UNIFY HERE with the joint
+  preposterior (default; the size measured at EV-CR1) vs
+  certify-as-is with a named follow-on.
 - **CR2** — F5's forgone term: DELETE (default; XIII.3's argument,
-  M34's proof) vs keep-with-record.
+  M34's proof, the delta measured at EV-CR2: exactly 3^16 in
+  weight, ~25.36 bits) vs keep-with-record.
 - **CR3** — the family's axes and size: which declaration axes the
   generator walks, at what density; the printed residual's form.
 - **CR4** — the decision-law row set: VoI/affine/admissibility in

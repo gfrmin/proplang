@@ -1,0 +1,5 @@
+shipped policy weight  = 1 % 35917545547686059365808220080151141317043
+deleted policy weight  = 1 % 834385168331080533771857328695283
+ratio deleted/shipped  = 43046721 % 1
+predicted ratio 9^7*3^2 = 43046721 = 3^16 = 43046721
+prediction holds exactly: True
