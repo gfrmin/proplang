@@ -638,3 +638,58 @@ jp2c-chain-probe.txt (test-completeness/opening/).
 then the oracle (14.8's drafted shape + the JP8 rows), the FULL
 mandate round per the ruling, the freeze kit, and the author's
 sitting over JP1-JP8.
+
+## Part IX (continued) — EV-JP3/JP4: the naive forms convicted, the DP measured as the object (2026-07-27, after the opening commit 3e3f3c4)
+
+**EV-JP3 — the naive amortization SPREES (transcript
+jp3-amortized-run.txt).** Reading A as first drafted (refine row =
+H_rem x guard improvement - mints, the shipped cap-shape with the
+horizon declared): on the 60-stream it never fires (the crossing
+comes too late for the remaining horizon — consistent with JP2c's
+arithmetic); on the 120-stream it BREAKS THE DEADLOCK AT TICK 58 —
+and then buys for 62 consecutive ticks and NEVER RESPONDS. The
+mirror of F4's disease: a row whose value cites a future of
+responds that its own selection keeps postponing. One-tick base
+starves; naive horizon sprees — the two failures bracket the same
+missing object.
+
+**EV-JP4 — the finite-horizon DP, the lawful form (transcript
+jp4-dp-run.txt).** The refine row's value = the OPTIMAL
+CONTINUATION: V(o,t) = max(wait 0 + V; respond pess + V; refine
+-s + V(o+c)) over the declared episode, V(:,T) = 0 — the joint
+preposterior in realized-evidence form (reading B, expectation over
+the predictive, stays demand-gated per JP8). Probe scope declared:
+the high spine, chain extensions, memoized (chain, t). Pre-stated
+criteria, all met:
+
+- (1,-24), 60-stream: wait x45, refine x5 JUST IN TIME (@45-49),
+  respond x10 (@50-59), episode value +0.5212... — the DP fires
+  where BOTH naive forms fail, by anticipating the crossing and
+  buying exactly when the remaining respond-run pays the mints.
+- (1,-24), 120-stream: wait x45, refine x6, respond x69, value
+  +24.78 — NO SPREE; the DP internalizes cashing in.
+- (1,-171), 120-stream: all wait, value 0 — no spine chain pays at
+  these stakes within the horizon; the DP DECLINES, exactly (the
+  documented-myopia lineage's successor: honest refusal, valued).
+- Episode values strictly dominate the all-wait baseline wherever
+  refine fires.
+
+**The increment's design conclusion, now fully measured**: the
+unified internal menu's row values are the finite-horizon DP over
+the declared episode — think and refine both — with the tick's act
+the DP's argmax through the one chooser, incumbent-first. Every
+approximation of it in the record has a measured conviction:
+actValueS-off-menu (EV-CR1, diverges), the one-tick base (EV-JP2c,
+starves), cap x gain (the shipped form — pwLadderCap the baked
+horizon), naive amortization (EV-JP3, sprees). The sayable route is
+the DP's unrolling over the declared horizon (finite by
+declaration; the vThink3Sentence precedent), the engine's memoized
+DP the fast path pinned to it. JP8's register entry now reads:
+reading A = the realized-evidence DP (measured here), reading B =
+the predictive-expectation DP (demand-gated, no exact tractable
+form yet).
+
+Transcripts: jp3-amortized-run.txt, jp4-dp-run.txt
+(test-completeness/opening/). Next: the stub surface + the oracle
+(the DP rows pin these transcripts), the FULL mandate round, the
+freeze kit, the sitting over JP1-JP8.
