@@ -1,7 +1,7 @@
 {-# LANGUAGE DataKinds #-}
 -- THE JOINT-PREPOSTERIOR INCREMENT ORACLE (the completeness
 -- boundary's second increment; charter EXACT_PLAN 14.8, register
--- JP1-JP9; the design measured at EV-JP0..JP5, pack Parts IX-X).
+-- JP1-JP10; the design measured at EV-JP0..JP8, pack Parts IX-XII).
 -- RED BY DESIGN against the stub surface (runJointW returns Left,
 -- jointPolicyWeight errors) until the implementation lands after
 -- the author's freeze.
@@ -15,17 +15,24 @@
 --                               external — replicate n "think"
 --                               ++ [final] derives the full pinned
 --                               transcript from the frozen rows
---   d61 stream               <- test-dyadic/Dyadic.hs:218
+--   d61 stream               <- test-dyadic/Dyadic.hs:218 (the
+--                               cited cell takes 40; this oracle
+--                               takes the 36-prefix, the EV-CR1
+--                               lineage — noted, not silent)
 --   the DP cell transcripts  <- test-completeness/opening/
---                               jp4-dp-run.txt / jp5-sayable-route-
---                               run.txt (counts and first-fire
---                               ticks; contiguity asserted by these
---                               rows' own structure and proven at
---                               the SAT run)
+--                               jp6-dominance-run.txt (the
+--                               both-children optimum that
+--                               re-derived the pins; dominance over
+--                               the hi-spine probe's jp4/jp5 values
+--                               verified there; contiguity proven
+--                               at the SAT run). NOTE the standing
+--                               DP is the HINDSIGHT (declared-
+--                               stream planning) face — EV-JP7's
+--                               demonstration, pack Part XII
 --   g-jp6's price literal    <- the frozen weightIn executed over
 --                               the drafted 3-row chooser (the
---                               derivation transcript rides pack
---                               Part X's record): 1 % 3^42
+--                               derivation recorded at pack Part
+--                               XII's price-literal note): 1 % 3^42
 --   tNs                      <- test-trampoline/Trampoline.hs:117
 --   pin (the forced-expected helper) <- test-dyadic/Dyadic.hs:38-41
 --
@@ -65,20 +72,23 @@ tNs = mkNamespace ("price" :| [])
 -- the declared worlds (the cells the design measured)
 
 t2World :: Rational -> JointWorld
-t2World p = JointWorld { jwExts = [OLeft, ORight], jwThink = True
+t2World p = JointWorld { jwExts = [OLeft, ORight]
                        , jwPrice = p, jwBatch = 3, jwRefine = Nothing
+                       , jwDepth = 7
                        , jwStakes = (1, -1), jwShape = DecideOnce }
 
 habitatWorld :: Rational -> JointWorld
 habitatWorld p = JointWorld { jwExts = [OWait, ORespond]
-                            , jwThink = True, jwPrice = p, jwBatch = 3
+                            , jwPrice = p, jwBatch = 3
                             , jwRefine = Just (1 % 20)
+                            , jwDepth = 7
                             , jwStakes = (1, -1), jwShape = DecideOnce }
 
 dpWorld :: (Rational, Rational) -> JointWorld
-dpWorld st = JointWorld { jwExts = [OWait, ORespond], jwThink = False
+dpWorld st = JointWorld { jwExts = [OWait, ORespond]
                         , jwPrice = 0, jwBatch = 1
                         , jwRefine = Just (1 % 20)
+                        , jwDepth = 7
                         , jwStakes = st, jwShape = Standing }
 
 d61buf :: [Int]
@@ -168,11 +178,12 @@ main = defaultMain $ testGroup "jointprep (the reflexive increment: one menu, on
 -- ---------------------------------------------------------------
 
 refJoint :: (Rational, Rational) -> [Int] -> Either String [String]
-refJoint st stream = Right (fst (refSolve st (1 % 20) stream))
+refJoint st stream =
+  Right (fst (refSolve (jwDepth (dpWorld st)) st (1 % 20) stream))
 
-refSolve :: (Rational, Rational) -> Rational -> [Int]
+refSolve :: Int -> (Rational, Rational) -> Rational -> [Int]
          -> ([String], Rational)
-refSolve st s stream0 = (runFrom [] 0, tblGet [] total)
+refSolve depthCap st s stream0 = (runFrom [] 0, tblGet [] total)
   where
     total = length stream0
     countsAt = scanl (\(a, b2) y ->
@@ -181,16 +192,15 @@ refSolve st s stream0 = (runFrom [] 0, tblGet [] total)
                      (0, 0) stream0
     cAt t = case drop (t + 1) countsAt of
       (c : _) -> c
-      []      -> (total, 0)
+      []      -> error "refSolve: clock index (unreachable)"
     nodeAt path = go2 rootNode path
       where
         go2 n [] = n
         go2 n (hi : rest) = case sortOn nodeTheta (childrenOf n) of
           [lo, hi2] -> go2 (if hi then hi2 else lo) rest
-          _ -> n
+          _ -> error "refSolve: a lattice node has two children (unreachable)"
     ownedOf path = mkOwned (rootNode : [ nodeAt (take i path)
                                        | i <- [1 .. length path] ])
-    depthCap = 7 :: Int
     paths = concat [ allP n | n <- [0 .. depthCap] ]
     allP :: Int -> [[Bool]]
     allP 0 = [[]]

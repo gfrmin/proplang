@@ -1,79 +1,79 @@
 jointprep (the reflexive increment: one menu, one chooser, everywhere)
   g-jp1 anchors by declaration (menus are world data; t2 declares [L,R] and keeps its frozen behavior)
     g-jp1.1 price 3 % 10:                                                           FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the t2 transcript, derived from the frozen rows via the g3.3 partition law
       expected: Right ["think","L"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp1.1 price 3 % 10/' to rerun this test only.
     g-jp1.2 price 1 % 20:                                                           FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the t2 transcript, derived from the frozen rows via the g3.3 partition law
       expected: Right ["think","think","think","L"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp1.2 price 1 % 20/' to rerun this test only.
     g-jp1.3 price 1 % 200:                                                          FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the t2 transcript, derived from the frozen rows via the g3.3 partition law
       expected: Right ["think","think","think","think","think","think","think","think","think","think","think","think","L"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp1.3 price 1 % 200/' to rerun this test only.
     g-jp1.4 price 0 % 1:                                                            FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the t2 transcript, derived from the frozen rows via the g3.3 partition law
       expected: Right ["think","think","think","think","think","think","think","think","think","think","think","think","L"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp1.4 price 0 % 1/' to rerun this test only.
   g-jp2 the phantom cure (the base evaluates THE MENU; honest VoI of an unimprovable menu is zero)
     g-jp2 habitat price 0 % 1:                                                      FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       wait at tick 0 (EV-JP1's measured cure)
       expected: Right ["wait"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp2 habitat price 0 % 1/' to rerun this test only.
     g-jp2 habitat price 1 % 20:                                                     FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       wait at tick 0 (EV-JP1's measured cure)
       expected: Right ["wait"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp2 habitat price 1 % 20/' to rerun this test only.
     g-jp2 habitat price 3 % 10:                                                     FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       wait at tick 0 (EV-JP1's measured cure)
       expected: Right ["wait"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp2 habitat price 3 % 10/' to rerun this test only.
   g-jp3 the deadlock cured (the DP: just-in-time chain, no spree, honest decline)
     g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10:          FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the full transcript (EV-JP6's both-children optimum; dominance over the hi-spine probe verified: V0 0.6064... > 0.5212...)
       expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10/' to rerun this test only.
     g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE:                               FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       the full transcript (EV-JP6; V0 24.9357... > 24.7828...)
       expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE/' to rerun this test only.
     g-jp3.3 (1,-171) 120-stream: the honest decline:                                FAIL
-      test-jointprep/JointPrep.hs:60:
+      test-jointprep/JointPrep.hs:67:
       all wait (no chain pays at these stakes within the horizon)
       expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
       Use -p '/g-jp3.3 (1,-171) 120-stream: the honest decline/' to rerun this test only.
   g-jp4 liveness (structural, both shapes)
     g-jp4.1 standing: |transcript| == |stream| (the clock is the episode):          FAIL
-      test-jointprep/JointPrep.hs:125:
+      test-jointprep/JointPrep.hs:135:
       runJointW: the joint-preposterior increment's implementation is not yet landed
       Use -p '/g-jp4.1 standing: |transcript| == |stream| (the clock is the episode)/' to rerun this test only.
     g-jp4.2 decide-once: the final row is an external (F4's law on the joint menu): FAIL
-      test-jointprep/JointPrep.hs:133:
+      test-jointprep/JointPrep.hs:143:
       runJointW: the joint-preposterior increment's implementation is not yet landed
       Use -p '/g-jp4.2 decide-once: the final row is an external (F4'\''s law on the joint menu)/' to rerun this test only.
   g-jp5 the sayable-route pin (the reference recomputes the values by the quoted formulas and chooses via evalx; EV-JP5's identity as a standing row)
-    g-jp5.1 the DP cells against the sentence-choosing reference:                   FAIL (8.48s)
-      test-jointprep/JointPrep.hs:60:
+    g-jp5.1 the DP cells against the sentence-choosing reference:                   FAIL (8.41s)
+      test-jointprep/JointPrep.hs:67:
       stakes (1 % 1,(-24) % 1)
       expected: Right ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","wait","refine","refine","refine","refine","refine","refine","respond","respond","respond","respond","respond","respond","respond","respond","respond","respond"]
        but got: Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
@@ -82,7 +82,7 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
     g-jp6.1 the 3-row joint chooser's weight, DP world:                             FAIL
       Exception: jointPolicyWeight: the joint-preposterior increment's implementation is not yet landed
       CallStack (from HasCallStack):
-        error, called at src/PropLang/Membrane.hs:485:3 in main:PropLang.Membrane
+        error, called at src/PropLang/Membrane.hs:507:3 in main:PropLang.Membrane
       HasCallStack backtrace:
         collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
         toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
@@ -93,7 +93,7 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
     g-jp6.2 the t2 world's chooser prices identically (same 3-row form):            FAIL
       Exception: jointPolicyWeight: the joint-preposterior increment's implementation is not yet landed
       CallStack (from HasCallStack):
-        error, called at src/PropLang/Membrane.hs:485:3 in main:PropLang.Membrane
+        error, called at src/PropLang/Membrane.hs:507:3 in main:PropLang.Membrane
       HasCallStack backtrace:
         collectBacktraces, called at libraries/ghc-internal/src/GHC/Internal/Exception.hs:169:13 in ghc-internal:GHC.Internal.Exception
         toExceptionWithBacktrace, called at libraries/ghc-internal/src/GHC/Internal/IO.hs:260:11 in ghc-internal:GHC.Internal.IO
@@ -102,4 +102,4 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
       
       Use -p '/g-jp6.2 the t2 world'\''s chooser prices identically (same 3-row form)/' to rerun this test only.
 
-15 out of 15 tests failed (8.48s)
+15 out of 15 tests failed (8.41s)

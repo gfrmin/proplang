@@ -9,16 +9,16 @@ jointprep (the reflexive increment: one menu, one chooser, everywhere)
     g-jp2 habitat price 1 % 20:                                                     OK
     g-jp2 habitat price 3 % 10:                                                     OK
   g-jp3 the deadlock cured (the DP: just-in-time chain, no spree, honest decline)
-    g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10:          OK (8.57s)
-    g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE:                               OK (57.06s)
-    g-jp3.3 (1,-171) 120-stream: the honest decline:                                OK (29.54s)
+    g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10:          OK (8.53s)
+    g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE:                               OK (56.98s)
+    g-jp3.3 (1,-171) 120-stream: the honest decline:                                OK (29.18s)
   g-jp4 liveness (structural, both shapes)
-    g-jp4.1 standing: |transcript| == |stream| (the clock is the episode):          OK (101.42s)
+    g-jp4.1 standing: |transcript| == |stream| (the clock is the episode):          OK (100.25s)
     g-jp4.2 decide-once: the final row is an external (F4's law on the joint menu): OK (0.08s)
   g-jp5 the sayable-route pin (the reference recomputes the values by the quoted formulas and chooses via evalx; EV-JP5's identity as a standing row)
-    g-jp5.1 the DP cells against the sentence-choosing reference:                   OK (131.22s)
+    g-jp5.1 the DP cells against the sentence-choosing reference:                   OK (130.53s)
   g-jp6 the price rows (jointPolicyWeight reads src; the ruling's re-derivation discipline)
     g-jp6.1 the 3-row joint chooser's weight, DP world:                             OK
     g-jp6.2 the t2 world's chooser prices identically (same 3-row form):            OK
 
-All 15 tests passed (327.98s)
+All 15 tests passed (325.64s)

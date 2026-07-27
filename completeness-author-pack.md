@@ -867,3 +867,98 @@ enumerated loop-clock rows, both gate copies together),
 stanza.cabal.draft. Remaining before the sitting: the FULL mandate
 round (the ruling's demand) and freeze-commands; the sitting rules
 JP1-JP10.
+
+## Part XII — THE FULL MANDATE ROUND (six fresh-context reviewers, one mandate each, per the CR1 ruling; findings, dispositions, and the two demanded measurements; 2026-07-27)
+
+**The round's yield: eleven findings, three in the mandates' own
+incident lineages.** Dispositions executed pre-freeze (the oracle is
+builder-owned until the tag) unless marked SITTING.
+
+**Mandate 1 (theorem-as-definition).** (1a) "the DP IS the joint
+preposterior" was INSTALLED: the standing DP reads realized FUTURE
+counts. EV-JP7 (jp7-clairvoyance-run.txt) DEMONSTRATED the
+clairvoyance: two standing worlds sharing a 45-tick all-1s prefix,
+tails diverging — at tick 44, inside the shared prefix on identical
+past evidence, the all-1s-tail world BUYS and the 0s-tail world
+WAITS. REPAIRED BY RENAME: the standing DP is the HINDSIGHT
+(declared-stream PLANNING) face — exactly the optimal-play
+reference a certification battery needs — and the live agent's
+standing row value is READING B (the true preposterior), registered
+demand-gated (JP8's entry as amended). (1b) VoI >= 0 was cited from
+an EXPIRED bank (EV-CR4 measured the pre-base-fix object). EV-JP8
+(jp8-voi-run.txt) RE-EXECUTED it on the joint surface: 240 decision
+points, five stream shapes (incl. all-0s and alternating), both
+menu families — ZERO violations; jointPrepost/bestExtJ exported for
+the future law rows. (1c) = mandate 3's finding 1, repaired below.
+
+**Mandate 2 (asserted-not-derived).** (2a) JP10 was cited and never
+registered — REPAIRED: registered in full at 14.8. (2b) "the R1
+law" has no definition site; its content belongs to the STEP-5
+shape (menus as world data), R-R2/R_SCOPE section 2 (the
+option-order pin), and CL-3 (first-listed ties) — REPAIRED: both
+frozen derivation lines and the charter re-cited to the true
+provenances; the name retired.
+
+**Mandate 3 (defined-nowhere).** (3a) EV-JP6's transcript was
+uncommitted while the g-jp3 pins cited transcripts CONTRADICTING
+them — REPAIRED: jp6-dominance-run.txt committed, the oracle's copy
+table re-pointed. (3b) the price literal's claimed derivation
+record did not exist — REPAIRED: the derivation is HERE: the frozen
+weightIn executed over the drafted 3-row chooser (codes grid
+"jacts" 0..2, env arity 3, values three bound Vars) printed
+1 % 109418989131512359209 = 1 % 3^42; re-executable via
+jointPolicyWeight against the overlay. (3c) H_rem was defined
+nowhere — REPAIRED, the reading-A formula defined here for the
+record: EV-JP3's convicted amortized row was refineVal = max over
+chain extensions (depth <= r) of H_rem * (pess_after^+ -
+pess_now^+) - (mints spent), where H_rem = the declared episode
+length minus ticks elapsed, pess^+ = max 0 pess, mint = the world's
+refine surcharge per node; its conviction (the spree) and the DP
+that replaced it are Parts IX-X. (3d, minor) the d61 citation's
+take-36 divergence — noted in the oracle header.
+
+**Mandate 4 (type derivations).** (4a) jwThink :: Bool was the Util
+shape — a think-presence toggle licensed by no law, contradicting
+"never invoked, never excludable" — REPAIRED BY DELETION: the field
+is gone; decide-once always carries the think row (priced, never
+excludable); the standing shape's think-absence is an ENGINE-SCOPE
+line under JP4, never a world declaration. (4b/4c) the JointWorld
+and ExtOpt derivation lines cited laws that did not say what was
+claimed — REPAIRED: re-cited (P4 with the cap->horizon and
+declared-depth resolutions; EV-CR1 P1's constructors; the step-5 /
+R-R2 provenances).
+
+**Mandate 5 (overloaded conventions).** (5a) standingDP never read
+jwExts — the standing menu was preserved BY LUCK, R17's
+second-hand-declared-shape disease — REPAIRED: the standing loop
+now derives rows, order, and names from the declaration (OLeft/
+ORight in standing = an honest error naming register JP4); a
+divergent-declaration kill becomes possible at the close. (5b)
+jwPrice's double role (think economics + ceremony binding) and the
+silent disappearance of the priced Get "price" mention from the t2
+policy — REGISTERED: JP9 extended to the think side (SITTING); the
+Get-freeness/namespace-invariance consequence (mandate 6's F3)
+recorded with it. (5c) "wait" terminal-vs-idle — REPAIRED as a
+sense line in EpisodeShape's derivation + REGISTERED under JP5
+(SITTING ratifies the naming).
+
+**Mandate 6 (function-of).** (6a) cAt's silent (total, 0) fallback
+baked the all-1s shape symmetrically into engine and reference —
+REPAIRED: both are errors now, like their siblings (and the nodeAt
+truncation likewise). (6b) depthCap = 7 was ALSO inside the
+to-be-frozen oracle, so "lives in the overlay only" was false —
+REPAIRED STRUCTURALLY: jwDepth is a DECLARED JointWorld field (the
+charter P4 restatement's "declared lookahead depth"), every oracle
+world declares 7, engine and reference read the declaration; a
+JP10 "declared" ruling now changes nothing frozen. (6c) the chooser
+env's dead inputs and the third namespace in jointPolicyWeight —
+REGISTERED with JP9's extension: today's price/choice
+namespace-invariance is a consequence of the sentence's
+Get-freeness, declared here as such; any future in-sentence mention
+(JP9's question) re-opens it (SITTING).
+
+**After the round**: red re-verified 15/15 against the repaired
+stubs; SAT re-run against the repaired overlay; the implementation
+prophecy regenerated. The sitting rules JP1-JP10 with every
+register item carrying executed evidence and the mandate round's
+dispositions on the table.

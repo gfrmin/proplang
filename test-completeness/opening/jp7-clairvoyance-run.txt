@@ -1,0 +1,4 @@
+shared 45-prefix acts identical: False
+first divergence at tick: 44
+trA acts 40-50: ["wait","wait","wait","wait","refine","refine","refine","refine","refine","refine"]
+trB acts 40-50: ["wait","wait","wait","wait","wait","wait","wait","wait","wait","wait"]

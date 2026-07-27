@@ -1087,8 +1087,9 @@ else:
 1. **THE BASE-FIX** (EV-JP1): the preposterior's base case is the
    best external row OF THE DECLARED MENU. Measured: J1 — the four
    t2 anchors reproduce EXACTLY under the reflexive design, because
-   menus are world-declared (the R1 law) and t2 worlds declare
-   [L, R]: ANCHORS PRESERVED BY DECLARATION, not by luck. J2 — the
+   menus are world-declared (the step-5 shape; the R-R2 option-order
+   pin) and t2 worlds declare [L, R]: ANCHORS PRESERVED BY
+   DECLARATION, not by luck. J2 — the
    phantom-value divergence is cured AT THE ROOT: EV-CR1's
    500-think diverger now waits at tick 0, because think's honest
    VoI over the actual menu is zero (the phantom 0.4 was actValueS
@@ -1120,9 +1121,11 @@ else:
 **The liveness argument, re-argued fresh (the ruling's demand).**
 Think terminates by the honest-VoI tie — with the base equal to the
 menu's own best external, prepost >= bestExt always (VoI >= 0,
-EV-CR4's law) and equality at information exhaustion makes think
-TIE and lose to the incumbent, structurally — plus row-absence at
-buffer exhaustion. Refine's lookahead recursion is well-founded (r
+RE-EXECUTED on the base-fixed object at EV-JP8: 240 decision
+points, five stream shapes, zero violations — the EV-CR4 bank had
+expired with the base change, the mandate-1 finding) and equality
+at information exhaustion makes think TIE and lose to the
+incumbent, structurally — plus row-absence at buffer exhaustion. Refine's lookahead recursion is well-founded (r
 strictly decreases to the external-only base). LOOP-level refine
 termination is an oracle obligation, not an assumption: the
 transcript rows pin it.
@@ -1154,21 +1157,48 @@ transcript rows pin it.
   declares its episode shape — decide-once (the t2 face) or
   standing-service (the purchase face) — exactly as it declares its
   menu; both shapes carried by the one loop, the shape a
-  declaration field.
+  declaration field. AMENDED at the mandate round (the wait-sense
+  line): the decide-once null external is the null COMMITMENT and
+  shares only the string "wait" with the standing loop's per-tick
+  idleness; rows and prose citing "the agent waits" name the sense.
 - **JP6** — the mandate round: FULL, per the ruling (fresh-context
   reviewers, one mandate each), run against the drafted oracle.
 - **JP7** — the mutant pool's heirs: the M28/M30 class (ties,
   internal-first) re-cut against the joint loop, plus every new
   oracle row's forward-half kill.
+- **JP9** — the said-in-sentence question, EXTENDED at the mandate
+  round to the think side: the joint sentence carries no Get
+  mention (the t2 policy's priced Get "price" is gone; the ceremony
+  binding shares the world's declared namespace per R5), and
+  today's price/choice namespace-invariance is a CONSEQUENCE OF
+  GET-FREENESS, declared as such — any in-sentence mention the
+  sitting orders re-opens it. The F5 doctrine cuts against
+  re-minting a priced mention that buys nothing; the re-pricing of
+  the t2 policy under the joint form is the sitting's to ratify.
 - **JP8** — THE HORIZON IS THE CAP'S TRUE NAME (the opening's
   finding, EV-JP2c): refine's value in a standing world =
   (lookahead over buy-chains) x (the declared remaining-episode
   amortization); pwLadderCap is the baked ghost of that horizon.
-  The register item: the amortization's exact form (remaining
-  ticks x per-tick external value vs an evidence-aware forecast),
-  its declared wire field (the episode length is already
-  declared), and the cap's retirement path (JP2's d6 re-open
-  pricing now has its ground).
+  AMENDED AT THE MANDATE ROUND (EV-JP7's demonstration): the
+  landed standing DP is the HINDSIGHT face — the declared-stream
+  PLANNING evaluator (at tick 44 of a shared 45-prefix pair its
+  acts differ by the tail alone) — which is exactly the
+  optimal-play reference the certification battery needs; the LIVE
+  agent's standing row value is READING B, the true preposterior
+  (expectation over the predictive), REGISTERED demand-gated with
+  no exact tractable form yet. The cap's retirement path (JP2's d6
+  re-open pricing) keeps its ground.
+- **JP10** — THE EXPLORATION SCOPE (registered in full at the
+  mandate round; mandate 2 found it cited-not-registered). The
+  refine lookahead explores extensions of the owned set; its two
+  halves: DIRECTION — closed by dominance (EV-JP6: the
+  direction-neutral both-children walk strictly dominates the
+  hi-spine probe; a baked direction dies like a baked constant);
+  DEPTH — a DECLARED world field (jwDepth; every oracle world
+  declares 7, the frozen deepChain's depth plus one), so the
+  sitting's ruling is the field's ratification or its derived
+  successor — nothing frozen moves either way (the mandate-6
+  repair).
 
 **The oracle shape (drafted; oracle-first binds).** The
 anchors-by-declaration rows (J1's four cells); the phantom-cure row

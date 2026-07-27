@@ -1,0 +1,4 @@
+t2 p=0: decision points=60 violations=0
+t2 p=1/20: decision points=60 violations=0
+habitat p=0: decision points=60 violations=0
+habitat p=1/20: decision points=60 violations=0

@@ -437,16 +437,34 @@ runEpisode w pilot pw s0 nTicks =
 -- the trampoline precedent. Bodies arrive only after the author's
 -- freeze; every row of test-jointprep/ is red against these.)
 --
--- Type-derivation audit (the step-6 clause; each type WITH its line):
---   'ExtOpt'       — the R1 law's menu-as-world-data, as a declared
---                    external option sort (the world SAYS its menu).
+-- Type-derivation audit (the step-6 clause; each type WITH its line;
+-- citations repaired at the mandate round, pack Part XII):
+--   'ExtOpt'       — the declared external option sort: constructors
+--                    from EV-CR1 P1's measured menu (wait head,
+--                    L/R/respond externals); menus are world data
+--                    per the step-5 shape (membrane-wire: names and
+--                    grids, nothing else); order/incumbency is
+--                    R-R2/R_SCOPE section 2's option-order pin with
+--                    CL-3 first-listed ties.
 --   'EpisodeShape' — JP5's episode-shape law: the two shipped faces'
 --                    episode forms (decide-once = the t2 lineage,
 --                    standing = the purchase lineage), DECLARED.
+--                    The decide-once null external ("wait") is the
+--                    null COMMITMENT and shares only the string with
+--                    the standing loop's per-tick idleness (the
+--                    mandate-5 sense line; rows citing "waits" name
+--                    the sense).
 --   'JointWorld'   — the field union of the two shipped world faces
---                    (EV-CR1 P4's wire pin): menu, think economics,
---                    refine economics, stakes, shape. The horizon is
---                    the declared stream's length — no new field kind.
+--                    per EV-CR1 P4's wire pin, with two RESOLUTIONS
+--                    cited: pwLadderCap does not carry over — the
+--                    cap was the baked horizon and the horizon is
+--                    the declared stream's length (EV-JP4/JP8); and
+--                    the charter's P4 restatement adds THE DECLARED
+--                    LOOKAHEAD DEPTH (jwDepth — JP10's object,
+--                    declared world data, never an engine constant).
+--                    No think-presence field: deliberation is never
+--                    excludable by declaration (the charter's own
+--                    law; the mandate-4 finding deleted the Bool).
 -- =====================================================================
 
 data ExtOpt = OWait | OLeft | ORight | ORespond
@@ -457,11 +475,15 @@ data EpisodeShape = DecideOnce | Standing
 
 data JointWorld = JointWorld
   { jwExts   :: [ExtOpt]
-    -- ^ the declared external menu, order = incumbency (R1's order)
-  , jwThink  :: Bool
+    -- ^ the declared external menu; order = incumbency (the R-R2
+    -- option-order pin, CL-3 ties to the first listed)
   , jwPrice  :: Rational
   , jwBatch  :: Int
   , jwRefine :: Maybe Rational
+  , jwDepth  :: Int
+    -- ^ the refine lookahead's declared exploration depth (JP10:
+    -- declared world data — the kLadder lesson; the direction is
+    -- neutral-by-dominance, EV-JP6)
   , jwStakes :: (Rational, Rational)
   , jwShape  :: EpisodeShape
   }

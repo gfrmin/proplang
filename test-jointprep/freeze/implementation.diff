@@ -1,8 +1,17 @@
 diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
-index 2292064..76b02d3 100644
+index 787902f..87db07d 100644
 --- a/src/PropLang/Membrane.hs
 +++ b/src/PropLang/Membrane.hs
-@@ -62,7 +62,11 @@ module PropLang.Membrane
+@@ -52,6 +52,8 @@ module PropLang.Membrane
+   , JointWorld (..)
+   , runJointW
+   , jointPolicyWeight
++  , bestExtJ
++  , jointPrepost
+     -- the syntax-transport helpers (typed renaming, the priced
+     -- mention, the substitution expansion, the one-env binder) —
+     -- exported for the Host's wire policy route (pickWire /
+@@ -62,7 +64,11 @@ module PropLang.Membrane
    , substW
    ) where
  
@@ -14,7 +23,7 @@ index 2292064..76b02d3 100644
  
  import PropLang.Belief
  import PropLang.Enumerate
-@@ -467,19 +471,261 @@ data JointWorld = JointWorld
+@@ -489,19 +495,284 @@ data JointWorld = JointWorld
    }
    deriving (Eq, Show)
  
@@ -41,7 +50,7 @@ index 2292064..76b02d3 100644
 +-- compares.
 +chooseIdx :: Namespace -> Features -> [Rational] -> Either String Int
 +chooseIdx ns feats vs = case vs of
-+  [] -> Left "chooseIdx: empty menu (unreachable: wait is a head)"
++  [] -> Left "chooseIdx: the declared menu is empty"
 +  (_ : _) ->
 +    let n = length vs
 +        codeG = mkGrid "jacts" (0 :| map fromIntegral [1 .. n - 1])
@@ -93,6 +102,28 @@ index 2292064..76b02d3 100644
 +    (v : _) -> Right v
 +    []      -> Left "bestExtJ: index out of range (unreachable)"
 +
++-- | The base-fix preposterior (EV-JP1's measured form), exported for
++-- the VoI law rows (the EV-CR4 lineage re-executed on the joint
++-- surface, EV-JP8): the hypothetical obs move BOTH the belief and
++-- the guard counts; the base is the best external OF THE DECLARED
++-- MENU.
++jointPrepost :: Namespace -> Features -> JointWorld
++             -> Kernel Rational Int -> Int -> Belief Rational
++             -> Owned -> (Int, Int) -> Either String Rational
++jointPrepost ns feats w k d b owned c
++  | d <= 0 = bestExtJ ns feats w b owned c
++  | otherwise = do
++      parts <- mapM
++        (\y -> case condK b k y of
++           Just b' -> do
++             v <- jointPrepost ns feats w k (d - 1) b' owned
++                    (if y == (1 :: Int)
++                       then (fst c + 1, snd c) else (fst c, snd c + 1))
++             pure (predictMass b k y * v)
++           Nothing -> pure 0)
++        [0, 1]
++      pure (sum parts)
++
 +-- | The one joint loop: both episode shapes, both internal acts
 +-- declarable on one tick's menu, every choice through evalx (the
 +-- one-chooser-everywhere law, pack Part X).
@@ -107,29 +138,18 @@ index 2292064..76b02d3 100644
 --- lesson).
 +runJointW ns sp k w stream = case jwShape w of
 +  DecideOnce -> goOnce (uniform sp) (mkOwned [rootNode]) (0, 0) stream
-+  Standing
-+    | jwThink w -> Left "runJointW: standing think is register JP4 (not landed)"
-+    | otherwise -> standingDP ns w stream
++  -- the standing shape carries no think row THIS increment: an
++  -- engine-scope line (the composed standing tick is register JP4),
++  -- never a world declaration — deliberation is not excludable
++  Standing -> standingDP ns w stream
 +  where
 +    feats = [("price", jwPrice w)]
 +    st = jwStakes w
 +    bump (a, b2) y = if y == (1 :: Int) then (a + 1, b2) else (a, b2 + 1)
-+    -- the base-fix preposterior (EV-JP1's measured form): the
-+    -- hypothetical obs move BOTH the belief and the guard counts
-+    prepostJ d b owned c
-+      | d <= 0 = bestExtJ ns feats w b owned c
-+      | otherwise = do
-+          parts <- mapM
-+            (\y -> case condK b k y of
-+               Just b' -> do
-+                 v <- prepostJ (d - 1) b' owned (bump c y)
-+                 pure (predictMass b k y * v)
-+               Nothing -> pure 0)
-+            [0, 1]
-+          pure (sum parts)
++    prepostJ d b owned c = jointPrepost ns feats w k d b owned c
 +    goOnce b owned c buf = do
 +      extVs <- mapM (extValJ ns feats b owned c st) (jwExts w)
-+      thinkVs <- if jwThink w && not (null buf)
++      thinkVs <- if not (null buf)
 +        then do
 +          tv <- prepostJ (min (jwBatch w) (length buf)) b owned c
 +          pure [tv - jwPrice w]
@@ -204,17 +224,17 @@ index 2292064..76b02d3 100644
 +                     (0, 0) stream
 +    cAt t = case drop (t + 1) countsAt of
 +      (c : _) -> c
-+      []      -> (total, 0)
++      []      -> error "standingDP: clock index (unreachable)"
 +    nodeAt path = go2 rootNode path
 +      where
 +        go2 n [] = n
 +        go2 n (hi : rest) =
 +          case sortOn nodeTheta (childrenOf n) of
 +            [lo, hi2] -> go2 (if hi then hi2 else lo) rest
-+            _ -> n
++            _ -> error "standingDP: a lattice node has two children (unreachable)"
 +    chainNodes path = [ nodeAt (take i path) | i <- [1 .. length path] ]
 +    ownedOf path = mkOwned (rootNode : chainNodes path)
-+    depthCap = 7 :: Int
++    depthCap = jwDepth w
 +    paths = concat [ allPaths n | n <- [0 .. depthCap] ]
 +    allPaths :: Int -> [[Bool]]
 +    allPaths 0 = [[]]
@@ -236,25 +256,30 @@ index 2292064..76b02d3 100644
 +          | d <= 0 = 0
 +          | otherwise =
 +              let t = total - d
-+                  waitV = nxt path (d - 1)
-+                  respV = pessOf path t + nxt path (d - 1)
++                  extRow e = case e of
++                    OWait    -> nxt path (d - 1)
++                    ORespond -> pessOf path t + nxt path (d - 1)
++                    _ -> error "standingDP: the standing belief face is register JP4"
 +                  refVs = [ (-s) + nxt (path ++ [b2]) (d - 1)
 +                          | length path < depthCap, b2 <- [False, True] ]
-+                  vs = waitV : respV : refVs
++                  vs = map extRow (jwExts w) ++ refVs
 +              in at (pick vs) vs
 +        runFrom path t
 +          | t >= total = []
 +          | otherwise =
 +              let d = total - t
-+                  waitV = nxt path (d - 1)
-+                  respV = pessOf path t + nxt path (d - 1)
++                  extRow e = case e of
++                    OWait    -> nxt path (d - 1)
++                    ORespond -> pessOf path t + nxt path (d - 1)
++                    _ -> error "standingDP: the standing belief face is register JP4"
++                  extVs = map extRow (jwExts w)
 +                  refs = [ (path ++ [b2], (-s) + nxt (path ++ [b2]) (d - 1))
 +                         | length path < depthCap, b2 <- [False, True] ]
 +                  refRow = case refs of
 +                    [] -> []
 +                    _  -> [ at (pick (map snd refs)) refs ]
-+                  vs = [waitV, respV] ++ map snd refRow
-+                  nms = ["wait", "respond"]
++                  vs = extVs ++ map snd refRow
++                  nms = map extName (jwExts w)
 +                     ++ [ "refine" | not (null refRow) ]
 +                  nm = at (pick vs) nms
 +              in case nm of
@@ -265,8 +290,12 @@ index 2292064..76b02d3 100644
 +    goPlain t
 +      | t >= total = []
 +      | otherwise =
-+          let vs = [0, pessOf [] t]
-+              nm = at (pick vs) ["wait", "respond"]
++          let extRow e = case e of
++                OWait    -> 0
++                ORespond -> pessOf [] t
++                _ -> error "standingDP: the standing belief face is register JP4"
++              vs = map extRow (jwExts w)
++              nm = at (pick vs) (map extName (jwExts w))
 +          in nm : goPlain (t + 1)
 +
 +-- | The standing sentence's price for a declared world: the chooser
@@ -277,7 +306,10 @@ index 2292064..76b02d3 100644
 -  error "jointPolicyWeight: the joint-preposterior increment's implementation is not yet landed"
 +jointPolicyWeight w =
 +  let n = length (jwExts w)
-+        + (if jwThink w then 1 else 0)
++        + (case jwShape w of DecideOnce -> 1; Standing -> 0)
++          -- think's row: always on the decide-once menu (never
++          -- excludable); absent from the standing menu this
++          -- increment (the JP4 engine-scope line)
 +        + (case jwRefine w of Just _ -> 1; Nothing -> 0)
 +      doorNs = mkNamespace ("door" :| [])
 +      codeG = mkGrid "jacts" (0 :| map fromIntegral [1 .. n - 1])
