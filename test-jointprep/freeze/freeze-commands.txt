@@ -1,79 +1,45 @@
-# THE JOINT-PREPOSTERIOR FREEZE (run from the author's shell; plain
-# -S/-s is the author's attestation). The sitting rules JP1-JP10
-# (charter 14.8 + pack Parts IX-XII); running this script with a
-# [RULING] block intact accepts its drafted default — decline by
-# editing before running. The two-phase order: the freeze seals the
-# oracle + the E4 extension; implementation.diff lands in a BUILDER
-# commit only AFTER the tag.
-
-export PATH="$HOME/.ghcup/bin:$PATH"
-
-# 0. see what you are signing (the mandate round's dispositions are
-#    pack Part XII; the register is JP1-JP10, every item measured)
-git log --oneline 362e1c4..HEAD
-sha256sum --quiet -c MANIFEST.sha256 && echo "manifest OK pre-freeze"
-tail -3 test-jointprep/opening/red-run.txt    # 15/15 RED vs stubs
-tail -3 test-jointprep/opening/sat-run.txt    # 15/15 SAT vs the overlay
-cat test-completeness/opening/jp7-clairvoyance-run.txt  # the hindsight rename's ground
-cat test-completeness/opening/jp8-voi-run.txt           # the VoI bank re-executed
-git apply --check test-jointprep/freeze/implementation.diff && echo "prophecy applies"
-git apply --check test-jointprep/freeze/e4-extension.patch && echo "e4 extension applies"
-
-# 1. the stanza splice (proplang.cabal frozen; freeze-boundary edit)
-cat test-jointprep/stanza.cabal.draft >> proplang.cabal
-tail -16 proplang.cabal
-
-# 2. [RULING: the E4 allowlist extension — three loop-clock rows
-#    enumerated against the SAT overlay (the canonized law); JP10's
-#    depth-bound row enters WITH the register item that rules the
-#    bound's lawful form before implementation]
-git apply test-jointprep/freeze/e4-extension.patch
-
-# 3. extend the manifest over the increment oracle, then re-sign
-for f in test-jointprep/JointPrep.hs test-jointprep/stanza.cabal.draft \
-         test-jointprep/freeze/implementation.diff \
-         test-jointprep/freeze/e4-extension.patch \
-         test-jointprep/opening/red-run.txt \
-         test-jointprep/opening/sat-run.txt \
-         test-completeness/opening/jp6-dominance-run.txt \
-         test-completeness/opening/jp7-clairvoyance-run.txt \
-         test-completeness/opening/jp8-voi-run.txt; do
-  sha256sum "$f" >> MANIFEST.sha256
-done
-sed -i "s|^[0-9a-f]*  proplang.cabal\$|$(sha256sum proplang.cabal)|" MANIFEST.sha256
-sed -i "s|^[0-9a-f]*  audit/gates-exact.sh\$|$(sha256sum audit/gates-exact.sh)|" MANIFEST.sha256
-sed -i "s|^[0-9a-f]*  test-trampoline/freeze/gate-e4.sh\$|$(sha256sum test-trampoline/freeze/gate-e4.sh)|" MANIFEST.sha256
-sha256sum --quiet -c MANIFEST.sha256 && echo "manifest re-signed OK"
-
-# 4. the pre-freeze lint (its transcript rides the pack)
-tools/prefreeze-lint.sh | tee test-jointprep/freeze/lint-transcript.txt
-
-# 5. the freeze commit + tag (drafted defaults named; edit to decline)
-git add proplang.cabal MANIFEST.sha256 audit/gates-exact.sh \
-        test-trampoline/freeze/gate-e4.sh \
-        test-jointprep/freeze/lint-transcript.txt
-git commit -S -m "jp freeze: the reflexive oracle sealed (15 rows red on the stubs, SAT 15/15 on the one-chooser-everywhere overlay; stanza spliced; the E4 loop-clock extension applied; manifest extended)"
-git tag -s jp-freeze-r0 -m "the joint-preposterior increment's register ruled: JP1 the
-lookahead is bounded by declared data, JP2 the shipped myopic route
-keeps its cap and pins (the cap's deletion docketed to the battery
-sitting), JP3 the sayable route = the one-chooser-everywhere
-identity (EV-JP5, the oracle's g-jp5 pin), JP4 cross-nesting stays
-demand-gated, JP5 the episode shape is a world declaration, JP6 the
-mandate round ran full (pack Part XII), JP7 the pool heirs arrive
-at the close, JP8 the standing DP ships as the HINDSIGHT
-(declared-stream planning) face — EV-JP7's demonstration named it
-honestly — and reading B (the live preposterior) stays registered
-demand-gated, JP9 no re-minted mention on either side (the F5
-doctrine; the Get-freeness invariance recorded), JP10 the
-direction is neutral-by-dominance (EV-JP6) and the depth is
-DECLARED WORLD DATA (jwDepth, ratified as declared). The mandate
-round's eleven findings and dispositions (pack Part XII) are
-received; the round's three repairs-by-deletion (jwThink, the
-silent fallbacks, the by-luck standing menu) are ratified. The
-implementation lands after this tag, pinned to the sealed oracle."
-git tag -v jp-freeze-r0
-
-# 6. hand back to the builder: apply implementation.diff, cabal test
-#    all (jointprep red->green, standing suites stay green), gates
-#    incl. the extended E4, the close matrix with the JP7 heirs, the
-#    close-out report, the author's jp-freeze-r1 over it.
+# THE JOINT-PREPOSTERIOR FREEZE — the sitting's cover page.
+#
+# The sitting is THREE scripts, run in order ("of course we can use
+# multiple scripts" — the author, 2026-07-27; the monolith form was
+# rehearsed end-to-end in a scratch clone first, then split so the
+# author's key touches a file with nothing else in it):
+#
+#   bash test-jointprep/freeze/1-verify.sh
+#       READ-ONLY: the commits under review, manifest, red/SAT
+#       tails, the EV-JP7/JP8 transcripts, both patches --check.
+#       Run freely, before and during review.
+#
+#   bash test-jointprep/freeze/2-freeze.sh
+#       KEYLESS MECHANICS: the stanza splice, the [RULING] E4
+#       extension, the manifest extension + re-sign, the pre-freeze
+#       lint. set -euo pipefail + a double-run guard: it stops at
+#       the first failure and refuses a second splice.
+#
+#   bash test-jointprep/freeze/3-sign.sh
+#       THE AUTHOR'S TWO KEY ACTS: commit -S, tag -s jp-freeze-r0
+#       (message = the JP1-JP10 register ruling as drafted), then
+#       tag -v. Nothing else lives in this file.
+#
+# Rulings live where they execute: the E4-extension [RULING] block
+# is in 2-freeze.sh; the JP1-JP10 register ruling is 3-sign.sh's
+# tag message. Running a script with a [RULING] intact accepts its
+# drafted default — DECLINE BY EDITING the script before running
+# it. Edit BEFORE 2-freeze.sh runs: its manifest loop hashes all
+# three scripts and this cover as run, so the frozen kit records
+# the sitting as it actually happened; 3-sign.sh RE-VERIFIES the
+# manifest before its first key act, so an edit made after
+# 2-freeze.sh is refused mechanically (enforced, never trusted),
+# and its git add sweeps the kit so a pre-2 edit rides the freeze
+# commit itself.
+#
+# The two-phase order stands (the frozen protocol): the freeze
+# seals the oracle + the E4 extension FIRST; implementation.diff is
+# IMPLEMENTATION and lands in a BUILDER commit only AFTER the tag.
+# Do not apply implementation.diff at this sitting.
+#
+# After 3-sign.sh, hand back to the builder: apply
+# implementation.diff, cabal test all (jointprep red->green,
+# standing suites stay green), gates incl. the extended E4, the
+# close matrix with the JP7 heirs, the close-out report, the
+# author's jp-freeze-r1 countersign over it.

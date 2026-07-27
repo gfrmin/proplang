@@ -5,7 +5,10 @@ test-suite jointprep
     import:           warnings
     type:             exitcode-stdio-1.0
     main-is:          JointPrep.hs
-    hs-source-dirs:   test-jointprep
+    other-modules:    Anchors
+                    , OracleWorld
+                    , Streams
+    hs-source-dirs:   test-jointprep, test
     build-depends:    base
                     , containers
                     , proplang

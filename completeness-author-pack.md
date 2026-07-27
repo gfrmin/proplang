@@ -962,3 +962,107 @@ stubs; SAT re-run against the repaired overlay; the implementation
 prophecy regenerated. The sitting rules JP1-JP10 with every
 register item carrying executed evidence and the mandate round's
 dispositions on the table.
+
+## Part XIII — the sitting rehearsal (builder, 2026-07-27; the draft script executed end-to-end before the author touches it)
+
+**The instrument.** The author asked for help with the draft script
+(test-jointprep/freeze/freeze-commands.txt). The builder's answer,
+in the "enforced, never trusted" line: a DRESS REHEARSAL — the
+sitting script run verbatim in a scratch clone (repo-local
+verification config replicated; `touch` restores the pack's mtime
+ordering that a clone checkout scrambles), with exactly the two
+author-key steps stubbed (`git commit -S` -> `--no-gpg-sign`;
+`git tag -s` -> unsigned `-a`, its `tag -v` failure EXPECTED and
+labeled). Every other line — the splice, the [RULING] patch, the
+manifest extension and three-row re-sign, the full pre-freeze
+lint, the freeze commit's staging — executed for real.
+
+**Run 1 caught a would-be sitting failure.** Lint L7 (the
+full-corpus overlay build) FAILED: the drafted jointprep stanza
+named `hs-source-dirs: test-jointprep` only, while JointPrep.hs
+imports three modules from frozen test/ (Anchors, OracleWorld,
+Streams). The red/SAT runs resolved them via `ghc -isrc -itest`,
+so the defect was invisible to both transcript runs and would have
+fired FIRST at the author's sitting, inside the lint, after the
+manifest was already extended. The repair is the trampoline
+stanza's own form (`hs-source-dirs: test-jointprep, test` +
+`other-modules`), build-plumbing only — no flag changes, no row
+changes; the red/SAT transcripts' flag-faithfulness is untouched.
+
+**Run 2: green end-to-end.**
+
+    manifest OK pre-freeze
+    prophecy applies / e4 extension applies
+    manifest re-signed OK            (77 -> 88 rows)
+    PASS  L1..L6
+    PASS  L7 full-corpus overlay build
+    === prefreeze-lint: 0 FAIL, 0 WARN ===
+    [master ...] jp freeze: ... 5 files changed
+    REHEARSAL-EXPECTED: unsigned stub tag does not verify
+    (git status --porcelain: clean)
+
+The five staged files are exactly the intended set (proplang.cabal,
+MANIFEST.sha256, the two E4 gate copies, the lint transcript); the
+tag message renders as drafted, JP1-JP10.
+
+**Three draft repairs alongside the stanza fix**, each restoring an
+existing law or precedent, all builder-editable (nothing frozen
+moved):
+
+1. **The kit freezes itself** — `freeze/freeze-commands.txt` added
+   to the manifest loop. The dyadic and trampoline kits both carry
+   their own freeze-commands as manifest rows; f5 skipped it and
+   the jp draft inherited the skip. The M41 lesson ("a freeze-kit
+   artifact is a manifest row") decides for the majority form; the
+   hash is taken at run time, so a decline-by-edit is what gets
+   frozen — the custody record IS the ruling as run.
+2. **EV-JP5's transcript joins the manifest loop** — the tag cites
+   EV-JP5/JP6/JP7 by name and ratifies EV-JP8; jp6/7/8 were frozen,
+   jp5-sayable-route-run.txt was the one tag-cited evidence program
+   left outside. The recorded-repairs rider's spirit: what the tag
+   cites, the manifest covers.
+3. **The charter's stale register header** — EXACT_PLAN 14.8 said
+   "(JP1-JP7...)" over a register that runs through JP10; repaired
+   to JP1-JP10 (the same stale-count class as the opening review's
+   71->76 citation, caught by the same kind of cross-check).
+
+After these, the ONLY lines of the sitting script never executed
+anywhere are the two that only the author's key can execute. That
+is the smallest untested surface a rehearsal can leave.
+
+**Part XIII continued — the kit split into three scripts (the
+author's word, mid-construction: "of course we can use multiple
+scripts").** The monolith became a cover page plus three scripts,
+each owning one phase of the sitting: `1-verify.sh` (read-only,
+re-runnable freely), `2-freeze.sh` (the keyless mechanics: splice,
+[RULING] E4 patch, manifest extension + re-sign, lint), `3-sign.sh`
+(the author's two key acts and NOTHING else). The split bought four
+enforcements the monolith lacked: `set -euo pipefail` everywhere
+(the monolith plowed on past failures — the f5 first-run incident's
+shape); a DOUBLE-RUN GUARD on the splice (an interrupted sitting
+re-runs safely; a second run would have corrupted proplang.cabal);
+3-sign.sh RE-VERIFIES the manifest before its first key act, so a
+ruling edit made after 2-freeze.sh hashed the kit is refused
+mechanically instead of by comment; and 3-sign.sh's git add sweeps
+the kit, so a legitimate pre-2 decline-by-edit rides the freeze
+commit itself — the frozen record is the sitting as run.
+
+**The rehearsal caught the rehearser.** The two-sided rehearsal
+(PART A: green path, edit before 2; PART B: red path, edit after 2
+must be refused) first convicted the new enforcement line itself:
+`check && echo ok` under set -e is exempt on the left of `&&`, so
+PART B's refusal did not fire — the exact green-that-cannot-fail /
+red-that-cannot-fire pair the two-run-triptych clause names, here
+applied to sitting instrumentation. Every check now stands on its
+own line. Final run, both sides:
+
+    PART A: manifest 91 rows / lint 0 FAIL, 0 WARN /
+            GUARD-FIRED-AS-EXPECTED on the second 2-freeze.sh /
+            SEALED / tree clean post-seal / manifest OK post-seal
+    PART B: 3-sign.sh: FAILED (the edited row) ->
+            B-REFUSED-AS-EXPECTED exit=1 / B-NO-TAG (good)
+
+After this, the only lines of the sitting never executed anywhere
+remain the two only the author's key can execute — and both of
+their guards have now been shown to pass when they should and fire
+when they must.

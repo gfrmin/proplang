@@ -1130,7 +1130,7 @@ strictly decreases to the external-only base). LOOP-level refine
 termination is an oracle obligation, not an assumption: the
 transcript rows pin it.
 
-**The register (JP1-JP7; the author rules at this increment's freeze):**
+**The register (JP1-JP10; the author rules at this increment's freeze):**
 
 - **JP1** — the lookahead depth r: a world-declared field (the
   kLadder lesson: never baked); its wire name and default-absent
