@@ -1,0 +1,3 @@
+stakes (1 % 1,(-24) % 1) |stream|=60: wait=45 refine=5 respond=10 firstRefine@45 firstRespond@50 episodeValue=0.5212488006518188
+stakes (1 % 1,(-24) % 1) |stream|=120: wait=45 refine=6 respond=69 firstRefine@45 firstRespond@51 episodeValue=24.782818225287762
+stakes (1 % 1,(-171) % 1) |stream|=120: wait=120 refine=0 respond=0 firstRefine@never firstRespond@never episodeValue=0.0

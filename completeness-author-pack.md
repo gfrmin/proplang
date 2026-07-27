@@ -716,3 +716,34 @@ sayable-route rows pin engine == rollforward-sentence at the JP4
 cells. If it does not: the fork goes to the sitting as an
 alphabet-adjacent question (the two-sided gate's territory), with
 the failed attempt transcribed.
+
+**EV-JP5 — the sayable-route fork CLOSED by demonstration
+(transcript jp5-sayable-route-run.txt).** First finding of the
+re-execution: the step-10 banked positive's machinery is GONE — Pos
+died in the exact boundary's six-cut, so the expiry clause fires on
+a banked POSITIVE exactly as the step-10 amendment reads. The
+re-composition against the shipped 9+1 grammar dissolves the fork:
+iteration in this grammar has ALWAYS lived in the engine's licensed
+clock fold (the walk's move kernel, think's batch fold — the
+sentence says the STEP, the declared clock folds it), and the
+Bellman backup's chooser IS the standing chooseKS sentence — what
+changes is only WHAT THE ENGINE BINDS into env (row values carrying
+their continuations), and engine-bound row scalars are the shipped
+convention (pess/opt/gain, Purchase.hs:159). Executed: the EV-JP4
+DP with every per-tick choice made by evalx of the shipped-form
+chooseKS sentence over env-bound backed-up values — ALL THREE CELLS
+REPRODUCE BYTE-IDENTICALLY (acts, first-fire ticks, episode values
+0.5212... / 24.7828... / 0). No alphabet motion, no unrolling, no
+price explosion: the policy sentence's form and price are the
+shipped ones; the engine's memoized DP is a fast path whose pin
+target is this demonstrated identity. JP3's register item resolves
+to a pin row; nothing alphabet-adjacent goes to the sitting.
+
+**The design phase of this increment is COMPLETE.** Every fork
+opened by EV-CR1 is now resolved by executed demonstration:
+the base-fix (J1/J2), the episode-shape law (JP5's register
+draft), the refine row's lawful form (the finite-horizon DP —
+EV-JP2c/JP3/JP4's three-way conviction), and the sayable route
+(EV-JP5). What remains is construction: the stub surface, the
+oracle pinning these transcripts, the FULL mandate round, the
+freeze kit, and the sitting over JP1-JP8.
