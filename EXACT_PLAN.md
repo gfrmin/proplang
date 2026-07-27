@@ -812,3 +812,196 @@ Per the increment protocol: the oracle for this boundary is written
 oracle-first, runtime-red against type-surface stubs, SAT-transcribed
 (overlay form, flag-faithful), frozen by the author, THEN
 implemented. This section is a charter, not an oracle.
+
+## 14. The completeness suite boundary (OPENED by the author's instruction of 2026-07-27 — "open the completeness suite boundary", in-session, immediately after the trampoline-freeze-r1 push; destination map step 4)
+
+> **Boundary record.** OPENED 2026-07-27. Base 627bb12
+> (trampoline-freeze-r1, author key, verified); manifest 71/71 at
+> the opening. Per the V-cancellation lesson the opening becomes a
+> custody fact only at this boundary's freeze tag; until then this
+> charter, completeness-author-pack.md, and the builder commits
+> carry it. NOTHING FROZEN TOUCHED at the opening: one frozen-tool
+> repair was drafted, proven on the working tree, REVERTED, and
+> staged as test-completeness/freeze/boundary-audit-repair.patch
+> for the sitting (Part II of the pack).
+
+### 14.0 The claim
+
+Destination row 2 is the last unproven clause about the language
+itself: "to CREATE Bayesian-optimal agents" — sufficiency. Today it
+is witnessed by four acceptance tests plus the boundary anchors:
+POINTS, hand-picked. The suite proves it ONCE, against the final
+surface, and the paper's claim line becomes "sufficiency by executed
+interpolation." The name's ground is the brief's own (brief.md:66):
+Wald's complete-class theorem — every admissible decision rule is a
+Bayes rule against some prior and utility. The executable face of
+that theorem here: every world the wire can DECLARE gets, from the
+9+1 grammar alone, an agent whose behavior is exactly (==, Rational)
+the Bayes-optimal behavior an independent reference computes for
+that world.
+
+### 14.1 Executed interpolation, defined
+
+Sufficiency over an infinite class is not executable; the honest
+executable form has three parts, each already law-shaped:
+
+1. **The certified class is DECLARED**: C = the closure of the
+   World declaration — what a world can say (grids, arities,
+   prices, batches, stakes, menus, refine economics). The claim is
+   scoped to C by construction, and C is quoted, not implied.
+2. **The family DERIVES from the declaration grammar** (the
+   sweep-universe law: the universe derives from declared data,
+   never hand-enumeration). A generator in the increment's oracle
+   directory walks the declaration axes — grid size, arity K,
+   price regime (free/dear/intermediate), batch depth, stake sign
+   and magnitude, menu shape, refine present/absent — and emits
+   the world family. The four acceptance anchors become four
+   MEMBERS of the family, no longer the whole of the evidence.
+   The generator lands in-tree with its artifact (the generator
+   exemption; audit/capture_oracle.py the precedent).
+3. **Every member is checked EXACTLY against an independent
+   reference**: test/ExactReference.hs (frozen, row 42) extended
+   inside test-completeness/ — R-D20 copies with file:line
+   provenance wherever a frozen formula is shared, never a parallel
+   derivation — computes the Bayes-optimal episode transcript per
+   world; the row asserts shipped-vs-reference transcript equality
+   at exact ==. The RESIDUAL — the axes and ranges the family does
+   not span — is PRINTED by the suite, never absorbed (the
+   no-silent-caps law).
+
+### 14.2 The decision-law rows (the 2026-07-16 gap, landing here)
+
+The brief-adherence assessment found the decision side never
+property-tested — pins only. The laws land as exact rows over the
+family, certifying the EU commitment itself rather than any anchor:
+
+- **VoI >= 0**: the priced deliberation row never makes the agent
+  worse off in expectation than the act-now incumbent — an exact
+  Rational inequality per family member (the brief's own example of
+  a composition, now a law row).
+- **Affine invariance**: an affine rescale of the world's declared
+  stakes leaves the chosen act invariant, exactly.
+- **Admissibility (Wald's face, per-world)**: the chosen act is a
+  Bayes act against the reference posterior — the executable
+  fragment of the complete-class ground.
+
+Each row arrives WITH its kill (the forward half), read per-row
+against the pool (F6's amendment).
+
+### 14.3 The kill side — OB-20/21 discharge here
+
+The x5 sitting's ruling 4 scheduled two mutant pools with named
+discharge events and no named home; the boundary audit's OB-row
+flags them at this opening (open obligations against the closed
+x5-sitting-r0), and THIS boundary is the drafted home — a
+certification is honest only if its rows face pools that can reach
+them:
+
+- **OB-20, the reasoner pool**: Belief-level operators
+  (normalization, refusal-law, measure-shape over the sealed
+  reasoner) so the lawful + independence suites' 14 unreached rows
+  face a pool that can reach them.
+- **OB-21, the enumeration pool**: gating/combinatorics operators
+  (enumeration count, membership, fragment-table) for the
+  count/membership pins; the t2-price-path gap the first named
+  candidate.
+
+Discharge event per the ledger: the pools land in audit/mutants/
+with a matrix run whose kill lines reach those stanzas. Verdicts
+are the sitting's triage inputs, never auto-deletions.
+
+### 14.4 Surface-final motions FIRST (certify once)
+
+The destination map's own argument — certifying before the
+trampoline would have meant certifying twice — binds the two
+inherited dockets to run BEFORE the battery:
+
+- **CR1, R9's unification** (the r1 tag's standing question): think
+  AND refine on ONE declared tick's menu. No type can yet declare a
+  world carrying both — DelibWorld {dwPrice, dwBatch} carries the
+  clock, PurchaseWorld {pwStakes, pwLadderCap, pwRefine} the
+  economics. The unification is a JOINT WORLD RECORD plus the one
+  standing chooseKS sentence carrying wait head, externals, think,
+  and refine rows through the same one chooser — a world-type and
+  sentence motion, ZERO alphabet motion. DRAFT DEFAULT: unify at
+  this boundary, before certification; the alternative (certify
+  as-is, unification a named follow-on) re-opens certification
+  later by construction.
+- **CR2, F5's deletion** (the r1 tag's docket, argument pre-written
+  at trampoline pack XIII.3): forgoneS (Purchase.hs:126) is
+  mentioned only in refineRow's arm reachable where pess <= 0, on
+  which `If (Gt pessV zeroM) pessV zeroM` is identically zeroM —
+  M34's disposition is the vacuity proof (the "mutant" is
+  extensionally identical to shipped src). A PRICED MENTION THAT
+  BUYS NOTHING is the prodTable conviction relocated inside a
+  sentence. Deletion MOVES THE SENTENCE'S PRICE — adjudication,
+  the author's. DRAFT DEFAULT: DELETE before the battery; the new
+  price recorded; M34's identity becomes the deletion's
+  extensional pin; every price-mentioning row re-derived from the
+  frozen artifact.
+
+After both rulings the surface is FINAL; any later motion re-opens
+certification by construction, which is the destination map's
+termination argument in contrapositive.
+
+### 14.5 What this boundary does NOT do
+
+No alphabet motion (prodTable stays 9/1; a needed production is
+stop-and-report through the two-sided entry gate — and per the
+step-10 clause, any banked composition-failure this boundary would
+rely on is re-executed first; the alphabet last moved at c2ca82c,
+2026-07-25, and every bank relied on since was re-executed at or
+after that motion). No demonstration-tier work (the H-row's eight
+flagged symbols — the governor-features face and the founding
+interface's dormant sentences — stay untouched; that vocabulary is
+destination step 5's). No wire change beyond what the joint world
+declaration requires (transport unbroken; the 2026-07-25 ruling 2
+stands). OB-15, OB-19, the quine face, continuous carriers:
+demand-gated, untouched.
+
+### 14.6 The oracle shape (drafted rows; oracle-first binds)
+
+- **The family rows**: per family member, exact transcript equality
+  shipped-vs-reference (the interpolation battery, 14.1).
+- **The law rows**: VoI >= 0, affine invariance, admissibility over
+  the family (14.2).
+- **The unification rows** (under CR1's default): both internal
+  acts standing on one declared tick's menu; the one-chooser law on
+  the joint menu; the g3 (think) and g5 (refine) shapes reproduced
+  on the joint world; the price-only differential re-run on the
+  joint surface (same binary, two declared price rows, zero code
+  diff).
+- **The F5 rows** (under CR2's default): the sentence's new price
+  pinned from the frozen artifact; pre/post-deletion extensional
+  equality (M34's identity as the pin).
+- **The pool rows**: the matrix run reaching the lawful,
+  independence, and count/membership stanzas (14.3).
+
+Per the increment protocol as amended through the trampoline: the
+oracle is written oracle-first, runtime-red against type-surface
+stubs, SAT-transcribed in overlay form flag-faithful, E-gate
+allowlists enumerated against the SAT overlay, every red row with
+its satisfiability transcript and every new row with its kill; the
+six red-team mandates run against the increment; the pre-freeze
+lint transcript rides the pack; the author freezes, THEN
+implementation. This section is a charter, not an oracle.
+
+### 14.7 The register (drafted defaults; the author rules at the freeze)
+
+- **CR1** — R9's unification: UNIFY HERE (default) vs certify-as-is
+  with a named follow-on.
+- **CR2** — F5's forgone term: DELETE (default; XIII.3's argument,
+  M34's proof) vs keep-with-record.
+- **CR3** — the family's axes and size: which declaration axes the
+  generator walks, at what density; the printed residual's form.
+- **CR4** — the decision-law row set: VoI/affine/admissibility in
+  or out, each with its ground (the 2026-07-16 assessment the
+  provenance).
+- **CR5** — OB-20/21: discharge at this boundary (default; the
+  OB-row flag is the trigger) vs a separate increment.
+- **CR6** — the sufficiency claim's prose form for the paper: what
+  "in general" honestly says given a declared class, a derived
+  family, and a printed residual.
+- **CR7** — the frozen-tool repairs staged at the opening
+  (boundary-audit BF-row -S->-G; M5-row mutant-file definition
+  sites): execute at the freeze under the key (default) vs decline.

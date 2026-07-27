@@ -1,0 +1,41 @@
+diff --git a/tools/boundary-audit.sh b/tools/boundary-audit.sh
+index 7a1d6a7..23f76cc 100755
+--- a/tools/boundary-audit.sh
++++ b/tools/boundary-audit.sh
+@@ -31,6 +31,18 @@ for id in $ids; do
+   cites=$(grep -ohE "\b$id\b" $DOCS | wc -l)
+   defs=$(grep -hE "\b$id\b" $DOCS \
+          | grep -ciE "APPROVED|RULED|RULING|adopted|canoniz|DEFINITION|derivation|registered|recorded|because|the pin:|:=|^#{1,4} ")
++  # mutant IDs: an audit/mutants/<ID>-*.patch file IS the definition
++  # site (the trampoline Part II triage's named upgrade; the audit's
++  # "definition-shaped line" heuristic never counted patch files). A
++  # DELETED patch with its deletion in git history also counts —
++  # deleted mutants keep their historical pack citations legal
++  # (M19/M20/M22/M27, deleted at the trampoline r1 sitting).
++  case $id in
++    M*) if ls audit/mutants/"$id"-*.patch >/dev/null 2>&1 \
++           || git log --diff-filter=D --format= --name-only -- "audit/mutants/${id}-*.patch" 2>/dev/null | grep -q .; then
++          defs=$((defs+1))
++        fi ;;
++  esac
+   if [ "$defs" -eq 0 ]; then
+     printf 'FLAG  %-8s cited %3d times, candidate definition lines: 0\n' "$id" "$cites"
+     m5flags=$((m5flags+1))
+@@ -92,8 +104,16 @@ fi
+ # clause-(a) failure whose reliance postdates an alphabet motion it
+ # assumed. The alphabet's motion is prodTable's value in Syntax.hs;
+ # its last change is the commit that last touched that line.
++# [REPAIRED at the completeness opening, 2026-07-27: the original
++# -S pickaxe fires only when the string's OCCURRENCE COUNT changes,
++# so the in-place value edit 20->9 at the exact re-founding was
++# invisible — the row reported the alphabet as last moving
++# 2026-07-08 (f989c42) when the true last motion is c2ca82c,
++# 2026-07-25, the 9+1 surface itself. -G fires on any diff line
++# matching the regex. Two-sided: old output f989c42/2026-07-08,
++# repaired output c2ca82c/2026-07-25.]
+ bfflags=0
+-alphacommit=$(git log -1 --format=%H -S'prodTable = ProdTable' -- src/PropLang/Syntax.hs 2>/dev/null)
++alphacommit=$(git log -1 --format=%H -G'prodTable = ProdTable' -- src/PropLang/Syntax.hs 2>/dev/null)
+ if [ -n "$alphacommit" ]; then
+   alphadate=$(git log -1 --format=%cI "$alphacommit")
+   echo "banked-failure row: alphabet last moved at ${alphacommit%${alphacommit#???????}} ($alphadate)"
