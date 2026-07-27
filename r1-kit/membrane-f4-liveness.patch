@@ -1,0 +1,14 @@
+--- a/membrane-wire.md	2026-07-27 08:43:10.003758158 +0300
++++ b/membrane-wire.md	2026-07-27 08:43:10.022190275 +0300
+@@ -111,6 +111,11 @@
+   to the standing incumbent with zero branches (the
+   availability-from-pricing law; pinned by trampoline g1's tie
+   rows and g3's differential — reordering a menu moves meaning).
++  And it is LIVENESS, not only semantics: the internal-acts-last,
++  tie-to-incumbent order is the trampoline loop's TERMINATION
++  argument — a reorder that lets the price-0 think row survive its
++  tie is a divergence, not a preference (M28/M30, both diverging at
++  g3.1's free clock; the close matrix of 2026-07-27, F4).
+   A tick the
+   internal act wins replies `{"internal": "think"}` — nothing
+   fires on the wire; evidence on such a tick folds at feats ++ the

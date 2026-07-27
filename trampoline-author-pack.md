@@ -865,3 +865,21 @@ After r1 the increment ledger is empty. The roadmap's residue is the
 completeness suite — which inherits R9's unification question and
 F5's deletion docket — and the demonstration tier. The destination
 map's last line is in sight (the review's close).
+
+### XIII.7 — the kit (staged 2026-07-27, builder key)
+
+r1-kit/ carries the sitting as executable drafts. e4-repair.patch is
+Part XII's staged diff rendered byte-exact against both frozen gate
+scripts, and it is VERIFIED: applied to scratch copies and run
+against shipped src, E4 goes 4 -> 0 and both scripts exit 0 — no
+frozen file was touched in the proving. claude-canonizations.patch
+carries XIII.1 and XIII.4 (one patch; the paragraphs are adjacent by
+CLAUDE.md's chronological-append structure). membrane-f4-liveness.
+patch carries XIII.2. commands.sh is the sitting's full sequence:
+[RULING] blocks marked for decline-by-deletion, the manifest re-sign
+loop rehearsed on a copy (exactly four rows move, 71 preserved), the
+pre-freeze lint before the tag, and the drafted tag message carrying
+XIII.5's cure — both delegated tags named, R4/R11 ratified, F5
+defaulted to DOCKETED (its deletion moves the sentence's price and
+belongs to the completeness suite's oracle, not a sitting). All
+three patches `git apply --check` clean at this commit.

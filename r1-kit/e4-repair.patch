@@ -1,0 +1,58 @@
+--- a/audit/gates-exact.sh	2026-07-27 08:43:10.000875682 +0300
++++ b/audit/gates-exact.sh	2026-07-27 08:43:10.021764678 +0300
+@@ -33,9 +33,14 @@
+ #   Host: draw's cumulative sampling walk (host randomness, CL-2's
+ #         side of the boundary), rNum's display-integrality check
+ #         (the render edge), the hello arity validation (parse
+-#         layer, before the engine exists);
++#         layer, before the engine exists), the hello batch
++#         validation (wire-input, category (a)), thinkValue's
++#         d <= 0 recursion base (the loop clock);
+ #   Membrane: runEpisode's tick-count loop bound (the clock's
+-#         index, never an engine-derived value).
++#         index, never an engine-derived value), preposteriorV's
++#         d <= 0 recursion base and runTrampoline's batch-law
++#         min (dwBatch w) (length buf) (the loop clock; the min
++#         IS the frozen `min 3 bufLen` law g3.1 pins).
+ # The non-scriptable half (what "engine provenance" means) is law as
+ # prose with the E-gate register. CATEGORY LAW (register R11, RULED
+ # at the trampoline freeze: license-by-name — pack Part XI): beyond
+@@ -56,6 +61,9 @@
+   | grep -vE 'abs d < 1e15' \
+   | grep -vE '&& r >= 2' \
+   | grep -vE '\| t >= nTicks' \
++  | grep -vE '&& bI >= 1' \
++  | grep -vE '\| d <= 0 =' \
++  | grep -vE 'min \(dwBatch w\) \(length buf\)' \
+   | grep -c .)
+ echo "E4 engine-derived comparisons outside evalx: $e4 (must be 0; allowlist: draw walk, rNum display, arity validation, tick bound)"
+ [ "$e4" -eq 0 ] || fail=1
+--- a/test-trampoline/freeze/gate-e4.sh	2026-07-27 08:43:10.002314671 +0300
++++ b/test-trampoline/freeze/gate-e4.sh	2026-07-27 08:43:10.021843016 +0300
+@@ -7,9 +7,14 @@
+ #   Host: draw's cumulative sampling walk (host randomness, CL-2's
+ #         side of the boundary), rNum's display-integrality check
+ #         (the render edge), the hello arity validation (parse
+-#         layer, before the engine exists);
++#         layer, before the engine exists), the hello batch
++#         validation (wire-input, category (a)), thinkValue's
++#         d <= 0 recursion base (the loop clock);
+ #   Membrane: runEpisode's tick-count loop bound (the clock's
+-#         index, never an engine-derived value).
++#         index, never an engine-derived value), preposteriorV's
++#         d <= 0 recursion base and runTrampoline's batch-law
++#         min (dwBatch w) (length buf) (the loop clock; the min
++#         IS the frozen `min 3 bufLen` law g3.1 pins).
+ # The non-scriptable half (what "engine provenance" means) is law as
+ # prose with the E-gate register. CATEGORY LAW (register R11, RULED
+ # at the trampoline freeze: license-by-name — pack Part XI): beyond
+@@ -32,6 +37,9 @@
+   | grep -vE 'abs d < 1e15' \
+   | grep -vE '&& r >= 2' \
+   | grep -vE '\| t >= nTicks' \
++  | grep -vE '&& bI >= 1' \
++  | grep -vE '\| d <= 0 =' \
++  | grep -vE 'min \(dwBatch w\) \(length buf\)' \
+   | grep -c .)
+ echo "E4 engine-derived comparisons outside evalx: $e4 (must be 0; allowlist: draw walk, rNum display, arity validation, tick bound)"
+ [ "$e4" -eq 0 ] || fail=1
