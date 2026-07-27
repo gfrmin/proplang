@@ -1209,3 +1209,38 @@ absence-structural, loop-termination); the sayable-route pin
 (engine == unrolled sentence, extensional, in-increment); the joint
 sentence's price rows (re-derived post-F5, the ruling's
 discipline); kills per row, read per-row against the pool.
+
+### 14.9 The wire docket riding the next sittings (recorded 2026-07-28; the author: "as long as they're on the roadmap")
+
+Three life-agent escalations of 2026-07-27 (issues #19, #20, #21 —
+one batch, all on live-path evidence) are ON THE ROADMAP as of this
+note, awaiting their SCHEDULING RULING at the next author sitting
+(the jp freeze sitting if the author extends its docket; the
+certification battery sitting by default). None touches the JP
+oracle; all are wire/hosts-side and parallelizable with the JP
+implementation. Each lands as its own oracle-first frozen increment
+when ruled — this note schedules nothing by itself; it fixes the
+docket so no sitting can miss them.
+
+The natural order, from the dispositions pack's own analysis
+(VIII.1-VIII.4), is:
+
+1. **#20 first** — the K-ary readout micro-increment (VIII.1:
+   GRANT, cheaper than filed; p0/the O(K) vector on the decide
+   reply, observability-only). It is the INSTRUMENT that watches
+   OB-19's null cap bind on live traffic, and the consumer now
+   states it gates their M4 go/no-go.
+2. **The OB-19 heir second** — enumeration breadth beyond
+   one-vs-rest (ledger row OB-19, RULING-PENDING; #21 its first
+   field demand, now a declared M4 blocker). The author's caution
+   rider binds: the increment's oracle carries a ms/tick row; the
+   consumer has OFFERED live latency-vs-K / population-vs-K curves
+   (solicited in the issue comment of this date) to ground it.
+3. **#19 (theta ceiling)** — either horn 1a (hello-declared finer
+   theta grid, VIII.2's recommendation; now carrying a measured
+   -0.58 EU/question regression on a committed path) or absorbed
+   into VIII.4's one-doctrine option ("declared resolution, priced
+   by mention bits, is world data; hard-wired resolution is a
+   limitation with an heir"), which would dispose of #19(1a),
+   OB-19's design direction, and W3's fifth scoping line in one
+   ruling. Which of the two is the sitting's call.
