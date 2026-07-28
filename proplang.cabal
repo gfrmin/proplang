@@ -28,9 +28,18 @@ library
                       PropLang.Lattice
                       PropLang.Purchase
     hs-source-dirs:   src
-    -- src depends on base ONLY (frozen-oracle decision: keeps the audit's
-    -- `ghc -isrc` ablation compiles package-DB-free)
+    -- src depends on GHC BOOT LIBRARIES ONLY (amended at the jp
+    -- increment's freeze-boundary repair, 2026-07-28, author's key:
+    -- the original words "src depends on base ONLY (frozen-oracle
+    -- decision: keeps the audit's `ghc -isrc` ablation compiles
+    -- package-DB-free)" were falsified by the jp DP's lazy memo
+    -- table (Data.Map); the rationale SURVIVES as re-stated --
+    -- containers ships inside every bare GHC install
+    -- (lib/package.conf.d), so the frozen ablation runner's plain
+    -- `ghc --make -isrc` compiles unchanged: 6/6 PASS executed
+    -- against the containers-importing src BEFORE this edit)
     build-depends:    base >=4.16 && <5
+                    , containers
     default-language: GHC2021
 
 executable proplang-host
