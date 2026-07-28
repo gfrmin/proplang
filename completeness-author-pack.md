@@ -1214,3 +1214,55 @@ verdicts received (M46/M47 UNREACHED + mint-level finding -> the
 battery docket; the structural-shadowing verdicts recorded). (4)
 The wire docket (EXACT_PLAN 14.9) rides to the battery sitting
 unless extended here.
+
+## Part XVI — the CERTIFICATION BATTERY increment OPENED (the author: "push and then sitting", 2026-07-28; the ruled sequence's third act; base = a2dcbbc pushed, jp-freeze-r0/r1 on origin)
+
+**The consolidated docket** (everything the battery sitting rules,
+gathered from the chartered register plus what the two prior
+increments docketed here):
+
+| item | question | drafted default / ground |
+|---|---|---|
+| CR3 | the family's axes + density; residual form | EXTEND the EV-CR3 walk to the JOINT declaration closure (post-CR1 the shipped object is runJointW); residual printed |
+| CR4 | the law-row set | VoI + scale-invariance IN (measured); SHIFT half = menu-convention ruling; admissibility needs richer menus |
+| CR5 | OB-20/21 discharge here vs separate | HERE (the OB-row flag; 14.3's drafted home) |
+| CR6 | the sufficiency claim's prose form | drafted with the pack at the freeze |
+| CR7 | frozen-tool repairs staged at the opening | EXECUTE at the freeze under the key |
+| JP2-d6 | pwLadderCap's fate | measured below (E-B1); the sitting rules |
+| M46/M47 | the standing menu-order + partial-tail-batch rows | rows drafted into the battery oracle (the close matrix's verdicts) |
+| mint-level | the standing mint's level pinned only via g-jp5.1 | a transcript-level differential row drafted |
+| 14.9 | the wire docket's scheduling ruling | #20 readout -> OB-19 heir -> #19 1a-or-doctrine |
+
+**E-B1 (the cap's live extent, measured at the opening).** grep
+over src/: NO module imports PropLang.Purchase — the wire routes
+nothing through it (issue #19's own finding, still true), Membrane
+mentions it in comments only, and the jp DP reads jwRefine/jwDepth,
+never pwLadderCap. The cap's ONLY consumers are frozen oracles
+(test-dyadic declares 16 in three rows; test-f5's price pins read
+purchaseRows). So the JP2 question at this sitting is honestly
+NAMED: not "does the cap distort a live route" (it cannot — no live
+route exists) but "does the myopic Purchase face stay in the
+language as a frozen-pinned alternative, or retire now that the
+joint DP is the shipped object". Retiring the FIELD breaks the
+frozen dyadic declarations — a frozen-oracle amendment under the
+author's key, the R-D22 form; keeping it keeps a test-only organ
+with its pins honest. The sitting rules with this measurement on
+the table.
+
+**The build plan (oracle-first, the jp pattern).** test-battery/
+carries: the family generator walking the JOINT declaration
+closure (jwExts family, price regime, batch, refine
+present/absent, shape, stakes, streams — density per CR3's
+ruling), every member checked shipped-vs-reference at exact ==,
+the reference extending test/ExactReference.hs + the jp refSolve
+by R-D20 copy with provenance; the law rows (VoI >= 0, scale
+invariance, admissibility-fragment) over the family via the
+exported jointPrepost/bestExtJ; the F5 rows (the post-deletion
+price pin + M34's identity, re-derived); the M46/M47/mint rows
+(a standing tie stream, a partial-tail-batch stream, a mint-level
+differential); the OB-20/21 pools in audit/mutants/ with the
+matrix run reaching the lawful/independence/count stanzas. Red
+against stubs where implementation is owed; where the battery
+pins ALREADY-SHIPPED behavior (the family rows), the PIN-FREEZE
+clause applies and the red half is seeded-defect demonstrations
+(the step-2 precedent, as amended step-10).
