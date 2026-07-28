@@ -1072,3 +1072,47 @@ After this, the only lines of the sitting never executed anywhere
 remain the two only the author's key can execute — and both of
 their guards have now been shown to pass when they should and fire
 when they must.
+
+## Part XIV — the implementation phase's stop-and-report: the package-faithfulness gap (2026-07-28, minutes after jp-freeze-r0)
+
+**The incident.** The first `cabal test all` after applying the
+frozen prophecy FAILED TO BUILD: Membrane.hs's DP memo imports
+Data.Map, and the LIBRARY stanza's build-depends is base-only — BY
+RECORDED DECISION, not oversight ("src depends on base ONLY
+(frozen-oracle decision: keeps the audit's `ghc -isrc` ablation
+compiles package-DB-free)"). proplang.cabal is frozen; the builder
+stopped and reported rather than hatching.
+
+**Why the oracle phase could not catch it.** The overlay SAT
+compile ran through plain ghc, which exposes the GLOBAL package db
+— every GHC boot library, containers included. `cabal build` hides
+everything not declared. So the overlay was FLAG-faithful (the
+step-5 law) but not PACKAGE-faithful: a dependency gap in the
+frozen build file is invisible to every plain-ghc compile by
+construction. CANONIZATION CANDIDATE for the r1 sitting: an
+overlay SAT compile runs under the stanza's DEPENDENCY CLOSURE
+(cabal-visible packages only, e.g. `-hide-all-packages` plus the
+declared list), so bit-faithful means flag-faithful AND
+package-faithful — the same clause, one level down the toolchain.
+
+**The discriminating work, executed.** (1) The frozen ablation
+runner (audit/ablation-exact/run.sh, manifest row) was run against
+the containers-importing src: 6/6 PASS — the plain-ghc audit
+surface is UNAFFECTED. (2) containers-0.7 verified resident in
+GHC 9.10.3's own lib/package.conf.d — a boot library, present in
+every bare install; the decision's RATIONALE (ablation compiles
+need nothing beyond bare GHC) survives the amendment; only its
+literal words do not. (3) Route B (a base-only rewrite of the memo)
+was declined: it deviates from the SAT-certified overlay and
+re-opens the oracle phase's evidence to preserve words whose
+substance survives Route A.
+
+**The remedy** is 4-repair.sh + containers-repair.patch (the
+author's key): the decision re-stated as GHC-BOOT-LIBRARIES-ONLY
+with the falsified words quoted inside the amendment (the
+frozen-layer inventory form), the manifest re-signed with the
+repair kit hashing itself in, the frozen ablation audit re-executed
+green inside the script, R-D22 satisfied by the r1 ratification.
+Validated end-to-end in a scratch clone (sealed HEAD + prophecy +
+stubbed repair -> jointprep suite) before the author was handed the
+script.
