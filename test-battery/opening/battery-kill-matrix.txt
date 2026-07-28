@@ -38,3 +38,17 @@ SITTING: the row's red needs a knife-edge stream (a tick with guard value strict
 needs; both join the sitting docket as one construction item. The row itself is NOT
 vacuous-by-construction (the case-split repair made refusal fail it), but its red-half
 demonstration is OWED, stated here rather than papered.
+
+=== SUPERSESSION (2026-07-28, the author's ruling "never owe a red if possible") ===
+The "g-b2.2 red OWED" verdict above is DISCHARGED by construction, not carried:
+the R-D21 probe (knife-probe.txt) measured the guard's structural cap — at root-owned
+counts the worst-node win probability saturates at 1/2, so g_max = (1-s)/2 and the
+M62 window (-1,-1/5) is UNREACHABLE at stakes (1,-24) on any stream (why the first
+matrix missed); at stakes (1,-2), g(0,0) = -7/8 sits inside the window at tick 0.
+Repairs shipped (82 rows): g-b2.2 gains the (1,-2)/(2,-4)/(5,-10) window triple;
+g-b2.3 pins mint-with-stakes homogeneity (real transcript, 6 buys, x2/x5 invariant);
+g-b3.4 the mint-level differential at the MEASURED margin (buys 6 at 1/10, 0 at 1/5 -
+the x2 level change the jp close found the transcripts blind to).
+Re-run, serial: M62 fires g-b2.2 g-b2.3 g-b3.1 g-b3.2 g-b3.4 (5/82);
+M48 fires g-b2.3 g-b3.4 (2/82 - M48's battery reach was 0 before this).
+EVERY battery row now has a demonstrated red; the residual row is RECORD class.

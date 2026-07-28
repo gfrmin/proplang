@@ -226,7 +226,7 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
                         (Left m, _) -> assertFailure m
                         (_, Left m) -> assertFailure m)
                 familyCells
-      , testCase "g-b2.2 scale invariance: the standing act stream is stake-scale-invariant (x2, x5)" $
+      , testCase "g-b2.2 scale invariance: the standing act stream is stake-scale-invariant (x2, x5; three stakes forms - the (1,-2) triple carries M62's window, g(0,0) = -7/8 inside (-1,-1/5), the R-D21 probe in opening/; the mint-scaled triple pins homogeneity with real buys)" $
           mapM_ (\(sn, stream) ->
                    let tr st = case runJointW tNs egSpace emitK (dpWorldB st) stream of
                          Right t -> pure t
@@ -235,8 +235,31 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
                          t2 <- tr (2, -48)
                          t5 <- tr (5, -120)
                          pin ("x2 " ++ sn) t1 t2
-                         pin ("x5 " ++ sn) t1 t5)
+                         pin ("x5 " ++ sn) t1 t5
+                         u1 <- tr (1, -2)
+                         u2 <- tr (2, -4)
+                         u5 <- tr (5, -10)
+                         pin ("window x2 " ++ sn) u1 u2
+                         pin ("window x5 " ++ sn) u1 u5)
                 streamAxis
+      , testCase "g-b2.3 mint-with-stakes homogeneity: scaling ALL payoffs (stakes AND mint) leaves the buying transcript invariant (real acts: 6 buys)" $
+          let trm k = case runJointW tNs egSpace emitK
+                             (JointWorld { jwExts = [OWait, ORespond]
+                                         , jwPrice = 0, jwBatch = 1
+                                         , jwRefine = Just (k * (1 % 10))
+                                         , jwDepth = 7
+                                         , jwStakes = (k * 1, k * (-24))
+                                         , jwShape = Standing })
+                             (replicate 60 1) of
+                Right t -> pure t
+                Left m -> assertFailure ("refusal is not invariance: " ++ m) >> pure []
+          in do h1 <- trm 1
+                h2 <- trm 2
+                h5 <- trm 5
+                assertBool "the x1 transcript really buys (6 refines)"
+                           (length (filter (== "refine") h1) == 6)
+                pin "homogeneity x2" h1 h2
+                pin "homogeneity x5" h1 h5
       ]
   , testGroup "g-b3 the docketed rows (the jp close's UNREACHED verdicts, given reach)"
       [ testCase "g-b3.1 the standing tie stream, refine declared: stakes (0,0) tie every tick at the DP's act site, wait wins by declaration order" $
@@ -249,6 +272,20 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
           pin "all-wait (the mint-free standing route's menu order; its reversal is a pool candidate at this increment's close)"
               (Right (replicate 40 "wait"))
               (runJointW tNs egSpace emitK (dpWorldB (0, 0)) (replicate 40 1))
+      , testCase "g-b3.4 the mint-level differential (the jp close's finding cured: the level is live at the MEASURED margin - buys flip between 1/10 and 1/5, a x2 level change; probe in opening/)" $
+          let buysAt sm = case runJointW tNs egSpace emitK
+                                 (JointWorld { jwExts = [OWait, ORespond]
+                                             , jwPrice = 0, jwBatch = 1
+                                             , jwRefine = Just sm, jwDepth = 7
+                                             , jwStakes = (1, -24)
+                                             , jwShape = Standing })
+                                 (replicate 60 1) of
+                Right t -> pure (length (filter (== "refine") t))
+                Left m -> assertFailure m >> pure (-1)
+          in do b10 <- buysAt (1 % 10)
+                b5 <- buysAt (1 % 5)
+                pin "mint 1/10 buys" (6 :: Int) b10
+                pin "mint 1/5 buys (the level PRICES the vocabulary out)" (0 :: Int) b5
       , testCase "g-b3.3 the partial-tail-batch cell (the M47 knife-edge: VoI(1)=0 < p=1/20 < VoI(3)=36/625 at the post-think belief; R-D21 probe in opening/)" $
           let stream = take 4 buffer36
           in pin "think once, then act (the min gates the tail: one remaining obs prices deliberation at VoI(1)-p < 0)"
@@ -275,8 +312,8 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
         , "  - K>2 obs arities and the guard/tau/rho families (the t1/t3 faces)"
         , "  - stream lengths beyond 36/40; adversarial compositions beyond the two declared"
         , "  - batch depths beyond 3; grids beyond {9,5,3} points"
-        , "  - the mint-level differential cell: DRAFTED, awaiting its knife-edge construction"
-        , "    (the battery sitting's docket; the M47 cell SHIPPED as g-b3.3 - mandate 3b's repair)"
+        , "  - (the M47 cell SHIPPED as g-b3.3; the mint-level cell SHIPPED as g-b3.4;"
+        , "    the scale window SHIPPED inside g-b2.2 - no red is owed)"
         ]
       assertBool "residual printed" True
   ]
