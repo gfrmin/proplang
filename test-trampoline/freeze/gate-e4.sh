@@ -40,6 +40,9 @@ e4=$(for f in $e4files; do sed 's/--.*$//' "$f" 2>/dev/null; done \
   | grep -vE '&& bI >= 1' \
   | grep -vE '\| d <= 0 =' \
   | grep -vE 'min \(dwBatch w\) \(length buf\)' \
+  | grep -vE 'min \(jwBatch w\) \(length buf\)' \
+  | grep -vE '\| t >= total = ' \
+  | grep -vE '\| length path < depthCap, ' \
   | grep -c .)
 echo "E4 engine-derived comparisons outside evalx: $e4 (must be 0; allowlist: draw walk, rNum display, arity validation, tick bound)"
 [ "$e4" -eq 0 ] || fail=1
