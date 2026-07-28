@@ -204,7 +204,19 @@ Every step-6+ increment follows the recursive two-phase discipline:
    included — bit-faithful means FLAG-faithful (the step-5 incident:
    the reorder's first red run caught the r0 overlay compile without
    -Werror carrying two redundant imports; caught inside the freeze
-   window, fixed, re-witnessed, re-sealed).
+   window, fixed, re-witnessed, re-sealed). AND, amended at the jp
+   close (2026-07-28, the containers incident): bit-faithful means
+   PACKAGE-faithful as well — an overlay SAT compile runs under the
+   stanza's DEPENDENCY CLOSURE (-hide-all-packages plus the declared
+   build-depends), because plain ghc exposes every GHC boot package
+   while cabal hides the undeclared; a dependency gap in the frozen
+   build file is invisible to every plain-ghc compile BY
+   CONSTRUCTION, and the jp prophecy's Data.Map import reached the
+   implementation phase unseen through exactly that gap (the
+   library stanza's base-only decision amended to
+   GHC-boot-libraries-only under the author's key, the falsified
+   words quoted inside the repair, the frozen ablation audit 6/6 on
+   the amended surface).
    One line canonized at the step-4 boundary (the pricing freeze,
    2026-07-15): A RETIREMENT LISTS ITS PINS — a retirement
    disposition enumerates every pin the retiring file carries and
