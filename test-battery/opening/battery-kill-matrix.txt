@@ -1,0 +1,40 @@
+=== THE COMMITTED BATTERY KILL MATRIX (serial, per-row; mandates 2a/3a/5a's repair; baseline 94cd8d2 + the mandate-repaired Battery.hs) ===
+M42-joint-ties-to-last: 47 row(s) fired
+M43-joint-internal-first: 9 row(s) fired
+M44-prepost-base-off-menu: 59 row(s) fired
+M45-depth-baked-myopic: 0 row(s) fired
+M46-standing-menu-reversed: 1 row(s) fired
+M47-batch-min-dropped: 1 row(s) fired
+M48-standing-refine-free: 0 row(s) fired
+M49-arity-counts-phantom-think: 0 row(s) fired
+M50-memo-chain-order: 0 row(s) fired
+M51-direction-baked-hi: 0 row(s) fired
+M52-arity-shape-flipped: 0 row(s) fired
+M53-final-act-swallowed: 74 row(s) fired
+M54-standing-clock-short: 1 row(s) fired
+M55-standing-pess-negated: 0 row(s) fired
+M56-fromweights-unnormalized: 16 row(s) fired
+M57-negative-weights-admitted: 0 row(s) fired
+M58-prob-complement: 39 row(s) fired
+M59-expect-unweighted: 58 row(s) fired
+    g-b3.3 - mandate 3b
+M60-corpus-binary-gate-raised: 0 row(s) fired
+M61-corpus-if-gate-raised: 1 row(s) fired
+    g-b3.3 - mandate 3b
+M62-pess-affine-shifted: 2 row(s) fired
+M63-plain-menu-reversed: 1 row(s) fired
+=== src clean; matrix complete ===
+
+=== POST-MATRIX READING (the mandate round's completeness check) ===
+Every battery row EXCEPT g-b2.2 has a committed red: g-b1.1 cells by M42/M44/M53/M56/M58/M59,
+g-b1.2 by M42/M44, g-b2.1 by M44, g-b3.1 by M46 (+M62), g-b3.2 by M63 (+M62), g-b3.3 by M47,
+g-b4.1 by M61 (1 fire, name-wrapped in the log). The residual row is a RECORD row (cannot
+fail by design, named so).
+g-b2.2 (scale invariance): M62's +1 affine shift reaches the TIE rows but NOT this row -
+on the two declared streams no tick's standing guard value lands in the scale-discriminating
+window (-1, -1/5), so the shifted transcripts remain equal at x1/x2/x5. VERDICT TO THE
+SITTING: the row's red needs a knife-edge stream (a tick with guard value strictly inside
+(-1, -1/5) at stakes (1,-24)) - the same standing-guard measurement the mint-level cell
+needs; both join the sitting docket as one construction item. The row itself is NOT
+vacuous-by-construction (the case-split repair made refusal fail it), but its red-half
+demonstration is OWED, stated here rather than papered.
