@@ -887,9 +887,15 @@ standing row value is READING B (the true preposterior), registered
 demand-gated (JP8's entry as amended). (1b) VoI >= 0 was cited from
 an EXPIRED bank (EV-CR4 measured the pre-base-fix object). EV-JP8
 (jp8-voi-run.txt) RE-EXECUTED it on the joint surface: 240 decision
-points, five stream shapes (incl. all-0s and alternating), both
-menu families — ZERO violations; jointPrepost/bestExtJ exported for
-the future law rows. (1c) = mandate 3's finding 1, repaired below.
+points — the two frozen worlds (t2, habitat) x two perturbation
+scales (p=0 exact, p=1/20) x 60 ticks — ZERO violations;
+jointPrepost/bestExtJ exported for the future law rows. [Repaired
+at the sitting, 2026-07-28: this row previously said "five stream
+shapes (incl. all-0s and alternating)" — that described the earlier
+SCRATCH probe, not the committed transcript; the R-D20 discipline
+(describe the artifact, never the parallel memory) caught it at the
+author's 1-verify.sh run, the falsified words quoted here inside
+their own repair.] (1c) = mandate 3's finding 1, repaired below.
 
 **Mandate 2 (asserted-not-derived).** (2a) JP10 was cited and never
 registered — REPAIRED: registered in full at 14.8. (2b) "the R1
