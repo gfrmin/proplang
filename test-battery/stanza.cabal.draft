@@ -1,0 +1,18 @@
+-- THE CERTIFICATION BATTERY ORACLE (to be frozen at this increment's
+-- freeze; PIN-FREEZE form — green on arrival against the shipped
+-- surface, red discharged by seeded-defect demonstration; stanza
+-- bytes spliced into proplang.cabal at the freeze, cabal edits only
+-- at freeze boundaries per the manifest law)
+test-suite battery
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Battery.hs
+    other-modules:    Anchors
+                    , OracleWorld
+                    , Streams
+    hs-source-dirs:   test-battery, test
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

@@ -1,0 +1,6 @@
+=== the battery green pass (PIN-FREEZE form: green on arrival against shipped src @ d53db44) ===
+compile: cabal exec ghc -- -hide-all-packages -package base -package containers -package tasty -package tasty-hunit -XGHC2021 -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns -isrc -itest -itest-battery (the package-faithfulness law's first application: the stanza's dependency closure, hidden-all)
+    their knife-edge constructions (the battery sitting's docket, pack Part XVI)
+  residual (printed, never absorbed - the no-silent-caps law):                                                                         OK
+
+All 78 tests passed (3.78s)
