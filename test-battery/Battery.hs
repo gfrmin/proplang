@@ -236,6 +236,11 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
           pin "all-wait (the mint-free standing route's menu order; its reversal is a pool candidate at this increment's close)"
               (Right (replicate 40 "wait"))
               (runJointW tNs egSpace emitK (dpWorldB (0, 0)) (replicate 40 1))
+      , testCase "g-b3.3 the partial-tail-batch cell (the M47 knife-edge: VoI(1)=0 < p=1/20 < VoI(3)=36/625 at the post-think belief; R-D21 probe in opening/)" $
+          let stream = take 4 buffer36
+          in pin "think once, then act (the min gates the tail: one remaining obs prices deliberation at VoI(1)-p < 0)"
+                 (Right (refDelib thetaG9 (1 % 20) 3 stream))
+                 (runJointW tNs egSpace emitK (t2WorldB (1 % 20) 3) stream)
       ]
   , testCase "residual (printed, never absorbed - the no-silent-caps law)" $ do
       mapM_ putStrLn

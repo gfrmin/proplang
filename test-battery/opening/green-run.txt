@@ -4,3 +4,6 @@ compile: cabal exec ghc -- -hide-all-packages -package base -package containers 
   residual (printed, never absorbed - the no-silent-caps law):                                                                         OK
 
 All 78 tests passed (3.78s)
+=== the battery green pass v2 (79 rows: + g-b3.2 goPlain tie, g-b3.3 M47 knife-edge) ===
+
+All 79 tests passed (3.74s)

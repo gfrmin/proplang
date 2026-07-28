@@ -18,3 +18,12 @@ g-b1.1 [g9 p=1 % 20 n=2 alt36]
 --- M46-standing-menu-reversed: g-b3.1 fires ALONE (the jp close's UNREACHED verdict cured by a reaching row)
 g-b3.1 the standing tie stream, refine declared: stakes (0,0) tie every tick at the DP's act site, wait wins by declaration order
 --- incident recorded: the first tie row (refine absent) missed M46 - the mutant cuts the goS/runFrom act site, the mint-free world routes through goPlain; the row split into g-b3.1 (refine declared, reaches runFrom, kills M46) and g-b3.2 (goPlain order, ITS reversal a pool candidate at this increment's close)
+--- M47-batch-min-dropped: g-b3.3 fires ALONE (the second UNREACHED verdict cured)
+    the knife-edge (R-D21 probe, executed 2026-07-28): at the belief after one batch-3
+    think on buffer36's prefix [1,0,0]: vAct = 24 % 125, VoI(d=1) = 0 % 1,
+    VoI(d=3) = 36 % 625; tick-0 VoI(d=3) = 632 % 1875. The axis price 1/20 sits
+    strictly inside (VoI(1), VoI(3)) and under the tick-0 VoI, so the 4-obs stream
+    [1,0,0,0] thinks once then acts; with the min dropped the one-obs tail is
+    over-read at depth 3 and deliberation fires again:
+      expected: Right ["think","L"]
+       but got: Right ["think","think","L"]
