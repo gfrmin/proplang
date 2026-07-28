@@ -1116,3 +1116,101 @@ green inside the script, R-D22 satisfied by the r1 ratification.
 Validated end-to-end in a scratch clone (sealed HEAD + prophecy +
 stubbed repair -> jointprep suite) before the author was handed the
 script.
+
+## Part XV — the jp CLOSE-OUT: implementation green, the matrix run, the JP7 heirs discharged (builder, 2026-07-28)
+
+**The implementation phase's spine.** The prophecy applied
+byte-for-byte (284 insertions into Membrane.hs); the first build
+FAILED on the frozen library stanza's base-only decision (Part
+XIV's stop-and-report); the author's 4-repair.sh (ef6a782, author
+key) amended the decision to GHC-boot-libraries-only; then GREEN
+END-TO-END: jointprep red->green 15/15, all ten suites pass, gates
+1-7 PASS, E1-E4 all 0 under the extended allowlist (both gate
+copies agree). Implementation commit e7268d7.
+
+**The close matrix.** Pool = 14 mutants (audit/mutants/ M42-M55),
+derived from the increment's OWN incident case law plus the
+declared operator list (the sweep-universe law): the two JP7 heirs
+(M42 = the M28 tie class re-cut at the joint dispatch's row order;
+M43 = the M30 menu-order class re-cut at the decide-once tick), the
+EV-JP1 phantom (M44), the baked horizon (M45, the pwLadderCap
+lineage), the F2 order at the standing site (M46), the E4-row
+semantic siblings (M47 batch-min, M54 clock-short), the free mint
+(M48, M40's standing sibling), the jwThink ghost (M49), the EV-JP4
+chain-order bug (M50), the hi-spine direction (M51), the flipped
+shape term (M52), the F4 swallowed act (M53), the negated guard
+(M55, the M26 class). Every mutant cut against the COMMITTED
+baseline e7268d7 (the dyadic lesson), every patch compiles (see
+incidents below), src restored clean after every cell.
+
+**Results.** 12/14 killed; every kill lands in jointprep ONLY — the
+STANDING CORPUS IS GREEN UNDER ALL 14 (each mutant lives in
+joint-only code paths), so every row kill is unique against the
+standing corpus by construction, discharging the forward half for
+all 15 rows at once. ALL 15 ROWS REACHED (no green-that-cannot-fail
+in the sealed oracle):
+
+    g-jp1.1 M44,M53   g-jp1.2 M44,M53   g-jp1.3 M42,M44,M53
+    g-jp1.4 M42,M44,M53
+    g-jp2 p=0 M42,M43,M53 (M43's SOLE killer - unique)
+    g-jp2 p=1/20 M53   g-jp2 p=3/10 M53
+    g-jp3.1 M42,M45,M48,M50,M51,M54,M55
+    g-jp3.2 M42,M45,M50,M51,M54,M55
+    g-jp3.3 M54,M55
+    g-jp4.1 M54   g-jp4.2 M53
+    g-jp5.1 M42,M45,M48,M50,M51,M54,M55
+    g-jp6.1 M49,M52 (M49's SOLE killer - unique)   g-jp6.2 M52
+
+Within-suite sibling shadowing (the price-variant rows g-jp1.1/1.2
+and g-jp2 p>0 share kill sets with their p-siblings) is STRUCTURAL
+— rows differing only in test-side data — recorded as verdicts per
+the dyadic R7 pre-ruling and the structural-shadowing clause, never
+a close-blocker.
+
+**The two UNREACHED, honestly (verdicts to the sitting).**
+M46-standing-menu-reversed: no tie exists at any standing act site
+in the three declared streams, so the standing MENU ORDER is
+unpinned by the current rows — a battery-row candidate. M47-batch-
+min-dropped: the decide-once streams never present a partial tail
+batch, so the min's SEMANTIC side is unpinned (its clock side is an
+E4-enumerated gate row) — a battery-row candidate. Both are
+pool-relative verdicts ("a verdict is pool-relative"); neither
+convicts a row.
+
+**Two compile-death incidents, recorded.** The first cuts of M48
+(mint dropped -> unused `s`) and M53 (bound name unused) died under
+-Werror at BUILD — a mutant killed by the compiler is not a mutant;
+both re-cut to compiling forms (mint zeroed with `s` consumed; the
+wildcard arm). And the mint-HALVED intermediate cut ran UNREACHED —
+a real finding: the three declared streams' transcripts are
+insensitive to a 2x mint change (the buy thresholds sit far from
+s/2), so the mint's LEVEL is pinned only through the g-jp5.1 value
+identity, not through any transcript. Rides the battery docket
+beside the M46/M47 candidates.
+
+**One attribution incident, repaired in-method.** cabal runs suites
+in parallel and interleaves stdout, which glued standing-suite row
+NAMES onto jointprep FAIL details in the first extraction (the
+"consult ticks" false read); the matrix's row attribution was
+re-run SERIALLY per mutant (jointprep alone, non-interleaved), and
+suite-level integrity was read from the unambiguous per-suite
+summary lines. Attribution above is from the serial pass only.
+
+**Frozen-layer inventory for r1 (one item).** The standingDP header
+comment shipped inside the byte-for-byte prophecy still carried the
+pre-ruling draft ("the depth bound 7 ... register JP10 rules its
+final form before the implementation lands") — falsified at
+jp-freeze-r0 by JP10's ruling and by the code itself (depthCap =
+jwDepth w). Repaired in the close-out commit with the falsified
+words quoted in place; src is builder surface, the prophecy was
+honored byte-for-byte at e7268d7 first.
+
+**r1's docket.** (1) The package-faithfulness canonization
+([RULING], test-jointprep/freeze/package-faithful.patch — the Part
+XIV incident's clause, amending the step-5 flag-faithful line in
+CLAUDE.md). (2) Ratification of the 4-repair freeze-boundary edit
+(author key ef6a782; R-D22's chain closes at r1). (3) The matrix
+verdicts received (M46/M47 UNREACHED + mint-level finding -> the
+battery docket; the structural-shadowing verdicts recorded). (4)
+The wire docket (EXACT_PLAN 14.9) rides to the battery sitting
+unless extended here.

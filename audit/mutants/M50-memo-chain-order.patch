@@ -1,0 +1,12 @@
+# MUTANT M50-memo-chain-order — provenance: the EV-JP4 memo incident (stored root-first, extended newest-first): the value table's refine lookup keys the extended path by CONS instead of append — the chain-order bug restored
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -717,7 +717,7 @@
+                     OWait    -> nxt path (d - 1)
+                     ORespond -> pessOf path t + nxt path (d - 1)
+                     _ -> error "standingDP: the standing belief face is register JP4"
+-                  refVs = [ (-s) + nxt (path ++ [b2]) (d - 1)
++                  refVs = [ (-s) + nxt (b2 : path) (d - 1)
+                           | length path < depthCap, b2 <- [False, True] ]
+                   vs = map extRow (jwExts w) ++ refVs
+               in at (pick vs) vs

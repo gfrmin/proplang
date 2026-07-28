@@ -1,0 +1,16 @@
+# MUTANT M43-joint-internal-first — provenance: the M30 class (menu-order doctrine F2) RE-CUT AGAINST THE JOINT LOOP per register JP7: the decide-once tick lists think BEFORE the declared externals, so the internal act wins ties it must lose
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -624,9 +624,9 @@
+             case drop ci cvs of
+               (v : _) -> pure [v]
+               []      -> Left "runJointW: refine payload (unreachable)"
+-      let vs = extVs ++ thinkVs ++ refVs
+-          names = map extName (jwExts w)
+-               ++ [ "think" | not (null thinkVs) ]
++      let vs = thinkVs ++ extVs ++ refVs
++          names = [ "think" | not (null thinkVs) ]
++               ++ map extName (jwExts w)
+                ++ [ "refine" | not (null refVs) ]
+       i <- chooseIdx ns feats vs
+       nm <- case drop i names of

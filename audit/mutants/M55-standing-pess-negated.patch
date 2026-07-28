@@ -1,0 +1,12 @@
+# MUTANT M55-standing-pess-negated — provenance: the M26 class (stake sign) re-cut at the standing DP's respond row: the pessimistic guard value negated, so honest decline inverts into eager assertion
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -696,7 +696,7 @@
+     allPaths :: Int -> [[Bool]]
+     allPaths 0 = [[]]
+     allPaths n = [ b2 : p2 | p2 <- allPaths (n - 1), b2 <- [False, True] ]
+-    pessOf path t = guardE True (ownedOf path) (cAt t) st
++    pessOf path t = negate (guardE True (ownedOf path) (cAt t) st)
+     pick vs = either (\m -> error ("standingDP (unreachable: the door covers) " ++ m))
+                      id (chooseIdx ns feats vs)
+     at i xs = case drop i xs of

@@ -1,0 +1,12 @@
+# MUTANT M47-batch-min-dropped — provenance: the E4 extension's first enumerated clock row, semantic side: the think batch ignores the buffer's remaining length (min dropped), over-reading evidence that does not exist
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -608,7 +608,7 @@
+       extVs <- mapM (extValJ ns feats b owned c st) (jwExts w)
+       thinkVs <- if not (null buf)
+         then do
+-          tv <- prepostJ (min (jwBatch w) (length buf)) b owned c
++          tv <- prepostJ (jwBatch w) b owned c
+           pure [tv - jwPrice w]
+         else pure []
+       refVs <- case jwRefine w of

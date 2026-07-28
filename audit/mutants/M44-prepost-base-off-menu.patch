@@ -1,0 +1,12 @@
+# MUTANT M44-prepost-base-off-menu — provenance: the EV-JP1 incident (the 500-think diverger): the preposterior base ignores the DECLARED menu and reads the respond value off-menu — the phantom value restored at the root
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -575,7 +575,7 @@
+              -> Kernel Rational Int -> Int -> Belief Rational
+              -> Owned -> (Int, Int) -> Either String Rational
+ jointPrepost ns feats w k d b owned c
+-  | d <= 0 = bestExtJ ns feats w b owned c
++  | d <= 0 = Right (guardE True owned c (jwStakes w))
+   | otherwise = do
+       parts <- mapM
+         (\y -> case condK b k y of

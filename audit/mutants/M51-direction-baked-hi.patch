@@ -1,0 +1,21 @@
+# MUTANT M51-direction-baked-hi — provenance: the SAT run's hi-spine probe artifact (pack Part XI; JP10 closed direction by dominance EV-JP6): exploration re-baked to the high child only, both in the value table and the act row
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -718,7 +718,7 @@
+                     ORespond -> pessOf path t + nxt path (d - 1)
+                     _ -> error "standingDP: the standing belief face is register JP4"
+                   refVs = [ (-s) + nxt (path ++ [b2]) (d - 1)
+-                          | length path < depthCap, b2 <- [False, True] ]
++                          | length path < depthCap, b2 <- [True] ]
+                   vs = map extRow (jwExts w) ++ refVs
+               in at (pick vs) vs
+         runFrom path t
+@@ -731,7 +731,7 @@
+                     _ -> error "standingDP: the standing belief face is register JP4"
+                   extVs = map extRow (jwExts w)
+                   refs = [ (path ++ [b2], (-s) + nxt (path ++ [b2]) (d - 1))
+-                         | length path < depthCap, b2 <- [False, True] ]
++                         | length path < depthCap, b2 <- [True] ]
+                   refRow = case refs of
+                     [] -> []
+                     _  -> [ at (pick (map snd refs)) refs ]

@@ -1,0 +1,12 @@
+# MUTANT M42-joint-ties-to-last — provenance: the M28 class (CL-3 ties) RE-CUT AGAINST THE JOINT LOOP per register JP7: the one chooser's rows reversed, so the LAST-listed row wins ties the first must win; non-tie choices unaffected (a pure tie-geometry cut at the joint dispatch)
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -524,7 +524,7 @@
+           Nothing -> error "chooseIdx: on-codebook index (unreachable)"
+     in withQVals vs (\vals vars -> do
+          env <- mkEnvIn ns feats vals
+-         let rows = zipWith (\i v -> (cM i, v)) [0 ..] vars
++         let rows = reverse (zipWith (\i v -> (cM i, v)) [0 ..] vars)
+          code <- case rows of
+            (r0 : rs) -> Right (evalx (chooseKS (r0 :| rs)) env)
+            []        -> Left "chooseIdx: no rows (unreachable)"

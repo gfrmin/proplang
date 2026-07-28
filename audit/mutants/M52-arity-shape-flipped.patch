@@ -1,0 +1,12 @@
+# MUTANT M52-arity-shape-flipped — provenance: the jwShape convention (JP5: the episode shape is a world declaration): the priced sentence's think-row term read with the shapes SWAPPED — decide-once loses its think row, standing gains a phantom one
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -761,7 +761,7 @@
+ jointPolicyWeight :: JointWorld -> Rational
+ jointPolicyWeight w =
+   let n = length (jwExts w)
+-        + (case jwShape w of DecideOnce -> 1; Standing -> 0)
++        + (case jwShape w of DecideOnce -> 0; Standing -> 1)
+           -- think's row: always on the decide-once menu (never
+           -- excludable); absent from the standing menu this
+           -- increment (the JP4 engine-scope line)

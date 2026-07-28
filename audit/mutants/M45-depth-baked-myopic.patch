@@ -1,0 +1,12 @@
+# MUTANT M45-depth-baked-myopic — provenance: the pwLadderCap lineage (JP8: the horizon is the cap's true name; JP10: depth is DECLARED world data): the engine ignores jwDepth and bakes a myopic frontier
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -691,7 +691,7 @@
+             _ -> error "standingDP: a lattice node has two children (unreachable)"
+     chainNodes path = [ nodeAt (take i path) | i <- [1 .. length path] ]
+     ownedOf path = mkOwned (rootNode : chainNodes path)
+-    depthCap = jwDepth w
++    depthCap = 1
+     paths = concat [ allPaths n | n <- [0 .. depthCap] ]
+     allPaths :: Int -> [[Bool]]
+     allPaths 0 = [[]]

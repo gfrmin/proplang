@@ -1,0 +1,12 @@
+# MUTANT M53-final-act-swallowed — provenance: the F4 liveness class (membrane-wire's clause; the trampoline r1 install): the decide-once loop computes the final external act and never utters it — the act swallowed at the wire's edge (first cut bound the name and died at compile under -Werror unused-matches; the wildcard form is the same shape)
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -656,7 +656,7 @@
+                 []       -> Left "runJointW: candidate index (unreachable)"
+               rest <- goOnce b (mkOwned (cand : ownedNodes owned)) c buf
+               pure ("refine" : rest)
+-        external -> pure [external]
++        _ -> pure []
+ 
+ -- the standing-shape finite-horizon DP (EV-JP4/JP5's measured form,
+ -- generalized to BOTH children per extension): states are descending

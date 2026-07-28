@@ -1,0 +1,21 @@
+# MUTANT M48-standing-refine-free — provenance: the M40 class (the mint priced in-sentence) at the STANDING DP: the refine mint zeroed in both the value table and the act row — vocabulary bought free, the F5 doctrine's inverse (two earlier cuts recorded at the close: mint-DROPPED died at compile under -Werror unused-s, mint-HALVED ran UNREACHED — the transcripts are insensitive to a 2x mint change at these streams; the zeroed form keeps s used and the shape exact)
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -717,7 +717,7 @@
+                     OWait    -> nxt path (d - 1)
+                     ORespond -> pessOf path t + nxt path (d - 1)
+                     _ -> error "standingDP: the standing belief face is register JP4"
+-                  refVs = [ (-s) + nxt (path ++ [b2]) (d - 1)
++                  refVs = [ ((-s) * 0) + nxt (path ++ [b2]) (d - 1)
+                           | length path < depthCap, b2 <- [False, True] ]
+                   vs = map extRow (jwExts w) ++ refVs
+               in at (pick vs) vs
+@@ -730,7 +730,7 @@
+                     ORespond -> pessOf path t + nxt path (d - 1)
+                     _ -> error "standingDP: the standing belief face is register JP4"
+                   extVs = map extRow (jwExts w)
+-                  refs = [ (path ++ [b2], (-s) + nxt (path ++ [b2]) (d - 1))
++                  refs = [ (path ++ [b2], ((-s) * 0) + nxt (path ++ [b2]) (d - 1))
+                          | length path < depthCap, b2 <- [False, True] ]
+                   refRow = case refs of
+                     [] -> []

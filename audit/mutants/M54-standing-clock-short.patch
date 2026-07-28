@@ -1,0 +1,12 @@
+# MUTANT M54-standing-clock-short — provenance: the E4 extension's second enumerated clock row, semantic side: the standing episode's clock ends one tick early — the transcript shorter than the declared stream
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -722,7 +722,7 @@
+                   vs = map extRow (jwExts w) ++ refVs
+               in at (pick vs) vs
+         runFrom path t
+-          | t >= total = []
++          | t + 1 >= total = []
+           | otherwise =
+               let d = total - t
+                   extRow e = case e of

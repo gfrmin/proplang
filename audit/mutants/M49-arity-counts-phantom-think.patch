@@ -1,0 +1,12 @@
+# MUTANT M49-arity-counts-phantom-think — provenance: the jwThink deletion (mandate round, pack Part XII): the price arity counts a think row on EVERY shape — the deleted toggle's ghost re-baked into the priced sentence
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -761,7 +761,7 @@
+ jointPolicyWeight :: JointWorld -> Rational
+ jointPolicyWeight w =
+   let n = length (jwExts w)
+-        + (case jwShape w of DecideOnce -> 1; Standing -> 0)
++        + 1
+           -- think's row: always on the decide-once menu (never
+           -- excludable); absent from the standing menu this
+           -- increment (the JP4 engine-scope line)

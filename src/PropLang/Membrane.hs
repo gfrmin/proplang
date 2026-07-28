@@ -664,9 +664,11 @@ runJointW ns sp k w stream = case jwShape w of
 -- clock is the declared stream, counts precomputed from it; every
 -- backup and the tick's act go through chooseIdx (a Left from the
 -- chooser is unreachable here — the door covers — and is carried as
--- the runPurchase-precedent error text). The depth bound 7 is the
--- probe-inherited scope — register JP10 rules its final form before
--- the implementation lands in src.
+-- the runPurchase-precedent error text). The depth bound is the
+-- DECLARED jwDepth (JP10, ruled at jp-freeze-r0: depth is world
+-- data; the pre-ruling draft of this sentence said "the depth bound
+-- 7 ... rules its final form before the implementation lands" —
+-- repaired at the close, the prophecy applied byte-for-byte first).
 standingDP :: Namespace -> JointWorld -> [Int] -> Either String [String]
 standingDP ns w stream = case jwRefine w of
   Nothing -> Right (goPlain 0)

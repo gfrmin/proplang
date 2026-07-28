@@ -1,0 +1,20 @@
+# MUTANT M46-standing-menu-reversed — provenance: the menu-order doctrine (F2) at the STANDING act site: the tick's menu read in reverse of the declaration, respond-first wins ties wait must win
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -729,14 +729,14 @@
+                     OWait    -> nxt path (d - 1)
+                     ORespond -> pessOf path t + nxt path (d - 1)
+                     _ -> error "standingDP: the standing belief face is register JP4"
+-                  extVs = map extRow (jwExts w)
++                  extVs = map extRow (reverse (jwExts w))
+                   refs = [ (path ++ [b2], (-s) + nxt (path ++ [b2]) (d - 1))
+                          | length path < depthCap, b2 <- [False, True] ]
+                   refRow = case refs of
+                     [] -> []
+                     _  -> [ at (pick (map snd refs)) refs ]
+                   vs = extVs ++ map snd refRow
+-                  nms = map extName (jwExts w)
++                  nms = map extName (reverse (jwExts w))
+                      ++ [ "refine" | not (null refRow) ]
+                   nm = at (pick vs) nms
+               in case nm of
