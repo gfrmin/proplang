@@ -1,0 +1,12 @@
+# MUTANT M62-pess-affine-shifted — battery mandate round (2a): the AFFINE-SHIFT operator — the standing guard value shifted by +1; scaling and negation are both scale-covariant so no standing mutant can reach the scale-invariance row; this is g-b2.2's designed killer (CR4's affine face)
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -698,7 +698,7 @@
+     allPaths :: Int -> [[Bool]]
+     allPaths 0 = [[]]
+     allPaths n = [ b2 : p2 | p2 <- allPaths (n - 1), b2 <- [False, True] ]
+-    pessOf path t = guardE True (ownedOf path) (cAt t) st
++    pessOf path t = 1 + guardE True (ownedOf path) (cAt t) st
+     pick vs = either (\m -> error ("standingDP (unreachable: the door covers) " ++ m))
+                      id (chooseIdx ns feats vs)
+     at i xs = case drop i xs of

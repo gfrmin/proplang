@@ -9,7 +9,8 @@
 -- joint loop to an independent exact reference — no implementation
 -- is owed, the suite arrives green, and the red half is discharged
 -- by seeded-defect demonstration against the committed mutant pool
--- (audit/mutants/ M42-M55), recorded in the increment's pack.
+-- (audit/mutants/, M42-M63 at this increment's close), recorded in
+-- the increment's pack with a COMMITTED per-row kill matrix.
 --
 -- THE FAMILY DERIVES FROM DECLARED AXES (14.1's law; the
 -- sweep-universe clause): the axes below are the declaration, the
@@ -22,6 +23,8 @@
 --   condThetaG             <- test/ExactReference.hs:187 (condTheta;
 --                             thetaG generalized to the declared grid)
 --   vActG                  <- test/ExactReference.hs:193 (vAct; same)
+--   vThinkG                <- test/ExactReference.hs:199 (vThink;
+--                             batch/grid generalized, price passed)
 --   refDelib               <- test/ExactReference.hs:213 (runDelib;
 --                             batch 3 / take 3 generalized to the
 --                             declared batch, transcript form)
@@ -90,7 +93,8 @@ streamAxis =
 -- =====================================================================
 
 spaceKOf :: String -> [Q] -> (Space Q, Kernel Q Int)
-spaceKOf "g9" _ = (egSpace, emitK)
+spaceKOf "g9" pts | pts == thetaG9 = (egSpace, emitK)
+                  | otherwise = error "spaceKOf: the g9 name is bound to the frozen grid (mandate 4c: the borrow is a function of the POINTS; the name is only its label)" 
 spaceKOf _ pts = (sp, k)
   where
     sp = case pts of
@@ -99,6 +103,9 @@ spaceKOf _ pts = (sp, k)
     zero = cAtG obsAtoms 0
     one = cAtG obsAtoms 1
     body = If (Gt (Var Z) zero) (Var (S Z)) (Sub one (Var (S Z)))
+    -- the copy evaluates under tNs/("price",0) where the original
+    -- uses wNs/("t",0): inert (the body reads only its binders),
+    -- declared here per mandate 6a
     sent = Code sp (carrierSpace (wObs oracleWorld)) body
     k = case mkEnvIn tNs [("price", 0)] VNil of
       Left m -> error ("spaceKOf door (unreachable): " ++ m)
@@ -221,9 +228,14 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
                 familyCells
       , testCase "g-b2.2 scale invariance: the standing act stream is stake-scale-invariant (x2, x5)" $
           mapM_ (\(sn, stream) ->
-                   let tr st = runJointW tNs egSpace emitK (dpWorldB st) stream
-                   in do pin ("x2 " ++ sn) (tr (1, -24)) (tr (2, -48))
-                         pin ("x5 " ++ sn) (tr (1, -24)) (tr (5, -120)))
+                   let tr st = case runJointW tNs egSpace emitK (dpWorldB st) stream of
+                         Right t -> pure t
+                         Left m -> assertFailure ("refusal is not invariance (mandate 4a): " ++ m) >> pure []
+                   in do t1 <- tr (1, -24)
+                         t2 <- tr (2, -48)
+                         t5 <- tr (5, -120)
+                         pin ("x2 " ++ sn) t1 t2
+                         pin ("x5 " ++ sn) t1 t5)
                 streamAxis
       ]
   , testGroup "g-b3 the docketed rows (the jp close's UNREACHED verdicts, given reach)"
@@ -248,12 +260,14 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
           let ns6 = mkNamespace ("t" :| [])
               g2 = mkGrid "theta2" (1 % 10 :| [9 % 10])
               isIf e = case e of { If {} -> True; _ -> False }
+          assertBool "budget-5 corpus nonempty (mandate 1b: an empty corpus must not green the gate)"
+                     (not (null (corpusBodies ns6 [g2] 5)))
           assertBool "no If body at budget 5 (the gate's green side)"
                      (not (any isIf (corpusBodies ns6 [g2] 5)))
           assertBool "an If body at budget 6 (the gate's live side)"
                      (any isIf (corpusBodies ns6 [g2] 6))
       ]
-  , testCase "residual (printed, never absorbed - the no-silent-caps law)" $ do
+  , testCase "residual (RECORD row - a printer cannot fail by design, the F6 precedent; the discipline is EXACT_PLAN 14.1: the residual is PRINTED, never absorbed)" $ do
       mapM_ putStrLn
         [ "RESIDUAL axes not walked by this family:"
         , "  - refine/purchase economics on the decide-once face (jwRefine = Nothing here;"
@@ -261,8 +275,8 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
         , "  - K>2 obs arities and the guard/tau/rho families (the t1/t3 faces)"
         , "  - stream lengths beyond 36/40; adversarial compositions beyond the two declared"
         , "  - batch depths beyond 3; grids beyond {9,5,3} points"
-        , "  - the M47 partial-tail-batch cell and the mint-level differential: DRAFTED, awaiting"
-        , "    their knife-edge constructions (the battery sitting's docket, pack Part XVI)"
+        , "  - the mint-level differential cell: DRAFTED, awaiting its knife-edge construction"
+        , "    (the battery sitting's docket; the M47 cell SHIPPED as g-b3.3 - mandate 3b's repair)"
         ]
       assertBool "residual printed" True
   ]

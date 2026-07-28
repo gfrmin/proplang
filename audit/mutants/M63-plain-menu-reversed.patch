@@ -1,0 +1,14 @@
+# MUTANT M63-plain-menu-reversed — battery mandate round (2a): the goPlain act-site menu reversal — the mint-free standing route's declaration order, named a pool candidate at the g-b3.2 row's birth, due at this close; g-b3.2's designed killer
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -753,8 +753,8 @@
+                 OWait    -> 0
+                 ORespond -> pessOf [] t
+                 _ -> error "standingDP: the standing belief face is register JP4"
+-              vs = map extRow (jwExts w)
+-              nm = at (pick vs) (map extName (jwExts w))
++              vs = map extRow (reverse (jwExts w))
++              nm = at (pick vs) (map extName (reverse (jwExts w)))
+           in nm : goPlain (t + 1)
+ 
+ -- | The standing sentence's price for a declared world: the chooser
