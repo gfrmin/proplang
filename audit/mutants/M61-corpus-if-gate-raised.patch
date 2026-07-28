@@ -1,0 +1,12 @@
+# MUTANT M61-corpus-if-gate-raised — OB-21 pool (the enumeration: MEMBERSHIP operator class): the If node gate off by one (n>=6 -> n>=7) — membership of If-shaped family bodies the intended reach, the count pin at budget 3 blind to it BY DESIGN (If needs >= 6 nodes)
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -308,7 +308,7 @@
+           leavesR
+           ++ [ op a b | n >= 3, (i, j) <- splits2 (n - 1)
+              , a <- genR i, b <- genR j, op <- [Sub, Mul] ]
+-          ++ [ If c t e | n >= 6, (i, j, k) <- splits3 (n - 1)
++          ++ [ If c t e | n >= 7, (i, j, k) <- splits3 (n - 1)
+              , c <- genB i, t <- genR j, e <- genR k ]
+     genB :: Int -> [Expr '[Rational, Rational] Bool]
+     genB n

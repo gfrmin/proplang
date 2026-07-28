@@ -1,0 +1,12 @@
+# MUTANT M59-expect-unweighted — OB-20 pool (the reasoner: MEASURE-SHAPE operator class): prevision drops the measure (unweighted sum) — L1/L2 the intended reach
+--- a/src/PropLang/Belief.hs
++++ b/src/PropLang/Belief.hs
+@@ -66,7 +66,7 @@
+ 
+ expect :: Belief a -> (a -> Rational) -> Rational
+ expect (Belief (Space pts) ws) f =
+-  sum [ w * f x | (x, w) <- zip pts ws ]
++  sum [ f x | (x, _) <- zip pts ws ]
+ 
+ -- | DERIVED from prevision: E[indicator] (design §3, unchanged).
+ prob :: Belief a -> (a -> Bool) -> Rational

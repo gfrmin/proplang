@@ -1,0 +1,12 @@
+# MUTANT M57-negative-weights-admitted — OB-20 pool (the reasoner: REFUSAL-LAW operator class): the negative-weight refusal dropped — the signed L3-witness row's intended reach (a signed vector must NOT be a measure)
+--- a/src/PropLang/Belief.hs
++++ b/src/PropLang/Belief.hs
+@@ -49,7 +49,7 @@
+ fromWeights sp@(Space pts) f =
+   let ws = map f pts
+       z = sum ws
+-  in if any (< 0) ws || z <= 0
++  in if z <= 0
+        then Nothing
+        else Just (Belief sp [ w / z | w <- ws ])
+ 

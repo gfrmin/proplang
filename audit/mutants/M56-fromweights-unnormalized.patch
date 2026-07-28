@@ -1,0 +1,12 @@
+# MUTANT M56-fromweights-unnormalized — OB-20 pool (the reasoner: NORMALIZATION operator class): the introducer skips the division — masses ship as weights, L1/L4' the intended reach
+--- a/src/PropLang/Belief.hs
++++ b/src/PropLang/Belief.hs
+@@ -51,7 +51,7 @@
+       z = sum ws
+   in if any (< 0) ws || z <= 0
+        then Nothing
+-       else Just (Belief sp [ w / z | w <- ws ])
++       else Just (Belief sp ws)
+ 
+ -- | DERIVED (ruling #7): uniform is fromWeights of the constant mass.
+ -- Total: a Space is nonempty by construction (mkSpace/NonEmpty).

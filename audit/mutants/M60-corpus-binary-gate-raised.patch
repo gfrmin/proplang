@@ -1,0 +1,12 @@
+# MUTANT M60-corpus-binary-gate-raised — OB-21 pool (the enumeration: COUNT/GATING operator class): the binary node gate off by one (n>=3 -> n>=4) — the 55-count exhaustive pin and the 1169 membership row the intended reach
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -306,7 +306,7 @@
+       | n < 1 = []
+       | otherwise =
+           leavesR
+-          ++ [ op a b | n >= 3, (i, j) <- splits2 (n - 1)
++          ++ [ op a b | n >= 4, (i, j) <- splits2 (n - 1)
+              , a <- genR i, b <- genR j, op <- [Sub, Mul] ]
+           ++ [ If c t e | n >= 6, (i, j, k) <- splits3 (n - 1)
+              , c <- genB i, t <- genR j, e <- genR k ]

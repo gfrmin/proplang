@@ -1,0 +1,12 @@
+# MUTANT M58-prob-complement — OB-20 pool (the reasoner: MEASURE-SHAPE operator class): prob reads the complement — T1's independent-route row and L3's monotonicity the intended reach
+--- a/src/PropLang/Belief.hs
++++ b/src/PropLang/Belief.hs
+@@ -70,7 +70,7 @@
+ 
+ -- | DERIVED from prevision: E[indicator] (design §3, unchanged).
+ prob :: Belief a -> (a -> Bool) -> Rational
+-prob b p = expect b (\x -> if p x then 1 else 0)
++prob b p = expect b (\x -> if p x then 0 else 1)
+ 
+ -- | The exact forward marginal (engine machinery; see export note).
+ push :: Belief a -> Kernel a b -> Belief b

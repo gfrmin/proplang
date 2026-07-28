@@ -1,0 +1,12 @@
+=== OB-20/21 POOL MATRIX (the discharge evidence; each mutant vs cabal test all, cut against the committed baseline, src restored per cell) ===
+M56-fromweights-unnormalized      -> dyadic exact-acceptance lawful pins        (LAWFUL reached)
+M57-negative-weights-admitted     -> lawful-independence ONLY                   (the signed-witness row its SOLE killer)
+M58-prob-complement               -> 7 suites incl. lawful + lawful-independence
+M59-expect-unweighted             -> 7 suites incl. lawful
+M60-corpus-binary-gate-raised     -> pins ONLY                                  (the count stanza its SOLE killer)
+M61-corpus-if-gate-raised         -> UNREACHED by the standing corpus (the 1169-membership row is a structural
+                                     INTENSION predicate, generator-blind; the 55-count sits below If's node floor)
+                                     -> CURED: battery g-b4.1 (two-sided If-arrival pin, boundary quoted from the
+                                     frozen 55-pin's own name) kills it ALONE: 1/80 under the mutant, 80/80 shipped.
+The OB-21 ledger row's prediction ("the t2-price-path gap the thinnest shadow" - generator gates invisible to
+intension checks) is confirmed by M61's first run and answered by a reaching row in the same increment.

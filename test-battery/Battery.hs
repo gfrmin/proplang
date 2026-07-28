@@ -39,6 +39,7 @@ import Test.Tasty.HUnit
 
 import PropLang.Belief (Kernel, Space, mkSpace, uniform)
 import PropLang.Eval (Vals (..), evalx, mkEnvIn)
+import PropLang.Enumerate (corpusBodies)
 import PropLang.Lattice (mkOwned, rootNode)
 import PropLang.Membrane (EpisodeShape (..), ExtOpt (..),
                           JointWorld (..), bestExtJ, jointPrepost,
@@ -241,6 +242,16 @@ main = defaultMain $ testGroup "battery (the certification: executed interpolati
           in pin "think once, then act (the min gates the tail: one remaining obs prices deliberation at VoI(1)-p < 0)"
                  (Right (refDelib thetaG9 (1 % 20) 3 stream))
                  (runJointW tNs egSpace emitK (t2WorldB (1 % 20) 3) stream)
+      ]
+  , testGroup "g-b4 the enumeration-gate reach rows (OB-21: the corpus GENERATOR's gates, which the intension predicate is blind to)"
+      [ testCase "g-b4.1 If arrives at budget 6 and not before (two-sided; the boundary quoted from the frozen 55-pin's name: 'If needs >= 6 nodes')" $ do
+          let ns6 = mkNamespace ("t" :| [])
+              g2 = mkGrid "theta2" (1 % 10 :| [9 % 10])
+              isIf e = case e of { If {} -> True; _ -> False }
+          assertBool "no If body at budget 5 (the gate's green side)"
+                     (not (any isIf (corpusBodies ns6 [g2] 5)))
+          assertBool "an If body at budget 6 (the gate's live side)"
+                     (any isIf (corpusBodies ns6 [g2] 6))
       ]
   , testCase "residual (printed, never absorbed - the no-silent-caps law)" $ do
       mapM_ putStrLn
