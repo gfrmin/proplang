@@ -1302,3 +1302,55 @@ reference), the F5-row decision (test-f5 already stands green —
 whether the battery duplicates its pins or cites them is a sitting
 line), the mandate round over the increment, and the freeze kit
 (stanza splice, manifest, the sitting scripts in the 1/2/3 form).
+
+## Part XVII — THE BATTERY MANDATE ROUND (six fresh reviewers, one mandate each; findings and the repair docket; 2026-07-28)
+
+**M4 (types).** (4a) g-b2.2 compares Either-to-Either: a
+stakes-independent refusal (Left==Left) passes as scale invariance
+— the triptych's green-that-cannot-fail. REPAIR: case-split, Left
+fails. (4b) vThinkG lacks its R-D20 line (<- ExactReference.hs:199
+vThink). REPAIR: add. (4c) spaceKOf keys the frozen borrow on the
+STRING "g9", discarding points — a name/points drift ships the
+frozen kernel over a wrong reference grid. REPAIR: guard the g9
+branch on pts == thetaG9.
+
+**M6 (function-of).** spaceKOf/refDelib/familyCells/mutants clean;
+(6a) the R-D20 kernel copy evaluates under tNs/("price",0) where
+the quoted original uses wNs/("t",0) — semantically inert (body
+reads only binders) but unheralded inside a copy. REPAIR: one
+comment line. (6b) = 4c.
+
+**M2 (cited-never-derived).** (2a) the pin-freeze clause demands
+EVERY row's red reachable, attribution partitioned; reds exist
+only for g-b1.1 cells + g-b3.1/g-b3.3/g-b4.1. REPAIR: full serial
+battery matrix vs the pool with COMMITTED per-row kill lists; cut
+M62 (pess affine-shift — scale invariance's true killer; negation
+and scaling are both covariant, so no standing mutant can reach
+g-b2.2) and M63 (goPlain menu reversal — g-b3.2's deferred
+candidate, due now). Already shown by the standing logs: g-b1.2
+FAILS under M42+M44, g-b2.1 FAILS under M44. (2b) "the
+no-silent-caps law" cited 3x, defined nowhere — the substance
+lives at EXACT_PLAN 14.1 ("the RESIDUAL ... is PRINTED by the
+suite, never absorbed"). REPAIR: cite 14.1 as the definition site;
+canonization offered to the sitting.
+
+**M3 (undefined quantities).** (3a) = 2a (the 45/58 counts are
+bare; the committed matrix cures). (3b) THE RESIDUAL ROW IS FALSE
+OF ITS OWN FILE: it still prints the M47 cell as "DRAFTED" while
+g-b3.3 ships it. REPAIR: re-cut the residual text (mint-level
+stays, M47 line dies). Knife-edge numbers re-derived clean by the
+reviewer; jwDepth inert in every battery expectation.
+
+**M5 (overloaded conventions).** (5a) = 2a (red-demonstrated vs
+red-deferred never ruled — the matrix cures by leaving no deferred
+row). (5b) the header declares the pool "M42-M55" while g-b4.1's
+sole killer is M61. REPAIR: header says M42-M63 (the pool as of
+this increment's close).
+
+**M1 (theorem-as-definition).** [reviewer still out at this
+writing; its findings and dispositions append below when it
+lands.]
+
+**The residual row's class**: a printer cannot fail by design —
+disposed as a RECORD row (the F6/test-writeup precedent), named so
+in the row title at the repair.
