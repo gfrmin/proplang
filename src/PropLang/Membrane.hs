@@ -52,6 +52,8 @@ module PropLang.Membrane
   , JointWorld (..)
   , runJointW
   , jointPolicyWeight
+  , bestExtJ
+  , jointPrepost
     -- the syntax-transport helpers (typed renaming, the priced
     -- mention, the substitution expansion, the one-env binder) —
     -- exported for the Host's wire policy route (pickWire /
@@ -62,7 +64,11 @@ module PropLang.Membrane
   , substW
   ) where
 
+import Data.List (sortOn)
 import Data.List.NonEmpty (NonEmpty ((:|)))
+import qualified Data.Map as M
+import PropLang.Lattice (Owned, childrenOf, frontier, guardE, mkOwned,
+                         nodeTheta, ownedNodes, rootNode)
 
 import PropLang.Belief
 import PropLang.Enumerate
@@ -489,19 +495,284 @@ data JointWorld = JointWorld
   }
   deriving (Eq, Show)
 
--- | The one joint loop (stub): both episode shapes, both internal
--- acts declarable on one tick's menu, every choice — including every
--- Bellman backup inside the lookahead — through evalx of the
--- standing chooser (the one-chooser-everywhere law, pack Part X).
+-- | The scalar one-env binder (withRows' scalar sibling): binds a
+-- value list into one env with a Var row per value, order preserved,
+-- KnownScope threaded so the bound sentence can also be PRICED.
+withQVals :: [Rational]
+          -> (forall env. KnownScope env
+              => Vals env -> [Expr env Rational] -> r)
+          -> r
+withQVals [] k = k VNil []
+withQVals (v : rest) k =
+  withQVals rest (\vals vars -> k (v :. vals) (Var Z : map weakenE vars))
+
+-- | THE ONE CHOOSER, EVERYWHERE (pack Part X): every choice the
+-- joint loop makes — the tick's menu, every Bellman backup, the
+-- refine payload — is evalx of the standing chooseKS sentence over
+-- env-bound values; the winner returns as an INDEX (a tag read,
+-- register R3). The engine keeps arithmetic and the clock; it never
+-- compares.
+chooseIdx :: Namespace -> Features -> [Rational] -> Either String Int
+chooseIdx ns feats vs = case vs of
+  [] -> Left "chooseIdx: the declared menu is empty"
+  (_ : _) ->
+    let n = length vs
+        codeG = mkGrid "jacts" (0 :| map fromIntegral [1 .. n - 1])
+        cM :: forall e2. Int -> Expr e2 Rational
+        cM i = case mkC codeG i of
+          Just e  -> e
+          Nothing -> error "chooseIdx: on-codebook index (unreachable)"
+    in withQVals vs (\vals vars -> do
+         env <- mkEnvIn ns feats vals
+         let rows = zipWith (\i v -> (cM i, v)) [0 ..] vars
+         code <- case rows of
+           (r0 : rs) -> Right (evalx (chooseKS (r0 :| rs)) env)
+           []        -> Left "chooseIdx: no rows (unreachable)"
+         case lookup code (zip (gridPoints codeG) [0 ..]) of
+           Just i  -> Right i
+           Nothing -> Left "chooseIdx: off-code dispatch (unreachable)")
+
+-- the external option's value (the sentence route where the belief
+-- speaks: eL/eR are COPIES of runTrampoline's bodies)
+extValJ :: Namespace -> Features -> Belief Rational -> Owned
+        -> (Int, Int) -> (Rational, Rational) -> ExtOpt
+        -> Either String Rational
+extValJ ns feats b owned c st e = case e of
+  OWait    -> Right 0
+  ORespond -> Right (guardE True owned c st)
+  OLeft    -> evalOne (Expect (Var Z) (Sub oneM (Mul twoM (Var Z))))
+  ORight   -> evalOne (Expect (Var Z) (Sub (Mul twoM (Var Z)) oneM))
+  where
+    oneM = mintQ 1
+    twoM = addM oneM oneM
+    evalOne body = do
+      env <- mkEnvIn ns feats (b :. VNil)
+      pure (evalx (body :: Expr '[Belief Rational] Rational) env)
+
+extName :: ExtOpt -> String
+extName OWait = "wait"
+extName OLeft = "L"
+extName ORight = "R"
+extName ORespond = "respond"
+
+-- the best EXTERNAL value of the declared menu (the base-fix,
+-- EV-JP1): the argmax through the one chooser, its value by index
+bestExtJ :: Namespace -> Features -> JointWorld -> Belief Rational
+         -> Owned -> (Int, Int) -> Either String Rational
+bestExtJ ns feats w b owned c = do
+  vs <- mapM (extValJ ns feats b owned c (jwStakes w)) (jwExts w)
+  i <- chooseIdx ns feats vs
+  case drop i vs of
+    (v : _) -> Right v
+    []      -> Left "bestExtJ: index out of range (unreachable)"
+
+-- | The base-fix preposterior (EV-JP1's measured form), exported for
+-- the VoI law rows (the EV-CR4 lineage re-executed on the joint
+-- surface, EV-JP8): the hypothetical obs move BOTH the belief and
+-- the guard counts; the base is the best external OF THE DECLARED
+-- MENU.
+jointPrepost :: Namespace -> Features -> JointWorld
+             -> Kernel Rational Int -> Int -> Belief Rational
+             -> Owned -> (Int, Int) -> Either String Rational
+jointPrepost ns feats w k d b owned c
+  | d <= 0 = bestExtJ ns feats w b owned c
+  | otherwise = do
+      parts <- mapM
+        (\y -> case condK b k y of
+           Just b' -> do
+             v <- jointPrepost ns feats w k (d - 1) b' owned
+                    (if y == (1 :: Int)
+                       then (fst c + 1, snd c) else (fst c, snd c + 1))
+             pure (predictMass b k y * v)
+           Nothing -> pure 0)
+        [0, 1]
+      pure (sum parts)
+
+-- | The one joint loop: both episode shapes, both internal acts
+-- declarable on one tick's menu, every choice through evalx (the
+-- one-chooser-everywhere law, pack Part X).
 runJointW :: Namespace -> Space Rational -> Kernel Rational Int
           -> JointWorld -> [Int] -> Either String [String]
-runJointW _ _ _ _ _ =
-  Left "runJointW: the joint-preposterior increment's implementation is not yet landed"
+runJointW ns sp k w stream = case jwShape w of
+  DecideOnce -> goOnce (uniform sp) (mkOwned [rootNode]) (0, 0) stream
+  -- the standing shape carries no think row THIS increment: an
+  -- engine-scope line (the composed standing tick is register JP4),
+  -- never a world declaration — deliberation is not excludable
+  Standing -> standingDP ns w stream
+  where
+    feats = [("price", jwPrice w)]
+    st = jwStakes w
+    bump (a, b2) y = if y == (1 :: Int) then (a + 1, b2) else (a, b2 + 1)
+    prepostJ d b owned c = jointPrepost ns feats w k d b owned c
+    goOnce b owned c buf = do
+      extVs <- mapM (extValJ ns feats b owned c st) (jwExts w)
+      thinkVs <- if not (null buf)
+        then do
+          tv <- prepostJ (min (jwBatch w) (length buf)) b owned c
+          pure [tv - jwPrice w]
+        else pure []
+      refVs <- case jwRefine w of
+        Nothing -> pure []
+        Just s -> case frontier owned of
+          [] -> pure []
+          fs -> do
+            cvs <- mapM (\cand -> do
+                     bv <- bestExtJ ns feats w b
+                             (mkOwned (cand : ownedNodes owned)) c
+                     pure (bv - s)) fs
+            ci <- chooseIdx ns feats cvs
+            case drop ci cvs of
+              (v : _) -> pure [v]
+              []      -> Left "runJointW: refine payload (unreachable)"
+      let vs = extVs ++ thinkVs ++ refVs
+          names = map extName (jwExts w)
+               ++ [ "think" | not (null thinkVs) ]
+               ++ [ "refine" | not (null refVs) ]
+      i <- chooseIdx ns feats vs
+      nm <- case drop i names of
+        (n0 : _) -> Right n0
+        []       -> Left "runJointW: name index (unreachable)"
+      case nm of
+        "think" -> do
+          let ys = take (jwBatch w) buf
+              b' = foldl (\bb y -> case condK bb k y of
+                            Just bb2 -> bb2
+                            Nothing  -> bb) b ys
+              c' = foldl bump c ys
+          rest <- goOnce b' owned c' (drop (jwBatch w) buf)
+          pure ("think" : rest)
+        "refine" -> case jwRefine w of
+          Nothing -> Left "runJointW: refine without a mint (unreachable)"
+          Just _ -> case frontier owned of
+            [] -> Left "runJointW: empty frontier (unreachable)"
+            fs -> do
+              cvs <- mapM (\cand -> do
+                       bv <- bestExtJ ns feats w b
+                               (mkOwned (cand : ownedNodes owned)) c
+                       pure bv) fs
+              ci <- chooseIdx ns feats cvs
+              cand <- case drop ci fs of
+                (c0 : _) -> Right c0
+                []       -> Left "runJointW: candidate index (unreachable)"
+              rest <- goOnce b (mkOwned (cand : ownedNodes owned)) c buf
+              pure ("refine" : rest)
+        external -> pure [external]
 
--- | The standing sentence's price for a declared world (stub): built
--- by the engine from the declaration, priced through the frozen
--- weightIn — price rows read src, never a test-side copy (the F5
--- lesson).
+-- the standing-shape finite-horizon DP (EV-JP4/JP5's measured form,
+-- generalized to BOTH children per extension): states are descending
+-- paths from the root (False = low-theta child, True = high), the
+-- clock is the declared stream, counts precomputed from it; every
+-- backup and the tick's act go through chooseIdx (a Left from the
+-- chooser is unreachable here — the door covers — and is carried as
+-- the runPurchase-precedent error text). The depth bound 7 is the
+-- probe-inherited scope — register JP10 rules its final form before
+-- the implementation lands in src.
+standingDP :: Namespace -> JointWorld -> [Int] -> Either String [String]
+standingDP ns w stream = case jwRefine w of
+  Nothing -> Right (goPlain 0)
+  Just s  -> Right (goS s [] 0)
+  where
+    feats = [("price", jwPrice w)]
+    st = jwStakes w
+    total = length stream
+    countsAt = scanl (\(a, b2) y ->
+                        if y == (1 :: Int) then (a + 1, b2)
+                                           else (a, b2 + 1))
+                     (0, 0) stream
+    cAt t = case drop (t + 1) countsAt of
+      (c : _) -> c
+      []      -> error "standingDP: clock index (unreachable)"
+    nodeAt path = go2 rootNode path
+      where
+        go2 n [] = n
+        go2 n (hi : rest) =
+          case sortOn nodeTheta (childrenOf n) of
+            [lo, hi2] -> go2 (if hi then hi2 else lo) rest
+            _ -> error "standingDP: a lattice node has two children (unreachable)"
+    chainNodes path = [ nodeAt (take i path) | i <- [1 .. length path] ]
+    ownedOf path = mkOwned (rootNode : chainNodes path)
+    depthCap = jwDepth w
+    paths = concat [ allPaths n | n <- [0 .. depthCap] ]
+    allPaths :: Int -> [[Bool]]
+    allPaths 0 = [[]]
+    allPaths n = [ b2 : p2 | p2 <- allPaths (n - 1), b2 <- [False, True] ]
+    pessOf path t = guardE True (ownedOf path) (cAt t) st
+    pick vs = either (\m -> error ("standingDP (unreachable: the door covers) " ++ m))
+                     id (chooseIdx ns feats vs)
+    at i xs = case drop i xs of
+      (x : _) -> x
+      []      -> error "standingDP: index (unreachable)"
+    -- the value table, built ONCE, knotted lazily (Data.Map lazy);
+    -- every backup's max is the sentence's argmax read back by index
+    goS s path0 t0 = runFrom path0 t0
+      where
+        tbl = M.fromList [ ((path, d), val path d)
+                         | d <- [0 .. total], path <- paths ]
+        nxt p2 d2 = M.findWithDefault 0 (p2, d2) tbl
+        val path d
+          | d <= 0 = 0
+          | otherwise =
+              let t = total - d
+                  extRow e = case e of
+                    OWait    -> nxt path (d - 1)
+                    ORespond -> pessOf path t + nxt path (d - 1)
+                    _ -> error "standingDP: the standing belief face is register JP4"
+                  refVs = [ (-s) + nxt (path ++ [b2]) (d - 1)
+                          | length path < depthCap, b2 <- [False, True] ]
+                  vs = map extRow (jwExts w) ++ refVs
+              in at (pick vs) vs
+        runFrom path t
+          | t >= total = []
+          | otherwise =
+              let d = total - t
+                  extRow e = case e of
+                    OWait    -> nxt path (d - 1)
+                    ORespond -> pessOf path t + nxt path (d - 1)
+                    _ -> error "standingDP: the standing belief face is register JP4"
+                  extVs = map extRow (jwExts w)
+                  refs = [ (path ++ [b2], (-s) + nxt (path ++ [b2]) (d - 1))
+                         | length path < depthCap, b2 <- [False, True] ]
+                  refRow = case refs of
+                    [] -> []
+                    _  -> [ at (pick (map snd refs)) refs ]
+                  vs = extVs ++ map snd refRow
+                  nms = map extName (jwExts w)
+                     ++ [ "refine" | not (null refRow) ]
+                  nm = at (pick vs) nms
+              in case nm of
+                   "refine" -> case refRow of
+                     ((p2, _) : _) -> "refine" : runFrom p2 (t + 1)
+                     [] -> error "standingDP: refine row (unreachable)"
+                   _ -> nm : runFrom path (t + 1)
+    goPlain t
+      | t >= total = []
+      | otherwise =
+          let extRow e = case e of
+                OWait    -> 0
+                ORespond -> pessOf [] t
+                _ -> error "standingDP: the standing belief face is register JP4"
+              vs = map extRow (jwExts w)
+              nm = at (pick vs) (map extName (jwExts w))
+          in nm : goPlain (t + 1)
+
+-- | The standing sentence's price for a declared world: the chooser
+-- built from the declaration's arity, priced through the frozen
+-- weightIn (price rows read src — the F5 lesson).
 jointPolicyWeight :: JointWorld -> Rational
-jointPolicyWeight _ =
-  error "jointPolicyWeight: the joint-preposterior increment's implementation is not yet landed"
+jointPolicyWeight w =
+  let n = length (jwExts w)
+        + (case jwShape w of DecideOnce -> 1; Standing -> 0)
+          -- think's row: always on the decide-once menu (never
+          -- excludable); absent from the standing menu this
+          -- increment (the JP4 engine-scope line)
+        + (case jwRefine w of Just _ -> 1; Nothing -> 0)
+      doorNs = mkNamespace ("door" :| [])
+      codeG = mkGrid "jacts" (0 :| map fromIntegral [1 .. n - 1])
+      cM :: forall e2. Int -> Expr e2 Rational
+      cM i = case mkC codeG i of
+        Just e  -> e
+        Nothing -> error "jointPolicyWeight: on-codebook index (unreachable)"
+  in withQVals (replicate n 0) (\_ vars ->
+       case zipWith (\i v -> (cM i, v)) [0 ..] vars of
+         (r0 : rs) -> weightIn doorNs (chooseKS (r0 :| rs))
+         []        -> error "jointPolicyWeight: empty menu (unreachable)")
