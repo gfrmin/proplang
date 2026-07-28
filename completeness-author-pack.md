@@ -1266,3 +1266,39 @@ against stubs where implementation is owed; where the battery
 pins ALREADY-SHIPPED behavior (the family rows), the PIN-FREEZE
 clause applies and the red half is seeded-defect demonstrations
 (the step-2 precedent, as amended step-10).
+
+**Part XVI continued — the battery construction through the pools
+(builder, 2026-07-28; commits b560ec1, 86d9d0f, e8d9ae1).** The
+oracle stands at 80 rows, green on the shipped surface (PIN-FREEZE
+form): g-b1 the 72-cell family — the axes DECLARED (3 grids x 4
+prices x 3 batches x 2 streams), shipped runJointW == the
+independent reference at exact == in every cell, the reference an
+R-D20 copy of the frozen ExactReference formulas generalized to
+the declared axes, the four t2 anchors falling out of the walk —
+g-b2 the law rows (VoI >= 0 at every family root; stake-scale
+invariance x2/x5), g-b3 the docketed rows (BOTH of the jp close's
+UNREACHED verdicts cured by sole-killer rows: M46 by the
+refine-declared tie stream after the first cut exposed the
+goPlain/runFrom act-site split; M47 by the knife-edge cell whose
+window was measured exactly — VoI(1)=0 < 1/20 < VoI(3)=36/625 at
+the post-think belief), g-b4 the enumeration-gate reach row, and
+the residual PRINTED. The compile is the package-faithfulness
+law's first application (hidden-all + the stanza's dependency
+closure). Seeded-defect red demonstrated: M42 fires 45 rows, M44
+fires 58, M46/M47 their sole rows.
+
+**The OB-20/21 pools landed** (M56-M61, the reach table in
+test-battery/opening/pool-reach.txt): the lawful stanza reached by
+three reasoner mutants, the independence suite the SOLE killer of
+the refusal-law mutant, pins the SOLE killer of the count-gate —
+and M61 ran UNREACHED exactly as the ledger predicted (the
+membership row is an intension predicate, generator-blind), cured
+in-increment by g-b4.1. The discharge events the x5 ruling 4 named
+are now EXECUTED; the verdicts ride to the sitting.
+
+**Remaining before the sitting**: the mint-level knife-edge cell
+(drafted in the residual; its construction needs the standing
+reference), the F5-row decision (test-f5 already stands green —
+whether the battery duplicates its pins or cites them is a sitting
+line), the mandate round over the increment, and the freeze kit
+(stanza splice, manifest, the sitting scripts in the 1/2/3 form).
