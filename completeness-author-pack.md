@@ -1451,3 +1451,21 @@ the mandate-round ratifications, and the 14.9 wire scheduling
 (#20 first, the OB-19 heir second, #19 1a-or-doctrine third).
 Declining any drafted line = editing 3-sign.sh (or the [RULING]
 lines in 2-freeze.sh) BEFORE 2-freeze.sh runs.
+
+**The kit's two-sided rehearsal** (fresh scratch clone, builder key,
+2026-07-30; the jp rehearsal form). FIRST RED, caught and repaired:
+1-verify's live compile assumed the drafting tree's package db —
+`cabal exec` reads dist-newstyle/packagedb, which a fresh checkout
+lacks; the script failed in the clone at exactly the step that
+exists to prove the green is true of ANY honest copy of the tree.
+Repaired (a cached-no-op `cabal build lib:proplang` before the exec
+line, 3d0065f) and the full rehearsal re-run from a fresh clone,
+end to end: 1-verify ALL CHECKS PASSED with the live 82/82; 2-freeze
+spliced, applied all three [RULING] patches, ran gate 5 green on the
+spliced tree (12 suites PASS, battery among them), re-signed the
+manifest 95 -> 109 rows, lint 0 FAIL 0 WARN; the RED side both ways —
+the double-run guard refused a second splice, and a 3-sign edited
+AFTER 2-freeze was refused at the manifest re-check before any key
+act; 3-sign sealed battery-freeze-r0 (BUILDER key, rehearsal only —
+the real sitting's plain -s is the author's), tag -v GOOD, manifest
+verifying post-seal. The kit the author runs is the kit as rehearsed.
