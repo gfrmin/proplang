@@ -1347,10 +1347,107 @@ row). (5b) the header declares the pool "M42-M55" while g-b4.1's
 sole killer is M61. REPAIR: header says M42-M63 (the pool as of
 this increment's close).
 
-**M1 (theorem-as-definition).** [reviewer still out at this
-writing; its findings and dispositions append below when it
-lands.]
+**M1 (theorem-as-definition).** [landed after the five above; the
+disposition line appended at the kit assembly, 2026-07-30.] Two
+findings; the refDelib independence concern examined and CLEARED
+(the reference route is pure list arithmetic vs runJointW's
+Belief/evalx/chooseKS route; M42/M44 fire 45/58 rows, so g-b1
+agreement is non-vacuous). (1a) g-b2.1 is, over the family walked,
+Jensen's theorem of the code's OWN shared mass decomposition
+(jointPrepost and bestExtJ bottom out in the same condK/predictMass
+list), and at review time no transcript showed it could fire —
+only a chooser-direction or mass-decoherence mutant can break it.
+DISPOSITION: the verdict rides the committed matrix honestly —
+M44 (prepost-base-off-menu, exactly the mass-decoherence class)
+fires g-b2.1, red committed in the serial matrix; the row is a
+conformance pin on the decomposition, not an independent law, and
+the tag names it so. (1b) the 72-cell sweep collapses: price never
+enters jointPrepost (bound as an env feature no evaluated body
+reads) and stream content enters only as d = min n 36 = n, so the
+g-b2.1 family computes 9 distinct values. DISPOSITION: recorded as
+honest accounting (the sweep's value for g-b2.1 is reach, not
+variety); the residual row's discipline covers it. (1c) g-b4.1's
+green side was vacuous under an under-generating corpus (an empty
+budget-5 corpus passes the no-If assert). REPAIR: nonemptiness
+assert at budget 5, landed with the 3e01564 batch.
 
 **The residual row's class**: a printer cannot fail by design —
 disposed as a RECORD row (the F6/test-writeup precedent), named so
 in the row title at the repair.
+
+## Part XVIII — NO RED OWED + THE BATTERY FREEZE KIT (builder, 2026-07-28/30; the sitting's materials)
+
+**The author's standing ruling, 2026-07-28** (on g-b2.2's owed red):
+"never owe a red if possible." Executed the same day, window-first —
+the knife-edge method is: compute the exact decision margin, place a
+declared parameter strictly inside it, then confirm the seeded
+defect fires. Invariance laws have reds only at decision margins;
+generic streams jump over margins, so these reds are CONSTRUCTED,
+never hoped for.
+
+**The probe** (R-D21 throwaway; transcript committed at
+test-battery/opening/knife-probe.txt): the first pass, on the wrong
+stream, came back empty; the second measured the guard surface
+itself and found a STRUCTURAL CAP — at root-owned counts the
+worst-node win probability saturates at 1/2, so the pessimism guard
+is bounded by g_max = (1-s)/2, and M62's discrimination window
+(-1, -1/5) was UNREACHABLE at stakes (1,-24) on ANY stream. The
+stakes axis was the free variable: at (1,-2), g(0,0) = -7/8 sits
+inside the window at tick 0. The mint margin measured on the same
+pass: on the all-ones-60 buyer stream at stakes (1,-24), the buys
+flip from 6 (mint 1/10) to 0 (mint 1/5).
+
+**Three rows landed from one measurement** (commit d7a1272; suite
+79 -> 82):
+- g-b2.2 gains the window triple (1,-2)/(2,-4)/(5,-10) — shipped
+  transcripts invariant (green); M62's +1 shift makes the scales
+  disagree at tick 0 (red fires).
+- g-b2.3 mint-with-stakes homogeneity: scaling ALL payoffs
+  including the mint (jwRefine = k/10, stakes (k, -24k), k in
+  {1,2,5}) leaves the buying transcript invariant, pinned on a real
+  6-buy trajectory, not a degenerate all-wait one.
+- g-b3.4 the mint-level differential at the measured margin: 6 buys
+  at 1/10, zero at 1/5 — the x2 sensitivity the jp close found the
+  transcripts blind to, now live. Its red is M48, whose battery
+  reach was ZERO before this row.
+
+The committed serial matrix's OWED verdict for g-b2.2 is superseded
+in place (dated block inside battery-kill-matrix.txt, the
+frozen-layer repair form); post-supersession the pin-freeze clause
+is satisfied IN FULL: every battery row red-demonstrated, no red
+owed anywhere, the residual row a RECORD row.
+
+**The freeze kit** (test-battery/freeze/, the jp 1/2/3 form; this
+is a SINGLE-TAG close — pin-freeze, no implementation owed, the
+matrix already run against the committed baseline, so no r1 phase
+follows):
+
+- 1-verify.sh — read-only; includes a LIVE 82/82 battery run under
+  the stanza's dependency closure (the package-faithfulness law),
+  so the green being signed is executed at the sitting, not only
+  recorded.
+- 2-freeze.sh — keyless mechanics: the stanza splice; three
+  [RULING] patches, each declinable by editing the script before
+  running it (CR7's boundary-audit repair, staged at the opening;
+  the NO-SILENT-CAPS canonization into CLAUDE.md, mandate 2's
+  offer, substance = EXACT_PLAN 14.1; the RED-IS-CONSTRUCTED
+  canonization into CLAUDE.md — the author's own 2026-07-28 ruling
+  offered as standing law); the first stanza'd `cabal test battery`
+  run; the manifest extension (oracle + transcripts + kit, the
+  kit-freezes-itself form) + re-sign of the four mutated frozen
+  rows; the pre-freeze lint.
+- 3-sign.sh — the author's two key acts only (commit -S, tag -s
+  battery-freeze-r0), guarded by a manifest re-check so a
+  post-2-freeze edit is refused mechanically.
+
+The tag message carries the register as drafted: CR3 (axes as
+built, residual printed), CR4 (VoI + scale rows in; the SHIFT half
+ruled a menu convention — the declared wait row pins zero;
+admissibility deferred to the K>2 residual), CR5 (OB-20/21
+discharged here), CR6 (the sufficiency prose form), CR7 (execute),
+JP2-d6 (pwLadderCap: RETIRE-UNTIL-N — the question returns at the
+wire docket's #19/doctrine sitting), the M46/M47/mint discharge,
+the mandate-round ratifications, and the 14.9 wire scheduling
+(#20 first, the OB-19 heir second, #19 1a-or-doctrine third).
+Declining any drafted line = editing 3-sign.sh (or the [RULING]
+lines in 2-freeze.sh) BEFORE 2-freeze.sh runs.

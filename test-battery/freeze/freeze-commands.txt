@@ -1,0 +1,60 @@
+# THE CERTIFICATION BATTERY FREEZE — the sitting's cover page.
+#
+# SINGLE-TAG CLOSE (the step-2/optlaw and step-10/reflexive precedent):
+# the battery is a PIN-FREEZE — the oracle arrived green against the
+# shipped surface, the red half is discharged by the COMMITTED 22-mutant
+# serial kill matrix (M42-M63, every row red-demonstrated, no red owed
+# anywhere per the author's 2026-07-28 ruling), and no implementation
+# phase follows the tag. One tag, battery-freeze-r0, closes the
+# increment and the completeness boundary's third act.
+#
+# The sitting is THREE scripts, run in order (the jp form):
+#
+#   bash test-battery/freeze/1-verify.sh
+#       READ-ONLY: the commits under review, manifest, a LIVE 82/82
+#       battery run under the stanza's dependency closure (the
+#       package-faithfulness law — the green you sign is executed at
+#       the sitting, not only recorded), the matrix/probe/red
+#       transcript tails, all three patches checked. Run freely.
+#
+#   bash test-battery/freeze/2-freeze.sh
+#       KEYLESS MECHANICS: the stanza splice; the three [RULING]
+#       patches (CR7's boundary-audit repair; the NO-SILENT-CAPS
+#       canonization; the RED-IS-CONSTRUCTED canonization); gate 5
+#       run on the spliced tree (cabal test all); the manifest
+#       extension + re-sign; the pre-freeze lint. set -euo pipefail
+#       + a double-run guard.
+#
+#   bash test-battery/freeze/3-sign.sh
+#       THE AUTHOR'S TWO KEY ACTS: commit -S, tag -s
+#       battery-freeze-r0 (message = the full register ruling as
+#       drafted: CR3-CR7, JP2-d6, the M46/M47/mint discharge, the
+#       mandate ratifications, the 14.9 wire scheduling), then
+#       tag -v. Nothing else lives in this file.
+#
+# Rulings live where they execute: the three [RULING] patch blocks are
+# in 2-freeze.sh; the register ruling is 3-sign.sh's tag message.
+# Running a script with a [RULING] intact accepts its drafted default —
+# DECLINE BY EDITING before 2-freeze.sh runs: its manifest loop hashes
+# all three scripts, this cover, and both canonization patches as run,
+# and 3-sign.sh RE-VERIFIES the manifest before its first key act, so
+# an edit made after 2-freeze.sh is refused mechanically (enforced,
+# never trusted). A decline-by-edit before 2-freeze rides the freeze
+# commit itself (3-sign sweeps the kit directory).
+#
+# The three [RULING] defaults, for review before running:
+#   R-CR7      apply test-completeness/freeze/boundary-audit-repair.patch
+#              (BF-row -S -> -G; M5-row counts mutant patch files as
+#              definition sites) — staged at the opening, default EXECUTE.
+#   R-CAPS     apply test-battery/freeze/no-silent-caps.patch to
+#              CLAUDE.md — mandate 2's offer: the thrice-cited law gets
+#              its definition site (substance = EXACT_PLAN 14.1).
+#   R-RED      apply test-battery/freeze/red-constructed.patch to
+#              CLAUDE.md — the author's own 2026-07-28 ruling ("never
+#              owe a red if possible") offered as standing law, with
+#              g-b2.2's structural-cap discovery as provenance.
+#
+# After 3-sign.sh: push on your word — everything since a2dcbbc is
+# local. `git push origin master battery-freeze-r0`. The wire docket
+# (EXACT_PLAN 14.9) opens next in the ratified order: #20 readout, the
+# OB-19 heir, #19 as 1a-or-doctrine.

@@ -7,3 +7,6 @@ All 78 tests passed (3.78s)
 === the battery green pass v2 (79 rows: + g-b3.2 goPlain tie, g-b3.3 M47 knife-edge) ===
 
 All 79 tests passed (3.74s)
+=== the battery green pass v3 (82 rows @ d7a1272: + g-b2.2's window triple (1,-2)/(2,-4)/(5,-10), g-b2.3 mint-with-stakes homogeneity, g-b3.4 the mint-level differential — the no-red-owed constructions; same compile line) ===
+
+All 82 tests passed (45.95s)

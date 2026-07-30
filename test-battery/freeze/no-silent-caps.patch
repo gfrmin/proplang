@@ -1,0 +1,20 @@
+diff --git a/CLAUDE.md b/CLAUDE.md
+index e6d9e42..1eb3b27 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -392,6 +392,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
+    whose allowlist saw only stubs has a one-sided green; the gate's
+    oracle-phase run executes against the overlay exactly as the SAT
+    compile does (flag-faithful, surface-faithful).
++   One line canonized at the battery boundary (2026-07-30; mandate
++   2's finding its provenance — "the no-silent-caps law" cited three
++   times, defined nowhere): NO SILENT CAPS — a suite that bounds its
++   own coverage (a walked family's axes and ranges, a top-N, a
++   sampled subset) PRINTS the residual as a row, never absorbs it.
++   The substance is EXACT_PLAN 14.1's discipline ("the RESIDUAL —
++   the axes and ranges the family does not span — is PRINTED by the
++   suite, never absorbed"); this line is the citation's definition
++   site.
+ 3. **Author freeze.** The author reviews the oracle and the increment's
+    under-determination register, absorbs any spec amendments (frozen
+    texts change only at freeze boundaries, only by the author), then
