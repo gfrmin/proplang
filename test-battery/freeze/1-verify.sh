@@ -18,7 +18,13 @@ echo "manifest OK pre-freeze"
 
 # the LIVE green (PIN-FREEZE form: the suite you are freezing is green
 # NOW, on this tree — executed here under the stanza's dependency
-# closure, the package-faithfulness law; ~90s)
+# closure, the package-faithfulness law; ~90s). The library build is
+# a no-op when cached; it exists because `cabal exec` reads the
+# project package db, which a fresh checkout lacks — the rehearsal's
+# first red caught exactly this (the f5 lesson's sibling: the script
+# must run from ANY honest copy of the tree, not just the one it was
+# drafted in).
+cabal build -v0 lib:proplang
 tmp=$(mktemp -d)
 cabal exec ghc -- -hide-all-packages -package base -package containers \
   -package tasty -package tasty-hunit -XGHC2021 \
