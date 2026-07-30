@@ -1,0 +1,12 @@
+=== #20 oracle SAT run vs OVERLAY (R-D21 overlay form: the prototype wears the real module names; Host.hs + Report.hs shadowed), 2026-07-30 ===
+=== compile: cabal exec ghc -- -hide-all-packages -package base -package containers -package tasty -package tasty-hunit -XGHC2021 -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns -i/home/g/.claude/jobs/a5facf7d/tmp/overlay -isrc -itest-readout — the oracle text UNCHANGED, flag- and package-faithful ===
+[10 of 10] Linking /tmp/tmp.6BBUvae57u/readout
+the #20 K-ary readout (the 14.9 wire docket; pack Part IX)
+  g1 shape: the K=6 decide reply carries p_codes with K elements:                               OK (1.28s)
+  g2 derivation pin: p_codes byte-equals the exported-verb vector at feats ++ act:              OK (1.24s)
+  g3 coherence: p_codes index 1 equals the reply's own p1 rendering:                            OK
+  g4 plain route: the binary decide reply carries p_codes, 2 elements, index 1 == p1:           OK
+  g5 presence scope: p_codes rides decPart exactly (combined yes; evidence-only no; silent no): OK
+  g6 N1: entropy_bits FINITE after the long fold (the edge guards the rendered Double):         OK
+
+All 6 tests passed (2.52s)

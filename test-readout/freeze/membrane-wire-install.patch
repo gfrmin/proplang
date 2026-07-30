@@ -1,0 +1,64 @@
+diff --git a/membrane-wire.md b/membrane-wire.md
+index ac27c24..6dddef1 100644
+--- a/membrane-wire.md
++++ b/membrane-wire.md
+@@ -74,7 +74,9 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
+   point-set left src, so the world must say it (Host.hs:12-13; the
+   handshake validator at Host.hs:252 refuses a hello without
+   `codebooks.theta` as `{"error": "bad hello"}`).
+-- `guards` extend the model fragment's guard families
++- `guards` (REQUIRED; declare `[]` when the world has none — the
++  parser pattern-matches the key, Host.hs:251; the #20 freeze's
++  probe note N2): extend the model fragment's guard families
+   (`enumerateSentencesIn`), one `(name, threshold grid)` pair each;
+   grids nonempty.
+ - `menu` declares the writable names with their grids (the step-5
+@@ -271,7 +273,7 @@ MOVE:
+ 
+ ```json
+ {"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": ["a"]}}
+-{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2}
++{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2, "p_codes": [0.19, 0.81]}
+ ```
+ 
+ *(Examples repaired in place at the step-7 unify freeze: a tick's
+@@ -359,7 +361,30 @@ the verdict (waste polarity: 1 = approve):
+   (section 2's `obs_arity` bullet), so atom 1 is the distinguished
+   positive event the diagnostic always read — the diagnostic's
+   meaning and the codomain's background are ONE recorded fact.
+-  Pinned against the predictive by test-arity g7d.
++  Pinned against the predictive by test-arity g7d. *[Citation
++  re-homed at the #20 freeze, 2026-07-30: test-arity retired at
++  the exact boundary; the pin's standing homes are the identity
++  table's — the acceptance probe rows — and readout g3's
++  byte-coherence with p_codes[1].]*
++- `p_codes` in a decision reply (the #20 freeze, 2026-07-30; the
++  grant is dispositions-pack VIII.1, the demand issue #20;
++  wire-author-pack.md Part IX): the FULL per-code predictive
++  vector at the SAME readout point as `p1` — index j is P(atom j)
++  at feats ++ act (post-choice, pre-observation), carrier order
++  0..K-1, so length K on the declared-arity route and 2 on the
++  plain route; elements render exactly as `p1` renders;
++  `p_codes[1]` equals `p1` byte-for-byte (readout g3); appended
++  LAST (the utility_bits precedent). OBSERVABILITY ONLY —
++  consumer discipline, binding, quoted into this document at the
++  grant's own instruction (VIII.1; the filer's words): the
++  readouts land in ledger rows and footers, NEVER in a branch —
++  an adapter that branches on them has re-created host-side
++  decision forking (HOSTS_PLAN 8.12(b)). The engine's choice is
++  engine-side argmax over the declared menu, before and after
++  this member, byte-identically. p_codes[0] is the null atom's
++  predictive mass — the instrument that observes R-D23's cap on
++  live traffic (the OB-19 heir's demand gate reads it; section
++  2's obs_arity bullet). Derivation pin: readout g2.
+ - Choice encoding: `"act"` is the full assignment object,
+   `{<writable-name>: <value>, ...}` — one value per name published
+   this tick (the empty object when no menu is published: the empty
+@@ -439,6 +464,7 @@ the verdict (waste polarity: 1 = approve):
+ | K=2 arity == plain route | Host.hs:292-296 | pins ARITY K=2 (==) |
+ | K=4 categorical law | Enumerate.hs catBody | pins K=4 (EARNED, M14) |
+ | p1 = P(atom 1) at any arity | Host.hs reply builder | acceptance probe rows |
++| p_codes[j] = P(atom j) at feats ++ act | Host.hs reply builder | readout g2 (derivation) + g3 (p1 coherence) + g4 (plain route) + g5 (presence scope) |
+ | utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | trampoline g6.2 (OB-22 DISCHARGED) |
+ | namespace immutability under publication | Host.hs handshake + tick dispatch | trampoline g6.3 (OB-23 DISCHARGED) |
+ | rendering cliff 2^53 | Host.hs:182-183 | transport t4 (parity partition) |

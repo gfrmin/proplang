@@ -1,0 +1,40 @@
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 28a21fe..611457c 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -423,10 +423,18 @@ tickExternal w ag feats mOpts evid act = do
+         Nothing -> Right []
+         Just _ -> do
+           p1 <- predictMassS full 1 ag
++          -- #20 (the 14.9 wire docket): the full per-code predictive
++          -- vector at the SAME readout point as p1 — observability
++          -- only, appended LAST (the W4 utility_bits precedent);
++          -- pinned to the exported-verb derivation by readout g2
++          vec <- mapM (\y -> predictMassS full y ag) (agentObsPoints ag)
+           let hB = entropyAgent ag
+           Right [ "\"act\": " ++ rAct act
+                 , "\"p1\": " ++ show (fromRational p1 :: Double)
+-                , "\"entropy_bits\": " ++ show hB ]
++                , "\"entropy_bits\": " ++ show hB
++                , "\"p_codes\": ["
++                  ++ commaSep [ show (fromRational m :: Double) | m <- vec ]
++                  ++ "]" ]
+       case evid of
+         Nothing
+           | null decPart -> Right (HostLive w ag, "{\"ok\": true}")
+diff --git a/src/PropLang/Report.hs b/src/PropLang/Report.hs
+index 9ffe5d2..b93c611 100644
+--- a/src/PropLang/Report.hs
++++ b/src/PropLang/Report.hs
+@@ -14,7 +14,10 @@ import PropLang.Enumerate (AgentS, metaPosterior)
+ entropyOf :: [Rational] -> Double
+ entropyOf ps =
+   sum [ negate (p * logBase 2 p)
+-      | w <- ps, w > 0, let p = fromRational w :: Double ]
++      | w <- ps, w > 0, let p = fromRational w :: Double, p > 0 ]
++  -- p > 0: an exact weight below the Double subnormal floor renders
++  -- 0.0, and 0.0 * logBase 2 0.0 is NaN — the display of such a term
++  -- is its limit, 0 (N1, wire-author-pack.md IX.2; readout g6)
+ 
+ -- | Belief entropy in bits (display).
+ entropyBits :: Belief a -> Double

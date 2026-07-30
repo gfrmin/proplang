@@ -1,0 +1,10 @@
+test-suite readout
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Readout.hs
+    hs-source-dirs:   test-readout
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021

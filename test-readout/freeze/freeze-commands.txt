@@ -1,0 +1,71 @@
+# THE READOUT FREEZE (#20, the 14.9 wire docket's first increment) —
+# the sitting's cover page.
+#
+# TWO-PHASE (the dyadic precedent, NOT the battery's single-tag
+# form): this tag seals a RED oracle — 6 rows red-by-design against
+# the shipped src (test-readout/opening/red-run.txt; re-demonstrated
+# LIVE inside 1-verify), SAT 6/6 against the staged overlay
+# (opening/sat-run.txt; the implementation's prophecy, staged
+# verbatim as freeze/implementation-draft.diff). The implementation
+# phase FOLLOWS the tag: the builder re-lands the staged diff, gate 5
+# goes 12/12, the close matrix cuts M-r1..M-r7 against the COMMITTED
+# baseline (the dyadic incident's law), and the author's
+# readout-freeze-r1 over the close-out ends the increment.
+#
+# The sitting is THREE scripts, run in order (the jp form):
+#
+#   bash test-readout/freeze/1-verify.sh
+#       READ-ONLY: commits under review, manifest 109/109, the 11
+#       standing suites LIVE-green pre-splice, the oracle's 6/6 RED
+#       run LIVE (package- and flag-faithful — the red you seal is
+#       executed at the sitting, not only recorded), transcript
+#       tails, all three staged patches checked. Run freely.
+#
+#   bash test-readout/freeze/2-freeze.sh
+#       KEYLESS MECHANICS: the stanza splice; the two [RULING]
+#       patches (membrane-wire install; OBLIGATIONS flip); gate 5 as
+#       THE PARTITION (11 standing PASS + readout 6/6 RED — a bare
+#       all-green during an oracle-first freeze would prove the
+#       wrong thing); manifest extension (109 -> 120) + re-sign of
+#       the three mutated frozen rows; the pre-freeze lint.
+#       set -euo pipefail + a double-run guard.
+#
+#   bash test-readout/freeze/3-sign.sh
+#       THE AUTHOR'S TWO KEY ACTS: commit -S, tag -s
+#       readout-freeze-r0 (message = the full register ruling as
+#       drafted: R1-R8, the frozen-layer inventory F-1..F-4, the
+#       forward-half kill plan, the two-phase close), then tag -v.
+#       Nothing else lives in this file.
+#
+# Rulings live where they execute. R1-R5 (vector-only; the p_codes
+# name; N1 riding the increment; decPart presence scope; rendering)
+# are SEALED BY THE ORACLE ITSELF — declining any of them means the
+# oracle text is wrong: do NOT run the kit; re-open the oracle phase
+# instead (wire-author-pack.md IX.4 carries the drafted grounds).
+# R6/R7/R8 + inventory F-1..F-4 execute as the two [RULING] patch
+# blocks in 2-freeze.sh — DECLINE BY EDITING the staged patch (or
+# deleting its apply block) BEFORE 2-freeze.sh runs: its manifest
+# loop hashes all three scripts, this cover, and both install
+# patches as run, and 3-sign.sh RE-VERIFIES the manifest before its
+# first key act, so an edit made after 2-freeze.sh is refused
+# mechanically (enforced, never trusted).
+#
+# The [RULING] defaults, for review before running:
+#   R6+R8+F-2/3/4  apply test-readout/freeze/membrane-wire-install.patch
+#                  — the p_codes bullet (consumer discipline quoted,
+#                  VIII.1's instruction) + reply example + identity-
+#                  table row + guards (REQUIRED) + the g7d citation
+#                  re-home. Default EXECUTE.
+#   R7/F-1         apply test-readout/freeze/obligations-install.patch
+#                  — OB-20/21 SCHEDULED -> DISCHARGED@battery-freeze-r0
+#                  (the boundary audit's flag at this opening; the
+#                  battery tag's CR5 quoted). Default EXECUTE.
+#
+# After 3-sign.sh: the implementation phase opens on the builder's
+# key (apply freeze/implementation-draft.diff to src, 12/12 green,
+# the close matrix, the close-out record in pack Part IX); push on
+# your word. readout-freeze-r1 over the close-out closes #20, and
+# the docket proceeds: the OB-19 heir (with the solicited
+# latency/population curves), then #19 as 1a-or-doctrine — JP2-d6's
+# pwLadderCap RETIRE-UNTIL-N return row rides the #19 opening
+# checklist.

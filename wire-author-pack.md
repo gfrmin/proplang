@@ -1291,3 +1291,272 @@ utility_bits appended last). Witness set on the implemented tree:
 
 CLOSURE OWED (R-D22): the author's own re-tag w4-freeze-r1 over the
 implementation commit; the increment does not close until it exists.
+
+*(Part VIII's owed re-tag was delivered as w4-freeze-r1 over 0bc32ed,
+2026-07-21 — the wire-boundary record. The pack resumes at the 14.9
+docket.)*
+
+## Part IX — the 14.9 docket: #20, the K-ary readout micro-increment (opened 2026-07-30)
+
+### IX.0 Charter
+
+Ratified at battery-freeze-r0 (the tag's register, 2026-07-30): "The
+14.9 wire docket's scheduling is RATIFIED in the recorded order: #20
+(the K-ary readout micro-increment) first, the OB-19 heir
+(enumeration breadth; the consumer's latency and population curves
+solicited) second, #19 ruled as 1a-or-doctrine per dispositions-pack
+VIII.4 third - each its own oracle-first frozen increment." The
+disposition being executed is VIII.1's (dispositions-pack.md, the
+R-residue sitting of 2026-07-22): GRANT, full vector, observability
+only — "the whole ask is host-layer arithmetic over ALREADY EXPORTED
+verbs"; "a WIRE MICRO-INCREMENT of the transport's own size class";
+consumer discipline (readouts land in ledger rows and footers, never
+in a branch — HOSTS_PLAN 8.12(b)) "should be quoted INTO the wire doc
+at the freeze". The filer's demand is issue #20 (life-agent,
+2026-07-27): honest footer rendering at j /= 1, report pricing (EU of
+every menu row), and null-mass observability — the instrument that
+watches OB-19's R-D23 cap bind on live traffic.
+
+Scope statement, stated at the opening: the alphabet does not move;
+prodTable stays 20/1; no new export is owed (the derivation composes
+from the shipped surface); the increment is a reply-shape change plus
+one frozen-doc edit, plus one reporting-edge defect repair surfaced
+by this opening's own measurement (N1 below, register row R3).
+
+### IX.1 Boundary audit (the standing event, run at this opening)
+
+```
+=== boundary-audit (screening; first firing = the step-6 boundary) ===
+M5-row: 0 flagged (IDs cited >=4 with no definition-shaped line)
+H-row: 0 flagged (of 57 symbols scanned)
+FLAG  obligation(s) at OBLIGATIONS.md line(s) 48,49 still open against CLOSED boundary x5-sitting-r0
+OB-row: 1 flagged (open obligations against closed boundaries)
+banked-failure row: alphabet last moved at c2ca82c (2026-07-25T18:44:21+03:00)
+banked-failure row: 0 flagged
+note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has 11 (dated red-by-design instrument, recorded)
+=== boundary-audit done: M5=0 H=0 OB=1 BF=0 ===
+```
+
+Triage of the OB flag: OB-20 and OB-21 (the two mutant-pool
+obligations) were DISCHARGED at battery-freeze-r0 — the tag's CR5
+says so in terms ("M56-M61 committed with reach demonstrated") — but
+the ledger rows still read SCHEDULED@x5-sitting-r0: a stale frozen
+row, the exact post-tag class the battery's TRADE paragraph routed to
+"a frozen-layer inventory row at the wire docket's next sitting."
+It enters this increment's frozen-layer inventory (IX.5, item F-1);
+the flip is staged for the author's freeze script. Not a live open
+obligation.
+
+The BF row is 0 (no banked clause-(a) failure postdates the alphabet
+motion of 2026-07-25), but the step-10 clause reaches MEASUREMENTS
+exactly as it reaches composition-failures: VIII.1's Readout numbers
+were taken on the pre-exact surface (baked thetaPoints, Double
+engine) and are therefore a HYPOTHESIS at this boundary. IX.2
+re-executes them against the shipped exact engine before anything
+relies on them.
+
+### IX.2 The opening measurement (R-D21 throwaway prototype, executed 2026-07-30)
+
+Pre-statement: the probe re-runs VIII.1's measurement on the shipped
+src at a declared operating point — K=6 (`obs_arity: 6`), the dyadic
+theta codebook 1/8..7/8 (the world declares its grids now; E3), menu
+`a` in {0,1}, no utility (the no-utility choice is menuAssignments'
+head, `a=0`, every tick), 400 COMBINED ticks (menu + evidence — the
+fold channel a menu-bearing world actually has; trampoline g6.3's
+idiom), stream interleaved by construction (the VIII.0 blocky-stream
+lesson): y = 3 when t mod 4 == 3 else 0, i.e. 300 nulls / 100
+threes. Success criteria pre-stated in the probe source before the
+run:
+
+- C1 readout p0 <= (1-thetaMin)/(K-1) = 7/40 (the R-D23 cap,
+  structural);
+- C2 the under-read factor (empirical null rate / readout p0) >= 4;
+- C3 the wire's shipped p1 byte-equals the derived vector's index 1
+  under the reply's own rendering (validates the reconstruction
+  against the live session);
+- C4 the derived vector sums to 1 EXACTLY (Rational);
+- C5 argmax code /= 1 (the shipped scalar reads the wrong atom's
+  mass).
+
+Transcript (probe compiled package-faithfully: `cabal exec ghc --
+-hide-all-packages -package base -package containers -XGHC2021
+-isrc`; prototype discarded per R-D21):
+
+```
+hello reply : {"ok": true, "proto": 1, "models": 35, "namespace_bits": 1.0}
+decide reply: {"act": {"a": 0}, "p1": 0.16249992038272718, "entropy_bits": NaN}
+models      : 35
+empirical p(y=0): 0.75
+R-D23 cap (1-thetaMin)/(K-1) = 7/40 = 0.175
+readout p0  : 0.17499984076556832  (exact <a ~330-digit ratio, printed by the run>)
+argmax_code : 3   p_argmax: 0.17500047770352298
+derived p1  : 0.16249992038272718
+full vector : [(0,0.17499984076556832),(1,0.16249992038272718),(2,0.16249992038272718),(3,0.17500047770352298),(4,0.16249992038272718),(5,0.16249992038272718)]
+C1 p0 <= 7/40 (the structural cap)         : True
+C2 under-read factor >= 4                  : True  (factor 4.285718185336569)
+C3 wire p1 == derived vec[1] (rendered)    : True
+C4 vector sums to 1 EXACTLY (Rational)     : True
+C5 argmax /= 1 (shipped p1 reads the wrong atom): True
+```
+
+The banked finding REPRODUCES on the shipped exact engine, stronger:
+p0 sits at the structural cap to SIX significant figures
+(0.17499984 vs 0.175) while the empirical truth is 0.75 — the
+4.29x under-read no evidence can fix — and the tick's argmax is atom
+3 while the shipped scalar reports atom 1's 0.1625. VIII.1's
+promotion argument stands as re-executed: p0 is the number that
+observes OB-19's gate.
+
+Two incidental findings from the same run:
+
+- **N1 (a live defect, this opening's find): the shipped decision
+  reply is not JSON at this operating point** — `"entropy_bits":
+  NaN`. Mechanism, demonstrated in the REPL: `entropyOf`
+  (Report.hs:14-17) guards `w > 0` on the EXACT weight but computes
+  `p * logBase 2 p` in Double; an exact weight below the subnormal
+  floor renders `fromRational w == 0.0`, and `0.0 * logBase 2 0.0 ==
+  NaN`. Any sufficiently long session reaches it (dominated
+  hypotheses' weights underflow); the standing suites never fold
+  enough ticks to see it. The repair is one line at the reporting
+  edge (guard the DOUBLE side: a term whose rendered p is 0
+  contributes 0 — the correct limit of -p log2 p). Register row R3
+  asks the sitting to ratify the repair riding this increment; its
+  oracle row (g6) is red against shipped src TODAY, which is the
+  honest oracle-first shape.
+- N2 (a probe note, no doc sentence falsified): the hello parser
+  REQUIRES the `guards` key (Host.hs:251 pattern-matches it; absent
+  = bad hello) while `menu` is optional (Host.hs:253-255 defaults
+  []). The section-2 bullet does not state the requirement. A
+  one-word `(REQUIRED)` install rides the same frozen-doc patch
+  (register row R8).
+
+### IX.3 Design of record (drafted; the freeze sitting rules)
+
+One new member on the DECISION reply (exactly where decPart renders —
+decision ticks and combined ticks; never evidence-only, silent, or
+internal-think replies):
+
+```
+{"act": {"a": 0}, "p1": 0.1625, "entropy_bits": 2.1, "p_codes": [0.175, 0.1625, 0.1625, 0.175, 0.1625, 0.1625]}
+```
+
+- `p_codes` is the FULL per-code predictive vector (VIII.1's
+  recommendation over the filed three scalars): index j carries
+  P(y = code j) at the tick's readout geometry — `full = feats ++
+  act`, post-choice pre-observation (R5), the SAME point the shipped
+  p1 reads. Order is the declared carrier's order (agentObsPoints:
+  codes 0..K-1); length is K on the declared-arity route, 2 on the
+  plain route.
+- Derivation (the R17 shape — engine code is a fast path pinned to
+  the derivation): `p_codes[j] == predictMassS full j ag` for every
+  declared code j, rendered element-wise exactly as p1 is rendered
+  (`show (fromRational m :: Double)`), joined by the reply's own
+  `commaSep` convention (", ").
+- The filed scalars (`argmax_code`, `p_argmax`, `p0`) are NOT
+  shipped: each is a projection of the vector, and shipping both is
+  redundant surface (register row R1).
+- `p1` and `entropy_bits` are UNCHANGED — p1 stays P(atom 1) at any
+  arity (the W3 pin); `p_codes[1]` equals it byte-for-byte (oracle
+  row g3).
+- Consumer discipline, quoted into membrane-wire.md section 3 at the
+  freeze (VIII.1's instruction, the filer's own words): the readouts
+  land in ledger rows and footers ONLY; a host adapter that BRANCHES
+  on them has re-created host-side decision forking (HOSTS_PLAN
+  8.12(b)). Observability, never decision semantics: the engine
+  chooses engine-side by argmax over the declared menu, before and
+  after this increment, byte-identically.
+- N1's repair rides the increment (register R3): `entropyOf` guards
+  the rendered Double (`p > 0`), so `entropy_bits` is finite on
+  every reply; no other behavior moves.
+
+### IX.4 Under-determination register (for the freeze sitting)
+
+| row | question | drafted answer |
+|---|---|---|
+| R1 | full vector only, or vector + the filed scalars? | vector only — the scalars are projections; VIII.1's two grounds (O(K) either way; report pricing needs every row) |
+| R2 | the member's name | `p_codes` — "code" is the issue's own vocabulary and the wire's atom language; `p1`'s naming precedent |
+| R3 | does N1's repair ride #20? | YES — same reply, reporting-edge one-liner, its own red row (g6) and its own kill; declared here because #20 was filed observability-only and a defect repair is a scope extension |
+| R4 | presence scope | exactly decPart: decision + combined replies; never evidence-only / silent / internal |
+| R5 | rendering | element-wise `show @Double` (the p1 convention), ", " joins, `[` `]` delimiters |
+| R6 | the frozen-doc install | membrane-wire.md section 3: the reply example gains p_codes; a p_codes bullet beside the p1 bullet carrying the consumer discipline quote + R-D23 citation; the greppable-identity table gains one row (p_codes[j] = P(atom j) at feats++act \| Host.hs reply builder \| readout g2) |
+| R7 | the OB-20/21 ledger flip (IX.1's flag) | staged in the kit as a frozen-layer inventory repair: SCHEDULED@x5-sitting-r0 -> DISCHARGED@battery-freeze-r0, discharge events quoted from the tag's CR5 |
+| R8 | N2's doc word | `(REQUIRED)` added to section 2's guards bullet in the same patch |
+
+### IX.5 Frozen-layer inventory (brought to this sitting)
+
+| item | file | falsified/stale text | repair form |
+|---|---|---|---|
+| F-1 | OBLIGATIONS.md:48-49 | OB-20/21 read SCHEDULED@x5-sitting-r0; discharged at battery-freeze-r0 (tag CR5) | status-column flip, discharge events cited (staged patch) |
+| F-2 | membrane-wire.md section 3 | the reply example and p1 bullet describe a reply about to gain a member | the R6 install (staged patch; the example-block's own repaired-in-place convention) |
+| F-3 | membrane-wire.md section 2 | guards bullet silent on requiredness (N2) | one word, same patch (R8) |
+| F-4 | membrane-wire.md:362 | "Pinned against the predictive by test-arity g7d" — test-arity retired at the exact boundary; the citation points at a file that does not exist | dated citation re-home inside the same staged patch (the identity table's homes: acceptance probe rows; readout g3 joins them) |
+
+### IX.6 The oracle (test-readout/, 6 rows; oracle-first, runtime-red)
+
+The type surface is COMPLETE before this increment — every verb the
+readout derives from is already exported (predictMassS,
+agentObsPoints, serveLine; the VIII.1 finding, re-verified at IX.2) —
+so no stub is owed and the oracle-phase red runs against the SHIPPED
+src directly: the red IS the missing reply member (g1-g5) and the
+live N1 defect (g6). Rows, each with its red reason and its designed
+kill (measured at the close matrix, per-row against the pool; the
+dyadic R7 pre-ruling covers sibling shadowing):
+
+| row | claim | red today because | designed kill |
+|---|---|---|---|
+| g1 | the K=6 decide reply carries p_codes with K elements | no member | M-r1 (member dropped) |
+| g2 | p_codes byte-equals the exported-verb vector at feats ++ act (expected string DERIVED in-test from shipped verbs — the transport expectedReplies law, never a hand-copied literal) | no member | M-r2 (computed at feats — the R5 geometry mutant); M-r3 (metaPosterior rendered instead) |
+| g3 | p_codes[1] equals the reply's own p1 rendering, byte-level | no member | M-r4 (order reversed / off-by-one) |
+| g4 | the plain (undeclared-arity) route carries it too: 2 elements, index 1 == p1 | no member | M-r5 (declared-arity-only emission) |
+| g5 | presence scope is exactly decPart: combined reply YES, evidence-only NO, silent NO | the present half | M-r6 (appended to evidence replies) |
+| g6 | entropy_bits FINITE after a 400-tick fold (agent-side and wire-side) | entropyAgent is NaN — N1 live | M-r7 (Double-side guard reverted) |
+
+The stanza (test-readout/stanza.cabal.draft, spliced at the freeze;
+the battery form): exitcode-stdio-1.0, main-is Readout.hs,
+build-depends base/proplang/tasty/tasty-hunit, GHC2021, import:
+warnings. NOTE FOR THE FREEZE WINDOW: from the splice until the
+implementation lands, `cabal test all` carries the readout suite RED
+BY DESIGN (the dyadic precedent) — the kit's gate-5 form asserts the
+partition (11 standing suites PASS; readout 6/6 FAIL), never a bare
+all-green.
+
+### IX.7 The satisfiability transcript (R-D21, overlay form; two runs, 2026-07-30)
+
+Both runs compile the oracle text UNCHANGED under the stanza's exact
+flag set and dependency closure (flag-faithful AND package-faithful —
+the jp containers law): `cabal exec ghc -- -hide-all-packages
+-package base -package containers -package tasty -package tasty-hunit
+-XGHC2021 -Wall -Werror -Wincomplete-patterns
+-Wincomplete-uni-patterns -isrc -itest-readout` (containers is the
+inlined library's own declared dependency, not the suite's).
+
+**Red run vs shipped src** (test-readout/opening/red-run.txt): 6 out
+of 6 tests failed, each for its stated reason — g1/g2/g3 "no p_codes
+member" with the shipped reply printed (the NaN visible in the same
+bytes), g4 the same on the plain route, g5 the present half ("the
+combined reply carries it" fails), g6 "entropyAgent finite on the
+reconstructed agent" fails. One compile repair during drafting,
+recorded: GHC 9.10's Prelude exports foldl', so the Data.List import
+was redundant under -Werror — caught by the flag-faithful compile
+itself, which is the reason the law exists.
+
+**SAT run vs overlay** (test-readout/opening/sat-run.txt): the
+prototype wears the real module names — overlay/PropLang/Host.hs
+(decPart + p_codes, appended last, commaSep-joined, agentObsPoints
+already in Host's import list) and overlay/PropLang/Report.hs (the
+Double-side guard `p > 0` beside the exact-side `w > 0`) shadow src
+via -i ordering; all 6 rows PASS (2.5s). The overlay is staged
+VERBATIM as test-readout/freeze/implementation-draft.diff (applies to
+src cleanly, `git apply --check` verified) — the implementation
+phase re-lands the prophecy, it does not re-design it.
+
+Satisfiability per row (the transcript law: every red row's asserted
+quantity executed once): g1-g5's asserted member and bytes are
+exactly what the overlay renders (g2's expected string forced through
+the full derivation in the SAT run — reconstruction agent, 400-tick
+exact fold, predictMassS vector); g6's finiteness asserted on both
+the agent side (entropyAgent) and the wire side (no "NaN" substring)
+against the repaired edge. The K=6 fixture's numbers reproduce IX.2's
+probe run inside the suite itself (the vector printed in g2's red
+message equals the probe's full vector, byte for byte — visible in
+red-run.txt).

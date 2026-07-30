@@ -1,0 +1,30 @@
+=== #20 oracle red run vs SHIPPED src, 2026-07-30 (oracle phase; wire-author-pack Part IX) ===
+=== compile: cabal exec ghc -- -hide-all-packages -package base -package containers -package tasty -package tasty-hunit -XGHC2021 -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns -isrc -itest-readout (the stanza's flag set + dependency closure; -isrc inlines the library, whose own deps are base+containers) ===
+[10 of 10] Linking /tmp/tmp.RHM9gGFLti/readout
+the #20 K-ary readout (the 14.9 wire docket; pack Part IX)
+  g1 shape: the K=6 decide reply carries p_codes with K elements:                               FAIL (1.21s)
+    test-readout/Readout.hs:181:
+    no p_codes member: {"act": {"a": 0}, "p1": 0.16249992038272718, "entropy_bits": NaN}
+    Use -p '/g1 shape: the K=6 decide reply carries p_codes with K elements/' to rerun this test only.
+  g2 derivation pin: p_codes byte-equals the exported-verb vector at feats ++ act:              FAIL (1.22s)
+    test-readout/Readout.hs:184:
+    reply: {"act": {"a": 0}, "p1": 0.16249992038272718, "entropy_bits": NaN}   want member: "p_codes": [0.17499984076556832, 0.16249992038272718, 0.16249992038272718, 0.17500047770352298, 0.16249992038272718, 0.16249992038272718]
+    Use -p '/g2 derivation pin: p_codes byte-equals the exported-verb vector at feats ++ act/' to rerun this test only.
+  g3 coherence: p_codes index 1 equals the reply's own p1 rendering:                            FAIL
+    test-readout/Readout.hs:191:
+    member missing: {"act": {"a": 0}, "p1": 0.16249992038272718, "entropy_bits": NaN}
+    Use -p '/g3 coherence: p_codes index 1 equals the reply'\''s own p1 rendering/' to rerun this test only.
+  g4 plain route: the binary decide reply carries p_codes, 2 elements, index 1 == p1:           FAIL
+    test-readout/Readout.hs:198:
+    member missing: {"act": {"a": 0}, "p1": 0.5, "entropy_bits": 1.5709505944546684}
+    Use -p '/g4 plain route: the binary decide reply carries p_codes, 2 elements, index 1 == p1/' to rerun this test only.
+  g5 presence scope: p_codes rides decPart exactly (combined yes; evidence-only no; silent no): FAIL
+    test-readout/Readout.hs:201:
+    the combined reply carries it: {"act": {"a": 0}, "p1": 0.18, "entropy_bits": 5.129283016944964, "observed": 0, "loss_bits": 3.321928094887362}
+    Use -p '/g5 presence scope: p_codes rides decPart exactly (combined yes; evidence-only no; silent no)/' to rerun this test only.
+  g6 N1: entropy_bits FINITE after the long fold (the edge guards the rendered Double):         FAIL
+    test-readout/Readout.hs:211:
+    entropyAgent finite on the reconstructed agent
+    Use -p '/g6 N1: entropy_bits FINITE after the long fold (the edge guards the rendered Double)/' to rerun this test only.
+
+6 out of 6 tests failed (2.44s)
