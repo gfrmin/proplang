@@ -1560,3 +1560,45 @@ against the repaired edge. The K=6 fixture's numbers reproduce IX.2's
 probe run inside the suite itself (the vector printed in g2's red
 message equals the probe's full vector, byte for byte — visible in
 red-run.txt).
+
+### IX.8 The freeze kit and its rehearsal (2026-07-30)
+
+The kit (test-readout/freeze/: cover + 1-verify/2-freeze/3-sign, the
+jp three-script form) seals a TWO-PHASE increment — the tag freezes a
+red oracle; implementation follows on the builder key (the staged
+diff re-landed verbatim), then the close matrix (M-r1..M-r7 cut
+against the COMMITTED baseline — the dyadic incident's law), then the
+author's readout-freeze-r1 over the close-out. Rulings live where
+they execute: R1-R5 are sealed by the oracle text itself (declining
+one means re-opening the oracle phase, not editing the kit); R6/R7/R8
+and the inventory F-1..F-4 are the two [RULING] patch blocks in
+2-freeze.sh, decline-by-edit before that script runs, enforced by the
+manifest loop + 3-sign's re-check.
+
+Rehearsed TWO-SIDED from a fresh clone of fc72ae8 (the battery
+sitting's lesson: "the kit the author runs is the kit as rehearsed"
+is only true if it is literally true). Environment prep in the clone:
+the two ssh-verification config keys (gpg.format, allowedsignersfile)
+— repo config does not travel with a clone. Result, both green:
+
+- 1-verify: manifest 109/109; 11 standing suites PASS live
+  (pre-splice); the oracle 6/6 RED live under the stanza's flags and
+  dependency closure; recorded transcripts present; all three staged
+  patches apply. ALL GREEN.
+- 2-freeze: stanza spliced (12 suites declared); both [RULING]
+  installs applied; gate-5 PARTITION holds (11 standing PASS +
+  readout 6/6 RED, gate5-run.txt recorded); manifest extended +
+  re-signed 120/120; prefreeze-lint 0 FAIL 0 WARN (L1 9 src files,
+  L3 120 rows, L4 all 63 tags verify, L7 full-corpus build against
+  the spliced tree). DONE.
+
+One lint-mechanics note, recorded honestly: L5 resolves "the newest
+author pack" by mtime, and a fresh clone flattens mtimes — the
+rehearsal's L5 read trampoline-author-pack.md (which records the four
+flags) rather than this pack (which also records them, IX.7). Green
+on either tree, for the same reason; no repair owed.
+
+WHAT REMAINS: the author's sitting (1-verify, 2-freeze, 3-sign —
+readout-freeze-r0), then the implementation phase, the close matrix,
+the close-out record here, and readout-freeze-r1. Push on the
+author's word.
