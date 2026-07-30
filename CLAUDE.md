@@ -392,6 +392,37 @@ Every step-6+ increment follows the recursive two-phase discipline:
    whose allowlist saw only stubs has a one-sided green; the gate's
    oracle-phase run executes against the overlay exactly as the SAT
    compile does (flag-faithful, surface-faithful).
+   One line canonized at the battery boundary (2026-07-30; mandate
+   2's finding its provenance — "the no-silent-caps law" cited three
+   times, defined nowhere): NO SILENT CAPS — a suite that bounds its
+   own coverage (a walked family's axes and ranges, a top-N, a
+   sampled subset) PRINTS the residual as a row, never absorbs it.
+   The substance is EXACT_PLAN 14.1's discipline ("the RESIDUAL —
+   the axes and ranges the family does not span — is PRINTED by the
+   suite, never absorbed"); this line is the citation's definition
+   site.
+   One line canonized at the battery boundary (2026-07-30; the
+   author's ruling of 2026-07-28 on g-b2.2's owed red — "never owe
+   a red if possible"): A RED IS CONSTRUCTED, NEVER OWED. An
+   invariance row's red lives only at a decision margin, and
+   generic streams and pools jump over margins — so when a row's
+   red does not fire under the pool, the increment computes the
+   exact margin or window and CONSTRUCTS the crossing
+   world/stream/parameter (measure the window first, place a
+   declared parameter strictly inside it, confirm the seeded
+   defect fires) in the same increment. Only a demonstrated
+   impossibility licenses an owed red, and then it rides to the
+   sitting as a named docket item. Provenance: g-b2.2's
+   structural-cap discovery — the pessimism guard bounded by
+   (1-s)/2, so the discriminating window was unreachable at the
+   standing stakes on ANY stream; the stakes axis was the free
+   variable, and the constructed triple fired the red the pool
+   could not. THE HONEST-DECLINE PATH IS PART OF THE LAW: where no
+   red is CONSTRUCTIBLE, the row is disposed as a RECORD row with
+   the impossibility argument stated (the battery residual row,
+   under the F6 precedent, its precedent) — never fabricated into
+   an artificial cell. The law demands the window computation, not
+   a red by any means.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
