@@ -8,6 +8,15 @@
 # phase follows the tag. One tag, battery-freeze-r0, closes the
 # increment and the completeness boundary's third act.
 #
+# The single-tag form is a TRADE, owned (the author's pre-sign review,
+# 2026-07-30): it removes the r1 catch-net where the trampoline's E4
+# gap and the jp package-faithfulness gap surfaced; the grounds are
+# that a pin-freeze has no implementation phase for defects to enter
+# through, and the live 82/82 inside 1-verify is the substitute.
+# Anything surfacing post-tag enters as a frozen-layer inventory row
+# at the wire docket's next sitting — the per-sitting channel, never a
+# standing license.
+#
 # The sitting is THREE scripts, run in order (the jp form):
 #
 #   bash test-battery/freeze/1-verify.sh
@@ -52,7 +61,13 @@
 #   R-RED      apply test-battery/freeze/red-constructed.patch to
 #              CLAUDE.md — the author's own 2026-07-28 ruling ("never
 #              owe a red if possible") offered as standing law, with
-#              g-b2.2's structural-cap discovery as provenance.
+#              g-b2.2's structural-cap discovery as provenance AND the
+#              honest-decline path in the clause (the author's pre-sign
+#              hold of 2026-07-30): an unconstructible red disposes as
+#              a RECORD row with the impossibility argument stated,
+#              never fabricated into an artificial cell — the residual
+#              row's precedent. The law demands the window computation,
+#              not a red by any means.
 #
 # After 3-sign.sh: push on your word — everything since a2dcbbc is
 # local. `git push origin master battery-freeze-r0`. The wire docket

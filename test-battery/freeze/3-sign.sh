@@ -23,7 +23,15 @@ git commit -S -m "battery freeze: the certification oracle sealed (82 rows, gree
 git tag -s battery-freeze-r0 -m "the certification battery's register ruled (single-tag close: a
 pin-freeze with no implementation owed; the 22-mutant serial kill
 matrix already run against the committed baseline, every row
-red-demonstrated, the residual a RECORD row).
+red-demonstrated, the residual a RECORD row). The single-tag form
+is a TRADE, owned: it removes the r1 catch-net where the last two
+increments' largest findings surfaced (the trampoline E4 allowlist
+gap, the jp package-faithfulness gap), on the grounds that a
+pin-freeze has no implementation phase for defects to enter
+through and the matrix is already cut; the live 82/82 inside
+1-verify is the substitute. Anything surfacing post-tag enters as
+a frozen-layer inventory row at the wire docket's next sitting -
+the standing per-sitting channel, never a standing license.
 
 CR3 the family's axes are the as-built declaration - 3 grids x 4
 prices x 3 batches x 2 streams, 72 cells, the four t2 anchors
@@ -44,11 +52,20 @@ OB-20/21 are DISCHARGED at this boundary: M56-M61 committed with
 reach demonstrated - lawful reached, the independence suite the
 refusal-law mutant's sole killer, pins the count-gate's, and
 M61's predicted generator-blindness cured in-increment by
-g-b4.1. CR6 the sufficiency claim's prose form: certified over
-the DECLARED class C - the closure of the World declaration
-walked at the committed axes - exact-equal to an independent
-reference in every cell, with the unwalked axes printed as the
-residual; never 'in general' without the class named. CR7 the
+g-b4.1. CR6 the sufficiency claim's prose form is TWO SENTENCES,
+never one (mandate 1's findings constrain the wording, and this
+is the sentence the boundary exists to produce): (i) the shipped
+joint loop is exact-equal to an independent reference across all
+72 cells of the DECLARED class C - the closure of the World
+declaration walked at the committed axes - and non-vacuously so
+(M42/M44 fire 45/58 rows); (ii) the law rows are CONFORMANCE
+PINS on the engine's shared mass decomposition, stated with
+their reach-not-variety accounting (g-b2.1 computes 9 distinct
+values across the walk - price never enters jointPrepost and
+stream content enters only as d = min n 36; its red is M44).
+The unwalked axes stay printed as the residual; never 'in
+general' without the class named, and never the coverage of (i)
+implied for the rows of (ii). CR7 the
 staged frozen-tool repairs EXECUTE at this freeze (the BF-row
 -S to -G, the M5-row mutant-file definition sites; applied by
 2-freeze.sh).
@@ -63,14 +80,25 @@ retires with its pins listed.
 The jp close's UNREACHED verdicts are DISCHARGED: M46 by g-b3.1
 (sole killer), M47 by g-b3.3 (sole killer, the measured VoI
 window); the mint-level blindness by g-b3.4 (M48's battery reach
-0 -> 2). The battery mandate round's findings and repairs (pack
-Part XVII, all six reviewers, eleven findings) are received and
-ratified. The author's ruling of 2026-07-28 - never owe a red -
-is RATIFIED as executed (the knife-edge constructions, pack Part
-XVIII: the guard's structural cap g_max=(1-s)/2 found, the
-stakes axis the free variable) and canonized in CLAUDE.md by
-this sitting's R-RED patch, beside R-CAPS giving the
-no-silent-caps law its definition site.
+0 -> 2). The battery mandate round (pack Part XVII, all six
+reviewers, eleven findings) is received and ratified WITH ITS
+ASYMMETRY LEGIBLE: REPAIRED in-tree - g-b2.2's case-split (4a),
+the false residual (3b), g-b4.1's nonemptiness (1c), spaceKOf's
+points-guard (4c/6b), the provenance lines (4b/6a), the
+pool-extent header (5b), and the committed matrix + M62/M63
+cuts (2a/3a/5a); RECORDED as honest accounting, no repair owed -
+1a (g-b2.1 a conformance pin of the shared decomposition, named
+in CR4 and CR6 above) and 1b (the 9-distinct-values reach
+accounting, stated in CR6). The author's ruling of 2026-07-28 -
+never owe a red - is RATIFIED as executed (the knife-edge
+constructions, pack Part XVIII: the guard's structural cap
+g_max=(1-s)/2 found, the stakes axis the free variable) and
+canonized in CLAUDE.md by this sitting's R-RED patch WITH the
+honest-decline clause (an unconstructible red disposes as a
+RECORD row with the impossibility argument stated, never
+fabricated into an artificial cell - the residual row's
+precedent), beside R-CAPS giving the no-silent-caps law its
+definition site.
 
 The 14.9 wire docket's scheduling is RATIFIED in the recorded
 order: #20 (the K-ary readout micro-increment) first, the OB-19

@@ -1469,3 +1469,36 @@ AFTER 2-freeze was refused at the manifest re-check before any key
 act; 3-sign sealed battery-freeze-r0 (BUILDER key, rehearsal only —
 the real sitting's plain -s is the author's), tag -v GOOD, manifest
 verifying post-seal. The kit the author runs is the kit as rehearsed.
+
+**The author's pre-sign review (2026-07-30) — four holds, all
+executed before any script ran** (the kit had not run in the real
+repo, so every amendment rides the manifest as-run):
+
+1. THE SUBSTANTIVE HOLD - CR6's claim prose vs mandate 1. "72
+   cells" + "VoI >= 0 holds" reads as more independent coverage
+   than 1a/1b license. EXECUTED: the tag's CR6 is re-cut to TWO
+   SENTENCES - (i) exact shipped-vs-reference agreement across the
+   72 declared cells, non-vacuous (M42/M44 fire 45/58 rows); (ii)
+   the law rows as CONFORMANCE PINS with reach-not-variety
+   accounting stated (9 distinct values; M44 the red) - and the
+   coverage of (i) is never implied for the rows of (ii).
+2. The mandate round's asymmetry made legible. EXECUTED: the tag
+   now lists which findings were REPAIRED in-tree (4a, 3b, 1c,
+   4c/6b, 4b/6a, 5b, 2a/3a/5a) and which were RECORDED as honest
+   accounting with no repair owed (1a, 1b).
+3. The single-tag close owned as a TRADE. EXECUTED: the tag's
+   opening and the cover page both name what is given up (the r1
+   catch-net where the trampoline E4 and jp package-faithfulness
+   findings surfaced), the grounds, the substitute (the live 82/82
+   in 1-verify), and the channel if anything surfaces post-tag (a
+   frozen-layer inventory row at the wire docket's sitting).
+4. R-RED gains its escape clause. EXECUTED: the patch is
+   regenerated with THE HONEST-DECLINE PATH as part of the law -
+   where no red is constructible, the row disposes as a RECORD row
+   with the impossibility argument stated (the residual row's
+   precedent), never fabricated into an artificial cell; "the law
+   demands the window computation, not a red by any means."
+
+R-CR7 and R-CAPS taken as drafted. The amended kit re-rehearses
+two-sided from a fresh clone before the sitting (the changed
+surfaces: the R-RED patch content and the tag message text).
