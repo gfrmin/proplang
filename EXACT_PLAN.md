@@ -1244,3 +1244,198 @@ The natural order, from the dispositions pack's own analysis
    limitation with an heir"), which would dispose of #19(1a),
    OB-19's design direction, and W3's fifth scoping line in one
    ruling. Which of the two is the sitting's call.
+
+## 15. The wire docket boundary — increment #20, the K-ary readout (OPENED by the author's election of 2026-07-31, in-session, immediately after the battery-freeze-r0 countersign: "Open #20", answered to the session's opening question, which named the battery tag's own scheduling ruling as the authorization)
+
+The authorization is `battery-freeze-r0`'s register, verbatim: "the
+14.9 wire scheduling (#20 first, the OB-19 heir second, #19
+1a-or-doctrine third)". This is the first of those three, and the
+first sitting of the wire docket — which makes it also the sitting
+the battery tag routed its own post-tag findings to ("Anything
+surfacing post-tag enters as a frozen-layer inventory row at the
+wire docket's next sitting - the standing per-sitting channel,
+never a standing license"). Section 15.6 opens that inventory.
+
+### 15.0 The object
+
+`p1` in a decision reply is P(atom 1) at ANY arity (membrane-wire.md:356
+— the null-atom convention's own corollary, W3). That is the right
+diagnostic for a binary world and it under-reads a (K+1)-ary
+predictive: when the engine chooses `respond_j` with j /= 1, `p1` is
+the mass of a DIFFERENT candidate. Issue #20 asks for the null mass
+`p0`, the `argmax_code` and its mass `p_argmax` — or the full O(K)
+vector — as OBSERVABILITY ONLY, in the same class as `residual_mean`
+and `sensitivity` (membrane-wire.md section 6.4): telemetry on the
+reply, consumer discipline binding, no decision-path semantics.
+
+Two mechanical facts, both measured before the boundary opened:
+
+1. **The ask is host-layer arithmetic over ALREADY-EXPORTED verbs**
+   (dispositions-pack.md VIII.1, finding 1; re-confirmed at this
+   opening against the shipped tree). `predictMassS` is already
+   called at the reply builder (Host.hs:425) and `agentObsPoints`
+   already enumerates the declared observation space three lines
+   into `thinkValue` (Host.hs:516). The vector is a map over the
+   second through the first. No new export, no new constructor, no
+   engine change: THE ALPHABET DOES NOT MOVE and `prodTable` stays
+   20/1. The primitivity gate is visibly not engaged — nothing here
+   is a candidate production, so clause (a) is not owed.
+2. **The cap BINDS at the operating point** (VIII.1, finding 2;
+   K=6, 5845 models, 400 interleaved ticks): the readout's `p0`
+   sits at 0.17998972 against R-D23's cap of 0.9/(K-1) = 0.18 —
+   pinned to four significant figures — while the empirical null
+   rate is 0.735. The engine under-reads the null atom four-fold
+   and no evidence can fix it, because no sentence in the family
+   can say "atom 0 is likely" (`Enumerate.hs:467`, `atoms =
+   [1 .. k - 1]`).
+
+Fact 2 is why #20 is scheduled FIRST rather than filed as a
+convenience. The null-rate parameter — the W3 sitting's fifth
+scoping line, and OB-19's design direction — is UNOBSERVABLE today,
+and `p0` is exactly the number that observes it. Landing #20 is the
+precondition for ruling OB-19 (item two) on evidence rather than on
+argument.
+
+### 15.1 The anchor-safety finding (opening inspection, stated as a claim to be executed against)
+
+No frozen row pins the decide reply's bytes:
+
+- `test-transport/Transport.hs:95` derives its expectation from the
+  frozen pure core itself — `expectedReplies = snd (mapAccumL
+  serveLine hostStart requests)` — which is the R-D20 form, never a
+  hand-copied literal, so an additive field moves both sides
+  together.
+- The trampoline's wire rows match by `isInfixOf` (g6.1 at
+  Trampoline.hs:500-502, g6.2 at :520-522), not by whole-reply
+  equality.
+- Acceptance's "probe rows: p1 exact" (test/Acceptance.hs:211)
+  reads `predictMassS` DIRECTLY against `Anchors.t1ProbeRowsX`; it
+  never goes through the reply builder.
+
+So an additive readout is EXPECTED to move no pinned anchor. This
+is a claim the full-corpus run must CONFIRM, not assume — the
+increment's own step-0 baseline (green on the sealed tree, before
+any edit) is what licenses attributing any later red to the
+increment, and any pinned-anchor movement under an additive change
+is stop-and-report, not a repair.
+
+### 15.2 What this boundary does NOT do
+
+- It does not rule **OB-19**. #20 is that ruling's INSTRUMENT, not
+  its substitute; the ledger row stays RULING-PENDING and comes due
+  at item two.
+- It does not touch **#19**'s theta ceiling, nor the
+  1a-or-doctrine fork, nor `JP2-d6`/pwLadderCap's RETIRE-UNTIL-N
+  question — all three are item three's business.
+- It does not move the alphabet, does not add a production, and
+  does not put a number on any decision path. A readout reachable
+  from choice would be semantics, not telemetry, and would change
+  the increment's whole class: that is a stop-and-report trigger,
+  not a design option.
+
+### 15.3 The oracle shape (drafted rows; oracle-first binds when the increment's oracle freezes)
+
+`test-readout/`, its own cabal stanza spliced at the freeze, the
+`test-trampoline/` wire-row pattern and the `test-battery/` freeze-kit
+pattern. Every row arrives WITH its unique kill against the STANDING
+(pre-increment) corpus — the forward half of the kill-matrix clause;
+sibling shadowing within the new suite is recorded as verdicts at the
+next matrix run, never a close-blocker.
+
+| row | the claim | its designed killer |
+|---|---|---|
+| r1 | at K=2 the reply's existing fields are byte-identical — the readout is PURELY ADDITIVE | a field-clobbering mutant |
+| r2 | entry j == `predictMassS full j ag` for every j in `agentObsPoints ag` (R-D20 copy; the reference computed in-suite from exported verbs, never a literal) | an index off-by-one |
+| r3 | the vector sums to 1 — the sealed reasoner's measure law, crossing the wire | the OB-20-class normalization mutant |
+| r4 | `argmax_code` indexes a maximal entry, `p_argmax` IS that entry, and the tie rule is the declared one | a tie-rule flip |
+| r5 | `p0` is the null atom's mass, and on a CONSTRUCTED null-dominant stream it sits at the R-D23 cap while the empirical rate is far above — the OB-19 instrument row | the vector built over `[1 .. K-1]` (Enumerate.hs:467's atom list), dropping the null |
+| r6 | the vector survives the pipes (spawned host, the g6 form) — a WIRE fact, not a library fact | a serialization/buffering mutant |
+| r7 | `p1` still means P(atom 1) at any arity: membrane-wire.md:356's corollary stays true, two-sided | `p1` re-pointed at the argmax |
+
+The standing discipline these rows are built under, named so the
+oracle phase cannot quietly skip one: the two-run triptych (a
+runtime-red run proving every row CAN fire; a SAT run proving every
+row CAN pass); the overlay SAT in its flag- AND package-faithful
+form (the prototype wearing `PropLang.Host`'s name, the stanza's
+exact flags with `-Werror`, `-hide-all-packages` plus the declared
+`build-depends`); an R-D21 satisfiability transcript per red row,
+each forcing the frozen side to normal form independently of the
+stub side; and R-RED for r5 — the cap window is MEASURED first and
+the stream placed strictly inside it, a constructed red, never an
+owed one. If the window proves unconstructible, r5 disposes as a
+RECORD row with the impossibility argument stated (the
+honest-decline path), never fabricated into an artificial cell.
+
+The type-derivation audit binds forward: if any new type reaches a
+frozen surface it arrives with its one-line derivation from the
+brief. The drafted shape avoids the question — a local
+`[(Int, Rational)]` at the reply builder introduces no exported
+type.
+
+### 15.4 The register (drafted defaults; the author rules at the freeze)
+
+| id | question | drafted default |
+|---|---|---|
+| CW1 | the full O(K) vector, or the three scalars (`argmax_code`, `p_argmax`, `p0`) | THE FULL VECTOR (VIII.1's recommendation: same O(K) cost, and the filer's report-pricing use needs EU of every menu row). The scalars are a strict subset, so declining narrows the oracle rather than rewriting it |
+| CW2 | `argmax_code`'s tie rule | lowest index wins, DECLARED (r4 pins whichever rule is ruled) |
+| CW3 | reply key names and field order | appended after `entropy_bits`, existing fields untouched (r1's additivity) |
+| CW4 | rendering of the vector's rationals | the `p1` convention unchanged — `show (fromRational x :: Double)`; the 2^53 rendering cliff (transport t4) applies as it stands |
+| CW5 | does the readout ride the internal-act ("think") reply too | NO — it is the DECISION reply's telemetry; the think reply names no act, so there is no candidate to read out |
+| CW6 | the consumer discipline (readouts land in ledger rows and footers, never in a branch — HOSTS_PLAN 8.12(b)) | QUOTED INTO membrane-wire.md at the freeze (VIII.1's recommendation), not left in the issue thread |
+| CW7 | the frozen-layer inventory row FL-1 (15.6) | repaired at this freeze, under the author's key |
+| CW8 | close form | the TWO-TAG r0/r1 form. This is a real implementation increment, not a pin-freeze; the catch-net the battery traded away is where the trampoline E4 and jp package-faithfulness findings both surfaced |
+
+### 15.5 The opening checklist
+
+- **OB-19** — RULING-PENDING, item two of the wire docket. NOT
+  ruled here; #20 is its instrument. Recorded so the sitting cannot
+  drift into ruling it on argument.
+- **JP2-d6 / pwLadderCap** — RETIRE-UNTIL-N, and its N is the **#19**
+  sitting (item three), not this one. Stated explicitly rather than
+  left silent: a deferred obligation living only in a comment is the
+  R6 disease, and the RETIRE-UNTIL-N clause exists to put the return
+  row on the right boundary's checklist, not on the next one that
+  happens to sit.
+- **OB-20 / OB-21** — discharged in SUBSTANCE at battery-freeze-r0
+  (register CR5; the pool M56-M61 committed under `audit/mutants/`,
+  the matrix at `test-battery/opening/pool-reach.txt`, titled "the
+  discharge evidence"). Their LEDGER ROWS are stale — see FL-1.
+- **The boundary audit** — run at the opening:
+  M5=0, H=0, OB=1, BF=0. The single OB flag is FL-1; the M5 and H
+  rows are clean; the banked-failure row is clean against the last
+  alphabet motion (840961d, 2026-07-26).
+- **The six red-team mandates** — to run, fresh-context reviewers,
+  one mandate each. Mandate 6 ("what is it a function of?") is the
+  live one here: the readout is a function of the predictive at
+  `feats ++ act` and of the DECLARED observation space — not of the
+  menu, and not of anything on the decision path. Mandate 5
+  (silently overloaded convention) has a standing candidate in
+  `p1`'s meaning, which r7 pins two-sided.
+
+### 15.6 The frozen-layer inventory (opened here; the battery tag's routed channel)
+
+**FL-1 — OB-20 and OB-21 read `SCHEDULED@x5-sitting-r0` against a
+boundary that closed, and against their own executed discharge.**
+`battery-freeze-r0`'s register CR5 states it outright: "OB-20/21 are
+DISCHARGED at this boundary: M56-M61 committed with reach
+demonstrated". The evidence is in the tree — the six mutants under
+`audit/mutants/`, the reach matrix at
+`test-battery/opening/pool-reach.txt` (M57 the independence suite's
+sole killer, M60 the count stanza's, M61's predicted
+generator-blindness cured in-increment by g-b4.1). But
+`OBLIGATIONS.md` was last written at `trampoline-freeze-r0`
+(e4f41f3): the battery's freeze kit never patched the ledger, so
+both rows still carry the SCHEDULED state and neither carries a
+discharge event. The substance is done; the record is wrong.
+
+This is the OB-row of `tools/boundary-audit.sh` working exactly as
+designed — the row installed because the VoI obligation evaporated
+inside a composite, catching a discharge that happened and was
+never written down. `OBLIGATIONS.md` is manifest-frozen, so the
+repair executes at THIS freeze under the author's key (CW7):
+both rows to `DISCHARGED@battery-freeze-r0` with their provenance,
+the discharge events named.
+
+**FL-2 (opened empty).** Anything the mandate round or the oracle
+phase surfaces against frozen prose lands here before the freeze,
+in the form its text class demands.
