@@ -1,0 +1,12 @@
+# MUTANT M67-readout-tie-rule-flipped — provenance: EXACTPLAN 15.3's tie-rule flip — the argmax fold yields to the challenger on a tie, breaking the DECLARED lowest-index rule (register CW2) exactly where ties exist
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -456,7 +456,7 @@
+     , "\"p_codes\": [" ++ intercalate ", " (map rQ vec) ++ "]" ]
+     where
+       rQ q = show (fromRational q :: Double)
+-      step (bi, bv) (i, v) = if v > bv then (i, v) else (bi, bv)
++      step (bi, bv) (i, v) = if v >= bv then (i, v) else (bi, bv)
+       (jStar, vStar) = foldl step (0 :: Int, v0) (zip [1 ..] rest)
+ 
+ note :: String -> Maybe a -> Either String a

@@ -1280,14 +1280,52 @@ Two mechanical facts, both measured before the boundary opened:
    engine change: THE ALPHABET DOES NOT MOVE and `prodTable` stays
    20/1. The primitivity gate is visibly not engaged — nothing here
    is a candidate production, so clause (a) is not owed.
-2. **The cap BINDS at the operating point** (VIII.1, finding 2;
-   K=6, 5845 models, 400 interleaved ticks): the readout's `p0`
-   sits at 0.17998972 against R-D23's cap of 0.9/(K-1) = 0.18 —
-   pinned to four significant figures — while the empirical null
-   rate is 0.735. The engine under-reads the null atom four-fold
-   and no evidence can fix it, because no sentence in the family
-   can say "atom 0 is likely" (`Enumerate.hs:467`, `atoms =
-   [1 .. k - 1]`).
+2. **The cap BINDS at the operating point.** The normative
+   statement is `membrane-wire.md:147-148`: "Declared limitation
+   (R-D23): the null atom's predictive mass is capped at 1/(K-1) by
+   the family's shape". Its mechanism is that no sentence in the
+   family distinguishes atom 0 — `src/PropLang/Enumerate.hs:208`,
+   `posAtoms = [1 .. kAr - 1]` — so atom 0's mass is the spread
+   rate (1-theta)/(K-1) under EVERY hypothesis, and the tightest
+   bound the posterior can reach is (1 - theta_min)/(K-1) at the
+   declared codebook's lowest point.
+
+   *[REPAIRED AT THE MANDATE ROUND, 2026-07-31. The drafted text
+   read: "the readout's `p0` sits at 0.17998972 against R-D23's cap
+   of 0.9/(K-1) = 0.18 — pinned to four significant figures — while
+   the empirical null rate is 0.735 ... (`Enumerate.hs:208`,
+   `atoms = [1 .. k - 1]`)". Three defects, all found by the
+   mandate round and all repaired in place. (i) `R-D23` is a
+   REGISTER RULING about the batch residue (definition site
+   `archive/HOSTS_D_PACK.md:835`); at `membrane-wire.md:147` it is
+   used as a GENRE LABEL — "a declared limitation in the R-D23
+   sense" (`wire-author-pack.md:520`) — and the drafted text
+   promoted that label into the name of a specific number.
+   `0.9/(K-1)` has no definition site in this repository. (ii) The
+   `0.9` is `1 - min thetaPoints` for a theta point-set that was
+   HARD-WIRED IN src AT THE TIME OF THE PROBE and DELETED at the
+   exact re-founding (E3, "the baked theta point-set left src");
+   the probe ran on tree 9790089, two boundaries back. On the
+   shipped tree the cap is a function of the world's DECLARED
+   codebook, which is why this increment's own oracle derives
+   0.175 for its declared world and why 0.18 is not reproducible.
+   (iii) The `Enumerate.hs:208` citation is stale at both file:line
+   and identifier — the file is 462 lines and the binding is
+   `posAtoms` at :208. It was carried forward from
+   `dispositions-pack.md:1197` without ever being checked against
+   the tree, which is the R-D20-i failure the copy-not-reconstruct
+   rule exists to prevent.]*
+
+   The FIELD figures — `p0` = 0.17998972 pinned to four figures
+   against an empirical null rate of 0.735, at K=6 with 5845 models
+   over 400 interleaved ticks (`dispositions-pack.md:1218-1222`) —
+   are recorded here as PRE-EXACT-TREE PROBE OBSERVATIONS, from a
+   probe whose generator was a scratchpad and was discarded. They
+   are not reproducible against the shipped engine and nothing in
+   this increment pins them. What survives them, and what actually
+   carries the scheduling argument, is the STRUCTURE: the cap is
+   real, it is a function of the declared codebook, and it is
+   unobservable on the wire today.
 
 Fact 2 is why #20 is scheduled FIRST rather than filed as a
 convenience. The null-rate parameter — the W3 sitting's fifth
@@ -1348,7 +1386,7 @@ next matrix run, never a close-blocker.
 | r2 | entry j == `predictMassS full j ag` for every j in `agentObsPoints ag` (R-D20 copy; the reference computed in-suite from exported verbs, never a literal) | an index off-by-one |
 | r3 | the vector sums to 1 — the sealed reasoner's measure law, crossing the wire | the OB-20-class normalization mutant |
 | r4 | `argmax_code` indexes a maximal entry, `p_argmax` IS that entry, and the tie rule is the declared one | a tie-rule flip |
-| r5 | `p0` is the null atom's mass, and on a CONSTRUCTED null-dominant stream it sits at the R-D23 cap while the empirical rate is far above — the OB-19 instrument row | the vector built over `[1 .. K-1]` (Enumerate.hs:467's atom list), dropping the null |
+| r5 | `p0` is the null atom's mass, and on a CONSTRUCTED null-dominant stream it sits at the R-D23 cap while the empirical rate is far above — the OB-19 instrument row | the vector built over `[1 .. K-1]` (Enumerate.hs:208's `posAtoms` list), dropping the null |
 | r6 | the vector survives the pipes (spawned host, the g6 form) — a WIRE fact, not a library fact | a serialization/buffering mutant |
 | r7 | `p1` still means P(atom 1) at any arity: membrane-wire.md:356's corollary stays true, two-sided | `p1` re-pointed at the argmax |
 

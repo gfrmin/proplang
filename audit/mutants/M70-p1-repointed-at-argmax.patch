@@ -1,0 +1,13 @@
+# MUTANT M70-p1-repointed-at-argmax — provenance: EXACTPLAN 15.3's p1-repointing killer — p1 is re-aimed at the argmax atom, silently overloading membrane-wire.md:356's convention (mandate 5's standing candidate) while every new readout field stays correct
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -423,8 +423,8 @@
+       decPart <- case mOpts of
+         Nothing -> Right []
+         Just _ -> do
+-          p1 <- predictMassS full 1 ag
+           vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
++          p1 <- Right (foldl max 0 vec)
+           let hB = entropyAgent ag
+           Right ([ "\"act\": " ++ rAct act
+                  , "\"p1\": " ++ show (fromRational p1 :: Double)

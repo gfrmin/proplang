@@ -1,0 +1,12 @@
+# MUTANT M65-readout-index-off-by-one — provenance: EXACTPLAN 15.3's index off-by-one killer — the vector maps over the points shifted by one, so entry j is no longer P(y=j)
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -424,7 +424,7 @@
+         Nothing -> Right []
+         Just _ -> do
+           p1 <- predictMassS full 1 ag
+-          vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
++          vec <- mapM (\j -> predictMassS full (j + 1) ag) (agentObsPoints ag)
+           let hB = entropyAgent ag
+           Right ([ "\"act\": " ++ rAct act
+                  , "\"p1\": " ++ show (fromRational p1 :: Double)

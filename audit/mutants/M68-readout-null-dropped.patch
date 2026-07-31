@@ -1,0 +1,12 @@
+# MUTANT M68-readout-null-dropped — provenance: EXACTPLAN 15.3's null-dropping killer — the vector is built over Enumerate.hs:208's posAtoms list [1 .. kAr-1] instead of the declared observation space, so the null atom (the whole point of #20, and OB-19's instrument) vanishes from the readout
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -424,7 +424,7 @@
+         Nothing -> Right []
+         Just _ -> do
+           p1 <- predictMassS full 1 ag
+-          vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
++          vec <- mapM (\j -> predictMassS full j ag) (drop 1 (agentObsPoints ag))
+           let hB = entropyAgent ag
+           Right ([ "\"act\": " ++ rAct act
+                  , "\"p1\": " ++ show (fromRational p1 :: Double)

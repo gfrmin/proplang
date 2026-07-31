@@ -48,7 +48,7 @@ boundary opened:
    interleaved ticks: `p0` = 0.17998972 against the cap
    0.9/(K-1) = 0.18, while the empirical null rate is 0.735. The
    engine under-reads the null four-fold, and no evidence can fix it
-   — `Enumerate.hs:467` makes atom 0 structurally undistinguished.
+   — `Enumerate.hs:208` (`posAtoms`) makes atom 0 structurally undistinguished.
 
 Fact 2 is the scheduling argument. OB-19's null-rate parameter is
 UNOBSERVABLE today; `p0` is the number that observes it. #20 is the
@@ -163,7 +163,7 @@ relying on this pack to say it.
 ### II.1 The world, and why it is shaped this way
 
 ONE declared world: namespace `["move"]`, no guards, a menu of a single
-name at a **single point**, the 9-point theta codebook, `obs_arity`
+name at a **single point**, the declared 7-point theta codebook (eighths), `obs_arity`
 absent (the plain route) or 6 (the K-ary face).
 
 The single-point menu is deliberate. It forces the chosen assignment, so
@@ -198,7 +198,7 @@ element.
 
 R-D23's "0.9/(K-1)" and VIII.1's measured 0.18 are the same number, and
 the suite writes neither. The derivation: no sentence in the family
-distinguishes atom 0 (`Enumerate.hs:467`, `atoms = [1 .. k - 1]`), so
+distinguishes atom 0 (`Enumerate.hs:208`, `posAtoms = [1 .. kAr - 1]`), so
 atom 0's mass is the spread rate (1-theta)/(K-1) under EVERY hypothesis,
 and the posterior's best case is the codebook's lowest theta. A probe
 reads declared data; the theta grid is declared once at the top of the
@@ -371,3 +371,140 @@ reachability — the charter's claims, as built.
 
 Nothing above is claimed. What Part III reports as green was executed
 and its transcript is in `test-readout/opening/`.
+
+---
+
+## Part IV — the mandate round, and what it cost
+
+Six mandates, four fresh-context reviewers, run against the drafted
+oracle and the implementation. This round found more than any other
+step of the increment, and two of its findings would have frozen.
+
+### IV.1 The findings, and their disposition
+
+| # | finding | disposition |
+|---|---|---|
+| **F1** | **`R-D23` is cited for a proposition it does not contain.** R-D23's definition site (`archive/HOSTS_D_PACK.md:835`) is the batch residue + warm-segmentation declaration. At `membrane-wire.md:147` it is a GENRE label — "a declared limitation in the R-D23 sense" — and the charter promoted that label into the name of a number. `0.9/(K-1)` has no definition site anywhere. | REPAIRED in EXACT_PLAN 15.0, falsified words quoted inside the repair. The normative cap is `membrane-wire.md:147-148`'s `1/(K-1)`; the operative bound is `(1 - theta_min)/(K-1)` from the DECLARED codebook |
+| **F2** | **The `0.9` is a deleted constant.** It is `1 - min thetaPoints` for a theta point-set hard-wired in `src` at probe time and deleted at the exact re-founding (E3). The probe ran on tree `9790089`, two boundaries back. On the shipped tree the cap is a function of the world's declaration — which is why the oracle derives 0.175 and why 0.18 is not reproducible. | REPAIRED with F1 |
+| **F3** | **`0.735` / `5845 models` / `400 ticks` are defined nowhere**, from a discarded scratchpad probe on the pre-exact tree, in a pack that is not manifest-frozen. | REPAIRED: relabelled PRE-EXACT-TREE PROBE OBSERVATIONS in the charter, explicitly not pinned. The oracle's residual already declined to claim them |
+| **F4** | **`Enumerate.hs:467` / `atoms = [1 .. k - 1]` is stale at every one of five sites** — the file is 462 lines and the binding is `posAtoms` at `:208`. Carried forward from `dispositions-pack.md:1197` without ever being checked. It was **about to enter manifest-frozen `membrane-wire.md`** through this increment's own patch. | REPAIRED everywhere, the wire patch included. The R-D20-i copy-not-reconstruct failure, caught one step before it froze |
+| **F5** | **The residual row misdeclared its own axis** — "the 9-point theta grid" against a declared 7-point grid of eighths, stale from before the Finding-1 repair. It printed the wrong number in BOTH executed transcripts and survived the whole triptych, because nothing asserts against a printed string. The no-silent-caps instrument mis-declaring its own cap. | REPAIRED in `Readout.hs` and the pack |
+| **F6** | **The red-partition header was false.** It claimed "r2..r7 runtime-red"; the executed red run shows five of those rows green. | REPAIRED, with the falsified words quoted, and the partition now cites the transcript that measured it |
+| **F7** | **`argmax_code` is POSITION-keyed while `p0`/`p1` are VALUE-keyed.** They coincide only because the host builds the carrier `0 :| [1 .. K-1]`, three frames away — and NOTHING asserted it. A carrier keeping 0 first but permuting the rest leaves every row green while `argmax_code` reports a position that is not a code. | **NEW ROW r2b** pins `agentObsPoints ag == [0 .. K-1]`, and **NEW MUTANT M71** (carrier permuted) was cut when r2b ran UNREACHED against the M64-M70 pool |
+| **F8** | **CW2's tie rule had no wire pin.** r4a proves the prior is tied and r4b puts `argmax_code` on the wire — but r4b's stream gives a UNIQUE maximum, so between them the tie rule was never exercised where it bites. M67 produced a byte-identical reply on every world the suite walked. | **NEW ROW r4c** asserts the argmax on the wire AT THE TIED PRIOR. M67 now dies, and dies to r4c ALONE |
+| **F9** | **r5a is a theorem installed as a definition** (mandate 1's own shape). Since no sentence distinguishes atom 0, `p0 == (1 - E[theta])/(K-1)` exactly, so `p0 <= capQ` is "a weighted average of a declared grid is at least its minimum" — unfalsifiable by any readout defect, and its only demonstrated red was the oracle disagreeing with itself (III.3). | r5a RELABELLED a **RECORD row** with the conviction written into it, and the discriminating content moved to **r5c**, which now reads the RENDERED `p0` off the wire and checks it against the cap |
+| **F10** | **The menu-independence claim is untested**, not verified: the single-point menu with no utility takes the wait branch, so `chooseEU`/`pickWire` are never entered and no mutant computing `vec` at a different act is killable. The wire patch was about to install that claim in frozen prose. | The frozen-prose claim was RE-CUT to what the rows support. The row itself is **NOT YET BUILT** — see IV.2 |
+| **F11** | `R-RED` is cited as law but the canonized clause in `CLAUDE.md` carries no ID string; the name exists only in the battery's freeze kit. | FL-2 row, one-line patch at this freeze |
+| **F12** | The R-D20 copy table pinned absolute line numbers that the implementation shifts by 2-3 the moment it lands. | REPAIRED: anchored to the sealed tree `bd0d70c` AND named by binding. The general question — line-number provenance in pre-implementation oracles — is a register item for the sitting |
+| **F13** | Section 6.4 is under a "sections 4-6 are historical, binding on nothing current" bracket, yet the readout classed its normative discipline by reference to it. | REPAIRED: the readout's binding discipline is now the LIVE section-3 bullet; the wire patch names 6.4's historical status explicitly |
+
+### IV.2 The one finding NOT closed
+
+**F10, the menu-independence row, is OWED.** The reviewer showed a red
+is CONSTRUCTIBLE — a two-point menu plus a `said@1` utility that makes
+the non-head row win, then assert the reply's `p_codes` equals the
+reference at the REPORTED act and differs from it at the losing row.
+Under "a red is constructed, never owed", a constructible red is not
+an honest decline, so this is a real gap and is named as one rather
+than absorbed. It requires `refVec` to take the act as a parameter
+instead of closing over `theAct`.
+
+It rides to the sitting as a docket item. The frozen prose no longer
+asserts what the rows do not support, so nothing false freezes if the
+author rules it deferred.
+
+### IV.3 What the round says about the process
+
+Two of these (F4, F5) were already inside the two executed transcripts
+and survived them. F5 in particular printed a wrong number in both runs
+of the triptych — because the residual is a PRINTED row and nothing
+asserts against printed strings. The two-run triptych proves rows can
+fire and can pass; it says nothing about the rows' *prose*, and the
+mandate round is the only instrument that reads it.
+
+F1-F3 are one connected finding: the increment's scheduling argument
+was carried by numbers from a discarded probe on a two-boundary-old
+tree, under a ruling ID that does not contain them. The oracle was
+never wrong — it derives its own cap from declared data and explicitly
+declines the field figures. The CHARTER was the exposed surface. That
+asymmetry is worth carrying forward: the executable artifact was
+disciplined by its gates, and the prose around it was disciplined by
+nothing until six reviewers read it.
+
+---
+
+## Part V — the kill matrix
+
+`test-readout/opening/readout-kill-matrix.txt`. Pool M64-M71, serial,
+each cell a FULL corpus run (12 suites) with the mutant applied to
+`src` and `src` restored after.
+
+### V.1 The runner's own defect, recorded rather than silently fixed
+
+The first cut of the runner classified a cell as COMPILE DEATH by
+grepping the log for `rror:` — which matches cabal's own
+`Error: [Cabal-7125] Tests failed for test:readout`, the line printed
+on **every ordinary test failure**. So the runner reported all seven
+mutants as compile deaths and **could not have reported a kill at
+all**: a matrix runner that cannot report a kill is the exact mirror
+of a green that cannot fail. The repaired runner detects a GHC
+diagnostic (`^src/... error:`) or a cabal build failure, and the note
+rides in the transcript's own header.
+
+### V.2 The matrix
+
+| mutant | rows fired | standing corpus |
+|---|---|---|
+| M64 readout precedes the v1 fields | 1 — **r1b alone** | GREEN |
+| M65 index off-by-one | 7 | GREEN |
+| M66 unnormalized on the way out | 4 | GREEN |
+| M67 tie rule yields to the challenger | 1 — **r4c alone** | GREEN |
+| M68 null atom dropped | 7 | GREEN |
+| M69 vector truncated | 3 | GREEN |
+| M70 p1 re-pointed at the argmax | 1 — **r7a alone** | GREEN |
+| M71 carrier permuted | 7 | GREEN |
+
+Every kill is READOUT-UNIQUE: no mutant reddens a standing suite, so
+each row's kill is unique against the standing pre-increment corpus —
+the forward half of the kill-matrix clause, discharged.
+
+Three sole killers, and two of them are rows the mandate round bought:
+**r4c kills M67 alone** (before r4c, the tie rule had no wire pin and
+M67 produced byte-identical replies on every world the suite walked),
+and **r7a kills M70 alone** (the `p1`-overloading mutant). **r1b kills
+M64 alone.**
+
+### V.3 Two corrections the matrix forced
+
+**M64's first cut was a genuine compile death.** Deleting the v1 fields
+left `p1` and `hB` unused under `-Werror`. A mutant killed by the
+compiler is not a mutant, so it was re-cut to break the *other* half of
+additivity — CW3's ordering — with every binding live. It now kills r1b
+alone.
+
+**M71 corrected an oracle row's claim.** r2b was written to pin "the
+observation space IS [0 .. K-1]", the premise that makes `argmax_code`
+(a position) equal an atom code. M71 permutes the host's carrier — and
+left r2b GREEN, because r2b asserts over `refAgent`, the ORACLE's own
+carrier, which no src mutant can reach. What actually pins the host's
+convention is the seven wire rows M71 does kill, since `refVec` is
+built in declared order and the reply is not. r2b is therefore
+relabelled a RECORD row for the reference's side, with the correction
+written into it. **The pool growth found a defect in a row that the
+pool growth existed to serve** — a verdict is pool-relative and a pool
+is grown, never assumed.
+
+### V.4 Rows with no kill in this pool
+
+r1a, r2b, r4a, r5a, r5b, r7b, and the residual RECORD row. All are
+reference-side or structural by design, and two of them (r5a, r2b) are
+now explicitly RECORD rows carrying the reasons they cannot fail. Under
+the dyadic clause these are UNREACHED verdicts, and they are triage
+input for the sitting rather than deletions.
+
+### V.5 Gates, as built
+
+Seven of seven PASS with the readout implemented; the corpus is 12/12
+including `readout` at 15 rows; the manifest verifies. `src` carries
+the prophecy byte-for-byte — `git apply` accepted
+`opening/prophecy.diff` against the sealed tree without fuzz.

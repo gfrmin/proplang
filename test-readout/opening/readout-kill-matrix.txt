@@ -1,0 +1,81 @@
+=== THE READOUT KILL MATRIX (serial, per-row; baseline = the implemented surface) ===
+date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
+pool: M64-M70, the seven designed killers of EXACT_PLAN 15.3
+each cell: mutant applied to src, FULL corpus (12 suites), src restored
+RUNNER NOTE: compile death is detected as a GHC diagnostic line
+  (^src/... error:) or a cabal build failure - NEVER as the string
+  'Error:', which cabal prints on every ordinary test failure. The
+  first cut of this runner made that mistake and reported all seven
+  mutants as compile deaths; the repair is recorded here rather
+  than in a silent re-run.
+
+M64-readout-clobbers-p1: COMPILE DEATH (a mutant killed by the compiler is not a mutant)
+M65-readout-index-off-by-one: 7 readout row(s) fired
+    r1b RED half
+    r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
+    r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry
+    r4c the tie rule ON THE WIRE
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
+    r6 the vector survives the pipes (spawned host, the g6 form)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M66-readout-unnormalized: 4 readout row(s) fired
+    r1b RED half
+    r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
+    r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
+    r6 the vector survives the pipes (spawned host, the g6 form)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M67-readout-tie-rule-flipped: 1 readout row(s) fired
+    r4c the tie rule ON THE WIRE
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M68-readout-null-dropped: 7 readout row(s) fired
+    r1b RED half
+    r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
+    r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry
+    r4c the tie rule ON THE WIRE
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
+    r6 the vector survives the pipes (spawned host, the g6 form)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M69-readout-vector-truncated: 3 readout row(s) fired
+    r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
+    r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
+    r6 the vector survives the pipes (spawned host, the g6 form)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M70-p1-repointed-at-argmax: 1 readout row(s) fired
+    r7a the identity holds at K-ary arity
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+
+=== control: the unmutated implemented surface ===
+Test suite battery: PASS
+Test suite dyadic: PASS
+Test suite exact-acceptance: PASS
+Test suite exact-properties: PASS
+Test suite f5: PASS
+Test suite jointprep: PASS
+Test suite lawful-independence: PASS
+Test suite lawful: PASS
+Test suite pins: PASS
+Test suite readout: PASS
+Test suite trampoline: PASS
+Test suite transport: PASS
+
+=== SECOND PASS: the M64 re-cut and the pool growth M71 ===
+M64's first cut was a genuine COMPILE DEATH (deleting the v1 fields left
+p1 and hB unused under -Werror). Re-cut to break the OTHER half of
+additivity - CW3's ordering - with every binding live. M71 was cut
+because r2b ran UNREACHED against M64-M70: a verdict is POOL-RELATIVE
+and a pool is GROWN, never assumed.
+
+M64-readout-precedes-v1-fields: 1 readout row(s) fired
+    r1b RED half
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+M71-carrier-permuted: 7 readout row(s) fired
+    r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
+    r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry
+    r4c the tie rule ON THE WIRE
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
+    r6 the vector survives the pipes (spawned host, the g6 form)
+    r7a the identity holds at K-ary arity
+    standing corpus GREEN - the kill is READOUT-UNIQUE

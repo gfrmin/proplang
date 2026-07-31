@@ -1,42 +1,46 @@
-=== RED RUN (shipped pre-increment src; the red IS the missing readout) ===
+=== RED RUN (the SEALED pre-increment src, bd0d70c; the red IS the missing readout) ===
 date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
-src/PropLang/Host.hs sha256: bf5526f95429bf4671681ac58ab689c16bdf3a236ac5ed00545b4367f412c8d3
+oracle: the mandate-repaired Readout.hs (15 rows)
 the readout increment (#20; EXACT_PLAN 15)
   r1 the readout is PURELY ADDITIVE (attribution partition)
-    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route): OK
-    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):             FAIL
-      test-readout/Readout.hs:224:
+    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route):       OK
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):                   FAIL
+      test-readout/Readout.hs:241:
       the vector rides the plain route too: {"act": {"move": 1}, "p1": 0.5, "entropy_bits": 2.8073549220576046}
       Use -p '/r1b RED half: the readout joins them, and joins them AFTER (CW3 order)/' to rerun this test only.
-  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                     FAIL
-    test-readout/Readout.hs:250:
+  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                           FAIL
+    test-readout/Readout.hs:267:
     the reply carries the reference vector: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
     Use -p '/r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints/' to rerun this test only.
-  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):        FAIL
-    test-readout/Readout.hs:265:
+  r2b the observation space IS [0 .. K-1]: position == code (the readout's unstated premise): OK
+  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):              FAIL
+    test-readout/Readout.hs:300:
     the post-evidence vector crosses the wire: {"act": {"move": 1}, "p1": 0.16289920411041708, "entropy_bits": 4.1617994437422645}
     Use -p '/r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)/' to rerun this test only.
   r4 argmax_code / p_argmax under the DECLARED tie rule (CW2)
-    r4a the tie rule is exercised: the prior vector HAS ties:                           OK
-    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                 FAIL
-      test-readout/Readout.hs:285:
+    r4a the tie rule is exercised: the prior vector HAS ties:                                 OK
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                       FAIL
+      test-readout/Readout.hs:320:
       argmax_code on the wire: {"act": {"move": 1}, "p1": 2.917325332987394e-2, "entropy_bits": 0.6887485366564482}
       Use -p '/r4b argmax_code indexes a maximal entry and p_argmax IS that entry/' to rerun this test only.
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index:         FAIL
+      test-readout/Readout.hs:336:
+      the tied argmax on the wire: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
+      Use -p '/r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index/' to rerun this test only.
   r5 p0 against the R-D23 cap (OB-19's instrument)
-    r5a the cap BINDS: an all-null stream reads far under its own empirical rate:       OK (0.04s)
-    r5b (M) the readout CLIMBS to the cap and does not pass it:                         OK (0.04s)
-    r5c p0 is the NULL atom's mass, on the wire:                                        FAIL
-      test-readout/Readout.hs:333:
+    r5a RECORD: the cap is a STRUCTURAL identity of the family, not a measurement:            OK (0.04s)
+    r5b (M) the readout CLIMBS to the cap and does not pass it:                               OK (0.04s)
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap:       FAIL
+      test-readout/Readout.hs:398:
       p0 crosses the wire: {"act": {"move": 1}, "p1": 0.1652304273518346, "entropy_bits": 2.594177077376363}
-      Use -p '/r5c p0 is the NULL atom'\''s mass, on the wire/' to rerun this test only.
-  r6 the vector survives the pipes (spawned host, the g6 form):                         FAIL
-    test-readout/Readout.hs:364:
+      Use -p '/r5c p0 is the NULL atom'\''s mass ON THE WIRE, and the wire'\''s own p0 is under the cap/' to rerun this test only.
+  r6 the vector survives the pipes (spawned host, the g6 form):                               FAIL
+    test-readout/Readout.hs:434:
     the vector crosses the pipes: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
     Use -p '/r6 the vector survives the pipes (spawned host, the g6 form)/' to rerun this test only.
   r7 p1 still means P(atom 1) at any arity (membrane-wire.md:356)
-    r7a the identity holds at K-ary arity:                                              OK
-    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                  OK
-
+    r7a the identity holds at K-ary arity:                                                    OK
+    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                        
   === readout oracle residual (printed, not absorbed) ===
   arity axis      : walked at K absent (plain) and K = 6
                     UNWALKED: every other K, and mid-episode
@@ -49,7 +53,7 @@ the readout increment (#20; EXACT_PLAN 15)
   stream axis     : all-null (20, 120), the atom-3 stream (12),
                     one mixed 5-tick stream.
                     UNWALKED: adversarial and longer streams
-  codebook axis   : the 9-point theta grid only.
+  codebook axis   : the declared 7-point grid (eighths) only.
                     UNWALKED: finer and coarser grids (#19's
                     business, item three)
   NOT CLAIMED     : that the cap's four-fold under-read
@@ -58,7 +62,8 @@ the readout increment (#20; EXACT_PLAN 15)
                     the readout climbs to it); the field
                     measurement is OB-19's, at item two
 
-  RECORD: the residual this suite does not walk:                                        OK
+OK
+  RECORD: the residual this suite does not walk:                                              OK
 
-6 out of 13 tests failed (0.11s)
+7 out of 15 tests failed (0.11s)
 Test suite readout: FAIL

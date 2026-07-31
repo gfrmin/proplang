@@ -37,11 +37,28 @@
 --       PARTITION: it proves the pre-increment fields are already
 --       correct, so r2-r7's red is attributable to the missing
 --       readout alone, exactly as transport t4 does for buffering.
---   r2..r7  runtime-red.
+--   r2, r3, r4b, r4c, r5c, r5d, r6  runtime-red (they read the reply).
+--   r2b, r4a, r5a, r5b, r7a, r7b  GREEN IN BOTH RUNS: they assert over
+--       the reference or the declared carrier, so their red is the
+--       seeded-defect demonstration in the kill matrix, not the red
+--       run. This partition is MEASURED (opening/red-run.txt), not
+--       predicted: the first draft of this header claimed "r2..r7
+--       runtime-red" and the executed red run falsified it for five
+--       rows (the mandate round's finding, repaired here with the
+--       falsified words quoted).
 --
 -- R-D20 copy table (byte-wise copies, reviewable by grep):
---   agent call shape       <- src/PropLang/Host.hs:306-317
---   rational rendering     <- src/PropLang/Host.hs:428
+--   agent call shape       <- src/PropLang/Host.hs, the `hello`
+--                             handshake's enumerate/sentenceAgent
+--                             block (:306-317 AT bd0d70c)
+--   rational rendering     <- src/PropLang/Host.hs, the p1 field's
+--                             `show (fromRational .. :: Double)`
+--                             (:428 AT bd0d70c)
+--   (Line numbers are anchored to the SEALED pre-increment tree
+--   bd0d70c and named by binding, because an oracle frozen before
+--   the implementation it prophesies has stale absolute lines the
+--   moment that implementation lands — the mandate round's
+--   structural finding; the binding names are what to grep.)
 --   hello fixture base     <- test-trampoline/Trampoline.hs:465-471
 --   tick line shape        <- test-trampoline/Trampoline.hs:547
 --   pipe-spawn shape       <- test-trampoline/Trampoline.hs:486-499
@@ -250,6 +267,32 @@ r2 = testCase "r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints"
   assertBool ("the reply carries the reference vector: " ++ reply)
     (fieldCodes vec `isInfixOf` reply)
 
+-- r2b — THE CONVENTION THE WHOLE READOUT RESTS ON, pinned.
+--
+-- `p0` and `p1` are VALUE-keyed (the mass of the atom whose value is
+-- 0 / 1). `argmax_code` and `p_codes` are POSITION-keyed: the
+-- implementation receives masses only and indexes into the list.
+-- The two coincide because the host builds the carrier as
+-- `mkCarrier "obs" (0 :| [1 .. kA - 1])` — three call frames from the
+-- readout, and the mandate round found NOTHING asserting it.
+--
+-- THE MATRIX CORRECTED THIS ROW'S CLAIM, and the correction is kept
+-- rather than tidied away. As first written the row asserted the
+-- convention of `refAgent` — the ORACLE's own carrier — so the
+-- carrier mutant M71 (0 kept first, the rest reversed) left it
+-- GREEN: a src mutant cannot reach a test-side construction. What
+-- actually pins the HOST's carrier is the seven wire rows M71 does
+-- kill (r2, r3, r4b, r4c, r5c, r6, r7a), because `refVec` is built
+-- in declared order and the reply is not. So this row is a RECORD of
+-- the reference's side of the convention; M71 is the proof that the
+-- wire holds the same one. OB-11's reserved mid-episode tail is
+-- where a carrier would stop being [0 .. K-1], and M71 is the
+-- standing mutant for that day.
+r2b :: TestTree
+r2b = testCase "r2b RECORD: the REFERENCE's observation space is [0 .. K-1] (the wire's own is pinned by M71's seven killers)" $ do
+  agentObsPoints (refAgent (Just kAry)) @?= [0 .. kAry - 1]
+  agentObsPoints (refAgent Nothing) @?= [0, 1]
+
 -- ---------------------------------------------------------------------
 -- r3 — the measure law, crossing the wire (post-evidence state)
 -- ---------------------------------------------------------------------
@@ -286,6 +329,22 @@ r4 = testGroup "r4 argmax_code / p_argmax under the DECLARED tie rule (CW2)"
         (fieldArgmax vec `isInfixOf` reply)
       assertBool ("p_argmax on the wire: " ++ reply)
         (fieldPArgmax vec `isInfixOf` reply)
+  , testCase "r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index" $ do
+      -- r4a proves the prior HAS ties and r4b puts argmax_code on the
+      -- wire — but r4b's stream gives a UNIQUE maximum, so between
+      -- them the tie rule was never exercised where it bites: a
+      -- yields-to-the-challenger mutant produces a byte-identical
+      -- reply on every world those two rows walk (the mandate round's
+      -- finding). This row is that mutant's killer.
+      let ag    = refAgent (Just kAry)
+          vec   = refVec ag
+          reply = replay (helloAt (Just kAry)) [tickDec]
+      assertBool ("the prior must be tied for this row to bite: " ++ show vec)
+        (length (nub vec) < length vec)
+      assertBool ("the tied argmax on the wire: " ++ reply)
+        (fieldArgmax vec `isInfixOf` reply)
+      assertBool ("and its mass: " ++ reply)
+        (fieldPArgmax vec `isInfixOf` reply)
   ]
 
 -- ---------------------------------------------------------------------
@@ -301,12 +360,22 @@ capQ = (1 - minimum thetaPts) / (fromIntegral kAry - 1)
 
 r5 :: TestTree
 r5 = testGroup "r5 p0 against the R-D23 cap (OB-19's instrument)"
-  [ testCase "r5a the cap BINDS: an all-null stream reads far under its own empirical rate" $ do
+  [ testCase "r5a RECORD: the cap is a STRUCTURAL identity of the family, not a measurement" $ do
+      -- MANDATE 1 CONVICTED THIS ROW and it is kept, relabelled, as a
+      -- RECORD row (the residual's precedent). The conviction is
+      -- correct and worth writing down rather than deleting: since no
+      -- sentence distinguishes atom 0 (Enumerate.hs:208 `posAtoms`),
+      -- p0 == (1 - E[theta]) / (K-1) EXACTLY, for every weight vector
+      -- the sealed reasoner can produce. So `p0 <= capQ` is precisely
+      -- "a weighted average of a declared grid is at least its
+      -- minimum" — true of any normalized weights, unfalsifiable by
+      -- any readout defect, and reachable by no mutant that leaves
+      -- the reasoner alone. It is a THEOREM, and it is recorded here
+      -- as one. The discriminating content lives in r5c, which reads
+      -- the WIRE.
       let vShort = refVec (foldEv (replicate 20 0) (refAgent (Just kAry)))
           vLong  = refVec (foldEv (replicate 120 0) (refAgent (Just kAry)))
-      -- the empirical null rate on this stream is 1; the readout
-      -- cannot exceed the cap, which is far below it
-      assertBool ("cap must sit under the empirical rate: " ++ show capQ)
+      assertBool ("cap under the all-null stream's own rate of 1: " ++ show capQ)
         (capQ < 1)
       assertBool ("p0(20) <= cap: " ++ show (head' vShort))
         (head' vShort <= capQ)
@@ -324,7 +393,11 @@ r5 = testGroup "r5 p0 against the R-D23 cap (OB-19's instrument)"
         (head' vLong >= head' vShort)
       assertBool "the gap to the cap at least halves"
         (capQ - head' vLong < (capQ - head' vShort) / 2)
-  , testCase "r5c p0 is the NULL atom's mass, on the wire" $ do
+  , testCase "r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap" $ do
+      -- the row r5a is not: the assertions below cannot pass unless
+      -- the SHIPPED reply carries the null atom's mass. This is the
+      -- OB-19 instrument's actual pin — the cap becomes observable
+      -- only when the number crosses the membrane.
       let ag    = foldEv (replicate 20 0) (refAgent (Just kAry))
           vec   = refVec ag
           reply = replay (helloAt (Just kAry))
@@ -332,6 +405,11 @@ r5 = testGroup "r5 p0 against the R-D23 cap (OB-19's instrument)"
       head' vec @?= orDie (predictMassS theAct 0 ag)
       assertBool ("p0 crosses the wire: " ++ reply)
         (fieldP0 vec `isInfixOf` reply)
+      -- the wire's p0, read back as the field the host actually
+      -- rendered, sits under the declared cap while the stream's own
+      -- null rate is 1
+      assertBool ("the RENDERED p0 is under the cap: " ++ reply)
+        (("\"p0\": " ++ rD (min capQ (head' vec))) `isInfixOf` reply)
   ]
 
 -- ---------------------------------------------------------------------
@@ -405,7 +483,7 @@ residual = testCase "RECORD: the residual this suite does not walk" $
     , "  stream axis     : all-null (20, 120), the atom-3 stream (12),"
     , "                    one mixed 5-tick stream."
     , "                    UNWALKED: adversarial and longer streams"
-    , "  codebook axis   : the 9-point theta grid only."
+    , "  codebook axis   : the declared 7-point grid (eighths) only."
     , "                    UNWALKED: finer and coarser grids (#19's"
     , "                    business, item three)"
     , "  NOT CLAIMED     : that the cap's four-fold under-read"
@@ -418,4 +496,4 @@ residual = testCase "RECORD: the residual this suite does not walk" $
 
 main :: IO ()
 main = defaultMain (testGroup "the readout increment (#20; EXACT_PLAN 15)"
-  [ r1, r2, r3, r4, r5, r6, r7, residual ])
+  [ r1, r2, r2b, r3, r4, r5, r6, r7, residual ])

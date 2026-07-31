@@ -1,0 +1,12 @@
+# MUTANT M71-carrier-permuted — provenance: the mandate round's position-vs-code finding. The host builds the observation carrier as 0 :| [1 .. K-1], which is the ONLY reason argmax_code (a position) equals an atom code and p0 (a head) equals the null atom's mass. This mutant keeps 0 first and reverses the rest: every mass is still correct, the vector still sums to 1, p1 is still P(atom 1) — and argmax_code now reports a position that is not a code. Cut because r2b was UNREACHED by the M64-M70 pool, which is the pool being deficient, not the row.
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -307,7 +307,7 @@
+       do
+           let nsN = mkNamespace (n0 :| nrest)
+               kA = maybe 2 id arK
+-              obsC = mkCarrier "obs" (0 :| [1 .. kA - 1])
++              obsC = mkCarrier "obs" (0 :| reverse [1 .. kA - 1])
+               atomG = atomGridOfC obsC
+               -- the ABSENT key is the plain route; a DECLARED arity
+               -- (any K >= 2) is the K-ary route — declared-2 vs

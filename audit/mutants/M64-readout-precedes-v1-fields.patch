@@ -1,0 +1,18 @@
+# MUTANT M64-readout-precedes-v1-fields — provenance: EXACT_PLAN 15.3's additivity killer, RE-CUT. The first cut deleted the v1 fields outright and died at the compiler on unused bindings (-Werror), and a mutant killed by the compiler is not a mutant (the jp lesson). This cut keeps every binding live and breaks the OTHER half of additivity: register CW3's 'appended AFTER entropy_bits' becomes 'prepended', so the shipped fields no longer come first.
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -426,10 +426,10 @@
+           p1 <- predictMassS full 1 ag
+           vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
+           let hB = entropyAgent ag
+-          Right ([ "\"act\": " ++ rAct act
+-                 , "\"p1\": " ++ show (fromRational p1 :: Double)
+-                 , "\"entropy_bits\": " ++ show hB ]
+-                 ++ readoutFields vec)
++          Right (readoutFields vec
++                 ++ [ "\"act\": " ++ rAct act
++                    , "\"p1\": " ++ show (fromRational p1 :: Double)
++                    , "\"entropy_bits\": " ++ show hB ])
+       case evid of
+         Nothing
+           | null decPart -> Right (HostLive w ag, "{\"ok\": true}")

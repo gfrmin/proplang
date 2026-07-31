@@ -1,0 +1,12 @@
+# MUTANT M66-readout-unnormalized — provenance: EXACTPLAN 15.3's OB-20-class measure mutant — the REPORTED vector no longer sums to 1 (the sealed reasoner's measure law broken on the way out, while every scalar field stays correct)
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -453,7 +453,7 @@
+     [ "\"p0\": " ++ rQ v0
+     , "\"argmax_code\": " ++ show jStar
+     , "\"p_argmax\": " ++ rQ vStar
+-    , "\"p_codes\": [" ++ intercalate ", " (map rQ vec) ++ "]" ]
++    , "\"p_codes\": [" ++ intercalate ", " (map rQ (take 1 vec ++ map (* (9 / 10)) (drop 1 vec))) ++ "]" ]
+     where
+       rQ q = show (fromRational q :: Double)
+       step (bi, bv) (i, v) = if v > bv then (i, v) else (bi, bv)

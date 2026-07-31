@@ -1,0 +1,12 @@
+# MUTANT M69-readout-vector-truncated — provenance: EXACTPLAN 15.3's serialization killer — the rendered vector is truncated to two entries, so the readout crosses the wire MALFORMED while every scalar field stays correct
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -453,7 +453,7 @@
+     [ "\"p0\": " ++ rQ v0
+     , "\"argmax_code\": " ++ show jStar
+     , "\"p_argmax\": " ++ rQ vStar
+-    , "\"p_codes\": [" ++ intercalate ", " (map rQ vec) ++ "]" ]
++    , "\"p_codes\": [" ++ intercalate ", " (map rQ (take 2 vec)) ++ "]" ]
+     where
+       rQ q = show (fromRational q :: Double)
+       step (bi, bv) (i, v) = if v > bv then (i, v) else (bi, bv)
