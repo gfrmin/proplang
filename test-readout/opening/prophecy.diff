@@ -1,0 +1,49 @@
+--- /home/user/proplang/src/PropLang/Host.hs	2026-07-31 08:53:54.017790669 +0000
++++ src/PropLang/Host.hs	2026-07-31 09:37:57.465788376 +0000
+@@ -47,6 +47,7 @@
+ 
+ #if !defined(DROP_CODE) && !defined(DROP_EXPECT) && !defined(DROP_COND)
+ import Data.Char (isDigit)
++import Data.List (intercalate)
+ import Data.List.NonEmpty (NonEmpty ((:|)))
+ import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
+ 
+@@ -423,10 +424,12 @@
+         Nothing -> Right []
+         Just _ -> do
+           p1 <- predictMassS full 1 ag
++          vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
+           let hB = entropyAgent ag
+-          Right [ "\"act\": " ++ rAct act
+-                , "\"p1\": " ++ show (fromRational p1 :: Double)
+-                , "\"entropy_bits\": " ++ show hB ]
++          Right ([ "\"act\": " ++ rAct act
++                 , "\"p1\": " ++ show (fromRational p1 :: Double)
++                 , "\"entropy_bits\": " ++ show hB ]
++                 ++ readoutFields vec)
+       case evid of
+         Nothing
+           | null decPart -> Right (HostLive w ag, "{\"ok\": true}")
+@@ -440,6 +443,22 @@
+           Right ( HostLive w ag'
+                 , "{" ++ commaSep (decPart ++ evPart) ++ "}" )
+ 
++-- The K-ary readout (#20): observability ONLY, the residual_mean /
++-- sensitivity class of membrane-wire section 6.4. Telemetry on the
++-- reply; no decision path reads it.
++readoutFields :: [Rational] -> [String]
++readoutFields vec = case vec of
++  [] -> []
++  (v0 : rest) ->
++    [ "\"p0\": " ++ rQ v0
++    , "\"argmax_code\": " ++ show jStar
++    , "\"p_argmax\": " ++ rQ vStar
++    , "\"p_codes\": [" ++ intercalate ", " (map rQ vec) ++ "]" ]
++    where
++      rQ q = show (fromRational q :: Double)
++      step (bi, bv) (i, v) = if v > bv then (i, v) else (bi, bv)
++      (jStar, vStar) = foldl step (0 :: Int, v0) (zip [1 ..] rest)
++
+ note :: String -> Maybe a -> Either String a
+ note m = maybe (Left m) Right
+ 

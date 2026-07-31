@@ -136,6 +136,13 @@ package-faithfulness clauses were purchased to prevent (the step-5
 reorder incident; the jp `Data.Map` prophecy that reached the
 implementation phase unseen).
 
+*[SUPERSEDED IN PART, 2026-07-31, same session: the network policy was
+amended at the author's election and the toolchain arrived — GHC 9.10.3
+and cabal 3.16.1.0 via ghcup, `downloads.haskell.org` reachable. The
+paragraph above is kept as the opening's record; what it says about
+GHC 9.4.7 stands unchanged and unused. Part III is the executed work
+this section said was owed.]*
+
 Consequence for this pack: everything in Part I is shell-and-grep work
 and is EXECUTED. Every execution-bearing clause of the oracle phase —
 the two-run triptych, the overlay SAT under the stanza's dependency
@@ -239,3 +246,128 @@ unchanged. CW2's lowest-index tie rule is pinned by r4 whichever way it
 is ruled; only the reference fold's direction changes. CW5 (no readout on
 the think reply) is asserted nowhere and appears only in the printed
 residual — if the author rules the other way, a row is owed.
+
+---
+
+## Part III — the oracle phase, EXECUTED
+
+The toolchain arrived mid-session (I.6's dated bracket). Everything Part
+II listed as owed under items 1-4 and 8 has now been run; what remains
+owed is named in III.7.
+
+### III.1 Step 0 — the baseline on the sealed tree
+
+`test-readout/opening/baseline.txt`. On `bd0d70c` = `battery-freeze-r0`,
+before any edit reached the build: manifest 109/109 rows OK, and
+`cabal test all` **11 suites PASS** under GHC 9.10.3. This is what
+licenses attributing every red below to the increment rather than to
+the environment.
+
+*(A count worth recording: the stanza census is ELEVEN suites, not the
+twelve the battery's own gate-5 transcript reports. The boundary
+audit's standing observation flags the same drift from the other side
+— `test-writeup/check.sh` G2's retired-to-record row notes 8 stanzas
+at its close date against 11 live. Not a defect in anything shipped;
+recorded here so the next census counts rather than quotes.)*
+
+### III.2 Finding 1 — the wire parses declared numbers through `Double`
+
+`jQ = realToFrac <$> jNum` (`src/PropLang/Host.hs:239-242`). A world
+that declares `0.1` therefore reaches the engine as
+`toRational (0.1 :: Double)`, **not** as `1/10`.
+
+The first draft's reference built its theta grid from exact decimal
+rationals, so the reference and the wire were running *different
+worlds*. They agree at the prior and drift apart under evidence: the
+first red run had `r1a` green (the plain route, at the prior) and
+`r7a` red after twelve folds, disagreeing in the sixteenth digit —
+`2.5660752778443065e-2` on the wire against `2.5660752778443072e-2` in
+the reference. A probe measured the cause directly.
+
+The remedy is a declaration, not a workaround: the suite declares a
+**binary-exact** theta grid (eighths), where the declared decimal and
+the exact rational are the same number, so reference and wire build the
+same world by construction. `r1a` and `r7a` are the rows that pin that
+they do — the finding produced its own two-sided pin.
+
+### III.3 Finding 2 — the reference ran a grid the suite had not declared
+
+`refAgent` built its grid as `mkGrid "theta" (1 % 10 :| drop 1 thetaPts)`
+— a hand-written head literal beside a `drop 1`. When Finding 1's fix
+moved `thetaPts` to eighths, the head stayed `1/10`, so the reference's
+θ-min was 0.1 while `capQ` derived 0.175 from the declared eighths. `r5a`
+went red with `p0(20) = ...491919.../2745074... ≈ 0.1792 > 0.175`.
+
+The violated law is the one the file cites three lines above the defect:
+**a probe reads declared data and never re-declares a value it could
+import**. Fixed by building the grid from `thetaPts` entirely.
+
+Worth stating plainly: in the FIRST red run, `r5a` and `r5b` were
+green — green against a world the suite had not declared. A green that
+passes for the wrong reason is the two-run triptych's own failure mode,
+and only the grid change made it visible.
+
+### III.4 The two-run triptych, both sides
+
+**Red run** (`opening/red-run.txt`, shipped pre-increment `src`) —
+6 of 13 red, and the partition is exactly right:
+
+| red | r1b, r2, r3, r4b, r5c, r6 — every row that asserts a readout field |
+|---|---|
+| **green** | r1a, r4a, r5a, r5b, r7a, r7b — the structural and library-side rows |
+
+`r1a` is the attribution partition (transport t4's form): the shipped
+`act`/`p1`/`entropy_bits` are proven to carry their frozen meanings on
+the pre-increment surface, so the six reds are attributable to the
+missing readout alone and to nothing else.
+
+**SAT run** (`opening/sat-run.txt`) — **13/13 PASS** against an overlay
+wearing `PropLang.Host`'s own name, so the oracle's exact frozen text
+compiles unchanged, under the stanza's flags (`-Werror` included) and
+its dependency closure. The overlay's first cut was rejected by
+`-Werror=x-partial` for two uses of `head`; the accepted overlay is
+total, which is the implementation's constraint too.
+
+### III.5 The I.3 anchor-safety claim — CONFIRMED, not assumed
+
+`opening/corpus-overlay.txt`: the **full corpus against the overlay,
+12 of 12 suites PASS** — `transport` (whose expectation is the folded
+core itself), `trampoline` (the g6 wire rows), `exact-acceptance` (the
+t1/t2/t3 anchors and the deletion table), `battery` (all 82 rows),
+alongside the new `readout` suite.
+
+The increment's central risk was that an additive reply field moves a
+pinned anchor. It does not, and that is now a measured result rather
+than an inspection's expectation. Had it moved one, this was the
+stop-and-report.
+
+### III.6 The prophecy, and the prototype's disposal
+
+`opening/prophecy.diff` (49 lines) is the overlay diff, saved before the
+prototype was discarded (R-D21's overlay form; the generator exemption
+does not apply — this is a prototype, not a generator). It is the
+implementation phase's prophecy in the jp sense: the implementation is
+expected to land it byte-for-byte, and any deviation is a reportable
+event rather than a preference.
+
+Its shape: `readoutFields :: [Rational] -> [String]`, total by pattern
+match, argmax by a `foldl` that keeps the incumbent on ties (CW2's
+lowest-index rule), called from `tickExternal`'s `decPart` after
+`entropy_bits` (CW3). No new export, no engine change, no decision-path
+reachability — the charter's claims, as built.
+
+### III.7 What remains owed
+
+1. **The kill matrix** (Part II item 6). Six rows have a live red; the
+   other seven — r1a, r4a, r5a, r5b, r7a, r7b and the residual RECORD
+   row — are green in BOTH runs by design, so their red must come from
+   seeded defects. The designed killers are named in EXACT_PLAN 15.3
+   and are cut as mutants against the implemented surface.
+2. **The six red-team mandates** against the drafted oracle.
+3. **The pre-freeze lint**, with the full-corpus overlay build (row v).
+4. **The freeze kit** (`test-readout/freeze/`, the jp 1/2/3 form),
+   rehearsed two-sided from a fresh clone.
+5. **The register**, ruled at the sitting — CW1-CW8, plus FL-1's repair.
+
+Nothing above is claimed. What Part III reports as green was executed
+and its transcript is in `test-readout/opening/`.

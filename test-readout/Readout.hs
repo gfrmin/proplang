@@ -76,8 +76,22 @@ import PropLang.Syntax (mkCarrier, mkGrid, mkNamespace)
 -- The theta codebook, DECLARED. Every derived quantity below reads
 -- this list — a probe reads declared data and never re-declares a
 -- value it could import (the tauPoints line).
+--
+-- THE POINTS ARE BINARY-EXACT (eighths), and that is load-bearing,
+-- not cosmetic. The wire parses a declared number through Double —
+-- `jQ = realToFrac <$> jNum` (src/PropLang/Host.hs:239-242) — so a
+-- declared "0.1" reaches the engine as toRational (0.1 :: Double),
+-- NOT as 1/10. A reference that writes the exact decimal rational
+-- therefore runs a DIFFERENT world from the one the wire built, and
+-- the two agree at the prior and drift apart under evidence. The
+-- oracle-phase red run caught exactly that (readout-author-pack.md
+-- III.2: r1a green at the prior, r7a red after twelve folds, the
+-- disagreement in the 16th digit). At eighths the declared decimal
+-- and the exact rational are the SAME number, so the reference and
+-- the wire build the same world by construction — and r1a/r7a are
+-- the rows that pin that they do.
 thetaPts :: [Rational]
-thetaPts = [ n % 10 | n <- [1 .. 9] ]
+thetaPts = [ n % 8 | n <- [1 .. 7] ]
 
 -- The arity this suite walks on the K-ary face.
 kAry :: Int
@@ -129,7 +143,13 @@ refAgent mK =
   let nsN   = mkNamespace ("move" :| [])
       kA    = maybe 2 id mK
       obsC  = mkCarrier "obs" (0 :| [1 .. kA - 1])
-      tG    = mkGrid "theta" (1 % 10 :| drop 1 thetaPts)
+      -- the grid is built from thetaPts ENTIRELY, head included: the
+      -- first draft wrote its own head literal beside a `drop 1`, and
+      -- the reference then ran a grid the suite had not declared
+      -- (readout-author-pack.md III.3). A probe reads declared data.
+      tG    = case thetaPts of
+        (q : qs) -> mkGrid "theta" (q :| qs)
+        []       -> error "readout oracle: empty theta codebook (unreachable)"
       pop   = case mK of
         Nothing -> enumerateWith nsN obsC tG [] Nothing fragFull
         Just k  -> enumerateWithArity k nsN obsC tG [] Nothing fragFull
@@ -293,9 +313,11 @@ r5 = testGroup "r5 p0 against the R-D23 cap (OB-19's instrument)"
       assertBool ("p0(120) <= cap: " ++ show (head' vLong))
         (head' vLong <= capQ)
   , testCase "r5b (M) the readout CLIMBS to the cap and does not pass it" $ do
-      -- (M) the gap-closure shape is measured at the R-D21 probe and
-      -- re-cut there if the approach is not monotone; the structural
-      -- halves above stand either way.
+      -- (M) the gap-closure shape was a HYPOTHESIS at drafting and is
+      -- now MEASURED: green in both runs on the declared world (the
+      -- oracle-phase transcripts, test-readout/opening/). The (M)
+      -- mark stays as the row's provenance — it records that this
+      -- shape was earned by measurement rather than reasoned to.
       let vShort = refVec (foldEv (replicate 20 0) (refAgent (Just kAry)))
           vLong  = refVec (foldEv (replicate 120 0) (refAgent (Just kAry)))
       assertBool "p0 is non-decreasing in null evidence"

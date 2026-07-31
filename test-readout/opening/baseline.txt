@@ -1,0 +1,16 @@
+=== STEP-0 BASELINE: the sealed tree (battery-freeze-r0, bd0d70c) before any edit ===
+date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
+--- sha256sum -c MANIFEST.sha256 ---
+rows OK: 109
+--- cabal test all ---
+Test suite exact-properties: PASS
+Test suite dyadic: PASS
+Test suite f5: PASS
+Test suite lawful: PASS
+Test suite lawful-independence: PASS
+Test suite pins: PASS
+Test suite trampoline: PASS
+Test suite transport: PASS
+Test suite battery: PASS
+Test suite jointprep: PASS
+Test suite exact-acceptance: PASS

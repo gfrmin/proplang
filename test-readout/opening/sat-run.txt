@@ -1,0 +1,46 @@
+=== SAT RUN (overlay wearing PropLang.Host's name; stanza flags + dependency closure) ===
+date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
+overlay sha256: e2bc92db7c42736f105b9a050137a2f94b6076b260b6cfb2450b87aaa5a811fd
+the readout increment (#20; EXACT_PLAN 15)
+  r1 the readout is PURELY ADDITIVE (attribution partition)
+    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route): OK
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):             OK
+  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                     OK
+  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):        OK
+  r4 argmax_code / p_argmax under the DECLARED tie rule (CW2)
+    r4a the tie rule is exercised: the prior vector HAS ties:                           OK
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                 OK
+  r5 p0 against the R-D23 cap (OB-19's instrument)
+    r5a the cap BINDS: an all-null stream reads far under its own empirical rate:       OK (0.04s)
+    r5b (M) the readout CLIMBS to the cap and does not pass it:                         OK (0.04s)
+    r5c p0 is the NULL atom's mass, on the wire:                                        OK
+  r6 the vector survives the pipes (spawned host, the g6 form):                         OK
+  r7 p1 still means P(atom 1) at any arity (membrane-wire.md:356)
+    r7a the identity holds at K-ary arity:                                              OK
+    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                  OK
+
+  === readout oracle residual (printed, not absorbed) ===
+  arity axis      : walked at K absent (plain) and K = 6
+                    UNWALKED: every other K, and mid-episode
+                    growth (OB-11's reserved tail)
+  world axis      : ONE world - namespace [move], no guards, a
+                    single-point menu, no utility, no clock.
+                    UNWALKED: guarded worlds, said@1 utilities,
+                    priced clocks (the readout on a think tick
+                    is ruled out by CW5, not measured)
+  stream axis     : all-null (20, 120), the atom-3 stream (12),
+                    one mixed 5-tick stream.
+                    UNWALKED: adversarial and longer streams
+  codebook axis   : the 9-point theta grid only.
+                    UNWALKED: finer and coarser grids (#19's
+                    business, item three)
+  NOT CLAIMED     : that the cap's four-fold under-read
+                    reproduces the consumer's live 0.735 figure.
+                    r5 pins the STRUCTURE (the cap binds, and
+                    the readout climbs to it); the field
+                    measurement is OB-19's, at item two
+
+  RECORD: the residual this suite does not walk:                                        OK
+
+All 13 tests passed (0.13s)
+Test suite readout: PASS

@@ -1,0 +1,13 @@
+=== FULL CORPUS vs THE OVERLAY (the I.3 anchor-safety claim, EXECUTED) ===
+Test suite exact-properties: PASS
+Test suite dyadic: PASS
+Test suite f5: PASS
+Test suite lawful: PASS
+Test suite lawful-independence: PASS
+Test suite pins: PASS
+Test suite readout: PASS
+Test suite trampoline: PASS
+Test suite transport: PASS
+Test suite battery: PASS
+Test suite jointprep: PASS
+Test suite exact-acceptance: PASS
