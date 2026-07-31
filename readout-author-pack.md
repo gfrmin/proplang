@@ -144,3 +144,98 @@ lint row v — is OWED and is not claimed. The oracle phase does not
 close, and nothing freezes, until the toolchain exists and the
 step-0 baseline (the sealed tree, green, before any edit) has run.
 No row in this pack is reported green that was not run.
+
+---
+
+## Part II — the drafted oracle
+
+`test-readout/Readout.hs` + `test-readout/stanza.cabal.draft`. **Drafted,
+not executed** — see I.6. The file says so in its own header rather than
+relying on this pack to say it.
+
+### II.1 The world, and why it is shaped this way
+
+ONE declared world: namespace `["move"]`, no guards, a menu of a single
+name at a **single point**, the 9-point theta codebook, `obs_arity`
+absent (the plain route) or 6 (the K-ary face).
+
+The single-point menu is deliberate. It forces the chosen assignment, so
+`feats ++ act` is known to the suite without parsing `act` back out of
+the reply — which keeps the reference honest (computed through the
+library) instead of round-tripping the engine's own answer. It also
+makes mandate 6's answer structural: the readout is a function of the
+predictive at that assignment and of the declared observation space, and
+of nothing else. The menu cannot influence it because the menu has one
+element.
+
+### II.2 The rows as drafted
+
+| row | shape | red |
+|---|---|---|
+| r1a | the shipped three fields carry their frozen meanings (`p1` == `predictMassS act 1`, `entropy_bits` == `entropyAgent`) | GREEN — the ATTRIBUTION PARTITION, transport t4's form: it proves the pre-increment fields are already right, so every other row's red is attributable to the missing readout alone |
+| r1b | the vector joins them, and joins them AFTER `entropy_bits` (CW3) | red |
+| r2 | entry j == `predictMassS (feats ++ act) j` over `agentObsPoints`, K=6 | red |
+| r3 | the vector sums to 1 EXACTLY, in a POST-EVIDENCE state (distinct data from r2, so the row is not r2 wearing a law's name) | red |
+| r4a | the prior vector HAS ties — so CW2's tie rule is genuinely exercised, not vacuously satisfied | red |
+| r4b | `argmax_code` indexes a maximal entry, `p_argmax` IS that entry, on a stream constructed to move the argmax off 1 | red |
+| r5a | the cap BINDS: an all-null stream reads far under its own empirical rate of 1 | red |
+| r5b | **(M)** the readout CLIMBS to the cap (non-decreasing; the gap at least halves) | red |
+| r5c | `p0` is the NULL atom's mass, on the wire | red |
+| r6 | the vector survives the pipes (spawned host, g6 form) | red |
+| r7a/b | `p1` still means P(atom 1), two-sided: the identity holds, AND `p1` differs from `p_argmax` when the argmax is not 1 | red |
+| residual | the unwalked axes, PRINTED | RECORD row |
+
+### II.3 The cap is DERIVED, never written down
+
+`capQ = (1 - minimum thetaPts) / (fromIntegral kAry - 1)`.
+
+R-D23's "0.9/(K-1)" and VIII.1's measured 0.18 are the same number, and
+the suite writes neither. The derivation: no sentence in the family
+distinguishes atom 0 (`Enumerate.hs:467`, `atoms = [1 .. k - 1]`), so
+atom 0's mass is the spread rate (1-theta)/(K-1) under EVERY hypothesis,
+and the posterior's best case is the codebook's lowest theta. A probe
+reads declared data; the theta grid is declared once at the top of the
+suite and every derived quantity reads it.
+
+This is what makes r5 the OB-19 instrument rather than a restatement of
+it: the row does not assert the cap's value, it asserts that the shipped
+readout is bounded by a quantity computed from the world's own
+declaration, while the stream's empirical rate is 1.
+
+### II.4 What is OWED before this can freeze
+
+Nothing below has been run, and none of it is claimed:
+
+1. **The step-0 baseline** — the sealed tree green (`cabal test all`,
+   12 suites; lint 0 FAIL; manifest) BEFORE any edit. This licenses
+   attributing later reds to the increment.
+2. **The red run** — every row above proven to CAN fire, under this
+   stanza's exact flags and dependency closure.
+3. **The overlay SAT** — the prototype wearing `PropLang.Host`'s name,
+   the frozen text compiling unchanged, `-Werror` included,
+   `-hide-all-packages` plus the declared `build-depends`.
+4. **R-D21 transcripts** — one per red row, each forcing the frozen side
+   to normal form independently of the stub side.
+5. **The (M) row's measurement** — r5b's gap-closure shape is a
+   HYPOTHESIS until the probe measures the approach. If it is not
+   monotone, r5b is re-cut at measurement; r5a and r5c stand either way.
+   Recorded as (M) in the file itself so no reviewer has to guess which
+   assertions rest on unmeasured behaviour.
+6. **The kill matrix** — each row's unique kill against the STANDING
+   corpus, with the designed killers of section 15.3 cut as mutants
+   (field-clobber, index off-by-one, the OB-20-class normalization
+   mutant, tie-rule flip, the `[1..K-1]` null-dropping vector,
+   serialization, `p1` re-pointed at the argmax).
+7. **The six red-team mandates**, against the drafted oracle.
+8. **The anchor-safety claim** (I.3) CONFIRMED on the implemented
+   surface by the full corpus, not assumed.
+
+### II.5 Register items the draft did not settle
+
+CW1 (vector vs three scalars) is drafted for the vector, and the rows are
+written so that declining it NARROWS them — r2/r3/r6's `p_codes`
+assertions drop, r4/r5's `argmax_code`/`p_argmax`/`p0` assertions stand
+unchanged. CW2's lowest-index tie rule is pinned by r4 whichever way it
+is ruled; only the reference fold's direction changes. CW5 (no readout on
+the think reply) is asserted nowhere and appears only in the printed
+residual — if the author rules the other way, a row is owed.
