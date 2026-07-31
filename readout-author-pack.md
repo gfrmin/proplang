@@ -508,3 +508,70 @@ Seven of seven PASS with the readout implemented; the corpus is 12/12
 including `readout` at 15 rows; the manifest verifies. `src` carries
 the prophecy byte-for-byte — `git apply` accepted
 `opening/prophecy.diff` against the sealed tree without fuzz.
+
+---
+
+## Part VI — the freeze kit, rehearsed two-sided from a fresh clone
+
+`test-readout/freeze/`, the jp 1/2/3 form. Rehearsed in a scratch clone
+under the builder's hands; the kit the author runs is the kit as
+rehearsed.
+
+### VI.1 Green side, end to end
+
+**1-verify** (read-only) passed from the fresh clone: manifest OK; the
+**live 15/15** compiled and run under the stanza's exact flags AND its
+dependency closure (`-hide-all-packages` plus the declared
+`build-depends`, `-Werror` included), with `proplang-host` put on PATH
+for r6's pipes; and — new to this kit — **as-built == the prophecy,
+line for line**, a diff of the committed `prophecy.diff` against
+`git diff bd0d70c..HEAD -- src/PropLang/Host.hs`. The jp increment
+asserted that identity in prose; here the script checks it.
+
+**2-freeze** (keyless) spliced the stanza, applied all three `[RULING]`
+patches, ran **gate 5 green on the spliced tree** (12 suites, `readout`
+among them, zero FAIL), and extended the manifest **109 → 134 rows**,
+re-signing the four mutated frozen files. The manifest verifies after
+the extension.
+
+### VI.2 The rehearsal's finding, and why the kit was NOT weakened
+
+The lint's **L4 rows failed for all 26 tags** — and they fail for the
+ENVIRONMENT, not the tree. Two causes, both recorded rather than
+worked around:
+
+1. A fresh clone carries no local git config, so
+   `gpg.ssh.allowedSignersFile` is unset. **Fixed in the kit**: 2-freeze
+   now sets it before the lint, idempotently — the f5
+   runnable-from-anywhere lesson in its signature-verification form.
+2. This container has **no real `ssh-keygen`**, only a signing shim
+   that answers "unsupported code-sign operation: currently only
+   SSH-style signing (-Y sign) is supported". Tag *verification* is
+   therefore impossible here at all.
+
+So `2-freeze.sh` stopped at `grep -q "0 FAIL"` and refused to finish.
+**That is the gate working**, and it was left alone: weakening a lint
+row to make a rehearsal pass is the forbidden move, not a convenience.
+Everything else was verified directly — **zero non-L4 lint failures**
+on the spliced tree. L4 is discharged in the author's shell, which has
+a real `ssh-keygen` and the allowed-signers file.
+
+### VI.3 Red side, both guards
+
+- **A second splice was REFUSED** — `GUARD: readout stanza already
+  spliced - refusing to run twice`.
+- **A 3-sign edited AFTER 2-freeze hashed the kit was REFUSED at the
+  manifest re-check, before any key act.** HEAD unchanged, and no
+  `readout-freeze-r0` tag exists in the clone. The decline-by-editing
+  order is enforced mechanically, not by convention.
+
+### VI.4 What the author's shell still owes
+
+The **tag**. Every commit in this increment is UNSIGNED: the builder
+key (`allowed_signers`' `proplang-builder` fingerprint) is not in this
+container, and the available signing shim would mint a signature that
+verifies against nothing in `allowed_signers` — worse than no
+signature, so none was made. This is recorded in the commits
+themselves rather than passed off as builder custody. No freeze is
+affected: a freeze is the author's tag, and `3-sign.sh` is waiting
+for it.

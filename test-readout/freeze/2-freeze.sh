@@ -67,7 +67,14 @@ PY
 sha256sum --quiet -c MANIFEST.sha256
 echo "manifest OK post-extension"
 
-# 7. the pre-freeze lint (row v builds the FULL corpus by glob)
+# 7. the pre-freeze lint (row v builds the FULL corpus by glob).
+#    L4 verifies every freeze tag's signature, which needs the
+#    allowed-signers file configured — a FRESH CLONE has no local git
+#    config, so the row fails for the environment rather than for the
+#    tree. The rehearsal caught this; the line below is idempotent and
+#    makes the kit true of any honest copy (the f5 runnable-from-
+#    anywhere lesson, in its signature-verification form).
+git config --local gpg.ssh.allowedSignersFile allowed_signers
 bash tools/prefreeze-lint.sh 2>&1 | tee test-readout/freeze/lint-transcript.txt
 grep -q "0 FAIL" test-readout/freeze/lint-transcript.txt
 
