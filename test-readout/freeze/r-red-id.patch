@@ -1,0 +1,15 @@
+# FROZEN-LAYER EDIT (CLAUDE.md) for the readout freeze — mandate finding F11: the clause canonized at the battery boundary is cited by the ID R-RED, but the canonized text carries no ID string, so the only definition sites for the name are the battery's freeze-kit scripts. One line, giving the citation its home.
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -403,7 +403,10 @@
+    site.
+    One line canonized at the battery boundary (2026-07-30; the
+    author's ruling of 2026-07-28 on g-b2.2's owed red — "never owe
+-   a red if possible"): A RED IS CONSTRUCTED, NEVER OWED. An
++   a red if possible"), CITABLE AS **R-RED** (the ID was in use at
++   the battery's freeze kit and nowhere in this file, so a greppable
++   audit for it found only the kit - the readout increment's mandate
++   round, 2026-07-31): A RED IS CONSTRUCTED, NEVER OWED. An
+    invariance row's red lives only at a decision margin, and
+    generic streams and pools jump over margins — so when a row's
+    red does not fire under the pool, the increment computes the
