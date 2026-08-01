@@ -43,13 +43,21 @@ boundary audit · three patches apply clean · **signing key OK**.
 `3-sign.sh` re-checks that manifest before touching a key. **An edit made
 after step C is refused at step D** — by design, and rehearsed.
 
-Read the register and the drafted tag message:
+The register exists in **two** forms. Rule from the table — it states the
+question each CW answers; the tag message states only the answer.
 
 ```bash
-sed -n '/^CW1/,/^CW8/p' test-readout/freeze/3-sign.sh   # the eight defaults
-$EDITOR test-readout/freeze/3-sign.sh                   # decline by editing
-$EDITOR test-readout/freeze/2-freeze.sh                 # or drop a [RULING] patch line
+sed -n '/^### 15.4 /,/^| CW8 /p' EXACT_PLAN.md            # the table: question | drafted answer
+sed -n '/^CW1 THE FULL/,/r1 catch-net\./p' \
+        test-readout/freeze/3-sign.sh                    # the text you actually sign (16 lines)
+$EDITOR test-readout/freeze/3-sign.sh                    # decline by editing
+$EDITOR test-readout/freeze/2-freeze.sh                  # or drop a [RULING] patch line
 ```
+
+The earlier form of the first command was `/^CW1/,/^CW8/p`, which never
+terminates: `CW8` occurs mid-line, so sed ran to end of file and printed 120
+lines while its comment promised eight defaults. Recorded rather than quietly
+swapped — a command that dumps everything reads as if it isolated something.
 
 Running the kit intact **accepts CW1–CW8 as drafted**. Open items you are
 being asked to rule on:
