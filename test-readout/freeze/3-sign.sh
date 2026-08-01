@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 # readout sitting, script 3/3 — THE AUTHOR'S ATTESTATION, nothing
 # else. Run from the author's shell: the repo's local user.signingkey
-# is the author's own, so plain -S/-s here IS the author's key. The
-# tag message carries the register as drafted — running it intact
+# is the author's own, so plain -S/-s here IS the author's key.
+# On thinkpad that key is ~/.ssh/proplang-author-thinkpad
+# (SHA256:vxt+FccnN/4Z/6kmg0v/rvNWe1qK4jtVTzGsM8ogeX0), the author
+# identity's SECOND key, registered in allowed_signers at 8b85edb
+# because steel's key is not on this machine and steel is unreachable.
+# Read that commit before reading this signature: it records why a
+# per-shell author key is key management rather than a relaxation of
+# the custody rule, and why the delegation path was NOT available
+# (it needs the builder key, which is on neither machine).
+# The tag message carries the register as drafted — running it intact
 # accepts the drafted defaults; DECLINE BY EDITING this file (or a
 # [RULING] line in 2-freeze.sh) BEFORE running 2-freeze.sh, whose
 # manifest loop hashes the kit as run. The manifest re-check below
@@ -115,6 +123,23 @@ own charter inherited the error. The line predates this increment
 (it is bd0d70c's text), so editing it would break the
 as-built-==-prophecy identity for a comment; it enters the wire
 docket's next frozen-layer inventory instead.
+
+THIS TAG IS SIGNED FROM THINKPAD, not steel, and says so rather than
+leaving a future reader to reconstruct it from a fingerprint diff. The
+author identity gained a SECOND key at 8b85edb - one per shell,
+ed25519, dedicated to signing and not the machine's general auth key -
+because steel held the identity's ONLY key and is unreachable. The
+protocol asks the author to countersign 'from their own shell';
+thinkpad is that shell, and a key is the identity's instrument in a
+shell rather than the identity itself. The delegation path was not
+available and was not used: it requires the BUILDER key, which is on
+neither machine, and a builder signature cannot mint an author
+attestation in any case. All 26 prior tags were re-verified after the
+custody edit - 26 verified, 0 failed - each still checked against the
+key that actually signed it. The independent reason to do this at all:
+a single-key attestation identity is a single point of failure, and
+until 8b85edb a lost steel meant nothing could ever again be signed as
+author.
 
 R2B AND THE MATRIX'S SELF-CORRECTION, recorded because the lesson is
 not local: the matrix runner's first cut grepped 'rror:', which

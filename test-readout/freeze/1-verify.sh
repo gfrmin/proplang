@@ -74,5 +74,26 @@ for p in test-readout/freeze/membrane-wire-readout.patch \
   echo "applies clean: $p"
 done
 
+# CAN THIS SHELL ACTUALLY SIGN? Asked HERE, in the read-only script,
+# because 3-sign.sh is the last of the three: a shell that cannot sign
+# discovers it only after 2-freeze.sh has spliced the stanza, applied
+# three [RULING] patches and rewritten the manifest, with no undo
+# script and the double-run guard refusing a retry. That is the same
+# operational hazard the lint's L5 rows would have sprung (pack VII.2
+# P5), and it belongs in front of the mutations, not behind them.
+key=$(git config --get user.signingkey || true)
+[ -n "$key" ] || { echo "STOP: user.signingkey is unset - 3-sign.sh cannot sign" >&2; exit 1; }
+[ "$(git config --get gpg.format || true)" = "ssh" ] \
+  || { echo "STOP: gpg.format is not ssh - -S would attempt OpenPGP" >&2; exit 1; }
+sigtmp=$(mktemp -d)
+echo probe > "$sigtmp/p"
+ssh-keygen -Y sign -f "$key" -n git "$sigtmp/p" > "$sigtmp/log" 2>&1 \
+  || { echo "STOP: the configured signing key cannot sign:" >&2; cat "$sigtmp/log" >&2; rm -rf "$sigtmp"; exit 1; }
+fp=$(ssh-keygen -lf "$key.pub" 2>/dev/null | awk '{print $2}')
+grep -q "$(awk '{print $2}' "$key.pub")" allowed_signers \
+  || { echo "STOP: the signing key $fp is NOT in allowed_signers - the tag would verify for nobody" >&2; rm -rf "$sigtmp"; exit 1; }
+rm -rf "$sigtmp"
+echo "signing key OK: $fp, present in allowed_signers"
+
 echo
 echo "ALL CHECKS PASSED - nothing was mutated. 2-freeze.sh next."
