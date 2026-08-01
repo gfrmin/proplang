@@ -1,18 +1,34 @@
 # allowed_signers — public keys that sign this repository's commits and tags.
 #
-# Both keys sign under the git identity guy@publicdatamarket.com; git tells
+# All keys sign under the git identity guy@publicdatamarket.com; git tells
 # them apart by fingerprint (shown by `git tag -v <tag>` and
 # `git log --show-signature`):
 #
-#   author   SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY
+#   author   SHA256:Sfh8OBG9CtkTF/y8rch4Cf6wv1rCpJ8ymEtKilUucsY   (steel)
+#   author   SHA256:vxt+FccnN/4Z/6kmg0v/rvNWe1qK4jtVTzGsM8ogeX0   (thinkpad)
 #   builder  SHA256:fPqrWnQhp0Ds+8MkMIDMUZzdRGviyfwt2BjsSaXAmgc  (Claude Code builder)
+#
+# THE AUTHOR IDENTITY HAS TWO KEYS, one per shell, added 2026-08-01 at the
+# readout sitting. The protocol's requirement is that the author countersign
+# "from their own shell"; the key is that identity's instrument in a given
+# shell, not the identity itself. Until this date the author identity was
+# SINGLE-KEY and lived only on steel — so an unreachable steel meant nothing
+# could ever again be signed as author. That is the second reason for this
+# row, independent of the sitting that prompted it.
+#
+# A tag names which shell minted it. Tags before 2026-08-01 are all
+# steel-signed. Adding a key changes nothing about earlier tags: each still
+# verifies against the key that signed it.
 #
 # The membrane-freeze and ladder-freeze tags are builder-signed under an
 # explicit author delegation recorded verbatim in each tag message; every
-# other freeze tag is author-signed. To verify signatures in this repo:
+# other freeze tag is author-signed. A builder signature can never mint an
+# author attestation — that bar is on the KEY's role, not on the shell, and
+# is untouched by the two-author-key arrangement. To verify signatures:
 #
 #   git config gpg.ssh.allowedSignersFile allowed_signers
 #   git tag -v writeup-freeze
 #
 guy@publicdatamarket.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPDwevr0dVVkcHMbZhq1jAUti7RIaH0gV+c1KqESg0hJ
+guy@publicdatamarket.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKFAKrwGMHRzdK8zDxX2ZMn0Jg8OMCl6co+ViQ0GUXX proplang-author-thinkpad (the author's second shell)
 guy@publicdatamarket.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINGdQR3h1PLGCgKgf0i3K5sETgdVDByI+P4zvw5OtG/8 proplang-builder (Claude Code builder attestation)
