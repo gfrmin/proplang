@@ -1,0 +1,27 @@
+=== F10 WINDOW MEASUREMENT (R-D21 / R-RED; the prototype is discarded) ===
+Executed 2026-08-01 on thinkpad, ghc 9.10.3, cabal 3.16.1.0, BEFORE the
+r8 row text was fixed. R-RED demands the window be measured first and a
+declared parameter placed strictly inside it; this is that measurement,
+and it SHAPED the row rather than confirming it (readout-author-pack.md
+VII.1 records the three findings that moved the design).
+
+=== F10 WINDOW, MEASURED (probe v5; throwaway) ===
+world  : ns [move]; guard move@[0.0]; menu move@[1.0, -1.0]; K=6; theta [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875]
+utility: said@1  ["var", 1]  (= the atom value y; ACT-BLIND)
+stream : [0]
+
+  ev tick 1: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.550707835201306, "p0": 0.1, "argmax_code": 1, "p_argmax": 0.18, "p_codes": [0.1, 0.18, 0.18, 0.18, 0.18, 0.18], "observed": 0, "loss_bits": 3.321928094887362}
+  decide  : {"act": {"move": -1}, "p1": 0.17529661016949152, "entropy_bits": 5.353358283939476, "p0": 0.12351694915254237, "argmax_code": 1, "p_argmax": 0.17529661016949152, "p_codes": [0.12351694915254237, 0.17529661016949152, 0.17529661016949152, 0.17529661016949152, 0.17529661016949152, 0.17529661016949152]}
+
+  head act field  : "act": {"move": 1}
+  chal act field  : "act": {"move": -1}
+  EVERY EV TICK NAMES THE HEAD : True
+  DECIDE NAMES THE NON-HEAD    : True
+
+  vec @ head 1.0 : ["0.125","0.175","0.175","0.175","0.175","0.175"]
+  vec @ chal -1.0 : ["0.12351694915254237","0.17529661016949152","0.17529661016949152","0.17529661016949152","0.17529661016949152","0.17529661016949152"]
+  THE WINDOW IS NONEMPTY (vHead /= vChal) : True
+  first differing entry: head 0.125  chal 0.12351694915254237  delta 1.4830508474576272e-3
+
+  reply CARRIES the vector at the CHOSEN act : True
+  reply does NOT carry it at the MENU HEAD   : True

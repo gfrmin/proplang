@@ -30,23 +30,37 @@ cabal exec ghc -- -hide-all-packages -package base -package containers \
 cabal build -v0 exe:proplang-host
 exedir=$(dirname "$(cabal list-bin exe:proplang-host)")
 PATH="$exedir:$PATH" "$tmp/readout" > "$tmp/run.log" 2>&1
-tail -2 "$tmp/run.log"                       # expect: All 15 tests passed
-grep -q "All 15 tests passed" "$tmp/run.log"
-echo "live green confirmed (15/15 on this tree, dependency-closed)"
+tail -2 "$tmp/run.log"                       # expect: All 19 tests passed
+grep -q "All 19 tests passed" "$tmp/run.log"
+echo "live green confirmed (19/19 on this tree, dependency-closed)"
 rm -rf "$tmp"
 
 # the prophecy was applied byte-for-byte: src == the sealed tree plus
-# exactly the diff the oracle phase committed
-git diff bd0d70c..HEAD -- src/PropLang/Host.hs > /tmp/readout-asbuilt.diff
+# exactly the diff the oracle phase committed.
+#
+# THE `&& echo` FORM WAS A GATE THAT COULD NOT FAIL, and it is written
+# out here rather than quietly corrected. Under `set -e` a command on
+# the LEFT of `&&` does not abort the script — only the command after
+# the final `&&` is checked — so a prophecy MISMATCH printed its diff,
+# skipped the confirmation line, and fell through to "ALL CHECKS
+# PASSED" with exit 0. The rehearsal could not see it: the diff
+# matched, so the bug lived entirely on the red side of a check that
+# had never been red. That is the mirror image of the green that
+# cannot fail, in the one check this kit was assembled to add.
+# Caught by the pre-tag adversarial read, 2026-08-01, and demonstrated
+# before it was believed.
+asbuilt=$(mktemp)
+git diff bd0d70c..HEAD -- src/PropLang/Host.hs > "$asbuilt"
 diff <(grep -E '^[+-]' test-readout/opening/prophecy.diff | grep -vE '^(\+\+\+|---)') \
-     <(grep -E '^[+-]' /tmp/readout-asbuilt.diff | grep -vE '^(\+\+\+|---)') \
-  && echo "as-built == the prophecy, line for line"
+     <(grep -E '^[+-]' "$asbuilt" | grep -vE '^(\+\+\+|---)')
+rm -f "$asbuilt"
+echo "as-built == the prophecy, line for line"
 
 # the recorded evidence (frozen with the oracle)
 echo "--- red run (the sealed pre-increment src) ---"
-grep -E "out of|All 15" test-readout/opening/red-run.txt
+grep -E "out of|All 19" test-readout/opening/red-run.txt
 echo "--- the implemented surface ---"
-grep -E "out of|All 15" test-readout/opening/impl-run.txt
+grep -E "out of|All 19" test-readout/opening/impl-run.txt
 echo "--- kill matrix (every kill readout-unique) ---"
 grep -E "row\(s\) fired|COMPILE DEATH" test-readout/opening/readout-kill-matrix.txt
 echo "--- boundary audit at the opening ---"

@@ -1,4 +1,5 @@
-# FROZEN-LAYER EDIT (membrane-wire.md) for the readout freeze — the reply shape, the readout bullet in the LIVE section-3 contract (not the historical section 6), six pin-table rows, and the dead test-arity g7d pin retired in place. VIII.1's recommendation EXECUTED: the consumer discipline is quoted INTO the doc. Mandate-round repairs folded in: the Enumerate citation, the position-vs-code identity as a pin's subject, and section 6.4's historical status named.
+# FROZEN-LAYER EDIT (membrane-wire.md) for the readout freeze — the reply shape, the readout bullet in the LIVE section-3 contract (not the historical section 6), seven pin-table rows, and the dead test-arity g7d pin retired in place. VIII.1's recommendation EXECUTED: the consumer discipline is quoted INTO the doc. Mandate-round repairs folded in: the Enumerate citation, the position-vs-code identity as a pin's subject, and section 6.4's historical status named.
+# PRE-TAG READ REPAIR (2026-08-01): this patch cited readout r2b TWICE as the pin for the HOST's carrier convention — in the identity table and, emphatically, in the 6.4 paragraph ("That identity is a pin's subject here, never an assumption"). The increment's own kill matrix had already falsified that: r2b asserts over refAgent, the ORACLE's carrier, and M71 (carrier permuted) leaves it GREEN. The pin is the seven wire rows M71 does kill. Caught one step before it entered a manifest-frozen document — the same shape, and the same distance from the freeze, as the mandate round's stale Enumerate citation. The r8 row (F10, menu-independence) joins the table in the same pass.
 --- a/membrane-wire.md
 +++ b/membrane-wire.md
 @@ -271,7 +271,7 @@
@@ -39,7 +40,7 @@
  - Choice encoding: `"act"` is the full assignment object,
    `{<writable-name>: <value>, ...}` — one value per name published
    this tick (the empty object when no menu is published: the empty
-@@ -438,7 +460,12 @@
+@@ -438,7 +460,13 @@
  | clock row: internal acts priced by the world | Host.hs hello clock + tick dispatch | trampoline g6.4 (wire), g3 (the differential) |
  | K=2 arity == plain route | Host.hs:292-296 | pins ARITY K=2 (==) |
  | K=4 categorical law | Enumerate.hs catBody | pins K=4 (EARNED, M14) |
@@ -47,13 +48,14 @@
 +| p1 = P(atom 1) at any arity | Host.hs reply builder | readout r7a (the first pin that reads the REPLY BUILDER; acceptance's probe rows read predictMassS directly and never touch it) |
 +| the readout is ADDITIVE: the v1 fields keep their meanings | Host.hs `tickExternal` decPart | readout r1 (the attribution partition) |
 +| p_codes j == predictMassS (feats ++ act) j over agentObsPoints | Host.hs `readoutFields` | readout r2 + r3 |
-+| the observation space IS [0 .. K-1], so POSITION == CODE | Host.hs carrier `0 :| [1 .. kA - 1]` | readout r2b |
++| the observation space IS [0 .. K-1], so POSITION == CODE | Host.hs carrier `0 :| [1 .. kA - 1]` | the seven wire rows mutant M71 kills (readout r2, r3, r4b, r4c, r5c, r6, r7a) — NOT r2b, which is a RECORD row over the ORACLE's own carrier and which M71 leaves green |
 +| argmax_code ties to the LOWEST index | Host.hs `readoutFields` fold | readout r4c (at the tied prior, on the wire) |
 +| p0 is the null atom's mass, structurally bounded | Host.hs `readoutFields` | readout r5c (OB-19's instrument) |
++| the vector is computed at the CHOSEN act, not the menu head | Host.hs `tickExternal` `full = feats ++ act` | readout r8 (two-point menu, mutant M72 its sole killer) |
  | utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | trampoline g6.2 (OB-22 DISCHARGED) |
  | namespace immutability under publication | Host.hs handshake + tick dispatch | trampoline g6.3 (OB-23 DISCHARGED) |
  | rendering cliff 2^53 | Host.hs:182-183 | transport t4 (parity partition) |
-@@ -601,6 +628,20 @@
+@@ -601,6 +628,25 @@
  forking (HOSTS_PLAN 8.12(b)), and the governor-side tests pin the
  adapter's decide path as a pure choice-relay.
  
@@ -68,8 +70,13 @@
 +over the menu, which stays engine-side by the standing sentence and
 +is reported in `act`; and `p_codes` is indexed by POSITION in
 +`agentObsPoints`, which equals the atom code because the host
-+builds the carrier as `0 :| [1 .. K-1]` (pinned by readout r2b).
++builds the carrier as `0 :| [1 .. K-1]` (pinned by the seven wire
++rows mutant M71 kills; readout r2b is the REFERENCE side of the
++same convention and a src mutant cannot reach it).
 +That identity is a pin's subject here, never an assumption.
++And the vector is computed at the act the engine CHOSE, not at the
++menu's head — the two coincide whenever a menu has one point, which
++is why readout r8 declares a two-point menu to tell them apart.
 +
  ### 6.5 Errors (R-D12)
  

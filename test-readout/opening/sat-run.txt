@@ -1,3 +1,13 @@
+*[HISTORICAL, bracketed at the pre-tag read of 2026-08-01: this is the
+overlay SAT of the DRAFTED 13-row suite, which is the suite that
+existed when the overlay was the only realization available. The frozen
+oracle now has 19 rows: the mandate round bought r2b and r4c and the
+pre-tag read bought r8a-r8d, all POST-IMPLEMENTATION, so their
+can-pass side is the shipped green (impl-run.txt) and their can-fire
+side is the kill matrix - the r4c/r2b precedent. The record is left as
+run rather than re-manufactured against a surface the overlay never
+saw.]*
+
 === SAT RUN (overlay wearing PropLang.Host's name; stanza flags + dependency closure) ===
 date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
 overlay sha256: e2bc92db7c42736f105b9a050137a2f94b6076b260b6cfb2450b87aaa5a811fd

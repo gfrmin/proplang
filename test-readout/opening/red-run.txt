@@ -1,57 +1,96 @@
 === RED RUN (the SEALED pre-increment src, bd0d70c; the red IS the missing readout) ===
-date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
-oracle: the mandate-repaired Readout.hs (15 rows)
+date: 2026-08-01   ghc 9.10.3   cabal 3.16.1.0
+oracle: Readout.hs AS FROZEN (19 rows), run on thinkpad
+
+SUPERSEDES the 15-row transcript of 2026-07-31, which itself superseded
+the drafted 13-row run recorded in readout-author-pack.md III.4 (red
+6/13). The row set moved twice: the mandate round bought r2b and r4c,
+and the pre-tag read bought r8a-r8d. A transcript that describes a
+different file than the one being frozen is not evidence for it.
+
+THE PARTITION, and r8's half of it is the point:
+  RED (8)   r1b, r2, r3, r4b, r4c, r5c, r6 - every row that asserts a
+            readout field - plus r8c, which asserts the vector at the
+            reported act and cannot pass without a vector at all.
+  GREEN (11, and green BY DESIGN in both runs) r1a the attribution
+            partition; r2b, r4a, r5a, r5b, r7a, r7b the reference- and
+            carrier-side rows; the residual RECORD row; and r8a, r8b,
+            r8d.
+  r8a and r8b read the reply's `act` field, which the PRE-INCREMENT
+  reply already carries - so they are r1a's shape, guard rows proving
+  the fold point and the choice are what the reference assumes. r8d is
+  green here for the reason that makes it interesting: with NO readout
+  on the wire, the menu head's vector is not on the wire either, so
+  the negative assertion holds trivially. r8d's real red can only come
+  from a seeded defect, and M72 supplies it ALONE (see
+  readout-kill-matrix.txt).
+
 the readout increment (#20; EXACT_PLAN 15)
   r1 the readout is PURELY ADDITIVE (attribution partition)
-    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route):       OK
-    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):                   FAIL
-      test-readout/Readout.hs:241:
+    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route):                          OK
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):                                      FAIL
+      test-readout/Readout.hs:287:
       the vector rides the plain route too: {"act": {"move": 1}, "p1": 0.5, "entropy_bits": 2.8073549220576046}
       Use -p '/r1b RED half: the readout joins them, and joins them AFTER (CW3 order)/' to rerun this test only.
-  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                           FAIL
-    test-readout/Readout.hs:267:
+  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                                              FAIL
+    test-readout/Readout.hs:313:
     the reply carries the reference vector: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
     Use -p '/r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints/' to rerun this test only.
-  r2b the observation space IS [0 .. K-1]: position == code (the readout's unstated premise): OK
-  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):              FAIL
-    test-readout/Readout.hs:300:
+  r2b RECORD: the REFERENCE's observation space is [0 .. K-1] (the wire's own is pinned by M71's seven killers): OK
+  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):                                 FAIL (0.02s)
+    test-readout/Readout.hs:354:
     the post-evidence vector crosses the wire: {"act": {"move": 1}, "p1": 0.16289920411041708, "entropy_bits": 4.1617994437422645}
     Use -p '/r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)/' to rerun this test only.
   r4 argmax_code / p_argmax under the DECLARED tie rule (CW2)
-    r4a the tie rule is exercised: the prior vector HAS ties:                                 OK
-    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                       FAIL
-      test-readout/Readout.hs:320:
+    r4a the tie rule is exercised: the prior vector HAS ties:                                                    OK
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                                          FAIL (0.03s)
+      test-readout/Readout.hs:374:
       argmax_code on the wire: {"act": {"move": 1}, "p1": 2.917325332987394e-2, "entropy_bits": 0.6887485366564482}
       Use -p '/r4b argmax_code indexes a maximal entry and p_argmax IS that entry/' to rerun this test only.
-    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index:         FAIL
-      test-readout/Readout.hs:336:
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index:                            FAIL
+      test-readout/Readout.hs:390:
       the tied argmax on the wire: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
       Use -p '/r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index/' to rerun this test only.
   r5 p0 against the R-D23 cap (OB-19's instrument)
-    r5a RECORD: the cap is a STRUCTURAL identity of the family, not a measurement:            OK (0.04s)
-    r5b (M) the readout CLIMBS to the cap and does not pass it:                               OK (0.04s)
-    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap:       FAIL
-      test-readout/Readout.hs:398:
+    r5a RECORD: the cap is a STRUCTURAL identity of the family, not a measurement:                               OK (0.26s)
+    r5b (M) the readout CLIMBS to the cap and does not pass it:                                                  OK (0.23s)
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap:                          FAIL (0.05s)
+      test-readout/Readout.hs:452:
       p0 crosses the wire: {"act": {"move": 1}, "p1": 0.1652304273518346, "entropy_bits": 2.594177077376363}
       Use -p '/r5c p0 is the NULL atom'\''s mass ON THE WIRE, and the wire'\''s own p0 is under the cap/' to rerun this test only.
-  r6 the vector survives the pipes (spawned host, the g6 form):                               FAIL
-    test-readout/Readout.hs:434:
+  r6 the vector survives the pipes (spawned host, the g6 form):                                                  FAIL
+    test-readout/Readout.hs:488:
     the vector crosses the pipes: {"act": {"move": 1}, "p1": 0.18, "entropy_bits": 5.129283016944964}
     Use -p '/r6 the vector survives the pipes (spawned host, the g6 form)/' to rerun this test only.
   r7 p1 still means P(atom 1) at any arity (membrane-wire.md:356)
-    r7a the identity holds at K-ary arity:                                                    OK
-    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                        
+    r7a the identity holds at K-ary arity:                                                                       OK (0.03s)
+    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                                           OK (0.02s)
+  r8 the readout is computed at the CHOSEN act, not the menu head (F10)
+    r8a the fold point is PINNED: every evidence tick reports the menu head:                                     OK (0.08s)
+    r8b the utility BITES: the decide reply names the NON-HEAD assignment:                                       OK (0.17s)
+    r8c p_codes IS the reference at the REPORTED act:                                                            FAIL (0.17s)
+      test-readout/Readout.hs:632:
+      the vector at the chosen act crosses the wire: {"act": {"move": -1}, "p1": 0.17529661016949152, "entropy_bits": 5.353358283939476}
+      Use -p '/r8c p_codes IS the reference at the REPORTED act/' to rerun this test only.
+    r8d and it is NOT the reference at the MENU HEAD (the window is nonempty):                                   OK
   === readout oracle residual (printed, not absorbed) ===
   arity axis      : walked at K absent (plain) and K = 6
                     UNWALKED: every other K, and mid-episode
                     growth (OB-11's reserved tail)
-  world axis      : ONE world - namespace [move], no guards, a
-                    single-point menu, no utility, no clock.
-                    UNWALKED: guarded worlds, said@1 utilities,
-                    priced clocks (the readout on a think tick
-                    is ruled out by CW5, not measured)
+  world axis      : TWO worlds. (a) the standing world -
+                    namespace [move], no guards, a single-point
+                    menu, no utility, no clock; (b) r8's F10
+                    world - the same namespace with a GUARD on
+                    the menu name, a TWO-point menu and an
+                    act-blind said@1 utility.
+                    UNWALKED: multi-name namespaces, guards on
+                    a non-menu name, act-DEPENDENT utilities
+                    (OB-24's convention is deliberately not
+                    leaned on), priced clocks (the readout on a
+                    think tick is ruled out by CW5, not
+                    measured)
   stream axis     : all-null (20, 120), the atom-3 stream (12),
-                    one mixed 5-tick stream.
+                    one mixed 5-tick stream, r8's 1-tick [0].
                     UNWALKED: adversarial and longer streams
   codebook axis   : the declared 7-point grid (eighths) only.
                     UNWALKED: finer and coarser grids (#19's
@@ -62,8 +101,7 @@ the readout increment (#20; EXACT_PLAN 15)
                     the readout climbs to it); the field
                     measurement is OB-19's, at item two
 
-OK
-  RECORD: the residual this suite does not walk:                                              OK
+ (0.19s)
+  RECORD: the residual this suite does not walk:                                                                 OK
 
-7 out of 15 tests failed (0.11s)
-Test suite readout: FAIL
+8 out of 19 tests failed (1.26s)

@@ -323,8 +323,11 @@ missing readout alone and to nothing else.
 
 **SAT run** (`opening/sat-run.txt`) — **13/13 PASS** against an overlay
 wearing `PropLang.Host`'s own name, so the oracle's exact frozen text
-compiles unchanged, under the stanza's flags (`-Werror` included) and
-its dependency closure. The overlay's first cut was rejected by
+compiles unchanged, under the stanza's flags — `-Wall -Werror
+-Wincomplete-patterns -Wincomplete-uni-patterns`, the full set, spelled
+out here because the flag-faithfulness clause requires the pack to
+RECORD them and the pre-freeze lint's L5 row enforces exactly that —
+and its dependency closure. The overlay's first cut was rejected by
 `-Werror=x-partial` for two uses of `head`; the accepted overlay is
 total, which is the implementation's constraint too.
 
@@ -575,3 +578,143 @@ signature, so none was made. This is recorded in the commits
 themselves rather than passed off as builder custody. No freeze is
 affected: a freeze is the author's tag, and `3-sign.sh` is waiting
 for it.
+
+---
+
+## Part VII — the pre-tag adversarial read, and F10 CONSTRUCTED
+
+Executed 2026-08-01 on the author's election, on a builder shell stood
+up on `thinkpad` (GHC 9.10.3 / cabal 3.16.1.0 via ghcup; `steel`, the
+author's own machine, is out of commission for a few days). The step-0
+baseline was reproduced here FIRST and matches the container's
+exactly: **manifest 109/109, `cabal test all` 11 suites PASS**, and
+`1-verify.sh` green end to end. Nothing in this part is claimed that
+was not run on this machine.
+
+### VII.1 F10 is DISCHARGED — the red is constructed, not owed
+
+The opening carried F10 to the sitting as an owed red (IV.2), while
+conceding that a red was constructible. Under **R-RED** — the clause
+this very increment's kit patches into `CLAUDE.md` to give it a
+citable ID — a constructible red is not an honest decline. It is now
+built as `r8a`-`r8d`, and the window was **measured first**, on a
+throwaway prototype (R-D21), before any row text was fixed. The
+transcript is `test-readout/opening/f10-window.txt`; the prototype is
+discarded.
+
+Three measurements, each of which moved the design rather than
+confirming it:
+
+1. **In a guard-free world the predictive does not move with the act
+   at all.** `refVecAt headAct == refVecAt otherAct` at the prior and
+   under every stream probed. `guardFamilyJ` (`Enumerate.hs:264-274`)
+   is the only production that reads a namespace name (`Get nm`), and
+   the standing world declares no guards — so the suite's own world
+   could not have hosted this row under ANY menu or utility. That is
+   the second reason menu-independence went untested, and it is not
+   the one the opening gave.
+2. **A menu-less evidence tick is REFUSED under a guard** — `tick
+   refused: missing declared [move]`, because the guard sentence needs
+   `move` bound and the empty assignment is not a legal environment.
+   Evidence must therefore fold AT an act. Rather than let the
+   reference round-trip the engine's answer, `r8a` **pins** that every
+   evidence tick reported the head; the reference folds there because
+   a row says so, not because the suite assumed it.
+3. **At the prior the two acts agree exactly.** The guard family
+   carries every ordered pair `(a, b)`, `a /= b`, at equal charge, so
+   the prior predictive is symmetric in the two branches and
+   act-independent by construction. The window opens only under
+   evidence. The declared one-tick stream `[0]` sits strictly inside
+   it: `p0` is `0.125` at the menu head and `0.12351694915254237` at
+   the chosen act, a separation of `1.4830508474576272e-3`.
+
+The utility is **act-blind** (`["var", 1]`, the atom value), so the
+row does not rest on OB-24's challenger-assignment convention: the
+non-head wins on the beliefs alone, and OB-24 can be re-ruled without
+touching r8.
+
+The row is four-sided on purpose. `chooseEU` falls back to the head
+(`maybe o0 fst picked`), so a row asserting only the vector would pass
+while the head quietly won — `r8b` is what stops that. And `r8d`
+asserts the window's nonemptiness BEFORE its negative half, because
+the negative half is a red that cannot fire if the two
+vectors coincide.
+
+`r8` is a POST-IMPLEMENTATION row, so its red is a seeded defect
+rather than the red run — the r4c/r2b precedent, where the mandate
+round bought rows after the implementation landed and the matrix
+supplied their reds. **M72** (`readout-at-menu-head`) is the designed
+killer: it computes the vector at `feats ++ head opts` instead of at
+the chosen act, which is **byte-identical to the shipped host on every
+world with a single-point menu** — which is exactly why no standing
+mutant could reach the claim.
+
+#### The probe's own defect, recorded
+
+The window search's first cut reported "non-head won: **False**" on
+every trial and made the window look empty when it is wide. Its
+detector built the act field with the `p1` rendering (`show
+(fromRational v :: Double)` → `"-1.0"`), but the wire renders acts
+through `rNum`, which prints an integral Double as an Integer →
+`"-1"`. **The detector matched nothing and could not have reported a
+win.** Same shape as the matrix runner's `rror:` grep, one step
+further out. It is written into `Readout.hs`'s `actField` comment so
+the next reader inherits the lesson rather than the bug.
+
+### VII.2 Five findings that would have frozen
+
+| # | finding | disposition |
+|---|---|---|
+| **P1** | **The wire patch cited `r2b` twice as the pin for the HOST's carrier convention** — in the identity table, and emphatically in the 6.4 paragraph ("That identity is a pin's subject here, never an assumption"). This increment's OWN kill matrix had already falsified it: `r2b` asserts over `refAgent`, the oracle's carrier, and M71 leaves it green (V.3). The mandate round corrected the row and did not propagate the correction into the frozen-document patch that cites it. | REPAIRED: the pin is now the seven wire rows M71 kills; `r2b` is named as the reference side. One step from a manifest-frozen document — the same shape and the same distance as the stale `Enumerate` citation |
+| **P2** | **`Readout.hs` still carried its opening DRAFT banner** — "THIS FILE IS THE ORACLE-PHASE DRAFT AND HAS NOT BEEN EXECUTED … Every execution-bearing clause is therefore OWED and none is claimed" — while line 44 of the same file read "This partition is MEASURED … not predicted". The file was about to enter `MANIFEST.sha256` declaring itself unexecuted and unfreezable | REPAIRED: replaced by an EXECUTION STATUS banner with the falsified words quoted inside it |
+| **P3** | **The red partition named `r5d`, a row that exists nowhere in the tree.** The `r5` group has three cases; `r5d` occurred exactly once in the whole repo, in this list — a phantom introduced when the list was widened for `r4c` | REPAIRED, with the phantom named |
+| **P4** | **`1-verify.sh`'s as-built-==-prophecy check was a gate that could not fail.** `diff … && echo …`: under `set -e` a failure on the LEFT of `&&` does not abort, so a prophecy MISMATCH printed its diff, skipped the confirmation, and fell through to "ALL CHECKS PASSED" with exit 0. The rehearsal could not see it — the diff matched, so the defect lived entirely on a red side that had never been exercised. In the one check this kit was assembled to add | REPAIRED (bare `diff`, `set -e` catches it), and the repair is demonstrated TWO-SIDED against the same seeded corruption of `prophecy.diff`: the old `&& echo` form ran to completion with **exit 0**, the repaired form **exits 1** and never reaches "ALL CHECKS PASSED". The first attempt at that demonstration was itself a red that could not fire - the `sed` anchor matched no line, so the prophecy was never corrupted and the gate "passed" for the third time. Caught by checking, which is the only thing that ever catches it |
+
+| **P5** | **The pack's "zero non-L4 lint failures" (VI.2) was false, and the sitting would have hit it.** `L5` requires the newest `*author-pack.md` to record all four stanza flags; `readout-author-pack.md` recorded only `-Werror`, so **three L5 rows were failing on the committed tree** — invisible inside a wall of 26 L4 failures, which is precisely how a claim like that gets made. The operational consequence is the sharp part: `2-freeze.sh` splices the stanza, applies three `[RULING]` patches and rewrites the manifest, and only THEN runs the lint and its `grep -q "0 FAIL"`. The author's sitting would have died at step 7 with the tree already half-frozen, no undo script, and the double-run guard refusing a second attempt | REPAIRED: the pack now spells out `-Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns`. **The full lint is now 0 FAIL, 0 WARN on this machine, L4 included** — the first clean lint this increment has had, because thinkpad has a real `ssh-keygen` and all 26 tags verify here |
+
+Two smaller ones, both repaired: the manifest's `M7*.patch` glob also
+matched `audit/mutants/M7-ties-to-challenger.patch`, a stranger from a
+previous increment (now anchored to the digit-then-dash shape — a glob
+that silently captures a stranger is hand-enumeration wearing a
+sweep's clothes); and `1-verify` wrote `/tmp/readout-asbuilt.diff`
+unconditionally and never removed it (now a `mktemp`).
+
+**Not a finding, checked and dismissed:** the gate-5 and lint
+transcripts ride the freeze commit un-hashed. That is the battery's
+declared convention for the same artifacts and for the same reason
+(the lint transcript is written after the manifest is re-signed and
+cannot be hashed at all). The readout kit inherited the convention
+without restating it; a comment now does.
+
+### VII.3 One item routed forward, not repaired here
+
+`src/PropLang/Host.hs:387` comments the no-utility branch as
+`-- wait: the option space's head`. That branch is `Left o0` — the
+EXTERNAL arm, which fires the decide reply — and the legend three
+lines above defines `Left act` as "an external assignment fires" and
+`Right waitH` as the internal act winning. The charter, the pack and
+`3-sign`'s tag message all inherited the error ("the single-point menu
+takes the wait branch"). The conclusion those texts drew is
+nonetheless correct — `chooseEU` is unreachable without a utility —
+but the stated mechanism is wrong.
+
+The line is **bd0d70c's own text**, so editing it would put a
+comment-only hunk into `git diff bd0d70c..HEAD -- src/PropLang/Host.hs`
+and break the as-built-==-prophecy identity that `1-verify` checks.
+Trading that identity for a comment is not a trade worth making. It
+enters the **wire docket's next frozen-layer inventory** — the
+standing per-sitting channel — and the tag says so.
+
+### VII.4 What this part re-established
+
+Every claim the new rows moved was re-derived, not patched:
+
+- the oracle at **19 rows**, green live under the stanza's exact flags
+  and dependency closure;
+- the **full matrix re-run over M64-M72** (per-row kill lists shift
+  with the row set, so "every kill is readout-unique" is re-earned,
+  not inherited), by a runner now committed at
+  `test-readout/kill-matrix.sh` — increment-local, as the protocol
+  requires, and no longer a throwaway that the next boundary cannot
+  re-run;
+- the kit re-cut for the new row count and the discharged ruling.

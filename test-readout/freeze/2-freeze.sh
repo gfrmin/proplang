@@ -38,7 +38,11 @@ git apply test-readout/freeze/obligations-fl1.patch
 git apply test-readout/freeze/r-red-id.patch
 
 # 5. gate 5 on the spliced tree - the readout's first stanza'd run
-#    alongside every standing suite
+#    alongside every standing suite. The transcript rides the freeze
+#    commit UN-HASHED, as the battery's did and for the same reason
+#    (its sibling, the lint transcript, is written after the manifest
+#    is re-signed and cannot be hashed at all); stated here rather
+#    than left to be inferred from the globs in step 6.
 cabal test all 2>&1 | tee test-readout/freeze/gate5-run.txt
 grep -q "Test suite readout: PASS" test-readout/freeze/gate5-run.txt
 echo "gate 5 green on the spliced tree"
@@ -46,11 +50,18 @@ echo "gate 5 green on the spliced tree"
 # 6. the manifest extension (oracle + transcripts + the frozen-layer
 #    patches + the kit itself - the kit-freezes-itself form) and the
 #    re-sign of the three mutated frozen rows
+#    The mutant globs are ANCHORED on the digit-then-dash shape:
+#    the earlier `M7*.patch` also matched audit/mutants/
+#    M7-ties-to-challenger.patch, a mutant from a previous increment
+#    that this freeze has no business hashing. A glob that silently
+#    captures a stranger is the hand-enumeration disease wearing a
+#    sweep's clothes (pre-tag read, 2026-08-01).
 {
   sha256sum test-readout/Readout.hs test-readout/stanza.cabal.draft \
+            test-readout/kill-matrix.sh \
             test-readout/opening/*.txt test-readout/opening/prophecy.diff \
             test-readout/freeze/*.sh test-readout/freeze/*.patch \
-            audit/mutants/M6[4-9]*.patch audit/mutants/M7*.patch
+            audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch
 } >> MANIFEST.sha256
 python3 - <<'PY'
 import hashlib, re

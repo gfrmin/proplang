@@ -1,81 +1,134 @@
 === THE READOUT KILL MATRIX (serial, per-row; baseline = the implemented surface) ===
-date: 2026-07-31   ghc 9.10.3   cabal 3.16.1.0
-pool: M64-M70, the seven designed killers of EXACT_PLAN 15.3
-each cell: mutant applied to src, FULL corpus (12 suites), src restored
-RUNNER NOTE: compile death is detected as a GHC diagnostic line
-  (^src/... error:) or a cabal build failure - NEVER as the string
-  'Error:', which cabal prints on every ordinary test failure. The
-  first cut of this runner made that mistake and reported all seven
-  mutants as compile deaths; the repair is recorded here rather
-  than in a silent re-run.
+date: 2026-08-01   ghc 9.10.3   cabal 3.16.1.0
+pool: 9 mutants —
+  audit/mutants/M64-readout-precedes-v1-fields.patch
+  audit/mutants/M65-readout-index-off-by-one.patch
+  audit/mutants/M66-readout-unnormalized.patch
+  audit/mutants/M67-readout-tie-rule-flipped.patch
+  audit/mutants/M68-readout-null-dropped.patch
+  audit/mutants/M69-readout-vector-truncated.patch
+  audit/mutants/M70-p1-repointed-at-argmax.patch
+  audit/mutants/M71-carrier-permuted.patch
+  audit/mutants/M72-readout-at-menu-head.patch
+each cell: mutant applied to src, FULL corpus (11 stanza'd suites +
+  the readout oracle standalone), src restored
 
-M64-readout-clobbers-p1: COMPILE DEATH (a mutant killed by the compiler is not a mutant)
-M65-readout-index-off-by-one: 7 readout row(s) fired
-    r1b RED half
+M64-readout-precedes-v1-fields: 1 readout row(s) fired
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+
+M65-readout-index-off-by-one: 8 readout row(s) fired
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order)
     r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
     r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
     r4b argmax_code indexes a maximal entry and p_argmax IS that entry
-    r4c the tie rule ON THE WIRE
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index
     r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
     r6 the vector survives the pipes (spawned host, the g6 form)
+    r8c p_codes IS the reference at the REPORTED act
     standing corpus GREEN - the kill is READOUT-UNIQUE
-M66-readout-unnormalized: 4 readout row(s) fired
-    r1b RED half
+
+M66-readout-unnormalized: 5 readout row(s) fired
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order)
     r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
     r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
     r6 the vector survives the pipes (spawned host, the g6 form)
+    r8c p_codes IS the reference at the REPORTED act
     standing corpus GREEN - the kill is READOUT-UNIQUE
+
 M67-readout-tie-rule-flipped: 1 readout row(s) fired
-    r4c the tie rule ON THE WIRE
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index
     standing corpus GREEN - the kill is READOUT-UNIQUE
-M68-readout-null-dropped: 7 readout row(s) fired
-    r1b RED half
+
+M68-readout-null-dropped: 8 readout row(s) fired
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order)
     r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
     r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
     r4b argmax_code indexes a maximal entry and p_argmax IS that entry
-    r4c the tie rule ON THE WIRE
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index
     r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
     r6 the vector survives the pipes (spawned host, the g6 form)
+    r8c p_codes IS the reference at the REPORTED act
     standing corpus GREEN - the kill is READOUT-UNIQUE
-M69-readout-vector-truncated: 3 readout row(s) fired
+
+M69-readout-vector-truncated: 4 readout row(s) fired
     r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
     r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
     r6 the vector survives the pipes (spawned host, the g6 form)
+    r8c p_codes IS the reference at the REPORTED act
     standing corpus GREEN - the kill is READOUT-UNIQUE
+
 M70-p1-repointed-at-argmax: 1 readout row(s) fired
     r7a the identity holds at K-ary arity
     standing corpus GREEN - the kill is READOUT-UNIQUE
 
-=== control: the unmutated implemented surface ===
-Test suite battery: PASS
-Test suite dyadic: PASS
-Test suite exact-acceptance: PASS
-Test suite exact-properties: PASS
-Test suite f5: PASS
-Test suite jointprep: PASS
-Test suite lawful-independence: PASS
-Test suite lawful: PASS
-Test suite pins: PASS
-Test suite readout: PASS
-Test suite trampoline: PASS
-Test suite transport: PASS
-
-=== SECOND PASS: the M64 re-cut and the pool growth M71 ===
-M64's first cut was a genuine COMPILE DEATH (deleting the v1 fields left
-p1 and hB unused under -Werror). Re-cut to break the OTHER half of
-additivity - CW3's ordering - with every binding live. M71 was cut
-because r2b ran UNREACHED against M64-M70: a verdict is POOL-RELATIVE
-and a pool is GROWN, never assumed.
-
-M64-readout-precedes-v1-fields: 1 readout row(s) fired
-    r1b RED half
-    standing corpus GREEN - the kill is READOUT-UNIQUE
-M71-carrier-permuted: 7 readout row(s) fired
+M71-carrier-permuted: 9 readout row(s) fired
     r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints
     r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire)
     r4b argmax_code indexes a maximal entry and p_argmax IS that entry
-    r4c the tie rule ON THE WIRE
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index
     r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap
     r6 the vector survives the pipes (spawned host, the g6 form)
     r7a the identity holds at K-ary arity
+    r8b the utility BITES: the decide reply names the NON-HEAD assignment
+    r8c p_codes IS the reference at the REPORTED act
     standing corpus GREEN - the kill is READOUT-UNIQUE
+
+M72-readout-at-menu-head: 2 readout row(s) fired
+    r8c p_codes IS the reference at the REPORTED act
+    r8d and it is NOT the reference at the MENU HEAD (the window is nonempty)
+    standing corpus GREEN - the kill is READOUT-UNIQUE
+
+=== matrix done; src restored ===
+src is byte-identical to HEAD
+
+=== PER-ROW VERDICTS ===
+The dyadic clause: verdicts are TRIAGE INPUT for the sitting, never
+auto-deletions. A verdict is POOL-RELATIVE and a pool is GROWN.
+EARNED = some mutant this row kills is killed by NO OTHER ROW.
+
+Against the WHOLE corpus (all 19 leaf rows):
+  r1a  UNREACHED 
+  r1b  EARNED    unique: M64-readout-precedes-v1-fields
+  r2   SHADOWED  killed by M65-readout-index-off-by-one, M66-readout-unnormalized, M68-readout-null-dropped, M69-readout-vector-truncated, M71-carrier-permuted
+  r2b  UNREACHED 
+  r3   SHADOWED  killed by M65-readout-index-off-by-one, M66-readout-unnormalized, M68-readout-null-dropped, M69-readout-vector-truncated, M71-carrier-permuted
+  r4a  UNREACHED 
+  r4b  SHADOWED  killed by M65-readout-index-off-by-one, M68-readout-null-dropped, M71-carrier-permuted
+  r4c  EARNED    unique: M67-readout-tie-rule-flipped
+  r5a  UNREACHED 
+  r5b  UNREACHED 
+  r5c  SHADOWED  killed by M65-readout-index-off-by-one, M68-readout-null-dropped, M71-carrier-permuted
+  r6   SHADOWED  killed by M65-readout-index-off-by-one, M66-readout-unnormalized, M68-readout-null-dropped, M69-readout-vector-truncated, M71-carrier-permuted
+  r7a  EARNED    unique: M70-p1-repointed-at-argmax
+  r7b  UNREACHED 
+  r8a  UNREACHED 
+  r8b  SHADOWED  killed by M71-carrier-permuted
+  r8c  SHADOWED  killed by M65-readout-index-off-by-one, M66-readout-unnormalized, M68-readout-null-dropped, M69-readout-vector-truncated, M71-carrier-permuted, M72-readout-at-menu-head
+  r8d  SHADOWED  killed by M72-readout-at-menu-head
+
+Against the STANDING (pre-r8) corpus - the forward half of the clause,
+which asks what a NEW row buys that no standing row already covers:
+  r8a  UNREACHED
+  r8b  SHADOWED   killed by M71-carrier-permuted
+  r8c  EARNED     unique vs standing: M72-readout-at-menu-head
+  r8d  EARNED     unique vs standing: M72-readout-at-menu-head
+
+READING, for the sitting.
+  M72 IS UNREACHABLE BY EVERY STANDING ROW. That is the whole point of
+  the r8 group: on a single-point menu the chosen act and the menu head
+  are the same assignment, so no row written before r8 can tell a
+  head-computed vector from a chosen-act one. r8 earns its seat.
+  r8c and r8d shadow EACH OTHER against M72, and that is STRUCTURAL
+  SHADOWING, an answer rather than a failure: they differ only in the
+  DIRECTION of a test-side assertion (the chosen act's vector IS on the
+  wire; the head's is NOT), and a test-blind src mutant cannot separate
+  them. Whether the pair is wanted is a row-VALUE ruling for the
+  author, never a pool obligation.
+  r8a and r8b run UNREACHED and EARNED-nothing respectively; both are
+  GUARD rows, not claims about the readout. r8a pins the fold point the
+  reference assumes and r8b pins that chooseEU's head fallback did not
+  quietly decide the row. Deleting either turns r8c/r8d into rows that
+  pass on assumptions - which is the failure mode they exist to close.
+  Every cell's standing corpus is GREEN, so every kill above is
+  READOUT-UNIQUE.

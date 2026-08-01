@@ -1389,6 +1389,7 @@ next matrix run, never a close-blocker.
 | r5 | `p0` is the null atom's mass, and on a CONSTRUCTED null-dominant stream it sits at the R-D23 cap while the empirical rate is far above — the OB-19 instrument row | the vector built over `[1 .. K-1]` (Enumerate.hs:208's `posAtoms` list), dropping the null |
 | r6 | the vector survives the pipes (spawned host, the g6 form) — a WIRE fact, not a library fact | a serialization/buffering mutant |
 | r7 | `p1` still means P(atom 1) at any arity: membrane-wire.md:356's corollary stays true, two-sided | `p1` re-pointed at the argmax |
+| r8 | the vector is computed at the act the engine CHOSE, not at the menu's HEAD — F10, added at the pre-tag read of 2026-08-01. Every row above walks a SINGLE-POINT menu, where the two are the same assignment and the claim is true by construction and therefore untested. Four-sided: the fold point PINNED (r8a), the utility shown to BITE (r8b — without it `chooseEU`'s head fallback makes the row vacuous), the vector at the reported act (r8c), and, after asserting the window is nonempty, NOT the vector at the head (r8d) | the vector computed at the menu head (M72) — byte-identical to the shipped host on every single-point-menu world, which is why no standing mutant could reach the claim |
 
 The standing discipline these rows are built under, named so the
 oracle phase cannot quietly skip one: the two-run triptych (a
@@ -1403,6 +1404,16 @@ the stream placed strictly inside it, a constructed red, never an
 owed one. If the window proves unconstructible, r5 disposes as a
 RECORD row with the impossibility argument stated (the
 honest-decline path), never fabricated into an artificial cell.
+
+R-RED bound r8 the same way and the window measurement is what
+SHAPED it, not what confirmed it: the guard-free world turned out to
+be act-INDEPENDENT (so no menu or utility could have hosted the row
+there), a menu-less evidence tick is REFUSED under a guard (so the
+fold point had to be pinned by a row rather than assumed), and the
+prior is act-symmetric by the guard family's construction (so the
+window opens only under evidence). r8 is a POST-IMPLEMENTATION row,
+so its red is the seeded defect M72 rather than the red run — the
+r4c/r2b precedent from this increment's own mandate round.
 
 The type-derivation audit binds forward: if any new type reaches a
 frozen surface it arrives with its one-line derivation from the

@@ -1,0 +1,18 @@
+# MUTANT M72-readout-at-menu-head — provenance: F10, the mandate round's one finding that was not closed at the opening. The readout vector is computed at the MENU HEAD instead of at the CHOSEN act. On every world the suite walked before r8 the menu is a SINGLE point, so the head IS the chosen act and this mutant is byte-identical to the shipped host — which is exactly why menu-independence was untestable and why no standing mutant could reach it. r8's two-point menu separates them; r8c/r8d are its killers.
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -422,9 +422,12 @@
+       let full = feats ++ act
+       decPart <- case mOpts of
+         Nothing -> Right []
+-        Just _ -> do
++        Just opts -> do
+           p1 <- predictMassS full 1 ag
+-          vec <- mapM (\j -> predictMassS full j ag) (agentObsPoints ag)
++          let headAct = case opts of
++                (o0 : _) -> feats ++ o0
++                []       -> full
++          vec <- mapM (\j -> predictMassS headAct j ag) (agentObsPoints ag)
+           let hB = entropyAgent ag
+           Right ([ "\"act\": " ++ rAct act
+                  , "\"p1\": " ++ show (fromRational p1 :: Double)
