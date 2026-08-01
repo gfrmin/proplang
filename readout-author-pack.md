@@ -718,3 +718,36 @@ Every claim the new rows moved was re-derived, not patched:
   requires, and no longer a throwaway that the next boundary cannot
   re-run;
 - the kit re-cut for the new row count and the discharged ruling.
+
+### VII.5 The kit re-rehearsed two-sided from a fresh clone
+
+Run on `thinkpad` from a clone of the repo with the increment fetched
+into it, so nothing of the working tree's state could carry.
+
+**Green side, END TO END — which the container's rehearsal never
+reached.** `1-verify` green (live 19/19 under the stanza's dependency
+closure; as-built == the prophecy). `2-freeze` spliced the stanza,
+applied all three `[RULING]` patches, ran **gate 5 green on the
+spliced tree — twelve suites, `readout` among them, zero FAIL** —
+extended the manifest **109 → 136** with a clean post-extension
+verify, and finished on **`prefreeze-lint: 0 FAIL, 0 WARN`, L4
+included**. The container stopped at that lint and could not go
+further: it had no real `ssh-keygen`, so all 26 tags failed L4 and the
+three L5 rows (P5) were hidden behind them. This machine has one, so
+the row that was noise there is signal here, and it is the reason P5
+was found at all.
+
+**Red side, both guards.**
+
+- A second `2-freeze` was REFUSED: `GUARD: readout stanza already
+  spliced - refusing to run twice`, exit 1.
+- `3-sign.sh` edited AFTER `2-freeze` hashed the kit was REFUSED at the
+  manifest re-check, **before any key act**: exit 1, `HEAD` unchanged,
+  no `readout-freeze-r0` tag in the clone. The decline-by-editing order
+  is enforced mechanically, not by convention.
+
+The one thing this rehearsal still cannot exercise is `3-sign`'s key
+act itself: the author's key is not on this machine (the only `~/.ssh`
+keypair matches neither `allowed_signers` row), so `thinkpad` is a
+builder shell and not the author's. Everything up to the signature is
+now proven on a fresh clone; the signature waits for `steel`.
