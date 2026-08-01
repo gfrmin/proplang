@@ -139,7 +139,12 @@ custody edit - 26 verified, 0 failed - each still checked against the
 key that actually signed it. The independent reason to do this at all:
 a single-key attestation identity is a single point of failure, and
 until 8b85edb a lost steel meant nothing could ever again be signed as
-author.
+author. The round is recorded in full as pack Part VIII, including
+what it does NOT exercise: `git tag -s` was never run before this
+moment, and that round's commit signatures used this same AUTHOR key
+because the builder key is on no machine - they are builder work,
+their messages say so, and no commit signature in this increment
+should be read as author review. This tag is.
 
 R2B AND THE MATRIX'S SELF-CORRECTION, recorded because the lesson is
 not local: the matrix runner's first cut grepped 'rror:', which

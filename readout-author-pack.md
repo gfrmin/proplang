@@ -751,3 +751,188 @@ act itself: the author's key is not on this machine (the only `~/.ssh`
 keypair matches neither `allowed_signers` row), so `thinkpad` is a
 builder shell and not the author's. Everything up to the signature is
 now proven on a fresh clone; the signature waits for `steel`.
+
+> **[2026-08-01, later the same day — the last sentence above is no
+> longer true, and the manifest figure has moved.]** The author asked
+> whether they could sign HERE. They can, and do: `thinkpad` became an
+> author shell at `8b85edb`, and the signature no longer waits for
+> `steel`. The count `109 → 136` was true of the rehearsal recorded
+> above and became `109 → 137` when `SITTING.md` joined the manifest
+> glob at `e86fefc`. Both are historical record and stand as written;
+> **Part VIII** is the round that changed them.
+
+## Part VIII — the custody round: signing from `thinkpad`
+
+Executed 2026-08-01, after Part VII closed, on the author's question:
+*"I'm not on steel and don't have its key, can I sign here instead?
+How?"* The answer is yes, and this part is the record of what that
+took. It is the only part of this increment whose subject is the
+**custody root** rather than the oracle, and it is therefore the part
+that most needs reading before the tag rather than after it.
+
+Four commits: `8b85edb` (custody), `e6ca692` (the signing precheck),
+`e86fefc` (the sitting sheet and the recovery path), `e970a73` (the
+sheet's own register command). None of them touch `src/`, the oracle,
+or any manifest-hashed artifact's CONTENT — the two kit scripts they
+edit are hashed by `2-freeze` as run, which is the mechanism working
+as designed, not around it.
+
+### VIII.1 The author identity gains a SECOND key, one per shell
+
+`allowed_signers` had two rows, `author` and `builder`, under one git
+identity. The author row held **one** key, `SHA256:Sfh8OBG9…`, and it
+lives only on `steel`, which is unreachable. A third row was added:
+
+```
+author   SHA256:vxt+FccnN/4Z/6kmg0v/rvNWe1qK4jtVTzGsM8ogeX0   (thinkpad)
+```
+
+`~/.ssh/proplang-author-thinkpad` — a **fresh, dedicated** ed25519
+key, deliberately not the machine's general `~/.ssh/id_ed25519` auth
+key, so an attestation can never be minted as the side effect of an
+authentication flow. It is passphraseless because `3-sign.sh` signs
+non-interactively; the protection is the file mode and the machine,
+which is the same posture `steel`'s key has always had.
+
+**Why this is key management and not a relaxation.** The custody rule
+says the author countersigns *"from their own shell."* A key is that
+identity's **instrument in a shell**, not the identity. The edit is
+append-only and was checked to be so, three ways:
+
+- **All 26 prior tags re-verify.** Run after the edit, and re-run
+  fresh while writing this part: **26 verified, 0 failed** — each
+  still checked against the key that actually signed it. Adding a row
+  widens what verifies; it cannot retroactively re-attribute anything.
+- **`allowed_signers` is not manifest-frozen.** It appears in no
+  `MANIFEST.sha256` row, so no gate is disturbed and no freeze
+  boundary is required to touch it.
+- **Nothing asserts on its contents.** Swept `tools/`, `test*/` and
+  `src/`; the only consumer is git's own
+  `gpg.ssh.allowedSignersFile`.
+
+**The delegation path was not used, and was not available.** The
+protocol's escape — the builder tags with the BUILDER key and records
+the delegation verbatim — requires the builder key, which is on
+**neither machine** (the container never had it either; builder
+commits have been unsigned by design and say so). And it would not
+have helped: a builder signature truthfully attests builder action
+under instruction and *cannot mint an author attestation*. That bar is
+on the key's role, not on the shell.
+
+**The independent reason to do this at all**, which outlives this
+sitting: until `8b85edb` the attestation identity was **single-key**.
+A lost `steel` meant nothing could ever again be signed as author, and
+26 tags' worth of chain would have had no continuation. A
+one-key-per-shell author identity is the fix, and an unreachable
+machine is a cheap way to have discovered it.
+
+**What the author ratifies by signing.** The `allowed_signers` edit is
+an author act on the custody root that a *builder* executed, on the
+author's explicit answer to a posed question (fresh dedicated key;
+named in both the tag and `allowed_signers`). The tag is where that
+becomes attested. It is named here rather than left implicit.
+
+### VIII.2 Two operational hazards closed
+
+**The signing precheck now runs in the READ-ONLY script.** `3-sign.sh`
+is the last of three, so a shell that cannot sign discovered it only
+*after* `2-freeze.sh` had spliced the stanza, applied three `[RULING]`
+patches and rewritten the manifest. `1-verify.sh` now asks the
+question in front of the mutations: `user.signingkey` set,
+`gpg.format` = `ssh`, the key can actually produce a git-namespace
+signature, and the key is **in `allowed_signers`** — that last because
+a tag signed by an unlisted key verifies for nobody, which is strictly
+worse than not signing. Demonstrated both ways (green on the
+configured key; red on an unset one and on a key absent from the
+file).
+
+**`2-freeze.sh` had no undo and a guard that refuses a retry.** Any
+mid-way failure left the tree spliced, patched and re-manifested with
+no documented way back. The reset is now in `SITTING.md` and was
+**tested**, not merely written: reset to a clean tree, then `2-freeze`
+ran again to completion without tripping its own guard.
+
+```bash
+git checkout -- proplang.cabal membrane-wire.md OBLIGATIONS.md CLAUDE.md MANIFEST.sha256
+rm -f test-readout/freeze/gate5-run.txt test-readout/freeze/lint-transcript.txt
+git status --short          # expect clean
+```
+
+This is the hazard P5 would have sprung for real: the three hidden L5
+rows failed at `2-freeze` **step 7**, after everything step 7 cannot
+undo.
+
+### VIII.3 The sitting sheet, and its own two defects
+
+`SITTING.md` is the six-step command sheet the author runs. Written in
+this round — and then found to carry two of the exact shapes this
+increment has spent its whole pre-tag read convicting.
+
+**(i) A range that never closed.** Step B pointed at the CW register
+with `sed -n '/^CW1/,/^CW8/p' 3-sign.sh`, commented *"the eight
+defaults"*. `CW8` occurs **mid-line** in the tag message ("…OB-row
+caught it. CW8 the TWO-TAG form"), so `/^CW8/` never matched, the
+range ran to end of file, and the command printed **120 lines** — the
+whole tag message plus the rest of the script. It isolated nothing
+while reading as though it had: the output looked like success because
+output appeared. Repaired at `e970a73`, the falsified command quoted
+in its own repair. Step B now names **both** forms of the register and
+says which to rule from — `EXACT_PLAN` §15.4's table carries the
+QUESTION column, the tag message carries only the answer — with both
+ranges pattern-anchored and verified to terminate (12 and 16 lines).
+Neither uses absolute line numbers, which is the very provenance
+question this increment carries to the sitting as its one ruling
+sought.
+
+**(ii) A stale count in a forward-looking expectation.** Step C told
+the author to expect the manifest to go **109 → 136**. That was true
+of the Part VII.5 rehearsal and became **137** when `SITTING.md`
+itself joined the manifest glob at `e86fefc` — a document that changed
+the number by being written. Recomputed against the globs as they
+stand: **137**. Nothing *asserts* on the figure (`2-freeze` prints it
+and greps nothing), which is precisely the residual row's disease from
+the mandate round: a printed number no row defends. Corrected in the
+sheet; VII.5's occurrence is historical record and carries a dated
+bracket instead.
+
+Both were found by re-reading the sheet as an adversary rather than as
+its author, which is the same move that bought Part VII's five.
+
+### VIII.4 What is still NOT exercised, stated rather than smoothed
+
+**`git tag -s` itself has never been run in this session.** The
+harness classifier blocks `3-sign.sh`, and that is *correct* — the
+action IS the author's attestation, and the protocol vests it in the
+author. What can be said: it is the same `gpg.format=ssh` code path as
+the `-S` commits in this round, all of which verify **Good** against
+the new key, so the mechanism is proven even though that exact call is
+not. The gap is one command wide and it is the author's command.
+
+**The tag message asserts "all 26 prior tags were re-verified."** That
+is a measurement with a timestamp, not an invariant. It was true when
+taken and re-measured 26/0 while writing this part. The author's own
+`git tag -v readout-freeze-r0` at the sitting is the check that
+counts, and `1-verify`'s new precheck is what makes it fail loudly
+rather than quietly.
+
+**Commit signatures in this round used the thinkpad AUTHOR key**,
+because it is the only key in this shell — the builder key is on no
+machine Claude Code has run on. This is recorded rather than glossed:
+the commits are builder work, their messages say so, and **the tag,
+not any commit signature, is the attestation**. No commit signature in
+this increment should be read as author review.
+
+### VIII.5 Re-rehearsed from fresh clones, twice
+
+Both after `e6ca692` and after the sheet landed. `1-verify` green
+including the new row — `signing key OK:
+SHA256:vxt+FccnN/4Z/6kmg0v/rvNWe1qK4jtVTzGsM8ogeX0, present in
+allowed_signers`. `2-freeze` green: stanza spliced, three `[RULING]`
+patches applied, **gate 5 twelve suites zero FAIL**, `manifest
+re-signed over 137 rows`, clean post-extension verify,
+**`prefreeze-lint: 0 FAIL, 0 WARN`**, L4 included. Then the recovery
+path exercised on purpose: reset, clean tree, `2-freeze` again to
+completion. Scratch clones deleted.
+
+Everything up to the signature is proven on a fresh clone, **from the
+shell that will sign it**. That is the sentence VII.5 could not write.

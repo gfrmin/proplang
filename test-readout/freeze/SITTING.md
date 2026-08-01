@@ -78,7 +78,7 @@ bash test-readout/freeze/2-freeze.sh
 ```
 
 Splices the stanza, applies the three `[RULING]` patches, runs gate 5 on the
-spliced tree, extends the manifest **109 → 136**, re-signs, lints. Expect it
+spliced tree, extends the manifest **109 → 137**, re-signs, lints. Expect it
 to end on `prefreeze-lint: 0 FAIL, 0 WARN` and
 `FREEZE MECHANICS DONE - nothing signed.`
 
