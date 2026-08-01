@@ -68,6 +68,7 @@ being asked to rule on:
 | the one ruling sought | line-number provenance in pre-implementation oracles |
 | V.4's UNREACHED rows | triage input, not deletions (`opening/readout-kill-matrix.txt` has per-row verdicts) |
 | CW5 | if you rule the readout *does* ride the think reply, **a row is owed** and this sitting should not close |
+| **FL-3** | the recorded-repairs rider names a mechanical check that **does not exist** in `tools/`. Discharged by hand 5/5 this increment (pack VIII.6), so nothing is unverified. Route to r1 / next boundary (recommended), land a fourth `[RULING]` patch here, or amend the clause |
 
 ---
 

@@ -37,12 +37,30 @@ boundary opened:
 
 1. **Host-layer arithmetic over already-exported verbs.**
    `predictMassS` is already called at the reply builder
-   (`src/PropLang/Host.hs:425`); `agentObsPoints` already enumerates
-   the declared observation space at `:516`. The vector is a map of
+   (`src/PropLang/Host.hs:425` **at `bd0d70c`**, the binding
+   `p1 <- predictMassS full 1 ag`); `agentObsPoints` already
+   enumerates the declared observation space at **`bd0d70c`**'s
+   `:516`, the binding `(agentObsPoints ag)`. The vector is a map of
    the first over the second. No new export, no constructor, no
    engine change — the alphabet does not move, `prodTable` stays
    20/1, and the primitivity gate is not engaged (nothing here is a
    candidate production, so clause (a) is not owed).
+
+   > **[2026-08-01 — the anchor and the binding names above were
+   > added after the fact, and the reason is the ruling this
+   > increment carries to the sitting.]** Both numbers were bare when
+   > written and both are now FALSE of `HEAD`: the implementation
+   > moved `p1 <- predictMassS full 1 ag` to `:426`, and `:516` is an
+   > unrelated `let uB ::` line. They were TRUE of the tree Part I
+   > declares (I.1: HEAD = `bd0d70c`) and stay true under the anchor.
+   > A sitting reader has `HEAD` checked out, not the seal, so a bare
+   > pre-implementation line number sends them to the wrong line —
+   > which is exactly LINE-NUMBER PROVENANCE IN PRE-IMPLEMENTATION
+   > ORACLES, the one ruling sought. The increment applied that remedy
+   > to the ORACLE's copy table and not to its own pack; this is the
+   > omission repaired, and it doubles as the demonstration that the
+   > proposed remedy suffices.
+
 2. **The R-D23 cap binds at the operating point.**
    dispositions-pack.md VIII.1 finding 2, K=6, 5845 models, 400
    interleaved ticks: `p0` = 0.17998972 against the cap
@@ -442,6 +460,20 @@ nothing until six reviewers read it.
 each cell a FULL corpus run (12 suites) with the mutant applied to
 `src` and `src` restored after.
 
+> **[2026-08-01 — this part records the FIRST matrix run and its
+> figures are of that round.]** The pool is now **M64-M72** and the
+> oracle **19 rows**: `r8` and its designed killer `M72` landed after
+> this part was written, and the whole matrix was RE-RUN rather than
+> extended, because per-row kill lists shift with the row set (VII.1,
+> VII.4). The committed transcript
+> `test-readout/opening/readout-kill-matrix.txt` is the re-run, so it
+> does not match this part's pool line — the transcript is current,
+> the prose is historical. The manifest figure moves the same way
+> across the pack and each occurrence is of its own round: **134** at
+> the container rehearsal (VI), **136** at the first thinkpad
+> rehearsal (VII.5), **137** as it stands (VIII.3, after `SITTING.md`
+> joined the glob).
+
 ### V.1 The runner's own defect, recorded rather than silently fixed
 
 The first cut of the runner classified a cell as COMPILE DEATH by
@@ -508,7 +540,10 @@ input for the sitting rather than deletions.
 ### V.5 Gates, as built
 
 Seven of seven PASS with the readout implemented; the corpus is 12/12
-including `readout` at 15 rows; the manifest verifies. `src` carries
+including `readout` at 15 rows **[of this round — 19 as frozen, see
+VII.4; this heading says "as built" and a standing-sounding heading
+over a superseded figure is the worst place for one]**; the manifest
+verifies. `src` carries
 the prophecy byte-for-byte — `git apply` accepted
 `opening/prophecy.diff` against the sealed tree without fuzz.
 
@@ -936,3 +971,91 @@ completion. Scratch clones deleted.
 
 Everything up to the signature is proven on a fresh clone, **from the
 shell that will sign it**. That is the sentence VII.5 could not write.
+
+### VIII.6 The staleness sweep, and FL-3
+
+Prompted by VIII.3's two: if the sheet carried a stale figure, what
+else does. The universe is DERIVED, not hand-listed — `git diff
+--name-only bd0d70c..HEAD`, **32 files** — and swept in three
+mechanical classes.
+
+**Class 1 — counts.** Every occurrence of a row count, manifest count,
+mutant-pool range and suite count. Four hits, all in the pack, all
+**historical rather than wrong**: V's `M64-M71` pool line, V.5's
+`readout at 15 rows`, VI's `109 → 134`, VII.5's `109 → 136`. Each is a
+true record of its own round. Two were nonetheless repaired, because
+being historically true is not the same as reading that way: **V.5 is
+headed "Gates, as built"**, and a standing-sounding heading over a
+superseded figure is the worst place for one; and **V's pool line
+disagrees with the committed transcript beside it**, since the matrix
+was RE-RUN over M64-M72 rather than extended. Both now carry dated
+brackets, and V's bracket maps the manifest figure across all three
+rounds so 134/136/137 is a sequence rather than a puzzle.
+
+**Class 2 — cited commit hashes** (the recorded-repairs rider: a
+recorded repair cites its hash, and the checklist verifies the hash
+touches the file the row names). Five distinct hashes cited:
+`9790089`, `8b85edb`, `e6ca692`, `e86fefc`, `e970a73`. **All five
+resolve and all five touch the file their row names** — `9790089` →
+`Host.hs`, `8b85edb` → `allowed_signers`, `e6ca692` → the two kit
+scripts, `e86fefc`/`e970a73` → `SITTING.md`. Clean.
+
+**Class 3 — line-number citations.** Fourteen distinct. Thirteen
+resolve to what the pack claims. `Enumerate.hs:467` resolves to a
+blank line and is CORRECT usage — it is the mandate round's F4, quoted
+as the falsified text inside its own repair. The two exceptions are
+Part I.2's, and they are the interesting ones: `Host.hs:425` and
+`:516` were true of `bd0d70c` and are false of `HEAD`, because the
+implementation this pack prophesies moved them. Repaired in place with
+the anchor and the binding names, and the bracket there says why —
+this is **the one ruling sought, with a live instance in the pack that
+asks for it**. The increment applied its own proposed remedy to the
+oracle's copy table and not to its own prose.
+
+#### FL-3 — the recorded-repairs rider names a mechanism that does not exist
+
+Reported, not repaired here.
+
+The rider (`CLAUDE.md`, the dyadic clause, ruling 2) reads: *"a repair
+recorded in a pack CITES ITS COMMIT HASH in the repair row, and **the
+pre-freeze checklist verifies every cited hash touches the file the
+row names** — recorded repairs are verified against the tree,
+**mechanically**, so the stale-green class dies structurally."*
+
+There is no such row. `tools/prefreeze-lint.sh` is L1-L7 (forbidden
+tokens, ASCII names, manifest, tag signatures, SAT flags, grid
+re-declaration, full-corpus overlay build); `tools/boundary-audit.sh`
+is M5-row, H-row, OB-row, banked-failure row. **None reads a cited
+hash.** The clause's first half is honored by convention and its
+second half — the mechanical half, the half the word "structurally"
+rests on — is prose describing a script that was never written.
+
+This is mandate 2's shape with a twist: not a ruling asserted and
+never derived, but a ruling that **names its own enforcement and does
+not have it**. The battery boundary's no-silent-caps finding is the
+near precedent (cited three times, defined nowhere); the difference is
+that this one has a definition site and the definition is false of the
+tree.
+
+Class 2 above discharges the rider **by hand for this increment**, 5/5
+— so nothing here is unverified, and the sitting is not blocked.
+
+Disposition is the author's. `tools/` is manifest-frozen, so a lint
+row is a `[RULING]` patch under the author's key at a boundary, not a
+builder edit. Three ways to close it, in the order I would recommend:
+
+1. **Route to the r1 catch-net or the next boundary** — the mechanism
+   is a dozen lines (`grep -oE` the hashes per pack, `git show
+   --stat` each, assert the intersection with the row's named file is
+   nonempty), but a NEW lint row landing between `2-freeze`'s manifest
+   rewrite and its `grep -q "0 FAIL"` is the P5 hazard by
+   construction, and this sitting has no reason to take that risk.
+2. **Land it here** as a fourth `[RULING]` patch, if the author wants
+   the law true of the tree at the boundary that noticed it. The row
+   can be written and demonstrated two-sided before `2-freeze` runs.
+3. **Amend the clause** to say what is actually done — a checklist
+   item rather than a script. This is the honest option only if the
+   mechanization is judged not worth its cost; the rider's own
+   argument ("structurally") is against it.
+
+Recorded here so the choice is made rather than inherited.
