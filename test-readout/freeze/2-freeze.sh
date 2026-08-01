@@ -58,7 +58,7 @@ echo "gate 5 green on the spliced tree"
 #    sweep's clothes (pre-tag read, 2026-08-01).
 {
   sha256sum test-readout/Readout.hs test-readout/stanza.cabal.draft \
-            test-readout/kill-matrix.sh \
+            test-readout/kill-matrix.sh test-readout/freeze/SITTING.md \
             test-readout/opening/*.txt test-readout/opening/prophecy.diff \
             test-readout/freeze/*.sh test-readout/freeze/*.patch \
             audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch
