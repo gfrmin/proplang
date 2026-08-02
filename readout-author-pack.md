@@ -479,6 +479,13 @@ each cell a FULL corpus run (12 suites) with the mutant applied to
 > the container rehearsal (VI), **136** at the first thinkpad
 > rehearsal (VII.5), **137** as it stands (VIII.3, after `SITTING.md`
 > joined the glob).
+>
+> [2026-08-02] "**137** as it stands" is falsified and quoted here
+> inside its own repair: the 3c disposition round added two rows
+> (`r-d20i-anchor.patch`, and `M7-ties-to-challenger.patch` hashed by
+> name), so the figure at the sitting is **139**. The full sequence is
+> **134 → 136 → 137 → 139**. See VIII.3(ii)'s bracket — the miss was
+> caught by the second conferral, not by this pack.
 
 ### V.1 The runner's own defect, recorded rather than silently fixed
 
@@ -940,6 +947,30 @@ the mandate round: a printed number no row defends. Corrected in the
 sheet; VII.5's occurrence is historical record and carries a dated
 bracket instead.
 
+> [2026-08-02, the second conferral] **THIS PASSAGE WENT STALE IN
+> EXACTLY THE WAY IT DIAGNOSES, AND WAS CAUGHT BY THE CONFERRAL IT WAS
+> SENT TO.** The sentence "Recomputed against the globs as they stand:
+> **137**" was true when written at VIII.3 and was falsified inside the
+> same day by the 3c disposition round, which added `r-d20i-anchor.patch`
+> (+1 through `freeze/*.patch`) and `M7-ties-to-challenger.patch` (+1,
+> hashed by name). **The count is 139**, verified against the script's
+> own argument list: 109 existing rows, 30 added, zero overlap. Only
+> `SITTING.md` was updated at the time; this passage was not, so the
+> pack and the sheet disagreed by two rows in front of the author at
+> the moment of an irreversible step. The conferring reviewer read the
+> pack, quoted 137 faithfully, and returned it in the run instruction.
+>
+> A section titled "a stale count in a forward-looking expectation"
+> that itself carried a stale count in a forward-looking expectation is
+> not an irony to enjoy — it is **the fourth instrument-side defect**,
+> and it lands in the same layer as the other three: the machinery that
+> REPORTS, never the thing reported. The conferral's own summary
+> enumerated three and drew its OB-27 argument from the count; the
+> count was four, and the fourth was in the document making the
+> argument. The repair is recorded rather than swapped, per this pack's
+> own convention, so the sequence stays legible: **134 → 136 → 137 →
+> 139**.
+
 Both were found by re-reading the sheet as an adversary rather than as
 its author, which is the same move that bought Part VII's five.
 
@@ -1001,6 +1032,13 @@ disagrees with the committed transcript beside it**, since the matrix
 was RE-RUN over M64-M72 rather than extended. Both now carry dated
 brackets, and V's bracket maps the manifest figure across all three
 rounds so 134/136/137 is a sequence rather than a puzzle.
+
+> [2026-08-02] A FOURTH ROUND EXISTS AND THIS SWEEP PREDATES IT. The 3c
+> disposition added two manifest rows, so the sequence is
+> **134/136/137/139**. The staleness sweep that convicted three stale
+> figures went stale itself within the same day — which is the precise
+> reason such a sweep is dated at its head and RE-RUN at the boundary
+> rather than trusted once. Recorded, not swapped. See VIII.3(ii).
 
 **Class 2 — cited commit hashes** (the recorded-repairs rider: a
 recorded repair cites its hash, and the checklist verifies the hash
