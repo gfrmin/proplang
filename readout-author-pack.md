@@ -461,7 +461,13 @@ each cell a FULL corpus run (12 suites) with the mutant applied to
 `src` and `src` restored after.
 
 > **[2026-08-01 — this part records the FIRST matrix run and its
-> figures are of that round.]** The pool is now **M64-M72** and the
+> figures are of that round. FURTHER SUPERSEDED 2026-08-02: the pool
+> is now **ten** — M64-M72 plus the declared import
+> `M7-ties-to-challenger`, admitted at the 3c disposition round
+> because it is the only thing that reaches r8a (see IX.5). The matrix
+> was re-run WHOLE a third time, for the reason it was re-run a
+> second: a verdict is pool-relative and a pool is grown.]** The pool
+> was **M64-M72** at the second round and the
 > oracle **19 rows**: `r8` and its designed killer `M72` landed after
 > this part was written, and the whole matrix was RE-RUN rather than
 > extended, because per-row kill lists shift with the row set (VII.1,
@@ -748,7 +754,11 @@ Every claim the new rows moved was re-derived, not patched:
   and dependency closure;
 - the **full matrix re-run over M64-M72** (per-row kill lists shift
   with the row set, so "every kill is readout-unique" is re-earned,
-  not inherited), by a runner now committed at
+  not inherited) **[2026-08-02: superseded by the third run, over the
+  ten-mutant pool; and "every kill is readout-unique" is itself now
+  false-as-stated — the declared import M7 reddens the standing
+  corpus, which is r8a's finding rather than a defect. IX.5]**, by a
+  runner now committed at
   `test-readout/kill-matrix.sh` — increment-local, as the protocol
   requires, and no longer a throwaway that the next boundary cannot
   re-run;
@@ -1059,3 +1069,223 @@ builder edit. Three ways to close it, in the order I would recommend:
    argument ("structurally") is against it.
 
 Recorded here so the choice is made rather than inherited.
+
+---
+
+## Part IX — the sitting's rulings, executed (2026-08-02)
+
+The conferral round returned rulings on all four open items. This part
+records what was executed under each, and what each cost to establish.
+The register CW1-CW8 was accepted as drafted; the four items below are
+the ones that moved work.
+
+### IX.1 The ruling sought (3a) — R-D20-i AMENDED, not extended
+
+Ruled standing law in the binding-name form. The clause is not a new
+one: **R-D20-i already mandated provenance and specified it as
+`file:line`** — so the honest form of the ruling is an in-place
+amendment with the falsified phrase quoted inside its own repair (the
+frozen-layer inventory's form for normative prose), rather than a
+fresh clause sitting beside a stale one.
+
+The anchor is **the commit hash plus the binding name**; where the
+citation must point at an anonymous expression, the **quoted
+expression text** is the anchor. A line number may accompany as a
+convenience and is never the referent. The carve-out matters: without
+it, the rule is pious where it is most needed, because not every
+citable site is a named binding.
+
+Patch: `test-readout/freeze/r-d20i-anchor.patch`, applied by `2-freeze`
+as step 4b. **Its scriptable half is deliberately not written** — it
+routes with FL-3 as OB-26/27, per the ruling.
+
+**The kit gained a check because of this patch, not merely a patch.**
+Two patches now touch `CLAUDE.md` (`r-red-id` at ~403, `r-d20i-anchor`
+at ~140), and `1-verify`'s per-patch `git apply --check` tests each
+against the UNPATCHED tree — which is not the tree the second one
+meets. The battery kit hit this exact shape and checked its pair
+sequentially on a temp copy; this kit now does the same, and asserts
+the ordering rather than assuming it (later-in-file first, so the
+earlier hunk's context stays where its header says). Verified: the
+pair applies sequentially, zero fuzz, both clauses present after.
+
+### IX.2 FL-3 (3d) — disposition 1, with the condition met as OB-26
+
+Routed forward, and the conferral's hard condition is the substance of
+the ruling: **not a pack sentence**. A routed obligation living only in
+prose is the recorded-repairs rider's own disease wearing a new hat, so
+FL-3 lands as **OB-26**, state `SCHEDULED@readout-freeze-r0`, with the
+OB-19 heir increment NAMED as its home boundary.
+
+That state string is not decorative. `tools/boundary-audit.sh` row 3
+flags every `SCHEDULED@X` row whose target tag exists — so from the
+moment `readout-freeze-r0` is cut, OB-26 is surfaced by a script at
+every subsequent boundary audit until it is discharged. The routing is
+mechanized even though the check it routes is not yet written; that is
+the most this sitting can honestly buy.
+
+The row carries the builder constraint verbatim from the conferral: the
+L8 increment's own freeze kit must order the manifest re-hash AFTER the
+new row exists, or it seeds the exact defect class it closes.
+
+### IX.3 The harness-gate scope note — OB-27
+
+Routed with OB-26 to the same boundary, one CLAUDE.md touch. The
+triptych clause was canonized for ORACLE ROWS; the pre-tag read's
+finding (d) shows the reasoning applies to the INSTRUMENT as well, and
+the clause's text does not say so. Recorded, not written here.
+
+### IX.4 CW5 — the "no" stands, and WHY it stands is now on the record
+
+Confirmed as drafted, with the addition the conferral asked for: the
+"no" was chosen **because the alternative is unbuilt, not merely
+undesired**. A "yes" would assert behaviour that lives nowhere in the
+corpus today and only in the printed residual, and a residual is not a
+specification — so a "yes" owes a row and could not have closed this
+sitting. Recorded so that a future boundary wanting readout-on-think
+knows it is NEW CONSTRUCTION under its own gate, and not a flag flip.
+
+### IX.5 The UNREACHED rows (3c) — dispositioned PER ROW, not as a batch
+
+The ruling was explicit that a batch waiver would not be signed
+around: for each row, either grow a mutant that reaches it (preferred
+— the pool gap is the finding) or record why it is structurally
+unreachable. Both halves were done, and the discriminator turned out
+to be mechanical rather than a matter of judgement.
+
+**The partition, DERIVED not hand-asserted.** A `src` mutant can only
+reach a row that reads the shipped reply. Partitioning the seven rows
+by whether their body calls `replay`/`replayAll` at all:
+
+```
+r1a   READS-WIRE          r5a   reference-only
+r2b   reference-only      r5b   reference-only
+r4a   reference-only      r7b   reference-only
+                          r8a   READS-WIRE
+```
+
+Five of the seven never read the wire. Their subject is the
+REFERENCE — `refVec`, `agentObsPoints (refAgent …)`, `capQ` — and the
+declared pool's universe is patches against `src`. Their UNREACHED
+verdict is therefore a true statement about a category difference, not
+a symptom of a thin pool, and this is the same reading the matrix
+already gave r2b after M71 left it green.
+
+That leaves exactly two rows where "the pool is deficient" was a live
+hypothesis. Both were tested by execution rather than argued.
+
+**r8a — REACHABLE, and its killer was in the tree all along.** r8a pins
+that the F10 world's evidence tick reports the MENU HEAD, which holds
+because the two acts agree exactly at the prior and the tie resolves to
+the head. That is a property of the SELECTION path, so no readout
+mutant can reach it. `M7-ties-to-challenger` inverts `chooseEU` at
+precisely that tie: applied, the oracle goes **2/19 — r8a and r8b, and
+nothing else**. r8a is not a green that cannot fail.
+
+M7 also reddens the standing corpus — **`pins` and `trampoline` both
+FAIL** — so its kill is NOT readout-unique, and that is the finding
+rather than a defect in the import. r8a imports a premise that
+standing rows already pin, and makes it a CHECKED FACT inside the
+oracle, where the reference depends on it. The pool gap was real and
+structural: **the readout pool contains only readout mutants, so a row
+pinning a selection premise is unreachable by construction.**
+
+In the regenerated matrix r8a moves **UNREACHED → SHADOWED** against
+the whole corpus, and **EARNED against the STANDING corpus** (unique
+vs standing: M7) — what it buys is a premise no pre-r8 row covers.
+r8a and r8b shadow each other against M7 exactly as r8c/r8d do against
+M72, and for the same reason: they differ in the DIRECTION of a
+test-side assertion, and a test-blind src mutant cannot separate them.
+Structural shadowing is an answer, not a failure.
+
+The blanket phrasing of the previous two rounds — "every kill
+readout-unique" — is **false as stated from this round on**, and is
+corrected everywhere it appeared: the matrix reading, `1-verify`'s
+summary label, and the freeze commit message. Every OTHER cell's
+standing corpus is green.
+
+M7 joins the pool as a **declared import** — named individually with
+its reason in `kill-matrix.sh`, not swept in by widening the glob. The
+distinction is the pre-tag read's own lesson: the anchored
+`M7[0-2]` shape exists precisely because a bare `M7*` captured this
+same stranger silently. A declared import is the opposite move — a
+stranger admitted on the record.
+
+**r1a — reachable in principle, tautological in practice, and that is
+the finding.** r1a asserts the three v1 fields on the plain route.
+`M8-entropy-sign-dropped` mutates `entropyOf`, which feeds
+`entropyAgent` — and r1a stays green at **19/19**, because r1a compares
+the wire against `entropyAgent`, *the same function that renders the
+wire value*. Both sides move together. Its p1 clause has the sibling
+defect: the natural killer M70 (p1 repointed at the argmax) is
+invisible on r1a's world, because the binary tied prior makes
+p1 == p_argmax — a margin artifact, R-RED's own disease, in a row whose
+world cannot be changed without changing what it attributes.
+
+So r1a's value clauses cannot fail under `src` mutation. Its real
+content is **rendering presence**, and its real job is the attribution
+partition's GREEN half, discharged at the red run and frozen in
+`opening/red-run.txt`. **Recorded as a row-VALUE question for r1**, not
+repaired here: relabel the clauses as presence pins, or move them off
+the margin. Under the dyadic clause a row-value ruling is the author's
+and never a pool obligation.
+
+**The per-row table.**
+
+| row | disposition | basis |
+|---|---|---|
+| r1a | rendering-presence pin; value clauses tautological under src mutation. Row-VALUE question routed to r1 | MEASURED: M8 probe 19/19 green; M70's standing cell kills r7a only |
+| r2b | RECORD row, already convicted-and-relabelled in-tree; the HOST's carrier is pinned by M71's seven killers | matrix + in-tree comment |
+| r4a | precondition guard for r4c: proves the prior HAS ties so the tie rule is exercisable. Reference-only | derived partition |
+| r5a | RECORD row, convicted by mandate 1: a THEOREM (a weighted average of a declared grid is at least its minimum), unfalsifiable by any readout defect | in-tree comment |
+| r5b | reasoner-concentration measurement (the (M) mark); no readout mutant reaches it. Reference-only | derived partition |
+| r7b | guard for r7a: proves the world discriminates p1 from p_argmax, so M70's kill of r7a is meaningful rather than accidental. Reference-only | derived partition |
+| r8a | REACHABLE — M7 kills it (2/19). Premise-import row; UNREACHED → **SHADOWED**, and **EARNED vs the standing corpus**. The kill is not readout-unique and that is the point | MEASURED: M7 cell; standing `pins` + `trampoline` FAIL |
+| residual | RECORD row, already disposed under the F6 precedent | prior round |
+
+Deleting any of r4a / r7b / r8a turns its sibling into a row that
+passes on an assumption — which is the failure mode each exists to
+close. No deletions are proposed.
+
+### IX.6 What the pool growth cost, and what it caught
+
+**The matrix runner's restore was narrower than its pool's reach.** It
+read `git checkout -- src/PropLang/Host.hs` in three places, true only
+because every pool member happened to patch that one file. M7 patches
+`Membrane.hs`: under the narrow restore it would have survived its own
+cell and **contaminated every later cell in the run**. The bug was
+latent from the first matrix and became reachable the instant the pool
+grew — the runner-level sibling of the green that cannot fail, found by
+the very pool growth it exists to serve, and the second instrument-side
+instance of that shape in this increment after the pre-tag read's
+finding (d). Fixed to `src/` in all three places plus the final
+byte-identity check.
+
+The full matrix was re-run over the grown pool rather than the new cell
+being appended: per-row kill lists are pool-relative, so "every kill is
+readout-unique" had to be re-earned rather than assumed. A verdict is
+pool-relative and a pool is grown, never assumed — that clause is why
+the whole matrix reruns.
+
+**And the same shape a third time, caught by running the kit.** Once
+the import made the standing verdict load-bearing, `1-verify`'s matrix
+summary had to print it — so the grep was widened. The widened pattern
+also matched the READING prose below the cells and printed
+"…standing corpus is GREEN…" **directly beneath M7's REDDENED line** —
+a summary asserting the opposite of the cell it sat under. Tuning the
+pattern again would have been the same bet; the region is DELIMITED
+instead (`sed` from the cell header to `=== matrix done`), so prose
+cannot leak in whatever it later says. Three instrument-side defects
+this increment — finding (d), the runner's restore, and this — all of
+them in the machinery that reports, none in the thing reported. That
+is the argument for OB-27 in one sentence.
+
+### IX.7 The verdict table is now DERIVED
+
+The `PER-ROW VERDICTS` block was hand-transcribed in the first two
+rounds. It is now computed from the cells by script, with the row
+universe taken from the oracle's own run rather than from the cells —
+a row that no mutant kills appears in NO cell, so deriving the universe
+from the cells would make UNREACHED rows invisible, which is precisely
+what the table exists to surface. The residual RECORD row appears in
+the table for the first time as a result.

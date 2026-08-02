@@ -26,7 +26,7 @@ echo "manifest OK (the kit rows match the scripts as run)"
 git add proplang.cabal MANIFEST.sha256 CLAUDE.md membrane-wire.md \
         OBLIGATIONS.md EXACT_PLAN.md readout-author-pack.md \
         src/PropLang/Host.hs test-readout audit/mutants
-git commit -S -m "readout freeze: the K-ary readout sealed (19 rows, live green at the sitting under the stanza's dependency closure; the M64-M72 matrix, three sole killers against the whole corpus and M72 unreachable by every STANDING row, every kill readout-unique; F10's menu-independence red CONSTRUCTED rather than owed; stanza spliced; membrane-wire, OBLIGATIONS/FL-1 and the R-RED id patches applied; manifest extended)"
+git commit -S -m "readout freeze: the K-ary readout sealed (19 rows, live green at the sitting under the stanza's dependency closure; the M64-M72 matrix PLUS M7 declared-imported for the r8 group, three sole killers against the whole corpus, M72 unreachable by every STANDING row, every kill readout-unique EXCEPT the import's - whose standing red IS r8a's finding; F10's menu-independence red CONSTRUCTED rather than owed; the sitting's four rulings executed - R-D20-i amended to the hash+binding anchor, FL-3 and the harness-gate scope note routed as OB-26/27 with their home boundary named, CW5's no recorded as unbuilt-not-undesired, and all seven UNREACHED rows dispositioned PER ROW with r8a's reachability MEASURED; stanza spliced; four frozen-layer patches applied; manifest extended)"
 git tag -s readout-freeze-r0 -m "the K-ary readout's register ruled (#20, the wire docket's first
 sitting; the authorization is battery-freeze-r0's own scheduling
 line, '#20 first, the OB-19 heir second, #19 1a-or-doctrine third').
@@ -84,11 +84,92 @@ r8c/r8d alone; on every single-point-menu world it is byte-identical
 to the shipped host, which is precisely why no standing mutant could
 reach this claim.
 
-ONE RULING SOUGHT, named rather than absorbed. LINE-NUMBER
-PROVENANCE IN PRE-IMPLEMENTATION ORACLES: an oracle frozen before the
-implementation it prophesies has stale absolute lines the moment that
-implementation lands. This increment anchored its copy table to the
-sealed tree AND named the bindings; the general rule is the author's.
+THE RULING SOUGHT WAS RULED, and it is an AMENDMENT rather than a new
+clause. R-D20-i already mandated provenance and specified it as
+'file:line' - so the honest form is an in-place repair with the
+falsified phrase quoted inside it, not a fresh clause beside a stale
+one. THE ANCHOR IS THE COMMIT HASH PLUS THE BINDING NAME; where the
+citation must point at an anonymous expression, the quoted expression
+text IS the anchor; a line number may accompany and is never the
+referent. The carve-out is what makes it enforceable rather than
+pious. Its scriptable half is deliberately NOT written here - it
+routes with FL-3, so this sitting does not spawn a second
+mechanization obligation it also fails to discharge.
+
+That patch bought the kit a CHECK, not just a clause. Two patches now
+touch CLAUDE.md (~403 and ~140) and 1-verify's per-patch
+`git apply --check` tests each against the UNPATCHED tree, which is
+not the tree the second one meets. The battery kit hit this exact
+shape; this kit now checks the pair SEQUENTIALLY on a temp copy and
+asserts the order (later-in-file first) rather than assuming it.
+
+THE SEVEN UNREACHED ROWS ARE DISPOSITIONED PER ROW, no batch waiver,
+and the discriminator turned out to be mechanical. A src mutant can
+only reach a row that reads the shipped reply; partitioning the seven
+by whether they call replay at all gives FIVE reference-only rows
+(r2b, r4a, r5a, r5b, r7b - their subject is refVec / capQ /
+agentObsPoints, and the pool's universe is patches against src) and
+TWO that read the wire. Those two were tested by execution, not
+argued. r8a IS REACHABLE: M7-ties-to-challenger inverts chooseEU at
+exactly the prior tie r8a depends on and takes the oracle to 2/19
+(r8a and r8b, nothing else) - so r8a is not a green that cannot fail.
+It moves UNREACHED -> SHADOWED, and EARNED against the STANDING
+corpus. M7 also reddens the standing corpus (pins AND trampoline), and
+THAT IS THE FINDING: r8a imports a premise standing rows already pin
+and makes it a checked fact inside the oracle, where the reference
+depends on it. The gap was structural - the readout pool contains only
+readout mutants, so a row pinning a SELECTION premise is unreachable
+by construction. Consequently the blanket phrase of the previous two
+rounds, "every kill readout-unique", is FALSE AS STATED from this
+round on and is corrected in the matrix reading, in 1-verify's summary
+label, and in this freeze's commit message; every OTHER cell's
+standing corpus is green.
+M7 joins as a DECLARED IMPORT, named with its reason, never by
+widening the glob that captured it silently once already. And r1a: its
+value clauses CANNOT FAIL under src mutation - M8 (entropy sign
+dropped) leaves it 19/19 green because r1a compares the wire against
+entropyAgent, the same function that renders it, so both sides move
+together; its p1 clause has the sibling defect, M70 being invisible on
+a binary tied prior where p1 == p_argmax. r1a is a rendering-presence
+pin whose real job is the attribution partition's green half. Recorded
+as a row-VALUE question for r1, which is the author's and never a pool
+obligation.
+
+THE POOL GROWTH CAUGHT AN INSTRUMENT BUG, the second of this
+increment. The matrix runner restored `src/PropLang/Host.hs` in three
+places - true only because every pool member happened to patch that
+one file. M7 patches Membrane.hs: under the narrow restore it would
+have survived its own cell and CONTAMINATED EVERY LATER CELL. Latent
+from the first matrix, reachable the instant the pool grew, and found
+by the very growth it exists to serve. The full matrix was re-run over
+the grown pool rather than the new cell appended, because a verdict is
+pool-relative and a pool is grown, never assumed.
+
+FL-3 AND THE HARNESS-GATE SCOPE NOTE ARE ROUTED, AS LEDGER ROWS RATHER
+THAN PROSE. FL-3 (the recorded-repairs rider names a mechanical check
+that does not exist) lands as OB-26, SCHEDULED@readout-freeze-r0, with
+the OB-19 heir increment NAMED as its home; the harness-gate scope
+note - the triptych clause was canonized for oracle rows and the
+pre-tag read's finding (d) shows it must name INSTRUMENTS too - rides
+with it as OB-27. The state string is not decoration:
+tools/boundary-audit.sh row 3 flags every SCHEDULED@X row whose target
+tag exists, so from the moment this tag is cut both rows are surfaced
+by a script at every later boundary audit until discharged. The
+routing is mechanized even though the check it routes is not yet
+written, which is the most this sitting can honestly buy. A routed
+obligation living only in a pack sentence is the rider's own disease
+wearing a new hat. #20's own five cited hashes were discharged BY HAND
+5/5, so the gap is bounded rather than open. OB-26 carries the
+constraint for its builder: order the manifest re-hash AFTER the new
+lint row exists, or the increment seeds the P5 hazard it closes.
+
+CW5's NO IS RECORDED WITH ITS REASON. The readout does not ride the
+internal-act reply, and the no was chosen BECAUSE THE ALTERNATIVE IS
+UNBUILT, not merely undesired: a yes would assert behaviour living
+nowhere in the corpus and only in the printed residual, and a residual
+is not a specification, so a yes owed a row and could not have closed
+this sitting. A future boundary wanting readout-on-think is doing NEW
+CONSTRUCTION under its own gate, not flipping a flag.
 
 THE PRE-TAG ADVERSARIAL READ (2026-08-01) found five more that would
 have frozen, and they are listed because three of them are the same

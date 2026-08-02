@@ -26,13 +26,47 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 export PATH="$HOME/.ghcup/bin:$PATH"
 
-trap 'git checkout -- src/PropLang/Host.hs 2>/dev/null || true' EXIT
+# RESTORE IS SCOPED TO src/, NOT TO Host.hs. It read
+# `git checkout -- src/PropLang/Host.hs` until the 3c disposition round
+# of 2026-08-02, which was true only because every pool member happened
+# to patch that one file. The imported member below patches
+# Membrane.hs, and under the narrow restore it would have survived its
+# own cell and contaminated EVERY LATER CELL in the run - a runner
+# whose restore is narrower than its pool's reach. The bug was latent
+# from the first matrix and became reachable the instant the pool grew;
+# it is the runner-level sibling of the green that cannot fail, found
+# by the same pool growth it exists to serve.
+trap 'git checkout -- src/ 2>/dev/null || true' EXIT
 
-MUTANTS=$(ls audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch 2>/dev/null | sort)
+# THIS INCREMENT'S OWN POOL, by anchored glob (the digit-then-dash
+# shape: a bare M7* also matches M7-ties-to-challenger, and a glob that
+# silently captures a stranger is the hand-enumeration disease wearing
+# a sweep's clothes - the pre-tag read, 2026-08-01).
+OWN=$(ls audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch 2>/dev/null | sort)
+
+# IMPORTED POOL MEMBERS - named individually, each with its reason.
+# This is the OPPOSITE of the glob accident above: a stranger admitted
+# ON THE RECORD rather than swept in silently. The sweep-universe law
+# forbids hand-enumerating a universe that can be DERIVED; the derived
+# universe here is `own increment's mutants`, and an import is a
+# declared extension of it, which is why it is a list and not a
+# widened glob.
+#
+#   M7-ties-to-challenger — reaches r8a. r8a pins that the F10 world's
+#   evidence tick reports the MENU HEAD, which holds because the two
+#   acts agree exactly at the prior and the tie resolves to the head.
+#   No READOUT mutant can reach that premise: it is a property of the
+#   selection path, not of the readout. M7 inverts chooseEU at exactly
+#   that tie. Its cell is expected to redden the standing corpus, and
+#   that is the finding rather than a defect in the import - see the
+#   r8a disposition in the verdicts section.
+IMPORTED="audit/mutants/M7-ties-to-challenger.patch"
+
+MUTANTS=$(printf '%s\n%s\n' "$OWN" "$IMPORTED")
 
 echo "=== THE READOUT KILL MATRIX (serial, per-row; baseline = the implemented surface) ==="
 echo "date: $(date -u +%Y-%m-%d)   ghc $(ghc --numeric-version)   cabal $(cabal --numeric-version)"
-echo "pool: $(echo "$MUTANTS" | wc -l) mutants —"
+echo "pool: $(echo "$MUTANTS" | wc -l) mutants — $(echo "$OWN" | wc -l) own + $(echo "$IMPORTED" | wc -l) imported"
 echo "$MUTANTS" | sed 's|^|  |'
 echo "each cell: mutant applied to src, FULL corpus (11 stanza'd suites +"
 echo "  the readout oracle standalone), src restored"
@@ -40,7 +74,7 @@ echo
 
 for p in $MUTANTS; do
   name=$(basename "$p" .patch)
-  git checkout -- src/PropLang/Host.hs
+  git checkout -- src/
   if ! git apply "$p" 2>/dev/null; then
     echo "$name: PATCH DID NOT APPLY (the mutant is stale against src)"
     echo
@@ -85,6 +119,6 @@ for p in $MUTANTS; do
   echo
 done
 
-git checkout -- src/PropLang/Host.hs
+git checkout -- src/
 echo "=== matrix done; src restored ==="
-git diff --quiet src/PropLang/Host.hs && echo "src is byte-identical to HEAD"
+git diff --quiet src/ && echo "src is byte-identical to HEAD"

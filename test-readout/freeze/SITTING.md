@@ -59,16 +59,31 @@ terminates: `CW8` occurs mid-line, so sed ran to end of file and printed 120
 lines while its comment promised eight defaults. Recorded rather than quietly
 swapped — a command that dumps everything reads as if it isolated something.
 
-Running the kit intact **accepts CW1–CW8 as drafted**. Open items you are
-being asked to rule on:
+Running the kit intact **accepts CW1–CW8 as drafted** *and* the four rulings
+returned by the conferral round of 2026-08-02, which are now ENCODED IN THE
+KIT rather than pending. What you are confirming:
 
-| | |
-|---|---|
-| CW1–CW8 | drafted defaults, `EXACT_PLAN.md` §15.4 |
-| the one ruling sought | line-number provenance in pre-implementation oracles |
-| V.4's UNREACHED rows | triage input, not deletions (`opening/readout-kill-matrix.txt` has per-row verdicts) |
-| CW5 | if you rule the readout *does* ride the think reply, **a row is owed** and this sitting should not close |
-| **FL-3** | the recorded-repairs rider names a mechanical check that **does not exist** in `tools/`. Discharged by hand 5/5 this increment (pack VIII.6), so nothing is unverified. Route to r1 / next boundary (recommended), land a fourth `[RULING]` patch here, or amend the clause |
+| | ruled | where it now lives |
+|---|---|---|
+| CW1–CW8 | as drafted | `EXACT_PLAN.md` §15.4; tag message |
+| the ruling sought | standing law, **as an amendment to R-D20-i** — anchor = commit hash + binding name; quoted expression text where the binding is anonymous. Scriptable half NOT written, routes with FL-3 | `r-d20i-anchor.patch` (2-freeze step 4b) |
+| **FL-3** | disposition 1, with the condition: a **scheduled ledger row naming its home boundary**, not a pack sentence | **OB-26**, `SCHEDULED@readout-freeze-r0`, home = the OB-19 heir |
+| harness-gate scope | routed with FL-3, one CLAUDE.md touch at that boundary | **OB-27** |
+| CW5 | "no" stands, recorded as **unbuilt, not merely undesired** | tag message |
+| V.4's UNREACHED rows | dispositioned **per row**; no deletions proposed | pack IX.5 table |
+
+**The 3c round changed the tree**, so it is worth knowing what to expect: the
+mutant pool grew to **10** (M7 declared-imported — it is the only thing that
+reaches r8a, measured at 2/19), the matrix was **re-run whole** rather than
+appended to, and the runner's restore was widened from `Host.hs` to `src/`
+after the growth exposed that it would have contaminated every later cell.
+
+You can still decline anything by editing — the window is the same:
+
+```bash
+$EDITOR test-readout/freeze/3-sign.sh                    # the text you sign
+$EDITOR test-readout/freeze/2-freeze.sh                  # or drop a [RULING] patch line
+```
 
 ---
 
@@ -78,10 +93,20 @@ being asked to rule on:
 bash test-readout/freeze/2-freeze.sh
 ```
 
-Splices the stanza, applies the three `[RULING]` patches, runs gate 5 on the
-spliced tree, extends the manifest **109 → 137**, re-signs, lints. Expect it
-to end on `prefreeze-lint: 0 FAIL, 0 WARN` and
+Splices the stanza, applies the **four** `[RULING]` patches, runs gate 5 on
+the spliced tree, extends the manifest **109 → 139**, re-signs, lints. Expect
+it to end on `prefreeze-lint: 0 FAIL, 0 WARN` and
 `FREEZE MECHANICS DONE - nothing signed.`
+
+The figure read **137** and the patches numbered **three** until the sitting
+of 2026-08-02. Both moved for a reason, and the reason is checkable: the
+ruling sought added `r-d20i-anchor.patch` (+1 through the `freeze/*.patch`
+glob), and the 3c disposition round declared `M7-ties-to-challenger.patch`
+into this increment's mutant pool, hashed BY NAME (+1) because a declared
+pool member whose bytes are not frozen makes the matrix transcript
+unreproducible. A stale expectation here reads as a defect at the sitting
+and you cannot tell which it is from the output — which is why the old
+figure is recorded rather than quietly swapped.
 
 ### If step C dies part-way
 

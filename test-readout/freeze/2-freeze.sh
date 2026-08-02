@@ -35,7 +35,24 @@ git apply test-readout/freeze/obligations-fl1.patch
 # 4. [RULING FL-2 / mandate finding F11: R-RED is cited as law but the
 #    canonized clause in CLAUDE.md carries no ID string, so a greppable
 #    audit for the ID finds only the battery's freeze kit. One line.]
+#    APPLIED BEFORE THE PAIR'S SIBLING BELOW: this hunk sits at ~line
+#    403 and 4b's sits at ~line 140, so taking the later-in-file patch
+#    first leaves 4b's context exactly where its hunk header says.
+#    1-verify checks the pair SEQUENTIALLY, in this order, on a temp
+#    copy - a per-patch check against the unpatched tree cannot see a
+#    conflict between two patches to the same file.
 git apply test-readout/freeze/r-red-id.patch
+
+# 4b. [RULING: THE ONE RULING SOUGHT, ruled at the sitting of
+#     2026-08-02. R-D20-i mandates "file:line provenance" for an
+#     oracle's copy table; an oracle frozen BEFORE the implementation
+#     it prophesies has stale absolute lines the moment that
+#     implementation lands, so the clause mandated an anchor its own
+#     timing guarantees would rot. The anchor becomes COMMIT HASH +
+#     BINDING NAME (quoted expression text where the binding is
+#     anonymous). The falsified phrase is quoted inside its own
+#     repair. The scriptable half routes with FL-3 (OB-26).]
+git apply test-readout/freeze/r-d20i-anchor.patch
 
 # 5. gate 5 on the spliced tree - the readout's first stanza'd run
 #    alongside every standing suite. The transcript rides the freeze
@@ -61,8 +78,18 @@ echo "gate 5 green on the spliced tree"
             test-readout/kill-matrix.sh test-readout/freeze/SITTING.md \
             test-readout/opening/*.txt test-readout/opening/prophecy.diff \
             test-readout/freeze/*.sh test-readout/freeze/*.patch \
-            audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch
+            audit/mutants/M6[4-9]-*.patch audit/mutants/M7[0-2]-*.patch \
+            audit/mutants/M7-ties-to-challenger.patch
 } >> MANIFEST.sha256
+#    M7-ties-to-challenger is hashed BY NAME, not by glob: it is a
+#    previous increment's mutant, DECLARED-IMPORTED into this
+#    increment's pool because it is the only thing that reaches r8a
+#    (the 3c disposition round). A declared pool member whose bytes
+#    are not frozen makes the matrix transcript unreproducible - the
+#    transcript would still claim "2/19, r8a and r8b" about a file
+#    that had since changed. It is named rather than globbed for
+#    exactly the reason the M7[0-2] anchor exists: this file is the
+#    stranger a loose M7* captured once already.
 python3 - <<'PY'
 import hashlib, re
 rows = {}
