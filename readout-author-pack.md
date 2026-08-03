@@ -970,6 +970,40 @@ bracket instead.
 > argument. The repair is recorded rather than swapped, per this pack's
 > own convention, so the sequence stays legible: **134 → 136 → 137 →
 > 139**.
+>
+> **THE REVIEWER'S OWN DISPOSITION, AT THE REVIEWER'S REQUEST.** The
+> second conferral asked that its part be recorded plainly, and it is:
+> the conferring reviewer relied on a pack-quoted figure where the
+> ruling it had itself made that same sitting — R-D20-i's amendment,
+> anchor by commit hash and binding name, provenance never re-derived
+> in parallel — obliged it to recompute against the artifact. The
+> reviewer who ruled the binding-name anchor into standing law then
+> relied on a bare number. Recorded because the adversarial discipline
+> binds the sitting authority exactly as it binds the builder, and does
+> not lapse because the miss belongs to the authority.
+>
+> **THE STEP-7 HAZARD WAS CHECKED AND DOES NOT EXIST.** The conferral's
+> operative instruction was to confirm no gate expects 137, since a kit
+> hashing to 139 against a gate expecting 137 stops at step 7 — after
+> the irreversible splice. Checked across `1-verify.sh`, `2-freeze.sh`,
+> `3-sign.sh`, `prefreeze-lint.sh` and `boundary-audit.sh`: **no gate
+> hardcodes a row count anywhere.** Lint L3 derives it —
+> `"$(wc -l < MANIFEST.sha256) rows verified"` — and asserts only that
+> `sha256sum -c` passes; `2-freeze`'s re-sign line likewise prints
+> `len(rows)` and greps nothing. The single `1xx` literal in the kit is
+> `~403 and ~140` in a 3-sign comment, naming CLAUDE.md line offsets,
+> not a count.
+>
+> That result has a sting in it, and it is the same fact from the other
+> side. The reason no gate can fail on 139-vs-137 is precisely the
+> reason the figure drifted for a day unnoticed: **nothing asserts on
+> it.** VIII.3(ii) says so in its own next sentence — "a printed number
+> no row defends" — and then the number it printed went undefended.
+> The step-7 stop was never available to catch this; only a human
+> reading two documents could, and both documents were wrong in one of
+> them. That is the strongest available argument for OB-27's scope
+> reaching PROSE and not only harness gates, and it is now measured
+> rather than asserted.
 
 Both were found by re-reading the sheet as an adversary rather than as
 its author, which is the same move that bought Part VII's five.
