@@ -31,9 +31,24 @@ so rather than letting you find out after the tree is mutated.
 bash test-readout/freeze/1-verify.sh
 ```
 
-Expect, in order: manifest OK · **live 19/19** under the stanza's dependency
-closure · as-built == the prophecy · the recorded red/green/matrix figures ·
-boundary audit · three patches apply clean · **signing key OK**.
+Expect, in order: manifest OK · **the manifest figure agrees** (derived, see
+below) · **live 19/19** under the stanza's dependency closure · as-built ==
+the prophecy · the recorded red/green/matrix figures · boundary audit ·
+**four** patches apply clean · the CLAUDE.md pair applies sequentially ·
+**signing key OK**.
+
+This line read "**three** patches" until 2026-08-03 and was wrong from the
+moment `r-d20i-anchor.patch` landed — the fifth stale figure in this sheet,
+and found only because the manifest-figure gate below was being built. It is
+corrected rather than swapped, for the same reason as step C's count.
+
+`1-verify` now **derives** the manifest figure from `2-freeze`'s own argument
+list and refuses to continue if this sheet disagrees with it. Until that
+check existed nothing defended the number: `2-freeze` prints it, lint L3
+derives whatever it finds, and no gate held a row count anywhere — which is
+exactly how step C's figure sat two rows stale for a day and reached the
+conferral. Both reds were demonstrated before the check was trusted (sheet
+behind kit; kit ahead of sheet), along with both guards.
 
 ---
 

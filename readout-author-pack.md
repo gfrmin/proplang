@@ -1361,3 +1361,64 @@ a row that no mutant kills appears in NO cell, so deriving the universe
 from the cells would make UNREACHED rows invisible, which is precisely
 what the table exists to surface. The residual RECORD row appears in
 the table for the first time as a result.
+
+### IX.8 The run-sheet's figures are now DERIVED, and the gate caught two defects in itself
+
+Built at the author's instruction after the second conferral, in answer
+to "we must gate all assertions, no?" — and the answer taken was **no,
+not all**. The standing enforcement ladder already says climb as high as
+it goes and leave prose only for what provably cannot climb; gating
+every sentence mints greens nobody red-tested, which is this
+increment's own disease wearing a helpful face. The narrow rule taken
+instead:
+
+> **A figure a human reads and acts on at an IRREVERSIBLE step must be
+> derived, not typed.**
+
+`109 → 137` was exactly that. `134 → 136` inside a dated historical
+bracket is not, and freezing it would be wrong.
+
+**Two figures now derive.** `1-verify` extracts `2-freeze`'s own
+manifest argument list and its own `git apply` sequence — never a
+second copy of either, since two lists of the same thing is the drift
+that cost this increment a round (R-D20-i: copy, do not reconstruct).
+The patch loop no longer holds a hand-written list at all: divergence
+between what `2-freeze` applies and what `1-verify` pre-checks is now
+**unsayable** rather than gated, which is the higher rung. Absent that,
+a patch added to the apply sequence and forgotten in the loop would
+reach the irreversible step never once `--check`ed.
+
+**A fifth stale figure, found by building the gate.** Step A read
+"**three** patches apply clean" and had been wrong since
+`r-d20i-anchor.patch` landed. Nothing defended it either. Corrected in
+place, not swapped.
+
+**And the gate broke twice, in this increment's exact signature shape.
+Both were caught by executing the reds, not by reading the code.**
+
+- **RED 8 — the guard was dead code.** `patches=$(grep … | awk …)`
+  returns 1 when grep matches nothing, and under `set -euo pipefail`
+  the ASSIGNMENT aborts the script before the `[ -n "$patches" ]`
+  guard can speak: a silent death after the boundary-audit line, no
+  `STOP`, and no `ALL CHECKS PASSED` either. **A guard that cannot
+  fire, inside the gate written to cure guards that cannot fire.**
+  `|| true` is load-bearing and was bought by that red.
+- **RED 6 — a row that could never fire.** The orphan-patch row was
+  ordered after the manifest-figure row, but an orphan also bumps the
+  derived count, so the figure row always fired first and reported
+  "139 vs 140" — the orphan caught, misdiagnosed, and its own row
+  structurally unreachable. Rather than record a shadowed row, the
+  order was changed so the precise diagnosis wins.
+
+**Eight reds, eight distinct diagnoses, each executed:** sheet behind
+kit · kit ahead of sheet · manifest block moved · step C's sentence
+moved · applied patch missing on disk · orphan patch present · sheet's
+patch word disagrees · apply sequence vanished. Green confirmed on the
+real tree end to end. Reds ran on a throwaway clone (R-D21); the clone's
+trailing `user.signingkey is unset` is the `e6ca692` guard doing its job
+in a fresh checkout and confirms execution ran past the new rows.
+
+The lesson is the one OB-27 is routed to install, now with its sharpest
+data point: **the reds are what find this class.** Neither defect was
+visible on the page. Both were obvious the instant the check was made
+to fail.
