@@ -1422,3 +1422,187 @@ The lesson is the one OB-27 is routed to install, now with its sharpest
 data point: **the reds are what find this class.** Neither defect was
 visible on the page. Both were obvious the instant the check was made
 to fail.
+
+## Part X — the r1 catch-net: the key act's own conviction (2026-08-03/04)
+
+CW8's second tag. The catch-net the battery traded away is where the
+trampoline E4 and jp package-faithfulness findings surfaced; #20's
+instance outdoes both: the defect it caught was in the r0 key act
+itself.
+
+### X.1 What happened at step D of the r0 sitting
+
+`3-sign.sh` made the signed freeze commit (5e16755, Good signature,
+the thinkpad author key) and then hung for hours at line 30 — the
+`git tag -s ... -m "<208 lines of register>"` command. Two
+independent defects lived in that one command, and either alone was
+fatal:
+
+- **The hang: a backtick span executed.** The register is a
+  double-quoted shell string, and its prose cites commands in
+  backticks — four spans (absolute lines 101, 139, 185, 224). Bash
+  runs each as a command substitution. The first, `git apply
+  --check`, was stripped of its argument by the quoting and so read
+  its patch from stdin — the terminal, at an interactive sitting.
+  Proved live: the reproduced hang's process tree showed `bash
+  demo.sh` -> `git apply --check` both in anon_pipe_read, and
+  isolating the four substitutions gave three exits 0 and one block
+  (timeout 124) — the blocker attributed, not assumed.
+- **The parse death: an inner quote.** Absolute line 123 carries
+  "every kill readout-unique" in unescaped inner quotes, which
+  TERMINATE the -m string and expose three bare words as extra
+  arguments. A quoting-state walk over the command confirmed it:
+  [QUOTED] 5730 bytes / [UNQUOTED] every kill readout-unique /
+  [QUOTED] 7033 bytes. `git tag` refuses extra arguments, so even
+  with every backtick span exiting instantly the key act as drafted
+  could never have parsed. **The kit could not have minted its own
+  tag on any run.** The hang was the lucky failure mode: it stopped
+  the sitting BEFORE a mangled mint.
+
+### X.2 The mint, and the landing
+
+The register was extracted losslessly from the frozen script and the
+author minted from their own shell with `-F`:
+
+    awk 'NR>=30 && NR<=237' test-readout/freeze/3-sign.sh \
+      | sed -e '1s/^git tag -s readout-freeze-r0 -m "//' \
+      | perl -0777 -pe 's/"\n\z/\n/'
+
+(The absolute line range is legal addressing here: the file it reads
+is hash-pinned by the manifest the kit re-checks first, so the range
+cannot rot — R-D20-i's amendment is about prose citing MOVING trees.)
+The transform round-trips: re-wrapping the extraction reproduces the
+frozen bytes exactly. The minted message is BYTE-IDENTICAL to the
+drafted register — 12791 bytes, all four backtick spans as literal
+prose, the inner-quote line intact. Note `-F` is not merely safe but
+MORE faithful than the drafted path: an `-m` mint, had it parsed,
+would have silently substituted command OUTPUT into the four spans.
+The author verified (`Good "git" signature`, the tag object peeling
+to 5e16755) and landed by fast-forward: remote master == 5e16755 ==
+`readout-freeze-r0^{}`, PR #22 MERGED with mergeCommit 5e16755, zero
+merge commits in master's history, the attestation covering exactly
+what landed.
+
+### X.3 Why two rehearsals could not see it
+
+The kit was rehearsed two-sided from a fresh clone (Part VI) and the
+rehearsal was honest: it stopped where the custody rule stops it. The
+register's own line 224 says so — "what it does NOT exercise: `git
+tag -s` was never run before this". Both defects lived in the one
+line no rehearsal executes, because the data rode INSIDE the command.
+The class check across every kit in the tree: the battery and jp
+`-m` registers carry zero backticks and zero inner quotes (they
+minted clean by luck of plain prose); #20's more discursive register
+is what armed the string. Two adjacent notes, recorded here:
+
+- The increment's instrument-layer tally gains its terminal entry:
+  every defect this increment produced sat in the layer that REPORTS
+  (`&& echo`, the matrix restore, the summary grep, the stale 137,
+  the run-sheet figures, now the tag command); none in the layer that
+  computes. The readout itself has been green since its first live
+  run.
+- `2-freeze.sh`'s `grep -q "0 FAIL"` matches "10 FAIL" and is
+  shadowed only by `set -o pipefail` plus the lint's exit code —
+  OB-27's exact class, home already named (the OB-19 heir); recorded,
+  not repaired here. `4-close.sh`'s grep is anchored (`": 0 FAIL,"`).
+
+### X.4 The repair, placed on the enforcement ladder
+
+`-F <file>` deletes the shell parser between the reviewed register
+and the key act — the class becomes UNSAYABLE, not caught. The
+message file is a MANIFEST ROW, so the bytes signed are the bytes
+hashed, in the same run. And the unrehearsable surface shrinks to a
+constant six-token command with no data inside it — the most a
+rehearsal-shaped process can ever close of a key act.
+
+Canonized at this close (the author's key, via the kit's patches):
+
+- `tag-message-file.patch` -> CLAUDE.md: THE TAG MESSAGE IS A FILE,
+  NEVER A SHELL STRING.
+- `lint-l9.patch` -> `tools/prefreeze-lint.sh` row **L9**, the
+  scriptable half: a `git tag ... -m` in a freeze kit whose tag does
+  not yet exist FAILS; executed kits derive their exemption from
+  their tag's existence — never a hand list (the sweep-universe law).
+  A line naming no resolvable tag fails loudly for triage: the row
+  errs red, never silently green. **L9, not L8:** OB-26 named its
+  own future row L8 at scheduling; that seat stays reserved for the
+  OB-19 heir. The IX.2 ordering constraint is honored by the kit
+  itself: patches land, THEN the manifest re-hashes, THEN the lint
+  runs.
+- The r0 identity becomes a STANDING RECORD ROW: `4-close.sh` step 1
+  re-derives both sides and diffs them on every run.
+
+### X.5 r1a ruled (the routed row-VALUE question)
+
+As routed at IX.5, drafted for the author's key: **KEPT**, its two
+value clauses relabelled PRESENCE PINS in place
+(`r1a-presence-pin.patch`, comment-only). Its real content is
+rendering presence; its real job is the attribution partition's
+green half, discharged at the red run and frozen in
+`opening/red-run.txt`. No recorded transcript's row name moves — the
+relabel is a comment above the group, not a testCase rename.
+
+### X.6 The close kit, rehearsed two-sided from a fresh clone (R-D21)
+
+`4-close.sh` (kit-hashes-itself; manifest 139 -> 145; signing
+preconditions guarded BEFORE any tree mutation — the 1-verify
+fresh-clone lesson carried to the close). The rehearsal ran in a
+throwaway clone with a throwaway ed25519 key registered in the
+clone's allowed_signers (key and clone discarded after; the real
+sitting signs with the author's key from the author's shell):
+
+- **RED, the record row.** The r0 tag replaced by an annotated tag
+  at the same commit whose message differs in one word's case. The
+  close died at step 1 with the differing line printed and exit 1 —
+  BEFORE any tree mutation; the true tag object restored by id
+  (cd33c0d) and re-verified.
+- **RED, L9 standalone.** On the clean tree the row passes (all four
+  standing `-m` tag commands sit in kits whose tags exist). A seeded
+  kit file carrying `git tag -s readout-freeze-r9 -m "seeded
+  defect"` fails with exact file:line attribution.
+- **RED, L9 through the kit.** The same seed committed in a
+  throwaway copy: the close ran green through the record row, the
+  patches, gate 5 and the manifest re-hash, then the lint failed on
+  exactly the seeded row (`1 FAIL`) and the close refused before any
+  key act. Exit 1.
+- **RED, the re-run guard.** Against the sealed clone: `REFUSE:
+  readout-freeze-r1 already exists`, exit 1, instantly.
+- **GREEN, end-to-end.** From the staged clone: guards OK -> record
+  row OK (12791 bytes) -> three patches applied -> gate 5 green on
+  the patched tree (12 of 12 suites PASS, `readout` among them) ->
+  `manifest re-signed over 145 rows` -> lint `0 FAIL, 0 WARN` with
+  **L9 PASS live** -> signed close commit -> `git tag -s
+  readout-freeze-r1 -F test-readout/freeze/r1-tag-msg.txt` ->
+  SEALED. Post-run: `Good "git" signature` (the throwaway key), and
+  the minted r1 message BYTE-IDENTICAL to `r1-tag-msg.txt` (1851
+  bytes) — the -F law's own first execution, proven at the mint.
+
+One incidental finding, recorded not repaired: **L5 selects "the
+current author pack" by mtime** (`ls -t | head -1`), and a fresh
+clone's mtimes are checkout order — the rehearsal's L5 line read
+`unify-author-pack.md`. The row still checks what it claims (the
+flags exist in A pack), but the selection is not clone-stable.
+Routed to the lint's next scheduled touch, the OB-19 heir's L8
+landing — one file, one boundary, alongside OB-26.
+
+### X.7 Custody
+
+No delegated freeze-edit occurred at the r0 mint: the register bytes
+were already frozen inside `3-sign.sh`'s manifest row, and the
+author ran the extraction and the `-F` tag from their own shell. No
+frozen file was edited, so R-D22 imposes no re-tag obligation — this
+close is CW8's SCHEDULED second tag, not a repair tag. The builder's
+commits on this branch are unsigned, recorded as such (the thinkpad
+precedent: the builder key is on neither machine); the close commit
+and the r1 tag are the author's, from the author's shell, and the
+kit refuses to run where the signing identity is absent.
+
+### X.8 What this close does NOT carry (routing restated, checkable)
+
+- **OB-26 (the L8 lint row) and OB-27 (the triptych's harness-gate
+  scope)** — home = the OB-19 heir, NAMED at scheduling; surfaced by
+  `tools/boundary-audit.sh` row 3 at every boundary until discharged.
+- **`Host.hs:387`'s wait comment** (VII.3) — the wire docket's next
+  frozen-layer inventory, as Step F routed it.
+- **EXACT_PLAN's CR1/CR2 "the r1 tag" mentions** — checked at this
+  close: they cite trampoline-freeze-r1, not this tag. No collision.

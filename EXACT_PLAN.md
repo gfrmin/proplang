@@ -1488,3 +1488,38 @@ the discharge events named.
 **FL-2 (opened empty).** Anything the mandate round or the oracle
 phase surfaces against frozen prose lands here before the freeze,
 in the form its text class demands.
+
+### 15.7 The r1 close (CW8's second tag; kit staged 2026-08-04)
+
+The catch-net carried exactly two items, and a third class that
+looked like items and is not:
+
+1. **The r0 key act's instrument, convicted twice over.** `3-sign.sh`
+   line 30 passed the drafted register to `git tag` as an `-m` shell
+   string: a backtick span EXECUTED (`git apply --check`, cited as
+   prose, ran as a command substitution and read the terminal — the
+   hang at the sitting), and the register's own quoted phrase "every
+   kill readout-unique" was an argument boundary, so the key act as
+   drafted could never have parsed on any run. The tag was minted
+   true by `-F` from the extracted register, byte-identical to the
+   drafted bytes (12791) — that identity is `4-close.sh`'s standing
+   record row. Class repair canonized at the close: THE TAG MESSAGE
+   IS A FILE, NEVER A SHELL STRING (CLAUDE.md), lint row L9 the
+   scriptable half (L8 stays reserved to OB-26, named at scheduling).
+   The full record is pack Part X.
+2. **r1a's row-VALUE ruling** (routed at IX.5): KEPT, its value
+   clauses relabelled PRESENCE PINS in place, comment-only — no
+   recorded transcript's row name moves.
+
+NOT this close's, restated so the routing is checkable: OB-26/27
+(home = the OB-19 heir, named at scheduling); `Host.hs:387`'s wait
+comment (the wire docket's next frozen-layer inventory); this plan's
+own CR1/CR2 "r1 tag" mentions, which are trampoline-freeze-r1's
+(checked at the close, no collision).
+
+The close kit is `test-readout/freeze/4-close.sh`: kit-hashes-itself,
+manifest 139 -> 145 with the tag-message file among the rows, the
+patches applied BEFORE the re-hash and the lint run AFTER it (IX.2's
+ordering constraint, carried), signing preconditions guarded before
+any tree mutation, and the tag minted by `-F` — the law eaten by its
+own kit first.

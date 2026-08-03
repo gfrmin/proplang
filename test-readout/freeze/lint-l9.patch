@@ -1,0 +1,32 @@
+diff --git a/tools/prefreeze-lint.sh b/tools/prefreeze-lint.sh
+index eccf51c..f35695a 100755
+--- a/tools/prefreeze-lint.sh
++++ b/tools/prefreeze-lint.sh
+@@ -122,5 +122,27 @@ done
+ rm -rf "$l7tmp"
+ [ "$l7" -eq 0 ] && ok "L7 full-corpus overlay build: every test .hs builds against new src"
+ 
++# -- L9: THE TAG MESSAGE IS A FILE (the readout close, 2026-08-04) -----------
++# The r0 key act hung on a backtick span inside -m "..." (`git apply
++# --check`, cited as prose in the register, EXECUTED as a command
++# substitution and read the terminal) and could never have parsed at
++# all (an inner quote word-split the message): -m puts a shell parser
++# between the reviewed register and the tag. A kit still awaiting its
++# tag passes the message by -F <file>, the file a manifest row.
++# Executed kits derive their exemption from their tag's existence,
++# never from a hand list. A line that names no resolvable tag FAILS
++# loudly and is triaged - this row errs red, never silently green.
++# (L8 is not skipped: OB-26 named its own future row L8 at
++# scheduling; that seat is the OB-19 heir's.)
++l9=0
++while IFS=: read -r f n cmd; do
++  printf '%s\n' "$cmd" | grep -q '^[[:space:]]*#' && continue
++  tag=$(printf '%s\n' "$cmd" | sed -E 's/.*git tag +(-[sa] +)?([A-Za-z0-9._-]+).*/\2/')
++  git rev-parse -q --verify "refs/tags/$tag" >/dev/null 2>&1 && continue
++  bad "L9 tag message via -m in unexecuted freeze kit $f:$n (use -F <file>; hash the file)"
++  l9=1
++done < <(grep -HnE 'git tag .*-m[ "]' test*/freeze/*.sh 2>/dev/null)
++[ "$l9" -eq 0 ] && ok "L9 tag-message-is-a-file: every -m tag command sits in an executed kit"
++
+ echo "=== prefreeze-lint: $fails FAIL, $warns WARN ==="
+ exit "$( [ "$fails" -eq 0 ] && echo 0 || echo 1 )"
