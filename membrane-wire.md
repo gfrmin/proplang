@@ -271,7 +271,7 @@ MOVE:
 
 ```json
 {"tick": {"features": {"t": 417, "tool-name=bash": 1}, "menu": ["a"]}}
-{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2}
+{"act": {"a": 0.5}, "p1": 0.81, "entropy_bits": 3.2, "p0": 0.09, "argmax_code": 1, "p_argmax": 0.81, "p_codes": [0.09, 0.81]}
 ```
 
 *(Examples repaired in place at the step-7 unify freeze: a tick's
@@ -360,6 +360,28 @@ the verdict (waste polarity: 1 = approve):
   positive event the diagnostic always read — the diagnostic's
   meaning and the codomain's background are ONE recorded fact.
   Pinned against the predictive by test-arity g7d.
+  *[The cited pin is DEAD — test-arity was retired at the dyadic
+  boundary and no `g7d` exists in the tree. From the readout freeze
+  the live pin for this sentence is test-readout r7a, the first pin
+  that reads it off the REPLY BUILDER rather than off the library
+  (the mandate round's H-row finding, 2026-07-31).]*
+- THE K-ARY READOUT (#20, the readout increment): a decision reply
+  ALSO carries `p0` (the null atom's predictive mass), `argmax_code`
+  (the code with the largest mass, ties to the LOWEST index),
+  `p_argmax` (that code's mass) and `p_codes` (the full vector over
+  the observation space, in `agentObsPoints` order). These are
+  ADDITIVE — `p1` keeps its meaning above unchanged and the three v1
+  fields stay byte-identical beside them. They are
+  OBSERVABILITY-ONLY and the consumer discipline binds: a host
+  adapter that BRANCHES on a readout has re-created host-side
+  decision forking (HOSTS_PLAN 8.12(b)); readouts land in ledger
+  rows and footers, never in a branch. The motive is the null atom:
+  no sentence in the family distinguishes atom 0 (Enumerate.hs
+  `posAtoms`, :208), so its predictive mass is the spread rate
+  (1-theta)/(K-1) under every hypothesis and is bounded by
+  (1 - theta_min)/(K-1) at the DECLARED codebook's lowest point —
+  the declared limitation two bullets above, made OBSERVABLE. `p0`
+  is the number OB-19's ruling reads. Pinned by test-readout r1-r7.
 - Choice encoding: `"act"` is the full assignment object,
   `{<writable-name>: <value>, ...}` — one value per name published
   this tick (the empty object when no menu is published: the empty
@@ -438,7 +460,13 @@ the verdict (waste polarity: 1 = approve):
 | clock row: internal acts priced by the world | Host.hs hello clock + tick dispatch | trampoline g6.4 (wire), g3 (the differential) |
 | K=2 arity == plain route | Host.hs:292-296 | pins ARITY K=2 (==) |
 | K=4 categorical law | Enumerate.hs catBody | pins K=4 (EARNED, M14) |
-| p1 = P(atom 1) at any arity | Host.hs reply builder | acceptance probe rows |
+| p1 = P(atom 1) at any arity | Host.hs reply builder | readout r7a (the first pin that reads the REPLY BUILDER; acceptance's probe rows read predictMassS directly and never touch it) |
+| the readout is ADDITIVE: the v1 fields keep their meanings | Host.hs `tickExternal` decPart | readout r1 (the attribution partition) |
+| p_codes j == predictMassS (feats ++ act) j over agentObsPoints | Host.hs `readoutFields` | readout r2 + r3 |
+| the observation space IS [0 .. K-1], so POSITION == CODE | Host.hs carrier `0 :| [1 .. kA - 1]` | the seven wire rows mutant M71 kills (readout r2, r3, r4b, r4c, r5c, r6, r7a) — NOT r2b, which is a RECORD row over the ORACLE's own carrier and which M71 leaves green |
+| argmax_code ties to the LOWEST index | Host.hs `readoutFields` fold | readout r4c (at the tied prior, on the wire) |
+| p0 is the null atom's mass, structurally bounded | Host.hs `readoutFields` | readout r5c (OB-19's instrument) |
+| the vector is computed at the CHOSEN act, not the menu head | Host.hs `tickExternal` `full = feats ++ act` | readout r8 (two-point menu, mutant M72 its sole killer) |
 | utility_bits = bitsView (weightIn ns prog) | Host.hs:300-302 | trampoline g6.2 (OB-22 DISCHARGED) |
 | namespace immutability under publication | Host.hs handshake + tick dispatch | trampoline g6.3 (OB-23 DISCHARGED) |
 | rendering cliff 2^53 | Host.hs:182-183 | transport t4 (parity partition) |
@@ -600,6 +628,25 @@ happens ENGINE-SIDE, by argmax over the declared menu; an adapter
 that branches on these scalars has re-created host-side decision
 forking (HOSTS_PLAN 8.12(b)), and the governor-side tests pin the
 adapter's decide path as a pure choice-relay.
+
+The K-ARY READOUT (`p0`, `argmax_code`, `p_argmax`, `p_codes`; the
+readout increment, #20) is of this class and inherits this
+paragraph WHOLE — the same discipline, not a new one. Because
+sections 4-6 are historical from the step-7 freeze, the binding
+copy of that discipline for the readout is the section-3 bullet
+above, not this one. Two consequences worth stating, because a
+K-ary consumer will otherwise infer them wrongly: `argmax_code` is
+the engine's argmax over the PREDICTIVE — NOT the engine's choice
+over the menu, which stays engine-side by the standing sentence and
+is reported in `act`; and `p_codes` is indexed by POSITION in
+`agentObsPoints`, which equals the atom code because the host
+builds the carrier as `0 :| [1 .. K-1]` (pinned by the seven wire
+rows mutant M71 kills; readout r2b is the REFERENCE side of the
+same convention and a src mutant cannot reach it).
+That identity is a pin's subject here, never an assumption.
+And the vector is computed at the act the engine CHOSE, not at the
+menu's head — the two coincide whenever a menu has one point, which
+is why readout r8 declares a two-point menu to tell them apart.
 
 ### 6.5 Errors (R-D12)
 

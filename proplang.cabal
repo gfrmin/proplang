@@ -212,3 +212,29 @@ test-suite battery
                     , tasty
                     , tasty-hunit
     default-language: GHC2021
+-- THE READOUT ORACLE's stanza, DRAFTED at the oracle phase (the
+-- draft-stanza precedent: proplang.cabal is frozen; this stanza is
+-- spliced into it at the freeze commit, under the sitting's key).
+-- The oracle-phase red run compiles with this stanza's EXACT flag
+-- set (the `warnings` common stanza: -Wall -Werror
+-- -Wincomplete-patterns -Wincomplete-uni-patterns; GHC2021) and
+-- under its DEPENDENCY CLOSURE (-hide-all-packages plus the
+-- build-depends below) — the flag-faithful and package-faithful
+-- clauses, the latter bought by the jp increment's Data.Map gap.
+--
+-- `process`/`directory` and the build-tool-depends are r6's: the
+-- wire row spawns proplang-host over pipes (the g6 form).
+
+test-suite readout
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Readout.hs
+    hs-source-dirs:   test-readout
+    build-depends:    base
+                    , directory
+                    , process
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    build-tool-depends: proplang:proplang-host
+    default-language: GHC2021

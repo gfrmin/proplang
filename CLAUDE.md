@@ -141,8 +141,29 @@ Every step-6+ increment follows the recursive two-phase discipline:
    Three rulings from D bind every future increment oracle
    (R-D20/21/22, canonized here at the R-D14 boundary):
    copy-not-reconstruct (R-D20-i) — an oracle row claiming a frozen
-   formula copies it byte-wise with file:line provenance, quoted in
-   the pack, reviewable by grep, never re-derived in parallel; the
+   formula copies it byte-wise with provenance, quoted in
+   the pack, reviewable by grep, never re-derived in parallel.
+   AMENDED at the readout boundary (2026-08-02): this clause read
+   "byte-wise with FILE:LINE provenance" until the readout increment
+   measured that a bare line number is stale BY CONSTRUCTION in the
+   one place R-D20-i most binds. An oracle frozen BEFORE the
+   implementation it prophesies carries absolute lines that rot the
+   instant that implementation lands, so the clause as written
+   mandated an anchor its own timing guarantees would falsify. THE
+   ANCHOR IS THE COMMIT HASH PLUS THE BINDING NAME — e.g.
+   `src/PropLang/Host.hs` at `bd0d70c`, the binding
+   `p1 <- predictMassS full 1 ag`. Where the citation must point at
+   an ANONYMOUS expression, the quoted expression text IS the anchor.
+   A line number may accompany as a convenience and is never the
+   referent. This is R-D20-i's own discipline carried from WHAT is
+   copied to HOW IT IS ADDRESSED: a binding name survives the motion
+   a line number does not. Its provenance is a live instance in the
+   increment that asked for the rule — the readout pack's own Part
+   I.2 cited `Host.hs:425`/`:516`, true of `bd0d70c` and false of
+   HEAD, so the PROSE carried the disease the oracle beside it had
+   already been cured of. The scriptable half is a boundary-audit
+   candidate and is deliberately NOT written at this freeze; it
+   routes with FL-3. The
    satisfiability-transcript gate (R-D21) — the oracle phase ends
    only when every runtime-red row's asserted quantity has been
    executed once against a throwaway prototype realization, recorded
@@ -403,7 +424,10 @@ Every step-6+ increment follows the recursive two-phase discipline:
    site.
    One line canonized at the battery boundary (2026-07-30; the
    author's ruling of 2026-07-28 on g-b2.2's owed red — "never owe
-   a red if possible"): A RED IS CONSTRUCTED, NEVER OWED. An
+   a red if possible"), CITABLE AS **R-RED** (the ID was in use at
+   the battery's freeze kit and nowhere in this file, so a greppable
+   audit for it found only the kit - the readout increment's mandate
+   round, 2026-07-31): A RED IS CONSTRUCTED, NEVER OWED. An
    invariance row's red lives only at a decision margin, and
    generic streams and pools jump over margins — so when a row's
    red does not fire under the pool, the increment computes the
