@@ -1448,16 +1448,28 @@ fatal:
   demo.sh` -> `git apply --check` both in anon_pipe_read, and
   isolating the four substitutions gave three exits 0 and one block
   (timeout 124) — the blocker attributed, not assumed.
-- **The parse death: an inner quote.** Absolute line 123 carries
-  "every kill readout-unique" in unescaped inner quotes, which
-  TERMINATE the -m string and expose three bare words as extra
-  arguments. A quoting-state walk over the command confirmed it:
+- **The argument-boundary corruption: an inner quote.** Absolute
+  line 123 carries "every kill readout-unique" in unescaped inner
+  quotes. A quoting-state walk over the command confirmed the shape:
   [QUOTED] 5730 bytes / [UNQUOTED] every kill readout-unique /
-  [QUOTED] 7033 bytes. `git tag` refuses extra arguments, so even
-  with every backtick span exiting instantly the key act as drafted
-  could never have parsed. **The kit could not have minted its own
-  tag on any run.** The hang was the lucky failure mode: it stopped
-  the sitting BEFORE a mangled mint.
+  [QUOTED] 7033 bytes — the shell PARSES the command (quote parity
+  is even: 2, measured at the conferral under a pre-stated
+  criterion; and parse-then-expand means the hang above is itself
+  proof of a successful parse), but into a word list that is NOT the
+  register: the -m message truncated and re-glued at the inner
+  quotes, with `kill` and the register's glued 7033-byte tail as two
+  excess arguments `git tag` refuses. **The kit could not have
+  minted the tag it owed on any run.** The hang was the lucky
+  failure mode: it stopped the sitting BEFORE a mangled mint.
+  [REPAIRED at the conferral of 2026-08-04: this bullet first read
+  "The parse death" and claimed "the key act as drafted could never
+  have parsed" — self-refuting beside the process tree above, since
+  a command that expands a substitution has parsed. Parsing precedes
+  expansion; the conviction that survives both parity branches is
+  that the message reviewed could never have been the message
+  minted. The falsified words are quoted here per the frozen-layer
+  discipline; the same sentence is repaired in the register and in
+  EXACT_PLAN 15.7.]
 
 ### X.2 The mint, and the landing
 
@@ -1542,7 +1554,28 @@ green half, discharged at the red run and frozen in
 `opening/red-run.txt`. No recorded transcript's row name moves — the
 relabel is a comment above the group, not a testCase rename.
 
+AMENDED at the conferral (2026-08-04, blocking item 2): a demotion
+justified by "its value clauses are carried elsewhere" is an
+unfalsifiable pointer unless the carriers are NAMED. They now are,
+in the patch itself, both greppable in the frozen matrix: the **p1**
+clause's value is carried by **r7a** — M70's unique killer
+(`readout-kill-matrix.txt` line 109); the **entropy** clause's value
+is carried by **NO standing row** — the M8 probe (entropy sign
+dropped) left the suite 19/19 green (matrix lines 158–160), because
+r1a compares the wire against `entropyAgent`, the renderer's own
+function. That absence is not papered by the relabel: it is opened
+as **OB-31** (a row owed, arriving with M8 promoted into the pool as
+its kill). So the disposition survives the conferral's fork with one
+carrier named and one absence ledgered.
+
 ### X.6 The close kit, rehearsed two-sided from a fresh clone (R-D21)
+
+[HISTORICAL RECORD of the PRE-conferral rehearsal — the 5-file kit,
+three patches, manifest 145, register 1851 bytes. The conferral of
+2026-08-04 (X.9) amended the register and the r1a patch, added
+`obligations.patch`, and moved the manifest to 146; the amended kit's
+full re-rehearsal is recorded at X.9. This section stands as what it
+was: the first rehearsal's transcript.]
 
 `4-close.sh` (kit-hashes-itself; manifest 139 -> 145; signing
 preconditions guarded BEFORE any tree mutation — the 1-verify

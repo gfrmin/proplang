@@ -1,29 +1,57 @@
 the readout close reviewed; the readout stands (#20's r1 catch-net,
-CW8's second tag). The r0 key act's instrument is CONVICTED TWICE
-OVER and the tag it owed was minted true: 3-sign.sh line 30 passed
-the drafted register to git tag as an -m shell string, so a backtick
-span in the prose EXECUTED (`git apply --check`, cited as prose, ran
-as a command substitution and read the terminal for a patch - the
-hang), and the register's own quoted phrase "every kill
-readout-unique" was an argument boundary, so the key act as drafted
-could never have parsed on any run. The kit could not have minted
-its own tag; the register was extracted to a file by a declared
-transform and minted by -F from this shell, and the minted message
-is BYTE-IDENTICAL to the drafted register (12791 bytes) - that
-identity is now this kit's standing record row, re-checked at this
-close. The defect class is structural: the key act is the one line
-no rehearsal executes, so its data was unreachable by the two-sided
-rehearsal BY DESIGN. Canonized under this key at this close: THE
-TAG MESSAGE IS A FILE, NEVER A SHELL STRING (CLAUDE.md), lint row
-L9 the scriptable half - an -m tag command in an unexecuted freeze
-kit FAILS; executed kits are exempt by their tag's existence, never
-by a hand list; L8 stays reserved to OB-26, named at scheduling,
-home the OB-19 heir. This close eats its own law first: this tag is
-minted by -F from a file the manifest hashes. r1a RULED as the
-routed row-VALUE question: KEPT, its value clauses relabelled
-PRESENCE PINS in place (comment-only; every recorded transcript's
-row names untouched) - its real content is rendering presence and
-the attribution partition's green half. Host.hs:387's wait comment
-stays routed to the wire docket's next frozen-layer inventory. The
-wire docket's item two opens next: the OB-19 heir, carrying
-OB-26/27.
+CW8's second tag; conferred at pixel-9a 2026-08-04, the verdict's two
+blocking register edits executed before this mint). The r0 key act's
+instrument is CONVICTED TWICE OVER and the tag it owed was minted
+true: 3-sign.sh line 30 passed the drafted register to git tag as an
+-m shell string, so a backtick span in the prose EXECUTED (`git apply
+--check`, cited as prose, ran as a command substitution and read the
+terminal for a patch - the hang), and the register's own quoted
+phrase "every kill readout-unique" was an ARGUMENT BOUNDARY: the
+shell PARSED the command - quote parity is EVEN (2, measured at the
+conferral under a pre-stated criterion; the hang's own process tree
+is the other proof, since expansion follows parse - the first draft's
+"could never have parsed" was convicted at the conferral and is
+retracted) - but into a word list that was NOT the register: the -m
+message truncated and re-glued at the inner quotes, with "kill" and
+the register's glued tail as two excess arguments git tag refuses.
+The message reviewed could never have been the message minted, and
+the tag owed could never have been minted, on any run. The class went
+unreached NOT by design: the protocol never required the rehearsal to
+execute the key act, and a throwaway key could have. The class is "a
+step verified by inspection rather than execution", and this kit
+still carries two members, recorded not hidden: step 0 reads signing
+CONFIG rather than proving a live signature (OB-29), and L9's pattern
+has never met --message= (OB-28). Canonized under this key at this
+close: THE TAG MESSAGE IS A FILE, NEVER A SHELL STRING (CLAUDE.md),
+lint row L9 the scriptable half - an -m tag command in an unexecuted
+freeze kit FAILS; executed kits are exempt by their tag's existence,
+never by a hand list; L8 stays reserved to OB-26, named at
+scheduling, home the OB-19 heir. The -F canon makes the key-act line
+a CONSTANT, so this close's rehearsal minted the real command with a
+throwaway key, and that one rehearsal generalises to every future
+register - the true argument for the canon, better than the false
+one. The sibling the narrow canon leaves open is recorded: the close
+COMMIT's -m is a kit-authored constant hashed inside 4-close.sh's own
+manifest row, never reviewed prose - exposure nil, said rather than
+assumed. This close eats its own law first: this tag is minted by -F
+from a file the manifest hashes. FOUR OBLIGATIONS OPENED in the
+ledger at this close (obligations.patch, manifest 139 -> 146): OB-28
+the lint hardening bundle (L9's pattern scope
+--message/--message=/-am, the lightweight-tag exemption hole, L5's
+mtime pack selection), home the OB-19 heir's lint touch; OB-29 kit
+step-0 signing guards prove capability by a live throwaway signature,
+never config inspection alone; OB-30 the broad principle - reviewed
+prose never reaches a command through a shell-word parser - held as
+obligation pending a lintable form, never canon without its lint;
+OB-31 entropy_bits' VALUE is pinned by NO standing row (the M8 probe
+left the suite 19/19 green), a row owed that arrives with M8 promoted
+into the pool as its kill. r1a RULED as the routed row-VALUE
+question: KEPT, its value clauses relabelled PRESENCE PINS in place
+(comment-only; every recorded transcript's row names untouched) - and
+the relabel NAMES ITS CARRIERS, greppable, never gestured: the p1
+clause's value is carried by r7a, M70's unique killer in the frozen
+matrix; the entropy clause's value is carried by no standing row,
+which is OB-31's opening, recorded rather than papered. Host.hs:387's
+wait comment stays routed to the wire docket's next frozen-layer
+inventory. The wire docket's item two opens next: the OB-19 heir,
+carrying OB-26/27 and now OB-28.

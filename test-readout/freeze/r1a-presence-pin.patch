@@ -1,22 +1,30 @@
 diff --git a/test-readout/Readout.hs b/test-readout/Readout.hs
-index 84c7359..edc51b1 100644
+index 84c7359..6f80123 100644
 --- a/test-readout/Readout.hs
 +++ b/test-readout/Readout.hs
-@@ -271,6 +271,17 @@ replayAll hello ticks = go (fst (serveLine hostStart hello)) ticks
+@@ -271,6 +271,25 @@ replayAll hello ticks = go (fst (serveLine hostStart hello)) ticks
  
  r1 :: TestTree
  r1 = testGroup "r1 the readout is PURELY ADDITIVE (attribution partition)"
 +  -- r1a RULED AT readout-freeze-r1 (the r0 matrix's row-VALUE question,
 +  -- pack IX.5): its two VALUE clauses are PRESENCE PINS, not value
 +  -- oracles. Each compares the wire against the same function that
-+  -- renders it (the M8 probe stayed 19/19 green under an entropy-sign
-+  -- mutation), and this world's tied binary prior makes p1 == p_argmax,
-+  -- so M70's kill cannot land here (a margin artifact, R-RED's own
-+  -- disease, in a row whose world cannot move without changing what it
-+  -- attributes). r1a's real content is rendering PRESENCE; its real job
-+  -- is the attribution partition's GREEN half, discharged at the red
-+  -- run and frozen in opening/red-run.txt. KEPT with its seat so read;
-+  -- every recorded transcript's row names are untouched.
++  -- renders it, and the relabel NAMES ITS CARRIERS rather than
++  -- gesturing at them (the conferral's condition, 2026-08-04): the p1
++  -- clause's VALUE is carried by r7a - M70's unique killer in the
++  -- frozen matrix; here the tied binary prior makes p1 == p_argmax, so
++  -- M70's kill cannot land (a margin artifact, R-RED's own disease, in
++  -- a row whose world cannot move without changing what it
++  -- attributes). The entropy clause's VALUE is carried by NO STANDING
++  -- ROW: the M8 probe (entropy sign dropped) left the suite 19/19
++  -- green, because this row compares the wire against entropyAgent,
++  -- the renderer's own function, so both sides move together - that
++  -- absence is OB-31, opened at this close, owed a row that arrives
++  -- with M8 promoted into the pool as its kill. r1a's real content is
++  -- rendering PRESENCE; its real job is the attribution partition's
++  -- GREEN half, discharged at the red run and frozen in
++  -- opening/red-run.txt. KEPT with its seat so read; every recorded
++  -- transcript's row names are untouched.
    [ testCase "r1a GREEN half: the shipped three fields carry their frozen meanings (plain route)" $ do
        let ag    = refAgent Nothing
            reply = replay (helloAt Nothing) [tickDec]

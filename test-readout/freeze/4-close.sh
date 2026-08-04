@@ -8,7 +8,10 @@
 #     lint-l9.patch -> tools/prefreeze-lint.sh row L9, the scriptable
 #     half; L8 stays reserved to OB-26, named at scheduling)
 #   - r1a KEPT as presence pins (r1a-presence-pin.patch, comment-only;
-#     no transcript row name moves)
+#     no transcript row name moves; the carriers NAMED per the
+#     conferral: p1 -> r7a, entropy -> no standing row -> OB-31)
+#   - FOUR OBLIGATIONS OPENED (obligations.patch -> OBLIGATIONS.md
+#     rows OB-28..OB-31, from the pixel-9a conferral of 2026-08-04)
 #   - the tag message in r1-tag-msg.txt, minted by -F — the law this
 #     close canonizes, eaten by its own kit first
 # DECLINE BY EDITING r1-tag-msg.txt or dropping a patch line below,
@@ -18,7 +21,7 @@
 #
 # If it dies part-way (before the commit), reset with:
 #   git checkout -- CLAUDE.md tools/prefreeze-lint.sh \
-#                   test-readout/Readout.hs MANIFEST.sha256
+#                   test-readout/Readout.hs OBLIGATIONS.md MANIFEST.sha256
 #   rm -f test-readout/freeze/r1-gate5-run.txt \
 #         test-readout/freeze/r1-lint-transcript.txt
 set -euo pipefail
@@ -70,15 +73,15 @@ fi
 echo "record row OK: minted r0 tag message == drafted register ($(wc -c < "$minted") bytes)"
 rm -f "$minted" "$drafted"
 
-# 2. the three [RULING] patches — three DIFFERENT files, so a
+# 2. the four [RULING] patches — four DIFFERENT files, so a
 #    per-patch check against the unpatched tree is sound here (the
 #    sequential-pair hazard needs two patches to one file). Explicit
 #    file arguments ALWAYS: the r0 hang was git apply --check reading
 #    the terminal when its prose twin lost its argument.
-for p in tag-message-file.patch lint-l9.patch r1a-presence-pin.patch; do
+for p in tag-message-file.patch lint-l9.patch r1a-presence-pin.patch obligations.patch; do
   git apply --check "$KIT/$p"
 done
-for p in tag-message-file.patch lint-l9.patch r1a-presence-pin.patch; do
+for p in tag-message-file.patch lint-l9.patch r1a-presence-pin.patch obligations.patch; do
   git apply "$KIT/$p"
   echo "applied: $p"
 done
@@ -90,11 +93,13 @@ cabal test all 2>&1 | tee "$KIT/r1-gate5-run.txt" | tail -3
 grep -q "Test suite readout: PASS" "$KIT/r1-gate5-run.txt"
 echo "gate 5 green on the patched tree"
 
-# 4. the manifest: re-hash the three patched rows, add the kit's six
-#    (kit-hashes-itself, message file included). ORDER IS LAW here:
-#    the re-hash runs AFTER the L9 row exists in the tree — IX.2's
-#    builder constraint, carried from the sitting that scheduled
-#    OB-26. 139 -> 145 rows.
+# 4. the manifest: re-hash the four patched rows, add the kit's seven
+#    (kit-hashes-itself, message file included; the arithmetic
+#    reconciles to this list, per the conferral: 4-close.sh,
+#    r1-tag-msg.txt, four patches, r1-gate5-run.txt = 7 new rows).
+#    ORDER IS LAW here: the re-hash runs AFTER the L9 row exists in
+#    the tree — IX.2's builder constraint, carried from the sitting
+#    that scheduled OB-26. 139 -> 146 rows.
 python3 - <<'PY'
 import hashlib, re
 rows = {}
@@ -102,11 +107,13 @@ for ln in open("MANIFEST.sha256"):
     m = re.match(r"^(\S+)\s+(.*)$", ln.rstrip("\n"))
     if m: rows[m.group(2)] = m.group(1)
 for f in ("CLAUDE.md", "tools/prefreeze-lint.sh", "test-readout/Readout.hs",
+          "OBLIGATIONS.md",
           "test-readout/freeze/4-close.sh",
           "test-readout/freeze/r1-tag-msg.txt",
           "test-readout/freeze/tag-message-file.patch",
           "test-readout/freeze/lint-l9.patch",
           "test-readout/freeze/r1a-presence-pin.patch",
+          "test-readout/freeze/obligations.patch",
           "test-readout/freeze/r1-gate5-run.txt"):
     rows[f] = hashlib.sha256(open(f, "rb").read()).hexdigest()
 with open("MANIFEST.sha256", "w") as fh:
@@ -130,9 +137,9 @@ grep -q ": 0 FAIL," "$KIT/r1-lint-transcript.txt" \
 
 # 6. the key act: the signed close commit, then the tag FROM THE
 #    FILE. The -F path is the canonized law's first execution.
-git add CLAUDE.md tools/prefreeze-lint.sh MANIFEST.sha256 \
-        test-readout readout-author-pack.md
-git commit -S -m "readout close: the r1 catch-net executed (the key-act conviction recorded - the r0 -m string executed its own prose and could never have parsed, the tag minted true by -F with the byte-identity now a standing record row; THE TAG MESSAGE IS A FILE canonized with lint L9 its scriptable half, L8 left reserved to OB-26; r1a ruled KEPT as presence pins, comment-only; manifest 139 -> 145)"
+git add CLAUDE.md tools/prefreeze-lint.sh OBLIGATIONS.md MANIFEST.sha256 \
+        test-readout readout-author-pack.md EXACT_PLAN.md
+git commit -S -m "readout close: the r1 catch-net executed, conferral-amended (the key-act conviction recorded - the r0 -m string executed its own prose, and the shell PARSED it into a word list that was not the register, so the tag owed could never have been minted; the tag minted true by -F with the byte-identity now a standing record row; THE TAG MESSAGE IS A FILE canonized with lint L9 its scriptable half, L8 left reserved to OB-26; r1a ruled KEPT as presence pins with its carriers NAMED - p1 by r7a, entropy by no standing row; OB-28..OB-31 opened; manifest 139 -> 146)"
 git tag -s "$TAG" -F "$KIT/r1-tag-msg.txt"
 
 echo

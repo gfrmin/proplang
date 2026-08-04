@@ -1499,8 +1499,13 @@ looked like items and is not:
    string: a backtick span EXECUTED (`git apply --check`, cited as
    prose, ran as a command substitution and read the terminal — the
    hang at the sitting), and the register's own quoted phrase "every
-   kill readout-unique" was an argument boundary, so the key act as
-   drafted could never have parsed on any run. The tag was minted
+   kill readout-unique" was an argument boundary: the shell parsed
+   the command, but into a word list that was not the register, so
+   the tag owed could never have been minted on any run. [This
+   sentence first read "could never have parsed" — convicted at the
+   pixel-9a conferral (parsing precedes expansion; the hang proves
+   the parse) and repaired here, in the register, and in pack X.1
+   with the falsified words quoted.] The tag was minted
    true by `-F` from the extracted register, byte-identical to the
    drafted bytes (12791) — that identity is `4-close.sh`'s standing
    record row. Class repair canonized at the close: THE TAG MESSAGE
@@ -1509,7 +1514,9 @@ looked like items and is not:
    The full record is pack Part X.
 2. **r1a's row-VALUE ruling** (routed at IX.5): KEPT, its value
    clauses relabelled PRESENCE PINS in place, comment-only — no
-   recorded transcript's row name moves.
+   recorded transcript's row name moves; the carriers NAMED per the
+   conferral (p1 → r7a, M70's unique killer; entropy → no standing
+   row, opened as OB-31).
 
 NOT this close's, restated so the routing is checkable: OB-26/27
 (home = the OB-19 heir, named at scheduling); `Host.hs:387`'s wait
@@ -1517,8 +1524,16 @@ comment (the wire docket's next frozen-layer inventory); this plan's
 own CR1/CR2 "r1 tag" mentions, which are trampoline-freeze-r1's
 (checked at the close, no collision).
 
+The kit went to pixel-9a for conferral (2026-08-04, the standing
+practice now covering closes as well as sittings). Verdict: land
+after two blocking register edits — both executed, both recorded in
+pack X.9 with the parity measurement the verdict pre-stated. Four
+obligations opened from its findings (OB-28..OB-31, via
+`obligations.patch` under the author's key at the close), and the kit
+grew the fourth patch, so it was re-rehearsed in full.
+
 The close kit is `test-readout/freeze/4-close.sh`: kit-hashes-itself,
-manifest 139 -> 145 with the tag-message file among the rows, the
+manifest 139 -> 146 with the tag-message file among the rows, the
 patches applied BEFORE the re-hash and the lint run AFTER it (IX.2's
 ordering constraint, carried), signing preconditions guarded before
 any tree mutation, and the tag minted by `-F` — the law eaten by its
