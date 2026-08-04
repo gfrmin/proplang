@@ -447,6 +447,33 @@ Every step-6+ increment follows the recursive two-phase discipline:
    under the F6 precedent, its precedent) — never fabricated into
    an artificial cell. The law demands the window computation, not
    a red by any means.
+   One clause canonized at the readout close (readout-freeze-r1,
+   2026-08-04; the r0 key act's hang its provenance): THE TAG
+   MESSAGE IS A FILE, NEVER A SHELL STRING. A freeze kit passes
+   its drafted register to `git tag` by -F <file>, the message
+   file itself a manifest row — never by -m "<prose>", which puts
+   a shell parser between the reviewed register and the key act.
+   Inside the -m quotes a backtick span is EXECUTED, not quoted
+   (the r0 sitting hung for hours: `git apply --check`, cited as
+   prose in the register, ran as a command substitution and read
+   the terminal for a patch), and an unescaped inner quote is an
+   argument boundary (the register's quoted phrase "every kill
+   readout-unique" split the message into extra arguments, so the
+   key act as drafted could never have parsed — the kit could not
+   have minted its own tag on ANY run; the tag was minted true by
+   extracting the register to a file and signing with -F, the
+   minted message byte-identical to the drafted one, the identity
+   now the r1 kit's standing record row). The class is structural,
+   not a typo: the key act is the ONE line no rehearsal executes —
+   a rehearsal has no key — so a defect in the tag command's DATA
+   is unreachable by the two-sided rehearsal BY DESIGN, and the
+   repair shrinks the unrehearsable surface to a constant command
+   whose data rides in a file the manifest hashes and diff can
+   check. The scriptable half is lint row L9: a git tag -m in a
+   freeze kit whose tag does not yet exist FAILS; executed kits
+   derive their exemption from their tag's existence, never from
+   a hand list (L9 not L8: OB-26 named its own future row L8 at
+   scheduling, and that seat stays reserved for the OB-19 heir).
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
