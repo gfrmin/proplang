@@ -1639,3 +1639,103 @@ kit refuses to run where the signing identity is absent.
   frozen-layer inventory, as Step F routed it.
 - **EXACT_PLAN's CR1/CR2 "the r1 tag" mentions** — checked at this
   close: they cite trampoline-freeze-r1, not this tag. No collision.
+
+### X.9 The conferral (pixel-9a, 2026-08-04), and the amended close
+
+The kit went to pixel-9a as a reading-copy brief (the standing
+practice, now covering closes as well as sittings). Verdict: **land,
+after two blocking register edits** — governed by the verdict's own
+asymmetry principle, register edits free, mechanism edits expensive.
+Both blocking items plus every routed finding are executed below; the
+mechanism DID change (a fourth patch, the r1a patch reworded), so the
+full re-rehearsal was owed and ran, the verdict's "nothing needs
+re-rehearsing" notwithstanding — its premise was register-only edits,
+and its own item 2 falsified that premise.
+
+**Blocking item 1 — the parity measurement, criterion pre-stated by
+the verdict before the run.** Even parity of double quotes in the
+drafted r0 register ⇒ the command PARSES into a mangled word list and
+the backticks expand (hang correctly attributed, parse-death claim
+false); odd parity ⇒ unterminated string, nothing runs, and the
+process tree needs re-reading. Measured on the frozen artifact by the
+kit's own extraction transform: **2 — EVEN.** The process tree was
+already proof (a command that expands a substitution has parsed), so
+the first draft's "could never have parsed" was self-refuting beside
+the evidence one bullet above it. Repaired in three places with the
+falsified words quoted: the register, X.1, EXACT_PLAN 15.7. The
+conviction that survives both parity branches, now on the record: the
+message reviewed could never have been the message minted — truncated
+and re-glued at the inner quotes, with `kill` and the glued 7033-byte
+tail as two excess arguments `git tag` refuses.
+
+**Blocking item 2 — the carriers named.** "Carried by other rows" was
+an unfalsifiable pointer; the patch now names its targets, both
+greppable in the frozen matrix: p1 → **r7a** (M70's unique killer,
+matrix line 109); entropy → **no standing row** (the M8 probe left
+the suite 19/19 green, matrix lines 158–160). The absence is ledgered
+as OB-31, not papered by the relabel. KEPT-as-presence-pins survives
+the verdict's fork: one carrier named, one absence opened.
+
+**The routed findings, executed.** The register's "unreachable BY
+DESIGN" is retracted: the class went unreached because the protocol
+never required the rehearsal to execute the key act — a throwaway key
+could have signed an inline -m at r0. The -F canon's true argument is
+that it makes the key-act line a CONSTANT, so one rehearsal
+generalises to every future register. The sibling the narrow canon
+leaves open is recorded in the register: the close COMMIT's -m is a
+kit-authored constant hashed inside 4-close.sh's own manifest row,
+never reviewed prose. Four obligations opened in the ledger by
+`obligations.patch` under the author's key: **OB-28** the lint
+hardening bundle (L9's pattern is -m-only — --message/--message=/-am
+pass unseen, and the RED battery seeded a plain -m only; the
+lightweight-tag exemption hole; L5's mtime selection from X.6);
+**OB-29** step-0 signing guards verify by inspection, not execution —
+the r0 class live inside the kit that repairs its first instance;
+**OB-30** the broad principle (reviewed prose never reaches a command
+through a shell-word parser) held as obligation pending a lintable
+form — "a canon row without a lint is a convention that gets
+forgotten"; **OB-31** entropy_bits' uncarried value.
+
+**The manifest arithmetic, reconciled to a list.** 139 → 146 is
+seven new rows: `4-close.sh`, `r1-tag-msg.txt`, the FOUR patches, and
+`r1-gate5-run.txt` — the verdict's count of five missed the gate-5
+transcript (the sixth) and predates `obligations.patch` (the
+seventh). Four standing rows re-hash: CLAUDE.md,
+tools/prefreeze-lint.sh, test-readout/Readout.hs, OBLIGATIONS.md.
+(`r1-lint-transcript.txt` rides the close commit un-hashed, written
+after the re-sign — same ordering reason as r0's, stated in the kit.)
+
+**The amended kit, re-rehearsed two-sided (R-D21; fresh clone,
+throwaway ed25519 key, both destroyed after):**
+
+- **GREEN, end-to-end.** guards OK → record row OK (12791 bytes) →
+  FOUR patches applied → gate 5 green (12 of 12 suites PASS) →
+  `manifest re-signed over 146 rows` → lint 0 FAIL with L9 PASS live
+  → signed close commit → `git tag -s readout-freeze-r1 -F` →
+  SEALED. Post-run: Good signature; the minted r1 message
+  BYTE-IDENTICAL to `r1-tag-msg.txt` (**3798 bytes**); OBLIGATIONS.md
+  at 31 OB rows.
+- **RED, the record row.** The r0 tag replaced at the same commit
+  with one word's case flipped (`ruled` → `Ruled`): the close died at
+  step 1 with the differing line printed, exit 1, ZERO tree mutation;
+  the true tag restored by object id (cd33c0d) and re-verified.
+- **RED, L9 standalone.** A seeded kit file (`git tag -s
+  readout-freeze-r9 -m "seeded defect"`) failed with exact file:line
+  — and L3 fired beside it on the same seed (committed but unhashed):
+  two rows, one defect, both honest.
+- **RED, L9 through the kit.** The seed committed: the close ran
+  green through the record row, all four patches, gate 5 and the
+  re-hash, then the lint failed on exactly the seeded row (1 FAIL)
+  and REFUSED before any key act. No tag minted.
+- **RED, the re-run guard.** Against the sealed clone: REFUSE
+  instantly, exit 1.
+
+One rehearsal incident, recorded under the triptych's own discipline:
+the FIRST record-row red attempt perturbed nothing — its sed pattern
+missed the register's actual first line, the record row correctly
+passed the unperturbed bytes, and the run sailed into gate 5 until
+killed. A red run that never seeded its defect is not a red; the
+perturbation was verified to land (the flipped word printed back)
+before the second attempt counted. All six kit files verified
+byte-identical, worktree == rehearsed clone, before the clone and key
+were destroyed.
