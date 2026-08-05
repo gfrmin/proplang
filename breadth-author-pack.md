@@ -263,8 +263,15 @@ unchanged — the law's exact shape, pinned extensionally.
     K=10 models 14337: ev 103.51 -> 6.07 (x17.1)
          readout 980.14 -> 122.20 (x8.0), exact ==: True
 
-The constant factor alone exceeds the naive family's multiplier, and
-it composes with P3/P4.
+[REPAIRED at r3, 2026-08-05, the r2 verdict's finding — this
+paragraph closed with the falsified sentence "The constant factor
+alone exceeds the naive family's multiplier, and it composes with
+P3/P4." At the measured 39.8% walk share (XI.3) the composed
+full-world ceiling is ~x2.14 against the naive family's matched-depth
+x3.64 — it does NOT exceed it. What stands: the factor is real ON THE
+CONST/GUARD SUBSET (x8.8/x17.1, extensionally exact), it composes
+with P3/P4 on that subset, and the walk residual bounds the whole —
+P5 is banked in exactly that reduced form.]
 
 ## V. The decision table (K=6 = the consumer's 8005-sentence operating point)
 
@@ -569,3 +576,145 @@ advance, and the frozen-layer repairs of Part VIII (the Host.hs:387
 comment, the OB-19 row amendment, the VIII.3 dated bracket). The
 builder's, after those: the test-breadth/ oracle under Parts VI/XI
 as ruled — oracle-first, R-D21 transcripts, kills with rows.
+
+## XII. The r2 verdict's orders, executed (r3, 2026-08-05)
+
+XI was accepted; this part executes what the acceptance ordered: the
+confound swept as a CLASS, the drift curve and the ratio-travel cell
+run, the manifest chain named upstream, P5's falsified sentence
+repaired in place (Part IV now carries the repair with the words
+quoted), the stamp's first conviction written out, and the
+walk-exclusion gate row adopted. The ordered probe's stamp — now
+extended to SOURCE-TREE state per the verdict, since HEAD is
+precisely what a builder branch moves:
+
+    RUNNER: sha256(binary)=593f0775...c46d2f7f  HEAD=daa7a7b
+      src-tree=ecfd3102ddca43df4846f74109837967079def85  src-dirty=0
+      date=2026-08-05T10:20:12+03:00
+
+### XII.1 The confound swept as a class: every cell's window, named
+
+The steady windows behind every Part IV/V cost cell (1-based tick
+indices; "amortized" = total/ticks including setup):
+
+    P0  ev, ev+ro:  K in {2,4,6} ticks 11-60 | K=10 ticks 11-30
+    P0  wire:       K in {2,4,6} ticks 6-30  | K=10 ticks 6-15
+    P1  ev, ev+ro:  K in {3,4,6} ticks 6-30 | K=8 ticks 6-8 | K=10 tick 6
+    P3  ev, ev+ro:  K in {4,6} ticks 6-30 | K=8 ticks 6-10 | K=10 ticks 6-8
+    P4  ev:         amortized 1-30 (K=6) | 1-12 (K=10)
+    P5  ev:         amortized 1-30 (K=6) | 1-12 (K=10)
+    XI  ev+ro:      all four |S| cells ticks 6-30, one process
+
+SOUND (matched-window, same-process ratios): P4 naive-vs-quotient,
+P5 shipped-vs-fast, XI's |S| cells, XII.3's ratio. UNRECONCILED and
+so marked: **Part V's cross-K scaling column** — the x3.4 shipped
+K10/K6, P1's x5.8 ev, and the wire x3.7 all divide deep small-K
+cells by shallow large-K cells, so the K-scaling is UNDERSTATED by
+an unmeasured amount (population factors are counting and stay
+exact). Part V's table stands as read with this part as its window
+column. Corroboration the pack had and had not noticed, now noticed:
+the consumer's own 8005 row reads p50 1237 against mean 1760 — a 42%
+median-mean gap is a right tail, and drift of XII.2's shape is
+precisely what produces one; the production shadow was showing the
+drift all along, and the P0 wire "agreement" (1870 CPU vs p50 1237)
+was never as tight as it read.
+
+### XII.2 The drift curve (the verdict's "add P6"; runs as P7 — the
+name P6 was already worn by the recon probe, renamed here, not
+silently renumbered)
+
+K=6 ev+ro, ONE process, ONE stream, 300 ticks:
+
+    per-tick ms (every 10th): 380 410 446 481 520 549 614 624 660
+      703 737 777 813 861 892 951 993 1038 1087 1140 1184 1232 1283
+      1329 1384 1429 1493 1566 1587 1660
+    windows: [6-30] 437.6 | [50-80] 607.1 | [100-130] 794.4 |
+             [150-180] 1012.7 | [250-280] 1512.1
+    LS slope [6-300] = 4.444 ms/tick-index
+    half-slopes: [6-150] 3.725 vs [151-300] 5.095  (ratio 1.37)
+
+**The verdict's fork resolves to the second branch: the growth is
+WORSE THAN LINEAR** — the slope itself grows 37% between halves
+(window-to-window marginal slopes 3.6 -> 3.8 -> 4.4 -> 5.0). At
+depth 300 a tick costs 3.5x its depth-30 cost; cumulative cost is
+worse than quadratic in session length. Per the fork's own words,
+the heir's oracle has a different problem than breadth — recorded
+here as a STANDING FINDING with its own docket line, not absorbed
+into the multiple: exactness was chosen deliberately, its price is
+now measured rather than felt, and ACCEPTING that price is an
+explicit author act still owed (the verdict's "an accepted cost
+discovered by accident is not yet accepted"). Drafted REPORT row for
+the heir's instrument: the five windowed means and the half-slope
+pair, re-printed each run — a moved slope is then a tell, never a
+mystery. Residuals printed by the probe: one stream shape (two
+distinct evidence values — richer streams could grow denominators
+faster), ev+ro class only, K=6 only.
+
+### XII.3 The ratio travels: the matched-depth gate is sound
+
+    |S|=2 / base: window [6-30] = 1.258 | window [100-130] = 1.261
+
+Depth-invariant to 3 parts in 1000. Two consequences: the
+matched-depth ratio gate holds at ANY depth (a declared window is
+good hygiene, not a soundness need), and — the load-bearing one —
+**the drift multiplies both routes proportionally, so the breadth
+decision is ISOLATED from the drift problem.** The multiple can be
+named on the ratio; the drift cannot be policed by a ratio gate and
+does not need to be.
+
+### XII.4 The manifest chain, named upstream (nothing wrong survives
+under a signature)
+
+The full accounting: X.8's kit brief planned SIX rows, "139 -> 145"
+— and that six CORRECTLY included the kit-generated
+`r1-gate5-run.txt` (139 + 4-close.sh + r1-tag-msg.txt + three
+patches + gate5-run = 145). It was the CONFERRAL VERDICT's own
+five-row list that missed gate5-run (and necessarily predated
+`obligations.patch`); the conferral's amendment added
+obligations.patch as the seventh row, 145 -> 146. The reconciliation
+is recorded in-tree at 4c56dac ("the verdict's five missed
+r1-gate5-run.txt and predated obligations.patch") and X.6's
+historical bracket ("added obligations.patch, and moved the manifest
+to 146"); the signed tag message carries 146. So the surviving "145"
+sits only in X.6's BRACKETED HISTORICAL transcript and X.8's brief
+— both true of the pre-conferral kit they describe. The r2 verdict's
+guess (the brief forgot gate5-run) is corrected: the brief counted
+it; the conferral's list dropped it.
+
+### XII.5 The stamp's first conviction, written out
+
+The XI RUNNER line read `HEAD=7b765fa`; the prose above it said the
+evidence ran at HEAD 0766ebe. The sentence the pack owes: the probe
+ran on the builder commit 7b765fa, which sits ATOP the tag and
+touches only this pack file — the SOURCE TREE is byte-identical
+(`git rev-parse <commit>:src` = `ecfd3102...` at 0766ebe, 7b765fa,
+and daa7a7b alike), so every measurement is of the sealed engine and
+the prose's "at HEAD 0766ebe" was sloppy about WHICH ref it named,
+not about what was measured. Per the verdict, the stamp now records
+what a builder branch cannot move: XII's runner line carries
+`src-tree=` (the src tree object hash) and `src-dirty=0` alongside
+HEAD. The obligation's drafted text (XI.5) gains that clause.
+
+### XII.6 The walk-exclusion gate row, adopted as ruled
+
+Walks cost ~130x per sentence (39.8% of ev time from 0.50% of
+population, XI.3); walk variants of the declared families would
+multiply the expensive 39.8%, not the cheap 60%. As ruled: **the
+heir's declared family contains NO walk variants, canonized as a
+gate row in the heir's oracle** (declared-family population is a
+closed form over consts and guards only), reopenable solely on a
+measured cell of their own. Part IX's last under-determination is
+thereby closed, not left "either way".
+
+### XII.7 Where item 3 now stands
+
+The depth-invariance cell came back tame (XII.3); the drift cell did
+not (XII.2), but its non-tameness is orthogonal to the ratio by
+XII.3's own measurement. On the record for the naming: |S|=2 =
+x1.26 at any depth, per-pair 0.132, naive x3.64, bar-2 headroom
+seven ordered pairs — and, separately docketed, the superlinear
+session-depth growth awaiting the author's explicit acceptance (or
+further order). The number, the drift's acceptance, G2, the
+build-stamp mint (now with the src-tree clause), OB-25's advance,
+and the Part VIII frozen-layer repairs remain the author's; the
+test-breadth/ oracle opens after them.
