@@ -681,6 +681,18 @@ sits only in X.6's BRACKETED HISTORICAL transcript and X.8's brief
 guess (the brief forgot gate5-run) is corrected: the brief counted
 it; the conferral's list dropped it.
 
+[CORRECTED at r4, per the r3 verdict, the falsified words quoted:
+this section wrote "It was the CONFERRAL VERDICT's own five-row list
+that missed gate5-run", and 4c56dac's parenthetical reads the same
+way — both MIS-STATE what the conferral did. The conferral listed
+five and ASKED for the sixth precisely because five did not
+reconcile; it asserted no completeness. The accurate sentence, which
+this bracket now lodges against 4c56dac's wording as well (a commit
+message being uneditable, the correction lives here): the verdict
+named five of six and asked for the missing row, and its later guess
+at that row's identity was wrong. Both facts, neither flattering nor
+otherwise.]
+
 ### XII.5 The stamp's first conviction, written out
 
 The XI RUNNER line read `HEAD=7b765fa`; the prose above it said the
@@ -706,7 +718,7 @@ closed form over consts and guards only), reopenable solely on a
 measured cell of their own. Part IX's last under-determination is
 thereby closed, not left "either way".
 
-### XII.7 Where item 3 now stands
+### XII.7 Where item 3 now stands [superseded by Part XIII's cells]
 
 The depth-invariance cell came back tame (XII.3); the drift cell did
 not (XII.2), but its non-tameness is orthogonal to the ratio by
@@ -718,3 +730,128 @@ further order). The number, the drift's acceptance, G2, the
 build-stamp mint (now with the src-tree clause), OB-25's advance,
 and the Part VIII frozen-layer repairs remain the author's; the
 test-breadth/ oracle opens after them.
+
+## XIII. The r3 verdict's closing orders, executed (r4, 2026-08-05)
+
+The ordered probe (P8; stamp with the src-tree clause):
+
+    RUNNER: sha256(binary)=ca3616eb...d4347c  HEAD=0341a57
+      src-tree=ecfd3102...  src-dirty=0  date=2026-08-05T10:57:30+03:00
+
+### XIII.1 The drift measured on the richest stream this world admits
+
+The order said eight distinct evidence values; at K=6 the declared
+world's evidence alphabet IS six (atoms 0..5) — stated, not silently
+substituted. The cell: all six atoms cycling plus 196 distinct
+guard-feature pairs (both guards swept across their 11 cut-points),
+K=6 ev+ro, 300 ticks, one process:
+
+    windows: [6-30] 418.1 | [50-80] 581.6 | [100-130] 759.4 |
+             [150-180] 961.8 | [250-280] 1448.7
+    LS slope 4.226 | halves 3.575 vs 4.890 (ratio 1.37)
+
+**Richness does not move the curve.** The cleanest comparison is
+same-process: the rich stream's [6-30] mean (418.1) against the
+standard two-value stream's (418.3, cell XIII.3's base) — 0.05%
+apart; the deep windows sit within the known ~5% cross-run spread of
+P7's; the curvature ratio is identical (1.37). The mechanism, now
+evident: every tick's per-sentence masses are drawn from the SAME
+small set fixed by the theta codebook whichever atom or branch the
+tick selects, so denominator growth is CODEBOOK-bounded, not
+stream-bounded. The r3 verdict's lower-bound concern is answered by
+measurement: the P7 curve is not a friendly-stream artifact, and the
+acceptance binds to the real number. (Residual, printed: both
+streams are periodic; no aperiodic real corpus was replayed.)
+
+### XIII.2 The wire-class drift: EU/render DRIFTS, and the consumer
+sentence is measured
+
+300 combined serveLine ticks on the same rich stream:
+
+    wire windows: [6-30] 1832.3 | [50-80] 2537.9 | [100-130] 3271.1 |
+                  [150-180] 4110.3 | [250-280] 6093.2
+    LS slope 17.54 | halves 15.02 vs 20.03 (ratio 1.33)
+    EU/render (wire minus ev+ro, per window):
+      1414.2 | 1956.3 | 2511.7 | 3148.5 | 4644.5
+
+The r3 verdict's unmeasured cell resolves to its second branch:
+**EU/render drifts with the posterior** (x3.28 shallow-to-deep,
+proportional to ev+ro's x3.46 — EU reads predictive masses, so it
+inherits their arithmetic), and the depth-300 wire tick lands at
+~6.6 s — the verdict's 7.1 estimate for the drifting case, nearly
+exact. The sentence a consumer can hold, first-crossing on the
+measured series:
+
+    At K=6 over 8005 sentences, the wire tick crosses 2 s at depth
+    ~30, crosses 5 s at depth ~209, and stays under 10 s through
+    depth 300.
+
+That sentence — not the slope — is what the drift acceptance
+accepts; drafted as the acceptance's operative clause in XIII.6.
+
+### XIII.3 Ratio travel at |S|=6 (the insurance cell): tame
+
+    |S|=6 / base: [6-30] 1.804 | [100-130] 1.828
+    (and 1.804 == 1 + 6 x 0.132 to within noise — the per-pair
+    constant reproduced a third way)
+
+The gate's depth-invariance now holds at both measured |S| points;
+travel spread 1.3%.
+
+### XIII.4 The containment, asserted
+
+No ruling in this pack rests on the unreconciled cross-K column:
+item 3's envelope rests on XI/XII/XIII matched-window cells at K=6;
+item 1's scope on population counts, Kraft sums, and semantics
+cells (window-free); P4's and P5's verdicts on same-window
+same-process ratios; OB-31, item 7, and every rider on no timing
+cell at all. The cross-K column is descriptive only — a marked
+defect AND a contained one, now said rather than left to a reader's
+audit.
+
+### XIII.5 The gate hardened in its other direction (as ordered)
+
+The b6 ratio gate's denominator composition is PINNED: the gate row
+records, beside the ratio, the base's measured composition at the
+mint — at this opening's operating point (K=6, 8005 sentences,
+window [6-30]): ev 64.4 ms of which walks carry 25.6 (39.8%),
+readout 353.7, EU/render 1414.2 at the wire class. A
+base-composition change (the standing example: a future walk
+optimisation collapsing the 39.8% — P5's banked table points
+straight at it) is a LICENSED RE-MINT of the gate, never a breadth
+failure: the first person to speed up walks must not be told they
+broke breadth. And the drift row is GATED, not printed: the five
+windowed means and the half-slope ratio are FROZEN at the oracle's
+mint, each run recomputes and FAILS outside tolerance — drafted at
++/-15% per windowed mean and +/-0.15 absolute on the half-slope
+ratio (observed cross-run spread ~5%, a 3x margin; the final
+numbers are the freeze's call). A permanently-printing row is a
+green that cannot fail wearing a different colour — the r3 verdict's
+words, adopted as the row's design.
+
+### XIII.6 The two mints, prepared for the author's key
+
+**The bar** (item 3; the number is the author's — the slot is left):
+
+    GATE b6: (heir-route ev+ro ms/tick) / (base-route ev+ro ms/tick),
+    same stream, same process, matched depth and window,
+    <= [ THE AUTHOR'S MULTIPLE ].
+    Measured envelope beneath it: |S|=2 = 1.26 and |S|=6 = 1.80,
+    both depth-invariant; per-pair 0.132, linear; naive-all-pairs
+    3.64, excluded; a bar of 2 admits |S| <= 7 ordered pairs.
+    Denominator composition pinned per XIII.5.
+
+**The drift acceptance** (its operative clause now measured on the
+richest admissible stream and expressed in the class the consumer
+feels):
+
+    ACCEPTED as exactness's price: per-tick cost grows superlinearly
+    with session depth (half-slope ratio 1.37, stream-shape-robust,
+    codebook-bounded); at K=6 over 8005 sentences the wire tick
+    crosses 2 s near depth 30 and 5 s near depth 209. The drift row
+    rides the heir's oracle as a GATED diff-vs-frozen (XIII.5), and
+    any depth-mitigation work is its own future increment under its
+    own demand gate — never a silent change to the exact semantics.
+
+Both slots await the author's key at the sitting's close; everything
+beneath them is measurement.
