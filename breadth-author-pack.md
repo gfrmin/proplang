@@ -283,6 +283,12 @@ measured parts, never a measurement of an unbuilt implementation.
 Wire projections decompose the measured 1870 into ev 75 + readout
 413 + EU/render 1382 and scale the population-proportional parts.
 
+[Bracketed at r2, 2026-08-05: the declared row's x1.09 was OVERTURNED
+by the sitting's ordered evidence — a fold-depth confound between
+cells, not noise and not nonlinearity. The matched-depth multiple is
+x1.26 at |S|=2, per-pair cost 0.132 of base, LINEAR in |S|. Part XI
+carries the measurement; this table stands as what the sitting read.]
+
 ## VI. The sitting docket (the author's calls; recommendations are the builder's)
 
 1. **Scope: which faces land.** Both compose (P1/P2); the null-rate
@@ -410,3 +416,156 @@ scratchpad; their full transcripts ride this pack's Part IV and the
 session record. The satisfiability-transcript obligations (R-D21)
 for the heir's future red rows are oracle-phase work and remain
 entirely owed — nothing here pre-discharges them.
+
+## XI. The sitting's verdict, and the ordered evidence (r2, 2026-08-05)
+
+The sitting OPENED on Parts I-X and ruled. This part records the
+verdict's rulings, executes its ordered evidence, and corrects the
+one number the verdict declined to believe. Everything below ran at
+HEAD 0766ebe on the pack's own worlds; the ordered probe carries the
+sitting's new BUILD-STAMP discipline (XI.5), and its transcript
+header reads:
+
+    RUNNER: sha256(binary)=e497213a...dee1d00a2  HEAD=7b765fa  2026-08-05T09:02:27+03:00
+    BUILD-STAMP exe=.../recon size=3335024 mtime=2026-08-05 06:02:15 UTC ghc-9.10.3 linux-x86_64
+
+### XI.1 Continuity from r1 — verified in the tree (the check Part
+VIII should have carried; its absence was the verdict's finding)
+
+Both conferral conditions on the r1 signature were EXECUTED at the
+close, and the signed artifacts are clean:
+
+- **Parity**: the signed tag message ITSELF records the measurement —
+  "shell PARSED the command - quote parity is EVEN (2, measured at
+  the ...)" — and carries the first draft's "could never have
+  parsed" only as a QUOTED, CONVICTED sentence ("was convicted at
+  the conferral"), the standing conviction being argument-boundary:
+  "The message reviewed could never have been the message MINTED,
+  and the tag owed could never have been minted, on any run." No
+  falsified sentence sits asserted under the key. No amendment owed.
+- **r1a carriers**: `test-readout/Readout.hs` (the frozen suite)
+  names them in place — "the p1 clause's VALUE is carried by r7a -
+  M70's unique killer in the frozen matrix ... The entropy clause's
+  VALUE is carried by NO STANDING ROW ... that absence is OB-31."
+- **Manifest arithmetic, named not presumed**: 139 (at 493e2f2) ->
+  146 (at 0766ebe) is exactly seven rows: `4-close.sh`,
+  `lint-l9.patch`, `obligations.patch`, `r1a-presence-pin.patch`,
+  `r1-gate5-run.txt`, `r1-tag-msg.txt`, `tag-message-file.patch`.
+  This pack is NOT a manifest row (builder layer, pre-freeze) — the
+  verdict's "presumably the pack" presumption is corrected.
+
+### XI.2 The x1.09, overturned by the ordered measurement
+
+The ordered cells (K=6 ev+ro, per-tick series printed, steady =
+ticks 6..30, one process):
+
+    |S|=0  models  8005  median 417.95  mean 423.59  stddev 24.97
+    |S|=2  models 11173  median 528.20  mean 532.28  stddev 29.30
+    |S|=6  models 17509  median 754.24  mean 758.07  stddev 46.00
+    |S|=20 models 39685  median 1520.76 mean 1544.88 stddev 94.63
+    per-pair cost (median over base): 0.1319 | 0.1341 | 0.1319
+
+**The per-pair cost is UNIFORM and LINEAR in |S|: 0.132 of base per
+ordered pair.** The verdict's third hypothesis (the routes evaluate
+different sentences) is excluded by construction — the |S|=20 cell
+IS the naive pA population and charges, and it reproduces P1's naive
+cell. The real mechanism was a FOLD-DEPTH CONFOUND, visible in every
+per-tick series: per-tick cost GROWS with fold depth (base drifts
+365 -> 463 ms across 30 ticks — the posterior's Rational
+denominators grow as the fold deepens), and Part V compared P3's
+30-tick cell (steady window = ticks 6-30) against P0's 60-tick base
+(window = ticks 11-60, deeper, costlier). At matched depth every
+cross-run number reconciles: today's S2 median 528 vs P3's 532;
+today's S20 1521-1545 vs P1's 1569; today's base first-ticks vs
+P0's first10 382.
+
+Consequences, in the verdict's order:
+- The declared design's honest multiple at |S|=2 is **x1.26**, not
+  x1.09. Naive-all-pairs is x3.6 at this window (x1 + 20 x 0.132).
+- **Headroom at a bar of 2 is |S| ~ 7 ordered pairs**, not ~22. The
+  Part VI item-3 sentence "room for larger declared sets" survives
+  only in that reduced form.
+- A NEW instrument constraint for the b6 row, bought by the drift:
+  a ms/tick quantity is a function of FOLD DEPTH, so the ratio gate
+  must take numerator and denominator from the SAME stream at the
+  SAME window — matched-depth ratio, or the gate wobbles with
+  whichever route was measured deeper. (The ratio form already folds
+  both routes over one stream; this names WHY that is load-bearing.)
+
+### XI.3 The remaining ordered measurements
+
+- **Walk-time share (the P5 Amdahl question)**: full world 64.35 ms
+  ev median vs no-rho 38.73 — **39.8% of ev time from 40 walk
+  sentences, 0.50% of the population** (walks carry 9-point latents
+  and a move kernel; ~130x the per-sentence cost). P5's banked x8.8
+  is hereby RE-SCOPED: an upper bound on the const/guard subset;
+  the composed full-world ev ceiling without walk treatment is
+  ~x2.1. The bank keeps the transcripts and this rider.
+- **Item 7's transcript (partitioned replay)**: minority-only
+  session B vs shipped-full A vs declared-pairs-full C, exact ==:
+  B==A False, B==C False (B: P(3)=0.848; A: 0.212; C: 0.757). The
+  workaround reproduces NO lawful single-agent computation on the
+  declared world — on the verdict's own criterion the disposition is
+  **DEFER**, the economics reading unearned.
+
+### XI.4 The rulings, recorded as received
+
+1. **Scope**: both faces, one key, SEPARATELY DECLARABLE within it;
+   independent pricing; and the free K=2 row canonized as an
+   exact-integer gate: at K=2 the heir is byte-identical to shipped
+   whatever is declared (pair family empty by T3; null family
+   refused, else the P2 duplication).
+2. **Design horn**: declared-key alone; P4/P5 banked (P5 now with
+   XI.3's walk rider).
+3. **The class**: GATE ON ev+ro, REPORT wire — the gate must not be
+   relaxable by unrelated EU/render slowdowns. The NUMBER remains
+   the author's; the corrected envelope it prices: |S|=2 = x1.26,
+   per-pair 0.132, naive x3.6, headroom at bar 2 = |S| ~ 7.
+4. **Row form**: approved; ratio on ev+ro at matched depth (XI.2's
+   constraint); OB-3's standing half re-homed in the new suite.
+5. **Riders OB-26/27/28/29**: discharge plans approved as drafted.
+6. **OB-31**: rides here; independent entropy row, M8 promoted as
+   its kill.
+7. **Partitioned replay**: DEFERRED on XI.3's executed transcript.
+
+### XI.5 New obligations and settled register items
+
+- **The build-stamp obligation** (drafted for the author's mint at
+  this sitting; the ledger is not the builder's to touch): every
+  measurement probe and the heir's ms/tick instrument PRINT THEIR
+  OWN BUILD IDENTITY (binary hash or mtime+size, HEAD, compiler
+  version) into the transcript they produce, so a stale run is
+  self-convicting. Provenance: the Part IV header's stale-binary
+  incident, where byte-identical reproduction was offered as
+  evidence of soundness in the one environment where it is the
+  signature of the failure — the verdict's finding, verbatim in
+  spirit. First discharge: the XI probe's stamp above.
+- **G2 stanza row** (`test-writeup/check.sh`, dated red-by-design):
+  docketed for the author — derive the stanza count from the cabal
+  file (scriptable) or retire the row; a permanent red has no
+  discriminating power (a green-that-cannot-fail wearing red).
+- **Settled from Part IX by the verdict**: the nu grid rides the
+  THETA CODEBOOK (a dedicated grid would turn P2's exact K=2
+  duplication into an undetectable near-degeneracy — exact equality
+  is the tell); anchors are minted on BOTH sides of the Double
+  parse with the delta itself (6.9e-5 at p1) pinned as a REPORT row.
+- **P4's residual re-classed**: orbit-splitting on live-set growth
+  is ENGINEERING, not epistemics — while members were dead they
+  emitted identically, so the representative's posterior copies to
+  each member under the multiplicity; recorded so no later sitting
+  reopens it as soundness.
+- **The two-coordinate observation, registered**: the faces' compute
+  and Kraft orderings are OPPOSED — the null face is x1.2 in
+  population but 13.7x the pair face in prior mass (0.0637 vs
+  0.0046 Kraft added); the pair face is x4.96 in population and
+  almost free in bits. A named compute multiple prices one
+  coordinate; both are now on the record.
+
+### XI.6 What remains before the oracle phase opens
+
+The author's: the multiple's NUMBER (envelope above), the G2
+disposition, the build-stamp obligation's mint, OB-25's state
+advance, and the frozen-layer repairs of Part VIII (the Host.hs:387
+comment, the OB-19 row amendment, the VIII.3 dated bracket). The
+builder's, after those: the test-breadth/ oracle under Parts VI/XI
+as ruled — oracle-first, R-D21 transcripts, kills with rows.
