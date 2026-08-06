@@ -947,7 +947,18 @@ same-process at [250..280] (P9 cell iii):
 pace, no relief at depth. On that pace |S|=7's implied ratio
 crosses 2.00 near depth ~315: the stated headroom's first value
 fails at achievable session depth, exactly as the verdict's
-extrapolation warned. XIII.6's drafted envelope line — "a bar of 2
+extrapolation warned.
+
+    [BRACKET r7, 2026-08-06, a verdict conviction disposed: the
+    words "constant pace, no relief at depth" over-read the
+    figures beside them — 0.000268 then 0.000247 is an 8% decline
+    across the gaps, so the honest characterisation is
+    APPROXIMATELY LINEAR, MILDLY DECELERATING. The conclusion
+    survives the correction (on the second gap's pace the |S|=7
+    crossing moves from ~315 to ~317, still achievable depth;
+    HEADROOM SIX stands), and "not saturating" remains true — an
+    8% deceleration over 150 ticks does not rescue |S|=7. The
+    characterisation, not the ruling, was wrong.] XIII.6's drafted envelope line — "a bar of 2
 admits |S| <= 7 ordered pairs" — was shallow-only and is
 WITHDRAWN; **the headroom statement is SIX**. |S|=6 itself holds
 through depth: 1.844 at [250..280], ~1.85 projected at 300, margin
@@ -968,6 +979,23 @@ half-slope ratio**; **+/-15% stays on the five windowed means**,
 where the ~5% process-level noise actually lives. The final
 numbers remain the freeze's call; the draft is now two bands, not
 one uniform generosity.
+
+    [BRACKET r7, 2026-08-06, a verdict conviction disposed: the
+    justification "where the ~5% process-level noise actually
+    lives" cites a number this pack has since disowned — XIV.1
+    established the deep-window offset was a STREAM effect, and
+    the actual same-stream cross-process spreads are 0.3%
+    (792.0 vs 794.4) and 0.85% (765.9 vs 759.4). The band's REAL
+    justification, adopted from the verdict: the drift row is a
+    diff against FROZEN values re-run over time and possibly on
+    different hardware, and a machine change moves a windowed
+    mean by far more than run-to-run noise ever will. +/-15% on
+    the means is the HARDWARE-TOLERANT band, and a move beyond
+    it is a LICENSED RE-MINT of the frozen values — the same
+    pattern XIII.5 gives a base-composition change, an instance,
+    not a new rule. The ratio's +/-0.03 is tight for the mirror
+    reason: a dimensionless ratio of same-process quantities
+    survives a hardware change, so nothing wide is owed to it.]
 
 ### XIV.4 Rider 4 — the acceptance scoped to its operating point
 
@@ -1019,17 +1047,41 @@ divisibility argument alone (claim 2; the verdict's own scope):
 2. CONTENT- AND ORDER-ROBUSTNESS of the ENVELOPE: for ANY stream
    over the declared world — aperiodic real corpora included, in
    any order — every unnormalized mass after t ticks is a
-   POLYNOMIAL whose monomials are products of at most t values
-   drawn from the finite sets the declared codebooks fix
-   (theta-side masses AND rho-side transition masses; features
+   POLYNOMIAL whose monomials are products of at most t PER-TICK
+   CONTRIBUTIONS, each drawn from a finite codebook-determined
+   set: for an expfam row the tick's selected mass (features
    enter only through guard comparisons, which select among
-   codebook-constant expressions; walk masses are sums of such
-   products, and sums keep common denominators). With D the lcm
-   of those sets' denominators and P the prior's, every
-   denominator divides P * D^t: bit-size <= log2(P) + t*log2(D),
-   linear in t with a codebook-determined constant, whatever the
-   order and whatever the content. (Normalization takes quotients
-   of linear-bit-size rationals, which stay linear-bit-size.)
+   codebook-constant expressions), for a walk row a
+   transition-emission product. Walk masses are sums of such
+   products, and sums keep common denominators. With D the lcm
+   of the per-tick contribution sets' denominators and P the
+   prior's, every denominator divides P * D^t: bit-size <=
+   log2(P) + t*log2(D), linear in t with a codebook-determined
+   constant, whatever the order and whatever the content.
+   (Normalization takes quotients of linear-bit-size rationals,
+   which stay linear-bit-size.)
+       [BRACKET r7, 2026-08-06: the r6 draft of this clause read
+       "products of at most t VALUES drawn from the finite sets
+       the declared codebooks fix" — LOOSE for walks, whose
+       monomials carry up to 2t+1 codebook values (prior, t
+       transitions, t emissions). Caught by the builder while
+       DERIVING P11's envelope constant — the gate's naming
+       discipline working as designed: preparing the named
+       falsifier's arithmetic is what surfaced the loose count.
+       The bound's carrier is the per-tick CONTRIBUTION, not the
+       value count; the envelope was never in danger (D = 256
+       covers the walk contribution) and the clause above is the
+       corrected form. EXECUTED at r7: P11
+       (p11-bitsize-transcript.txt) measures max denominator
+       bits 306/1478/2950 at depths 30/150/300 — linear at
+       9.77/9.81 bits per tick (0.4% slope agreement), inside
+       the pre-stated 512+16t envelope at every depth; T1 PASS,
+       T2 PASS. The claim is now two-route: argued above,
+       measured beside it. Corroboration for the acceptance:
+       bit-size LINEAR while per-tick cost is superlinear
+       (half-slope 1.37) is exactly rational arithmetic on
+       linearly-growing operands over a fixed population — the
+       drift's mechanism confirmed from a second direction.]
 
 A stream — aperiodic, or the same ticks reordered — can move the
 LEVEL within the envelope: which values arrive (and, for the walk
@@ -1061,11 +1113,15 @@ corollary of claim 2 alone.
     ACCEPTED as exactness's price: per-tick cost grows superlinearly
     with session depth (half-slope ratio 1.37, stream-shape-robust,
     codebook-bounded, the divisibility envelope order- and
-    content-invariant per XIV.5 as repaired at r6); MEASURED AT K=6
+    content-invariant per XIV.5 as repaired — and EXECUTED at r7:
+    P11 measures denominator bit-size linear at ~9.8 bits/tick,
+    inside the derived envelope, T1/T2 PASS); MEASURED AT K=6
     OVER 8005 SENTENCES, the wire tick crosses 2 s near depth 30 and
-    5 s near depth 209 (rich-stream cell; the standard stream's ~3%
-    higher deep level moves the crossings ~10 ticks earlier, inside
-    "near"). The K=10 envelope (16010 sentences, the live curve's
+    5 s near depth 209 (rich-stream cell; the standard stream's deep
+    level is 3.3% higher at ev+ro — its wire-class effect an
+    EXTRAPOLATION, unmeasured — shifting the 5 s crossing ~10 ticks
+    earlier; the 2 s crossing sits at shallow depth, where the
+    streams coincide). The K=10 envelope (16010 sentences, the live curve's
     worst row) is UNMEASURED and expected substantially tighter —
     this acceptance does not cover it. The drift row rides the
     heir's oracle as a GATED diff-vs-frozen (XIII.5, bands per
@@ -1098,26 +1154,47 @@ formulas to arguments.
 ### XV.2 The clause, drafted for the author's key (one CLAUDE.md
 touch at this increment's freeze, riding OB-27's)
 
-    A UNIVERSAL CLAIM IS EXECUTED OR MARKED. Any pack sentence
-    quantifying over the shipped corpus, its streams, or their
-    orderings ("every", "no", "any", "cannot") either carries an
-    executed witness — a falsification attempt against the
-    shipped surface, transcript beside it, R-D21's discipline
-    carried from oracle rows to pack prose — or is marked
-    ARGUED-NOT-EXECUTED with its cheapest falsifier NAMED; naming
-    the falsifier is the load-bearing act, because a named-but-
-    unrun falsifier is visibly absurd where an unnamed one is
-    invisible. An argument-closed residual closes only through
-    its own attempted refutation. AND: A STRENGTHENING IS A NEW
-    CLAIM — when the author or a frozen text supplies an
-    argument, the pack copies its scope; any builder extension
-    beyond that scope is labeled as the builder's addition and
-    arrives with its own witness. Provenance: the r5
-    exchangeability incident (pack XIV.5, this file) — the
-    author's divisibility bound needed no exchangeability; the
-    builder's "improvement" assumed it; the corpus's 40 walk rows
-    (rw, non-exchangeable BY DESIGN) falsified it; P10 executed
-    the owed falsifier in one minute, two-sided.
+    AN UNWITNESSED ASSERTION OUTSIDE THE MEASURED REGION IS
+    EXECUTED OR MARKED. The class has two species: a UNIVERSAL
+    CLAIM quantifying over the shipped corpus, its streams, or
+    their orderings ("every", "no", "any", "cannot"); and an
+    EXTRAPOLATION asserting behavior at depths, K values,
+    populations, streams, or hardware beyond what a cell
+    measured — the commoner species in a measurement pack.
+    Either kind carries an executed witness — a falsification
+    attempt against the shipped surface, transcript beside it,
+    R-D21's discipline carried from oracle rows to pack prose —
+    or is marked ARGUED-NOT-EXECUTED with its cheapest falsifier
+    NAMED; naming the falsifier is the load-bearing act, because
+    a named-but-unrun falsifier is visibly absurd where an
+    unnamed one is invisible. An argument-closed residual closes
+    only through its own attempted refutation. AND: A
+    STRENGTHENING IS A NEW CLAIM — when the author or a frozen
+    text supplies an argument, the pack copies its scope; any
+    builder extension beyond that scope is labeled as the
+    builder's addition and arrives with its own witness.
+    Provenance: the r5 exchangeability incident (pack XIV.5,
+    this file) — the author's divisibility bound needed no
+    exchangeability; the builder's "improvement" assumed it; the
+    corpus's 40 walk rows (rw, non-exchangeable BY DESIGN)
+    falsified it; P10 executed the owed falsifier in one minute,
+    two-sided. The second species and the sweep-universe line
+    below were added at r7, on the verdict's finding that two of
+    the three convictions still standing after r6's sweep
+    quantified over NOTHING — they asserted apparatus noise and
+    depths beyond 280 — so the r6 trigger was aimed at one
+    species of a two-species disease.
+
+    THE REGISTER'S UNIVERSE IS QUANTIFIER HITS UNION VERDICT
+    CONVICTIONS. A reviewer's written conviction is a custody
+    record; the sweep-universe law already derives every sweep's
+    domain from custody records, and a register sweep is no
+    exception. Every conviction row receives an explicit
+    disposition — REPAIRED, BRACKETED, or ARGUED-AND-DECLINED;
+    declining a conviction is legitimate, declining it silently
+    is not. Provenance: the r7 verdict — three of the four r5
+    convictions survived a sweep that grepped for quantifiers
+    and never read the verdicts.
 
 ### XV.3 The scriptable half, and a candidate seventh mandate
 
@@ -1230,3 +1307,111 @@ the sitting's ruling; G2, the build-stamp mint, OB-25's advance,
 and the Part VIII frozen-layer repairs are unchanged from r4's
 list. The builder's next act after the sitting is the
 test-breadth/ oracle-first freeze.
+
+## XVI. The r7 verdict's orders, executed (2026-08-06)
+
+The verdict: canonize XV (with its trigger widened), rule b8 in,
+decline mandate 7 — and dispose the three r5 convictions still
+standing, which the r6 sweep missed because it grepped for
+quantifiers and never swept the verdicts. All orders executed
+this round; one additional loose sentence self-caught in the
+process.
+
+### XVI.1 The standing convictions, disposed
+
+- XIV.3's band justification ("where the ~5% process-level noise
+  actually lives" — a number the pack had disowned at XIV.1):
+  BRACKETED in place, and the band REFRAMED per the verdict — the
+  means' +/-15% is the HARDWARE-TOLERANT band for a diff against
+  frozen values re-run over time, a move beyond it a LICENSED
+  RE-MINT (XIII.5's pattern, an instance not a new rule); the
+  ratio's +/-0.03 is tight because a dimensionless same-process
+  ratio survives a hardware change.
+- XIV.2's "constant pace, no relief at depth" (an 8% decline
+  read as constancy): BRACKETED in place — approximately linear,
+  MILDLY DECELERATING; the crossing moves ~315 -> ~317; HEADROOM
+  SIX stands. The characterisation, not the ruling, was wrong.
+- The acceptance's plural ("moves the crossings") and its
+  unmarked wire-class extrapolation: REPAIRED in the mint —
+  singular (the 5 s crossing; the 2 s crossing sits at shallow
+  depth where the streams coincide), and the 3.3% is stated as
+  ev+ro-measured with its wire-class effect marked
+  EXTRAPOLATION, unmeasured.
+- SELF-CAUGHT while deriving P11's envelope constant: XIV.5
+  claim 2's r6 wording "products of at most t values" is loose
+  for walks (2t+1 codebook values per monomial); REPAIRED in
+  place to the per-tick-contribution form, loose words quoted,
+  the envelope never in danger.
+
+### XVI.2 The register amended: universe and addendum rows
+
+XV.2 now carries both amendments in its drafted clause text: the
+trigger widened to BOTH species (universals AND extrapolations
+beyond the measured region — two of the three standing
+convictions quantified over nothing), and THE REGISTER'S UNIVERSE
+IS QUANTIFIER HITS UNION VERDICT CONVICTIONS, every conviction
+row carrying an explicit disposition (REPAIRED / BRACKETED /
+ARGUED-AND-DECLINED — declining is legitimate, declining
+silently is not). The addendum rows:
+
+    17 XIV.5 claim 1 (r5 conviction) — REPAIRED at r6, P10
+       two-sided.
+    18 XIV.3 band justification (r7 conviction) — BRACKETED at
+       r7; band reframed hardware-tolerant + licensed re-mint.
+    19 XIV.2 "constant pace" (r7 conviction) — BRACKETED at r7;
+       ruling stands at headroom six.
+    20 the acceptance's plural crossings + unmarked wire
+       extrapolation (r7 conviction) — REPAIRED at r7 in the
+       mint text.
+    21 XIV.5 claim 2 "at most t values" (self-caught at r7) —
+       REPAIRED at r7; EXECUTED same round (P11).
+    15 (updated) the divisibility envelope — ARGUED -> EXECUTED:
+       P11, T1/T2 PASS.
+
+### XVI.3 Row 15's falsifier, executed (P11)
+
+    RUNNER: sha256(binary)=543eb900...  HEAD=3173b7f
+      src-tree=ecfd3102...  src-dirty=0  date=2026-08-06T06:21:24+03:00
+    depth 30:  max den bits 306   (envelope 992)
+    depth 150: max den bits 1478  (envelope 2912)
+    depth 300: max den bits 2950  (envelope 5312)
+    slopes 9.77 / 9.81 bits per tick (0.4% agreement)
+    T1 envelope PASS | T2 linearity PASS
+
+Criteria pre-stated in the probe header before the run (T1: under
+512+16t at every depth, the constant derived by hand from the
+declared codebooks; T2: slope agreement within 20%, superlinear
+fails). The acceptance's central mechanism is now a TWO-ROUTE
+claim: argued in XIV.5-as-repaired, measured beside it. Free
+corroboration: bit-size LINEAR while per-tick cost is superlinear
+(half-slope 1.37) is exactly rational arithmetic on
+linearly-growing operands over a fixed population — the drift's
+mechanism confirmed from a second, independent direction.
+
+### XVI.4 The rulings, recorded as received
+
+- MANDATE 7: DECLINED. Six stands. The failure mode is prose
+  written between sittings; the claims register plus the audit
+  row catch it as a standing artefact re-derived each pack, and
+  a freeze-time human sweep is the wrong instrument. "Mandate
+  lists that grow by one per incident become checklists nobody
+  executes" — recorded as the reason, quotable at any future
+  proposal to grow the list.
+- b8: RULED IN. The walk-free exchangeability identity rides
+  test-breadth as an oracle row — sixteen ticks, exact equality,
+  two-sided, the only row pinning the walk/expfam partition
+  itself; kills in both directions (state threaded through an
+  expfam factor; a walk row mis-tagged). It arrives WITH its
+  kill per the forward half, at the oracle freeze.
+
+### XVI.5 Standing after r7
+
+The two mints (XIV.6, wording as repaired through r7, the
+envelope clause now EXECUTED) await the author's key. The XV.2
+clause — trigger widened, register universe amended — is ready
+for the freeze's one CLAUDE.md touch alongside OB-27's line. b8
+is in the oracle row set; the mandate list stays six. G2, the
+build-stamp mint, OB-25's advance, and the Part VIII
+frozen-layer repairs are unchanged. The builder's next act after
+the mints is the test-breadth/ oracle-first freeze, now carrying
+b1-b8.
