@@ -1,0 +1,70 @@
+breadth-sitting-r0: the OB-19 heir opening sitting closed under the
+author's key, ratifying the delegated builder rounds by name
+(7b765fa r1-pack, daa7a7b r2, 0341a57 r3, c91f30b r4, 74c289d r5,
+3173b7f r6, c9d15f8 r7, 78916cd r8) and the two-key custody they
+rode.
+
+THE BAR MINTED: gate b6's multiple is 2. The measured
+envelope beneath it: |S|=2 = 1.26; |S|=6 = 1.78 shallow, 1.844 at
+[250..280]; per-pair 0.132, linear; travel approximately linear,
+mildly decelerating (~0.00026/tick of excess); naive-all-pairs 3.64,
+excluded; HEADROOM SIX AT DEPTH (|S|=7 crosses 2.00 near depth
+~315-317). Denominator composition pinned per pack XIII.5 (a
+composition change is a licensed re-mint, never a breadth failure);
+drift row bands: windowed means +/-15% (the hardware-tolerant band -
+beyond it lies a licensed re-mint of the frozen values), half-slope
+ratio +/-0.03 (dimensionless, hardware-robust, reproduced 1.3678 vs
+1.3678 across structurally different streams).
+
+THE DRIFT ACCEPTED as exactness's price, in the operative clause of
+pack XIV.6 as repaired through r7: per-tick cost grows superlinearly
+with session depth (half-slope ratio 1.37, stream-shape-robust,
+codebook-bounded, the divisibility envelope order- and
+content-invariant per XIV.5 as repaired - and EXECUTED at P11,
+denominator bit-size linear at ~9.8 bits/tick inside the derived
+envelope, T1/T2 PASS); MEASURED AT K=6 OVER 8005 SENTENCES: the wire
+tick crosses 2 s near depth 30 and 5 s near depth 209 (the 5 s
+crossing ~10 ticks earlier on the standard stream - the 3.3% is
+ev+ro-measured, its wire-class effect an extrapolation; the 2 s
+crossing sits at shallow depth where the streams coincide). The K=10
+envelope (16010 sentences, the live curve's worst row) is UNMEASURED
+and not covered by this acceptance. Any depth-mitigation work is its
+own future increment under its own demand gate - never a silent
+change to the exact semantics.
+
+RULINGS RATIFIED AT THIS CLOSE:
+- The prose-claim gate (pack XV.2 as widened at r7: both species -
+  universals AND extrapolations beyond the measured region; the
+  register universe = quantifier hits union verdict convictions with
+  explicit dispositions) CANONIZES at the oracle freeze's one
+  CLAUDE.md touch, beside OB-27's line, under this sitting's
+  authority.
+- b8 RIDES: the walk-free exchangeability identity (P10 cell b) is
+  an oracle row in test-breadth/, arriving with its kill per the
+  forward half.
+- MANDATE 7 DECLINED: six stands. Mandate lists that grow by one per
+  incident become checklists nobody executes.
+- G2: NO RULING OWED - the docket item DISSOLVED at r8. The row has
+  been a green RECORD form since the step-7 unify freeze
+  (2026-07-17); executed at r8: check.sh 33/33, G2 "close-date
+  quote intact; live: 12". The false framing's source,
+  tools/boundary-audit.sh:136 (a frozen tool narrating a sibling
+  instrument's state from memory), is an FL-inventory row repaired
+  at the oracle freeze's kit under this sitting's authority (pack
+  Part XVII).
+- THE BUILD-STAMP OBLIGATION MINTED (pack XI.5 + XII.5's src-tree
+  clause): every measurement probe and the heir's ms/tick instrument
+  print their own build identity (binary hash, HEAD, src-tree hash,
+  dirty count, compiler) into the transcript they produce; the
+  ledger row lands at the oracle freeze's kit (the ledger is
+  manifest-covered and moves only at boundaries).
+- OB-25's ledger advance (LANDED -> DISCHARGED) and the Part VIII
+  frozen-layer repairs (Host.hs:387 wait comment; OB-19's row-text
+  amendment - the test-measure instrument named in it no longer
+  exists; dispositions-pack VIII.3's dated bracket) route to the
+  oracle freeze's kit under this sitting's authority.
+
+THE ORACLE PHASE OPENS: test-breadth/ rows b1-b8 per pack Parts
+VI/XI-XVI, oracle-first, R-D21/R-RED/forward-half discipline, the
+freeze kit per TAG-MESSAGE-IS-A-FILE with OB-26/27/28/29's installs
+and the manifest re-hash ordered after the lint rows exist.

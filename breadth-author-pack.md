@@ -1117,7 +1117,7 @@ corollary of claim 2 alone.
 
     GATE b6: (heir-route ev+ro ms/tick) / (base-route ev+ro ms/tick),
     same stream, same process, matched depth and window,
-    <= [ THE AUTHOR'S MULTIPLE ].
+    <= 2.
     Measured envelope beneath it: |S|=2 = 1.26 and |S|=6 = 1.78-1.80
     shallow; per-pair 0.132, linear; naive-all-pairs 3.64, excluded.
     AT DEPTH (P9): the ratio's travel is linear at ~0.00026/tick of
