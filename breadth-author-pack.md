@@ -52,6 +52,13 @@ VII. The alphabet has not moved since c2ca82c (the exact
 re-founding); nothing after it (dyadic, trampoline, battery, readout)
 touched the alphabet.
 
+    [BRACKET r8, 2026-08-06: the transcript's "note:" line above is
+    a faithful quote of tools/boundary-audit.sh:136 — and the note
+    itself is FALSE of the tree: G2 has been a green RECORD row
+    since the step-7 unify freeze, and the check runs 33/33. The
+    quote is honest; the tool lies. See XI.5's bracket and Part
+    XVII; the tool's repair rides the oracle freeze's kit.]
+
 ## III. Four findings that reshape the increment (verified against the tree)
 
 **F-1. The ms/tick instrument named by OB-19's row no longer
@@ -551,6 +558,19 @@ Consequences, in the verdict's order:
   docketed for the author — derive the stanza count from the cabal
   file (scriptable) or retire the row; a permanent red has no
   discriminating power (a green-that-cannot-fail wearing red).
+      [BRACKET r8, 2026-08-06: FALSE OF THE TREE, falsified by
+      EXECUTING the instrument this item names — test-writeup/
+      check.sh runs 33/33 green, and its G2 row has been a RECORD
+      form since the step-7 unify freeze (2026-07-17; the in-file
+      comment at check.sh:141-147 records the retirement, two-sided
+      N8 form): it pins the close-date QUOTE in WRITEUP.md and
+      PRINTS the live count (12), asserting nothing about 8. The
+      derive-vs-retire question this item dockets was ruled and
+      executed a month before it was asked; the item DISSOLVES.
+      The false framing's source is tools/boundary-audit.sh:136,
+      which hard-prints the note Part II faithfully quoted — a
+      frozen tool, so its repair rides the oracle freeze's kit as
+      an FL-inventory row (Part XVII). Register row 22.]
 - **Settled from Part IX by the verdict**: the nu grid rides the
   THETA CODEBOOK (a dedicated grid would turn P2's exact K=2
   duplication into an undetectable near-degeneracy — exact equality
@@ -1415,3 +1435,53 @@ build-stamp mint, OB-25's advance, and the Part VIII
 frozen-layer repairs are unchanged. The builder's next act after
 the mints is the test-breadth/ oracle-first freeze, now carrying
 b1-b8.
+
+## XVII. The G2 finding (r8, 2026-08-06): a docket item dissolved
+by running the instrument it named
+
+Asked to recommend values for the sitting's two slots, the builder
+read G2's actual row before recommending — and the tree
+contradicts the docket. test-writeup/check.sh:141-147 records
+G1/G2 RETIRED TO RECORD at the step-7 unify freeze (2026-07-17,
+the two-sided N8 form): the row pins the close-date quote
+("across the eight suites") intact in WRITEUP.md and PRINTS the
+live stanza count. Executed now: 33/33 green, G2's own line
+reading "RECORD: close-date quote intact; live: 12". The row is
+neither red nor an assertion of 8; the derive-vs-retire
+disposition this pack docketed for the author was ruled and
+executed a month before it was asked. THE DOCKET ITEM DISSOLVES.
+
+The false claim's source is not pack prose. tools/
+boundary-audit.sh:136 HARD-PRINTS "test-writeup/check.sh G2
+asserts 8 cabal stanzas; the cabal now has N (dated red-by-design
+instrument, recorded)" — an unwitnessed assertion about a SIBLING
+INSTRUMENT baked into a frozen tool as a courtesy note, stale
+since step 7 retired the row, reprinted into every boundary-audit
+transcript since (the readout opening's frozen transcript carries
+it; this pack's Part II quoted it; XI.5 docketed from it; the
+author was one script-argument away from ruling a question
+answered a month prior). Two lines ride the record:
+
+- THE GATE'S THIRD TISSUE. r5's falsehood lived in pack prose;
+  r7 widened the trigger to extrapolations; this one lived in a
+  TOOL'S NOTE about another tool's state — an unwitnessed
+  assertion wearing transcript clothes, printed inside evidence
+  blocks and quoted faithfully downstream. The kit's candidate
+  repair shape: the note DERIVES from the instrument (run the
+  row, quote its live output) or is dropped — a tool never
+  narrates a sibling's state from memory.
+- FL-INVENTORY ROW, added for the oracle freeze's kit:
+  tools/boundary-audit.sh:136 (manifest row 144), falsified words
+  quoted above, repair under the author's key at the boundary —
+  the builder touches the frozen layer only there.
+
+Register row 22: the tool's note / Part II's quote / XI.5's
+docket framing — FALSIFIED BY EXECUTION (bash
+test-writeup/check.sh: 33/33, G2 PASS as record, live 12). The
+gate's third firing, and the first outside pack prose.
+
+Standing after r8: the sitting's fill-in slots reduce to ONE —
+the bar's number. G2 needs no ruling. The drift acceptance, the
+XV.2 clause, b8, the routed kit work (now including the
+boundary-audit note repair), and everything else stand as at r7.
+The close script and tag message are amended to match.
