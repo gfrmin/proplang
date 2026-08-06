@@ -1,0 +1,14 @@
+=== boundary-audit (screening; first firing = the step-6 boundary) ===
+--- M5-row: ruling citations vs definition sites ---
+M5-row: 0 flagged (IDs cited >=4 with no definition-shaped line)
+--- H-row: wire/membrane doc symbols resolve outside those docs ---
+H-row: 0 flagged (of 66 symbols scanned)
+--- OB-row: obligations ledger vs closed boundaries ---
+FLAG  obligation(s) at OBLIGATIONS.md line(s) 54,55 still open against CLOSED boundary readout-freeze-r0
+FLAG  obligation(s) at OBLIGATIONS.md line(s) 56,57,59 still open against CLOSED boundary readout-freeze-r1
+OB-row: 2 flagged (open obligations against closed boundaries)
+banked-failure row: alphabet last moved at c2ca82c (2026-07-25T18:44:21+03:00)
+banked-failure row: 0 flagged
+--- standing observations ---
+note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has 12 (dated red-by-design instrument, recorded)
+=== boundary-audit done: M5=0 H=0 OB=2 BF=0 ===

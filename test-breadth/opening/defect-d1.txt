@@ -1,0 +1,16 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d1/breadth size=8091664 mtime=2026-08-06 09:00:24.106223049 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=21358a03e47cb2f1416f18dc79fc8dda3e04ce67ab6feb485caaa721cc2ac053 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  b1 untouched route + models closed form
+    b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world): FAIL
+      test-breadth/Breadth.hs:555:
+      expected: 324
+       but got: 333
+      Use -p '(/b1a/||/b1c/)&&/b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world)/' to rerun this test only.
+    b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route:          FAIL
+      test-breadth/Breadth.hs:572:
+      expected: 1601
+       but got: 1610
+      Use -p '(/b1a/||/b1c/)&&/b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route/' to rerun this test only.
+
+2 out of 2 tests failed (0.00s)

@@ -1,0 +1,95 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-red/breadth size=8100208 mtime=2026-08-06 08:07:02.987281926 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=21a21d9ec9620fef3b8ec17d065511fe14e4061cc9e59a189485301c8aca34fd HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+MINT MODE: frozen-value rows print, never gate
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 437.8 ms
+  REPORT window [50..80] mean 599.9 ms
+  REPORT window [100..130] mean 786.4 ms
+  REPORT window [150..180] mean 999.6 ms
+  REPORT window [250..280] mean 1500.6 ms
+  REPORT deep/shallow mean ratio 1.9964 (frozen 2.0000)
+MINT drift window [6..30]: 437.8 within +/-15% of frozen 417.8
+MINT drift window [50..80]: 599.9 within +/-15% of frozen 587.8
+MINT drift window [100..130]: 786.4 within +/-15% of frozen 777.5
+MINT drift window [150..180]: 999.6 within +/-15% of frozen 1001.9
+MINT drift window [250..280]: 1500.6 within +/-15% of frozen 1504.3
+MINT drift deep/shallow mean ratio 1.9964 within +/-0.03 of frozen 2.0000
+OK (292.66s)
+  b1 untouched route + models closed form
+    b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world):           OK (0.12s)
+    b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null):                 FAIL
+      test-breadth/Breadth.hs:550:
+      expected: 12766
+       but got: 8005
+      Use -p '/b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null)/' to rerun this test only.
+    b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route:                    OK (0.07s)
+  b2 Kraft and pricing
+    b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass):                            FAIL
+      test-breadth/Breadth.hs:577:
+      kraft heir > kraft base (strict)
+      Use -p '/b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass)/' to rerun this test only.
+    b2b the declared-pair mention mass is 1/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==): FAIL
+      test-breadth/Breadth.hs:584:
+      expected exactly one row each side, got 0/0
+      Use -p '/b2b the declared-pair mention mass is 1\/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==)/' to rerun this test only.
+    b2c independent pricing: the null face's weight is invariant in the pair declaration (Rational ==):         REPORT prices: dpair Infinity bits, nullconst Infinity bits, nullguard Infinity bits
+FAIL
+      test-breadth/Breadth.hs:593:
+      expected exactly one nullconst row each side, got 0/0
+      Use -p '/b2c independent pricing: the null face'\''s weight is invariant in the pair declaration (Rational ==)/' to rerun this test only.
+    b2d prices are finite and positive (REPORT: bits printed):                                                FAIL
+      test-breadth/Breadth.hs:606:
+      dpair weight > 0
+      Use -p '/b2d prices are finite and positive (REPORT: bits printed)/' to rerun this test only.
+  b3 the #21 semantics: the minority tie BREAKS
+    b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1/2; dominant argmax stays 2:                     REPORT minority vec: [0.21197764952526807,0.21197764952526807,0.15208940189892772,0.21197764952526807,0.21197764952526807]
+  REPORT MAP ("guard",[2,0,0,8]) @ 0.6350
+FAIL (0.12s)
+      test-breadth/Breadth.hs:624:
+      P(3) > 1/2: 0.21197764952526807
+      Use -p '/b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1\/2; dominant argmax stays 2/' to rerun this test only.
+    b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1/2):                 FAIL
+      test-breadth/Breadth.hs:631:
+      expected: ("dpair",[3,2,0,7,8])
+       but got: ("guard",[2,0,0,8])
+      Use -p '/b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1\/2)/' to rerun this test only.
+  b4 the null face and the K=2 door
+    b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 S1/S2):                         REPORT p0 shipped 0.225000 (cap 0.225000)  extended 0.225000  MAP ("const",[4,0]) @ 0.3273
+FAIL (0.48s)
+      test-breadth/Breadth.hs:651:
+      extended p0 > 2x shipped
+      Use -p '/b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 S1\/S2)/' to rerun this test only.
+    b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates:          FAIL
+      test-breadth/Breadth.hs:656:
+      null at K=2 (the exact-duplication law): {"ok": true, "proto": 1, "models": 9, "namespace_bits": -0.0}
+      Use -p '/b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates/' to rerun this test only.
+    b4d an empty declaration IS the absent key: hello replies byte-identical:                                 OK
+  b5 wire == reference route
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        FAIL
+      test-breadth/Breadth.hs:687:
+      models == closed form: {"ok": true, "proto": 1, "models": 8005, "namespace_bits": 2.0}
+      Use -p '/b5a breadth hello: models the closed form; decide p_codes == the reference vector/' to rerun this test only.
+    b5c the breadth hello survives the pipes (spawned host, the g6 form):                                     FAIL
+      test-breadth/Breadth.hs:728:
+      models over the pipes: {"ok": true, "proto": 1, "models": 8005, "namespace_bits": 2.0}
+      Use -p '/b5c the breadth hello survives the pipes (spawned host, the g6 form)/' to rerun this test only.
+  b7 entropy_bits (OB-31)
+    b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):      REPORT entropy wire 3.365059308367 independent 3.365059308367 delta 0.000e0
+OK (5.69s)
+  b8 walk-free exchangeability
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (1.66s)
+  b6 the ms/tick instrument
+    b6a population pin: the base route is 8005 sentences (the #21 live curves' operating point):              OK
+    b6d the census: every declared-family row is a const/guard shape; NO walk variants (XII.6's gate row):    FAIL
+      test-breadth/Breadth.hs:785:
+      expected: [("const",45),("walk",40),("guard",7920),("dpair",3168),("nullconst",9),("nullguard",1584)]
+       but got: [("const",45),("walk",40),("guard",7920),("dpair",0),("nullconst",0),("nullguard",0)]
+      Use -p '/b6d the census: every declared-family row is a const\/guard shape; NO walk variants (XII.6'\''s gate row)/' to rerun this test only.
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):                       REPORT base ev+ro 435.5 ms/tick, heir ev+ro 429.5 ms/tick, ratio 0.986 (bar 2.0)
+  REPORT composition at [6..30]: ev 66.7 (frozen 63.5) of which walks 24.9 (frozen 22.4); ev+ro 435.5 (frozen 418.1); wire 824.2 (frozen 811.7)
+  REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)
+MINT b6 ratio 0.986 <= bar 2.0 (heir/base ev+ro, matched depth+window)
+OK (53.02s)
+
+12 out of 20 tests failed (353.84s)

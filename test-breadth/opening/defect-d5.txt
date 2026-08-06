@@ -1,0 +1,10 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d5/breadth size=8091728 mtime=2026-08-06 09:00:32.248428859 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=b3246a92216f2eb78b0a1a5a65b0d142d993b839a0f764552960ac806a53e966 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  b8 walk-free exchangeability
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==): FAIL
+      test-breadth/Breadth.hs:772:
+      expected: 40
+       but got: 0
+
+1 out of 1 tests failed (0.00s)

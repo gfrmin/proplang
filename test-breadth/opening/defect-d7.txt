@@ -1,0 +1,9 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d7/breadth size=8091664 mtime=2026-08-06 09:00:36.372533109 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=efb7b9facdb5cf306d1e5079fe62cb6d450d5ebf389b9d3ac50b07231457a9b6 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  b5 wire == reference route
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector: FAIL (16.10s)
+      test-breadth/Breadth.hs:717:
+      asym p_codes == the reference vector: {"act": {"skill": 1}, "p1": 9.673202393541674e-2, "entropy_bits": 3.5368642214100174, "p0": 9.673229286811698e-2, "argmax_code": 2, "p_argmax": 0.516338872724085, "p_codes": [9.673229286811698e-2, 9.673202393541674e-2, 0.516338872724085, 9.673276260154783e-2, 9.673202393541674e-2, 9.673202393541674e-2]}
+
+1 out of 1 tests failed (16.10s)

@@ -1485,3 +1485,441 @@ the bar's number. G2 needs no ruling. The drift acceptance, the
 XV.2 clause, b8, the routed kit work (now including the
 boundary-audit note repair), and everything else stand as at r7.
 The close script and tag message are amended to match.
+
+## XVIII. The oracle phase (r9, 2026-08-06): test-breadth/ built
+red-first under the sitting's authority
+
+The sitting closed at breadth-sitting-r0 (author key over 197269b);
+this part is the builder's record of the oracle phase it authorized.
+Everything here is builder work product awaiting the author's freeze
+review; nothing frozen was touched (the kit stages every frozen edit
+as a patch, applied only by 2-freeze under the freeze's own checks).
+
+### XVIII.1 The type surface (the stub commit, 4b6c9f7)
+
+`src/PropLang/Enumerate.hs` gains `Breadth` (declared ordered pair
+list + null-face flag; the type-audit derivation line rides the
+declaration: world-declaration data, deletable-and-declarable, no new
+production — the declared families are If/Gt/catBody sentences, so no
+primitivity clause is owed) and `enumerateWithBreadth`, stubbed
+wrong-but-total (delegates to `enumerateWithArity`, ignores its
+Breadth). `Host.hs` is deliberately UNTOUCHED in the oracle phase:
+`hello` ignores unknown world keys, so a breadth-bearing hello is
+accepted-and-ignored at HEAD — the wire rows run red naturally, and
+the refusal surface is owed entirely to the implementation. All 12
+frozen suites ran green against the stub (cabal test all, exit 0,
+12/12 PASS) before the oracle was written against it.
+
+### XVIII.2 The oracle as built (20 rows, 9 groups)
+
+Groups b1-b8 plus the gated drift row, per the ratified row set. The
+as-built decisions, each stated so the freeze review can refuse it:
+
+- THE WIRE SYNTAX (register U1): `"breadth": {"pairs": [[jHi, jLo],
+  ...], "null": true|false}` inside `world`; both keys optional;
+  `{}` and the explicit empty declaration are BYTE-IDENTICAL to the
+  absent key (b4d). Refusals (b4c, all fail-closed as bad hello):
+  a==b, atom outside [1..K-1] (0 included — the null atom is not a
+  positive atom), any pair at K=2, null at K=2 (the P2
+  exact-duplication law), duplicate pairs (a codebook is a set;
+  register U2), malformed values.
+- THE ANCHOR-SIDE LAW applied: wire-facing worlds are SIXTEENTHS
+  (n/16 exact in Double — declared decimal == exact rational by
+  construction); the probe21 world (exact tenths) is library-only.
+  Stated per row in the suite header.
+- ONE GENERATOR: every wire tick DERIVES from streamC (the
+  probe-discipline law; the first draft carried a parallel
+  hand-written tick list and a hand-written probe assignment — both
+  replaced by derivation from streamC before anything ran; the
+  two-lists drift shape made unsayable).
+- THE #21 SEMANTICS (b3): the red fires on the TIE-STRENGTH margin,
+  not on argmax — the rehearsal transcript shows the exact engine
+  already resolving the double-render tie to argmax 3 by 4e-32 at
+  the stub, exactly as pack IV P1 recorded; the discriminating
+  criterion is P(3) > 1/2 (R-RED: the margin is the #21 tie itself).
+- b5a CARRIES AN ASYMMETRIC CELL (S = [(3,2)], null on) beside the
+  #21 operating point, because [(3,2),(2,3)] is CLOSED under
+  per-pair swap — a door-side swap defect is structurally invisible
+  to the symmetric set, and falsifiability demanded a cell where
+  that defect class fires (defect-d7 fires there and nowhere else).
+- b6 rebuilds the deleted test-measure law: population pins as
+  exact-integer GATES (8005 with its closed form re-derived from the
+  declared grids beside it), absolute ms as REPORT rows, the ratio
+  GATE <= 2 at matched depth AND window [6..30] (the mint's cell,
+  XIII.5), the composition RECORDED beside it (a composition change
+  = licensed re-mint, quoted in the row), the walk-exclusion census
+  (b6d: the partition by tag is exhaustive and walk-count-preserving),
+  and OB-3's run-each-freeze half re-homed (the suite rides gate 5).
+- b7's independent entropy: computed from `metaPosterior` directly
+  in the suite; `entropyAgent` appears ONLY inside the ev+ro class
+  definition (P0's executed shape, copied byte-wise) — the class
+  definition and the pin are different rows, stated in the suite.
+- THE MINT MODE: BREADTH_MINT=1 makes frozen-value rows PRINT and
+  never gate — the instrument's own mint law (XIII.5), so the mint
+  and the gates share one code path (no parallel mint program to
+  drift). The standing form (no env var) is what gate 5 runs.
+
+### XVIII.3 The mint (XIII.5's law, executed)
+
+The official mint (the SECOND mint — the first, under the LS
+half-slope statistic, stands superseded by U7's ruling; its values
+are U7's data): one quiet build-stamped run of the final suite
+text, mint mode, transcript test-breadth/opening/mint-run.txt:
+
+    BUILD-STAMP sha256=21a21d9e... HEAD=4b6c9f7
+      src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+    windows [6..30]/[50..80]/[100..130]/[150..180]/[250..280]:
+      437.8 / 599.9 / 786.4 / 999.6 / 1500.6 ms
+    deep/shallow mean ratio 1.9964 (the drift cell first-in-suite)
+    composition at [6..30]: ev 66.7, of which walks 24.9;
+      ev+ro 435.5; wire (in-process combined tick) 824.2
+    b7 entropy delta 0.000e0; 12 out of 20 red (the stub set)
+
+(This run sat ~3-4 percent warmer across the board than its
+predecessor — box-state variance of exactly the kind the +/-15
+percent mean bands absorb and the ratio statistic cancels.)
+
+The frozen literals in Breadth.hs derive from that transcript and
+from nothing else (1-verify checks the derivation MECHANICALLY:
+every frozen literal must appear in mint-run.txt). One reading note:
+the transcript's own "(frozen ...)" parentheticals show the
+PRE-MINT placeholder values the run was born with — the mint mode
+exists precisely so those never gate; the REPORT numbers are the
+mint. The wire composition cell (824.2) sits well under the opening
+P0's 1870: the two worlds differ in menu width (this suite's
+single-point forced-act menu vs P0's four options) and in utility
+shape, so the cells are DIFFERENT INSTRUMENTS, not a drift —
+ARGUED-NOT-EXECUTED that the menu width carries the difference;
+cheapest falsifier: one wire run of this suite's world with a
+four-option menu (claims register row 9). What is load-bearing is
+narrower and holds by construction: the gate's denominator
+composition is THIS suite's own cell, recorded at its own mint
+(XIII.5's law binds the row to its mint, not to a sibling probe's
+world).
+
+THE QUIET-BOX FINDING (no-silent-caps; register U6). The windowed
+MEANS reproduce to ~0.6 percent across runs, contended or not. The
+HALF-SLOPE RATIO does not: under a parallel compile load it read
+1.3565 and 1.3120 in two runs; quiet back-to-back runs read 1.3681
+and 1.3562 (spread 0.012, and the first quiet value reproduces P7/
+P8's canonical 1.3678). The minted +/-0.03 band therefore holds with
+roughly 2.5x margin ON A QUIET BOX and can false-fire under heavy
+contention — the instrument inherits the deleted test-measure's
+implicit law that a measurement run owns its box. RESIDUAL, stated:
+gate-5 runs at future freezes should not share the box with heavy
+parallel load; the band itself is the sitting's mint and is not
+retuned here.
+
+entropyTol (b7): measured floor 0.0 — bit-identical Doubles, by
+IEEE negation symmetry the two summation forms coincide exactly —
+so the gate is 1e-12, the repo's smallest standing gate class above
+an exact-zero floor (the CL-4 precedent; a zero-width gate would
+re-fail on any innocuous refactor of summation order, which is a
+rendering change, not an entropy change).
+
+### XVIII.4 The red side (the triptych's first run)
+
+At the stub, the recorded red set is EXACTLY the partition in the
+suite header — opening/red-run.txt (the FINAL run, post-U7, final
+bytes), gating mode, quiet box, exit 1:
+
+    RED (12): b1b b2a b2b b2c b2d b3a b3b b4a b4c b5a b5c b6d
+    GREEN (8): drift-a b1a b1c b4d b7a b8a b6a b6b
+    "12 out of 20 tests failed (361.68s)"
+
+and the drift row GATED green against the minted literals in the
+same run (deep/shallow mean ratio 1.9939 vs frozen 1.9964,
+|delta| 0.0025 — the re-stated statistic behaving as designed;
+means inside +/-15). The run history is stated, not collapsed
+(the readout precedent): the FIRST final-bytes red run, under the
+superseded half-slope statistic, came back 13/20 when that gate
+FALSE-FIRED on quiet-box noise — preserved as
+opening/halfslope-falsefire.txt, U7's evidence. Every FAIL prints
+its expected side in normal form (tasty's comparison output) — the
+transcript IS the forcing record for the frozen side of each
+comparison row (the step-1 deepseq clause's discharge shape,
+stated rather than left to inference).
+
+The eight green-at-stub rows' reds are SEEDED-DEFECT demonstrations
+(the pin-freeze clause's form), one named minimal defect per shape,
+compiled as overlay variants and run against the exact frozen text:
+
+    defect  seeded shape                          fired (transcript)
+    d1      empty declaration injects a family    b1a, b1c (2/2 lib
+            (library side)                        rows; defect-d1.txt)
+    d2      arity atom dropped (posAtoms K-2)     b6a (defect-d2.txt)
+    d3      naive pair family default-on          b6b: ratio MEASURED
+            (all ordered pairs, unpriced)         3.704 > bar 2 - the
+                                                  R-RED constructed
+                                                  crossing, beside
+                                                  the pack's 3.64
+                                                  record
+    d4      entropy sign dropped (M8's shape)     b7a: wire -3.891 vs
+                                                  independent +3.891,
+                                                  delta 7.78 bits
+    d5      walk row mis-tagged ("wexp")          b8a (defect-d5.txt)
+    d6      readout fold duplicated (a lost       drift row: all five
+            fast path's shape)                    means blown (~+96%,
+                                                  856.4 vs 437.8 at
+                                                  the first window);
+                                                  the mean ratio
+                                                  little moved
+                                                  (1.9364) - a
+                                                  proportional cost
+                                                  defect fires the
+                                                  MEANS, exactly as
+                                                  the shape predicts;
+                                                  the ratio gate's
+                                                  own kill is the
+                                                  depth-differential
+                                                  class
+    d7      pair swapped at the door (wire-only,  b5a's ASYMMETRIC
+            count-preserving)                     cell (the symmetric
+                                                  #21 cell cannot see
+                                                  it - the cell
+                                                  exists for exactly
+                                                  this)
+    d8      the door's empty-object null          b4d: the {} hello
+            defaults ON (asymmetric door defect)  grew a null face
+                                                  (models 9598) while
+                                                  absent stayed 8005
+
+ATTRIBUTION NOTE, recorded as found: d1 was first pointed at b4d
+too, and b4d stayed GREEN under it — CORRECTLY. Both of b4d's hello
+routes pass through the same enumeration call, so a library-side
+injection moves them TOGETHER; b4d pins the EQUALITY (empty
+declaration == absent key), never the absolute (the absolute wire
+count is the standing corpus's pin). The r1a both-sides-move-
+together lesson, met inside the oracle's own red battery and
+answered by d8: the b4d red must be a DOOR-side asymmetry, and is.
+
+These EIGHT shapes are the DRAFTED KILL-POOL CANDIDATES for the
+close matrix (the forward half; M8 = d4 promotes as b7's kill per
+OB-31's row).
+
+### XVIII.5 The SAT side (R-D21, overlay form, flag- and
+package-faithful)
+
+The overlay realization — the implementation's prophecy: the real
+`enumerateWithBreadth` (dpair family per Declared.hs's recorded
+shape; null faces per NullRate.hs's; `allowed`-gated like its
+siblings) and the Host breadth key (parse, validation, refusals,
+`pop` routed through `enumerateWithBreadth`; the plain no-arity
+route untouched). The oracle's exact frozen text compiles against
+it UNCHANGED and runs ALL 20 TESTS PASSED (opening/sat-run.txt,
+the FINAL run, exit 0, 366.98s, quiet box; the transcript
+reproduces P2's exact prices — nullconst 7.17 bits, guarded-null
+15.92 bits — and prints dpair 14.92 bits; the heir's
+operating-point ratio measures 1.394 under the bar of 2; the drift
+cell reads 2.0323 — the cross-build shift, stable at ~+0.036
+across two SAT runs, inside the ruled +/-0.06). The compile is the
+stanza's dependency closure and flag set verbatim:
+
+    cabal exec -- ghc -Wall -Werror -Wincomplete-patterns
+      -Wincomplete-uni-patterns -XGHC2021 -hide-all-packages
+      -package base -package containers -package directory
+      -package process -package proplang(/overlay: -i<overlay>)
+      -package tasty -package tasty-hunit -O1
+
+(the -package containers rides only the overlay compile, where the
+library's own closure is inlined — the jp package-faithful clause).
+The overlay is discarded with the session scratchpad (R-D21); its
+diff against src rides as test-breadth/opening/prophecy.diff (the
+readout precedent: Phase 3 applies the prophecy byte-for-byte or
+reports why not). The flag-faithfulness paid immediately: the
+overlay Host's first compile FAILED on a redundant import under
+-Werror (the step-5 incident's class, caught by the discipline that
+exists to catch it).
+
+### XVIII.6 The R-D20-i copy table (anchors: commit + binding name)
+
+    quantity                    copied from
+    8005 (b6a pin)              pack IV P0 at 7b765fa (the K=6
+                                models cell); closed form re-derived
+                                beside it from the declared grids
+    catBody/eqE family shapes   src/PropLang/Enumerate.hs at 4b6c9f7,
+    (the overlay's dpair/null)  bindings `catBody`, `eqE`; via the
+                                probes' recorded byte-shape copies
+                                (pack IV P2/P3)
+    dpair tag+charge form       pack IV P3 (Declared.hs transcript),
+                                binding `declaredFamily`
+    nullconst/nullguard forms   pack IV P2 (NullRate.hs transcript),
+                                bindings `nullConsts`/`nullGuarded`
+    refVecAt reference route    test-readout/Readout.hs at 0766ebe,
+                                binding `refVecAt act ag`
+    rD rendering                Host.hs rendering via test-readout's
+                                `rD` (COPY note in both suites)
+    D2 MAP tag ("dpair",        pack IV P3 D2's transcript line
+    [3,2,0,7,8])
+    P2 S1/S2 criteria + MAP     pack IV P2's pre-stated criteria
+    ("nullconst",[0,6])
+    the bar 2, the bands        breadth-sitting-r0's tag message /
+    (+/-15%, +/-0.03)           pack XIV.6 as minted
+    drift + composition         test-breadth/opening/mint-run.txt
+    literals                    (the transcript itself; checked
+                                mechanically by 1-verify)
+
+### XVIII.7 The freeze kit (test-breadth/freeze/)
+
+1-verify (read-only: patch list extracted from 2-freeze's own apply
+lines, orphan check, sequential apply on a temp copy, mint-literal
+trace, [MINT]-marker guard) / 2-freeze (keyless: OB-29 live probe
+BEFORE any mutation; the five patches; gate 5 asserting the EXACT
+frozen red set beside 12 green standing suites; manifest extension +
+re-sign AFTER the lint rows exist — OB-26's order, honored by
+construction; the L8/L9/L5 two-sided demo in a whole-tree copy; the
+lint at 0 FAIL) / 3-sign (the freeze commit; the -m is a
+kit-authored constant, the attestation rides the tag) / 4-close (the
+tag by -F from the COMMITTED message file, minted == file verified
+byte-wise — the r1 record-row form). The five patches and their
+authorities are tabled in freeze/SITTING.md. The kit's own sig-probe
+tags ride -F nonce files (no -m anywhere in the kit; L9 scans it
+like any kit).
+
+Rehearsal: [RUN-REHEARSAL: fresh-clone green end-to-end + the kit
+reds fired (refused key pre-mutation; orphan patch; [MINT] marker;
+perturbed literal)].
+
+### XVIII.8 The under-determination register (for the freeze review)
+
+- U1 the wire syntax as drafted (XVIII.2); absorb or amend.
+- U2 duplicate pairs REFUSED (a codebook is a set; re-pricing by
+  repetition would make |S| a mention-count, not a codebook size).
+- U3 the null face's price keeps P2's EXECUTED form (constCharge/
+  guardCharge x arityMass on the theta codebook). The alternative —
+  no atom-mention factor, on the reading that the flag names atom 0
+  uniquely — is REGISTERED, NOT CHOSEN: choosing it would re-derive
+  where the probes executed; the author may amend at the freeze (it
+  moves null prices by log2(K-1) bits and no oracle row pins the
+  absolute price — b2c pins independence, b2a pins Kraft).
+- U4 K=2 semantics are UNIFORM, no special case: any nonempty
+  declaration refuses by range/duplication/the null law; the empty
+  declaration is the shipped route (b1c/b4d). Breadth never couples
+  to whether obs_arity was declared.
+- U5 the ratio gate's matched cell is window [6..30] (the mint's
+  own cell, XIII.5); depth travel stays the sitting's record.
+- U6 the quiet-box operational assumption (XVIII.3's residual).
+- U7 STOP-AND-REPORT, the half-slope band's REALIZED margin. The
+  sitting minted +/-0.03 absolute on the four-decimal cross-stream
+  reproduction (1.3678 vs 1.3678, P7/P8 — same session, back to
+  back). The oracle phase measured the statistic's RUN-TO-RUN
+  spread on a quiet box: 1.3681, 1.3562, 1.3716 (the mint), 1.3477
+  (the gating red-run, which PASSED with 0.006 of band left) —
+  peak deviation from the minted value 0.0239 on four runs. The
+  band as minted will pass most quiet runs but sits within noise
+  of firing spuriously; a red that fires on noise is the mirror
+  defect of a red that cannot fire. NOT retuned by the builder
+  (the band is the sitting's number). STRENGTHENED BY THE SAT RUN:
+  its half-slope read 1.3450 (|delta| 0.0266, 0.0034 of band left)
+  — five quiet measurements now span 0.0266, and BOTH gating runs
+  passed within 0.007 of firing. As frozen, the row should be
+  expected to false-fire within a few freezes. Two candidate
+  remedies for the freeze review, either under the author's key at
+  the boundary: widen the band to clear the measured spread (e.g.
+  +/-0.05, ~2x the observed peak), or re-state the statistic to
+  the windowed-MEAN ratio mean[151..300]/mean[6..150] (the means
+  reproduce to ~0.6 percent same-shape; note the PROCESS-SHAPE
+  effect below) and re-mint from the standing transcript. The five
+  windowed-mean gates are unaffected in kind but see a
+  PROCESS-SHAPE offset: the SAT process (heir populations live in
+  earlier rows) ran its drift means ~+7 percent over the mint
+  (448.6 vs 417.8 at [6..30]) — the heap the suite's earlier rows
+  leave behind is part of the cell; at the implementation's
+  process shape the +/-15 band retains ~8 percent margin. Recorded
+  so the Phase-3 gate-5 reader is not surprised.
+
+  U7 RULED AND EXECUTED (the author, 2026-08-06, in-session:
+  "Re-state the statistic to the windowed-mean ratio"). Before the
+  ruling arrived, the prediction had already fired: the final-bytes
+  red run's half-slope read 1.3339 (|delta| 0.0377 > 0.03) on a
+  quiet box and the drift gate FALSE-FIRED — 13/20 red against the
+  frozen 12; the transcript is PRESERVED as
+  opening/halfslope-falsefire.txt (the U7 evidence run; seven
+  measurements, realized span 0.0439). EXECUTION, two halves:
+  (1) the statistic is now the DEEP/SHALLOW MEAN RATIO
+  mean[151..300]/mean[6..150], the band value kept at +/-0.03
+  absolute; (2) the drift cell MOVED FIRST-IN-SUITE. The second
+  half was forced by a discovery made while executing the first:
+  the process-shape inflation is DEPTH-DEPENDENT (+7.4 percent
+  shallow vs +1.5 percent deep at the SAT run), so a mean ratio
+  measured after the heir populations would shift ~-0.06 across
+  the stub-to-implementation boundary and the re-stated gate would
+  false-fire at Phase 3 through a different door. A first-in-suite
+  cell owns a fresh heap in BOTH suite shapes; the two standalone
+  quiet drift runs (fresh-process, the same cell shape) put the
+  proxy mean-ratio spread at 0.002. The re-mint, red and SAT runs
+  below all postdate the re-statement.
+
+  U7's SECOND RULING (the author, 2026-08-06, in-session, on the
+  presented measurement): THE BAND IS +/-0.06. The first
+  re-statement run pair measured the statistic's two noise scales:
+  WITHIN a library build +/-0.0012 (red run 1.9976 vs mint 1.9964)
+  — but ACROSS builds +0.037 (the SAT/overlay build read 2.0334):
+  the overlay module's added code moves GHC's codegen
+  differentially by regime, the overhead-bound shallow windows
+  ~-5 percent against the bignum-bound deep windows' ~-3 percent,
+  and the implemented library at Phase 3 inherits exactly that
+  shift. A +/-0.03 band minted stub-side would have false-fired at
+  the first implementation-side gate 5 — the same trap through a
+  third door, caught by the SAT run before the freeze. +/-0.06
+  covers the measured cross-build shift with margin; real shape
+  defects (the d6 class, leaks, superlinear regressions) move the
+  means and the ratio far beyond it. The alternative (keep
+  +/-0.03, pre-declare a licensed re-mint at the implementation's
+  close) was presented and declined in favor of the
+  self-contained band.
+
+### XVIII.9 The claims register (LIVE — the gate's first
+post-canonization firing, over this part and the suite header)
+
+    1  "hello ignores unknown world keys" — EXECUTED: the rehearsal
+       and mint transcripts show breadth-bearing hellos ACCEPTED at
+       the stub (b4c/b5a red messages quote the ok:true replies).
+    2  "n/16 is exact in Double" — ARGUED (dyadic representability
+       within the mantissa); falsifier named: a sixteenth failing
+       round-trip show/read against its Rational.
+    3  "the two entropy forms coincide bit-identically" — EXECUTED:
+       delta 0.000e0 printed at the mint and SAT runs (b7a REPORT).
+    4  "[(3,2),(2,3)] is closed under per-pair swap" — ARGUED (set
+       equality of the comprehension under (jHi,jLo) exchange);
+       falsifier named: enumerate both families and compare by ==;
+       defect-d7's non-firing on the symmetric cell is the same
+       fact's executed shadow.
+    5  "the walk rows are the only order-dependent rows" — EXECUTED:
+       P10 cell (a) vs (b) at r6, re-executed as b8a's SAT green
+       over the heir corpus (declared rows included).
+    6  "means reproduce ~0.6%, half-slope spread 0.012 quiet /
+       -0.056 contended" — EXECUTED: the four recorded runs
+       (XVIII.3; transcripts in the session record, the official
+       mint in opening/).
+    7  "every world declared on ONE side of the parse" — VERIFIED BY
+       ENUMERATION: two worlds; sides stated at their definitions.
+    8  "the stub is wrong-but-total; 12 frozen suites green against
+       it" — EXECUTED: cabal test all exit 0 at 4b6c9f7.
+    9  "the wire cell's gap to P0's 1870 is the menu width" —
+       ARGUED-NOT-EXECUTED (XVIII.3); falsifier named there. The
+       load-bearing half (the gate binds to its own mint cell) holds
+       by construction and needs no measurement.
+
+### XVIII.10 Mandates, audit, standing
+
+[RUN-MANDATES: the six red-team mandates, fresh-context reviewers,
+one each — findings]
+
+THE BOUNDARY AUDIT (opening/boundary-audit.txt, run on the PRE-KIT
+tree by design): M5=0 H=0 BF=0, OB=2 — the two flags are OBLIGATIONS
+lines 54,55 (OB-26/27, open against closed readout-freeze-r0) and
+56,57,59 (OB-28/29/31, open against closed readout-freeze-r1):
+EXACTLY the rows this kit's obligations-heir.patch advances. The
+audit is the triage input that says the kit is aimed at the right
+rows; applying the kit clears both flags. The transcript's standing-
+observations note still prints the STALE G2 sentence — as it must:
+the transcript documents the pre-repair tool, and the fl-repairs
+patch is what retires that sentence (pack XVII's routing).
+
+Standing after r9: the oracle and kit await the author's freeze
+review (1-verify, SITTING.md, tag-msg.txt); the freeze's key acts
+are the author's (or delegated with R-D22's re-tag owed). After the
+tag: Phase 3 — the prophecy applied, gates 1-7, the kill matrix
+against the grown pool, the close-out pack, the countersign, then
+publication and #19.

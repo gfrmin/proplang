@@ -1,0 +1,66 @@
+diff --git a/dispositions-pack.md b/dispositions-pack.md
+index 8e8b715..ba8dae2 100644
+--- a/dispositions-pack.md
++++ b/dispositions-pack.md
+@@ -1395,6 +1395,16 @@ K=6 stays within a stated multiple of the shipped 219.** Naming the
+ multiple is the author's call and is the one number this pack does not
+ supply.
+ 
++    [DATED BRACKET, breadth-freeze-r0, 2026-08-06 (close-date
++    document: annotated, never rewritten). "The shipped 219" was
++    measured at 9790089 - PRE-exact-re-founding, PRE-#20-readout
++    (the heir opening's F-2). The HEAD denominator is the opening
++    pack's P0 (breadth-author-pack.md IV: ev 75 / ev+ro 488 / wire
++    1870 ms/tick at K=6), and the bar as MINTED at breadth-sitting-r0
++    binds as a RATIO gate on the ev+ro class at matched depth and
++    window, multiple 2 - not against the 219, which stays what it
++    was: this close-date document's record of its own day.]
++
+ ### VIII.4 — the three items' interaction, stated once
+ 
+ These are not independent. #20's `p0` is the instrument that measures
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 0aba760..8fd61b4 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -385,7 +385,12 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
+         Nothing -> Right (Left [])
+         Just [] -> Right (Left [])
+         Just opts@(o0 : _) -> case swUSaid w of
+-          Nothing -> Right (Left o0)   -- wait: the option space's head
++          -- no utility: the option space's head fires as a plain
++          -- EXTERNAL act (Left = external per the legend above;
++          -- repaired at breadth-freeze-r0 - the old comment read
++          -- "wait: the option space's head", contradicting the legend
++          -- three lines up; routed by the readout close, VII.3)
++          Nothing -> Right (Left o0)
+           Just u -> do
+             scored <- mapM (\c -> do
+                         b <- predictiveBelief (feats ++ c) ag
+diff --git a/tools/boundary-audit.sh b/tools/boundary-audit.sh
+index 23f76cc..d54b677 100755
+--- a/tools/boundary-audit.sh
++++ b/tools/boundary-audit.sh
+@@ -133,5 +133,21 @@ else
+ fi
+ 
+ echo "--- standing observations ---"
+-echo "note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has $(grep -c '^test-suite' proplang.cabal) (dated red-by-design instrument, recorded)"
++# REPAIRED at the heir oracle freeze (breadth-freeze-r0, 2026-08-06;
++# pack XVII, FL row): the old note hard-printed "test-writeup/check.sh
++# G2 asserts 8 cabal stanzas ... (dated red-by-design instrument)" -
++# FALSE OF THE TREE since the step-7 unify freeze retired G2 to a green
++# RECORD form; a frozen tool never narrates a sibling instrument's
++# state from memory. The line now derives everything it prints.
++echo "note: test-writeup/check.sh carries its own G2 RECORD row (run it for the state); cabal test-suite stanzas now: $(grep -c '^test-suite' proplang.cabal)"
++
++# --- prose-claim triage (the XV.3 audit row; canonized at the heir ---
++# oracle freeze). Bare universal quantifiers in the CURRENT author
++# pack outside register/quote context - a TRIAGE INPUT for the human
++# sweep, never a verdict (the M5/H row pattern).
++curpack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
++if [ -n "$curpack" ] && [ -f "$curpack" ]; then
++  pcq=$(grep -cinE '\b(every|no|any|cannot)\b' "$curpack" || true)
++  echo "prose-claim triage: $pcq quantifier-bearing line(s) in $curpack - sweep against its claims register (triage input, not a verdict)"
++fi
+ echo "=== boundary-audit done: M5=$m5flags H=$hflags OB=$obflags BF=$bfflags ==="

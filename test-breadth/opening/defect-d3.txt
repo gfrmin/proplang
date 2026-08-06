@@ -1,0 +1,12 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d3/breadth size=8091664 mtime=2026-08-06 09:00:28.174325877 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=afba367a5e23db0d58ee25af8d13d926ef9b5aebe16cdc706fa4545c181ce8b8 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  b6 the ms/tick instrument
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):   REPORT base ev+ro 435.0 ms/tick, heir ev+ro 1611.1 ms/tick, ratio 3.704 (bar 2.0)
+  REPORT composition at [6..30]: ev 67.3 (frozen 66.7) of which walks 25.0 (frozen 24.9); ev+ro 435.0 (frozen 435.5); wire 2952.0 (frozen 824.2)
+  REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)
+FAIL (150.21s)
+      test-breadth/Breadth.hs:501:
+      b6 ratio 3.704 <= bar 2.0 (heir/base ev+ro, matched depth+window)
+
+1 out of 1 tests failed (150.21s)
