@@ -1,10 +1,10 @@
-# THE PROPHECY (R-D21 overlay vs src at 4b6c9f7): the implementation
-# Phase 3 applies byte-for-byte or reports why not (readout precedent).
+# THE PROPHECY (R-D21 overlay vs src at the oracle-phase HEAD): the
+# implementation Phase 3 applies byte-for-byte or reports why not.
 # Regenerate: diff -u src/PropLang/<M>.hs <overlay>/PropLang/<M>.hs
---- src/PropLang/Enumerate.hs	2026-08-06 08:58:25.941282123 +0300
-+++ /tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/overlay/PropLang/Enumerate.hs	2026-08-06 09:16:58.668403990 +0300
-@@ -302,8 +302,66 @@
- -- is this function's.
+--- src/PropLang/Enumerate.hs	2026-08-06 12:50:46.726062957 +0300
++++ /tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/overlay/PropLang/Enumerate.hs	2026-08-06 12:55:38.312978103 +0300
+@@ -330,8 +330,66 @@
+ -- abstract), so this function is total over its whole domain.
  enumerateWithBreadth :: Breadth -> Int -> Namespace -> Carrier Int -> Grid
                       -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
 -enumerateWithBreadth _br kAr ns obsC eg guardGs mrg allowed =
@@ -18,7 +18,7 @@
 +    cAt :: Grid -> Int -> Expr env Rational
 +    cAt g k = case mkC g k of
 +      Just e -> e
-+      Nothing -> error "enumerateWithBreadth: off-codebook (door-validated)"
++      Nothing -> error "enumerateWithBreadth: off-codebook (mkBreadth-validated)"
 +    zero = cAt atomG 0
 +    one = if gridSize atomG > 1 then cAt atomG 1 else zero
 +    km1 = cAt atomG (kAr - 1)
@@ -72,38 +72,31 @@
  -- ---------------------------------------------------------------------
  -- R17: THE CORPUS IS A DERIVATION. The normative hypothesis space is
 --- src/PropLang/Host.hs	2026-08-05 04:25:34.322355467 +0300
-+++ /tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/overlay/PropLang/Host.hs	2026-08-06 09:17:50.825726020 +0300
-@@ -47,13 +47,13 @@
- 
- #if !defined(DROP_CODE) && !defined(DROP_EXPECT) && !defined(DROP_COND)
- import Data.Char (isDigit)
--import Data.List (intercalate)
-+import Data.List (intercalate, nub)
++++ /tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/overlay/PropLang/Host.hs	2026-08-06 12:56:03.414767277 +0300
+@@ -51,9 +51,9 @@
  import Data.List.NonEmpty (NonEmpty ((:|)))
  import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
  
 -import PropLang.Enumerate (AgentS, agentObsPoints, enumerateWith,
 -                           enumerateWithArity, fragFull, observeS,
 -                           predictMassS, sentenceAgent)
-+import PropLang.Enumerate (AgentS, Breadth (..), agentObsPoints,
++import PropLang.Enumerate (AgentS, agentObsPoints, breadthEmpty,
 +                           enumerateWith, enumerateWithBreadth, fragFull,
-+                           observeS, predictMassS, sentenceAgent)
++                           mkBreadth, observeS, predictMassS, sentenceAgent)
  import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
  import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
                            mintQ, policyPick, reindexUtility, substW,
-@@ -299,6 +299,29 @@
+@@ -299,6 +299,22 @@
        True <- pure (fromIntegral r == v && r >= 2)
        pure (Just r)
      Just _ -> Nothing
 +  -- THE BREADTH KEY (the OB-19 heir; breadth-sitting-r0's authority):
-+  -- world data declaring the richer family's extent. Validation is
-+  -- the door's (fail-closed): each pair ordered-distinct positive
-+  -- in-range, no duplicates (a codebook is a set), the null face
-+  -- refused at K=2 (the exact-duplication law).
++  -- world data declaring the richer family's extent. The door PARSES
++  -- the JSON shapes; mkBreadth is THE validator (the ladder as
++  -- climbed) - a Nothing from it IS the refusal, fail-closed.
 +  brDecl <- case oGet "breadth" w of
-+    Nothing -> pure (Breadth [] False)
++    Nothing -> pure breadthEmpty
 +    Just bj -> do
-+      let kAeff = maybe 2 id arK
 +      ps <- case oGet "pairs" bj of
 +        Nothing -> pure []
 +        Just (JArr pj) -> mapM pairIx pj
@@ -112,16 +105,11 @@
 +        Nothing -> pure False
 +        Just (JBool bv) -> pure bv
 +        Just _ -> Nothing
-+      let okPair (a, b) =
-+            a /= b && a >= 1 && a <= kAeff - 1 && b >= 1 && b <= kAeff - 1
-+      True <- pure (all okPair ps)
-+      True <- pure (length ps == length (nub ps))
-+      True <- pure (not nl || kAeff >= 3)
-+      pure (Breadth ps nl)
++      mkBreadth (maybe 2 id arK) ps nl
    n0 : nrest <- pure ns
    let inNs nm = nm `elem` ns
    if not (all (inNs . fst) gs && all (inNs . fst) menu)
-@@ -315,7 +338,8 @@
+@@ -315,7 +331,8 @@
                -- test-pin/Arity, never a branch on 2
                pop = case arK of
                  Nothing -> enumerateWith nsN obsC thetaG gs mRhoG fragFull
@@ -131,7 +119,7 @@
                ag = sentenceAgent nsN pop
                uSaid = fmap fst uSaidB
                ubPart = case uSaidB of
-@@ -338,6 +362,14 @@
+@@ -338,6 +355,14 @@
        v0 : vrest <- pure vs
        pure (mkGrid nm (v0 :| vrest))
      pairGridNamed _ _ = Nothing

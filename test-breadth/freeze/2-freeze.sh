@@ -69,6 +69,12 @@ git apply test-breadth/freeze/obligations-heir.patch
 #    rewritten)]
 git apply test-breadth/freeze/fl-repairs.patch
 
+# 5b. [the mandate-4 round's finding F8: the wire spec gains the
+#     breadth key's section-2 bullet in the same freeze that grows
+#     the wire - the sibling increments' membrane-install form; plus
+#     the R-D23 heir-landed pointer]
+git apply test-breadth/freeze/membrane-breadth.patch
+
 # 6. gate 5 on the spliced tree. The breadth oracle is RED BY DESIGN
 #    until implementation — the gate asserts the EXACT frozen red set
 #    (the two-run triptych at the kit level: the reds are the recorded
@@ -76,6 +82,13 @@ git apply test-breadth/freeze/fl-repairs.patch
 #    stays green. Transcript rides un-hashed (the readout precedent:
 #    its sibling lint transcript postdates the manifest re-sign).
 cabal test all 2>&1 | tee test-breadth/freeze/gate5-run.txt || true
+# the gates below are NOT disarmable by ambient state: a stray
+# BREADTH_MINT in the environment would turn the two frozen-literal
+# gates into prints (the mandate-6 finding) - its marker line must be
+# ABSENT from the transcript
+if grep -q "MINT MODE" test-breadth/freeze/gate5-run.txt; then
+  echo "ABORT: gate 5 ran in MINT MODE - unset BREADTH_MINT" >&2; exit 1
+fi
 for s in transport exact-acceptance exact-properties lawful \
          lawful-independence pins dyadic trampoline f5 jointprep \
          battery readout; do
@@ -84,14 +97,20 @@ for s in transport exact-acceptance exact-properties lawful \
 done
 grep -q "Test suite breadth: FAIL" test-breadth/freeze/gate5-run.txt \
   || { echo "ABORT: breadth suite unexpectedly green pre-implementation" >&2; exit 1; }
-grep -q "12 out of 20 tests failed" test-breadth/freeze/gate5-run.txt \
-  || { echo "ABORT: breadth red set is not the frozen 12-of-20" >&2; exit 1; }
-for r in b1b b2a b2b b2c b2d b3a b3b b4a b4c b5a b5c b6d; do
+# THE FROZEN RED SET, named ONCE - the count derives from the list
+# (the kit's own one-list law, applied to itself at the mandate round)
+REDS="b1b b2a b2b b2c b2d b3a b3b b4a b4c b5a b5c b6d"
+NRED=$(echo $REDS | wc -w)
+grep -q "$NRED out of 20 tests failed" test-breadth/freeze/gate5-run.txt \
+  || { echo "ABORT: breadth red set is not the frozen $NRED-of-20" >&2; exit 1; }
+for r in $REDS; do
+  # a row's FAIL may trail its REPORT prints: six lines of budget
+  # (the widest current row prints two REPORTs; headroom stated)
   grep -qE "$r .*FAIL" test-breadth/freeze/gate5-run.txt \
-    || grep -A3 " $r " test-breadth/freeze/gate5-run.txt | grep -q "^FAIL" \
+    || grep -A6 " $r " test-breadth/freeze/gate5-run.txt | grep -q "^FAIL" \
     || { echo "ABORT: expected red row $r did not fire in gate5" >&2; exit 1; }
 done
-echo "gate 5: standing suites green; breadth red set == the frozen 12"
+echo "gate 5: standing suites green; breadth red set == the frozen $NRED"
 
 # 7. the manifest extension (oracle + stanza draft + opening
 #    transcripts + the kit itself, the kit-freezes-itself form) and
@@ -112,7 +131,8 @@ for ln in open("MANIFEST.sha256"):
     m = re.match(r"^(\S+)\s+(.*)$", ln.rstrip("\n"))
     if m: rows[m.group(2)] = m.group(1)
 for f in ("proplang.cabal", "CLAUDE.md", "OBLIGATIONS.md",
-          "tools/prefreeze-lint.sh", "tools/boundary-audit.sh"):
+          "tools/prefreeze-lint.sh", "tools/boundary-audit.sh",
+          "membrane-wire.md"):
     rows[f] = hashlib.sha256(open(f, "rb").read()).hexdigest()
 with open("MANIFEST.sha256", "w") as fh:
     for k in sorted(rows): fh.write(f"{rows[k]}  {k}\n")

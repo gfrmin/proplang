@@ -34,6 +34,7 @@ acts; everything else is mechanics the kit executes and records.
 | lint-l8-hardening.patch | tools/prefreeze-lint.sh — L8 + L9/L5 hardened | OB-26 + OB-28 |
 | obligations-heir.patch | OBLIGATIONS.md — advances + OB-32 + OB-19 amendment | the tag's ledger routings |
 | fl-repairs.patch | boundary-audit.sh:136 + Host.hs:387 + dispositions VIII.3 bracket | pack XVII + VIII (routed) |
+| membrane-breadth.patch | membrane-wire.md — the breadth key's section-2 bullet + the R-D23 heir-landed pointer | the mandate round (F8); the sibling increments' membrane-install form |
 
 ## What stays owed after this freeze (Phase 3, the implementation)
 
@@ -42,12 +43,16 @@ acts; everything else is mechanics the kit executes and records.
   anchors byte-stable (movement = stop-and-report).
 - The kill matrix vs the grown pool; M8 promoted as b7's kill
   (OB-31/OB-19 discharge at the close tag); the seeded-defect shapes
-  D1–D7 are the drafted pool candidates.
+  d1-d9 (lowercase, the pack's naming; nine of them) are the drafted
+  pool candidates.
 - The close-out pack, the author's countersign (r1), publication on
   the author's call.
 
 ## The rehearsal record
 
 The kit was rehearsed two-sided from a fresh clone before this sheet
-reached the author: greens sealed end-to-end, every seeded red fired
-(the rehearsal transcript rides test-breadth/opening/rehearsal.txt).
+reached the author: greens sealed end-to-end, and every KIT GUARD
+RED fired (the kit's own four guards - refused key, orphan patch,
+surviving [MINT] marker, perturbed literal - distinct from the
+oracle rows' seeded-defect reds d1-d9, which ride opening/defect-*).
+The rehearsal transcript rides test-breadth/opening/rehearsal.txt.

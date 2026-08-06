@@ -22,20 +22,25 @@
 -- number — the readout suite's eighths lesson); the probe21 world
 -- (exact tenths) is LIBRARY-ONLY and never crosses the wire.
 --
--- THE MINT LAW (XIII.5, as ruled): the drift row's five windowed
--- means and its deep/shallow mean ratio, and the composition record's
--- values, are FROZEN at the oracle's mint — one build-stamped run of
--- THIS suite with BREADTH_MINT=1, whose transcript rides
--- test-breadth/opening/mint-run.txt; the frozen literals below derive
--- from that transcript and from nothing else. Bands: windowed means
+-- THE MINT LAW (pack XIII.5's gating clause, executed at XVIII.3).
+-- Three senses of "mint" live in this increment and are DECLARED here
+-- (the mandate-5 finding): (A) a SITTING mint — an author key act
+-- (the bar, the bands); (B) an INSTRUMENT mint — one build-stamped
+-- run of THIS suite with BREADTH_MINT=1 whose transcript rides
+-- test-breadth/opening/mint-run.txt, from which the frozen literals
+-- below derive and from nothing else; (C) minting a TAG (the kit's
+-- 4-close). A LICENSED RE-MINT is sense A executed THROUGH sense B:
+-- an author act at a boundary, carried out by a fresh instrument
+-- run — never a builder's standing license. Bands: windowed means
 -- +/-15% (the sitting's hardware-tolerant band; beyond it lies a
--- licensed re-mint, never a breadth failure), and +/-0.03 absolute on
--- the deep/shallow mean ratio (the sitting minted +/-0.03 on the LS
--- half-slope ratio; that statistic's realized quiet spread broke its
--- own band and the author re-stated the statistic on 2026-08-06 —
--- pack XVIII U7 — keeping the band value). A composition change is a
--- LICENSED RE-MINT of the gate, never a breadth failure (XIII.5's
--- clause, quoted).
+-- licensed re-mint, never a breadth failure), and +/-0.06 absolute
+-- on the deep/shallow mean ratio (two author rulings of 2026-08-06,
+-- pack XVIII U7: the sitting's original +/-0.03 bound the LS
+-- half-slope, whose realized quiet spread broke it — the statistic
+-- was re-stated to the windowed-mean ratio, and the band set to
+-- clear the measured cross-build codegen shift). A composition
+-- change is a LICENSED RE-MINT of the gate, never a breadth failure
+-- (XIII.5's clause, quoted).
 --
 -- OB-3's run-each-freeze half is RE-HOMED here: this suite rides
 -- `cabal test all` (frozen gate 5), so the instrument runs at every
@@ -45,9 +50,17 @@
 -- Residuals (the no-silent-caps law): K=6 only for the cost rows (the
 -- consumer's live operating point; K=10/16010 declared UNMEASURED in
 -- the acceptance and not walked here); one stream shape per cost cell
--- (the 8:1 interleave); CPU ms, single process, -O1, default RTS;
--- wall-clock of this suite ~5-7 minutes, dominated by the 300-tick
--- drift row (the accepted price's own instrument).
+-- (the 8:1 interleave); CPU ms, ONE process, ONE tasty thread
+-- (NumThreads 1 is PINNED in main — getCPUTime is process-wide, so
+-- parallel tests would pollute every timed cell; the pin also makes
+-- the drift cell's first-in-suite position meaningful); -O1; default
+-- RTS; the timed cells are ALSO a function of the BUILD DRIVER (the
+-- measured cross-build codegen shift is over half the ratio band —
+-- the standing gate-5 runs are cabal-built, and the freeze commit's
+-- gate5-run.txt records that build's values permanently) and of the
+-- box being QUIET (pack XVIII.3/U6); wall-clock ~5-7 minutes,
+-- dominated by the 300-tick drift row (the accepted price's own
+-- instrument).
 module Main (main) where
 
 import Control.Exception (SomeException, try)
@@ -69,10 +82,12 @@ import Text.Printf (printf)
 
 import Test.Tasty
 import Test.Tasty.HUnit
+import Test.Tasty.Runners (NumThreads (..))
 
-import PropLang.Enumerate (AgentS, Breadth (..), Hyp (..), agentObsPoints,
+import PropLang.Enumerate (AgentS, Breadth, Hyp (..), agentObsPoints,
+                           breadthEmpty, breadthNull, breadthPairs,
                            enumerateWithArity, enumerateWithBreadth, fragFull,
-                           kraftSum, mapS, metaPosterior, observeS,
+                           kraftSum, mapS, metaPosterior, mkBreadth, observeS,
                            predictMassS, sentenceAgent)
 import PropLang.Host (hostStart, serveLine)
 import PropLang.Report (bitsView, entropyAgent)
@@ -137,14 +152,23 @@ compFrozenWalkShare = 24.9   -- ev(base) - ev(walk-free), mint-run.txt
 compFrozenRo        = 435.5  -- base ev+ro mean [6..30], mint-run.txt
 compFrozenWire      = 824.2  -- wire combined tick mean [6..30], mint-run.txt
 
--- b7's gate: |wire entropy_bits - independent| bound. Measured floor
--- 0.0 (bit-identical Doubles — IEEE negation symmetry makes entropyOf
--- and the independent sum-of-negations coincide exactly; the mint and
--- SAT transcripts both print delta 0.000e0); the gate is the repo's
--- smallest standing gate class above an exact-zero floor (the CL-4
--- precedent: a gate is born from a measurement, never a round guess)
-entropyTol :: Double
-entropyTol = 1.0e-12
+-- b7's gate is EXACT EQUALITY (the repo's own standard: every law an
+-- exact ==, no tolerance constant). The zero floor is a THEOREM, not
+-- a measurement (the mandate-1 finding): the independent form is
+-- entropyOf's expression with negation factored out, and both sides
+-- consume metaPosterior in the same order, so under IEEE negation
+-- symmetry they coincide bit-for-bit; the wire side adds only the
+-- show/read round-trip, which is exact for Double. The row's
+-- DISCRIMINATING content is therefore the POSTERIOR ROUTE — the wire
+-- agent's posterior against the reference route's — plus the render
+-- contract; the arithmetic-form independence is nominal, and the
+-- kill is the sign-drop class (M8/defect-d4), which fires through
+-- the wire side alone. What the row is a FUNCTION OF, stated: the
+-- summation order of metaPosterior, the Double show/read round-trip,
+-- and the two posterior routes. (The first draft gated at 1e-12
+-- citing "the repo's smallest standing gate class" — a class the
+-- exact re-founding ABOLISHED; the mandate round convicted the
+-- citation and the gate went to == .)
 
 -- ---------------------------------------------------------------------
 -- the consumer-class world (SIXTEENTHS — wire-safe by construction;
@@ -187,12 +211,35 @@ heirPop k br =
 s21 :: [(Int, Int)]
 s21 = [(3, 2), (2, 3)]
 
-brFull, brEmpty :: Breadth
-brFull  = Breadth s21 True
-brEmpty = Breadth [] False
+-- every declaration goes through the ONE validator (the ladder as
+-- climbed: the type is abstract; the oracle's worlds declare validly,
+-- so the unwrap is total here — an invalid literal is a suite bug)
+mkBr :: Int -> [(Int, Int)] -> Bool -> Breadth
+mkBr k ps nl = case mkBreadth k ps nl of
+  Just b  -> b
+  Nothing -> error "breadth oracle: invalid declaration (unreachable)"
+
+brFull, brEmpty, brAsym, brPairs6, brNull6 :: Breadth
+brFull   = mkBr 6 s21 True
+brEmpty  = breadthEmpty
+brAsym   = mkBr 6 [(3, 2)] True
+brPairs6 = mkBr 6 s21 False
+brNull6  = mkBr 6 [] True
+
+-- the probe21-side (K=5) declarations, validated at their own arity
+br21Pairs, br21PairsNull, br21OnePair, br21Null :: Breadth
+br21Pairs    = mkBr k21 s21 False
+br21PairsNull = mkBr k21 s21 True
+br21OnePair  = mkBr k21 [(3, 2)] False
+br21Null     = mkBr k21 [] True
 
 -- closed forms, derived from the DECLARED data above (the sweep-
--- universe law: never hand-enumerated counts)
+-- universe law: never hand-enumerated counts). FUNCTION OF, complete
+-- (the mandate-6 finding): the declared list lengths BELOW, plus the
+-- full fragment set (every enumeration here passes fragFull) and the
+-- walk grid's PRESENCE (the rPts term holds only for worlds passing
+-- Just rho - the consumer world; the probe21 world passes Nothing
+-- and these forms are never applied to it)
 ePts, rPts, tPts, nGuards :: Int
 ePts    = length thetaQs
 rPts    = length rhoQs
@@ -218,6 +265,9 @@ heirClosed k br =
 
 -- the 8:1-shaped interleaved stream (the #21 corpus shape; COPY of the
 -- opening probes' streamC — pack IV, P0/P7)
+-- Tick: a feature assignment with its evidence label — the fold's
+-- own input shape (observeS's first two arguments, paired); a test
+-- alias, no new frozen-surface content
 type Tick = ([(String, Rational)], Int)
 
 streamC :: Int -> Int -> [Tick]
@@ -231,7 +281,8 @@ streamC k n =
 
 -- ---------------------------------------------------------------------
 -- the probe21 world (EXACT TENTHS — library side ONLY, never wired;
--- VII.1's shape: ns [t, ctx, skill], one guard ctx@[1/2], K=5)
+-- dispositions-pack.md VII.1's shape: ns [t, ctx, skill], one guard
+-- ctx@[1/2], K=5)
 -- ---------------------------------------------------------------------
 
 k21 :: Int
@@ -240,8 +291,13 @@ k21 = 5
 ns21 :: Namespace
 ns21 = mkNamespace ("t" :| ["ctx", "skill"])
 
+theta21Qs :: [Rational]
+theta21Qs = [ n % 10 | n <- [1 .. 9] ]
+
 theta21 :: Grid
-theta21 = mkGrid "theta" (1 % 10 :| [ n % 10 | n <- [2 .. 9] ])
+theta21 = case theta21Qs of
+  (q : qs) -> mkGrid "theta" (q :| qs)
+  []       -> error "breadth oracle: empty theta21 (unreachable)"
 
 tau21 :: Grid
 tau21 = mkGrid "ctx" (1 % 2 :| [])
@@ -278,10 +334,18 @@ streamNull =
 nullProbeFs :: [(String, Rational)]
 nullProbeFs = [ ("t", 0), ("ctx", 1 % 4), ("skill", 0) ]
 
--- the structural cap on the shipped null mass (OB-19's premise),
--- derived from the declared grid: (1 - min theta) / (K - 1)
-nullCap :: Rational
-nullCap = (1 - 1 % 10) / fromIntegral (k21 - 1)
+-- the structural cap on the shipped null mass, DERIVED from the
+-- declared list (the tauPoints law: the first draft hand-wrote the
+-- 1/10 and the mandate round convicted it - the convicted 0.9-class
+-- literal, back one boundary after its deletion). TWO forms, kept
+-- distinct: the FROZEN premise (OB-19 / W3 ruling 1 / R-D23) is
+-- p0 <= 1/(K-1); the TIGHTER (1 - min theta)/(K - 1) is the
+-- builder's addition, with its executed witness recorded at the
+-- mandate round (max p0 over the whole probe21 corpus == this cap
+-- exactly, walk-free and walk-live - pack XVIII.10)
+nullCapFrozen, nullCap :: Rational
+nullCapFrozen = 1 / fromIntegral (k21 - 1)
+nullCap = (1 - minimum theta21Qs) / fromIntegral (k21 - 1)
 
 -- ---------------------------------------------------------------------
 -- library helpers (fold, readout reference, argmax — COPY shapes:
@@ -385,10 +449,11 @@ renderGrid16 ns = "[" ++ intercalate ", " [ renderQ (n % 16) | n <- ns ] ++ "]"
 --   "breadth": {"pairs": [[jHi, jLo], ...], "null": true|false}
 -- both keys optional; {} == absent key == the shipped route.
 breadthJson :: Breadth -> String
-breadthJson (Breadth ps nl) =
+breadthJson br =
   "\"breadth\": {\"pairs\": ["
-    ++ intercalate ", " [ "[" ++ show a ++ ", " ++ show b ++ "]" | (a, b) <- ps ]
-    ++ "], \"null\": " ++ (if nl then "true" else "false") ++ "}, "
+    ++ intercalate ", " [ "[" ++ show a ++ ", " ++ show b ++ "]"
+                        | (a, b) <- breadthPairs br ]
+    ++ "], \"null\": " ++ (if breadthNull br then "true" else "false") ++ "}, "
 
 -- the consumer-world hello; single-point menu (the readout suite's
 -- design: the chosen act is FORCED to skill=1, so the reference folds
@@ -419,8 +484,8 @@ helloMin mBreadth k =
 
 -- wire ticks DERIVED from the one stream generator (the probe-
 -- discipline law: a probe reads declared data, and two parallel lists
--- of the same ticks are the drift shape made sayable — so they are
--- made unsayable): a Tick's wire form renders the Tick's OWN
+-- of the same ticks are the TWO-LISTS DISEASE made sayable — so they
+-- are made unsayable): a Tick's wire form renders the Tick's OWN
 -- assignment minus the act name (the single-point menu carries the
 -- act), with the Tick's own label as evidence. Sixteenths make the
 -- Double render exact, so wire and reference build the same world.
@@ -439,7 +504,10 @@ tickEvOf (fs, y) =
 tickDecOf :: [(String, Rational)] -> String
 tickDecOf fs = "{\"tick\": {" ++ featsJson fs ++ ", \"menu\": [\"skill\"]}}"
 
--- the rendering convention (COPY Host.hs:428 via test-readout rD)
+-- the rendering convention (COPY: the wire's Double render - the
+-- p_codes renderer is the where-binding rQ inside readoutFields,
+-- src/PropLang/Host.hs at 4b6c9f7; byte-identical to test-readout's
+-- rD, whose frozen rows pin the render on the wire)
 rD :: Rational -> String
 rD q = show (fromRational q :: Double)
 
@@ -509,7 +577,12 @@ main = do
   mintMode <- isJust <$> lookupEnv "BREADTH_MINT"
   stamp
   when mintMode (putStrLn "MINT MODE: frozen-value rows print, never gate")
-  defaultMain (tests mintMode)
+  -- ONE tasty thread, PINNED (the mandate-6 finding): getCPUTime is
+  -- process-wide, so any parallelism pollutes every timed cell, and
+  -- the drift cell's first-in-suite position is only meaningful
+  -- sequentially. Pinned in code so no stanza flag or ambient
+  -- TASTY_NUM_THREADS can silently unpin it.
+  defaultMain (localOption (NumThreads 1) (tests mintMode))
 
 tagName :: Hyp -> String
 tagName h = fst (hypTag h)
@@ -558,9 +631,9 @@ gB1 = testGroup "b1 untouched route + models closed form"
       let popH = heirPop 6 brFull
       length popH @?= heirClosed 6 brFull
       -- the faces separately declarable: each face's count alone
-      length (heirPop 6 (Breadth s21 False))
+      length (heirPop 6 brPairs6)
         @?= baseClosed 6 + pairClosed s21
-      length (heirPop 6 (Breadth [] True))
+      length (heirPop 6 brNull6)
         @?= baseClosed 6 + nullClosed
   , testCase "b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route" $ do
       let popB = basePop 2
@@ -585,9 +658,14 @@ gB2 = testGroup "b2 Kraft and pricing"
       assertBool ("kraft heir < 1: " ++ show (fromRational kH :: Double)) (kH < 1)
       assertBool "kraft heir > kraft base (strict)" (kH > kB)
   , testCase "b2b the declared-pair mention mass is 1/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==)" $ do
+      -- the law is the FROZEN charge algebra applied to the declared
+      -- codebook (mentionMass g = CMass (1/gridSize g),
+      -- src/PropLang/Enumerate.hs at 4b6c9f7, binding mentionMass);
+      -- the prototype transcript (pack IV P3) is its executed
+      -- instance, not its definition
       let tg  = ("dpair", [3, 2, 0, 7, 8])
-          w1s = weightsOf tg (heir21 (Breadth [(3, 2)] False))
-          w2s = weightsOf tg (heir21 (Breadth s21 False))
+          w1s = weightsOf tg (heir21 br21OnePair)
+          w2s = weightsOf tg (heir21 br21Pairs)
       case (w1s, w2s) of
         ([w1], [w2]) -> w2 @?= w1 / 2
         _ -> assertFailure
@@ -595,18 +673,26 @@ gB2 = testGroup "b2 Kraft and pricing"
                   ++ show (length w1s) ++ "/" ++ show (length w2s))
   , testCase "b2c independent pricing: the null face's weight is invariant in the pair declaration (Rational ==)" $ do
       let tg  = ("nullconst", [0, 6])
-          wN  = weightsOf tg (heir21 (Breadth [] True))
-          wNP = weightsOf tg (heir21 (Breadth s21 True))
+          wN  = weightsOf tg (heir21 br21Null)
+          wNP = weightsOf tg (heir21 br21PairsNull)
       case (wN, wNP) of
         ([w1], [w2]) -> w2 @?= w1
         _ -> assertFailure
                ("expected exactly one nullconst row each side, got "
                   ++ show (length wN) ++ "/" ++ show (length wNP))
   , testCase "b2d prices are finite and positive (REPORT: bits printed)" $ do
-      let popH = heir21 (Breadth s21 True)
+      let popH = heir21 br21PairsNull
           pick tg = case weightsOf tg popH of
             (w : _) -> w
             []      -> 0
+          -- tag layouts: dpair [jHi,jLo,kt,a,b] (pack IV P3, binding
+          -- declaredFamily), nullconst [0,k] and nullguard [0,kt,a,b]
+          -- (pack IV P2, bindings nullConsts/nullGuarded); the
+          -- nullguard coordinates pick an ARBITRARY family member
+          -- (kt=0, a=6, b=3; any a/=b member serves - the row pins
+          -- positivity and pricing, not the member). All tag vectors
+          -- are functions of the declared grid ORDER (a grid edit
+          -- moves them; pick fails closed as "got 0/0").
           wD = pick ("dpair", [3, 2, 0, 7, 8])
           wC = pick ("nullconst", [0, 6])
           wG = pick ("nullguard", [0, 0, 6, 3])
@@ -624,7 +710,7 @@ gB2 = testGroup "b2 Kraft and pricing"
 gB3 :: TestTree
 gB3 = testGroup "b3 the #21 semantics: the minority tie BREAKS"
   [ testCase "b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1/2; dominant argmax stays 2" $ do
-      let agD = foldEv (sentenceAgent ns21 (heir21 (Breadth s21 False))) stream21
+      let agD = foldEv (sentenceAgent ns21 (heir21 br21Pairs)) stream21
           vM  = vecAt minorityFs agD
           vDm = vecAt dominantFs agD
       printf "  REPORT minority vec: %s\n"
@@ -634,7 +720,7 @@ gB3 = testGroup "b3 the #21 semantics: the minority tie BREAKS"
                  (vM !! 3 > 1 % 2)
       argmaxLow vDm @?= 2
   , testCase "b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1/2)" $ do
-      let agD = foldEv (sentenceAgent ns21 (heir21 (Breadth s21 False))) stream21
+      let agD = foldEv (sentenceAgent ns21 (heir21 br21Pairs)) stream21
           (tg, w) = mapS agD
       printf "  REPORT MAP %s @ %.4f\n" (show tg) (fromRational w :: Double)
       tg @?= ("dpair", [3, 2, 0, 7, 8])
@@ -647,16 +733,25 @@ gB3 = testGroup "b3 the #21 semantics: the minority tie BREAKS"
 
 gB4 :: TestTree
 gB4 = testGroup "b4 the null face and the K=2 door"
-  [ testCase "b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 S1/S2)" $ do
+  [ testCase "b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 criteria S1/S2)" $ do
       let agS = foldEv (sentenceAgent ns21 base21) streamNull
-          agE = foldEv (sentenceAgent ns21 (heir21 (Breadth [] True))) streamNull
+          agE = foldEv (sentenceAgent ns21 (heir21 br21Null)) streamNull
           p0S = orDie (predictMassS nullProbeFs 0 agS)
           p0E = orDie (predictMassS nullProbeFs 0 agE)
           (mTg, mW) = mapS agE
-      printf "  REPORT p0 shipped %.6f (cap %.6f)  extended %.6f  MAP %s @ %.4f\n"
-             (fromRational p0S :: Double) (fromRational nullCap :: Double)
+      printf "  REPORT p0 shipped %.6f (caps %.6f frozen / %.6f tight)  extended %.6f  MAP %s @ %.4f\n"
+             (fromRational p0S :: Double) (fromRational nullCapFrozen :: Double)
+             (fromRational nullCap :: Double)
              (fromRational p0E :: Double) (show mTg) (fromRational mW :: Double)
-      assertBool "shipped p0 <= the structural cap (OB-19's premise)" (p0S <= nullCap)
+      -- RECORD rows, not this row's discriminating content (the
+      -- readout r5a precedent: mandate 1 convicted p0<=cap as a
+      -- THEOREM of normalized weights and it is recorded as one;
+      -- re-convicted at this increment's mandate round). The
+      -- discriminating asserts are the extended-face three below.
+      assertBool "RECORD: shipped p0 <= 1/(K-1) (the FROZEN premise, OB-19/R-D23)"
+                 (p0S <= nullCapFrozen)
+      assertBool "RECORD: shipped p0 <= (1-min theta)/(K-1) (builder's tighter form, witness at XVIII.10)"
+                 (p0S <= nullCap)
       assertBool "extended p0 > 2x shipped" (p0E > 2 * p0S)
       assertBool "extended p0 in (0.60, 0.85)" (p0E > 3 % 5 && p0E < 17 % 20)
       mTg @?= ("nullconst", [0, 6])
@@ -705,14 +800,13 @@ gB5 = testGroup "b5 wire == reference route"
       -- the #21 set [(3,2),(2,3)] is CLOSED under per-pair swap, so a
       -- door-side swap defect is invisible to it by construction —
       -- this cell is where that defect class fires (defect-d7).
-      let brA = Breadth [(3, 2)] True
-          helloA = helloB (Just (breadthJson brA)) 6
+      let helloA = helloB (Just (breadthJson brAsym)) 6
           helloAReply = snd (serveLine hostStart helloA)
       assertBool ("asym hello models == closed form: " ++ take 120 helloAReply)
-                 (("\"models\": " ++ show (heirClosed 6 brA))
+                 (("\"models\": " ++ show (heirClosed 6 brAsym))
                     `isInfixOf` helloAReply)
       let decA = foldReplies helloA wireTicks
-          refA = foldEv (sentenceAgent nsC (heirPop 6 brA)) (streamC 6 12)
+          refA = foldEv (sentenceAgent nsC (heirPop 6 brAsym)) (streamC 6 12)
           vecA = vecAt probeFs12 refA
       assertBool ("asym p_codes == the reference vector: " ++ decA)
                  (fieldCodes vecA `isInfixOf` decA)
@@ -752,8 +846,7 @@ gB7 = testGroup "b7 entropy_bits (OB-31)"
       let indepH = indepEntropy refAgFolded
       printf "  REPORT entropy wire %.12f independent %.12f delta %.3e\n"
              wireH indepH (abs (wireH - indepH))
-      assertBool ("entropy delta <= " ++ show entropyTol)
-                 (abs (wireH - indepH) <= entropyTol)
+      wireH @?= indepH
   ]
 
 -- ---------------------------------------------------------------------
@@ -800,9 +893,22 @@ gB6 mintMode = testGroup "b6 the ms/tick instrument"
       -- no tag outside the census (the partition is exhaustive)
       sum (map snd counts) @?= length popH
   , testCase "b6b the ratio gate at matched depth and window, with the composition record (XIII.5)" $ do
+      -- THIS ROW IS THE SITTING'S "GATE b6" (the group name b6 covers
+      -- three rows; the minted ratio gate is exactly this one). What
+      -- the ratio is a FUNCTION OF, stated: the two routes, the
+      -- window, the process position (this group runs LAST - its
+      -- mint measured the same position, so the cell is
+      -- self-consistent, and driftFrozenMeans!!0 vs compFrozenRo are
+      -- the SAME quantity at the two positions, ~0.5% apart), and
+      -- fold order. The WARM-UP folds below exist because the first
+      -- timed fold otherwise pays the one-time CAF costs: the
+      -- mandate round measured a systematic -1.3% ANTI-CONSERVATIVE
+      -- bias (the heir ran warm) across three stub runs.
       let agB = sentenceAgent nsC (basePop 6)
           agH = sentenceAgent nsC (heirPop 6 brFull)
           noWalkPop = [ h | h <- basePop 6, tagName h /= "walk" ]
+      _ <- timedFold roStep agB (streamC 6 3)   -- warm-up, untimed use
+      _ <- timedFold roStep agH (streamC 6 3)   -- warm-up, untimed use
       msB <- timedFold roStep agB (streamC 6 30)
       msH <- timedFold roStep agH (streamC 6 30)
       evB <- timedFold evStep (sentenceAgent nsC (basePop 6)) (streamC 6 30)
@@ -820,6 +926,7 @@ gB6 mintMode = testGroup "b6 the ms/tick instrument"
              evM compFrozenEv walkShare compFrozenWalkShare roB compFrozenRo
              wireM compFrozenWire
       putStrLn "  REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)"
+      putStrLn "  REPORT (the wire column is the BASE route BY DESIGN - XIII.5 pins the base's composition; it cannot move when the heir's wire route changes)"
       assertBool "the instrument executed (all means positive)"
                  (all (> 0) [roB, roH, evM, wireM])
       gateOrMint mintMode

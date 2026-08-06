@@ -1,0 +1,77 @@
+
+==== RED R1: a refused key aborts 2-freeze BEFORE any mutation (OB-29's red) ====
+R1 OK: aborted pre-mutation, tree clean
+
+==== RED R2: an orphan patch stops 1-verify ====
+R2 OK: orphan caught
+
+==== RED R3: a surviving [MINT] marker aborts 2-freeze ====
+R3 OK: marker caught
+
+==== RED R4: a literal absent from the mint transcript stops 1-verify ====
+R4 OK: the literal trace fired
+
+==== GREEN: 1-verify ====
+1-verify OK
+
+==== GREEN: 2-freeze (patches, gate5 with the exact red set, manifest AFTER lint rows, demos, lint 0 FAIL) - the long leg ====
+2-freeze OK
+
+==== GREEN: 3-sign (builder key, auto-yes) then 4-close (the -F mint + byte-identity) ====
+3-sign OK
+4-close OK: tag minted by -F, verifies, message byte-identical to the file
+
+REHEARSAL: GREEN SEALED END-TO-END, ALL FOUR KIT REDS FIRED
+---- tail r1.log ----
+ABORT: signature probe FAILED - key absent or locked; nothing was touched
+---- tail r2.log ----
+e89f086 heir oracle phase r9 (builder commit): the evidence battery complete and the kit staged - the official mint (final statistic, quiet, stamped 21a21d9e/4b6c9f7), the final red run (12/20 = the exact frozen set, drift ratio 1.9939 vs 1.9964), the final SAT run (20/20 on the overlay prophecy, cross-build shift 2.0323 inside the ruled band), EIGHT seeded-defect reds all fired at final bytes (d1-d8, the drafted kill-pool candidates; d3's naive crossing measured 3.704 > bar 2); TWO AUTHOR RULINGS executed in-phase (pack XVIII U7): the drift statistic re-stated to the deep/shallow windowed-mean ratio after the LS half-slope false-fired on realized quiet spread (the 13/20 run preserved as halfslope-falsefire.txt), the cell moved first-in-suite after the depth-dependent process-shape discovery, and the band ruled +/-0.06 after the cross-library-build codegen shift (+0.037) was measured; the freeze kit staged complete (1-verify green end-to-end: five patches sequential, all 10 mint literals traced mechanically); pack Part XVIII the phase record with the live claims register
+4b6c9f7 heir oracle phase opens (builder commit): the type-surface stub (Breadth + enumerateWithBreadth, wrong-but-total, all 12 frozen suites green against it) and the test-breadth/ oracle draft - rows b1-b8 + the gated drift row + the rebuilt ms/tick instrument, attribution partitioned in the header (12 rows red-by-stub, 8 identity/instrument rows with seeded-defect reds owed to the red-run transcript); stanza drafted (spliced only at the freeze, the readout precedent); frozen mint literals still [MINT]-marked - the mint run follows this commit so its stamp reads src-dirty=0
+manifest OK pre-freeze
+STOP: patch file(s) present but never applied by 2-freeze:
+test-breadth/freeze/stray.patch
+---- tail r3.log ----
+step 0: live signature probe OK (key live, verifies; tree untouched so far)
+manifest OK pre-freeze
+ABORT: [MINT] marker still present in test-breadth/Breadth.hs
+---- tail r4.log ----
+e89f086 heir oracle phase r9 (builder commit): the evidence battery complete and the kit staged - the official mint (final statistic, quiet, stamped 21a21d9e/4b6c9f7), the final red run (12/20 = the exact frozen set, drift ratio 1.9939 vs 1.9964), the final SAT run (20/20 on the overlay prophecy, cross-build shift 2.0323 inside the ruled band), EIGHT seeded-defect reds all fired at final bytes (d1-d8, the drafted kill-pool candidates; d3's naive crossing measured 3.704 > bar 2); TWO AUTHOR RULINGS executed in-phase (pack XVIII U7): the drift statistic re-stated to the deep/shallow windowed-mean ratio after the LS half-slope false-fired on realized quiet spread (the 13/20 run preserved as halfslope-falsefire.txt), the cell moved first-in-suite after the depth-dependent process-shape discovery, and the band ruled +/-0.06 after the cross-library-build codegen shift (+0.037) was measured; the freeze kit staged complete (1-verify green end-to-end: five patches sequential, all 10 mint literals traced mechanically); pack Part XVIII the phase record with the live claims register
+4b6c9f7 heir oracle phase opens (builder commit): the type-surface stub (Breadth + enumerateWithBreadth, wrong-but-total, all 12 frozen suites green against it) and the test-breadth/ oracle draft - rows b1-b8 + the gated drift row + the rebuilt ms/tick instrument, attribution partitioned in the header (12 rows red-by-stub, 8 identity/instrument rows with seeded-defect reds owed to the red-run transcript); stanza drafted (spliced only at the freeze, the readout precedent); frozen mint literals still [MINT]-marked - the mint run follows this commit so its stamp reads src-dirty=0
+manifest OK pre-freeze
+patch list applies sequentially: test-breadth/freeze/stanza.patch test-breadth/freeze/claude-prose-gate.patch test-breadth/freeze/lint-l8-hardening.patch test-breadth/freeze/obligations-heir.patch test-breadth/freeze/fl-repairs.patch 
+STOP: frozen literal(s) not found in mint-run.txt: ['1.9999']
+---- tail g1.log ----
+e89f086 heir oracle phase r9 (builder commit): the evidence battery complete and the kit staged - the official mint (final statistic, quiet, stamped 21a21d9e/4b6c9f7), the final red run (12/20 = the exact frozen set, drift ratio 1.9939 vs 1.9964), the final SAT run (20/20 on the overlay prophecy, cross-build shift 2.0323 inside the ruled band), EIGHT seeded-defect reds all fired at final bytes (d1-d8, the drafted kill-pool candidates; d3's naive crossing measured 3.704 > bar 2); TWO AUTHOR RULINGS executed in-phase (pack XVIII U7): the drift statistic re-stated to the deep/shallow windowed-mean ratio after the LS half-slope false-fired on realized quiet spread (the 13/20 run preserved as halfslope-falsefire.txt), the cell moved first-in-suite after the depth-dependent process-shape discovery, and the band ruled +/-0.06 after the cross-library-build codegen shift (+0.037) was measured; the freeze kit staged complete (1-verify green end-to-end: five patches sequential, all 10 mint literals traced mechanically); pack Part XVIII the phase record with the live claims register
+4b6c9f7 heir oracle phase opens (builder commit): the type-surface stub (Breadth + enumerateWithBreadth, wrong-but-total, all 12 frozen suites green against it) and the test-breadth/ oracle draft - rows b1-b8 + the gated drift row + the rebuilt ms/tick instrument, attribution partitioned in the header (12 rows red-by-stub, 8 identity/instrument rows with seeded-defect reds owed to the red-run transcript); stanza drafted (spliced only at the freeze, the readout precedent); frozen mint literals still [MINT]-marked - the mint run follows this commit so its stamp reads src-dirty=0
+manifest OK pre-freeze
+patch list applies sequentially: test-breadth/freeze/stanza.patch test-breadth/freeze/claude-prose-gate.patch test-breadth/freeze/lint-l8-hardening.patch test-breadth/freeze/obligations-heir.patch test-breadth/freeze/fl-repairs.patch 
+all 10 frozen mint literals trace to mint-run.txt
+
+ALL CHECKS PASSED - review SITTING.md, then run 2-freeze.sh
+---- tail g2.log ----
+PASS  L5 breadth-author-pack.md records the four stanza flags (incl. -Werror)
+PASS  L6 no grid re-declaration flags (advisory heuristic)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+PASS  L8 recorded repairs: 0 hash(es), 0 (hash,file) pair(s) verified in breadth-author-pack.md
+PASS  L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit
+=== prefreeze-lint: 0 FAIL, 0 WARN ===
+
+FREEZE MECHANICS DONE - nothing signed. 3-sign.sh is the key act's.
+---- tail g3.log ----
+Commit the freeze under YOUR key? Type yes: [master 8176bc5] the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
+ 11 files changed, 856 insertions(+), 22 deletions(-)
+ create mode 100644 test-breadth/freeze/gate5-run.txt
+ create mode 100644 test-breadth/freeze/lint-demo.txt
+ create mode 100644 test-breadth/freeze/lint-transcript.txt
+8176bc5 the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
+
+FREEZE COMMITTED. 4-close.sh mints the tag from the committed message file.
+---- tail g4.log ----
+RECORD: minted tag message byte-identical to test-breadth/freeze/tag-msg.txt (3395 bytes)
+
+DONE: breadth-freeze-r0 minted over 8176bc5 and verifies.
+Local by design - publish at the increment's close, on the author's call.
+If this run was delegated (builder key): the author's re-tag within
+the increment is R-D22's condition of closure, never a courtesy.
+NEXT: the implementation phase (Phase 3) - stubs replaced, gates 1-7,
+kill matrix vs the grown pool, close-out pack, author countersign.

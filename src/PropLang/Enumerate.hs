@@ -11,7 +11,7 @@ module PropLang.Enumerate
   , enumerate
   , enumerateWith
   , enumerateWithArity
-  , Breadth (..)
+  , Breadth, breadthPairs, breadthNull, mkBreadth, breadthEmpty
   , enumerateWithBreadth
   , corpusBodies
   , inCorpus
@@ -27,7 +27,7 @@ module PropLang.Enumerate
   , kraftSum
   ) where
 
-import Data.List (maximumBy)
+import Data.List (maximumBy, nub)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import Data.Ord (comparing)
 
@@ -276,16 +276,30 @@ enumerateWithArity kAr _ns obsC eg guardGs mrg allowed =
       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
 
 -- ---------------------------------------------------------------------
--- Declared breadth (the OB-19 heir key, breadth-sitting-r0's authority).
--- The hello's world declares the richer family's extent: an ordered
--- atom-pair codebook S and/or the null-rate face — VIII.4's doctrine
--- verbatim ("declared resolution, priced by mention bits, is world
--- data"). Type derivation (the type-audit line): Breadth is world-
--- declaration data carried by the handshake, exactly as Namespace and
--- Grid are — deletable-and-declarable, so world data, never core; it
--- names no new production (the declared families are sentences of
--- If/Gt/catBody — derived shapes, no primitivity clause owed).
--- An empty declaration is the shipped route, byte-identical.
+-- Declared breadth (the OB-19 heir key; ratified at breadth-sitting-r0
+-- via the XI.4 rulings: both faces, one key, SEPARATELY declarable,
+-- independent pricing, the K=2 exact-integer door). Type derivation
+-- (the type-audit line, per field): a Breadth VALUE is world-
+-- declaration data carried by the handshake — breadthPairs is a
+-- declared CODEBOOK whose mentions price 1/|S| over the declared set;
+-- breadthNull is a declared FAMILY switch whose K=2 refusal is the
+-- exact-duplication law (pack IV P2, measured 9/9 grid points). The
+-- TYPE is core vocabulary exactly as Grid's type is: the values are
+-- the world's, the vocabulary the core's. The wider reading
+-- ("declared resolution, priced by mention bits, is world data") is
+-- dispositions-pack.md VIII.4's OFFERED observation — its adoption is
+-- the #19 sitting's question, not this increment's; this type cites
+-- the ratified rulings, never the candidate doctrine. Breadth names
+-- no new production (the declared families are If/Gt/catBody
+-- sentences — derived shapes, no primitivity clause owed).
+-- Placement: enumerateWithBreadth follows the loose-argument
+-- enumerateWithArity lineage, not the World-record route; where the
+-- session carries the value is the implementation's decision,
+-- recorded as such in the oracle pack's register.
+-- THE LADDER CLIMBED (ruled at the oracle phase's mandate round):
+-- the type is ABSTRACT — mkBreadth is the ONE validator, and the
+-- wire door is a caller of it. An empty declaration is the shipped
+-- route, byte-identical.
 -- ---------------------------------------------------------------------
 
 data Breadth = Breadth
@@ -294,12 +308,26 @@ data Breadth = Breadth
   }
   deriving (Eq, Show)
 
+-- | The empty declaration: the shipped route, byte-identical.
+breadthEmpty :: Breadth
+breadthEmpty = Breadth [] False
+
+-- | The one validator (K-dependent; Nothing IS the door's refusal):
+-- each component in [1..K-1] (atom 0 is the null atom, never a
+-- positive atom), jHi /= jLo, no duplicate pairs (a codebook is a
+-- set), and the null face refused below K=3 (the exact-duplication
+-- law).
+mkBreadth :: Int -> [(Int, Int)] -> Bool -> Maybe Breadth
+mkBreadth kAr ps nl
+  | all okPair ps && length ps == length (nub ps) && (not nl || kAr >= 3) =
+      Just (Breadth ps nl)
+  | otherwise = Nothing
+  where
+    okPair (a, b) = a /= b && a >= 1 && a <= kAr - 1 && b >= 1 && b <= kAr - 1
+
 -- | The declared-breadth enumeration (the heir key's library half).
--- Contract: pairs arrive door-validated (each component in
--- [1..K-1], jHi /= jLo, no duplicates); the wire refuses before this
--- function sees an invalid pair, and the null face is refused at K=2
--- (the exact-duplication law) — validation is the door's, totality
--- is this function's.
+-- Every Breadth is mkBreadth-valid by construction (the type is
+-- abstract), so this function is total over its whole domain.
 enumerateWithBreadth :: Breadth -> Int -> Namespace -> Carrier Int -> Grid
                      -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
 enumerateWithBreadth _br kAr ns obsC eg guardGs mrg allowed =

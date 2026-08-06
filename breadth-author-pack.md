@@ -1776,9 +1776,20 @@ authorities are tabled in freeze/SITTING.md. The kit's own sig-probe
 tags ride -F nonce files (no -m anywhere in the kit; L9 scans it
 like any kit).
 
-Rehearsal: [RUN-REHEARSAL: fresh-clone green end-to-end + the kit
-reds fired (refused key pre-mutation; orphan patch; [MINT] marker;
-perturbed literal)].
+Rehearsal (opening/rehearsal.txt, fresh clone, discarded after; the
+readout precedent — the tag minted in-clone with the BUILDER key):
+GREEN SEALED END-TO-END — 1-verify, 2-freeze (the gate-5 run
+asserting the EXACT frozen red set beside twelve green standing
+suites; the six-sided lint demo "ALL SIX SIDES DEMONSTRATED"; the
+manifest extended and re-signed AFTER the lint rows; the pre-freeze
+lint at 0 FAIL 0 WARN with L8 and the hardened L9/L5 live),
+3-sign, 4-close with breadth-freeze-r0 minted by -F, verifying,
+and the minted message BYTE-IDENTICAL to the committed file. ALL
+FOUR KIT REDS FIRED first, each reverted before the green path:
+R1 the refused key aborts 2-freeze at step 0 with the tree
+untouched (OB-29's red); R2 an orphan patch stops 1-verify; R3 a
+surviving [MINT] marker aborts 2-freeze; R4 a frozen literal
+absent from the mint transcript stops 1-verify's mechanical trace.
 
 ### XVIII.8 The under-determination register (for the freeze review)
 
@@ -1854,7 +1865,18 @@ perturbed literal)].
   presented measurement): THE BAND IS +/-0.06. The first
   re-statement run pair measured the statistic's two noise scales:
   WITHIN a library build +/-0.0012 (red run 1.9976 vs mint 1.9964)
-  — but ACROSS builds +0.037 (the SAT/overlay build read 2.0334):
+  — but ACROSS builds +0.037 (the SAT/overlay build read 2.0334).
+  [AUDITABILITY REPAIR, the mandate round (mandate-3 F1): that
+  interim pair's transcripts had been OVERWRITTEN by the final pair
+  — the ruling's cited numbers survived only in prose. Rescued:
+  opening/interim-pair-record.txt carries the interim pair's
+  numbers verbatim from the session task log, and
+  opening/sat-run-prior.txt is the preserved half-slope-era SAT
+  transcript (its mean-ratio line reads 2.0334). The FINAL
+  preserved pair reproduces the same structure: red 1.9939
+  (|delta| 0.0025 within-build), SAT 2.0323 (+0.0359 cross-build)
+  — the ruling's conclusion holds on the preserved record.]
+  The mechanism:
   the overlay module's added code moves GHC's codegen
   differentially by regime, the overhead-bound shallow windows
   ~-5 percent against the bignum-bound deep windows' ~-3 percent,
@@ -1869,6 +1891,41 @@ perturbed literal)].
   close) was presented and declined in favor of the
   self-contained band.
 
+- U8 THE OUTPUT TAG VOCABULARY (mandate-4 F9): the freeze pins the
+  (String,[Int]) hypothesis tags dpair/[jHi,jLo,kt,a,b],
+  nullconst/[0,k], nullguard/[0,kt,a,b] — the slot meanings are
+  stated at their oracle uses and in the membrane bullet's family
+  description; the vectors are functions of the declared grid order
+  (a grid edit moves them; the rows fail closed). Absorb or amend.
+- U9 THE theta=1/K SCOPING (mandate-1 F4): the K=2 refusal's
+  mechanism is theta = 1/K family-WIDE duplication; at K >= 3 the
+  shipped corpus already carries POINTWISE duplicate emitters at the
+  grid point theta = 1/K (executed census at the mandate round:
+  four const rows + the nu = 1/5 null face emit one identical
+  vector on the probe21 world) — prior-mass structure, not family
+  duplication; no frozen row sits on the duplicate point. The
+  unstated converse ("K >= 3 is clear") is hereby stated as SCOPED:
+  clear of FAMILY-wide duplication only.
+- U10 b8a'S SCOPE (the d9 dead ends, both executed): the reversal
+  identity detects IRREVERSIBLE threaded state; a reversible-chain
+  latent (symmetric kernel, uniform prior) passes it, and a row
+  whose likelihood cannot vary on the stream hides any kernel. b8a
+  pins the walk/expfam partition plus irreversible-state exclusion;
+  it is not a universal no-state row. Recorded at the row's kill
+  (defect-d9.txt).
+- U11 THE AUDIT ROW'S OWN BLIND SPOTS (mandate-2's scope
+  observation, a NEXT-boundary candidate, not this kit's scope):
+  tools/boundary-audit.sh's M5 row scans top-level *.md only (the
+  suites, patches and tag messages are outside it) and its ID regex
+  cannot match R-RED; candidate hardening rides the next
+  boundary-audit touch under its own ruling.
+- U12 L8 AND ROUND-LABEL REPAIRS (mandate-5 adjacent): this pack's
+  repair rows anchor to ROUND labels ([REPAIRED at r6]) rather than
+  commit hashes, so L8 runs green-by-vacuity against it (0 pairs;
+  the two-sided demo carries the row's teeth). The recorded-repairs
+  rider binds hash-citing rows; whether round-label rows OWE hashes
+  is a register question for the close.
+
 ### XVIII.9 The claims register (LIVE — the gate's first
 post-canonization firing, over this part and the suite header)
 
@@ -1878,8 +1935,13 @@ post-canonization firing, over this part and the suite header)
     2  "n/16 is exact in Double" — ARGUED (dyadic representability
        within the mantissa); falsifier named: a sixteenth failing
        round-trip show/read against its Rational.
-    3  "the two entropy forms coincide bit-identically" — EXECUTED:
-       delta 0.000e0 printed at the mint and SAT runs (b7a REPORT).
+    3  "the two entropy forms coincide bit-identically" — a THEOREM,
+       not a measurement (mandate-1 F2: the independent form is
+       entropyOf's expression rearranged, same traversal order;
+       IEEE negation symmetry closes it); the executed prints
+       (delta 0.000e0 at every run) are its instances. The row's
+       real content is the posterior route — restated in the suite
+       and the OB-31 ledger row; the gate is exact ==.
     4  "[(3,2),(2,3)] is closed under per-pair swap" — ARGUED (set
        equality of the comprehension under (jHi,jLo) exchange);
        falsifier named: enumerate both families and compare by ==;
@@ -1900,11 +1962,117 @@ post-canonization firing, over this part and the suite header)
        ARGUED-NOT-EXECUTED (XVIII.3); falsifier named there. The
        load-bearing half (the gate binds to its own mint cell) holds
        by construction and needs no measurement.
+    10 "a symmetric kernel with the uniform prior is reversal-
+       invariant" — EXECUTED the hard way: the first d9 draft built
+       exactly that kernel and b8a correctly stayed green
+       (U10; the theory reading beside the run).
+    11 "the fold-order bias is systematic and anti-conservative" —
+       EXECUTED: -1.3 percent across three independent stub runs
+       (0.986/0.985/0.990 where the stub's true ratio is exactly
+       1.000); the b6b warm-ups are its repair.
+    12 "the b6b/drift [6..30] literals are one quantity at two
+       process positions" — EXECUTED: both minted in one transcript,
+       0.5 percent apart; stated at the b6b comment (mandate-5 F3).
 
 ### XVIII.10 Mandates, audit, standing
 
-[RUN-MANDATES: the six red-team mandates, fresh-context reviewers,
-one each — findings]
+THE MANDATE ROUND (six fresh-context reviewers, one mandate each;
+full reports in the session record; every disposition executed
+BEFORE the freeze, in the repair wave this section closes):
+
+MANDATE 1 (theorem-as-definition) — 5 findings, headline a
+RE-CONVICTION: b4a re-installed the p0<=cap theorem the readout's
+r5a had already convicted under this same mandate, with min-theta
+hand-written and the frozen 1/(K-1) silently strengthened.
+REPAIRED: cap derived from the named list; the two cap forms
+separated (frozen premise vs builder's witnessed tighter form);
+both relabeled RECORD; the witness executed (max p0 over the whole
+probe21 corpus == the tight cap exactly, walk-free and walk-live —
+the reviewer's own throwaway probes, R-D21 discipline). F2 (the
+entropy floor is a theorem and the "independence" is nominal):
+REPAIRED — gate to exact ==, comments and OB-31's row restated to
+the posterior route. F3 (b8a's second kill direction unexecuted):
+REPAIRED — defect-d9 built and fired, two dead ends recorded (U10).
+F4 (theta=1/K scoping): REGISTERED as U9 with the reviewer's
+executed duplicate-emitter census. F5 (additivity/count anchors):
+REPAIRED in the copy table; b2b's provenance now cites the frozen
+mentionMass binding.
+
+MANDATE 2 (asserted-never-derived) — no strict instance; 4 naming/
+custody defects. REPAIRED: the "draft-stanza precedent" glossed in
+the tag message (its only definition site was nowhere); the bare
+VII.1 anchor in the suite now names dispositions-pack.md; the mint
+law's citation sharpened to "XIII.5's gating clause, executed at
+XVIII.3"; and THE CUSTODY FINDING — the drift band's operative
+authority — is now stated in the tag message in its own words:
+signing breadth-freeze-r0 IS the act that amends the sitting's
+minted band. The M5-row scope observation: REGISTERED as U11
+(next-boundary candidate).
+
+MANDATE 3 (load-bearing quantity defined nowhere) — 5 findings +
+one vacuity observation. F1 (the band ruling's cited numbers in no
+preserved transcript): REPAIRED — the interim pair rescued into
+opening/ (interim-pair-record.txt, sat-run-prior.txt), U7 amended
+with the auditability bracket, and the preserved final pair
+reproduces the ruling's structure. F2 (the mint-fixpoint identity):
+REPAIRED STRUCTURALLY — the final sequence commits the pre-fill
+text FIRST, mints against committed bytes (the stamp's HEAD then
+proves the identity), fills, and commits again, so the two commits'
+diff IS the literal fill; stated below at the run record. F3
+(entropyTol's dead precedent): REPAIRED — the gate is exact ==; the
+convicted citation is quoted inside the suite's own repair. F4 (the
+rD anchor): REPAIRED to the rQ binding. F5 (nullguard coordinates
+unsourced): REPAIRED — layout + arbitrary-member note at the row,
+copy-table row added. F6 (SITTING.md's seven-for-eight): REPAIRED
+(d1-d9, lowercase). The L8-vacuity observation: REGISTERED as U12.
+
+MANDATE 4 (type without derivation) — 9 findings; the sharp one
+RULED by the author: THE LADDER CLIMBED — Breadth is abstract,
+mkBreadth the one validator, the door its caller, the oracle
+constructing through it. F1-F4/F6 (the derivation line's unadopted-
+doctrine citation, the one-clause two-field derivation, the
+type-vs-value slip, the unstated placement, the present-tense
+refusal): ALL REPAIRED in the rewritten derivation block. F7 (Tick):
+line added. F8 (no membrane install): REPAIRED — membrane-breadth
+.patch joins the kit (the sibling increments' form) with the R-D23
+heir-landed pointer. F9 (output tag vocabulary): REGISTERED as U8.
+The adjacent stale-header conviction (the band comment one ruling
+behind): REPAIRED in the header rewrite.
+
+MANDATE 5 (silently overloaded conventions) — 10 findings.
+REPAIRED: the three "mint" senses DECLARED in the suite header with
+the re-mint's authority stated (an author act at a boundary,
+executed through an instrument run); the dup-list comment renamed
+off "drift" (the two-lists disease); the register-sense
+disambiguation added inside the prose-gate clause; SITTING.md's
+D1-D7 -> d1-d9 and the kit-guard-reds wording; the b4a test name
+carries "criteria S1/S2"; the b6b comment states GATE b6 == row
+b6b; the same-quantity-two-positions note at b6b (with claims row
+12). REGISTERED: the r-numbering collision (bare r1 = the readout
+tag vs this pack's rounds — the convention note rides here: THIS
+pack's bare rN names its own rounds, and every cross-increment rN
+is qualified by its increment's name), the "null":null JSON seam
+(disposed as malformed -> refused, now stated rather than implied).
+
+MANDATE 6 (what is it a function of) — 11 findings on the
+instrument's unstated dependencies. REPAIRED: NumThreads 1 pinned
+in code with the dependency stated (F1); the MINT-MODE marker's
+ABSENCE asserted by 2-freeze's gate-5 check (F2 — the two
+frozen-literal gates were silently disarmable by ambient
+environment); b6b warm-up folds with the measured bias quoted (F3);
+the position dependency and same-quantity note at b6b (F4); the
+build-driver dependency stated in the residuals with the freeze's
+gate5-run.txt named as the cabal-built record (F5); the entropy
+dependencies stated at the == gate (F6); the closed forms' full
+input list stated (F7); nullCap derived from the named source list
+(F8); the red-set list named ONCE in 2-freeze with the count
+derived and the -A6 budget documented (F9); 1-verify's PAIRED
+literal trace (F10); the wire column's base-route-by-design note
+printed by the row itself (F11).
+
+The reviewers' executed probes (Cap.hs, Dup.hs — mandate 1's
+witness programs) ran as throwaway R-D21 prototypes in the session
+scratchpad; their findings are quoted above and in U9.
 
 THE BOUNDARY AUDIT (opening/boundary-audit.txt, run on the PRE-KIT
 tree by design): M5=0 H=0 BF=0, OB=2 — the two flags are OBLIGATIONS

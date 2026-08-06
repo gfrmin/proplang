@@ -1,0 +1,14 @@
+# The INTERIM red/SAT pair (the +/-0.03-on-mean-ratio era), preserved:
+# these are the runs the U7 band ruling was presented on. Their
+# transcripts were overwritten by the final pair before the mandate
+# round convicted the loss (mandate-3 F1); the numbers survive in
+# the session task log, copied here verbatim:
+RED-EXIT:1 SAT-EXIT:1
+test-breadth/opening/sat-run.txt:1 out of 20 tests failed (362.76s)
+test-breadth/opening/red-run.txt:12 out of 20 tests failed (356.27s)
+test-breadth/opening/red-run.txt:    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 437.6 ms
+test-breadth/opening/red-run.txt:  REPORT deep/shallow mean ratio 1.9976 (frozen 1.9964)
+test-breadth/opening/sat-run.txt:    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 415.4 ms
+test-breadth/opening/sat-run.txt:  REPORT deep/shallow mean ratio 2.0334 (frozen 1.9964)
+test-breadth/opening/red-run.txt:BUILD-STAMP sha256=9f93fa389d86e87d6a66968bbe52ff7caaf6fc96fb8e6658f95b4c2f5571c504 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+test-breadth/opening/sat-run.txt:BUILD-STAMP sha256=767d8236dc887adc1297640b308832ff1fe05b099faa0737748904ff14b60813 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0

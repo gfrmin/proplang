@@ -74,18 +74,31 @@ python3 - <<'PY'
 import re, sys
 src = open("test-breadth/Breadth.hs").read()
 mint = open("test-breadth/opening/mint-run.txt").read()
-lits = []
-m = re.search(r"driftFrozenMeans = \[([0-9., ]+)\]", src)
-lits += [x.strip() for x in m.group(1).split(",")]
-m = re.search(r"driftFrozenMeanRatio = ([0-9.]+)", src)
-lits.append(m.group(1))
-for nm in ("compFrozenEv", "compFrozenWalkShare", "compFrozenRo", "compFrozenWire"):
-    m = re.search(nm + r"\s*=\s*([0-9.]+)", src)
-    lits.append(m.group(1))
-missing = [l for l in lits if l not in mint]
-if missing:
-    sys.exit("STOP: frozen literal(s) not found in mint-run.txt: %s" % missing)
-print("all %d frozen mint literals trace to mint-run.txt" % len(lits))
+# PAIRED trace (the mandate-6 hardening): each windowed mean must
+# appear ON ITS OWN WINDOW'S REPORT LINE (a permutation or a
+# substring-inside-a-longer-number no longer passes), the ratio on
+# its line, each composition literal beside its own label.
+wins = re.search(r"driftWindows = \[([0-9(), ]+)\]", src).group(1)
+wpairs = re.findall(r"\((\d+), (\d+)\)", wins)
+means = [x.strip() for x in re.search(
+    r"driftFrozenMeans = \[([0-9., ]+)\]", src).group(1).split(",")]
+if len(wpairs) != len(means):
+    sys.exit("STOP: window/mean arity mismatch")
+bad = []
+for (lo, hi), mval in zip(wpairs, means):
+    want = "window [%s..%s] mean %s ms" % (lo, hi, mval)
+    if want not in mint: bad.append(want)
+ratio = re.search(r"driftFrozenMeanRatio = ([0-9.]+)", src).group(1)
+if ("mean ratio %s" % ratio) not in mint: bad.append("mean ratio " + ratio)
+comp = {"compFrozenEv": "ev %s (", "compFrozenWalkShare": "walks %s (",
+        "compFrozenRo": "ev+ro %s (", "compFrozenWire": "wire %s ("}
+for nm, pat in comp.items():
+    v = re.search(nm + r"\s*=\s*([0-9.]+)", src).group(1)
+    if (pat % v) not in mint: bad.append(nm + "=" + v)
+if bad:
+    sys.exit("STOP: frozen literal(s) not PAIR-traced to mint-run.txt: %s" % bad)
+print("all %d frozen mint literals PAIR-trace to mint-run.txt"
+      % (len(means) + 1 + len(comp)))
 PY
 
 # tag message file: present, and its slotless (the -F mint law)

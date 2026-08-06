@@ -7,51 +7,85 @@ THE ORACLE FROZEN: test-breadth/ rows b1-b8 plus the gated drift row
 and the rebuilt ms/tick instrument (the deleted test-measure's law:
 population pins gate, absolute ms report, setup/steady separated;
 OB-3's run-each-freeze half re-homed; the build stamp in the suite's
-own frozen text - OB-32's binding). Attribution partitioned in the
-oracle header: twelve rows red-by-stub (gate5-run.txt records the
-exact set), eight identity/instrument rows green-at-stub with every
-red demonstrated by a seeded defect (red-run and defect transcripts
-in test-breadth/opening/). The frozen mint values derive from the
-build-stamped mint transcript (mint-run.txt) and from nothing else;
-the b6 bar is 2 as minted; drift bands +/-15 percent per windowed
-mean (hardware-tolerant; beyond = licensed re-mint) and +/-0.06
-absolute on the deep/shallow mean ratio - the statistic RE-STATED
-from the LS half-slope and the band set by the author's two
-rulings of 2026-08-06 (pack XVIII U7: the half-slope's realized
-quiet spread 0.044 broke its minted +/-0.03 band and the gate
-false-fired on a quiet run; the windowed-mean statistic reproduces
-+/-0.0012 within a build; the drift cell moved first-in-suite so
-it owns a fresh heap; and the band is +/-0.06 because the ratio
-shifts +0.037 across library builds - codegen, measured stub vs
-overlay - which the implementation will inherit at Phase 3). R-D21 satisfiability discharged
-flag- and package-faithfully against the overlay realization
-(sat-run.txt); R-D20-i anchors ride as commit hash + binding name.
+own frozen text - OB-32's binding; one tasty thread pinned in code).
+Attribution partitioned in the oracle header: twelve rows
+red-by-stub (gate5-run.txt records the exact set, its count derived
+from the one list), eight identity/instrument rows green-at-stub
+with every red demonstrated by a seeded defect - NINE defect shapes
+d1-d9, transcripts in test-breadth/opening/, including b8a's two
+kill directions (the mis-tag d5 and the threaded-state d9, whose two
+executed dead ends - a reversible kernel, an invisible-likelihood
+row - are recorded as the row's scope). The frozen mint values
+derive from the build-stamped instrument-mint transcript
+(mint-run.txt) and from nothing else, PAIR-traced mechanically by
+1-verify; R-D21 satisfiability discharged flag- and
+package-faithfully against the overlay realization (sat-run.txt,
+all 20); R-D20-i anchors ride as commit hash + binding name.
+
+CUSTODY, STATED IN ITS OWN WORDS: SIGNING THIS TAG IS THE ACT THAT
+AMENDS breadth-sitting-r0's MINTED DRIFT BAND. The sitting minted
++/-0.03 absolute on the LS half-slope ratio; that statistic's
+realized quiet spread (0.044 over seven runs) broke its own band
+and the gate false-fired on a quiet run (the preserved evidence:
+opening/halfslope-falsefire.txt). By the author's two in-session
+rulings of 2026-08-06 (pack XVIII U7, the quoted words recorded
+there): the statistic is RE-STATED to the deep/shallow windowed-mean
+ratio (mean[151..300]/mean[6..150], the drift cell first-in-suite so
+it owns a fresh heap), and its band is +/-0.06 absolute (the
+measured cross-library-build codegen shift, +0.036-0.037, which the
+implementation inherits at Phase 3). The b6 bar is 2 as minted,
+unchanged; the windowed-mean bands are +/-15 percent as minted,
+unchanged.
+
+THE LADDER CLIMBED (the author's ruling at the mandate round):
+Breadth is ABSTRACT with mkBreadth the one validator; the wire door
+is a caller of it; the oracle constructs through it.
 
 THE ROUTED INSTALLS LAND AT THIS ONE BOUNDARY:
-- the stanza splice (proplang.cabal, the draft-stanza precedent);
-- the ONE CLAUDE.md touch: OB-27's harness-gate scope line inside the
-  triptych clause, and the prose-claim gate (pack XV.2 as widened at
-  r7) canonized beside it, clause text copied from the pack;
+- the stanza splice (proplang.cabal; the stanza rides as
+  test-breadth/stanza.cabal.draft and is spliced only by 2-freeze -
+  the readout kit's form, glossed here so the name "draft-stanza
+  precedent" has a definition site);
+- the ONE CLAUDE.md touch: OB-27's harness-gate scope line inside
+  the triptych clause, and the prose-claim gate (pack XV.2 as
+  widened at r7) canonized beside it, clause text copied from the
+  pack, with the claims-register/under-determination-register
+  disambiguation inside the clause;
 - lint L8 (OB-26: cited repair hashes resolve AND touch the named
   file) and OB-28's three hardenings (L9 sees --message/--message=/
   combined short flags; the exemption demands an annotated tag
   object; L5's pack selection derives from history), each side of
   each row EXECUTED (lint-demo.txt);
 - the ledger: OB-25 advanced, OB-26/27/28/29 DISCHARGED, OB-31 and
-  OB-19 LANDED (their discharge is the increment's close tag), OB-32
-  minted (the build-stamp obligation as standing law), OB-19's row
-  text amended with the falsified words quoted;
+  OB-19 LANDED (their discharge is the increment's close tag; OB-31's
+  row states the pin honestly - the posterior route plus the render
+  contract), OB-32 minted (the build-stamp obligation as standing
+  law), OB-19's row text amended with the falsified words quoted;
 - the FL repairs: tools/boundary-audit.sh:136 now derives what it
   prints (plus the XV.3 prose-claim triage row), Host.hs:387's wait
   comment repaired to its legend, dispositions-pack VIII.3's
   "shipped 219" given its dated bracket;
+- the wire spec: membrane-wire.md gains the breadth key's section-2
+  bullet and the R-D23 heir-landed pointer (the mandate round's F8;
+  the sibling increments' membrane-install form);
 - the manifest extended over the oracle, transcripts, and the kit
   itself, and re-signed AFTER the lint rows existed (OB-26's
   recorded kit-order constraint, honored by construction).
 
+THE MANDATE ROUND RAN AT THIS BOUNDARY (six fresh-context reviewers,
+one mandate each; findings and dispositions ride pack XVIII.10): its
+convictions were REPAIRED BEFORE THIS FREEZE - among them the
+re-installed structural-cap theorem (relabeled RECORD with the
+frozen 1/(K-1) premise separated from the builder's witnessed
+tighter form), the entropy gate moved to exact equality (the zero
+floor is a theorem; the row's content is the posterior route), the
+b6b warm-up folds (a measured -1.3 percent anti-conservative
+fold-order bias), the derived nullCap, the paired mint-literal
+trace, and the naming/custody repairs this message carries.
+
 The oracle is binding from this tag: the builder never owns a live
 oracle at the moment it becomes binding. Implementation (Phase 3)
-replaces the stub under gates 1-7, anchors byte-stable, the kill
-matrix runs against the grown pool (the seeded-defect shapes are its
-drafted candidates; M8 promotes as b7's kill), and the increment
-closes under the author's countersign.
+applies the prophecy (opening/prophecy.diff) under gates 1-7,
+anchors byte-stable, the kill matrix runs against the grown pool
+(d1-d9 the drafted candidates; M8 promotes as b7's kill), and the
+increment closes under the author's countersign.
