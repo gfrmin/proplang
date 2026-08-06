@@ -1792,20 +1792,35 @@ authorities are tabled in freeze/SITTING.md. The kit's own sig-probe
 tags ride -F nonce files (no -m anywhere in the kit; L9 scans it
 like any kit).
 
-Rehearsal (opening/rehearsal.txt, fresh clone, discarded after; the
-readout precedent — the tag minted in-clone with the BUILDER key):
-GREEN SEALED END-TO-END — 1-verify, 2-freeze (the gate-5 run
-asserting the EXACT frozen red set beside twelve green standing
-suites; the six-sided lint demo "ALL SIX SIDES DEMONSTRATED"; the
-manifest extended and re-signed AFTER the lint rows; the pre-freeze
-lint at 0 FAIL 0 WARN with L8 and the hardened L9/L5 live),
-3-sign, 4-close with breadth-freeze-r0 minted by -F, verifying,
-and the minted message BYTE-IDENTICAL to the committed file. ALL
-FOUR KIT REDS FIRED first, each reverted before the green path:
-R1 the refused key aborts 2-freeze at step 0 with the tree
-untouched (OB-29's red); R2 an orphan patch stops 1-verify; R3 a
-surviving [MINT] marker aborts 2-freeze; R4 a frozen literal
-absent from the mint transcript stops 1-verify's mechanical trace.
+Rehearsal (opening/rehearsal.txt, the FINAL one, at r10c, fresh
+clone, discarded after; the readout precedent — the tag minted
+in-clone with the BUILDER key): GREEN SEALED END-TO-END — 1-verify
+(paired literal trace live), 2-freeze (the SIX patches sequential,
+membrane included; the gate-5 run asserting the frozen red set with
+its count DERIVED from the one list, beside twelve green standing
+suites; the MINT-MODE disarm guard; the six-sided lint demo "ALL
+SIX SIDES DEMONSTRATED"; the manifest extended and re-signed AFTER
+the lint rows; the pre-freeze lint at 0 FAIL 0 WARN with L8 and the
+hardened L9/L5 live), 3-sign, 4-close with breadth-freeze-r0 minted
+by -F, verifying, and the minted message BYTE-IDENTICAL to the
+committed file. ALL FOUR KIT REDS FIRED first, each reverted and
+the tree asserted clean between legs: R1 the refused key aborts
+2-freeze at step 0 with the tree untouched (OB-29's red); R2 an
+orphan patch stops 1-verify; R3 a surviving [MINT] marker aborts
+2-freeze; R4 a perturbed frozen literal stops 1-verify's paired
+trace.
+
+REHEARSAL INCIDENT, recorded (the process convicting its own
+instrument one more time): the driver's FIRST form hand-copied the
+ratio literal into its R3/R4 seeds — the two-lists disease in the
+rehearsal harness itself. One mint later the copy was stale, both
+seds no-oped, the R3 "red" leg silently ran a FULL 2-freeze in the
+clone, and the cascade invalidated that rehearsal (its transcript
+was discarded with the clone; the exit-1 record rides the session
+log). Repaired: the seeds DERIVE the literal from the file, every
+seed asserts it landed, and a clean-tree gate sits between the red
+legs and the green path. The final rehearsal above ran under the
+repaired driver.
 
 ### XVIII.8 The under-determination register (for the freeze review)
 
