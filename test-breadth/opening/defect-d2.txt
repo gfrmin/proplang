@@ -1,9 +1,9 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d2/breadth size=8091664 mtime=2026-08-06 09:00:26.07327277 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=76f26c3e530f8a93f5edd673256511be1fb1af0edbbba3927a4667f7233b2ead HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d2/breadth size=8099128 mtime=2026-08-06 10:19:02.079478524 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=545957d7ec220c40ce6570e549dc202b35a9f1dffde23522e6f631004ab573eb HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b6 the ms/tick instrument
     b6a population pin: the base route is 8005 sentences (the #21 live curves' operating point): FAIL
-      test-breadth/Breadth.hs:788:
+      test-breadth/Breadth.hs:881:
       expected: 8005
        but got: 6404
 

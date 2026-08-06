@@ -1,15 +1,15 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d6/breadth size=8091664 mtime=2026-08-06 09:00:34.335481616 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=784e4b5bac158df9b0543a85ca1c6ce5408a1fd124ec44375b94159c7c36b045 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d6/breadth size=8103216 mtime=2026-08-06 10:19:09.979705081 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=fe749756ffe8c369ff6aed3a9dd2f3de8150fdb2f26b819ca9f87c8fcd0ccf08 HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   drift (gated diff-vs-frozen)
-    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:   REPORT window [6..30] mean 856.4 ms
-  REPORT window [50..80] mean 1152.0 ms
-  REPORT window [100..130] mean 1488.9 ms
-  REPORT window [150..180] mean 1873.6 ms
-  REPORT window [250..280] mean 2766.6 ms
-  REPORT deep/shallow mean ratio 1.9364 (frozen 1.9964)
-FAIL (548.06s)
-      test-breadth/Breadth.hs:501:
-      drift window [6..30]: 856.4 within +/-15% of frozen 437.8
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:   REPORT window [6..30] mean 769.8 ms
+  REPORT window [50..80] mean 1093.1 ms
+  REPORT window [100..130] mean 1416.1 ms
+  REPORT window [150..180] mean 1799.3 ms
+  REPORT window [250..280] mean 2685.9 ms
+  REPORT deep/shallow mean ratio 1.9898 (frozen 2.0092)
+FAIL (525.86s)
+      test-breadth/Breadth.hs:569:
+      drift window [6..30]: 769.8 within +/-15% of frozen 431.1
 
-1 out of 1 tests failed (548.06s)
+1 out of 1 tests failed (525.86s)

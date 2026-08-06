@@ -1561,23 +1561,26 @@ as-built decisions, each stated so the freeze review can refuse it:
 
 ### XVIII.3 The mint (XIII.5's law, executed)
 
-The official mint (the SECOND mint — the first, under the LS
-half-slope statistic, stands superseded by U7's ruling; its values
-are U7's data): one quiet build-stamped run of the final suite
-text, mint mode, transcript test-breadth/opening/mint-run.txt:
+The official mint (the THIRD; the run history is stated, never
+collapsed — the FIRST, under the LS half-slope statistic, is U7's
+data; the SECOND, under the mean-ratio statistic pre-mandate-round,
+was superseded when the round's repair wave changed the suite and
+the fixpoint structure landed): one quiet run of the COMMITTED
+pre-fill text (the mandate-3 F2 repair — the stamp proves the
+identity), mint mode, transcript test-breadth/opening/mint-run.txt:
 
-    BUILD-STAMP sha256=21a21d9e... HEAD=4b6c9f7
-      src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+    BUILD-STAMP sha256=3d6afa6e... HEAD=574ff4f (r10, committed)
+      src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
     windows [6..30]/[50..80]/[100..130]/[150..180]/[250..280]:
-      437.8 / 599.9 / 786.4 / 999.6 / 1500.6 ms
-    deep/shallow mean ratio 1.9964 (the drift cell first-in-suite)
-    composition at [6..30]: ev 66.7, of which walks 24.9;
-      ev+ro 435.5; wire (in-process combined tick) 824.2
+      431.1 / 598.0 / 787.2 / 1007.0 / 1504.3 ms
+    deep/shallow mean ratio 2.0092 (the drift cell first-in-suite)
+    composition at [6..30]: ev 66.2, of which walks 23.8;
+      ev+ro 434.5; wire (in-process combined tick) 832.7
     b7 entropy delta 0.000e0; 12 out of 20 red (the stub set)
 
-(This run sat ~3-4 percent warmer across the board than its
-predecessor — box-state variance of exactly the kind the +/-15
-percent mean bands absorb and the ratio statistic cancels.)
+The literal fill is commit r10b's ENTIRE diff against r10 (ten
+values + the transcript): the mint text and the frozen text differ
+by exactly what the mint itself supplies, mechanically auditable.
 
 The frozen literals in Breadth.hs derive from that transcript and
 from nothing else (1-verify checks the derivation MECHANICALLY:
@@ -1625,11 +1628,11 @@ bytes), gating mode, quiet box, exit 1:
 
     RED (12): b1b b2a b2b b2c b2d b3a b3b b4a b4c b5a b5c b6d
     GREEN (8): drift-a b1a b1c b4d b7a b8a b6a b6b
-    "12 out of 20 tests failed (361.68s)"
+    "12 out of 20 tests failed (355.32s)"
 
 and the drift row GATED green against the minted literals in the
-same run (deep/shallow mean ratio 1.9939 vs frozen 1.9964,
-|delta| 0.0025 — the re-stated statistic behaving as designed;
+same run (deep/shallow mean ratio 2.0149 vs frozen 2.0092,
+|delta| 0.0057 — the re-stated statistic behaving as designed;
 means inside +/-15). The run history is stated, not collapsed
 (the readout precedent): the FIRST final-bytes red run, under the
 superseded half-slope statistic, came back 13/20 when that gate
@@ -1649,7 +1652,7 @@ compiled as overlay variants and run against the exact frozen text:
             (library side)                        rows; defect-d1.txt)
     d2      arity atom dropped (posAtoms K-2)     b6a (defect-d2.txt)
     d3      naive pair family default-on          b6b: ratio MEASURED
-            (all ordered pairs, unpriced)         3.704 > bar 2 - the
+            (all ordered pairs, unpriced)         3.717 > bar 2 - the
                                                   R-RED constructed
                                                   crossing, beside
                                                   the pack's 3.64
@@ -1659,8 +1662,8 @@ compiled as overlay variants and run against the exact frozen text:
                                                   delta 7.78 bits
     d5      walk row mis-tagged ("wexp")          b8a (defect-d5.txt)
     d6      readout fold duplicated (a lost       drift row: all five
-            fast path's shape)                    means blown (~+96%,
-                                                  856.4 vs 437.8 at
+            fast path's shape)                    means blown (~+79%,
+                                                  769.8 vs 431.1 at
                                                   the first window);
                                                   the mean ratio
                                                   little moved
@@ -1683,6 +1686,13 @@ compiled as overlay variants and run against the exact frozen text:
             defaults ON (asymmetric door defect)  grew a null face
                                                   (models 9598) while
                                                   absent stayed 8005
+    d9      state THREADED through an             b8a: forward /=
+            expfam-tagged row (the dpair's high   reversed, exact
+            branch reads a drift-up latent -      Rationals printed -
+            asymmetric, irreversible)             the sitting's FIRST
+                                                  kill direction,
+                                                  executed; its two
+                                                  dead ends are U10
 
 ATTRIBUTION NOTE, recorded as found: d1 was first pointed at b4d
 too, and b4d stayed GREEN under it — CORRECTLY. Both of b4d's hello
@@ -1693,7 +1703,7 @@ count is the standing corpus's pin). The r1a both-sides-move-
 together lesson, met inside the oracle's own red battery and
 answered by d8: the b4d red must be a DOOR-side asymmetry, and is.
 
-These EIGHT shapes are the DRAFTED KILL-POOL CANDIDATES for the
+These NINE shapes are the DRAFTED KILL-POOL CANDIDATES for the
 close matrix (the forward half; M8 = d4 promotes as b7's kill per
 OB-31's row).
 
@@ -1704,15 +1714,21 @@ The overlay realization — the implementation's prophecy: the real
 `enumerateWithBreadth` (dpair family per Declared.hs's recorded
 shape; null faces per NullRate.hs's; `allowed`-gated like its
 siblings) and the Host breadth key (parse, validation, refusals,
-`pop` routed through `enumerateWithBreadth`; the plain no-arity
-route untouched). The oracle's exact frozen text compiles against
-it UNCHANGED and runs ALL 20 TESTS PASSED (opening/sat-run.txt,
-the FINAL run, exit 0, 366.98s, quiet box; the transcript
-reproduces P2's exact prices — nullconst 7.17 bits, guarded-null
-15.92 bits — and prints dpair 14.92 bits; the heir's
-operating-point ratio measures 1.394 under the bar of 2; the drift
-cell reads 2.0323 — the cross-build shift, stable at ~+0.036
-across two SAT runs, inside the ruled +/-0.06). The compile is the
+`pop` routed through `enumerateWithBreadth` via the mkBreadth
+door; the plain no-arity route untouched). The oracle's exact
+frozen text compiles against it UNCHANGED and runs ALL 20 TESTS
+PASSED (opening/sat-run.txt, the FINAL run at r10b bytes, exit 0,
+378.22s, quiet box; the transcript reproduces P2's exact prices —
+nullconst 7.17 bits, guarded-null 15.92 bits — and prints dpair
+14.92 bits; the heir's operating-point ratio measures 1.387 under
+the bar of 2; the drift cell reads 2.0075, |delta| 0.0017). A
+FINDING RIDES THE LAST NUMBER: the cross-build shift that measured
++0.036 pre-climb shrank to 0.0017 once the mkBreadth climb put the
+validator and its import surface in BOTH builds — the codegen
+divergence tracked the module-content divergence, and the ladder
+climb incidentally converged the builds; the ruled +/-0.06 band
+now holds with margin on both sides and stays sized for the
+divergence an implementation can reintroduce. The compile is the
 stanza's dependency closure and flag set verbatim:
 
     cabal exec -- ghc -Wall -Werror -Wincomplete-patterns

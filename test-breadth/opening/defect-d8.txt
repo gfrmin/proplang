@@ -1,9 +1,9 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d8/breadth size=8091664 mtime=2026-08-06 09:00:38.36558349 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=9fe380e26bad42602ce75d2e1fedd4378bf6c80ecade042cb90f81c65dde26a3 HEAD=4b6c9f7 src-tree=bb62e9789d68c5e17ab053b33c8eb7c477e978c8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d8/breadth size=8099128 mtime=2026-08-06 10:19:14.018820761 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=16ced8f737c50fc3ec184679b9e9643af30a8e2da94d608d17ad0710e9e9f065 HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b4 the null face and the K=2 door
     b4d an empty declaration IS the absent key: hello replies byte-identical: FAIL
-      test-breadth/Breadth.hs:681:
+      test-breadth/Breadth.hs:776:
       expected: "{\"ok\": true, \"proto\": 1, \"models\": 8005, \"namespace_bits\": 2.0}"
        but got: "{\"ok\": true, \"proto\": 1, \"models\": 9598, \"namespace_bits\": 2.0}"
 
