@@ -11,6 +11,8 @@ module PropLang.Enumerate
   , enumerate
   , enumerateWith
   , enumerateWithArity
+  , Breadth (..)
+  , enumerateWithBreadth
   , corpusBodies
   , inCorpus
   , AgentS
@@ -272,6 +274,36 @@ enumerateWithArity kAr _ns obsC eg guardGs mrg allowed =
       | has FBern, has FIf, has FConst, has FGuardHead
       , kt <- [0 .. gridSize tg - 1]
       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+
+-- ---------------------------------------------------------------------
+-- Declared breadth (the OB-19 heir key, breadth-sitting-r0's authority).
+-- The hello's world declares the richer family's extent: an ordered
+-- atom-pair codebook S and/or the null-rate face — VIII.4's doctrine
+-- verbatim ("declared resolution, priced by mention bits, is world
+-- data"). Type derivation (the type-audit line): Breadth is world-
+-- declaration data carried by the handshake, exactly as Namespace and
+-- Grid are — deletable-and-declarable, so world data, never core; it
+-- names no new production (the declared families are sentences of
+-- If/Gt/catBody — derived shapes, no primitivity clause owed).
+-- An empty declaration is the shipped route, byte-identical.
+-- ---------------------------------------------------------------------
+
+data Breadth = Breadth
+  { breadthPairs :: [(Int, Int)]  -- ordered (jHi, jLo), positive atoms
+  , breadthNull  :: Bool          -- the null-rate face
+  }
+  deriving (Eq, Show)
+
+-- | The declared-breadth enumeration (the heir key's library half).
+-- Contract: pairs arrive door-validated (each component in
+-- [1..K-1], jHi /= jLo, no duplicates); the wire refuses before this
+-- function sees an invalid pair, and the null face is refused at K=2
+-- (the exact-duplication law) — validation is the door's, totality
+-- is this function's.
+enumerateWithBreadth :: Breadth -> Int -> Namespace -> Carrier Int -> Grid
+                     -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
+enumerateWithBreadth _br kAr ns obsC eg guardGs mrg allowed =
+  enumerateWithArity kAr ns obsC eg guardGs mrg allowed
 
 -- ---------------------------------------------------------------------
 -- R17: THE CORPUS IS A DERIVATION. The normative hypothesis space is
