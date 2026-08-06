@@ -123,10 +123,10 @@ driftWindows :: [(Int, Int)]
 driftWindows = [(6, 30), (50, 80), (100, 130), (150, 180), (250, 280)]
 
 driftFrozenMeans :: [Double]
-driftFrozenMeans = [437.8, 599.9, 786.4, 999.6, 1500.6]  -- mint-run.txt
+driftFrozenMeans = [431.1, 598.0, 787.2, 1007.0, 1504.3]  -- mint-run.txt
 
 driftFrozenMeanRatio :: Double
-driftFrozenMeanRatio = 1.9964  -- mint-run.txt
+driftFrozenMeanRatio = 2.0092  -- mint-run.txt
 
 driftMeanBand :: Double
 driftMeanBand = 0.15   -- +/-15%, the sitting's hardware-tolerant band
@@ -147,10 +147,10 @@ driftRatioBand = 0.06  -- +/-0.06 absolute (the author's ruling of
 -- the composition record beside the gate (XIII.5: recorded at the
 -- mint; REPORT rows — a composition change is a licensed re-mint)
 compFrozenEv, compFrozenWalkShare, compFrozenRo, compFrozenWire :: Double
-compFrozenEv        = 66.7   -- base ev mean [6..30], mint-run.txt
-compFrozenWalkShare = 24.9   -- ev(base) - ev(walk-free), mint-run.txt
-compFrozenRo        = 435.5  -- base ev+ro mean [6..30], mint-run.txt
-compFrozenWire      = 824.2  -- wire combined tick mean [6..30], mint-run.txt
+compFrozenEv        = 66.2   -- base ev mean [6..30], mint-run.txt
+compFrozenWalkShare = 23.8   -- ev(base) - ev(walk-free), mint-run.txt
+compFrozenRo        = 434.5  -- base ev+ro mean [6..30], mint-run.txt
+compFrozenWire      = 832.7  -- wire combined tick mean [6..30], mint-run.txt
 
 -- b7's gate is EXACT EQUALITY (the repo's own standard: every law an
 -- exact ==, no tolerance constant). The zero floor is a THEOREM, not
