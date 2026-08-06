@@ -662,6 +662,19 @@ decision is ISOLATED from the drift problem.** The multiple can be
 named on the ratio; the drift cannot be policed by a ratio gate and
 does not need to be.
 
+    [BRACKET r6, 2026-08-06, from the Part XV register sweep: the
+    parenthesis "(a declared window is good hygiene, not a
+    soundness need)" is FALSIFIED by later measurement. The
+    3-parts-in-1000 figure was true of the |S|=2 window pair
+    above; P9 (XIV.2) measured the |S|=6 ratio traveling
+    1.781 -> 1.807 -> 1.844 across [6-30]/[100-130]/[250-280] —
+    35 parts in 1000, linear, no saturation. The declared window
+    IS a soundness need; the gate as drafted in XIII.5/XIV.6 pins
+    depth AND window accordingly. The load-bearing consequence
+    (breadth isolated from drift; the multiple named on a
+    matched-window ratio) survives and is the form the mints
+    carry.]
+
 ### XII.4 The manifest chain, named upstream (nothing wrong survives
 under a signature)
 
@@ -762,6 +775,19 @@ stream-bounded. The r3 verdict's lower-bound concern is answered by
 measurement: the P7 curve is not a friendly-stream artifact, and the
 acceptance binds to the real number. (Residual, printed: both
 streams are periodic; no aperiodic real corpus was replayed.)
+
+    [BRACKET r6, 2026-08-06, from the Part XV register sweep: the
+    mechanism sentence above — "every tick's per-sentence masses
+    are drawn from the SAME small set fixed by the theta codebook
+    whichever atom or branch the tick selects" — is exact for the
+    expfam fragment (7965/8005 rows) and LOOSE for the 40 walk
+    rows, whose per-tick factors are rho-weighted sums over an
+    evolved state (not members of a fixed small set), though their
+    ACCUMULATED masses stay inside the same P*D^t envelope. This
+    sentence is the parent of XIV.5's r5 falsehood; the corrected
+    mechanism is XIV.5-as-repaired, claim 2. The cross-run-spread
+    wording was separately convicted and repaired at XIV.1. The
+    measured cells above are untouched.]
 
 ### XIII.2 The wire-class drift: EU/render DRIFTS, and the consumer
 sentence is measured
@@ -957,34 +983,61 @@ scope line keeps the signature from promising what no cell
 measured.
 
 ### XIV.5 The aperiodicity residual, closed by argument
+    [REPAIRED at r6, 2026-08-06: claim 1 as drafted at r5 was
+    FALSE. It read "each hypothesis's unnormalized mass after t
+    ticks is its prior weight times the PRODUCT of its per-tick
+    factors, and multiplication commutes — the posterior after t
+    ticks is a function of the tick MULTISET only. No permutation
+    of any stream, periodic or not, changes a single denominator."
+    The corpus's 40 walk rows (rw — the alphabet's one non-expfam
+    combinator, non-exchangeable BY DESIGN) are path-sums through
+    the Pos-index rollforward, not commuting products. The claim
+    was the builder's STRENGTHENING of the verdict's own correctly
+    scoped argument (the divisibility bound) by parallel
+    re-derivation — R-D20-i's disease carried from formulas to
+    arguments — and it reached the r5 acceptance draft as the word
+    "order-invariant". Falsified by execution: P10
+    (p10-permute-transcript.txt), 16 ticks vs their reversal,
+    Rational ==: the FULL corpus (8005 rows) differs at every
+    probe mass; the WALK-FREE corpus (7965 rows) is
+    byte-identical. Two-sided — the false claim fired false, the
+    correctly scoped claim fired true. The author caught it by
+    reading; Part XV is the process repair.]
 
 XIII.1's residual line — "both streams are periodic; no aperiodic
-real corpus was replayed" — closes without a measurement, because
-the codebook-bounded mechanism already covers it, two ways:
+real corpus was replayed" — closes without a measurement, on the
+divisibility argument alone (claim 2; the verdict's own scope):
 
-1. ORDER-INVARIANCE, exact: each hypothesis's unnormalized mass
-   after t ticks is its prior weight times the PRODUCT of its
-   per-tick factors, and multiplication commutes — the posterior
-   after t ticks is a function of the tick MULTISET only. No
-   permutation of any stream, periodic or not, changes a single
-   denominator.
-2. CONTENT-ROBUSTNESS, bounded: for ANY stream over the declared
-   world — aperiodic real corpora included — every per-tick factor
-   is drawn from the finite value set the codebooks fix (features
-   enter only through guard comparisons, which select branches;
-   the selected mass is an expression in codebook constants). With
-   D the lcm of that set's denominators and P the prior's, every
-   unnormalized denominator after t ticks divides P * D^t:
-   bit-size <= log2(P) + t*log2(D), linear in t with a
-   codebook-determined constant, whatever the order and whatever
-   the content. (Normalization takes quotients of linear-bit-size
-   rationals, which stay linear-bit-size.)
+1. EXCHANGEABILITY, scoped and executed: for the expfam fragment
+   (7965 of 8005 rows) the unnormalized mass IS a product of
+   per-tick factors and products commute, so that fragment's
+   posterior is a function of the tick multiset — P10 cell (b),
+   byte-identical under reversal. The walk fragment (40 rows) is
+   order-dependent BY DESIGN — P10 cell (a), every probe mass
+   moved. Order-invariance of the POSTERIOR is therefore not
+   available as a premise, and the closure below does not use it.
+2. CONTENT- AND ORDER-ROBUSTNESS of the ENVELOPE: for ANY stream
+   over the declared world — aperiodic real corpora included, in
+   any order — every unnormalized mass after t ticks is a
+   POLYNOMIAL whose monomials are products of at most t values
+   drawn from the finite sets the declared codebooks fix
+   (theta-side masses AND rho-side transition masses; features
+   enter only through guard comparisons, which select among
+   codebook-constant expressions; walk masses are sums of such
+   products, and sums keep common denominators). With D the lcm
+   of those sets' denominators and P the prior's, every
+   denominator divides P * D^t: bit-size <= log2(P) + t*log2(D),
+   linear in t with a codebook-determined constant, whatever the
+   order and whatever the content. (Normalization takes quotients
+   of linear-bit-size rationals, which stay linear-bit-size.)
 
-An aperiodic corpus can move the LEVEL within the envelope — which
-values arrive decides which GCD reductions fire; XIV.1's 3.3% is
-that effect, measured — but it cannot leave the envelope class the
-acceptance binds to. The residual closes as a corollary, not as a
-cell owed that no measurement would improve.
+A stream — aperiodic, or the same ticks reordered — can move the
+LEVEL within the envelope: which values arrive (and, for the walk
+rows, in which order) decides which GCD reductions fire; XIV.1's
+3.3% is that effect measured across content, and P10 cell (a) is
+the same effect measured across order. It cannot leave the
+envelope class the acceptance binds to. The residual closes as a
+corollary of claim 2 alone.
 
 ### XIV.6 The two mints, as amended (supersedes XIII.6's drafts)
 
@@ -1007,7 +1060,8 @@ cell owed that no measurement would improve.
 
     ACCEPTED as exactness's price: per-tick cost grows superlinearly
     with session depth (half-slope ratio 1.37, stream-shape-robust,
-    codebook-bounded, order-invariant per XIV.5); MEASURED AT K=6
+    codebook-bounded, the divisibility envelope order- and
+    content-invariant per XIV.5 as repaired at r6); MEASURED AT K=6
     OVER 8005 SENTENCES, the wire tick crosses 2 s near depth 30 and
     5 s near depth 209 (rich-stream cell; the standard stream's ~3%
     higher deep level moves the crossings ~10 ticks earlier, inside
@@ -1021,3 +1075,158 @@ cell owed that no measurement would improve.
 
 Both slots await the author's key; everything beneath them is
 measurement or corollary.
+
+## XV. The prose-claim gate (r6, 2026-08-06): drafted for the
+sitting, first-fired on this pack
+
+### XV.1 The incident and the gap it names
+
+XIV.5's claim 1 (repaired above, falsified words quoted in its
+bracket) entered the pack as the builder's STRENGTHENING of the
+verdict's own correctly scoped argument, carried a 30-second
+falsifier that was never run, and was caught by the author's
+reading. The structural gap: every executable artifact in this
+repo has a transcript obligation — R-D21 for oracle rows, clause
+(a) for primitivity, SAT overlays for fixtures, the triptych for
+greens and reds — and PACK PROSE HAS NONE. An argument-closed
+residual is the one deliverable whose entire substance is prose,
+and that is exactly where the false claim landed. The second
+mechanism is a known disease in a new tissue: strengthening a
+supplied argument is R-D20-i's copy-not-reconstruct carried from
+formulas to arguments.
+
+### XV.2 The clause, drafted for the author's key (one CLAUDE.md
+touch at this increment's freeze, riding OB-27's)
+
+    A UNIVERSAL CLAIM IS EXECUTED OR MARKED. Any pack sentence
+    quantifying over the shipped corpus, its streams, or their
+    orderings ("every", "no", "any", "cannot") either carries an
+    executed witness — a falsification attempt against the
+    shipped surface, transcript beside it, R-D21's discipline
+    carried from oracle rows to pack prose — or is marked
+    ARGUED-NOT-EXECUTED with its cheapest falsifier NAMED; naming
+    the falsifier is the load-bearing act, because a named-but-
+    unrun falsifier is visibly absurd where an unnamed one is
+    invisible. An argument-closed residual closes only through
+    its own attempted refutation. AND: A STRENGTHENING IS A NEW
+    CLAIM — when the author or a frozen text supplies an
+    argument, the pack copies its scope; any builder extension
+    beyond that scope is labeled as the builder's addition and
+    arrives with its own witness. Provenance: the r5
+    exchangeability incident (pack XIV.5, this file) — the
+    author's divisibility bound needed no exchangeability; the
+    builder's "improvement" assumed it; the corpus's 40 walk rows
+    (rw, non-exchangeable BY DESIGN) falsified it; P10 executed
+    the owed falsifier in one minute, two-sided.
+
+### XV.3 The scriptable half, and a candidate seventh mandate
+
+- THE CLAIMS REGISTER: each new pack part carrying universal
+  claims lists them as register rows tagged EXECUTED(transcript)
+  / ARGUED(falsifier named) / QUOTED(whose words). The register
+  is to prose what the satisfiability transcript is to a red row.
+- THE AUDIT ROW (tools/boundary-audit.sh candidate): grep new
+  pack sections for bare universal quantifiers outside a
+  register — a TRIAGE INPUT for the human sweep, never a verdict
+  (the M5/H row pattern; the mathematics stays the reviewer's).
+- CANDIDATE SEVENTH RED-TEAM MANDATE: "is any universal claim
+  executed nowhere?" — whether the mandate list grows is the
+  author's call; the six were canonized at step 6 and the list
+  has not moved since.
+
+### XV.4 The gate's first firing: the retroactive register over
+Parts I-XIV
+
+Swept by quantifier grep plus contextual read; rows are the
+genuinely universal claims about the shipped system (law quotes
+and verdict quotes excluded as QUOTED by construction). Verdict
+of the firing up front: TWO sentences convicted and bracketed in
+place (XII.3's window parenthesis; XIII.1's mechanism wording —
+the PARENT of XIV.5's falsehood), one row superseded by later
+measurement (XIII.3), and NO recorded ruling moved: the r4/r5
+rounds had already corrected the substance both times, so the
+sweep caught the RECORD lagging the rulings, not the rulings
+being wrong. Precedent holds: the lint's first firing convicted
+frozen oracles; this gate's first firing convicted its own pack.
+
+    1  I/IV   "nothing frozen touched; every prototype throwaway"
+              EXECUTED — manifest 146/146 + porcelain at every
+              builder commit (the per-commit checks).
+    2  P0     "O(K x population) predictMassS work on every
+              decide reply" — EXECUTED: Host.hs readout loop
+              (code-cited) + P0's measured wire/ev split.
+    3  P3     "reproduces the shipped family EXACTLY" — EXECUTED:
+              P3 transcript, 9/9 grid points, Rational ==.
+    4  P3     "the declared key is the only design that opens the
+              gate" — ARGUED: forced by the frozen pins (test-pin
+              ARITY ==; test-readout reference agents through
+              enumerateWithArity). Falsifier named: exhibit a
+              non-key design green on both frozen suites; the
+              pins refuse byte-identity by construction.
+    5  P3     "declared family CONSTANT ... at every K" —
+              EXECUTED at K in {3,4,6,8,10} (P3) + closed form
+              (the population formula carries no K term).
+    6  P4     "every orbit member emits identically" — EXECUTED
+              on the measured worlds (P4, exact ==); the general
+              case ARGUED (dead-atom permutation symmetry).
+              Banked design; not riding this increment.
+    7  V      "every cell a measurement except rows marked
+              (proj)" — pack-self claim, verified by the (proj)
+              marks in the table itself.
+    8  XII.1  "every Part IV/V cost cell's window, named" —
+              EXECUTED: the XII.1 table is the enumeration.
+    9  XII.3  "the gate holds at ANY depth (a declared window is
+              ... not a soundness need)" — FALSIFIED by P9
+              (XIV.2's 35-parts-in-1000 linear travel);
+              BRACKETED in place this round.
+    10 XII.5  "every measurement is of the sealed engine" —
+              EXECUTED: src-tree hash identical across all
+              builder commits (the runner stamps).
+    11 XIII.1 "every tick's per-sentence masses ... SAME small
+              set fixed by the theta codebook" — PARTIAL: exact
+              for expfam (7965 rows), loose for walks (40);
+              BRACKETED in place this round; corrected mechanism
+              = XIV.5-as-repaired claim 2.
+    12 XIII.3 "depth-invariance now holds at both measured |S|
+              points" — SUPERSEDED by XIV.2: true of the window
+              pair then measured; the three-window travel is the
+              standing record.
+    13 XIII.4 "no ruling in this pack rests on the unreconciled
+              cross-K column" — VERIFIED BY ENUMERATION: XIII.4
+              itself lists every ruling's basis; the enumeration
+              is the witness.
+    14 XIV.4  "at K=10 ... every crossing arrives correspondingly
+              earlier" — ARGUED, and marked UNMEASURED inside the
+              mint itself; falsifier named: the K=10 wire run the
+              verdict's economy declined.
+    15 XIV.5  claim 2 as repaired: "whatever the order and
+              whatever the content, denominators divide P*D^t" —
+              ARGUED with the premise code-cited (all factor
+              values lie in declared codebook sets, theta AND
+              rho); its exchangeability half EXECUTED (P10 cell
+              b); falsifier named: a denominator bit-size print
+              exceeding the linear envelope at any depth.
+    16 XIV.1  "a stream cannot leave the envelope class" — rests
+              on row 15; the level half EXECUTED (XIV.1's 3.3%
+              across content, P10 cell a across order).
+
+### XV.5 A candidate oracle row, registered (the author rules its
+home)
+
+P10 cell (b) is an exact identity with a natural oracle form: THE
+WALK-FREE EXCHANGEABILITY ROW — the expfam sub-corpus's posterior
+byte-identical (Rational ==) under stream reversal. Cheap (16
+ticks), exact, and it pins the walk/expfam partition itself: a
+mutant that makes an expfam factor order-dependent (reads a tick
+index, threads state) or that mis-tags a walk row breaks it. If
+ruled in, it rides test-breadth as b8 WITH its kill per the
+forward half; if not, P10 stays a banked transcript. The builder
+does not pre-empt the seat.
+
+The r6 round closes here. Standing after it: the two mints
+(XIV.6, wording as repaired this round) await the author's key;
+the Part XV clause, register row, mandate 7, and b8's seat await
+the sitting's ruling; G2, the build-stamp mint, OB-25's advance,
+and the Part VIII frozen-layer repairs are unchanged from r4's
+list. The builder's next act after the sitting is the
+test-breadth/ oracle-first freeze.
