@@ -855,3 +855,169 @@ feels):
 
 Both slots await the author's key at the sitting's close; everything
 beneath them is measurement.
+
+## XIV. The r4 verdict's riders, executed (r5, 2026-08-06)
+
+The verdict: sign both mints, with four riders — one touching the
+bar's boundary, settled before the number goes in the slot — plus
+one residual disposable by argument. The two measurement riders
+share one probe (P9; one process, three cells; every window mean
+the probe computes, it prints — the defect rider 1 convicts,
+repaired in the instrument first):
+
+    RUNNER: sha256(binary)=20f0d5ea...d059d94  HEAD=c91f30b
+      src-tree=ecfd3102...  src-dirty=0  date=2026-08-06T04:15:44+03:00
+
+### XIV.1 Rider 1 — the unprinted number, printed
+
+The convicted sentence (XIII.1): "the deep windows sit within the
+known ~5% cross-run spread of P7's." Falsified as a
+characterisation: a uniform signed offset across four windows is a
+process-level difference, not spread — and P8's (c) cell had
+computed the same-process deep base and printed only the ratio.
+P9 measures it directly, one process:
+
+    standard base [100..130] = 792.0 | rich [100..130] = 765.9
+    rich/standard at depth = 0.967
+
+The verdict's FIRST branch: the standard base comes back beside
+P7's cross-process 794.4 (0.3% apart) — P7 never ran on a warmer
+machine; **the rich stream is genuinely ~3.3% cheaper at depth in
+the same process**, and here is the explanation rather than the
+dismissal. The codebook bound is an ENVELOPE on the denominators;
+the reduced denominators inside it depend on which GCD reductions
+fire, and that depends on the hit/miss mix the stream deals each
+hypothesis — the numerators' 2-adic content varies with which
+atoms arrive how often. A stream moves the LEVEL within the
+envelope; it cannot leave the envelope class (XIV.5 states this as
+the corollary; P9 instantiates it at 3.3%). XIII.1's headline
+survives with its noun made precise: richness does not move the
+ENVELOPE — curvature 1.37 both streams, slopes alike — while the
+deep LEVEL is weakly stream-dependent at the few-percent scale.
+
+One load-bearing consequence, stated rather than left to a
+reader's audit: the acceptance's crossing depths were measured on
+the RICH (cheaper-at-depth) stream, so on the standard stream the
+crossings arrive a few ticks EARLIER — ~3% of the wire level at
+the 5 s crossing is ~165 ms, about ten ticks at the measured
+slope. "Near depth 209" holds, with "near" now doing measured
+work; the amended acceptance (XIV.6) carries the shift explicitly.
+
+### XIV.2 Rider 2 — the boundary, settled by measurement
+
+The travel was one-directional in two independent cells with
+magnitude scaling in |S| — systematic, not noise. The verdict's
+arithmetic, reproduced before measuring: |S|=7 enters at 1.924
+shallow; under linear |S|-scaled travel its excess reaches ~1.005
+by depth 300 and the ratio passes 2.00. The ordered window, |S|=6
+same-process at [250..280] (P9 cell iii):
+
+    |S|=6 / base: [6..30] 1.781 | [100..130] 1.807 | [250..280] 1.844
+    excess: 0.781 | 0.807 | 0.844   per-pair: 0.1301 | 0.1345 | 0.1407
+    implied |S|=7 (1 + 7*per-pair): 1.911 | 1.941 | 1.985
+
+**The travel is LINEAR, not saturating**: per-depth excess growth
+0.00027 across the first gap, 0.00025 across the second — constant
+pace, no relief at depth. On that pace |S|=7's implied ratio
+crosses 2.00 near depth ~315: the stated headroom's first value
+fails at achievable session depth, exactly as the verdict's
+extrapolation warned. XIII.6's drafted envelope line — "a bar of 2
+admits |S| <= 7 ordered pairs" — was shallow-only and is
+WITHDRAWN; **the headroom statement is SIX**. |S|=6 itself holds
+through depth: 1.844 at [250..280], ~1.85 projected at 300, margin
+0.15 under a bar of 2. (Cross-process note: P9's shallow ratio
+1.781 sits 1.3% under P8's 1.804 — the known process-level spread;
+the travel is read within one process and is untouched by it.)
+
+### XIV.3 Rider 3 — the half-slope band retuned to its reproducibility
+
+The convicted draft (XIII.5): "+/-0.15 absolute on the half-slope
+ratio." A red that cannot fire: the ratio reproduced at 1.3678
+against 1.3678 to FOUR decimals across two structurally different
+streams (P7 standard, P8 rich) — the pack's most reproducible
+number carried its most generous band, an alarm calibrated to the
+noisier of the two quantities. Retuned as ordered, tolerance
+placed where the reproducibility is: **+/-0.03 absolute on the
+half-slope ratio**; **+/-15% stays on the five windowed means**,
+where the ~5% process-level noise actually lives. The final
+numbers remain the freeze's call; the draft is now two bands, not
+one uniform generosity.
+
+### XIV.4 Rider 4 — the acceptance scoped to its operating point
+
+The drafted clause named K=6/8005 but read as if it covered the
+consumer's own pain: the live curve's worst row is K=10 (16010
+sentences, p50 6881 ms), where the base is several times larger
+and every crossing arrives correspondingly earlier — "crosses 5 s
+near depth 209" would be nowhere near true there. The clause is
+scoped explicitly (XIV.6): measured at K=6 over 8005 sentences;
+the K=10 envelope UNMEASURED and expected substantially tighter.
+No K=10 wire run is spent on it (the verdict's own economy); the
+scope line keeps the signature from promising what no cell
+measured.
+
+### XIV.5 The aperiodicity residual, closed by argument
+
+XIII.1's residual line — "both streams are periodic; no aperiodic
+real corpus was replayed" — closes without a measurement, because
+the codebook-bounded mechanism already covers it, two ways:
+
+1. ORDER-INVARIANCE, exact: each hypothesis's unnormalized mass
+   after t ticks is its prior weight times the PRODUCT of its
+   per-tick factors, and multiplication commutes — the posterior
+   after t ticks is a function of the tick MULTISET only. No
+   permutation of any stream, periodic or not, changes a single
+   denominator.
+2. CONTENT-ROBUSTNESS, bounded: for ANY stream over the declared
+   world — aperiodic real corpora included — every per-tick factor
+   is drawn from the finite value set the codebooks fix (features
+   enter only through guard comparisons, which select branches;
+   the selected mass is an expression in codebook constants). With
+   D the lcm of that set's denominators and P the prior's, every
+   unnormalized denominator after t ticks divides P * D^t:
+   bit-size <= log2(P) + t*log2(D), linear in t with a
+   codebook-determined constant, whatever the order and whatever
+   the content. (Normalization takes quotients of linear-bit-size
+   rationals, which stay linear-bit-size.)
+
+An aperiodic corpus can move the LEVEL within the envelope — which
+values arrive decides which GCD reductions fire; XIV.1's 3.3% is
+that effect, measured — but it cannot leave the envelope class the
+acceptance binds to. The residual closes as a corollary, not as a
+cell owed that no measurement would improve.
+
+### XIV.6 The two mints, as amended (supersedes XIII.6's drafts)
+
+**The bar** (the number is the author's — the slot is left):
+
+    GATE b6: (heir-route ev+ro ms/tick) / (base-route ev+ro ms/tick),
+    same stream, same process, matched depth and window,
+    <= [ THE AUTHOR'S MULTIPLE ].
+    Measured envelope beneath it: |S|=2 = 1.26 and |S|=6 = 1.78-1.80
+    shallow; per-pair 0.132, linear; naive-all-pairs 3.64, excluded.
+    AT DEPTH (P9): the ratio's travel is linear at ~0.00026/tick of
+    excess; |S|=6 holds through depth 300 (1.844 at [250..280],
+    margin 0.15 under a bar of 2); |S|=7 crosses 2.00 near depth
+    ~315 — a bar of 2 admits |S| <= 6 ordered pairs, stated at
+    depth, not shallow.
+    Denominator composition pinned per XIII.5; drift row bands per
+    XIV.3 (means +/-15%, half-slope ratio +/-0.03).
+
+**The drift acceptance** (operative clause measured, now scoped):
+
+    ACCEPTED as exactness's price: per-tick cost grows superlinearly
+    with session depth (half-slope ratio 1.37, stream-shape-robust,
+    codebook-bounded, order-invariant per XIV.5); MEASURED AT K=6
+    OVER 8005 SENTENCES, the wire tick crosses 2 s near depth 30 and
+    5 s near depth 209 (rich-stream cell; the standard stream's ~3%
+    higher deep level moves the crossings ~10 ticks earlier, inside
+    "near"). The K=10 envelope (16010 sentences, the live curve's
+    worst row) is UNMEASURED and expected substantially tighter —
+    this acceptance does not cover it. The drift row rides the
+    heir's oracle as a GATED diff-vs-frozen (XIII.5, bands per
+    XIV.3), and any depth-mitigation work is its own future
+    increment under its own demand gate — never a silent change to
+    the exact semantics.
+
+Both slots await the author's key; everything beneath them is
+measurement or corollary.
