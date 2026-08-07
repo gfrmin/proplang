@@ -52,7 +52,7 @@ VII. The alphabet has not moved since c2ca82c (the exact
 re-founding); nothing after it (dyadic, trampoline, battery, readout)
 touched the alphabet.
 
-    [BRACKET r8, 2026-08-06: the transcript's "note:" line above is
+    [BRACKET r8 (78916cd), 2026-08-06: the transcript's "note:" line above is
     a faithful quote of tools/boundary-audit.sh:136 — and the note
     itself is FALSE of the tree: G2 has been a green RECORD row
     since the step-7 unify freeze, and the check runs 33/33. The
@@ -270,7 +270,7 @@ unchanged — the law's exact shape, pinned extensionally.
     K=10 models 14337: ev 103.51 -> 6.07 (x17.1)
          readout 980.14 -> 122.20 (x8.0), exact ==: True
 
-[REPAIRED at r3, 2026-08-05, the r2 verdict's finding — this
+[REPAIRED at r3 (0341a57), 2026-08-05, the r2 verdict's finding — this
 paragraph closed with the falsified sentence "The constant factor
 alone exceeds the naive family's multiplier, and it composes with
 P3/P4." At the measured 39.8% walk share (XI.3) the composed
@@ -297,7 +297,7 @@ measured parts, never a measurement of an unbuilt implementation.
 Wire projections decompose the measured 1870 into ev 75 + readout
 413 + EU/render 1382 and scale the population-proportional parts.
 
-[Bracketed at r2, 2026-08-05: the declared row's x1.09 was OVERTURNED
+[Bracketed at r2 (daa7a7b), 2026-08-05: the declared row's x1.09 was OVERTURNED
 by the sitting's ordered evidence — a fold-depth confound between
 cells, not noise and not nonlinearity. The matched-depth multiple is
 x1.26 at |S|=2, per-pair cost 0.132 of base, LINEAR in |S|. Part XI
@@ -558,7 +558,7 @@ Consequences, in the verdict's order:
   docketed for the author — derive the stanza count from the cabal
   file (scriptable) or retire the row; a permanent red has no
   discriminating power (a green-that-cannot-fail wearing red).
-      [BRACKET r8, 2026-08-06: FALSE OF THE TREE, falsified by
+      [BRACKET r8 (78916cd), 2026-08-06: FALSE OF THE TREE, falsified by
       EXECUTING the instrument this item names — test-writeup/
       check.sh runs 33/33 green, and its G2 row has been a RECORD
       form since the step-7 unify freeze (2026-07-17; the in-file
@@ -682,7 +682,7 @@ decision is ISOLATED from the drift problem.** The multiple can be
 named on the ratio; the drift cannot be policed by a ratio gate and
 does not need to be.
 
-    [BRACKET r6, 2026-08-06, from the Part XV register sweep: the
+    [BRACKET r6 (3173b7f), 2026-08-06, from the Part XV register sweep: the
     parenthesis "(a declared window is good hygiene, not a
     soundness need)" is FALSIFIED by later measurement. The
     3-parts-in-1000 figure was true of the |S|=2 window pair
@@ -796,7 +796,7 @@ measurement: the P7 curve is not a friendly-stream artifact, and the
 acceptance binds to the real number. (Residual, printed: both
 streams are periodic; no aperiodic real corpus was replayed.)
 
-    [BRACKET r6, 2026-08-06, from the Part XV register sweep: the
+    [BRACKET r6 (3173b7f), 2026-08-06, from the Part XV register sweep: the
     mechanism sentence above — "every tick's per-sentence masses
     are drawn from the SAME small set fixed by the theta codebook
     whichever atom or branch the tick selects" — is exact for the
@@ -969,7 +969,7 @@ crosses 2.00 near depth ~315: the stated headroom's first value
 fails at achievable session depth, exactly as the verdict's
 extrapolation warned.
 
-    [BRACKET r7, 2026-08-06, a verdict conviction disposed: the
+    [BRACKET r7 (c9d15f8), 2026-08-06, a verdict conviction disposed: the
     words "constant pace, no relief at depth" over-read the
     figures beside them — 0.000268 then 0.000247 is an 8% decline
     across the gaps, so the honest characterisation is
@@ -1000,7 +1000,7 @@ where the ~5% process-level noise actually lives. The final
 numbers remain the freeze's call; the draft is now two bands, not
 one uniform generosity.
 
-    [BRACKET r7, 2026-08-06, a verdict conviction disposed: the
+    [BRACKET r7 (c9d15f8), 2026-08-06, a verdict conviction disposed: the
     justification "where the ~5% process-level noise actually
     lives" cites a number this pack has since disowned — XIV.1
     established the deep-window offset was a STREAM effect, and
@@ -1031,7 +1031,7 @@ scope line keeps the signature from promising what no cell
 measured.
 
 ### XIV.5 The aperiodicity residual, closed by argument
-    [REPAIRED at r6, 2026-08-06: claim 1 as drafted at r5 was
+    [REPAIRED at r6 (3173b7f), 2026-08-06: claim 1 as drafted at r5 was
     FALSE. It read "each hypothesis's unnormalized mass after t
     ticks is its prior weight times the PRODUCT of its per-tick
     factors, and multiplication commutes — the posterior after t
@@ -1080,7 +1080,7 @@ divisibility argument alone (claim 2; the verdict's own scope):
    constant, whatever the order and whatever the content.
    (Normalization takes quotients of linear-bit-size rationals,
    which stay linear-bit-size.)
-       [BRACKET r7, 2026-08-06: the r6 draft of this clause read
+       [BRACKET r7 (c9d15f8), 2026-08-06: the r6 draft of this clause read
        "products of at most t VALUES drawn from the finite sets
        the declared codebooks fix" — LOOSE for walks, whose
        monomials carry up to 2t+1 codebook values (prior, t
@@ -1374,17 +1374,17 @@ row carrying an explicit disposition (REPAIRED / BRACKETED /
 ARGUED-AND-DECLINED — declining is legitimate, declining
 silently is not). The addendum rows:
 
-    17 XIV.5 claim 1 (r5 conviction) — REPAIRED at r6, P10
+    17 XIV.5 claim 1 (r5 conviction) — REPAIRED at r6 (3173b7f), P10
        two-sided.
     18 XIV.3 band justification (r7 conviction) — BRACKETED at
        r7; band reframed hardware-tolerant + licensed re-mint.
     19 XIV.2 "constant pace" (r7 conviction) — BRACKETED at r7;
        ruling stands at headroom six.
     20 the acceptance's plural crossings + unmarked wire
-       extrapolation (r7 conviction) — REPAIRED at r7 in the
+       extrapolation (r7 conviction) — REPAIRED at r7 (c9d15f8) in the
        mint text.
     21 XIV.5 claim 2 "at most t values" (self-caught at r7) —
-       REPAIRED at r7; EXECUTED same round (P11).
+       REPAIRED at r7 (c9d15f8); EXECUTED same round (P11).
     15 (updated) the divisibility envelope — ARGUED -> EXECUTED:
        P11, T1/T2 PASS.
 
@@ -1588,7 +1588,10 @@ every frozen literal must appear in mint-run.txt). One reading note:
 the transcript's own "(frozen ...)" parentheticals show the
 PRE-MINT placeholder values the run was born with — the mint mode
 exists precisely so those never gate; the REPORT numbers are the
-mint. The wire composition cell (824.2) sits well under the opening
+mint. The wire composition cell (832.7; the freeze review caught
+this prose citing 824.2 — the PRE-MINT placeholder the reading note
+above exists to disarm, leaked into the very paragraph beside it)
+sits well under the opening
 P0's 1870: the two worlds differ in menu width (this suite's
 single-point forced-act menu vs P0's four options) and in utility
 shape, so the cells are DIFFERENT INSTRUMENTS, not a drift —
@@ -1667,7 +1670,8 @@ compiled as overlay variants and run against the exact frozen text:
                                                   the first window);
                                                   the mean ratio
                                                   little moved
-                                                  (1.9364) - a
+                                                  (1.9898 at r10c,
+                                                  |delta| 0.0194) - a
                                                   proportional cost
                                                   defect fires the
                                                   MEANS, exactly as
@@ -1675,7 +1679,30 @@ compiled as overlay variants and run against the exact frozen text:
                                                   the ratio gate's
                                                   own kill is the
                                                   depth-differential
-                                                  class
+                                                  class [the drafted
+                                                  cell read "(1.9364)"
+                                                  - the r9-era ratio
+                                                  (vs the r9 mint
+                                                  1.9964, |delta|
+                                                  0.060) sitting
+                                                  beside r10c means:
+                                                  the two-values
+                                                  disease in the row
+                                                  NEXT to the one the
+                                                  freeze review
+                                                  caught; repaired at
+                                                  XIX with both eras
+                                                  stated. The named
+                                                  unexecuted kill
+                                                  class is CONSTRUCTED
+                                                  at the review as
+                                                  d10, below]
+    d10     depth-differential readout cost       drift row: the mean
+            (the accretion/leak shape; the        RATIO blown - the
+            freeze-review R-RED construction,     gate's OWN first
+            seeded in Report.hs's entropyAgent:   executed kill
+            re-walks scale with the depth proxy)  (defect-d10.txt;
+                                                  numbers at XIX.3)
     d7      pair swapped at the door (wire-only,  b5a's ASYMMETRIC
             count-preserving)                     cell (the symmetric
                                                   #21 cell cannot see
@@ -1703,9 +1730,9 @@ count is the standing corpus's pin). The r1a both-sides-move-
 together lesson, met inside the oracle's own red battery and
 answered by d8: the b4d red must be a DOOR-side asymmetry, and is.
 
-These NINE shapes are the DRAFTED KILL-POOL CANDIDATES for the
-close matrix (the forward half; M8 = d4 promotes as b7's kill per
-OB-31's row).
+These NINE shapes — plus d10, the freeze review's constructed
+tenth — are the DRAFTED KILL-POOL CANDIDATES for the close matrix
+(the forward half; M8 = d4 promotes as b7's kill per OB-31's row).
 
 ### XVIII.5 The SAT side (R-D21, overlay form, flag- and
 package-faithful)
@@ -1728,8 +1755,16 @@ validator and its import surface in BOTH builds — the codegen
 divergence tracked the module-content divergence, and the ladder
 climb incidentally converged the builds; the ruled +/-0.06 band
 now holds with margin on both sides and stays sized for the
-divergence an implementation can reintroduce. The compile is the
-stanza's dependency closure and flag set verbatim:
+divergence an implementation can reintroduce. [BRACKET at the
+freeze review (2026-08-07): the trailing clause's READING was
+convicted by the verdict — the finding is news about the RULING'S
+PREMISE, not about margin: the band was "sized for a cross-build
+divergence that the current build does not exhibit," and XVIII.5
+as drafted "treats this as good news about margin rather than as
+news about the ruling's premise." The band is restored to the
+sitting's +/-0.03 (U7's third ruling); the re-introduction risk is
+carried by the PRE-DECLARED licensed re-mint, never by width.] The
+compile is the stanza's dependency closure and flag set verbatim:
 
     cabal exec -- ghc -Wall -Werror -Wincomplete-patterns
       -Wincomplete-uni-patterns -XGHC2021 -hide-all-packages
@@ -1780,15 +1815,17 @@ exists to catch it).
 1-verify (read-only: patch list extracted from 2-freeze's own apply
 lines, orphan check, sequential apply on a temp copy, mint-literal
 trace, [MINT]-marker guard) / 2-freeze (keyless: OB-29 live probe
-BEFORE any mutation; the five patches; gate 5 asserting the EXACT
+BEFORE any mutation; the six patches; gate 5 asserting the EXACT
 frozen red set beside 12 green standing suites; manifest extension +
 re-sign AFTER the lint rows exist — OB-26's order, honored by
 construction; the L8/L9/L5 two-sided demo in a whole-tree copy; the
 lint at 0 FAIL) / 3-sign (the freeze commit; the -m is a
 kit-authored constant, the attestation rides the tag) / 4-close (the
 tag by -F from the COMMITTED message file, minted == file verified
-byte-wise — the r1 record-row form). The five patches and their
-authorities are tabled in freeze/SITTING.md. The kit's own sig-probe
+byte-wise — the r1 record-row form). The six patches and their
+authorities are tabled in freeze/SITTING.md (the count was drafted
+"five" before membrane-breadth.patch joined at r10 and repaired at
+the freeze review — the manifest-count lesson, again). The kit's own sig-probe
 tags ride -F nonce files (no -m anywhere in the kit; L9 scans it
 like any kit).
 
@@ -1897,7 +1934,7 @@ repaired driver.
   re-statement run pair measured the statistic's two noise scales:
   WITHIN a library build +/-0.0012 (red run 1.9976 vs mint 1.9964)
   — but ACROSS builds +0.037 (the SAT/overlay build read 2.0334).
-  [AUDITABILITY REPAIR, the mandate round (mandate-3 F1): that
+  [AUDITABILITY REPAIR at r10 (574ff4f), the mandate round (mandate-3 F1): that
   interim pair's transcripts had been OVERWRITTEN by the final pair
   — the ruling's cited numbers survived only in prose. Rescued:
   opening/interim-pair-record.txt carries the interim pair's
@@ -1922,6 +1959,54 @@ repaired driver.
   close) was presented and declined in favor of the
   self-contained band.
 
+  U7's THIRD RULING (the author, 2026-08-07, at the freeze review;
+  the verdict rides Part XIX): the second ruling's premise has
+  since COLLAPSED, and the second ruling is REVERSED in exactly the
+  direction its own record preserved. The author's words: "the
+  shift shrank to 0.0017 once the mkBreadth climb put the validator
+  in both builds ... Noise: +/-0.0012 within build, 0.002 across
+  fresh standalone processes, 0.0017 across builds post-climb —
+  call it 0.006 at the outside. The sole executed kill: d6, moving
+  the ratio to 1.9364, a deviation of 0.073. Any band strictly
+  inside (0.006, 0.073) is a working gate. +/-0.06 sits at the very
+  top of that window, clearing the only demonstrated kill by a
+  factor of 1.2. ... +/-0.03 sits in the middle: five times the
+  measured noise, two and a half times below the kill. ... the
+  declined alternative (keep +/-0.03, pre-declare a licensed
+  re-mint at the implementation's close) is now the better option
+  precisely because the thing it was declined in favour of covering
+  no longer exists." EXECUTED at r11, with TWO measurements the
+  ruling's arithmetic turned out to need. FIRST, the missing build
+  class: the kit's own gate-5 CABAL build was absent from the noise
+  record (the r10d rehearsal's gate5 log was discarded with its
+  clone), and a band settled without it would have been placed
+  without the one class the freeze's own gate runs under — the
+  probe (opening/cabal-drift-probe.txt, stamp HEAD=d00d714
+  src-dirty=0) reads ratio 2.0101, |delta| 0.0009: every build
+  class the gate can run under sits within 0.006 of the mint.
+  SECOND, the kill end of the window: the verdict's "d6 ... a
+  deviation of 0.073" MIXED ERAS — 1.9364 is the r9-era defect run
+  read against the r9 mint 1.9964 (|delta| 0.060,
+  e89f086:defect-d6.txt), while at the standing r10c bytes d6
+  reads 1.9898 vs 2.0092 (|delta| 0.0194) — and the pack's own
+  XVIII.4 cell carried the r9 ratio beside r10c means (the
+  two-values disease in the row NEXT to the one the verdict
+  caught; both eras now stated there). d6 is ratio-INVISIBLE by
+  design — the table already said so ("a proportional cost defect
+  fires the MEANS ... the ratio gate's own kill is the
+  depth-differential class") — so the ratio gate had NO executed
+  kill at final bytes under EITHER band, and R-RED owed the
+  construction, not the debt: the depth-differential defect d10
+  was SEEDED and EXECUTED at the review (XIX.3,
+  opening/defect-d10.txt), the ratio gate's first executed kill.
+  The band is 0.03 (the sitting's number, carried to the re-stated
+  statistic), ~5x the all-class noise ceiling and under d10's
+  placed kill (0.0479, the ratio gate firing ALONE — a
+  demonstration point of an upward-unbounded class, never a
+  ceiling; XIX.3); the licensed re-mint at the implementation's
+  close is PRE-DECLARED in the tag message; the re-run battery at
+  r11 bytes postdates the band edit.
+
 - U8 THE OUTPUT TAG VOCABULARY (mandate-4 F9): the freeze pins the
   (String,[Int]) hypothesis tags dpair/[jHi,jLo,kt,a,b],
   nullconst/[0,k], nullguard/[0,kt,a,b] — the slot meanings are
@@ -1937,6 +2022,17 @@ repaired driver.
   duplication; no frozen row sits on the duplicate point. The
   unstated converse ("K >= 3 is clear") is hereby stated as SCOPED:
   clear of FAMILY-wide duplication only.
+
+  [FREEZE-REVIEW NOTE (the author, 2026-08-07), recorded for the
+  boundary at which it will matter; the words verbatim: U9 "is
+  right for a reason worth stating: under a description-length
+  prior, an object with several descriptions *should* carry summed
+  mass. Which means the K=2 null refusal is not an epistemic law
+  but a PIN-PRESERVATION law — it exists because the ARITY pin
+  fixes the coincidence by equality, not because mass-doubling is
+  an error. Worth writing down, because if that pin ever moves,
+  the refusal loses its stated basis and someone will reasonably
+  ask why."]
 - U10 b8a'S SCOPE (the d9 dead ends, both executed): the reversal
   identity detects IRREVERSIBLE threaded state; a reversible-chain
   latent (symmetric kernel, uniform prior) passes it, and a row
@@ -1956,6 +2052,22 @@ repaired driver.
   the two-sided demo carries the row's teeth). The recorded-repairs
   rider binds hash-citing rows; whether round-label rows OWE hashes
   is a register question for the close.
+
+  DISPOSED AT THE FREEZE REVIEW (the author, 2026-08-07, ruling the
+  register question): round-label rows DO owe hashes — "If repair
+  rows anchor to round labels and L8 binds only hash-citing rows,
+  then every repair row in this pack sits outside the lint's teeth
+  and L8 runs green by vacuity against the increment's primary
+  evidence artefact. That is a green that cannot fail. Have repair
+  brackets carry the repair commit's hash beside the round label;
+  the cost is a hash and the row joins the enforced population."
+  EXECUTED at r11: every REPAIRED/BRACKET round label in this pack
+  now carries its round's commit hash (r2 daa7a7b / r3 0341a57 /
+  r6 3173b7f / r7 c9d15f8 / r8 78916cd / r10 574ff4f), so L8's
+  resolve half runs over a nonempty population at this very freeze;
+  the file-touch half arms on rows that name a file beside the hash
+  (the label lines here name none — stated so the half's vacuity is
+  DECLARED, not silent).
 
 ### XVIII.9 The claims register (LIVE — the gate's first
 post-canonization firing, over this part and the suite header)
@@ -2003,7 +2115,8 @@ post-canonization firing, over this part and the suite header)
        1.000); the b6b warm-ups are its repair.
     12 "the b6b/drift [6..30] literals are one quantity at two
        process positions" — EXECUTED: both minted in one transcript,
-       0.5 percent apart; stated at the b6b comment (mandate-5 F3).
+       0.8 percent apart (431.1 vs 434.5; the freeze review corrected
+       the drafted "0.5"); stated at the b6b comment (mandate-5 F3).
 
 ### XVIII.10 Mandates, audit, standing
 
@@ -2122,3 +2235,246 @@ are the author's (or delegated with R-D22's re-tag owed). After the
 tag: Phase 3 — the prophecy applied, gates 1-7, the kill matrix
 against the grown pool, the close-out pack, the countersign, then
 publication and #19.
+
+## XIX. The freeze review (2026-08-07): the verdict executed, the kit re-sealed (r11)
+
+The author's freeze-review verdict, delivered on the pack at
+d00d714: "The oracle phase is fit to freeze, subject to two
+corrections that touch the mint text itself." Two corrections, three
+smaller items, one record note, and the disposition — each executed
+below, in the verdict's order. The disposition line, verbatim (it is
+also the delegation, recorded again beside the mint in the tag
+message): "Correct the envelope, settle the band, reconcile the wire
+cell. Then 1-verify, SITTING.md and the tag message have my review,
+and the key acts are yours."
+
+### XIX.1 Correction 1 — the envelope's null face (the ordered cell)
+
+The conviction: "the headroom-six envelope omits the null face ...
+Every cell underneath that figure — P3, P9, the per-pair 0.132 — is
+pairs-only. The heir ships both faces behind one declared key ...
+Either restate the envelope as pairs-only-with-null-off and say so
+explicitly, or measure |S|=6 with null on and state the real
+headroom. The second is one cell on machinery that already exists,
+and I would take it."
+
+EXECUTED AS ORDERED (opening/envelope-null-run.txt; the driver
+source rides inside the transcript). The cell: one process, the
+consumer world, warm-ups per b6b's law, 300 ticks, three routes —
+base, |S|=6 pairs-only, |S|=6 + null — the six-pair set P9's own
+(recovered verbatim from the session record:
+[(2,3),(3,2),(2,4),(4,2),(3,4),(4,3)]), the overlay realization
+re-verified byte-identical to src + prophecy.diff before the run
+(the cell measures the implementation's prophecy, not a sibling).
+Populations reproduced the closed forms: base 8005, pairs-only
+17509 (XI.2's cell), null-on 19102 (+1593 = nullClosed).
+
+    window       base     s6 (ratio)        s6+null (ratio)    null inc
+    [6..30]      419.2    747.7  (1.7836)   833.9  (1.9894)    0.2058
+    [100..130]   780.8    1421.5 (1.8206)   1539.0 (1.9711)    0.1506
+    [250..280]   1499.6   2804.3 (1.8701)   3026.1 (2.0180)    0.1479
+    [271..300]   1610.6   3040.8 (1.8879)   3275.1 (2.0334)    0.1455
+
+THE FINDING: the verdict's additive estimate ("the composite lands
+near 1.98 ... The margin is not 0.15. It is closer to 0.02, and if
+the null contribution scales rather than adds it is negative") was
+measured PAST — the composite CROSSES the bar at depth: 2.0180 at
+[250..280], 2.0334 at [271..300]. The pairs-only face corroborates
+P9 within the known process spread (1.8701 here vs P9's 1.844 at
+[250..280]; this process runs ~1.4 percent hotter deep). The
+envelope statement is FACE-DEPENDENT and rides the tag message and
+the b6Bar comment: SIX ordered pairs with the null face OFF; FIVE
+with it ON (implied 1.87-1.89 deep by the measured per-pair
+0.145-0.148 and null increment 0.146-0.148 — XIV.2's linearity
+form; the |S|=5+null cell itself not run, and so marked). A
+consumer declaring six pairs AND the null flag exceeds the accepted
+envelope at session depths beyond ~250; the b6 gate's operating
+point (|S|=2+null, 1.387) is untouched.
+
+### XIX.2 Correction 2 — the band settled (U7's third ruling)
+
+The ruling and its full execution record ride U7's third entry
+(XVIII.8), beside the two rulings it reverses/confirms; the short
+form: the interim +/-0.06's premise (a +0.037 cross-build shift)
+collapsed post-climb, and THE BAND IS THE SITTING'S +/-0.03, with a
+licensed re-mint PRE-DECLARED at the implementation's close (the
+interim ruling's declined alternative, adopted now that "the thing
+it was declined in favour of covering no longer exists" — the
+author's words). Two measurements the settlement demanded, both
+executed BEFORE the band literal moved:
+
+- THE MISSING BUILD CLASS: gate 5 runs the suite under CABAL, a
+  third build driver absent from the noise record (the rehearsal's
+  gate5 log died with its clone). Measured first:
+  opening/cabal-drift-probe.txt — a fresh clone at d00d714,
+  stanza spliced, cabal-built, drift row alone: ratio 2.0101 vs
+  frozen 2.0092, |delta| 0.0009. All three build classes the gate
+  can run under (ghc-inline stub, ghc-inline overlay, cabal) sit
+  within 0.006 of the mint.
+- THE KILL END OF THE WINDOW: the verdict's "d6 ... 0.073" mixed
+  eras (U7's third entry states the catch in full; XVIII.4's d6
+  cell carried the same disease and is repaired in place). The
+  ratio gate had NO executed kill at final bytes; R-RED owed the
+  construction — XIX.3.
+
+### XIX.3 The ratio gate's kill, constructed (d10)
+
+d6 cannot anchor the ratio gate: a proportional per-tick cost
+divides out of mean-deep/mean-shallow BY CONSTRUCTION, and its
+residual ratio expression is era-unstable in the record (r9 0.060,
+r10c 0.0194, r11 0.0452 — three eras, three values, always
+means-first). The depth-differential class XVIII.4's table named
+unexecuted was therefore SEEDED as d10 in the overlay's
+entropyAgent — the readout re-walks the posterior a number of
+times scaling with the weights' rendered size, a depth proxy. The
+construction took FOUR runs, banked ITS OWN INCIDENT, and ended
+with the gate firing alone; the calibration runs' numbers are
+preserved verbatim here (their transcripts superseded at the one
+path — the M3-F1 remedy, applied in advance):
+
+- SEED 1 (identical re-walks, divisor 60): the row PASSED at
+  2.0324 (|delta| 0.0232), means AND runtime at baseline; the
+  divisor-15 retune then reproduced baseline exactly (2.0139,
+  |delta| 0.0047, 292s) — CONVICTING the seed: GHC floated the
+  loop-invariant passes out of the comprehension and computed ONE,
+  so the burn was free at ANY divisor. THE INCIDENT, banked for
+  the Phase-3 pool: A SEED THAT CANNOT SLOW — a performance defect
+  present in source and optimized out of the binary — is the
+  compiler's version of the rehearsal driver's no-oped sed; a
+  seeded PERFORMANCE defect must be verified to exist AT RUNTIME
+  (its cost measured), exactly as a seeded semantic defect must be
+  verified to fire. (The seed-1-class binary's two readings,
+  0.0232 and 0.0047, bracket the clean cluster — its real load is
+  ~nil and the 0.0232 is a variance outlier of a seeded binary,
+  NOT a clean-route noise point; the clean record's ceiling stands
+  at 0.006 over six same-day runs. Had such an outlier landed in a
+  standing gate-5 run, 0.03 absorbs it — an argument FOR this
+  band's width from the review's own mishap.)
+- SEED 2 (CSE-proof: each re-walk consumes a DISTINCT posterior
+  suffix; divisor 150): real and sub-band — ratio 2.0292 (|delta|
+  0.0200), deep mean +1.2%. The window now MEASURED with a live
+  seed, linear in the re-walk count.
+- THE PLACED RUN (divisor 25, the standing defect-d10.txt): means
+  435.5 / 621.6 / 827.8 / 1065.6 / 1609.2 — every means gate GREEN
+  (+1.0% / +3.9% / +5.2% / +5.8% / +7.0%, all inside +/-15) — and
+  ratio 2.0571 vs frozen 2.0092, |delta| 0.0479 > 0.03: THE RATIO
+  GATE FIRES, ALONE. 1 out of 1 failed; the failing assertion is
+  the ratio gate's own line. The kill's magnitude is the seeded
+  parameter's choice — the class is unbounded upward (a real
+  leak's deviation grows with depth) — so what the construction
+  proves is REACHABILITY at a means-quiet operating point, the
+  red the row owed and never had.
+
+### XIX.4 The wire cell reconciled, and the arithmetic repairs
+
+"A number appears twice with two values." Confirmed and repaired,
+and the CATEGORY confirmed twice more than the verdict knew:
+
+- XVIII.3's prose cited 824.2 where the transcript beside it says
+  832.7 — the pre-mint placeholder (which the transcript's own
+  reading note exists to disarm) leaked into the very paragraph
+  beside that note. Repaired in place, the falsified number quoted.
+- Claims row 12's "0.5 percent apart" for 431.1 vs 434.5 is 0.8
+  percent — repaired in the register and at the b6b suite comment
+  (mandate-5 F3's line).
+- XVIII.4's d6 cell: the r9-era ratio (1.9364) sat beside r10c
+  means (769.8) in one table cell — the same disease, one row from
+  the verdict's catch. Repaired with both eras stated; the
+  era-mixing propagated into the verdict's own band arithmetic and
+  is unwound at U7's third entry.
+
+### XIX.5 The one-generator law canonized
+
+The verdict: "The one-generator law has now been paid for three
+times. The parallel hand-written tick list, the dup-list comment,
+and the rehearsal driver's hand-copied ratio literal are one
+disease: two artefacts that must agree, maintained by hand. XVIII.2
+already states the law for probe streams. It should be canon for any
+pair of artefacts required to agree — harnesses and kit drivers
+included — because the third instance nearly cost you a rehearsal,
+and the next one will be somewhere the clean-tree gate is not
+watching."
+
+EXECUTED: claude-prose-gate.patch grew its third clause (THE
+ONE-GENERATOR LAW, the three paid instances named, the verdict
+quoted as authority) — the patch itself REGENERATED from an applied
+copy rather than hand-edited hunk counts, the law's own discipline
+applied to the patch that canonizes it. SITTING.md's table and the
+tag message name the widened touch.
+
+### XIX.6 U12 disposed, U9 noted
+
+- U12: DISPOSED per the verdict (the ruling quoted at the register
+  entry). Every round-labeled repair/bracket row in this pack now
+  carries its round's commit hash; L8's resolve half runs over a
+  nonempty population at this very freeze; the file-touch half's
+  remaining vacuity is DECLARED at the entry.
+- U9: the pin-preservation note recorded at the register entry, the
+  author's words verbatim — the K=2 null refusal exists because the
+  ARITY pin fixes the coincidence by equality, not because
+  mass-doubling is an error; if that pin moves, the refusal loses
+  its stated basis.
+
+### XIX.7 The re-run battery at r11 bytes (every correction predates it)
+
+The suite text moved (the band literal and its comments; the b6Bar
+envelope comment; the 0.8-percent comment), so the ENTIRE battery
+re-ran at final bytes — the stale-binary law, applied to the freeze
+review itself. The r10c transcripts these paths carried are
+PRESERVED IN HISTORY at d00d714 (committed; the M3-F1 rescue class
+does not arise — the prior evidence sits under a hash, stated here):
+
+- red run (stub route; red-run.txt): 12 out of 20 = the EXACT
+  frozen set; drift ratio 2.0052 (|delta| 0.0040, inside the
+  restored band with 7x margin).
+- SAT run (the prophecy overlay; sat-run.txt): ALL 20 PASSED;
+  drift 2.0147 (|delta| 0.0055). Both fresh gating runs sit inside
+  the 0.006 noise ceiling at final bytes.
+- defect reds: ALL TEN FIRED (defect-d*.txt) — d1 2/2; d2-d5, d7-d9
+  1/1 each; d6 1/1 by its MEANS (777.2 vs frozen 431.1 at [6..30];
+  its ratio this era 1.9640, |delta| 0.0452 — a THIRD era value,
+  the era-instability XIX.3 records); d10 1/1 by the RATIO GATE
+  ALONE (XIX.3).
+- 1-verify: ALL CHECKS PASSED on the amended tree (six patches
+  sequential, all 10 mint literals pair-traced); the re-rehearsal
+  from a fresh clone rides r11b.
+
+### XIX.8 The claims register, continued (the gate stays live over this part)
+
+    13 "every build class the gate can run under sits within 0.006
+       of the mint" — EXECUTED per class over the DECLARED universe
+       (the three drivers gate 5 can run: ghc-inline stub 0.0012/
+       0.0025/0.0057, ghc-inline overlay 0.0017, cabal 0.0009 —
+       cabal-drift-probe.txt); different HARDWARE is outside the
+       universe by design (the means band is the hardware-tolerant
+       one; the ratio is dimensionless — XIV.3's bracket).
+    14 "the cell measures the implementation's prophecy" — EXECUTED:
+       overlay == src + prophecy.diff verified per module before
+       the envelope run (the identity line rides the transcript).
+    15 "d6 is ratio-invisible by design (proportional cost cancels
+       in the ratio)" — EXECUTED twice over: r10c's 0.0194 and the
+       d10 CONTRAST (the constructed depth-differential defect
+       moves the ratio where d6 cannot); the THEORY reading (a
+       uniform per-tick multiplier divides out of mean-deep/
+       mean-shallow) rides beside the runs.
+    16 "|S|=6 with the null face crosses the bar at depth" —
+       EXECUTED (envelope-null-run.txt: 2.0180 / 2.0334 at the two
+       deep windows, prophecy overlay, one process); "headroom with
+       null is FIVE" — ARGUED (implied by the measured per-pair and
+       null increment under the linearity three cells reproduced);
+       falsifier named: run the |S|=5+null cell at depth.
+
+### XIX.9 Standing after the review
+
+The two mint-text corrections are in the tag message (the custody
+paragraph and the envelope paragraph); the three smaller items are
+executed in place; the record note rides U9. The kit re-verified
+end-to-end (1-verify; the re-rehearsal from a fresh clone), then
+the key acts ran ON THE RECORDED DELEGATION with the builder key —
+breadth-freeze-r0 minted by 4-close's -F from the committed message
+file, R-D22's author re-tag a condition of the increment's closure,
+expected at the Phase-3 close alongside the countersign. Phase 3
+(the implementation) opens against the now-binding oracle:
+prophecy.diff byte-for-byte, gates 1-7, anchors byte-stable, the
+kill matrix vs the grown pool (d1-d10; M8 = d4 promotes as b7's
+kill), the close-out pack, the author's r1.

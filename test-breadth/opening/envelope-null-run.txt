@@ -1,0 +1,172 @@
+ENVELOPE CELL |S|=6 + NULL (the freeze-review verdict's ordered measurement, 2026-08-07)
+RUNNER sha256=f5967938e5d81876bd3e03d39dfb4a765b0f588c14fdd3ca20eab4e57b1ce25a
+HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+overlay identity: overlay == src + prophecy.diff (all modules; checked this session)
+prophecy.diff sha256=0599d7651ebe62f234597b9cfda97e78fccb3b47a99887f045f57aac56029d4c
+ghc 9.10.3; date=2026-08-07T12:48:25+03:00
+---
+populations: base 8005 | s6 null-off 17509 | s6 null-on 19102
+window [6..30]: base 419.2 | s6 747.7 (ratio 1.7836) | s6+null 833.9 (ratio 1.9894) | null increment 0.2058
+window [100..130]: base 780.8 | s6 1421.5 (ratio 1.8206) | s6+null 1539.0 (ratio 1.9711) | null increment 0.1506
+window [250..280]: base 1499.6 | s6 2804.3 (ratio 1.8701) | s6+null 3026.1 (ratio 2.0180) | null increment 0.1479
+window [271..300]: base 1610.6 | s6 3040.8 (ratio 1.8879) | s6+null 3275.1 (ratio 2.0334) | null increment 0.1455
+(ratio = heir ev+ro / base ev+ro, matched depth+window, one process — b6's form)
+---
+date-end=2026-08-07T13:12:00+03:00
+
+=== the driver source (R-D21: the prototype is discarded, the transcript is the record; compile: cabal exec -- ghc -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns -XGHC2021 -hide-all-packages -package base -package containers -O1 -i<overlay>) ===
+
+-- EnvNull.hs — the freeze-review ENVELOPE CELL (throwaway prototype,
+-- R-D21's class: the transcript is the record; this source rides
+-- inside it). ORDERED by the author's freeze-review verdict of
+-- 2026-08-07: "measure |S|=6 with null on and state the real
+-- headroom" — the sitting's headroom-six envelope was pairs-only,
+-- and the heir ships both faces behind one declared key.
+--
+-- COPIES (R-D20-i, commit + binding name; never re-derived):
+--   test-breadth/Breadth.hs at d00d714 — bindings thetaQs/rhoQs/
+--   tauQs, g16, nsC, obsAt, thetaC, rhoC, guardsC, basePop, heirPop,
+--   mkBr, type Tick + streamC, orDie, vecAt, msSince, timedFold,
+--   evStep, roStep, winMean; the warm-up form from the binding
+--   `gB6` (b6b's untimed 3-tick folds — the measured -1.3%
+--   anti-conservative CAF bias).
+--   The six-pair set s6 is the P9/XI.2 probe's declared set,
+--   recovered verbatim from the session record (the XIV.2 cells'
+--   |S|=6): [(2,3),(3,2),(2,4),(4,2),(3,4),(4,3)].
+-- Compiled against the OVERLAY realization (the implementation's
+-- prophecy — opening/prophecy.diff applied to src), the stanza's
+-- flag set and dependency closure (flag- and package-faithful).
+module Main (main) where
+
+import Control.Monad (forM_)
+import Data.List.NonEmpty (NonEmpty ((:|)))
+import Data.Ratio ((%))
+import System.CPUTime (getCPUTime)
+import Text.Printf (printf)
+
+import PropLang.Enumerate (AgentS, Breadth, Hyp, agentObsPoints,
+                           enumerateWithArity, enumerateWithBreadth,
+                           fragFull, mkBreadth, observeS, predictMassS,
+                           sentenceAgent)
+import PropLang.Report (bitsView, entropyAgent)
+import PropLang.Syntax (Carrier, Grid, Namespace, mkCarrier, mkGrid,
+                        mkNamespace)
+
+-- the consumer-class world (COPY: Breadth.hs at d00d714)
+thetaQs, rhoQs, tauQs :: [Integer]
+thetaQs = [1 .. 9]
+rhoQs   = [1 .. 8]
+tauQs   = [3 .. 13]
+
+g16 :: [Integer] -> NonEmpty Rational
+g16 ns = case [ n % 16 | n <- ns ] of
+  (q : qs) -> q :| qs
+  []       -> error "envelope cell: empty grid (unreachable)"
+
+nsC :: Namespace
+nsC = mkNamespace ("t" :| ["c1", "c2", "skill"])
+
+obsAt :: Int -> Carrier Int
+obsAt k = mkCarrier "obs" (0 :| [1 .. k - 1])
+
+thetaC, rhoC :: Grid
+thetaC = mkGrid "theta" (g16 thetaQs)
+rhoC   = mkGrid "rho" (g16 rhoQs)
+
+guardsC :: [(String, Grid)]
+guardsC = [ ("c1", mkGrid "c1" (g16 tauQs))
+          , ("c2", mkGrid "c2" (g16 tauQs)) ]
+
+basePop :: Int -> [Hyp]
+basePop k = enumerateWithArity k nsC (obsAt k) thetaC guardsC (Just rhoC) fragFull
+
+heirPop :: Int -> Breadth -> [Hyp]
+heirPop k br =
+  enumerateWithBreadth br k nsC (obsAt k) thetaC guardsC (Just rhoC) fragFull
+
+mkBr :: Int -> [(Int, Int)] -> Bool -> Breadth
+mkBr k ps nl = case mkBreadth k ps nl of
+  Just b  -> b
+  Nothing -> error "envelope cell: invalid declaration (unreachable)"
+
+-- P9's declared |S|=6 (the session record's s6, verbatim)
+s6 :: [(Int, Int)]
+s6 = [(2, 3), (3, 2), (2, 4), (4, 2), (3, 4), (4, 3)]
+
+-- the stream (COPY: Breadth.hs streamC at d00d714)
+type Tick = ([(String, Rational)], Int)
+
+streamC :: Int -> Int -> [Tick]
+streamC k n =
+  [ ( [ ("t", fromIntegral (i `mod` 7))
+      , ("c1", if minority then 3 % 4 else 1 % 4)
+      , ("c2", 1 % 2), ("skill", 1) ]
+    , if minority then min 3 (k - 1) else min 2 (k - 1) )
+  | i <- [0 .. n - 1]
+  , let minority = i `mod` 9 == 8 ]
+
+-- timing (COPY: Breadth.hs at d00d714, itself the probes' copy)
+orDie :: Either String a -> a
+orDie = either (error . ("envelope cell: " ++)) id
+
+vecAt :: [(String, Rational)] -> AgentS -> [Rational]
+vecAt fs ag = [ orDie (predictMassS fs j ag) | j <- agentObsPoints ag ]
+
+msSince :: Integer -> IO Double
+msSince t0 = do
+  t1 <- getCPUTime
+  pure (fromIntegral (t1 - t0) / 1e9)
+
+timedFold :: (AgentS -> Tick -> AgentS) -> AgentS -> [Tick] -> IO [Double]
+timedFold step = go
+  where
+    go _ [] = pure []
+    go ag (t : ts) = do
+      t0 <- getCPUTime
+      let ag' = step ag t
+      ms <- ag' `seq` msSince t0
+      (ms :) <$> go ag' ts
+
+evStep :: AgentS -> Tick -> AgentS
+evStep ag (fs, y) = case observeS fs y ag of
+  Left e         -> error ("observeS: " ++ e)
+  Right (m, ag') -> bitsView m `seq` ag'
+
+roStep :: AgentS -> Tick -> AgentS
+roStep ag t@(fs, _) =
+  let ag' = evStep ag t
+      vec = vecAt fs ag'
+      h   = entropyAgent ag'
+  in sum vec `seq` h `seq` ag'
+
+winMean :: Int -> Int -> [Double] -> Double
+winMean lo hi xs =
+  let w = take (hi - lo + 1) (drop (lo - 1) xs)
+  in sum w / fromIntegral (length w)
+
+main :: IO ()
+main = do
+  let popB  = basePop 6
+      pop6  = heirPop 6 (mkBr 6 s6 False)
+      pop6n = heirPop 6 (mkBr 6 s6 True)
+      agB   = sentenceAgent nsC popB
+      ag6   = sentenceAgent nsC pop6
+      ag6n  = sentenceAgent nsC pop6n
+  printf "populations: base %d | s6 null-off %d | s6 null-on %d\n"
+         (length popB) (length pop6) (length pop6n)
+  -- warm-ups (b6b's law): the first timed fold otherwise pays the
+  -- one-time CAF costs — measured -1.3% anti-conservative
+  _ <- timedFold roStep agB  (streamC 6 3)
+  _ <- timedFold roStep ag6  (streamC 6 3)
+  _ <- timedFold roStep ag6n (streamC 6 3)
+  msB <- timedFold roStep agB  (streamC 6 300)
+  ms6 <- timedFold roStep ag6  (streamC 6 300)
+  ms6n <- timedFold roStep ag6n (streamC 6 300)
+  let wins = [(6, 30), (100, 130), (250, 280), (271, 300)]
+  forM_ wins $ \(lo, hi) -> do
+    let b = winMean lo hi msB
+        s = winMean lo hi ms6
+        n = winMean lo hi ms6n
+    printf "window [%d..%d]: base %.1f | s6 %.1f (ratio %.4f) | s6+null %.1f (ratio %.4f) | null increment %.4f\n"
+           lo hi b s (s / b) n (n / b) (n / b - s / b)
+  putStrLn "(ratio = heir ev+ro / base ev+ro, matched depth+window, one process — b6's form)"

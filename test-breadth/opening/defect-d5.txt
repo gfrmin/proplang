@@ -1,10 +1,10 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d5/breadth size=8099160 mtime=2026-08-06 10:19:07.992648134 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=c0ade976c34a64bb112e62bfd0e22e109fd73abe3a816efe7a3da3b564de2dd0 HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d5/breadth size=8099160 mtime=2026-08-07 10:14:20.936236866 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=ae12a86ba3f5429712ca8390af2f972322542fb5cf3d95ae28dea5cb9a8165d2 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b8 walk-free exchangeability
     b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==): FAIL
-      test-breadth/Breadth.hs:865:
+      test-breadth/Breadth.hs:897:
       expected: 40
        but got: 0
 
-1 out of 1 tests failed (0.01s)
+1 out of 1 tests failed (0.00s)

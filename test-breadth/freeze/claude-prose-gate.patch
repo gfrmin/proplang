@@ -1,8 +1,6 @@
-diff --git a/CLAUDE.md b/CLAUDE.md
-index 1c44d9a..636f16e 100644
 --- a/CLAUDE.md
 +++ b/CLAUDE.md
-@@ -363,6 +363,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
+@@ -363,6 +363,15 @@
     two-run structure is load-bearing in BOTH directions: the red run
     proves every row CAN fire; the SAT run proves every row CAN pass;
     neither run alone certifies a helper, and a freeze relies on both.
@@ -18,7 +16,7 @@ index 1c44d9a..636f16e 100644
     One clause canonized at the dyadic freeze under the X.5 sitting's
     rulings 5 and 2 (x5-sitting-r0, 2026-07-26; drafted at the exact
     close, first run r2 at the X.5 pack; delegated edit, the dyadic
-@@ -474,6 +483,49 @@ Every step-6+ increment follows the recursive two-phase discipline:
+@@ -474,6 +483,72 @@
     derive their exemption from their tag's existence, never from
     a hand list (L9 not L8: OB-26 named its own future row L8 at
     scheduling, and that seat stays reserved for the OB-19 heir).
@@ -65,6 +63,29 @@ index 1c44d9a..636f16e 100644
 +   "as-built answers to its register" in the increment protocol's
 +   close continues to name the under-determination register. Mandate
 +   7 was DECLINED at the same sitting: six red-team mandates stand.
++   One clause canonized at the same freeze under the author's
++   freeze-review verdict of 2026-08-07 ("The one-generator law has
++   now been paid for three times... It should be canon for any pair
++   of artefacts required to agree - harnesses and kit drivers
++   included, because the third instance nearly cost you a rehearsal,
++   and the next one will be somewhere the clean-tree gate is not
++   watching"): THE ONE-GENERATOR LAW. Any two artefacts required to
++   agree share ONE generator, or one of them DERIVES from the other
++   and ASSERTS the derivation at run time - never two hand-maintained
++   copies. The law was already the probe-discipline's shape for
++   declared data (step 5) and the breadth pack's XVIII.2 statement
++   for wire ticks; this clause carries it to EVERY paired artefact,
++   harnesses and kit drivers included, because the third instance
++   lived in the rehearsal driver - outside every suite, where no
++   clean-tree gate watches. The three paid instances, named: the
++   breadth oracle draft's parallel hand-written tick list (caught
++   before anything ran); the dup-list comment; and the rehearsal
++   driver's hand-copied ratio literal, which went stale one mint
++   later, no-oped its own seed, and silently ran a full 2-freeze in
++   a red leg (the r10d two-lists incident) - the repaired driver
++   derives-and-asserts: grep the literal from the frozen file, assert
++   nonempty, assert the seed took. A hand copy tracking a generated
++   value is correct at birth and wrong at the first regeneration.
  3. **Author freeze.** The author reviews the oracle and the increment's
     under-determination register, absorbs any spec amendments (frozen
     texts change only at freeze boundaries, only by the author), then

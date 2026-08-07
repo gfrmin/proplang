@@ -1,9 +1,9 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d7/breadth size=8099128 mtime=2026-08-06 10:19:11.984762518 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=6a28ee09bb7fe4d85e1c377780d82c067ad88099f7719f7296239a981b01722c HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d7/breadth size=8099128 mtime=2026-08-07 10:14:24.94434334 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=0c29268000b817e9ab1aec43a5b6e94a3778b76b50643b925eb2ae1633f88e40 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b5 wire == reference route
-    b5a breadth hello: models the closed form; decide p_codes == the reference vector: FAIL (16.63s)
-      test-breadth/Breadth.hs:811:
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector: FAIL (17.19s)
+      test-breadth/Breadth.hs:843:
       asym p_codes == the reference vector: {"act": {"skill": 1}, "p1": 9.673202393541674e-2, "entropy_bits": 3.5368642214100174, "p0": 9.673229286811698e-2, "argmax_code": 2, "p_argmax": 0.516338872724085, "p_codes": [9.673229286811698e-2, 9.673202393541674e-2, 0.516338872724085, 9.673276260154783e-2, 9.673202393541674e-2, 9.673202393541674e-2]}
 
-1 out of 1 tests failed (16.63s)
+1 out of 1 tests failed (17.19s)

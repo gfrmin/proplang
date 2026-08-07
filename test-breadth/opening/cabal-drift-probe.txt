@@ -1,0 +1,25 @@
+CABAL-BUILD DRIFT PROBE (the freeze-review band evidence, 2026-08-07): a fresh clone at d00d714, stanza.patch applied, cabal-built (gate 5's own build class - the one class absent from the standing noise record), the drift row alone via -p /drift-a/. The tail of the cabal test transcript follows verbatim.
+Build profile: -w ghc-9.10.3 -O1
+In order, the following will be built (use -v for more details):
+ - proplang-0.1.0.0 (test:breadth) (ephemeral targets)
+Preprocessing test suite 'breadth' for proplang-0.1.0.0...
+Building test suite 'breadth' for proplang-0.1.0.0...
+Running 1 test suites...
+Test suite breadth: RUNNING...
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/freeze-review/cabal-probe/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/build/breadth/breadth size=8108008 mtime=2026-08-07 09:42:05.943356842 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=c4ea6966679cc3d8ef80bd4be4c05c0383e521a0989f744b3097a974ec301982 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:   REPORT window [6..30] mean 426.4 ms
+  REPORT window [50..80] mean 599.2 ms
+  REPORT window [100..130] mean 791.4 ms
+  REPORT window [150..180] mean 1008.3 ms
+  REPORT window [250..280] mean 1507.8 ms
+  REPORT deep/shallow mean ratio 2.0101 (frozen 2.0092)
+OK (293.60s)
+
+All 1 tests passed (293.60s)
+Test suite breadth: PASS
+Test suite logged to:
+/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/freeze-review/cabal-probe/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/test/proplang-0.1.0.0-breadth.log
+1 of 1 test suites (1 of 1 test cases) passed.

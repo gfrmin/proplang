@@ -1,14 +1,14 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-sat/breadth size=8099128 mtime=2026-08-06 10:18:58.151365731 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=ec2b9db56b23679b63164281e5cf8e3db85ddf4f36c60fdf9bbb500afffd1112 HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-sat/breadth size=8099128 mtime=2026-08-07 10:14:10.452958128 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=71174672dd6deeaf9cae50745a1983cc7e747612559787bfe05f14d344a80ef7 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   drift (gated diff-vs-frozen)
-    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 429.3 ms
-  REPORT window [50..80] mean 603.9 ms
-  REPORT window [100..130] mean 796.1 ms
-  REPORT window [150..180] mean 1016.3 ms
-  REPORT window [250..280] mean 1515.6 ms
-  REPORT deep/shallow mean ratio 2.0075 (frozen 2.0092)
-OK (295.44s)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 431.4 ms
+  REPORT window [50..80] mean 607.3 ms
+  REPORT window [100..130] mean 793.9 ms
+  REPORT window [150..180] mean 1020.0 ms
+  REPORT window [250..280] mean 1531.3 ms
+  REPORT deep/shallow mean ratio 2.0147 (frozen 2.0092)
+OK (296.70s)
   b1 untouched route + models closed form
     b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world):           OK (0.23s)
     b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null):                 OK
@@ -26,24 +26,24 @@ OK  REPORT MAP ("dpair",[3,2,0,7,8]) @ 0.6785
     b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1/2):                 OK
   b4 the null face and the K=2 door
     b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 criteria S1/S2):                REPORT p0 shipped 0.225000 (caps 0.250000 frozen / 0.225000 tight)  extended 0.743928  MAP ("nullconst",[0,6]) @ 0.5503
-OK (1.08s)
+OK (1.07s)
     b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates:          OK
     b4d an empty declaration IS the absent key: hello replies byte-identical:                                 OK
   b5 wire == reference route
-    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        OK (16.90s)
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        OK (17.23s)
     b5c the breadth hello survives the pipes (spawned host, the g6 form):                                     OK
+  REPORT entropy wire 3.891045235004 independent 3.891045235004 delta 0.000e0
   b7 entropy_bits (OB-31)
-    b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):      REPORT entropy wire 3.891045235004 independent 3.891045235004 delta 0.000e0
-OK
+    b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):    OK (0.01s)
   b8 walk-free exchangeability
-    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (2.76s)
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (2.92s)
   b6 the ms/tick instrument
     b6a population pin: the base route is 8005 sentences (the #21 live curves' operating point):              OK
     b6d the census: every declared-family row is a const/guard shape; NO walk variants (XII.6's gate row):    OK
-    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):                       REPORT base ev+ro 435.3 ms/tick, heir ev+ro 604.0 ms/tick, ratio 1.387 (bar 2.0)
-  REPORT composition at [6..30]: ev 65.6 (frozen 66.2) of which walks 23.8 (frozen 23.8); ev+ro 435.3 (frozen 434.5); wire 846.5 (frozen 832.7)
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):                       REPORT base ev+ro 440.2 ms/tick, heir ev+ro 607.2 ms/tick, ratio 1.379 (bar 2.0)
+  REPORT composition at [6..30]: ev 65.6 (frozen 66.2) of which walks 16.0 (frozen 23.8); ev+ro 440.2 (frozen 434.5); wire 843.6 (frozen 832.7)
   REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)
   REPORT (the wire column is the BASE route BY DESIGN - XIII.5 pins the base's composition; it cannot move when the heir's wire route changes)
-OK (61.43s)
+OK (61.81s)
 
-All 20 tests passed (378.22s)
+All 20 tests passed (380.33s)

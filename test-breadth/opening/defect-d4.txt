@@ -1,11 +1,11 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d4/breadth size=8099128 mtime=2026-08-06 10:19:06.029591852 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=32b2545b9df33258c7eb506687b20016b037e078d59f59c48108e799fda5f616 HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d4/breadth size=8099128 mtime=2026-08-07 10:14:18.834181004 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=400a1c9187ae02843b0df9d26c9927f7d6bdc224442d34a1f72bdb31b85c1169 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b7 entropy_bits (OB-31)
     b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):   REPORT entropy wire -3.891045235004 independent 3.891045235004 delta 7.782e0
-FAIL (7.82s)
-      test-breadth/Breadth.hs:849:
+FAIL (7.96s)
+      test-breadth/Breadth.hs:881:
       expected: 3.891045235003903
        but got: -3.891045235003903
 
-1 out of 1 tests failed (7.82s)
+1 out of 1 tests failed (7.96s)

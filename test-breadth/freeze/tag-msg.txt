@@ -11,11 +11,13 @@ own frozen text - OB-32's binding; one tasty thread pinned in code).
 Attribution partitioned in the oracle header: twelve rows
 red-by-stub (gate5-run.txt records the exact set, its count derived
 from the one list), eight identity/instrument rows green-at-stub
-with every red demonstrated by a seeded defect - NINE defect shapes
-d1-d9, transcripts in test-breadth/opening/, including b8a's two
+with every red demonstrated by a seeded defect - TEN defect shapes
+d1-d10, transcripts in test-breadth/opening/, including b8a's two
 kill directions (the mis-tag d5 and the threaded-state d9, whose two
 executed dead ends - a reversible kernel, an invisible-likelihood
-row - are recorded as the row's scope). The frozen mint values
+row - are recorded as the row's scope) and the drift RATIO gate's
+own constructed kill (d10, the depth-differential class - the
+freeze review's R-RED construction, pack XIX). The frozen mint values
 derive from the build-stamped instrument-mint transcript
 (mint-run.txt) and from nothing else, PAIR-traced mechanically by
 1-verify; R-D21 satisfiability discharged flag- and
@@ -23,19 +25,64 @@ package-faithfully against the overlay realization (sat-run.txt,
 all 20); R-D20-i anchors ride as commit hash + binding name.
 
 CUSTODY, STATED IN ITS OWN WORDS: SIGNING THIS TAG IS THE ACT THAT
-AMENDS breadth-sitting-r0's MINTED DRIFT BAND. The sitting minted
-+/-0.03 absolute on the LS half-slope ratio; that statistic's
-realized quiet spread (0.044 over seven runs) broke its own band
-and the gate false-fired on a quiet run (the preserved evidence:
+AMENDS breadth-sitting-r0's MINTED DRIFT STATISTIC — and the act
+that RESTORES its band. The sitting minted +/-0.03 absolute on the
+LS half-slope ratio; that statistic's realized quiet spread (0.044
+over seven runs) broke its own band and the gate false-fired on a
+quiet run (the preserved evidence:
 opening/halfslope-falsefire.txt). By the author's two in-session
 rulings of 2026-08-06 (pack XVIII U7, the quoted words recorded
-there): the statistic is RE-STATED to the deep/shallow windowed-mean
-ratio (mean[151..300]/mean[6..150], the drift cell first-in-suite so
-it owns a fresh heap), and its band is +/-0.06 absolute (the
-measured cross-library-build codegen shift, +0.036-0.037, which the
-implementation inherits at Phase 3). The b6 bar is 2 as minted,
-unchanged; the windowed-mean bands are +/-15 percent as minted,
-unchanged.
+there) the statistic is RE-STATED to the deep/shallow windowed-mean
+ratio (mean[151..300]/mean[6..150], the drift cell first-in-suite
+so it owns a fresh heap), and the band was interim-ruled +/-0.06
+for a measured +0.037 cross-build codegen shift. AT THE FREEZE
+REVIEW (2026-08-07) the author convicted that ruling's premise as
+COLLAPSED — the mkBreadth climb converged the builds and the shift
+shrank to 0.0017, and the kit's own gate-5 cabal build class,
+unmeasured in the standing record and measured FIRST at this
+review, reads |delta| 0.0009 (opening/cabal-drift-probe.txt) — so
+THE BAND IS THE SITTING'S +/-0.03, carried to the re-stated
+statistic: ~5x the measured noise of every build class (all within
+0.006 of the mint), and demonstrably REACHABLE from above — the
+review caught the verdict's "d6 at 0.073" MIXING ERAS (the r9
+defect run against the r10 mint; d6 is ratio-invisible by design,
+its means fire first in every era — pack XIX.2), so the ratio
+gate's own kill was CONSTRUCTED: defect d10, the
+depth-differential class, fires the ratio gate ALONE at 0.0479
+with every means gate green (defect-d10.txt; the class is
+unbounded upward — a real leak's deviation grows with depth — so
+the placed point is a reachability proof, never a ceiling). The
+interim ruling's declined alternative is hereby ADOPTED IN ITS
+PLACE: a
+LICENSED RE-MINT is PRE-DECLARED at the implementation's close —
+if Phase 3's library build moves the ratio beyond the band with
+the means in-band and the composition unchanged, the remedy is a
+fresh instrument mint under XIII.5's pattern, never a silent
+widening. The b6 bar is 2 as minted, unchanged; the windowed-mean
+bands are +/-15 percent as minted, unchanged.
+
+THE ENVELOPE, RESTATED WITH THE NULL FACE MEASURED (the review's
+second mint-text correction; the ordered cell:
+opening/envelope-null-run.txt — the prophecy overlay verified
+byte-identical to src + prophecy.diff, one process, P9's declared
+six-pair set, 300 ticks, three routes). The sitting's "headroom
+SIX at depth" was a PAIRS-ONLY figure — every cell beneath it
+(P3, P9, the per-pair 0.132) measured pairs without the null
+face, and the heir ships both faces behind one declared key.
+Measured: |S|=6 pairs-only HOLDS through depth (1.7836 / 1.8206 /
+1.8701 / 1.8879 at [6..30] / [100..130] / [250..280] /
+[271..300], P9's shape within the known process spread); |S|=6
+WITH NULL CROSSES THE BAR AT DEPTH — 1.9894 / 1.9711 / 2.0180 /
+2.0334 at the same windows (the null increment 0.21 shallow
+declining to 0.15 deep, more than the sitting's 0.15 margin
+absorbs; the review's additive ~1.98 estimate was measured PAST).
+THE HEADROOM STATEMENT IS THEREFORE FACE-DEPENDENT: SIX ordered
+pairs with the null face OFF; FIVE with it ON (implied 1.87-1.89
+at depth by the measured per-pair and null increment — XIV.2's
+linearity form; the |S|=5+null cell itself not run, and so
+marked). A consumer declaring six pairs AND the null flag exceeds
+the accepted price envelope at session depths beyond ~250; the b6
+gate's operating point (|S|=2+null, 1.387) is untouched.
 
 THE LADDER CLIMBED (the author's ruling at the mandate round):
 Breadth is ABSTRACT with mkBreadth the one validator; the wire door
@@ -47,10 +94,14 @@ THE ROUTED INSTALLS LAND AT THIS ONE BOUNDARY:
   the readout kit's form, glossed here so the name "draft-stanza
   precedent" has a definition site);
 - the ONE CLAUDE.md touch: OB-27's harness-gate scope line inside
-  the triptych clause, and the prose-claim gate (pack XV.2 as
-  widened at r7) canonized beside it, clause text copied from the
-  pack, with the claims-register/under-determination-register
-  disambiguation inside the clause;
+  the triptych clause, the prose-claim gate (pack XV.2 as widened
+  at r7) canonized beside it, clause text copied from the pack,
+  with the claims-register/under-determination-register
+  disambiguation inside the clause — and THE ONE-GENERATOR LAW
+  canonized under the freeze-review verdict (any two artefacts
+  required to agree share ONE generator or derive-and-assert;
+  three paid instances named in the clause, the third the
+  rehearsal driver's own two-lists incident);
 - lint L8 (OB-26: cited repair hashes resolve AND touch the named
   file) and OB-28's three hardenings (L9 sees --message/--message=/
   combined short flags; the exemption demands an annotated tag
@@ -83,9 +134,34 @@ b6b warm-up folds (a measured -1.3 percent anti-conservative
 fold-order bias), the derived nullCap, the paired mint-literal
 trace, and the naming/custody repairs this message carries.
 
+THE FREEZE REVIEW RAN BEFORE THIS TAG (2026-08-07; the record is
+pack Part XIX): the verdict ruled the phase fit to freeze subject
+to two corrections touching the mint text — the envelope measured
+with the null face on (the paragraph above; the ordered cell
+opening/envelope-null-run.txt) and the band settled (the custody
+paragraph above; the kit's own cabal build class measured first,
+opening/cabal-drift-probe.txt) — plus the wire-cell
+reconciliation (832.7 is the mint; the prose had cited the
+pre-mint placeholder), the 0.8-percent arithmetic repair, the
+one-generator law's canonization, U12's disposal (round-label
+repair rows now carry commit hashes, so L8 runs over a nonempty
+population at this very freeze), and U9's pin-preservation note.
+The re-run battery at r11 bytes postdates every correction.
+
+THE DELEGATION, RECORDED VERBATIM (the membrane precedent's law: a
+tag made on delegation is legal only when the delegation is fresh,
+explicit, and per-instance; this tag is accordingly minted with
+the BUILDER key, and R-D22's re-tag — the author's own signed tag
+covering this oracle as amended — is a condition of the
+increment's closure, never a courtesy). From the author's
+freeze-review verdict of 2026-08-07: "Correct the envelope, settle
+the band, reconcile the wire cell. Then 1-verify, SITTING.md and
+the tag message have my review, and the key acts are yours."
+
 The oracle is binding from this tag: the builder never owns a live
 oracle at the moment it becomes binding. Implementation (Phase 3)
 applies the prophecy (opening/prophecy.diff) under gates 1-7,
 anchors byte-stable, the kill matrix runs against the grown pool
 (d1-d9 the drafted candidates; M8 promotes as b7's kill), and the
-increment closes under the author's countersign.
+increment closes under the author's countersign (which discharges
+R-D22's re-tag obligation in the same act).

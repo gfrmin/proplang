@@ -33,12 +33,15 @@
 -- an author act at a boundary, carried out by a fresh instrument
 -- run — never a builder's standing license. Bands: windowed means
 -- +/-15% (the sitting's hardware-tolerant band; beyond it lies a
--- licensed re-mint, never a breadth failure), and +/-0.06 absolute
--- on the deep/shallow mean ratio (two author rulings of 2026-08-06,
--- pack XVIII U7: the sitting's original +/-0.03 bound the LS
--- half-slope, whose realized quiet spread broke it — the statistic
--- was re-stated to the windowed-mean ratio, and the band set to
--- clear the measured cross-build codegen shift). A composition
+-- licensed re-mint, never a breadth failure), and +/-0.03 absolute
+-- on the deep/shallow mean ratio (the sitting's number, carried to
+-- the RE-STATED statistic: the author's 2026-08-06 rulings re-stated
+-- the LS half-slope — whose realized quiet spread broke it — to the
+-- windowed-mean ratio, with an interim 0.06 band for a measured
+-- cross-build shift; the freeze review of 2026-08-07 restored 0.03
+-- after that shift collapsed post-climb, and a licensed re-mint is
+-- PRE-DECLARED at the implementation's close should a divergence
+-- return — pack XVIII U7's third ruling). A composition
 -- change is a LICENSED RE-MINT of the gate, never a breadth failure
 -- (XIII.5's clause, quoted).
 --
@@ -55,9 +58,12 @@
 -- parallel tests would pollute every timed cell; the pin also makes
 -- the drift cell's first-in-suite position meaningful); -O1; default
 -- RTS; the timed cells are ALSO a function of the BUILD DRIVER (the
--- measured cross-build codegen shift is over half the ratio band —
--- the standing gate-5 runs are cabal-built, and the freeze commit's
--- gate5-run.txt records that build's values permanently) and of the
+-- pre-climb cross-build shift measured +0.037; post-climb every
+-- class, INCLUDING the kit's own cabal build measured at the freeze
+-- review (|delta| 0.0009, opening/cabal-drift-probe.txt), sits
+-- within 0.006 of the mint — the standing gate-5 runs are
+-- cabal-built, and the freeze commit's gate5-run.txt records that
+-- build's values permanently) and of the
 -- box being QUIET (pack XVIII.3/U6); wall-clock ~5-7 minutes,
 -- dominated by the 300-tick drift row (the accepted price's own
 -- instrument).
@@ -102,8 +108,16 @@ import PropLang.Syntax (Carrier, Grid, Namespace, mkCarrier, mkGrid,
 -- ---------------------------------------------------------------------
 
 -- gate b6's bar: minted 2 at breadth-sitting-r0 (pack XIV.6; the
--- measured envelope beneath it: |S|=2 = 1.26, |S|=6 = 1.78-1.844,
--- per-pair 0.132 linear, naive 3.64 excluded, headroom SIX at depth)
+-- measured envelope beneath it: |S|=2 = 1.26, |S|=6 pairs-only =
+-- 1.78-1.89 through depth 300, per-pair 0.132-0.148 linear, naive
+-- 3.64 excluded). HEADROOM IS FACE-DEPENDENT (the freeze review's
+-- ordered cell, opening/envelope-null-run.txt): SIX ordered pairs
+-- with the null face OFF — but |S|=6 WITH the null face CROSSES the
+-- bar at depth (2.018 at [250..280], 2.033 at [271..300], measured
+-- on the prophecy overlay; the null increment 0.21 shallow declining
+-- to 0.15 deep), so headroom with null declared is FIVE (implied
+-- 1.87-1.89 deep — XIV.2's linearity form; the |S|=5+null cell not
+-- run, marked). The operating point |S|=2+null measures 1.387.
 b6Bar :: Double
 b6Bar = 2.0
 
@@ -132,17 +146,35 @@ driftMeanBand :: Double
 driftMeanBand = 0.15   -- +/-15%, the sitting's hardware-tolerant band
 
 driftRatioBand :: Double
-driftRatioBand = 0.06  -- +/-0.06 absolute (the author's ruling of
-                       -- 2026-08-06, U7's second half): the statistic
-                       -- reproduces to +/-0.0012 WITHIN a library
-                       -- build but shifts +0.037 ACROSS builds (the
-                       -- overlay/implementation module's codegen moves
-                       -- the overhead-bound shallow regime more than
-                       -- the bignum-bound deep one — measured, the SAT
-                       -- run's 2.0334 vs the stub mint's 1.9964); the
-                       -- band covers the cross-build shift with margin
-                       -- while real shape defects move the ratio far
-                       -- beyond it
+driftRatioBand = 0.03  -- +/-0.03 absolute — the SITTING'S OWN NUMBER,
+                       -- restored at the freeze review (the author,
+                       -- 2026-08-07; pack XVIII U7's third ruling).
+                       -- History, in full: the interim ruling of
+                       -- 2026-08-06 (U7's second half) set 0.06 to
+                       -- cover a measured +0.037 cross-build codegen
+                       -- shift; the mkBreadth climb then CONVERGED
+                       -- the builds and the shift collapsed
+                       -- (post-climb: stub-vs-overlay 0.0017, the
+                       -- kit's own cabal class 0.0009, within-build
+                       -- up to 0.0057 — every measured class within
+                       -- 0.006 of the mint; opening/
+                       -- cabal-drift-probe.txt is the review's added
+                       -- class). 0.03 sits ~5x above that noise
+                       -- ceiling; the RATIO gate's own executed kill
+                       -- is the depth-differential defect d10,
+                       -- CONSTRUCTED at the review (R-RED;
+                       -- opening/defect-d10.txt, numbers at pack
+                       -- XIX.3) after the review's arithmetic was
+                       -- caught mixing eras — d6 is ratio-INVISIBLE
+                       -- by design (proportional cost cancels in the
+                       -- ratio: r10c deviation 0.0194; its means
+                       -- fire everything), so the named class was
+                       -- owed its construction. Should a future
+                       -- module addition reintroduce a cross-build
+                       -- divergence, the remedy is the PRE-DECLARED
+                       -- LICENSED RE-MINT at the implementation's
+                       -- close (XIII.5's pattern, stated in the
+                       -- freeze tag) — never a silent widening
 
 -- the composition record beside the gate (XIII.5: recorded at the
 -- mint; REPORT rows — a composition change is a licensed re-mint)
@@ -899,7 +931,7 @@ gB6 mintMode = testGroup "b6 the ms/tick instrument"
       -- window, the process position (this group runs LAST - its
       -- mint measured the same position, so the cell is
       -- self-consistent, and driftFrozenMeans!!0 vs compFrozenRo are
-      -- the SAME quantity at the two positions, ~0.5% apart), and
+      -- the SAME quantity at the two positions, ~0.8% apart), and
       -- fold order. The WARM-UP folds below exist because the first
       -- timed fold otherwise pays the one-time CAF costs: the
       -- mandate round measured a systematic -1.3% ANTI-CONSERVATIVE

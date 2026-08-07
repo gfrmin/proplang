@@ -1,0 +1,15 @@
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d10/breadth size=8099224 mtime=2026-08-07 11:01:42.148535785 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=bfdb1864ba21d07747559968c5c043bdc2d22e7312444683122de3ede5402042 HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:   REPORT window [6..30] mean 435.5 ms
+  REPORT window [50..80] mean 621.6 ms
+  REPORT window [100..130] mean 827.8 ms
+  REPORT window [150..180] mean 1065.6 ms
+  REPORT window [250..280] mean 1609.2 ms
+  REPORT deep/shallow mean ratio 2.0571 (frozen 2.0092)
+FAIL (310.37s)
+      test-breadth/Breadth.hs:601:
+      drift deep/shallow mean ratio 2.0571 within +/-0.03 of frozen 2.0092
+
+1 out of 1 tests failed (310.37s)

@@ -1,13 +1,13 @@
-BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d3/breadth size=8099128 mtime=2026-08-06 10:19:04.056535258 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
-BUILD-STAMP sha256=74f606de5ba626df25356cc369ad4a3f8b7e48a1ee36c0c443f9e3653e46dbdb HEAD=af8fa2c src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
+BUILD-STAMP exe=/tmp/claude-1000/-home-g-git-proplang/7c74d819-88fa-4eda-80d7-eb0154082929/scratchpad/breadth-oracle/build-d3/breadth size=8099128 mtime=2026-08-07 10:14:16.722124862 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=098b13ae56aa602ba1633da34d966a361c26785d95b8e3bfc1fe09a782a362bc HEAD=d00d714 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=0
 breadth oracle (b1-b8 + drift; breadth-sitting-r0)
   b6 the ms/tick instrument
-    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):   REPORT base ev+ro 445.0 ms/tick, heir ev+ro 1654.1 ms/tick, ratio 3.717 (bar 2.0)
-  REPORT composition at [6..30]: ev 68.3 (frozen 66.2) of which walks 24.1 (frozen 23.8); ev+ro 445.0 (frozen 434.5); wire 3057.3 (frozen 832.7)
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):   REPORT base ev+ro 445.1 ms/tick, heir ev+ro 1641.8 ms/tick, ratio 3.688 (bar 2.0)
+  REPORT composition at [6..30]: ev 71.6 (frozen 66.2) of which walks 23.3 (frozen 23.8); ev+ro 445.1 (frozen 434.5); wire 3036.2 (frozen 832.7)
   REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)
   REPORT (the wire column is the BASE route BY DESIGN - XIII.5 pins the base's composition; it cannot move when the heir's wire route changes)
-FAIL (160.45s)
-      test-breadth/Breadth.hs:569:
-      b6 ratio 3.717 <= bar 2.0 (heir/base ev+ro, matched depth+window)
+FAIL (159.83s)
+      test-breadth/Breadth.hs:601:
+      b6 ratio 3.688 <= bar 2.0 (heir/base ev+ro, matched depth+window)
 
-1 out of 1 tests failed (160.45s)
+1 out of 1 tests failed (159.83s)
