@@ -162,6 +162,6 @@ The oracle is binding from this tag: the builder never owns a live
 oracle at the moment it becomes binding. Implementation (Phase 3)
 applies the prophecy (opening/prophecy.diff) under gates 1-7,
 anchors byte-stable, the kill matrix runs against the grown pool
-(d1-d9 the drafted candidates; M8 promotes as b7's kill), and the
+(d1-d10 the drafted candidates; M8 promotes as b7's kill), and the
 increment closes under the author's countersign (which discharges
 R-D22's re-tag obligation in the same act).

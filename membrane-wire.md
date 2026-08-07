@@ -148,7 +148,36 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   predictive mass is capped at 1/(K-1) by the family's shape, so a
   null-dominant sparse channel at K >= 3 has no good hypothesis
   here; the richer two-parameter family is its demand-gated heir
-  (wire-author-pack.md VII.2(e)).
+  (wire-author-pack.md VII.2(e)) [the heir LANDED: see `breadth`
+  below - breadth-freeze-r0].
+- `breadth` (OPTIONAL; the OB-19 heir, ratified at breadth-sitting-r0,
+  2026-08-06, oracle frozen at breadth-freeze-r0; the declared-key
+  design forced by the frozen pins - a default-on family would move
+  test-pin's K=2 coincidence row and test-readout's reference
+  agents): the world MAY declare the richer family's extent -
+  `"breadth": {"pairs": [[jHi, jLo], ...], "null": true|false}`,
+  flat in `world`, both keys optional. ABSENT means the shipped
+  family, byte-identically; an EMPTY declaration ({} or the explicit
+  empty forms) IS the absent key (b4d: hello replies byte-identical).
+  The declared pair set S is a CODEBOOK: per guard, per declared
+  ordered pair (jHi, jLo), the atom-switching guard sentence (If
+  over the guard cut - catBody at jHi above the cut, at jLo below),
+  each pair mention priced 1/|S| over the DECLARED set (b2b, exact
+  halving under |S| growth); the null face is catBody at the null
+  atom with its rate nu ON THE THETA CODEBOOK (the sitting's settled
+  register item - a dedicated grid would turn the K=2 exact
+  duplication into an undetectable near-degeneracy), priced
+  INDEPENDENTLY of the pair face (b2c). Validation FAIL-CLOSED at
+  the door, `mkBreadth` the one validator (b4c): each component in
+  [1..K-1] (atom 0 is the NULL atom, never a positive atom),
+  jHi /= jLo, no duplicate pairs (a codebook is a set), and the
+  null face REFUSED below K=3 - at K=2 catBody0(nu) duplicates
+  catBody1(1-nu) EXACTLY (9/9 grid points, measured), so admitting
+  it would move the frozen K=2 pin. The declared family contains NO
+  walk variants (XII.6's gate row; b6d's census is its pin). The
+  cost bar rides the same oracle: heir/base ev+ro ratio at matched
+  depth and window <= 2 (gate b6 as minted; a base-composition
+  change is a licensed re-mint, never a breadth failure).
 - DISJOINTNESS (ruling D-b2, the step-7 conformance sentence): the
   names a world publishes as tick features and its writable names
   are DISJOINT sets — the stream is the world's document, one

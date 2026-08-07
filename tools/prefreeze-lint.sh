@@ -66,7 +66,12 @@ done
 # -- L5: SAT flag-faithfulness in the current author pack --------------------
 # every overlay/satisfiability transcript must record the stanza's
 # exact flag set, -Werror included (the step-5 flag-faithful amendment).
-pack=$(ls -t *author-pack.md 2>/dev/null | head -1)
+# Pack selection HARDENED at the heir oracle freeze (OB-28 iii): the
+# old `ls -t` selected by mtime, which in a fresh clone is checkout
+# order (the r1 rehearsal's L5 line read unify-author-pack.md) — the
+# current pack now derives from HISTORY: the last commit that touched
+# an author pack names it.
+pack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
 if [ -n "${pack:-}" ] && grep -qi "satisfiability\|overlay" "$pack"; then
   l5=0
   for flag in -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns; do
@@ -122,6 +127,43 @@ done
 rm -rf "$l7tmp"
 [ "$l7" -eq 0 ] && ok "L7 full-corpus overlay build: every test .hs builds against new src"
 
+# -- L8: RECORDED REPAIRS VERIFIED AGAINST THE TREE (OB-26; the -------------
+# recorded-repairs rider's scriptable half, dyadic ruling 2 — the
+# pwLadderCap stale-green's purchase). Scans the current author
+# pack's repair/bracket rows for cited commit hashes: every cited
+# hash must RESOLVE to a commit, and where the same row names a file,
+# the commit must TOUCH it. Errs red on what it sees (the L9
+# philosophy); the pairing is line-scoped and conservative — the
+# resolve check fires for every repair-context hash regardless.
+l8=0; l8pairs=0; l8hashes=0
+if [ -n "${pack:-}" ] && [ -f "$pack" ]; then
+  while IFS= read -r row; do
+    hashes=$(printf '%s\n' "$row" \
+             | grep -oP '(?<![0-9a-zA-Z.])[0-9a-f]{7,40}(?![0-9a-zA-Z.])' || true)
+    [ -n "$hashes" ] || continue
+    rowfiles=$(printf '%s\n' "$row" \
+               | grep -oE '[A-Za-z0-9_./-]+\.(hs|md|sh|py|cabal|txt)' || true)
+    for h in $hashes; do
+      l8hashes=$((l8hashes+1))
+      if ! git cat-file -e "${h}^{commit}" 2>/dev/null; then
+        bad "L8 $pack repair row cites unresolvable hash $h"
+        l8=1; continue
+      fi
+      for f in $rowfiles; do
+        l8pairs=$((l8pairs+1))
+        if ! git show --name-only --pretty= "$h" | grep -qF "$(basename "$f")"; then
+          bad "L8 $pack repair row cites $h which does not touch $f"
+          l8=1
+        fi
+      done
+    done
+  done < <(grep -iE 'REPAIRED at|\[BRACKET|repair row|\[REPAIR' "$pack" 2>/dev/null \
+           | grep -E '[0-9a-f]{7}' || true)
+  [ "$l8" -eq 0 ] && ok "L8 recorded repairs: $l8hashes hash(es), $l8pairs (hash,file) pair(s) verified in $pack"
+else
+  warn "L8 no author pack found (nothing to check)"
+fi
+
 # -- L9: THE TAG MESSAGE IS A FILE (the readout close, 2026-08-04) -----------
 # The r0 key act hung on a backtick span inside -m "..." (`git apply
 # --check`, cited as prose in the register, EXECUTED as a command
@@ -132,17 +174,22 @@ rm -rf "$l7tmp"
 # Executed kits derive their exemption from their tag's existence,
 # never from a hand list. A line that names no resolvable tag FAILS
 # loudly and is triaged - this row errs red, never silently green.
-# (L8 is not skipped: OB-26 named its own future row L8 at
-# scheduling; that seat is the OB-19 heir's.)
+# (L8 landed at the heir oracle freeze - OB-26's seat, as named at
+# scheduling.)
+# HARDENED at the heir oracle freeze (OB-28 i/ii): the detection now
+# covers --message, --message= and combined short flags (-am, -sm);
+# and the exemption demands an ANNOTATED/SIGNED tag OBJECT
+# (`git cat-file -t` = tag) - a stray lightweight tag no longer
+# silently exempts a kit.
 l9=0
 while IFS=: read -r f n cmd; do
   printf '%s\n' "$cmd" | grep -q '^[[:space:]]*#' && continue
-  tag=$(printf '%s\n' "$cmd" | sed -E 's/.*git tag +(-[sa] +)?([A-Za-z0-9._-]+).*/\2/')
-  git rev-parse -q --verify "refs/tags/$tag" >/dev/null 2>&1 && continue
-  bad "L9 tag message via -m in unexecuted freeze kit $f:$n (use -F <file>; hash the file)"
+  tag=$(printf '%s\n' "$cmd" | sed -E 's/.*git tag +(-[A-Za-z]+ +)*([A-Za-z0-9._-]+).*/\2/')
+  [ "$(git cat-file -t "refs/tags/$tag" 2>/dev/null)" = "tag" ] && continue
+  bad "L9 tag message via -m/--message in unexecuted freeze kit $f:$n (use -F <file>; hash the file)"
   l9=1
-done < <(grep -HnE 'git tag .*-m[ "]' test*/freeze/*.sh 2>/dev/null)
-[ "$l9" -eq 0 ] && ok "L9 tag-message-is-a-file: every -m tag command sits in an executed kit"
+done < <(grep -HnE 'git tag .*(--message=|--message |-[a-zA-Z]*m[ "])' test*/freeze/*.sh 2>/dev/null)
+[ "$l9" -eq 0 ] && ok "L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit"
 
 echo "=== prefreeze-lint: $fails FAIL, $warns WARN ==="
 exit "$( [ "$fails" -eq 0 ] && echo 0 || echo 1 )"

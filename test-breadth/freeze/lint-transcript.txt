@@ -1,0 +1,11 @@
+=== prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+PASS  L1 forbidden-tokens-by-glob: 9 src files clean (frozen gate 4 names 5)
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 181 rows verified
+PASS  L4 all 66 tags verify
+PASS  L5 breadth-author-pack.md records the four stanza flags (incl. -Werror)
+PASS  L6 no grid re-declaration flags (advisory heuristic)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+PASS  L8 recorded repairs: 13 hash(es), 0 (hash,file) pair(s) verified in breadth-author-pack.md
+PASS  L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit
+=== prefreeze-lint: 0 FAIL, 0 WARN ===

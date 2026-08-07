@@ -2439,6 +2439,22 @@ does not arise — the prior evidence sits under a hash, stated here):
   sequential, all 10 mint literals pair-traced); the re-rehearsal
   from a fresh clone rides r11b.
 
+DATED NOTE, THE FREEZE'S OWN GATE-5 READING (2026-08-07, after the
+2-freeze mechanics ran on the real tree; gate5-run.txt rides
+un-hashed by design, the readout precedent): breadth red set the
+frozen 12/20, all standing suites green, lint 0 FAIL with L8's
+first standing run verifying 13 hashes — and the drift ratio read
+1.9936, |delta| 0.0156: INSIDE the band with ~2x margin, OUTSIDE
+the settlement-time 0.006 cluster. Claims row 13's universal is
+SCOPED at its own register entry (the falsified-as-standing words
+quoted there); the living noise record now reads: cluster within
+0.006 on a quiet box, excursions to ~0.016-0.023 under box-state
+variation (this reading and the d10-seed-1 outlier its two
+instances), every excursion inside 0.03 — the freeze's own run is
+the empirical case for the band the review restored, and a reading
+beyond it remains the pre-declared licensed re-mint's trigger,
+never a silent widening.
+
 ### XIX.8 The claims register, continued (the gate stays live over this part)
 
     13 "every build class the gate can run under sits within 0.006
@@ -2448,6 +2464,15 @@ does not arise — the prior evidence sits under a hash, stated here):
        cabal-drift-probe.txt); different HARDWARE is outside the
        universe by design (the means band is the hardware-tolerant
        one; the ratio is dimensionless — XIV.3's bracket).
+       [SCOPED AT THE FREEZE ITSELF: the sentence is TRUE of the
+       settlement-time measurement set and RETIRED as a standing
+       universal — the freeze's own gate-5 run, minutes after the
+       mechanics, read 1.9936 (|delta| 0.0156): the first
+       standing-run excursion past the cluster (XIX.7's dated
+       note). The living statement is the BAND'S: cluster within
+       0.006 quiet, excursions to ~0.016-0.023 under box-state
+       variation, kill at 0.0479 — all excursions inside 0.03,
+       which is the empirical case for the sitting's width.]
     14 "the cell measures the implementation's prophecy" — EXECUTED:
        overlay == src + prophecy.diff verified per module before
        the envelope run (the identity line rides the transcript).

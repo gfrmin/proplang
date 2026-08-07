@@ -1395,6 +1395,16 @@ K=6 stays within a stated multiple of the shipped 219.** Naming the
 multiple is the author's call and is the one number this pack does not
 supply.
 
+    [DATED BRACKET, breadth-freeze-r0, 2026-08-06 (close-date
+    document: annotated, never rewritten). "The shipped 219" was
+    measured at 9790089 - PRE-exact-re-founding, PRE-#20-readout
+    (the heir opening's F-2). The HEAD denominator is the opening
+    pack's P0 (breadth-author-pack.md IV: ev 75 / ev+ro 488 / wire
+    1870 ms/tick at K=6), and the bar as MINTED at breadth-sitting-r0
+    binds as a RATIO gate on the ev+ro class at matched depth and
+    window, multiple 2 - not against the 219, which stays what it
+    was: this close-date document's record of its own day.]
+
 ### VIII.4 — the three items' interaction, stated once
 
 These are not independent. #20's `p0` is the instrument that measures

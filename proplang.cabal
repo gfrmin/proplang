@@ -238,3 +238,33 @@ test-suite readout
                     , tasty-hunit
     build-tool-depends: proplang:proplang-host
     default-language: GHC2021
+
+-- THE BREADTH ORACLE's stanza, DRAFTED at the oracle phase (the
+-- draft-stanza precedent: proplang.cabal is frozen; this stanza is
+-- spliced into it at the freeze commit, under the sitting's key —
+-- breadth-sitting-r0's routed authority).
+-- The oracle-phase red run compiles with this stanza's EXACT flag
+-- set (the `warnings` common stanza: -Wall -Werror
+-- -Wincomplete-patterns -Wincomplete-uni-patterns; GHC2021) and
+-- under its DEPENDENCY CLOSURE (-hide-all-packages plus the
+-- build-depends below) — the flag-faithful and package-faithful
+-- clauses, the latter bought by the jp increment's Data.Map gap.
+--
+-- `process` carries the b5c pipes row (the g6 form) AND the build
+-- stamp's git/sha256sum calls (the sitting's minted obligation);
+-- `directory` carries the stamp's exe metadata and findExecutable;
+-- the build-tool-depends puts proplang-host on PATH for b5c.
+
+test-suite breadth
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Breadth.hs
+    hs-source-dirs:   test-breadth
+    build-depends:    base
+                    , directory
+                    , process
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    build-tool-depends: proplang:proplang-host
+    default-language: GHC2021

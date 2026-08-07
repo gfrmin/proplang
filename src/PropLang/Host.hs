@@ -385,7 +385,12 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
         Nothing -> Right (Left [])
         Just [] -> Right (Left [])
         Just opts@(o0 : _) -> case swUSaid w of
-          Nothing -> Right (Left o0)   -- wait: the option space's head
+          -- no utility: the option space's head fires as a plain
+          -- EXTERNAL act (Left = external per the legend above;
+          -- repaired at breadth-freeze-r0 - the old comment read
+          -- "wait: the option space's head", contradicting the legend
+          -- three lines up; routed by the readout close, VII.3)
+          Nothing -> Right (Left o0)
           Just u -> do
             scored <- mapM (\c -> do
                         b <- predictiveBelief (feats ++ c) ag

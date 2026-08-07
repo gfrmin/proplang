@@ -133,5 +133,21 @@ else
 fi
 
 echo "--- standing observations ---"
-echo "note: test-writeup/check.sh G2 asserts 8 cabal stanzas; the cabal now has $(grep -c '^test-suite' proplang.cabal) (dated red-by-design instrument, recorded)"
+# REPAIRED at the heir oracle freeze (breadth-freeze-r0, 2026-08-06;
+# pack XVII, FL row): the old note hard-printed "test-writeup/check.sh
+# G2 asserts 8 cabal stanzas ... (dated red-by-design instrument)" -
+# FALSE OF THE TREE since the step-7 unify freeze retired G2 to a green
+# RECORD form; a frozen tool never narrates a sibling instrument's
+# state from memory. The line now derives everything it prints.
+echo "note: test-writeup/check.sh carries its own G2 RECORD row (run it for the state); cabal test-suite stanzas now: $(grep -c '^test-suite' proplang.cabal)"
+
+# --- prose-claim triage (the XV.3 audit row; canonized at the heir ---
+# oracle freeze). Bare universal quantifiers in the CURRENT author
+# pack outside register/quote context - a TRIAGE INPUT for the human
+# sweep, never a verdict (the M5/H row pattern).
+curpack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
+if [ -n "$curpack" ] && [ -f "$curpack" ]; then
+  pcq=$(grep -cinE '\b(every|no|any|cannot)\b' "$curpack" || true)
+  echo "prose-claim triage: $pcq quantifier-bearing line(s) in $curpack - sweep against its claims register (triage input, not a verdict)"
+fi
 echo "=== boundary-audit done: M5=$m5flags H=$hflags OB=$obflags BF=$bfflags ==="

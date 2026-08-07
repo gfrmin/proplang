@@ -1,0 +1,29 @@
+== run A (true sides; expecting 0 FAIL, L8 counts the pair, L5/L8 name breadth-author-pack.md) ==
+=== prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+PASS  L1 forbidden-tokens-by-glob: 9 src files clean (frozen gate 4 names 5)
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 181 rows verified
+PASS  L4 all 66 tags verify
+PASS  L5 breadth-author-pack.md records the four stanza flags (incl. -Werror)
+PASS  L6 no grid re-declaration flags (advisory heuristic)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+PASS  L8 recorded repairs: 14 hash(es), 1 (hash,file) pair(s) verified in breadth-author-pack.md
+PASS  L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit
+=== prefreeze-lint: 0 FAIL, 0 WARN ===
+run A OK: true sides pass; ls -t would have selected breadth-author-pack.md
+== run B (red sides; expecting L8 FAIL x2, L9 FAIL x2) ==
+=== prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+PASS  L1 forbidden-tokens-by-glob: 9 src files clean (frozen gate 4 names 5)
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 181 rows verified
+FAIL  L4 tag signature: demo-lw-tag
+PASS  L5 breadth-author-pack.md records the four stanza flags (incl. -Werror)
+PASS  L6 no grid re-declaration flags (advisory heuristic)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+FAIL  L8 breadth-author-pack.md repair row cites unresolvable hash deadbee99
+FAIL  L8 breadth-author-pack.md repair row cites e703637 which does not touch design.md
+FAIL  L9 tag message via -m/--message in unexecuted freeze kit test-demolint/freeze/demo-kit.sh:1 (use -F <file>; hash the file)
+FAIL  L9 tag message via -m/--message in unexecuted freeze kit test-demolint/freeze/demo-kit.sh:2 (use -F <file>; hash the file)
+=== prefreeze-lint: 5 FAIL, 0 WARN ===
+run B OK: all four reds fired, each naming its line
+LINT-DEMO: ALL SIX SIDES DEMONSTRATED

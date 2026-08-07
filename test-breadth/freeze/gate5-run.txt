@@ -1,0 +1,594 @@
+Build profile: -w ghc-9.10.3 -O1
+In order, the following will be built (use -v for more details):
+ - proplang-0.1.0.0 (test:battery) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:dyadic) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:exact-acceptance) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:exact-properties) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:f5) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:jointprep) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:lawful) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:lawful-independence) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:pins) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (exe:proplang-host) (file /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/cache/build changed)
+ - proplang-0.1.0.0 (test:transport) (configuration changed)
+ - proplang-0.1.0.0 (test:trampoline) (configuration changed)
+ - proplang-0.1.0.0 (test:readout) (configuration changed)
+ - proplang-0.1.0.0 (test:breadth) (first run)
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+Configuring test suite 'battery' for proplang-0.1.0.0...
+Configuring test suite 'dyadic' for proplang-0.1.0.0...
+Configuring test suite 'exact-acceptance' for proplang-0.1.0.0...
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+Configuring test suite 'exact-properties' for proplang-0.1.0.0...
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+Configuring test suite 'f5' for proplang-0.1.0.0...
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+Configuring executable 'proplang-host' for proplang-0.1.0.0...
+Configuring test suite 'jointprep' for proplang-0.1.0.0...
+Configuring test suite 'lawful-independence' for proplang-0.1.0.0...
+proplang.cabal has been changed. Re-configuring with most recently used
+options. If this fails, please run configure manually.
+Configuring test suite 'lawful' for proplang-0.1.0.0...
+Configuring test suite 'pins' for proplang-0.1.0.0...
+Preprocessing test suite 'jointprep' for proplang-0.1.0.0...
+Preprocessing test suite 'f5' for proplang-0.1.0.0...
+Preprocessing test suite 'exact-acceptance' for proplang-0.1.0.0...
+Preprocessing test suite 'lawful-independence' for proplang-0.1.0.0...
+Building test suite 'f5' for proplang-0.1.0.0...
+Preprocessing executable 'proplang-host' for proplang-0.1.0.0...
+Building test suite 'lawful-independence' for proplang-0.1.0.0...
+Building executable 'proplang-host' for proplang-0.1.0.0...
+Building test suite 'exact-acceptance' for proplang-0.1.0.0...
+Building test suite 'jointprep' for proplang-0.1.0.0...
+Preprocessing test suite 'lawful' for proplang-0.1.0.0...
+Building test suite 'lawful' for proplang-0.1.0.0...
+Preprocessing test suite 'dyadic' for proplang-0.1.0.0...
+Building test suite 'dyadic' for proplang-0.1.0.0...
+Preprocessing test suite 'exact-properties' for proplang-0.1.0.0...
+Building test suite 'exact-properties' for proplang-0.1.0.0...
+Preprocessing test suite 'pins' for proplang-0.1.0.0...
+Preprocessing test suite 'battery' for proplang-0.1.0.0...
+Building test suite 'pins' for proplang-0.1.0.0...
+Building test suite 'battery' for proplang-0.1.0.0...
+[4 of 4] Compiling Main             ( test/Acceptance.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-acceptance/build/exact-acceptance/exact-acceptance-tmp/Main.o ) [PropLang.Enumerate changed]
+[2 of 2] Compiling Main             ( test/Properties.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-properties/build/exact-properties/exact-properties-tmp/Main.o ) [PropLang.Enumerate changed]
+[4 of 4] Compiling Main             ( test-battery/Battery.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/battery/build/battery/battery-tmp/Main.o ) [PropLang.Enumerate changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/x/proplang-host/build/proplang-host/proplang-host [Flags changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/lawful/build/lawful/lawful [Flags changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/lawful-independence/build/lawful-independence/lawful-independence [Flags changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/dyadic/build/dyadic/dyadic [Flags changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/f5/build/f5/f5 [Flags changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/pins/build/pins/pins [Objects changed]
+[5 of 5] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/jointprep/build/jointprep/jointprep [Flags changed]
+[5 of 5] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/battery/build/battery/battery [Objects changed]
+Configuring test suite 'transport' for proplang-0.1.0.0...
+Configuring test suite 'trampoline' for proplang-0.1.0.0...
+Configuring test suite 'readout' for proplang-0.1.0.0...
+[3 of 3] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-properties/build/exact-properties/exact-properties [Objects changed]
+[5 of 5] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-acceptance/build/exact-acceptance/exact-acceptance [Objects changed]
+Running 1 test suites...
+Test suite f5: RUNNING...
+f5 the forgone term's deletion (price half; extension = the standing corpus)
+  f1 the standing sentence's price, re-derived POST-deletion (no inherited number):                  OK
+  f2 extension fixed, price moved: live sentence vs the pinned pre-deletion referent = 3^16 exactly: OK
+
+All 2 tests passed (0.00s)
+Test suite f5: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/f5/test/proplang-0.1.0.0-f5.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Configuring test suite 'breadth' for proplang-0.1.0.0...
+Running 1 test suites...
+Test suite lawful: RUNNING...
+Running 1 test suites...
+Test suite lawful-independence: RUNNING...
+the exact lawful floor (satisfaction)
+  axioms
+    L1 normalization: E[1] == 1, every belief:                                                                                                                    OK
+    L2 linearity: exact, declared probes:                                                                                                                         OK
+    L3 monotonicity: exact <=:                                                                                                                                    OK
+    L4' the introducer law: prob * Z == w, per point, every battery:                                                                                              OK
+  conformance theorems
+    T1 prob == the weight mass at matching points (INDEPENDENT route: the read-only views, never expect - the mandate-1 repair of the Savage-shaped restatement): OK
+    T2 uniform/point ARE fromWeights (ruling #7):                                                                                                                 independence (the exact core four are irreducible)
+  Riesz triple: L1,L2,L3 separated among the eliminator laws
+    wL1 fails L1, satisfies L2 & L3:                                              OK
+    wL2 fails L2, satisfies L1 & L3:                                              OK
+    wL3 fails L3, satisfies L1 & L2:                                              OK
+  introducer: L4' separated from the eliminator laws
+    the weighted prior obeys L4' (the law is satisfiable), exactly:               OK
+    uniform is a valid measure (L1-L3) yet fails L4' on varying weights, exactly: OK
+OK
+  register correction (why 3+1, not 4 peers)
+    the signed L3-witness cannot be a measure (exact negative ratio):             OK
+    T3 conditioning IS Bayes (division-free):                                                                                                                       red mirror: a genuine measure passes every eliminator law:                      OK
+
+OK
+All 7 tests passed (0.00s)
+    T4 push obeys the tower, exactly:                                                                                                                             OK
+
+All 8 tests passed (0.00s)
+Test suite lawful-independence: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/lawful-independence/test/proplang-0.1.0.0-lawful-independence.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Test suite lawful: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/lawful/test/proplang-0.1.0.0-lawful.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Running 1 test suites...
+Test suite dyadic: RUNNING...
+dyadic
+  d1 coordinate
+    d1.1 root theta is exactly 1/2:                                                   OK
+    d1.2 root children thetas are exactly 1/4 and 3/4:                                OK
+    d1.3 injectivity to depth 6: 127 nodes, 127 thetas:                               OK
+    d1.4 sayability: every theta is odd/2^(depth+1):                                  OK
+    d1.5 mirror is positional: theta <-> 1-theta, same price:                         OK
+  d2 price
+    d2.1 prices at depths 0..3 are 1, 4, 5, 8:                                        OK
+    d2.2 the economics table (COPY: x5 pack 3.5, sealed):                             OK
+    d2.3 Kraft over the whole tree is EXACTLY 1 (3.6a's free fact):                   OK
+    d2.4 the Kraft recursion: subtree = own + children subtrees:                      OK
+    d2.5 level masses (derived: 2^k nodes at 2^-(gammaLen(k+1)+k)):                   OK
+  d3 regions
+    d3.1 root-only regions: (0,1/2,1/4) and (1/2,1,1/4):                              OK
+    d3.2 region i brackets frontier candidate i (the zip contract):                   OK
+  d4 guard
+    d4.1 root-only, counts (0,0), stakes (1,-1): pess -1/4, opt 1/4:                  OK
+    d4.2 that instance straddles:                                                     OK
+    d4.3 all-positive stakes (1,1): guard 1 exactly, no straddle:                     OK
+    d4.4 root-only, counts (1,0), stakes (1,-1): pess -1/5, opt 2/5:                  OK
+  d5 guard safety
+    d5.1 nothing dropped: owned mass + region mass == 1:                              Running 1 test suites...
+Test suite pins: RUNNING...
+OK
+    d5.2 the guard interval NESTS under refinement (battery):                         the Phase-2 pins
+  R17: the corpus is a derivation
+    small-frontier exhaustive: 55 sentences at budget 3 over a 2-point codebook (5 leaves + 2*5*5 binaries; If needs >= 6 nodes), Kraft exact:               OK
+    every family body is IN the corpus intension (structural membership over declared data, all 1169):                                                       OK
+    the fragment table is NOT the grammar weight (#5 pinned as inequality; exemplar values recorded):                                                        OK
+  ARITY: W3's capability, exact
+    K=2 arity route COINCIDES with the plain route: counts and a 20-tick marginal, by ==:                                                                    Preprocessing test suite 'readout' for proplang-0.1.0.0...
+Building test suite 'readout' for proplang-0.1.0.0...
+OK (0.03s)
+  d6 purchase
+    d6.1 moderate cell (COPY 3.6a): wait 2 / respond 35 / refine 3, first respond @5: OK
+    d6.2 DEEP t96 cell (COPY 3.6a): first respond @45, respond x15:                   Preprocessing test suite 'trampoline' for proplang-0.1.0.0...
+Building test suite 'trampoline' for proplang-0.1.0.0...
+OK (0.02s)
+    d6.3 no refine row: STATIC vocabulary:                                            OK
+    d6.4 the cap is world economics: cap 0 kills refine, cap 16 buys:                 Preprocessing test suite 'transport' for proplang-0.1.0.0...
+Building test suite 'transport' for proplang-0.1.0.0...
+Running 1 test suites...
+OK (0.07s)
+    d6.5 scoreOwned exact posterior (hand: root+children, counts (1,0)):              OK
+    d6.6 purchasePredictive exact (hand: P(1) = 21/40):                               OK
+
+All 24 tests passed (0.13s)
+Test suite jointprep: RUNNING...
+Test suite dyadic: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/dyadic/test/proplang-0.1.0.0-dyadic.log
+1 of 1 test suites (1 of 1 test cases) passed.
+jointprep (the reflexive increment: one menu, one chooser, everywhere)
+  g-jp1 anchors by declaration (menus are world data; t2 declares [L,R] and keeps its frozen behavior)
+    g-jp1.1 price 3 % 10:                                                           OK
+    g-jp1.2 price 1 % 20:                                                           OK
+    g-jp1.3 price 1 % 200:                                                          OK
+    g-jp1.4 price 0 % 1:                                                            OK
+  g-jp2 the phantom cure (the base evaluates THE MENU; honest VoI of an unimprovable menu is zero)
+    g-jp2 habitat price 0 % 1:                                                      OK
+    g-jp2 habitat price 1 % 20:                                                     OK
+    g-jp2 habitat price 3 % 10:                                                     OK
+  g-jp3 the deadlock cured (the DP: just-in-time chain, no spree, honest decline)
+    g-jp3.1 (1,-24) 60-stream: wait 44, refine 6 just-in-time, respond 10:          [2 of 4] Compiling OracleWorld      ( test/OracleWorld.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/trampoline/build/trampoline/trampoline-tmp/OracleWorld.o ) [PropLang.Enumerate changed]
+[1 of 1] Compiling Main             ( test-readout/Readout.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/readout/build/readout/readout-tmp/Main.o ) [PropLang.Enumerate changed]
+[4 of 4] Compiling Main             ( test-trampoline/Trampoline.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/trampoline/build/trampoline/trampoline-tmp/Main.o ) [PropLang.Enumerate changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/transport/build/transport/transport [Library changed]
+OK (0.45s)
+    K=4 emission column obeys the categorical law exactly (the CatBody vector [7/30,7/30,3/10,7/30]):                                                        OK
+  SELECTION pin: chooseEU == the CL-3 reference fold, >= 2 candidates through the SENTENCES, tie included (the mandate-1 repair of the singleton base case): OK (0.06s)
+
+All 6 tests passed (0.52s)
+Test suite pins: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/pins/test/proplang-0.1.0.0-pins.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Preprocessing test suite 'breadth' for proplang-0.1.0.0...
+Building test suite 'breadth' for proplang-0.1.0.0...
+[1 of 1] Compiling Main             ( test-breadth/Breadth.hs, dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/build/breadth/breadth-tmp/Main.o )
+Running 1 test suites...
+Test suite battery: RUNNING...
+battery (the certification: executed interpolation over the declared closure)
+  g-b1 the family rows (shipped == independent reference, exact, per cell)
+    g-b1.1 [g9 p=3 % 10 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=3 % 10 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=3 % 10 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=3 % 10 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=3 % 10 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=3 % 10 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=1 % 20 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=1 % 20 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=1 % 20 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=1 % 20 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=1 % 20 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g9 p=1 % 20 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g9 p=1 % 200 n=1 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g9 p=1 % 200 n=1 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g9 p=1 % 200 n=2 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g9 p=1 % 200 n=2 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g9 p=1 % 200 n=3 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g9 p=1 % 200 n=3 alt36]:                                                                                                                                                                                                                                      OK (0.01s)
+    g-b1.1 [g9 p=0 % 1 n=1 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g9 p=0 % 1 n=1 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g9 p=0 % 1 n=2 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g9 p=0 % 1 n=2 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g9 p=0 % 1 n=3 buffer36]:                                                                                                                                                                                                                                     OK (0.01s)
+    g-b1.1 [g9 p=0 % 1 n=3 alt36]:                                                                                                                                                                                                                                        OK (0.01s)
+    g-b1.1 [g5 p=3 % 10 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=3 % 10 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=3 % 10 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=3 % 10 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=3 % 10 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=3 % 10 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=1 % 20 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=1 % 20 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=1 % 20 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=1 % 20 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=1 % 20 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g5 p=1 % 20 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g5 p=1 % 200 n=1 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g5 p=1 % 200 n=1 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g5 p=1 % 200 n=2 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g5 p=1 % 200 n=2 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g5 p=1 % 200 n=3 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g5 p=1 % 200 n=3 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g5 p=0 % 1 n=1 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g5 p=0 % 1 n=1 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g5 p=0 % 1 n=2 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g5 p=0 % 1 n=2 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g5 p=0 % 1 n=3 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g5 p=0 % 1 n=3 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g3 p=3 % 10 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=3 % 10 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=3 % 10 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=3 % 10 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=3 % 10 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=3 % 10 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=1 % 20 n=1 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=1 % 20 n=1 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=1 % 20 n=2 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=1 % 20 n=2 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=1 % 20 n=3 buffer36]:                                                                                                                                                                                                                                    OK
+    g-b1.1 [g3 p=1 % 20 n=3 alt36]:                                                                                                                                                                                                                                       OK
+    g-b1.1 [g3 p=1 % 200 n=1 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g3 p=1 % 200 n=1 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g3 p=1 % 200 n=2 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g3 p=1 % 200 n=2 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g3 p=1 % 200 n=3 buffer36]:                                                                                                                                                                                                                                   OK
+    g-b1.1 [g3 p=1 % 200 n=3 alt36]:                                                                                                                                                                                                                                      OK
+    g-b1.1 [g3 p=0 % 1 n=1 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g3 p=0 % 1 n=1 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g3 p=0 % 1 n=2 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g3 p=0 % 1 n=2 alt36]:                                                                                                                                                                                                                                        OK
+    g-b1.1 [g3 p=0 % 1 n=3 buffer36]:                                                                                                                                                                                                                                     OK
+    g-b1.1 [g3 p=0 % 1 n=3 alt36]:                                                                                                                                                                                                                                        OK
+  g-b1.2 the four anchors fall out of the walk (== frozen t2RowsX):                                                                                                                                                                                                       OK (0.02s)
+  g-b2 the law rows (the EU commitment itself, exact)
+    g-b2.1 VoI >= 0 at the root of every family cell (jointPrepost >= bestExtJ):                                                                                                                                                                                          OK (0.01s)
+    g-b2.2 scale invariance: the standing act stream is stake-scale-invariant (x2, x5; three stakes forms - the (1,-2) triple carries M62's window, g(0,0) = -7/8 inside (-1,-1/5), the R-D21 probe in opening/; the mint-scaled triple pins homogeneity with real buys): OK
+    g-b2.3 mint-with-stakes homogeneity: scaling ALL payoffs (stakes AND mint) leaves the buying transcript invariant (real acts: 6 buys):                                                                                                                                Running 1 test suites...
+Test suite exact-properties: RUNNING...
+exact properties (laws by ==)
+  CL-4': conditioning IS Bayes (division-free, all points, a belief battery):         OK
+  L4': prob * Z == w on fromWeights; uniform/point are its definitions:               OK
+  Kraft: the enumeration sums to EXACTLY 55/72:                                       OK
+  corpus law: every weight == its family's 1/M (A2-pinned widths):                    OK
+  fineness charged once: doubling a mention codebook halves the weight, exactly:      OK
+  pricing: a hand-computable sentence at node 1/9 (the 9/1 table):                    OK
+  eq-THEOREM: the If/Gt SENTENCE == (==), evalx over mention pairs (B2 repair):       OK
+  the derived CHOICE SENTENCES are CL-3-faithful, ties included (B2 repair):          OK
+  g5': the fused round trip is sayable (Cond -> Expect), exactly:                     OK
+  g6': the Nothing arm is load-bearing, through the DERIVED indicator kernel:         OK
+  R1 rider: an OFF-CODEBOOK outcome is impossible evidence - the Nothing arm, pinned: OK
+  the walk law from the SHIPPED move sentences: Mul-form normalizes exactly:          OK
+
+All 12 tests passed (0.01s)
+Test suite exact-properties: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-properties/test/proplang-0.1.0.0-exact-properties.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Running 1 test suites...
+Test suite exact-acceptance: RUNNING...
+exact acceptance (the re-founded oracle)
+  the door (ruling 8: fail-closed, refusals named)
+    a full tick passes; missing/undeclared/duplicate are refused:                   OK
+    the engine refuses an under-specified tick (no dormancy):                       OK
+  t1 changing world
+    enumeration count:                                                              OK
+    probe rows: p1 exact:                                                           OK (1.22s)
+    g-jp3.2 (1,-24) 120-stream: respond 69, NO SPREE:                               [2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/readout/build/readout/readout [Objects changed]
+Running 1 test suites...
+Test suite transport: RUNNING...
+transport (#18): per-line delivery over pipes
+  t1-hello-over-pipes-replies-per-line:      OK
+  t2-lockstep-decision-evidence-silent:      OK
+  t3-error-reply-also-delivered-per-line:    OK
+  t4-eof-flush-parity-attribution-partition: OK
+
+All 4 tests passed (0.01s)
+Test suite transport: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/transport/test/proplang-0.1.0.0-transport.log
+1 of 1 test suites (1 of 1 test cases) passed.
+[5 of 5] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/trampoline/build/trampoline/trampoline [Objects changed]
+[2 of 2] Linking dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/build/breadth/breadth
+Running 1 test suites...
+Test suite readout: RUNNING...
+the readout increment (#20; EXACT_PLAN 15)
+  r1 the readout is PURELY ADDITIVE (attribution partition)
+    r1a GREEN half: the shipped three fields carry their frozen meanings (plain route):                          OK
+    r1b RED half: the readout joins them, and joins them AFTER (CW3 order):                                      OK
+  r2 entry j == predictMassS (feats ++ act) j, over agentObsPoints:                                              OK
+  r2b RECORD: the REFERENCE's observation space is [0 .. K-1] (the wire's own is pinned by M71's seven killers): OK
+  r3 the vector sums to 1 EXACTLY, after evidence (the measure law on the wire):                                 OK
+  r4 argmax_code / p_argmax under the DECLARED tie rule (CW2)
+    r4a the tie rule is exercised: the prior vector HAS ties:                                                    OK
+    r4b argmax_code indexes a maximal entry and p_argmax IS that entry:                                          OK
+    r4c the tie rule ON THE WIRE: at the tied prior the reply names the LOWEST index:                            OK
+  r5 p0 against the R-D23 cap (OB-19's instrument)
+    r5a RECORD: the cap is a STRUCTURAL identity of the family, not a measurement:                               OK (0.03s)
+    r5b (M) the readout CLIMBS to the cap and does not pass it:                                                  OK (0.02s)
+    r5c p0 is the NULL atom's mass ON THE WIRE, and the wire's own p0 is under the cap:                          OK
+  r6 the vector survives the pipes (spawned host, the g6 form):                                                  OK
+  r7 p1 still means P(atom 1) at any arity (membrane-wire.md:356)
+    r7a the identity holds at K-ary arity:                                                                       OK
+    r7b the OTHER side: p1 is NOT the argmax when the argmax is not 1:                                           OK
+  r8 the readout is computed at the CHOSEN act, not the menu head (F10)
+    r8a the fold point is PINNED: every evidence tick reports the menu head:                                     OK (0.01s)
+    r8b the utility BITES: the decide reply names the NON-HEAD assignment:                                       OK (0.02s)
+    r8c p_codes IS the reference at the REPORTED act:                                                            OK (0.01s)
+    r8d and it is NOT the reference at the MENU HEAD (the window is nonempty):                                   OK
+  === readout oracle residual (printed, not absorbed) ===
+  arity axis      : walked at K absent (plain) and K = 6
+                    UNWALKED: every other K, and mid-episode
+                    growth (OB-11's reserved tail)
+  world axis      : TWO worlds. (a) the standing world -
+                    namespace [move], no guards, a single-point
+                    menu, no utility, no clock; (b) r8's F10
+                    world - the same namespace with a GUARD on
+                    the menu name, a TWO-point menu and an
+                    act-blind said@1 utility.
+                    UNWALKED: multi-name namespaces, guards on
+                    a non-menu name, act-DEPENDENT utilities
+                    (OB-24's convention is deliberately not
+                    leaned on), priced clocks (the readout on a
+                    think tick is ruled out by CW5, not
+                    measured)
+  stream axis     : all-null (20, 120), the atom-3 stream (12),
+                    one mixed 5-tick stream, r8's 1-tick [0].
+                    UNWALKED: adversarial and longer streams
+  codebook axis   : the declared 7-point grid (eighths) only.
+                    UNWALKED: finer and coarser grids (#19's
+                    business, item three)
+  NOT CLAIMED     : that the cap's four-fold under-read
+                    reproduces the consumer's live 0.735 figure.
+                    r5 pins the STRUCTURE (the cap binds, and
+                    the readout climbs to it); the field
+                    measurement is OB-19's, at item two
+
+
+  RECORD: the residual this suite does not walk:                                                                 OK
+
+All 19 tests passed (0.14s)
+Test suite readout: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/readout/test/proplang-0.1.0.0-readout.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Running 1 test suites...
+Test suite trampoline: RUNNING...
+the trampoline boundary (EXACT_PLAN 13)
+  g1 chooseKS (the one-sentence CL-3 tournament)
+    g1.1 hand battery: singleton, tie-to-incumbent, mid-list winner, negatives:                                                                       OK
+    g1.2 chooseKS == the CL-3 reference fold (K in 2..4, ties included):                                                                              OK
+  g2 policyPick == chooseEU (extensional on the wire convention)
+    g2.1 two- and three-candidate batteries, tie included:                                                                                            OK
+    g2.3 the substitution witness: a writable-reading utility DIVERGES from the fold (pins the R4 draft; kills any policyPick = chooseEU delegation): OK
+    g2.2 four candidates with a mid-list duplicate value:                                                                                             OK
+  g3 the price-only differential (the closed-loop lazy genius)
+    g3.1 think-counts and final acts == the frozen artifact itself (Anchors.t2RowsX):                                                                 OK (0.01s)
+    g3.2 the free-clock rung climb: the full buffer in batches (derived, never hand-written):                                                         OK
+    g3.3 the transcript partition (the single-evaluation identity's scriptable half; the loop-structure half is implementation-review law):           OK (0.01s)
+    g3.4 the preposterior fast path is PINNED to the frozen route (section 1b, in-increment):                                                         OK
+  g5 the purchase shapes through the sentence (the last host fold's pin)
+    g5.1 recurring-stakes buy: the d6.1 moderate cell act-for-act (COPY test-dyadic/Dyadic.hs:213-227):                                               OK
+    g5.2 the myopic stay: the d6.2 DEEP cell (COPY test-dyadic/Dyadic.hs:228-240):                                                                    OK (0.03s)
+    g5.4 the banked deadlock cell DOCUMENTED (13.3 branch (b)): root-only vocabulary, deep stakes, 60 all-correct ticks, zero refines:                OK
+    g5.3 the wait head owns ties through the sentence (stakes (0,0): every guard exactly 0):                                                          OK
+  g6 the wire rows (OB-22, OB-23, the clock)
+    g6.1 OB-22a: a codebook-bearing hello is ACCEPTED over pipes (models from the library route):                                                     OK
+    g6.2 OB-22b: utility_bits == bitsView (weightIn ns prog) (COPY membrane-wire.md:394):                                                             OK
+    g6.3 OB-23: owned posterior odds invariant under mid-episode publication (membrane-wire.md section 2):                                            OK
+    g6.4 the clock row crosses the wire: at price 0 the first decision reply is the internal act:                                                     OK
+
+All 17 tests passed (0.08s)
+Test suite trampoline: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/trampoline/test/proplang-0.1.0.0-trampoline.log
+1 of 1 test suites (1 of 1 test cases) passed.
+Running 1 test suites...
+Test suite breadth: RUNNING...
+BUILD-STAMP exe=/home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/build/breadth/breadth size=8108008 mtime=2026-08-07 11:17:54.90402182 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=a1e0ce0696f4895ed51444a4575a6dbac5ecd0a702eacaf8032b910710138767 HEAD=58a71b1 src-tree=d869afd06e30a37865830d5e7a4fac77e7dfe4f8 src-dirty=1
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:     OK (2.76s)
+    probe rows: action:                                                             OK
+    probe rows: H display:                                                          OK (0.11s)
+    consult ticks (exact list):                                                     OK (3.22s)
+  g-b3 the docketed rows (the jp close's UNREACHED verdicts, given reach)
+    g-b3.1 the standing tie stream, refine declared: stakes (0,0) tie every tick at the DP's act site, wait wins by declaration order:                                                                                                                                    OK (0.46s)
+    g-b3.2 the standing tie stream, refine absent: the same tie at the plain act site:                                                                                                                                                                                    OK
+    g-b3.4 the mint-level differential (the jp close's finding cured: the level is live at the MEASURED margin - buys flip between 1/10 and 1/5, a x2 level change; probe in opening/):                                                                                   OK (5.16s)
+    g-jp3.3 (1,-171) 120-stream: the honest decline:                                OK (1.89s)
+    g-b3.3 the partial-tail-batch cell (the M47 knife-edge: VoI(1)=0 < p=1/20 < VoI(3)=36/625 at the post-think belief; R-D21 probe in opening/):                                                                                                                         OK
+  g-b4 the enumeration-gate reach rows (OB-21: the corpus GENERATOR's gates, which the intension predicate is blind to)
+    g-b4.1 If arrives at budget 6 and not before (two-sided; the boundary quoted from the frozen 55-pin's name: 'If needs >= 6 nodes'):                                                                                                                                   OK
+  residual (RECORD row - a printer cannot fail by design, the F6 precedent; the discipline is EXACT_PLAN 14.1: the residual is PRINTED, never absorbed):                                                                                                                  RESIDUAL axes not walked by this family:
+  - refine/purchase economics on the decide-once face (jwRefine = Nothing here;
+    the standing DP face is pinned by test-jointprep g-jp3/g-jp5 and g-b2.2/g-b3.1)
+  - K>2 obs arities and the guard/tau/rho families (the t1/t3 faces)
+  - stream lengths beyond 36/40; adversarial compositions beyond the two declared
+  - batch depths beyond 3; grids beyond {9,5,3} points
+  - (the M47 cell SHIPPED as g-b3.3; the mint-level cell SHIPPED as g-b3.4;
+    the scale window SHIPPED inside g-b2.2 - no red is owed)
+OK
+
+All 82 tests passed (5.75s)
+Test suite battery: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/battery/test/proplang-0.1.0.0-battery.log
+1 of 1 test suites (1 of 1 test cases) passed.
+OK (2.21s)
+  g-jp4 liveness (structural, both shapes)
+    g-jp4.1 standing: |transcript| == |stream| (the clock is the episode):          OK (5.12s)
+    MAP is the change-point guard; exact posterior:                                 OK (2.69s)
+    cumulative marginal (exact):                                                    OK (2.69s)
+    entropy pre/post (display):                                                     OK (1.27s)
+  t2 lazy genius (the agent criterion)
+    tick counts and final acts (exact prices):                                      OK (0.01s)
+    the batch-1 preposterior is ONE SENTENCE == the engine (door-served):           OK
+    the COMPOSED BATCH-3 preposterior is ONE SENTENCE == the engine (R9):           OK (0.01s)
+  t3 forgetting trap
+    agent marginals over drift400/flat400 (exact):                                  OK (8.95s)
+    g-jp4.2 decide-once: the final row is an external (F4's law on the joint menu): OK (0.01s)
+  g-jp5 the sayable-route pin (the reference recomputes the values by the quoted formulas and chooses via evalx; EV-JP5's identity as a standing row)
+    g-jp5.1 the DP cells against the sentence-choosing reference:                   OK (11.90s)
+  g-jp6 the price rows (jointPolicyWeight reads src; the ruling's re-derivation discipline)
+    g-jp6.1 the 3-row joint chooser's weight, DP world:                             OK
+    g-jp6.2 the t2 world's chooser prices identically (same 3-row form):            OK
+
+All 15 tests passed (29.48s)
+Test suite jointprep: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/jointprep/test/proplang-0.1.0.0-jointprep.log
+1 of 1 test suites (1 of 1 test cases) passed.
+OK (29.13s)
+    the quarantined forgetter reproduces its anchors, and the RELATIONS hold (R10): OK (10.42s)
+  t4 deletion audit
+    frozen agent: the engine's 160-tick marginal == 2^-160 EXACTLY:                 OK (0.81s)
+    full and no-if marginals (exact); no-get COINCIDES (R8):                        OK (3.73s)
+    drift250 full/nohmm marginals (exact):                                          OK (7.72s)
+    deletion counts:                                                                OK
+
+All 19 tests passed (66.48s)
+Test suite exact-acceptance: PASS
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/exact-acceptance/test/proplang-0.1.0.0-exact-acceptance.log
+1 of 1 test suites (1 of 1 test cases) passed.
+  REPORT window [6..30] mean 436.4 ms
+  REPORT window [50..80] mean 608.6 ms
+  REPORT window [100..130] mean 787.5 ms
+  REPORT window [150..180] mean 1008.7 ms
+  REPORT window [250..280] mean 1503.8 ms
+  REPORT deep/shallow mean ratio 1.9936 (frozen 2.0092)
+OK (293.92s)
+  b1 untouched route + models closed form
+    b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world):           OK (0.12s)
+    b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null):                 FAIL
+      test-breadth/Breadth.hs:664:
+      expected: 12766
+       but got: 8005
+      Use -p '/b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null)/' to rerun this test only.
+    b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route:                    OK (0.07s)
+  b2 Kraft and pricing
+    b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass):                            FAIL
+      test-breadth/Breadth.hs:691:
+      kraft heir > kraft base (strict)
+      Use -p '/b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass)/' to rerun this test only.
+    b2b the declared-pair mention mass is 1/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==): FAIL
+      test-breadth/Breadth.hs:703:
+      expected exactly one row each side, got 0/0
+      Use -p '/b2b the declared-pair mention mass is 1\/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==)/' to rerun this test only.
+    b2c independent pricing: the null face's weight is invariant in the pair declaration (Rational ==):         REPORT prices: dpair Infinity bits, nullconst Infinity bits, nullguard Infinity bits
+FAIL
+      test-breadth/Breadth.hs:712:
+      expected exactly one nullconst row each side, got 0/0
+      Use -p '/b2c independent pricing: the null face'\''s weight is invariant in the pair declaration (Rational ==)/' to rerun this test only.
+    b2d prices are finite and positive (REPORT: bits printed):                                                FAIL
+      test-breadth/Breadth.hs:733:
+      dpair weight > 0
+      Use -p '/b2d prices are finite and positive (REPORT: bits printed)/' to rerun this test only.
+  b3 the #21 semantics: the minority tie BREAKS
+    b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1/2; dominant argmax stays 2:                     REPORT minority vec: [0.21197764952526807,0.21197764952526807,0.15208940189892772,0.21197764952526807,0.21197764952526807]
+  REPORT MAP ("guard",[2,0,0,8]) @ 0.6350
+FAIL (0.12s)
+      test-breadth/Breadth.hs:751:
+      P(3) > 1/2: 0.21197764952526807
+      Use -p '/b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1\/2; dominant argmax stays 2/' to rerun this test only.
+    b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1/2):                 FAIL
+      test-breadth/Breadth.hs:758:
+      expected: ("dpair",[3,2,0,7,8])
+       but got: ("guard",[2,0,0,8])
+      Use -p '/b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1\/2)/' to rerun this test only.
+  b4 the null face and the K=2 door
+    b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 criteria S1/S2):                REPORT p0 shipped 0.225000 (caps 0.250000 frozen / 0.225000 tight)  extended 0.225000  MAP ("const",[4,0]) @ 0.3273
+FAIL (0.48s)
+      test-breadth/Breadth.hs:787:
+      extended p0 > 2x shipped
+      Use -p '/b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 criteria S1\/S2)/' to rerun this test only.
+    b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates:          FAIL
+      test-breadth/Breadth.hs:792:
+      null at K=2 (the exact-duplication law): {"ok": true, "proto": 1, "models": 9, "namespace_bits": -0.0}
+      Use -p '/b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates/' to rerun this test only.
+    b4d an empty declaration IS the absent key: hello replies byte-identical:                                 OK
+  b5 wire == reference route
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        FAIL
+      test-breadth/Breadth.hs:823:
+      models == closed form: {"ok": true, "proto": 1, "models": 8005, "namespace_bits": 2.0}
+      Use -p '/b5a breadth hello: models the closed form; decide p_codes == the reference vector/' to rerun this test only.
+    b5c the breadth hello survives the pipes (spawned host, the g6 form):                                     FAIL
+      test-breadth/Breadth.hs:863:
+      models over the pipes: {"ok": true, "proto": 1, "models": 8005, "namespace_bits": 2.0}
+      Use -p '/b5c the breadth hello survives the pipes (spawned host, the g6 form)/' to rerun this test only.
+  b7 entropy_bits (OB-31)
+    b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):      REPORT entropy wire 3.365059308367 independent 3.365059308367 delta 0.000e0
+OK (5.70s)
+  b8 walk-free exchangeability
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (1.65s)
+  b6 the ms/tick instrument
+    b6a population pin: the base route is 8005 sentences (the #21 live curves' operating point):              OK
+    b6d the census: every declared-family row is a const/guard shape; NO walk variants (XII.6's gate row):    FAIL
+      test-breadth/Breadth.hs:919:
+      expected: [("const",45),("walk",40),("guard",7920),("dpair",3168),("nullconst",9),("nullguard",1584)]
+       but got: [("const",45),("walk",40),("guard",7920),("dpair",0),("nullconst",0),("nullguard",0)]
+      Use -p '/b6d the census: every declared-family row is a const\/guard shape; NO walk variants (XII.6'\''s gate row)/' to rerun this test only.
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):                       REPORT base ev+ro 429.7 ms/tick, heir ev+ro 430.7 ms/tick, ratio 1.002 (bar 2.0)
+  REPORT composition at [6..30]: ev 65.3 (frozen 66.2) of which walks 23.1 (frozen 23.8); ev+ro 429.7 (frozen 434.5); wire 831.7 (frozen 832.7)
+  REPORT a composition change is a LICENSED RE-MINT, never a breadth failure (XIII.5)
+  REPORT (the wire column is the BASE route BY DESIGN - XIII.5 pins the base's composition; it cannot move when the heir's wire route changes)
+OK (55.30s)
+
+12 out of 20 tests failed (357.38s)
+Test suite breadth: FAIL
+Test suite logged to:
+/home/g/git/proplang/./dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/test/proplang-0.1.0.0-breadth.log
+0 of 1 test suites (0 of 1 test cases) passed.
+Error: [Cabal-7125]
+Tests failed for test:breadth from proplang-0.1.0.0.
+

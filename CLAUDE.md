@@ -363,6 +363,15 @@ Every step-6+ increment follows the recursive two-phase discipline:
    two-run structure is load-bearing in BOTH directions: the red run
    proves every row CAN fire; the SAT run proves every row CAN pass;
    neither run alone certifies a helper, and a freeze relies on both.
+   AMENDED at the heir oracle freeze (breadth-freeze-r0, 2026-08-06;
+   OB-27, riding breadth-sitting-r0's routed authority): the clause's
+   scope names HARNESS GATES as within it. The triptych's reasoning
+   applies to the INSTRUMENT as well as to the rows it runs — a kit
+   or gate check that cannot fail (the readout pre-tag finding (d):
+   `diff ... && echo` under set -e, where a mismatch prints its diff
+   and falls through to "ALL CHECKS PASSED") is the same defect
+   wearing the harness's coat, and every kit gate arrives with its
+   red demonstrated exactly as every oracle row does.
    One clause canonized at the dyadic freeze under the X.5 sitting's
    rulings 5 and 2 (x5-sitting-r0, 2026-07-26; drafted at the exact
    close, first run r2 at the X.5 pack; delegated edit, the dyadic
@@ -474,6 +483,72 @@ Every step-6+ increment follows the recursive two-phase discipline:
    derive their exemption from their tag's existence, never from
    a hand list (L9 not L8: OB-26 named its own future row L8 at
    scheduling, and that seat stays reserved for the OB-19 heir).
+   One clause canonized at the heir oracle freeze (breadth-freeze-r0,
+   2026-08-06; drafted as pack XV.2, widened at r7, ratified by the
+   breadth-sitting-r0 tag — the clause text copied from the pack, not
+   re-derived): AN UNWITNESSED ASSERTION OUTSIDE THE MEASURED REGION
+   IS EXECUTED OR MARKED. The class has two species: a UNIVERSAL
+   CLAIM quantifying over the shipped corpus, its streams, or their
+   orderings ("every", "no", "any", "cannot"); and an EXTRAPOLATION
+   asserting behavior at depths, K values, populations, streams, or
+   hardware beyond what a cell measured — the commoner species in a
+   measurement pack. Either kind carries an executed witness — a
+   falsification attempt against the shipped surface, transcript
+   beside it, R-D21's discipline carried from oracle rows to pack
+   prose — or is marked ARGUED-NOT-EXECUTED with its cheapest
+   falsifier NAMED; naming the falsifier is the load-bearing act,
+   because a named-but-unrun falsifier is visibly absurd where an
+   unnamed one is invisible. An argument-closed residual closes only
+   through its own attempted refutation. AND: A STRENGTHENING IS A
+   NEW CLAIM — when the author or a frozen text supplies an argument,
+   the pack copies its scope; any builder extension beyond that scope
+   is labeled as the builder's addition and arrives with its own
+   witness. Provenance: the r5 exchangeability incident
+   (breadth-author-pack.md XIV.5) — the author's divisibility bound
+   needed no exchangeability; the builder's "improvement" assumed it;
+   the corpus's 40 walk rows (rw, non-exchangeable BY DESIGN)
+   falsified it; P10 executed the owed falsifier in one minute,
+   two-sided. THE REGISTER'S UNIVERSE IS QUANTIFIER HITS UNION
+   VERDICT CONVICTIONS. A reviewer's written conviction is a custody
+   record; the sweep-universe law already derives every sweep's
+   domain from custody records, and a register sweep is no exception.
+   Every conviction row receives an explicit disposition — REPAIRED,
+   BRACKETED, or ARGUED-AND-DECLINED; declining a conviction is
+   legitimate, declining it silently is not (the r7 verdict: three of
+   the four r5 convictions survived a sweep that grepped for
+   quantifiers and never read the verdicts — two of them quantified
+   over NOTHING). The scriptable halves: the per-pack CLAIMS REGISTER
+   (rows tagged EXECUTED(transcript) / ARGUED(falsifier named) /
+   QUOTED(whose words)) and the boundary-audit's bare-quantifier
+   triage row — triage inputs for the human sweep, never verdicts
+   (the M5/H pattern). The claims register rides BESIDE the
+   increment's under-determination register and does not replace it:
+   "as-built answers to its register" in the increment protocol's
+   close continues to name the under-determination register. Mandate
+   7 was DECLINED at the same sitting: six red-team mandates stand.
+   One clause canonized at the same freeze under the author's
+   freeze-review verdict of 2026-08-07 ("The one-generator law has
+   now been paid for three times... It should be canon for any pair
+   of artefacts required to agree - harnesses and kit drivers
+   included, because the third instance nearly cost you a rehearsal,
+   and the next one will be somewhere the clean-tree gate is not
+   watching"): THE ONE-GENERATOR LAW. Any two artefacts required to
+   agree share ONE generator, or one of them DERIVES from the other
+   and ASSERTS the derivation at run time - never two hand-maintained
+   copies. The law was already the probe-discipline's shape for
+   declared data (step 5) and the breadth pack's XVIII.2 statement
+   for wire ticks; this clause carries it to EVERY paired artefact,
+   harnesses and kit drivers included, because the third instance
+   lived in the rehearsal driver - outside every suite, where no
+   clean-tree gate watches. The three paid instances, named: the
+   breadth oracle draft's parallel hand-written tick list (caught
+   before anything ran); the dup-list comment; and the rehearsal
+   driver's hand-copied ratio literal, which went stale one mint
+   later, no-oped its own seed, and silently ran a full 2-freeze in
+   a red leg (the r10d two-lists incident) - the repaired driver
+   derives-and-asserts: grep the literal from the frozen file, assert
+   nonempty, assert the seed took. A hand copy tracking a generated
+   value is correct at birth and wrong at the first regeneration.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
