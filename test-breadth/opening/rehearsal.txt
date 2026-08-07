@@ -1,3 +1,5 @@
+THE FRESH-CLONE REHEARSAL OF THE AMENDED KIT (r11, the freeze-review re-seal, 2026-08-07): the four kit-guard reds fired (refused key pre-mutation, orphan patch, [MINT] marker, perturbed literal), then the green path SEALED end-to-end in the clone - 1-verify, 2-freeze (six patches, gate5's exact red set, manifest after lint rows, demos, lint 0 FAIL), 3-sign, 4-close's -F mint byte-identical to the message file. The r10d rehearsal this supersedes survives at d00d714.
+
 
 ==== RED R1: a refused key aborts 2-freeze BEFORE any mutation (OB-29's red) ====
 R1 OK: aborted pre-mutation, tree clean
@@ -59,24 +61,24 @@ ALL CHECKS PASSED - review SITTING.md, then run 2-freeze.sh
 PASS  L5 breadth-author-pack.md records the four stanza flags (incl. -Werror)
 PASS  L6 no grid re-declaration flags (advisory heuristic)
 PASS  L7 full-corpus overlay build: every test .hs builds against new src
-PASS  L8 recorded repairs: 0 hash(es), 0 (hash,file) pair(s) verified in breadth-author-pack.md
+PASS  L8 recorded repairs: 13 hash(es), 0 (hash,file) pair(s) verified in breadth-author-pack.md
 PASS  L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit
 === prefreeze-lint: 0 FAIL, 0 WARN ===
 
 FREEZE MECHANICS DONE - nothing signed. 3-sign.sh is the key act's.
 ---- tail g3.log ----
-Commit the freeze under YOUR key? Type yes: [master 555046c] the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
- 12 files changed, 896 insertions(+), 24 deletions(-)
+Commit the freeze under YOUR key? Type yes: [master 6dd4b8e] the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
+ 12 files changed, 922 insertions(+), 24 deletions(-)
  create mode 100644 test-breadth/freeze/gate5-run.txt
  create mode 100644 test-breadth/freeze/lint-demo.txt
  create mode 100644 test-breadth/freeze/lint-transcript.txt
-555046c the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
+6dd4b8e the OB-19 heir ORACLE FREEZE (breadth-freeze-r0): test-breadth/ b1-b8 + gated drift row frozen; the sitting's routed installs land - the stanza splice, the one CLAUDE.md touch (OB-27 scope line + the prose-claim gate), lint L8 + the OB-28 hardenings with two-sided demos, the ledger advances (OB-25/26/27/28/29 discharged, OB-31/OB-19 landed, OB-32 minted), the FL repairs (boundary-audit note, Host.hs wait comment, dispositions-pack dated bracket); manifest extended and re-signed AFTER the lint rows (OB-26's order)
 
 FREEZE COMMITTED. 4-close.sh mints the tag from the committed message file.
 ---- tail g4.log ----
-RECORD: minted tag message byte-identical to test-breadth/freeze/tag-msg.txt (5239 bytes)
+RECORD: minted tag message byte-identical to test-breadth/freeze/tag-msg.txt (9808 bytes)
 
-DONE: breadth-freeze-r0 minted over 555046c and verifies.
+DONE: breadth-freeze-r0 minted over 6dd4b8e and verifies.
 Local by design - publish at the increment's close, on the author's call.
 If this run was delegated (builder key): the author's re-tag within
 the increment is R-D22's condition of closure, never a courtesy.
