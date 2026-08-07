@@ -1,0 +1,12 @@
+# MUTANT M79-empty-object-null-defaults-on — provenance: the door's empty-object null face defaults ON: {} grows a null face (9598) while the absent key stays 8005; kills b4d (the door-side asymmetry the r1a lesson demanded) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d8.
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -311,7 +311,7 @@
+         Just (JArr pj) -> mapM pairIx pj
+         Just _ -> Nothing
+       nl <- case oGet "null" bj of
+-        Nothing -> pure False
++        Nothing -> pure True   -- D8 SEEDED DEFECT: absent null defaults ON
+         Just (JBool bv) -> pure bv
+         Just _ -> Nothing
+       mkBreadth (maybe 2 id arK) ps nl

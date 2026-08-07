@@ -1,0 +1,31 @@
+# MUTANT M81-depth-differential-readout-cost — provenance: depth-differential readout cost (the accretion/leak shape; the freeze review's R-RED construction, pack XIX.3): re-walks scale with the depth proxy, fires the drift row's mean-RATIO gate ALONE (0.0479 at the oracle phase) with every means gate green; CSE-proof form - distinct drop-suffixes (the A-SEED-THAT-CANNOT-SLOW incident) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d10.
+--- a/src/PropLang/Report.hs
++++ b/src/PropLang/Report.hs
+@@ -21,8 +21,26 @@
+ entropyBits = entropyOf . weights
+ 
+ -- | Meta-posterior entropy in bits (display).
++-- d10 SEED (the freeze-review R-RED construction): DEPTH-DIFFERENTIAL
++-- COST, the accretion/leak shape the band comment names and XVIII.4's
++-- table left unexecuted ("the ratio gate's own kill is the
++-- depth-differential class"). The readout re-walks the posterior a
++-- number of times that GROWS with the weights' rendered size (a depth
++-- proxy: denominator bits grow ~9.8/tick, P11), so deep windows
++-- inflate more than shallow ones and the deep/shallow MEAN RATIO
++-- moves — where d6's proportional duplication cancels in the ratio.
+ entropyAgent :: AgentS -> Double
+-entropyAgent = entropyOf . metaPosterior
++entropyAgent ag =
++  let ps   = metaPosterior ag
++      sz   = case ps of
++               (q : _) -> length (show q)
++               []      -> 1
++      reps = max 1 (sz `div` 25)
++      -- each pass consumes a DISTINCT suffix so no pass can be
++      -- floated out as loop-invariant (the first seed's identical
++      -- passes were CSE'd to one and the burn was free - measured)
++      burn = sum [ entropyOf (drop i ps) | i <- [1 .. reps :: Int] ]
++  in burn `seq` entropyOf ps
+ 
+ -- | The bits view of an exact weight/mass: -log2 w (display; the
+ -- exact rational is the fact, this is its rendering).

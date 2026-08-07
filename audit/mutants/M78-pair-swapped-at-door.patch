@@ -1,0 +1,14 @@
+# MUTANT M78-pair-swapped-at-door — provenance: a declared pair SWAPPED at the door (wire-only, count-preserving): the population count survives, the direction dies; kills b5a's asymmetric cell (the cell exists for exactly this) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d7.
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -355,7 +355,9 @@
+       v0 : vrest <- pure vs
+       pure (mkGrid nm (v0 :| vrest))
+     pairGridNamed _ _ = Nothing
+-    pairIx (JArr [xa, xb]) = (,) <$> jIx xa <*> jIx xb
++    pairIx (JArr [xa, xb]) = (\a b -> (b, a)) <$> jIx xa <*> jIx xb
++      -- D7 SEEDED DEFECT: the pair swapped at the door (wire-only,
++      -- count-preserving - the library route never sees it)
+     pairIx _ = Nothing
+     jIx v = do
+       JNum d <- pure v

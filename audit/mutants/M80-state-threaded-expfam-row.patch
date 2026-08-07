@@ -1,0 +1,44 @@
+# MUTANT M80-state-threaded-expfam-row — provenance: state THREADED through an expfam-tagged row (the dpair high branch reads a drift-up latent, irreversible): kills b8a's reversal identity (the sitting's first kill direction; its two dead ends are U10) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d9.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -355,15 +355,36 @@
+     thetaPt0 = case mkC eg 0 :: Maybe (Expr '[] Rational) of
+       Just (C _ _ v) -> v
+       _ -> error "enumerateWithBreadth: empty theta codebook"
++    -- D9 SEEDED DEFECT: state THREADED through an expfam-tagged row.
++    -- The dpair keeps its tag but its high branch reads a LATENT that
++    -- a drift-up kernel moves each tick (stay 1/2 / up 1/2, absorb at
++    -- the top - ASYMMETRIC, hence irreversible; a symmetric kernel
++    -- with the uniform prior is reversible and reversal-INVARIANT,
++    -- and a row whose likelihood cannot vary on the stream hides any
++    -- kernel - both dead ends were EXECUTED and are recorded in the
++    -- pack). The dpair's likelihood distinguishes y=2 from y=3, so
++    -- the threaded state is visible on the b8a stream.
++    d9Up = If (Gt (cAt eg (gridSize eg - 1)) (Var (S Z)))
++              (addM (Var (S Z)) (Sub (cAt eg 1) (cAt eg 0)))
++              (Var (S Z))
++    d9Move = Code egSp egSp
++               (addM (If (eqE (Var Z) (Var (S Z))) one zero)
++                     (If (eqE (Var Z) d9Up) one zero))
++    egSp = mkSpace (case [ thetaPt0K k | k <- [0 .. gridSize eg - 1] ] of
++                      [] -> error "d9: empty codebook"
++                      (q : qs) -> q :| qs)
++    thetaPt0K k = case mkC eg k :: Maybe (Expr '[] Rational) of
++      Just (C _ _ v) -> v
++      _ -> error "d9: theta codebook too small"
+     dpairs =
+       [ Hyp ("dpair", [jHi, jLo, kt, a, b])
+             (chargeMass fragWidth (CMul (guardCharge ns tg eg) declMass))
+-            unitLatent
+-            (Code unitLatent obsSp
++            egSp
++            (Code egSp obsSp
+                (If (Gt (Get nm) (cAt tg kt))
+-                   (catB jHi (cAt eg a))
++                   (catB jHi (Var (S Z)))
+                    (catB jLo (cAt eg b))))
+-            Nothing
++            (Just d9Move)
+       | has FBern, has FIf, has FConst, has FGuardHead
+       , (nm, tg) <- guardGs
+       , (jHi, jLo) <- breadthPairs br

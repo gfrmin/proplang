@@ -1,0 +1,15 @@
+# MUTANT M75-naive-pair-family-default-on — provenance: the naive pair family DEFAULT-ON, all ordered pairs unpriced - the cost blow-up the bar exists for; kills b6b (ratio measured 3.7 > bar 2 at the oracle phase; the R-RED constructed crossing) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d3.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -366,9 +366,10 @@
+             Nothing
+       | has FBern, has FIf, has FConst, has FGuardHead
+       , (nm, tg) <- guardGs
+-      , (jHi, jLo) <- breadthPairs br
++      , (jHi, jLo) <- naiveAll  -- D3 SEEDED DEFECT: the naive family, default-on
+       , kt <- [0 .. gridSize tg - 1]
+       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
++    naiveAll = [ (x, y) | x <- [1 .. kAr - 1], y <- [1 .. kAr - 1], x /= y ]
+     nulls
+       | breadthNull br = nullConsts ++ nullGuards
+       | otherwise = []

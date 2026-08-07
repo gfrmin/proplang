@@ -1,0 +1,16 @@
+# MUTANT M77-readout-fold-duplicated — provenance: the readout fold DUPLICATED (a lost fast path's shape): proportional cost, fires the windowed MEANS (~+79 percent at the first window) while the deep/shallow ratio barely moves - d6 is ratio-invisible BY DESIGN (pack XVIII.4/XIX.2, both eras stated); kills the drift row's means gates Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d6.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -553,7 +553,11 @@
+   let pm hl = case tickPred env hl of
+         Nothing -> 0
+         Just (predLat, k) -> predictMass predLat k y
+-  Right (sum (zipWith (*) ws (map pm lives)) / sum ws)
++      -- D6 SEEDED DEFECT: the readout fold duplicated (a lost fast
++      -- path's shape; argument order swapped so -O1's CSE cannot unify)
++      s1 = sum (zipWith (*) ws (map pm lives)) / sum ws
++      s2 = sum (zipWith (*) (map pm lives) ws) / sum ws
++  Right (if s2 >= 0 then s1 else s2)
+ 
+ -- | The exact normalized meta posterior (read-only view; displays —
+ -- entropy — derive from this at the reporting edge, never here: E1).

@@ -1,0 +1,12 @@
+# MUTANT M74-arity-atom-dropped — provenance: an arity atom dropped (posAtoms built over K-2): the base population moves off 8005; kills b6a (defect-d2.txt) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d2.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -207,7 +207,7 @@
+     ++ concat [ guardFamilyJ j g | j <- posAtoms, g <- guardGs ]
+   where
+     has t = t `elem` allowed
+-    posAtoms = [1 .. kAr - 1]
++    posAtoms = [1 .. kAr - 2]  -- D2 SEEDED DEFECT: one atom dropped
+     obsSp = carrierSpace obsC
+     atomG = atomGridOf obsC
+     cAt :: Grid -> Int -> Expr env Rational

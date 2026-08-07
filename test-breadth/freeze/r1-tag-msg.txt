@@ -1,0 +1,58 @@
+breadth-freeze-r1: the OB-19 heir's CLOSE — the author's countersign
+over the close-out commit, discharging R-D22's re-tag obligation in
+this act. The delegated breadth-freeze-r0 (minted with the BUILDER
+key on the recorded per-instance delegation of 2026-08-07) is hereby
+RATIFIED BY NAME: the author's own signed tag now covers the oracle
+as amended — the condition of closure, never a courtesy.
+
+THE IMPLEMENTATION (a2d35d9): the prophecy
+(test-breadth/opening/prophecy.diff, sha256 0599d765...) applied
+byte-for-byte, no fuzz — src == the SAT overlay realization plus the
+freeze's own FL wait-comment install at Host.hs, which postdates the
+overlay snapshot by construction. The frozen red set FLIPPED GREEN
+IN ONE PASS: breadth 20/20; gate 5 = cabal test all SERIALIZED
+(-j1) EXIT=0, all 13 suites, anchors byte-stable; gates 1-7 PASS;
+prefreeze-lint 0 FAIL. THE DRIFT GATE IN-BAND, THE PRE-DECLARED
+LICENSED RE-MINT NOT EXERCISED: quiet standalone ratio 1.9960
+(|delta| 0.0132), serialized-corpus 1.9929 (|delta| 0.0163), means
++0.7..+4.0 percent, composition at the mint (ev 65.6/66.2, walks
+24.0/23.8, ev+ro 433.9/434.5, wire 830.1/832.7), b6b heir/base
+1.379 vs bar 2. One invalid run recorded honestly (pack XX.2): the
+first cabal-test-all ran suites IN PARALLEL and the drift row
+failed at 1.9060 — a loud-box artifact, the quiet re-reads in-band;
+the gate-5 form is serialized while the timed instrument rides the
+corpus.
+
+THE KILL MATRIX vs the COMMITTED baseline (a2d35d9, the dyadic
+incident's law; pack Part XX): the pool GROWN by ten — M8 PROMOTED
+as b7a's kill (wire -3.891 vs independent +3.891, the direction
+OB-31 convicted; its standing exact-acceptance H-display kill
+recorded beside it — the r8a shape) and M73-M81 landed in
+audit/mutants/ (the oracle's nine drafted defect shapes). ALL TEN
+KILLED by the frozen suite, every suite run individually per mutant
+(the v1 driver incident — cabal test all ABORTS at the first
+failing suite — repaired to per-suite serial columns and recorded).
+Six standing-unique (M76-M81); M73/M74/M75 standing-shadowed in the
+F6 amendment's expected engine-level geometry (the heir routes the
+standing wire through the mkBreadth door), read per-ROW against the
+pool. M77/M81 reproduce the d6/d10 contrast on the committed tree:
+proportional cost fires the MEANS and is ratio-invisible (2.0027);
+the depth-differential class fires the RATIO ALONE at 2.0864
+(|delta| 0.0772 > 0.03, means in-band) — stronger than the
+oracle-phase construction, the class unbounded upward as recorded.
+Thirteen of twenty rows reached by this pool; the seven unreached
+(b2a-b2d, b3a, b4a, b4c) each have their stub-red demonstrated in
+the frozen red-run and ride to the sitting as pool-relative triage
+rows (pack XX.5), the readout precedent's per-row disposition form.
+
+THE LEDGER MOVES UNDER THIS TAG (the ratified frozen-layer touch):
+OB-19 DISCHARGED — the K-ary richer family the W3 sitting named is
+SHIPPED, enumerable, priced, measured; OB-31 DISCHARGED — b7a pins
+entropy_bits against the independent posterior computation with M8
+promoted as its kill, exactly the discharge event the row named.
+The manifest extends 181 -> 193 (the pool + the promoted M8 + this
+message file + 5-close.sh) and re-verifies at the close-out bytes.
+
+Issue #21 closes citing this boundary. Publication of the chain and
+tags follows on the author's call. The docket rolls to #19
+(1a-or-doctrine; JP2-d6's RETIRE-UNTIL-N returns at that sitting).

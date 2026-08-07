@@ -1,0 +1,12 @@
+# MUTANT M76-walk-row-mis-tagged — provenance: a walk row mis-tagged as expfam ("wexp"): order-dependence smuggled into the exchangeable sub-corpus; kills b8a (defect-d5.txt) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d5.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -242,7 +242,7 @@
+     walksJ j = case mrg of
+       Nothing -> []
+       Just rg ->
+-        [ Hyp ("walk", [j, r])
++        [ Hyp ("wexp", [j, r])  -- D5 SEEDED DEFECT: the walk row mis-tagged
+               (chargeMass fragWidth (CMul (walkCharge rg) arityMass))
+               egSp
+               (Code egSp obsSp (catBody j (Var (S Z))))

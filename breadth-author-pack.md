@@ -2503,3 +2503,209 @@ expected at the Phase-3 close alongside the countersign. Phase 3
 prophecy.diff byte-for-byte, gates 1-7, anchors byte-stable, the
 kill matrix vs the grown pool (d1-d10; M8 = d4 promotes as b7's
 kill), the close-out pack, the author's r1.
+
+## XX. The close-out (Phase 3): implementation, matrix, close
+
+### XX.1 The implementation (a2d35d9, builder commit)
+
+The prophecy (opening/prophecy.diff, sha256 0599d765...) applied
+byte-for-byte by patch -p0, no fuzz, both modules. RECORD: src after
+application == the SAT overlay realization + exactly one comment
+delta — the freeze's own FL wait-comment install at Host.hs (landed
+at a371e17, postdating the overlay snapshot by construction; the
+prophecy diffs against pre-install src, so the identity is
+src+prophecy == overlay MODULO the comment the freeze itself
+installed). The frozen red set FLIPPED GREEN IN ONE PASS — no
+implementation iteration: the overlay WAS the implementation (the
+R-D21 overlay form's designed payoff — SAT-proven text ships).
+
+Gates at a2d35d9: (1) -Wall -Werror clean via the stanza flags on
+the full build; (2) Belief abstract, export list untouched; (3) no
+IO in Enumerate's types (the one grep hit is the substring in
+"DERIVATION", a comment); (4) lint L1 forbidden tokens clean over
+all 9 src files; (5) cabal test all -j1 EXIT=0, ALL 13 SUITES,
+breadth 20/20, anchors byte-stable; (6) manifest 181 rows verified
+(lint L3); (7) the t4 deletion audit green inside the corpus run.
+prefreeze-lint 0 FAIL 0 WARN, including L7's full-corpus build
+against the new src.
+
+### XX.2 The drift gate at the implementation build (the licensed
+re-mint NOT exercised)
+
+    quiet standalone breadth: ratio 1.9960 (|delta| 0.0132), means
+      448.4 / 607.5 / 800.6 / 1026.0 / 1514.4 (+0.7..+4.0%)
+    serialized corpus (gate 5): ratio 1.9929 (|delta| 0.0163), means
+      439.7 / 610.4 / 788.9 / 1016.1 / 1503.8
+    composition: ev 65.6 (frozen 66.2), walks 24.0 (23.8), ev+ro
+      433.9 (434.5), wire 830.1 (832.7)
+    b6b heir/base: 1.365 standalone / 1.379 serial / 1.392 parallel
+      — bar 2.0; the operating point holds
+
+Both readings sit inside the band; the pre-declared licensed
+re-mint's trigger never arrived. INCIDENT (recorded as found): the
+FIRST cabal-test-all ran its suites IN PARALLEL (cabal's default)
+and the drift row failed at 1.9060 (|delta| 0.1032) with the
+loud-box signature — shallow means +7.4..+9.6% under sibling-suite
+load, deep means +0.6..+2.0%, the inflated shallow denominator
+deflating the ratio. The quiet re-reads both sit in-band. THE
+GATE-5 FORM IS SERIALIZED (-j1) while the timed instrument rides
+the corpus; the parallel log is preserved in the session record.
+
+### XX.3 The kill matrix vs the committed baseline (a2d35d9)
+
+Pool: M8 (standing, PROMOTED per OB-31's row) + M73-M81 (the nine
+drafted shapes d1-d3, d5-d10, cut fresh against a2d35d9 — the
+Host-seeded pair rebased over the freeze's comment install; every
+patch git-apply-checked, every mutant compiled). Per mutant: apply,
+full build, EVERY suite run individually (13 columns), revert.
+
+DRIVER INCIDENT (v1, recorded as found): `cabal test all` ABORTS at
+the first failing suite — v1's M8 cell ran 7 of 13 suites and
+breadth NEVER EXECUTED (the kill column of the very mutant under
+test was absent; 6 PASS + exact-acceptance FAIL, then Cabal-7125
+stopped the run). A matrix driver stopping at the first kill cannot
+measure standing-uniqueness BY CONSTRUCTION. v2 runs every suite
+individually, serial (the jp serial-pass discipline carried to
+suite granularity); v1's partial log preserved beside the v2 cells.
+
+The matrix (breadth rows from tasty's own rerun hints — one
+generator; standing columns from per-suite exit codes):
+
+    mutant                            breadth rows killed        standing FAIL
+    M8-entropy-sign-dropped           b7a                        exact-acceptance
+    M73-empty-declaration-injects-f.  b1a b1b b1c                readout
+    M74-arity-atom-dropped            b1b b1c b5a b5c b6a b6d    pins readout
+                                      b8a drift-a
+    M75-naive-pair-family-default-on  b1a b1b b5a b5c b6b b6d    readout
+    M76-walk-row-mis-tagged           b6d b8a                    none
+    M77-readout-fold-duplicated       drift-a (MEANS: 765.2 vs   none
+                                      431.1, all five blown;
+                                      ratio IN-band 2.0027)
+    M78-pair-swapped-at-door          b5a                        none
+    M79-empty-object-null-defaults-on b4d                        none
+    M80-state-threaded-expfam-row     b3b b6b b8a                none
+    M81-depth-differential-readout-c. drift-a (RATIO ALONE:      none
+                                      2.0864, |delta| 0.0772 >
+                                      0.03; all five means
+                                      in-band)
+
+ALL TEN KILLED by the frozen suite. Six standing-unique (M76-M81).
+M77/M81 reproduce the d6/d10 contrast against the committed tree:
+proportional cost fires the means and is ratio-invisible (0.0065);
+the depth-differential class fires the ratio alone, STRONGER than
+the oracle-phase construction (0.0772 vs 0.0479 — the class is
+unbounded upward, the placed point a reachability proof, never a
+ceiling). M81's burn slowed at runtime on this build — the
+A-SEED-THAT-CANNOT-SLOW check passed by measurement.
+
+### XX.4 The four standing-shadowed cells (recorded per the case law)
+
+M8: killed by b7a (wire entropy_bits vs the independent posterior
+computation — the direction OB-31 convicted as unpinned) AND by the
+STANDING exact-acceptance H-display rows (test/Acceptance.hs:236
+and the pre/post row — M8's ORIGINAL earned kill, its own
+provenance header's declared subject, still firing). The MUTANT is
+not standing-unique to b7a; the KILL DIRECTION is. The r8a
+precedent's exact shape (the readout close: a kill whose standing
+red IS the finding) and the structural-shadowing clause's answer:
+display route and wire route are different surfaces of one defect,
+and they have already moved independently once (the readout r1a
+incident) — which is why OB-31 exists. OB-31's discharge event ("a
+row pinning entropy_bits against an INDEPENDENT computation,
+arriving WITH M8 promoted into the declared pool as its kill")
+demands the executed kill, not corpus-uniqueness of the mutant.
+
+M73/M74/M75: the F6 amendment's geometry, expected and recorded —
+the heir routes the host population through the mkBreadth door, so
+door/family/arity-level mutants are visible to the standing wire
+suites BY DESIGN (readout's absolute-vector rows fire on the moved
+population; pins' ARITY-coincidence row fires under M74's shared
+posAtoms cut). "The honest uniqueness reading is per-ROW against
+the pool, never per-suite against the corpus" (the trampoline
+close's canon). Per-row: b1a/b1c pin the IDENTITY empty==shipped
+(no standing row states it); b6a pins the 8005 population; b6b the
+priced bar — each fires beside the standing collateral, for its own
+reason.
+
+### XX.5 Row reachability (pool-relative, the dyadic law's triage)
+
+13 of 20 rows kill at least one pool mutant: drift-a b1a b1b b1c
+b3b b4d b5a b5c b6a b6b b6d b7a b8a. SEVEN UNREACHED BY THIS POOL:
+b2a b2b b2c b2d (pricing/Kraft arithmetic), b3a (the minority-tie
+break), b4a (the null cap), b4c (the door refusals). Every one of
+the seven was IN THE FROZEN STUB-RED SET (red-run.txt: the 12-row
+partition) — each CAN fire, so none is a green-that-cannot-fail;
+the pool's drafted scope (the increment's incident case law) simply
+contains no pricing/tie/cap/refusal mutant. A VERDICT IS
+POOL-RELATIVE AND A POOL IS GROWN, NEVER ASSUMED (the dyadic r2
+amendment): the seven ride to the sitting as named triage rows, the
+readout precedent's per-row disposition form, never auto-verdicts.
+
+### XX.6 The ledger flips (ratified by the r1 tag over this commit)
+
+OB-19 -> DISCHARGED@breadth-freeze-r1, OB-31 ->
+DISCHARGED@breadth-freeze-r1 — each row's own frozen text named the
+close tag as its discharge event; the state cells flip in this
+commit, the body text byte-identical, the manifest row for
+OBLIGATIONS.md re-hashed within the same ratified act (the readout
+r1 precedent for a ledger move at a close boundary).
+
+### XX.7 The claims register, continued (live over this part)
+
+    17 "the frozen red set flipped green in one pass" — EXECUTED
+       (the gate-5 serial log: 13 suites EXIT=0; XVIII.4's 12-row
+       red set enumerated all OK in the breadth cell).
+    18 "all ten pool mutants are killed by the frozen suite" —
+       EXECUTED (the matrix cells, XX.3's table; per-suite logs in
+       the session record).
+    19 "six of the ten are standing-unique; four standing-shadowed"
+       — EXECUTED (the standing columns: 12 suites green under
+       M76-M81; the four shadowed cells dispositioned at XX.4).
+    20 "cabal test all aborts at the first failing suite" —
+       EXECUTED (the v1 M8 cell: 7 of 13 suites ran, breadth
+       absent; v2 re-ran the same mutant with all 13 columns).
+    21 "M81's ratio kill reproduces against the committed baseline"
+       — EXECUTED (2.0864 vs frozen 2.0092 with means in-band; the
+       oracle-phase 0.0479 was the construction, this is the
+       standing confirmation).
+
+### XX.8 Standing at the close
+
+The close-out commit carries: the pool (audit/mutants/ M73-M81
+landed, M8 promoted with its manifest row — the M7
+declared-imported precedent), the ledger flips (XX.6), this Part,
+the r1 tag message (test-breadth/freeze/r1-tag-msg.txt, a manifest
+row per the tag-message-is-a-file law) and 5-close.sh (the author's
+countersign script: step-0 live signature, -F mint, byte-identity
+record — run by the AUTHOR from their own shell; R-D22's re-tag
+cannot be delegated). The manifest extends 181 -> 193 and every
+gate re-verifies at the close-out bytes. The increment closes at
+the author's breadth-freeze-r1 over this commit; publication and
+issue #21's close follow on the author's call; the docket rolls to
+#19 (1a-or-doctrine; JP2-d6's RETIRE-UNTIL-N returns at that
+sitting).
+
+### XX.9 The close-kit rehearsal (5-close.sh, two-sided from a fresh clone)
+
+GREEN SEALED: in-clone (rehearsal key = builder), the full path ran
+end-to-end — step-0 live probe OK, all gates, the -F mint, RECORD
+minted message byte-identical to r1-tag-msg.txt (3488 bytes), tag
+verifies. SIX REDS FIRED, each for its own gate (the triptych's
+attribution demand): (1) the re-run guard on the existing tag;
+(2) the refused key at step-0, pre-act; (3) the dirty tree;
+(4) a perturbed manifest row, COMMITTED so the clean-tree gate
+could not mask it — sha256's own FAILED line (the first seeding
+fired the clean-tree gate instead: perturbing the manifest dirties
+the tree; re-seeded as a clone-local commit, the attribution
+lesson recorded); (5) the message row ABSENT from the manifest,
+committed likewise — the grep gate's own ABORT; (6) the
+byte-identity STOP via an in-clone seeded variant minting from a
+HEIR-perturbed copy while comparing against the real file — the
+diff printed through the STOP branch. Rehearsal-environment note:
+a fresh clone lacks gpg.ssh.allowedsignersfile (repo-local config
+never clones) and step-0's VERIFY refuses until it is set — true
+of any clone, not of the real repo, where the config stands; the
+real author run needs nothing. This record rides an amend of the
+close-out commit touching ONLY this unfrozen pack — the kit,
+message file, and manifest bytes are identical before and after,
+so the rehearsal remains valid of every artifact it tested.

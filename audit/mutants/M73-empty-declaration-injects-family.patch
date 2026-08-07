@@ -1,0 +1,12 @@
+# MUTANT M73-empty-declaration-injects-family — provenance: the library-side injection: an EMPTY breadth declaration injects a nonempty family, so empty-declaration /= shipped route; kills b1a + b1c (the identity rows; oracle-phase transcript defect-d1.txt) Cut against the committed Phase-3 baseline a2d35d9 (the dyadic incident's law); drafted at the oracle phase as d1.
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -371,7 +371,7 @@
+       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+     nulls
+       | breadthNull br = nullConsts ++ nullGuards
+-      | otherwise = []
++      | otherwise = nullConsts  -- D1 SEEDED DEFECT: empty declaration injects
+     nullConsts =
+       [ Hyp ("nullconst", [0, k])
+             (chargeMass fragWidth (CMul (constCharge eg) arityMass))
