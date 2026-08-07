@@ -51,9 +51,9 @@ import Data.List (intercalate)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
-import PropLang.Enumerate (AgentS, agentObsPoints, enumerateWith,
-                           enumerateWithArity, fragFull, observeS,
-                           predictMassS, sentenceAgent)
+import PropLang.Enumerate (AgentS, agentObsPoints, breadthEmpty,
+                           enumerateWith, enumerateWithBreadth, fragFull,
+                           mkBreadth, observeS, predictMassS, sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
 import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
                           mintQ, policyPick, reindexUtility, substW,
@@ -299,6 +299,22 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       True <- pure (fromIntegral r == v && r >= 2)
       pure (Just r)
     Just _ -> Nothing
+  -- THE BREADTH KEY (the OB-19 heir; breadth-sitting-r0's authority):
+  -- world data declaring the richer family's extent. The door PARSES
+  -- the JSON shapes; mkBreadth is THE validator (the ladder as
+  -- climbed) - a Nothing from it IS the refusal, fail-closed.
+  brDecl <- case oGet "breadth" w of
+    Nothing -> pure breadthEmpty
+    Just bj -> do
+      ps <- case oGet "pairs" bj of
+        Nothing -> pure []
+        Just (JArr pj) -> mapM pairIx pj
+        Just _ -> Nothing
+      nl <- case oGet "null" bj of
+        Nothing -> pure False
+        Just (JBool bv) -> pure bv
+        Just _ -> Nothing
+      mkBreadth (maybe 2 id arK) ps nl
   n0 : nrest <- pure ns
   let inNs nm = nm `elem` ns
   if not (all (inNs . fst) gs && all (inNs . fst) menu)
@@ -315,7 +331,8 @@ hello st j = maybe (st, errLine "bad hello") id $ do
               -- test-pin/Arity, never a branch on 2
               pop = case arK of
                 Nothing -> enumerateWith nsN obsC thetaG gs mRhoG fragFull
-                Just k -> enumerateWithArity k nsN obsC thetaG gs mRhoG fragFull
+                Just k -> enumerateWithBreadth brDecl k nsN obsC thetaG gs
+                            mRhoG fragFull
               ag = sentenceAgent nsN pop
               uSaid = fmap fst uSaidB
               ubPart = case uSaidB of
@@ -338,6 +355,14 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       v0 : vrest <- pure vs
       pure (mkGrid nm (v0 :| vrest))
     pairGridNamed _ _ = Nothing
+    pairIx (JArr [xa, xb]) = (,) <$> jIx xa <*> jIx xb
+    pairIx _ = Nothing
+    jIx v = do
+      JNum d <- pure v
+      True <- pure (not (isNaN d || isInfinite d))
+      let r = round d :: Int
+      True <- pure (fromIntegral r == d)
+      pure r
 
 -- the obs atom codebook from a declared carrier (the same derivation
 -- Enumerate uses; minted here for the session record)

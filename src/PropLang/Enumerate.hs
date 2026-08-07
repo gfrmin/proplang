@@ -330,8 +330,66 @@ mkBreadth kAr ps nl
 -- abstract), so this function is total over its whole domain.
 enumerateWithBreadth :: Breadth -> Int -> Namespace -> Carrier Int -> Grid
                      -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
-enumerateWithBreadth _br kAr ns obsC eg guardGs mrg allowed =
+enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
   enumerateWithArity kAr ns obsC eg guardGs mrg allowed
+    ++ dpairs ++ nulls
+  where
+    has t = t `elem` allowed
+    obsSp = carrierSpace obsC
+    atomG = atomGridOf obsC
+    cAt :: Grid -> Int -> Expr env Rational
+    cAt g k = case mkC g k of
+      Just e -> e
+      Nothing -> error "enumerateWithBreadth: off-codebook (mkBreadth-validated)"
+    zero = cAt atomG 0
+    one = if gridSize atomG > 1 then cAt atomG 1 else zero
+    km1 = cAt atomG (kAr - 1)
+    eqE a b = If (Gt a b) falseE (If (Gt b a) falseE trueE)
+      where
+        trueE = Gt one zero
+        falseE = Gt zero one
+    catB j th = If (eqE (Var Z) (cAt atomG j)) (Mul km1 th) (Sub one th)
+    arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1)))
+    declMass = CMass (1 / fromIntegral (max 1 (length (breadthPairs br))))
+    unitLatent = mkSpace (thetaPt0 :| [])
+    thetaPt0 = case mkC eg 0 :: Maybe (Expr '[] Rational) of
+      Just (C _ _ v) -> v
+      _ -> error "enumerateWithBreadth: empty theta codebook"
+    dpairs =
+      [ Hyp ("dpair", [jHi, jLo, kt, a, b])
+            (chargeMass fragWidth (CMul (guardCharge ns tg eg) declMass))
+            unitLatent
+            (Code unitLatent obsSp
+               (If (Gt (Get nm) (cAt tg kt))
+                   (catB jHi (cAt eg a))
+                   (catB jLo (cAt eg b))))
+            Nothing
+      | has FBern, has FIf, has FConst, has FGuardHead
+      , (nm, tg) <- guardGs
+      , (jHi, jLo) <- breadthPairs br
+      , kt <- [0 .. gridSize tg - 1]
+      , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+    nulls
+      | breadthNull br = nullConsts ++ nullGuards
+      | otherwise = []
+    nullConsts =
+      [ Hyp ("nullconst", [0, k])
+            (chargeMass fragWidth (CMul (constCharge eg) arityMass))
+            unitLatent
+            (Code unitLatent obsSp (catB 0 (cAt eg k)))
+            Nothing
+      | has FBern, has FConst, k <- [0 .. gridSize eg - 1] ]
+    nullGuards =
+      [ Hyp ("nullguard", [0, kt, a, b])
+            (chargeMass fragWidth (CMul (guardCharge ns tg eg) arityMass))
+            unitLatent
+            (Code unitLatent obsSp
+               (catB 0 (If (Gt (Get nm) (cAt tg kt)) (cAt eg a) (cAt eg b))))
+            Nothing
+      | has FBern, has FIf, has FConst, has FGuardHead
+      , (nm, tg) <- guardGs
+      , kt <- [0 .. gridSize tg - 1]
+      , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
 
 -- ---------------------------------------------------------------------
 -- R17: THE CORPUS IS A DERIVATION. The normative hypothesis space is
