@@ -2,7 +2,8 @@
 
 The wire docket's third and last scheduled item, opened as builder
 round r1 on 2026-08-08, the day after breadth-freeze-r1 closed item
-two. The authority is the battery tag's scheduling ruling, verbatim
+two; round r2 (the author's verdict on r1, applied — see I.9)
+landed the same day. The authority is the battery tag's scheduling ruling, verbatim
 (`battery-freeze-r0`'s register, quoted at EXACT_PLAN.md:1250-1252):
 "the 14.9 wire scheduling (#20 first, the OB-19 heir second, #19
 1a-or-doctrine third)". Items one and two are CLOSED
@@ -20,8 +21,16 @@ below shows a wire host clearing the consumer's p* = 0.96 today
 with zero src change. The banked-evidence expiry law (the step-10
 clause: a banked verdict is a HYPOTHESIS at any boundary whose
 terms moved underneath it) is why this round re-executed instead of
-arguing — and the re-execution DISSOLVES the theta-ceiling half of
-the fork while SHARPENING the fragment-route half.
+arguing. [Amended at r2, per the author's verdict: the re-execution
+does NOT dissolve the ceiling — it shows the ceiling CHANGED OWNER.
+The hard-wiring half is dissolved; the finiteness bound remains —
+leg A rails at exactly 0.9 after three hundred ticks, at HEAD,
+today. A finite declared grid bounds the achievable predictive by
+its top rung, and no quantity of evidence crosses that bound;
+declaration moves the bound from the source to the consumer's
+hello. The fragment-route half is SHARPENED, and once the
+hard-wiring is stripped it is not a residual half — it is the
+entirety of what the filing was complaining about.]
 
 ## I.1 The docket rows this sitting owes
 
@@ -93,11 +102,76 @@ same binary, zero src change. Transcript verbatim (probe
 HEAD=23650b9 tree-clean date=2026-08-08
 ```
 
-Leg A REPRODUCES the filed ceiling curve (VIII.2 Finding 3's shape,
-now read as the declaring world's choice); leg B clears the named
-consumer's threshold at 40 ticks. The ceiling is the GRID'S,
-exactly as Finding 5 measured in-library — and at HEAD the grid is
-the hello's to declare. Horn 1a's substance ships today.
+WHAT THIS PROVES (restated at r2, per the author's verdict — the
+claim as first drafted overstated): the witness is NOT a
+measurement of a ceiling. The leg numbers are the arithmetic of a
+finite equal-weight grid posterior, and the r2 algebra check
+reproduces both to the last digit (Fraction-exact
+`sum(t^(n+1))/sum(t^n)` over each grid at n=10: leg A
+0.8620547831539012, leg B 0.9268314999070681 — identical to the
+wire's replies, which additionally documents that the minimal
+world's const rungs carry equal prior mass). The ceiling was never
+empirically open. What WAS open, and what the witness genuinely
+executes, is the PLUMBING: the shipped door accepts an arbitrary
+declared grid with zero src change and prices it through mention
+mass rather than refusing it. That is the finding; the transcript
+earns its place for it. Horn 1a's substance ships today — as
+plumbing, with the bound now the declaring world's (I.3b).
+
+## I.3b The rate-dependence record (r2; executed before installation)
+
+The author's verdict directed a consumer-facing caution into the
+witness record, drafted as: "under a true rate of, say, 0.95, the
+predictive settles near the rungs bracketing 0.95 and never
+approaches 0.97 at all", concluding "your threshold is reachable
+only if the underlying rate exceeds it and a rung sits above it."
+Executed before installation (the register's law), the drafted
+example came out DIFFERENTLY, and the executed truth is sharper.
+Transcript (deterministic count-exact block streams — a Bernoulli
+posterior depends on counts only, so a 19:1 block stream IS the
+rate-0.95 posterior; HEAD 23650b9):
+
+```
+--- leg C (leg-B grid, rate 0.95): grid max 0.97, rate 19/20
+    p1 after  100 ticks: 0.9524456491554794
+    p1 after  300 ticks: 0.9674792915457336  CLEARS 0.96
+    p1 after  600 ticks: 0.9699024568789718  CLEARS 0.96
+--- leg D (leg-B grid, rate 0.93): grid max 0.97, rate 93/100
+    p1 after  100 ticks: 0.912966090247952
+    p1 after  300 ticks: 0.9008608422803998
+    p1 after  600 ticks: 0.9000108500282918
+--- leg E (leg-B grid + 0.95 rung, rate 0.95): grid max 0.97
+    p1 after  100 ticks: 0.9510489133486548
+    p1 after  300 ticks: 0.9527274631500345
+    p1 after  600 ticks: 0.9506135969438756
+```
+
+Under rate 0.95 on the leg-B grid the predictive does NOT settle
+between the bracketing rungs — it converges on 0.97, the rung
+KL-NEAREST the true rate (KL(0.95||0.97) = 0.0058 <
+KL(0.95||0.9) = 0.0167), and CLEARS the threshold with the true
+rate below it. That is a FALSE CLEAR — for a governor, a worse
+failure than never clearing. Leg D shows the rail-below mode (rate
+0.93 is KL-nearer 0.9; p1 -> 0.9, never clears). Leg E shows the
+cure: one rung at the operating rate and the posterior settles
+there (0.951), correctly refusing the threshold — density near the
+decision region buys calibration, and mention mass is its declared
+price.
+
+THE CONSUMER SENTENCE AS EXECUTED (builder's corrected draft,
+riding to the sitting beside the author's drafted words above,
+which legs C/E falsify in their example half): p1 converges to the
+declared rung KL-nearest the true rate; a threshold p* is cleared
+iff THAT RUNG exceeds p* — which can happen with the true rate
+below p* (leg C, the false clear) and cannot happen on a grid
+capped below p* at any evidence volume (legs A/D). A consumer
+declaring a rung above its threshold must also declare rungs
+bracketing its expected operating rate, or the top rung will
+harvest the mass. The KL-nearest-rung sentence is the standard
+Bernoulli-mixture consistency argument, asserted here at the
+measured cells' scope; its cheapest falsifier for any other
+grid/rate pair is this probe re-run at that pair
+(`open19/rate-legs.py`, scratchpad).
 
 ## I.4 F3 — the fragment route at HEAD: still unrouted, but the gap NARROWED (executed)
 
@@ -161,14 +235,16 @@ license):
 
 ## I.7 The register — the sitting's questions (builder's drafted defaults)
 
-| id | question | drafted default |
+| id | question | drafted default (as amended at r2, per the author's verdict) |
 |---|---|---|
-| D1 | is the theta-ceiling half of #19 DISSOLVED-BY-MEASUREMENT? | YES — leg B is the executed exit the filing asked the bracket to have; #19 gets the witness posted and closes or narrows to the fragment route, at the author's word |
-| D2 | the residual fork on the fragment route: (i) schedule a wire door to the joint machinery, oracle-first; (ii) canonize VIII.4's doctrine and name the door as its demand-gated heir; (iii) permanent limitation with named heir | (ii) — the doctrine ("declared resolution, priced by mention bits, is world data; hard-wired resolution is a limitation with an heir") now has THREE landed instances: the theta codebook (E3), obs_arity (OB-5/W3), the breadth key (OB-19 heir). Canonizing describes shipped practice; the consumer's stated threshold no longer blocks on the route (I.3), so the door waits for measured demand under its own gate |
-| D3 | pwLadderCap: first live consumer, or retire with pins listed? | RETIRE WITH PINS (I.5: even the schedule horn's natural route bypasses it by the jp resolution; pins enumerated above, destinations the sitting's) |
-| D4 | the seven unreached breadth rows: grow the pool (a pricing mutant, a tie mutant, a cap mutant, a refusal mutant) or record as pool-relative? | GROW at the next boundary that touches audit/mutants/, not before — a pool is grown when an increment runs a matrix, and no matrix runs at a rulings-only sitting |
-| D5 | FL repairs (I.6) under the sitting's key? | OB-4 supersession note YES (one line); membrane-wire §3's permanent sentence rides D2's ruling |
-| D6 | sitting form: rulings-only (the dispositions-sitting precedent) or opens an increment? | RULINGS-ONLY unless D2 = (i); the docket's three scheduled items then stand CLOSED and further scope binds the roadmap-terminus clause |
+| D1 | the theta-ceiling half of #19: what dissolved? | THE HARD-WIRING HALF ONLY. The ceiling CHANGED OWNER, it did not dissolve: leg A rails at exactly 0.9 after 300 ticks at HEAD; a finite declared grid bounds the achievable predictive by its top rung and no evidence crosses it — declaration moves the bound from the source to the hello. #19 gets the plumbing witness AND the rate-dependence record (I.3b) posted; what closes is the hard-wiring complaint |
+| D2 | the fork on the fragment route: (i) schedule a wire door to the joint machinery, oracle-first; (ii) canonize the doctrine and name the door as its demand-gated heir; (iii) permanent limitation with named heir | (ii) — NOT because it describes shipped practice, but because there is no measured demand for the door and the consumer's threshold is reachable by declaration (I.3, with I.3b's calibration caveat). Stated plainly, as the ruling must: (ii) CANONIZES A LIMITATION AND DEFERS THE ONLY MACHINERY THAT REMOVES IT — a support that grows with evidence. Once the hard-wiring is stripped, the fragment route is the entirety of the filing's complaint; the ruling should say so rather than call it a residue |
+| D2a | the doctrine's wording | the GENERAL form (r2; the narrower "resolution" wording would need amending at the first non-resolution instance — the breadth key is family selection, not resolution): "DECLARED STRUCTURE IS WORLD DATA, PRICED BY MENTION BITS; HARD-WIRED STRUCTURE IS A LIMITATION WITH A NAMED HEIR." All three landed instances (E3 theta, obs_arity, the breadth key) fit without strain |
+| D2b | if (ii) rules: is the deferral self-enforcing? | YES — MAKE IT A LINT, NOT A NOTE (r2; conventions get forgotten, lints do not). Drafted row for tools/prefreeze-lint.sh, installed under the sitting's key: `grep -cE 'frontier|runPurchase|extValJ|runJointW|jointPrepost|Owned\b' src/PropLang/Host.hs` must be 0 until a ruled boundary lands the door; the row's comment names this sitting's ruling as its license and the door boundary as its retirement event. Two-sided demo owed at install (the kit law: a gate arrives with its red demonstrated) |
+| D3 | pwLadderCap: first live consumer, or retire? | FREEZE-IN-PLACE WITH PINS DISPOSITIONED (r2 — the cheaper honest form; "retire" as deletion would owe the four-check proof the verdict names, and nothing in this pack claims it was run). Per-pin: the field `pwLadderCap` (Purchase.hs:56) and its use `capM` (:130) — freeze-in-place, nothing reads them live; the five frozen fixture pins at 16 (test-dyadic four sites, test-f5 one) — KEPT-AS-RECORD, frozen suites stand untouched. No live consumer arrives on any horn: the jp resolution (EV-JP4/JP8) forecloses carry-over even if D2 = (i) |
+| D4 | the seven unreached breadth rows: grow the pool or record? | GROW UNDER A NAMED OBLIGATION, not an unscheduled condition (r2). Drafted row for OBLIGATIONS.md at the sitting's key: "OB-32 \| the breadth pool's four missing mutant classes (pricing/Kraft, tie-break, null-cap, door-refusal) cut and matrixed, the seven unreached rows re-triaged \| STANDING-CONDITIONAL (trigger: the next increment that runs a kill matrix) \| provenance: breadth-author-pack XX.5; minted at the #19 sitting" — the boundary audit's OB-row then watches it |
+| D5 | FL repairs under the sitting's key? | OB-4 supersession note YES (one line). membrane-wire §3's permanent sentence rides D2, in the author's drafted form, verbatim (r2): "achievable predictive confidence is bounded by the declared grid's extremes; refinement is the consumer's to declare and its price is mention bits; a support that grows with evidence is the named heir" — the limitation named is FINITENESS, which no declaration cures |
+| D6 | sitting form | rulings-only in SUBSTANCE but the acts write to the frozen layer (canon, lint, ledger, membrane sentence) — so the form is named (r2): THE SITTING-TAG FORM, the x5-sitting-r0 / breadth-sitting-r0 precedent — the touches land in the author's own sitting commit, manifest extended and re-signed at the seal, sealed by the author's signed sitting tag; kit-borne if the touch count warrants (TAG-MESSAGE-IS-A-FILE and L9 apply to any kit). If no increment opens, the wire docket's three scheduled items stand closed and further scope binds the roadmap-terminus clause |
 
 ## I.8 The claims register (live, per the canonized gate)
 
@@ -176,15 +252,55 @@ license):
 |---|---|
 | `thetaPoints` occurs nowhere in src/ | EXECUTED (I.2 grep, 0 files) |
 | the theta codebook is required hello data, any finite rationals | EXECUTED (legs A/B passed the door) + QUOTED (E3 comment, Host.hs at 23650b9) |
-| a wire host clears p* = 0.96 today with zero src change | EXECUTED (leg B transcript, 40 ticks) |
-| the filed nine-point grid rails at 0.9 on the shipped wire | EXECUTED (leg A transcript) |
-| the governor's own hello would clear 0.96 the same way | ARGUED-NOT-EXECUTED — falsifier named: run this witness on the governor's hello form (guards + utility declared); consumer-side, not in this repo |
+| the door accepts an arbitrary declared grid, zero src change, priced by mention mass | EXECUTED (legs A/B; the r2-restated F2 claim — the plumbing, not a ceiling measurement) |
+| a wire host clears p* = 0.96 today with zero src change | EXECUTED (leg B, 40 ticks) — SCOPED at r2: under a stream whose KL-nearest declared rung exceeds p* (leg B's all-ones stream is the most favourable a grid can receive); see I.3b for the false-clear and rail-below modes |
+| the leg A/B numbers are equal-weight grid-posterior arithmetic | EXECUTED (r2 algebra check: Fraction-exact sums reproduce both wire replies to the last digit; the author's verdict's claim, confirmed) |
+| under rate 0.95 the leg-B grid FALSE-CLEARS (p1 -> 0.97, the KL-nearest rung) | EXECUTED (leg C transcript) — falsifies the example half of the author's drafted consumer sentence, which is QUOTED in I.3b beside the transcript |
+| under rate 0.93 the leg-B grid rails at 0.9 and never clears | EXECUTED (leg D transcript) |
+| a rung at the operating rate cures the false clear (p1 settles at 0.951, refuses 0.96) | EXECUTED (leg E transcript) |
+| p1 converges to the KL-nearest declared rung (the general sentence) | ARGUED at the measured cells' scope — the standard Bernoulli-mixture consistency argument; cheapest falsifier named: re-run open19/rate-legs.py at any other grid/rate pair |
+| the governor's own hello would clear 0.96 the same way | ARGUED-NOT-EXECUTED — falsifier named: run this witness on the governor's hello form (guards + utility declared) AT ITS OPERATING RATE (I.3b: clearing depends on the true rate's KL-nearest rung, not on declaring a high rung); consumer-side, not in this repo |
 | Host.hs references none of Purchase/Lattice/refine | EXECUTED (grep count 0) |
 | the frontier machinery is unrouted from the wire | EXECUTED (Host's Membrane import list quoted; frontier refs in Host = 0) |
 | pwLadderCap has zero src consumers outside Purchase.hs | EXECUTED (I.5 grep; the Membrane hit is a comment) |
 | pwLadderCap does not carry over to JointWorld | QUOTED (the derivation note, Membrane.hs at 23650b9, EV-JP4/JP8) |
-| the doctrine has three landed instances | builder's synthesis — each instance cited (E3; obs_arity door Host.hs; breadth door Host.hs/Enumerate.hs), the "instance" reading is the sitting's to accept or refuse |
+| the doctrine has three landed instances | builder's synthesis — each instance cited (E3; obs_arity door Host.hs; breadth door Host.hs/Enumerate.hs); at r2 the instances are heterogeneous BY THE VERDICT'S READING (theta and obs_arity are resolution; the breadth key is family selection), which is D2a's argument for the general wording |
+
+## I.9 Round r2 — the verdict applied (2026-08-08)
+
+The author's freeze-review verdict on r1 is received and applied
+in place above, each amendment marked "(r2)". Its items, with
+their dispositions:
+
+1. F2's claim RESTATED to the plumbing; the verdict's algebra
+   claim EXECUTED and confirmed to the last digit (I.3).
+2. D1 corrected: the ceiling changed owner, it did not dissolve;
+   the verdict's finiteness sentences carried into the headline
+   and D1 verbatim in substance.
+3. D2 re-reasoned (no measured demand + reachable by declaration;
+   canonizes a limitation, defers the only machinery that removes
+   it); the fragment route named the entirety of the filing's
+   complaint, not a residue.
+4. The doctrine generalized to STRUCTURE (D2a) — the verdict's
+   wording, copied.
+5. The deferral made a drafted LINT row (D2b).
+6. D3 re-formed: freeze-in-place with per-pin dispositions; the
+   deletion horn declined (its proof not run, and not claimed).
+7. D4 attached to a drafted named obligation (OB-32,
+   STANDING-CONDITIONAL with named trigger).
+8. D6's form named: the sitting-tag form, x5-sitting-r0 /
+   breadth-sitting-r0 precedent.
+9. The consumer sentence EXECUTED BEFORE INSTALLATION (I.3b,
+   legs C/D/E): the drafted example half is falsified by leg C —
+   under rate 0.95 the leg-B grid does not settle between the
+   bracketing rungs, it converges on 0.97 and FALSE-CLEARS; the
+   corrected KL-nearest-rung sentence rides beside the author's
+   drafted words, both on the record, the sitting to choose. This
+   is the one r2 item where execution CONTRADICTED the verdict's
+   text rather than confirming it — reported, not silently
+   installed, per the standing law (a strengthening is a new
+   claim, and so is a correction).
 
 STOP: this round ends here. The sitting is the author's — the fork
-ruling, the pwLadderCap disposition, and every FL touch execute
-only under the author's key.
+ruling, the pwLadderCap disposition, the lint and OB-32 installs,
+and every FL touch execute only under the author's key.
