@@ -295,6 +295,22 @@ stays on the handshake state.
 > stays myopic until R; hosts must not plan against a preposterior
 > here until R's freeze re-states this section.]*
 
+**The permanent sentence (installed at the #19 sitting,
+doctrine-sitting-r0, 2026-08-08 — the re-statement the bracket above
+awaited; R closed at r1-freeze-r1, and the #19 fork ruled at this
+sitting):** achievable predictive confidence is bounded by the
+declared grid's extremes, and the predictive converges — in the
+limit, for an exchangeable stream against a const family — to the
+declared rung KL-nearest the true rate, which may lie above a
+threshold the true rate does not clear: a false clear that evidence
+sharpens rather than repairs. Refinement near the decision region is
+the consumer's to declare and its price is mention bits; a support
+that grows with evidence is the named heir, demand-gated behind the
+door deferral (prefreeze-lint L10). The witness record — the
+false-clear, rail-below, and cured cells, with the consumer's
+empirical-frequency check beside them — is issue #19's record and
+doctrine-author-pack I.3b.
+
 Decision tick — features + menu, no evidence; THE AGENT DOES NOT
 MOVE:
 

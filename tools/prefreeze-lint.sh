@@ -5,8 +5,10 @@
 # itself. Run from repo root BEFORE every freeze tag. Frozen artifacts
 # are read, never edited; this tool runs BESIDE the frozen gates.
 #
-# Rows L1-L5 FAIL the lint; L6 is ADVISORY (WARN) — its clause keeps
-# the non-scriptable half. Exit nonzero iff any FAIL.
+# Rows FAIL the lint except L6, which is ADVISORY (WARN) — its clause
+# keeps the non-scriptable half. Exit nonzero iff any FAIL. [Header
+# repaired at the #19 sitting, 2026-08-08: the line read "Rows L1-L5
+# FAIL the lint" from before L7-L9 landed.]
 set -u
 cd "$(dirname "$0")/.."
 
@@ -190,6 +192,37 @@ while IFS=: read -r f n cmd; do
   l9=1
 done < <(grep -HnE 'git tag .*(--message=|--message |-[a-zA-Z]*m[ "])' test*/freeze/*.sh 2>/dev/null)
 [ "$l9" -eq 0 ] && ok "L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit"
+
+# -- L10: THE DOOR DEFERRAL (the #19 sitting, doctrine-sitting-r0, ----------
+# 2026-08-08). D2 ruled (ii): the doctrine canonized ("declared
+# structure is world data, priced by mention bits; hard-wired structure
+# is a limitation with a named heir"), the wire door to the frontier
+# machinery DEFERRED, demand-gated. This row is the deferral's
+# scriptable half; the boundary that lands the door RETIRES it (the
+# retirement event, named here at install per RETIRE-UNTIL-N's law).
+# (a) THE UNIVERSE ROW (the sweep-universe law — the deferral grep's
+#     domain is pinned, never assumed): Host.hs is the ONLY src module
+#     carrying the wire's marker strings ("tick"/"world"; there is no
+#     literal "hello" — the handshake parses the "world" key). If
+#     another module starts handling the wire, this fires and the
+#     universe is re-derived. Raw-text grep: its red is a TRIAGE
+#     signal (a comment can carry a marker), never an auto-verdict.
+# (b) THE DEFERRAL GREP: comment/string-stripped Host.hs carries zero
+#     frontier symbols (the frozen stripper's --word mode — code
+#     tokens only, the L1 discipline; a comment mention cannot fire).
+l10=0
+doorfiles=$( { grep -rlF '"tick"' src/PropLang/*.hs; grep -rlF '"world"' src/PropLang/*.hs; } | sort -u)
+if [ "$doorfiles" != "src/PropLang/Host.hs" ]; then
+  bad "L10a wire-door universe moved: marker strings outside Host.hs ($(printf '%s' "$doorfiles" | tr '\n' ' '))"
+  l10=1
+fi
+for sym in frontier runPurchase extValJ runJointW jointPrepost Owned; do
+  if ! python3 audit/strip_comments.py --word "$sym" src/PropLang/Host.hs >/dev/null 2>&1; then
+    bad "L10b door deferral: frontier symbol '$sym' in Host.hs code (the #19 ruling defers the door)"
+    l10=1
+  fi
+done
+[ "$l10" -eq 0 ] && ok "L10 door deferral: universe = Host.hs only; 6 frontier symbols absent from Host code"
 
 echo "=== prefreeze-lint: $fails FAIL, $warns WARN ==="
 exit "$( [ "$fails" -eq 0 ] && echo 0 || echo 1 )"

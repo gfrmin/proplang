@@ -173,6 +173,103 @@ measured cells' scope; its cheapest falsifier for any other
 grid/rate pair is this probe re-run at that pair
 (`open19/rate-legs.py`, scratchpad).
 
+### I.3b.r3 — the verdict on r2, and the record as it ordered (2026-08-08)
+
+The author's verdict on r2 ACCEPTED the correction in full ("my
+drafted sentence was wrong and legs C-E are the reason"), named the
+error's class precisely — a modelling slip, not a typo: a discrete
+posterior concentrates on the KL-minimiser over the declared
+support, it does not spread across bracketing rungs — and checked
+the KL figures independently (0.00575 against 0.01671 at rate 0.95;
+at 0.93 the ordering reverses, 0.00553 against 0.02015, which is
+leg D). The r3 probe recomputes all four:
+
+```
+BUILD-STAMP: binary sha256/12=bc2110c604a9 HEAD=f79d7a4 dirty=7
+KL(0.95||0.97) = 0.00575   KL(0.95||0.9) = 0.01671
+KL(0.93||0.97) = 0.02015   KL(0.93||0.9) = 0.00553
+```
+
+(All four agree with the verdict's figures to the stated decimals.
+The stamp's dirty rows are this sitting's own in-flight edits; the
+probe's 100/300/600 checkpoints reproduce the r2 transcript
+byte-for-byte, which is the cross-binary semantic-identity check —
+the only src change between the runs is D3's comment.)
+
+The verdict then ordered three things into this record, each
+executed below.
+
+(1) THE SAFETY-DIRECTION FINDING, drawn out (the verdict: "the
+executed result is larger than a correction to my wording, and the
+pack has not yet drawn out how much larger"). The false clear is
+the STRUCTURAL consequence of a finite support: the posterior must
+put its mass somewhere inside the declared set, and when the truth
+falls between rungs it lands on the KL-projection — which nothing
+places on the safe side of a consumer's threshold. A governor
+holding p* = 0.96 acts at a true rate of 0.95: a false positive on
+the decision the threshold exists to gate. AND EVIDENCE SHARPENS
+IT: as ticks accumulate the posterior tends to point mass on 0.97,
+so the wire reports an increasingly confident number increasingly
+wrong about the rate — the one error mode in this repo that GROWS
+under data. Executed (the r3 run, the empirical-frequency gap
+|p1 - rate| beside each checkpoint):
+
+```
+--- leg C (leg-B grid, rate 0.95): rate 19/20
+    ticks    p1                      |p1 - rate|   clears 0.96?
+      100    0.9524456491554794      0.002446      no
+      300    0.9674792915457336      0.017479      CLEARS
+      600    0.9699024568789718      0.019902      CLEARS
+     1200    0.9699998636969391      0.020000      CLEARS
+--- leg E (leg-B grid + 0.95 rung, rate 0.95): rate 19/20
+    ticks    p1                      |p1 - rate|   clears 0.96?
+      100    0.9510489133486548      0.001049      no
+      300    0.9527274631500345      0.002727      no
+      600    0.9506135969438756      0.000614      no
+     1200    0.9500201619208000      0.000020      no
+```
+
+Leg C's gap RISES toward 0.02 while leg E's stays closed at every
+checkpoint — the sharpening is measured to n=1200, argued beyond
+(register row, falsifier named).
+
+(2) THE EMPIRICAL-FREQUENCY CHECK (the verdict's zero-cost
+mitigation, installed beside the corrected sentence): the consumer
+compares the reported predictive against the empirical frequency of
+its own stream — available today, no src change, no fragment
+machinery. A persistent gap is the false-clear signature (leg C
+reports 0.9675 while the stream runs at 0.95, and the gap grows); a
+well-placed rung closes it (leg E: 0.9506 against 0.95). P4's
+discipline holds, in the verdict's own words: a diagnostic the
+consumer COMPUTES, never a data-dependent adjustment to the
+declared prior.
+
+(3) THE TWO SCOPE CONDITIONS, composed into the corrected sentence
+and every permanent record that carries it. The "iff" is ASYMPTOTIC
+— the sentence says "in the limit", and leg C's own 100-tick row
+(0.9524, does not clear) stands as the finite-n illustration, so a
+consumer does not read the threshold as crossable by waiting. And
+the EXCHANGEABILITY CONDITION is NAMED: KL-nearest-rung convergence
+is the standard result for an i.i.d./exchangeable stream against a
+const family — exactly what legs C-E measure (count-exact block
+streams equal the exchangeable posterior at every block-boundary
+checkpoint, since a const-family Bernoulli posterior depends on
+counts only); the sentence carries the condition it was executed
+under rather than inviting the general reading.
+
+THE SENTENCE AS INSTALLED (issue #19's record and membrane-wire §3;
+the author's amended draft — offered as "Something like:" — with
+the two scope conditions composed in, the composition the builder's
+under the verdict's own scope-conditions directive): "achievable
+predictive confidence is bounded by the declared grid's extremes,
+and the predictive converges — in the limit, for an exchangeable
+stream against a const family — to the declared rung KL-nearest the
+true rate, which may lie above a threshold the true rate does not
+clear: a false clear that evidence sharpens rather than repairs.
+Refinement near the decision region is the consumer's to declare
+and its price is mention bits; a support that grows with evidence
+is the named heir, demand-gated behind the door deferral."
+
 ## I.4 F3 — the fragment route at HEAD: still unrouted, but the gap NARROWED (executed)
 
 - The filing's core grep holds:
@@ -238,12 +335,12 @@ license):
 | id | question | drafted default (as amended at r2, per the author's verdict) |
 |---|---|---|
 | D1 | the theta-ceiling half of #19: what dissolved? | THE HARD-WIRING HALF ONLY. The ceiling CHANGED OWNER, it did not dissolve: leg A rails at exactly 0.9 after 300 ticks at HEAD; a finite declared grid bounds the achievable predictive by its top rung and no evidence crosses it — declaration moves the bound from the source to the hello. #19 gets the plumbing witness AND the rate-dependence record (I.3b) posted; what closes is the hard-wiring complaint |
-| D2 | the fork on the fragment route: (i) schedule a wire door to the joint machinery, oracle-first; (ii) canonize the doctrine and name the door as its demand-gated heir; (iii) permanent limitation with named heir | (ii) — NOT because it describes shipped practice, but because there is no measured demand for the door and the consumer's threshold is reachable by declaration (I.3, with I.3b's calibration caveat). Stated plainly, as the ruling must: (ii) CANONIZES A LIMITATION AND DEFERS THE ONLY MACHINERY THAT REMOVES IT — a support that grows with evidence. Once the hard-wiring is stripped, the fragment route is the entirety of the filing's complaint; the ruling should say so rather than call it a residue |
+| D2 | the fork on the fragment route: (i) schedule a wire door to the joint machinery, oracle-first; (ii) canonize the doctrine and name the door as its demand-gated heir; (iii) permanent limitation with named heir | (ii) — NOT because it describes shipped practice, but because there is no measured demand for the door and the consumer's threshold is reachable by declaration (I.3, with I.3b's calibration caveat). Stated plainly, as the ruling must: (ii) CANONIZES A LIMITATION AND DEFERS THE ONLY MACHINERY THAT REMOVES IT — a support that grows with evidence. Once the hard-wiring is stripped, the fragment route is the entirety of the filing's complaint; the ruling should say so rather than call it a residue. AMENDED at r3 (the verdict on r2): the thing canonized is not only an expressiveness limitation — the false clear is a SAFETY-DIRECTION defect, confidently wrong in the permissive direction and SHARPENED by evidence (I.3b.r3), and the ruling writes it down as it is: the canon clause and membrane §3 both name both halves |
 | D2a | the doctrine's wording | the GENERAL form (r2; the narrower "resolution" wording would need amending at the first non-resolution instance — the breadth key is family selection, not resolution): "DECLARED STRUCTURE IS WORLD DATA, PRICED BY MENTION BITS; HARD-WIRED STRUCTURE IS A LIMITATION WITH A NAMED HEIR." All three landed instances (E3 theta, obs_arity, the breadth key) fit without strain |
-| D2b | if (ii) rules: is the deferral self-enforcing? | YES — MAKE IT A LINT, NOT A NOTE (r2; conventions get forgotten, lints do not). Drafted row for tools/prefreeze-lint.sh, installed under the sitting's key: `grep -cE 'frontier|runPurchase|extValJ|runJointW|jointPrepost|Owned\b' src/PropLang/Host.hs` must be 0 until a ruled boundary lands the door; the row's comment names this sitting's ruling as its license and the door boundary as its retirement event. Two-sided demo owed at install (the kit law: a gate arrives with its red demonstrated) |
+| D2b | if (ii) rules: is the deferral self-enforcing? | YES — MAKE IT A LINT, NOT A NOTE (r2; conventions get forgotten, lints do not). Drafted row for tools/prefreeze-lint.sh, installed under the sitting's key: `grep -cE 'frontier|runPurchase|extValJ|runJointW|jointPrepost|Owned\b' src/PropLang/Host.hs` must be 0 until a ruled boundary lands the door; the row's comment names this sitting's ruling as its license and the door boundary as its retirement event. Two-sided demo owed at install (the kit law: a gate arrives with its red demonstrated). REPAIRED at r3 — the verdict convicted this draft's HAND-ENUMERATED UNIVERSE (the grep enforced the property only under the unchecked assumption that Host.hs is the whole door; the sweep-universe law says the domain derives or is pinned, never assumed). As installed, L10 has two parts: (a) the UNIVERSE row — Host.hs is the ONLY src module carrying the wire's marker strings, raw-grep, its red a TRIAGE signal per the verdict's comment caveat; measurement at install found the drafted markers themselves half-wrong — there is NO literal "hello" in src (the handshake parses the "world" key), so the pinned markers are "tick"/"world", a fact the draft assumed and the install checked; (b) the deferral grep through the frozen stripper's --word mode (audit/strip_comments.py — comment/string-immune, code tokens only: the caveat's cure for the symbol half, and the L1 discipline reused rather than a second stripper written). Demo transcript at I.10 |
 | D3 | pwLadderCap: first live consumer, or retire? | FREEZE-IN-PLACE WITH PINS DISPOSITIONED (r2 — the cheaper honest form; "retire" as deletion would owe the four-check proof the verdict names, and nothing in this pack claims it was run). Per-pin: the field `pwLadderCap` (Purchase.hs:56) and its use `capM` (:130) — freeze-in-place, nothing reads them live; the five frozen fixture pins at 16 (test-dyadic four sites, test-f5 one) — KEPT-AS-RECORD, frozen suites stand untouched. No live consumer arrives on any horn: the jp resolution (EV-JP4/JP8) forecloses carry-over even if D2 = (i) |
-| D4 | the seven unreached breadth rows: grow the pool or record? | GROW UNDER A NAMED OBLIGATION, not an unscheduled condition (r2). Drafted row for OBLIGATIONS.md at the sitting's key: "OB-32 \| the breadth pool's four missing mutant classes (pricing/Kraft, tie-break, null-cap, door-refusal) cut and matrixed, the seven unreached rows re-triaged \| STANDING-CONDITIONAL (trigger: the next increment that runs a kill matrix) \| provenance: breadth-author-pack XX.5; minted at the #19 sitting" — the boundary audit's OB-row then watches it |
-| D5 | FL repairs under the sitting's key? | OB-4 supersession note YES (one line). membrane-wire §3's permanent sentence rides D2, in the author's drafted form, verbatim (r2): "achievable predictive confidence is bounded by the declared grid's extremes; refinement is the consumer's to declare and its price is mention bits; a support that grows with evidence is the named heir" — the limitation named is FINITENESS, which no declaration cures |
+| D4 | the seven unreached breadth rows: grow the pool or record? | GROW UNDER A NAMED OBLIGATION, not an unscheduled condition (r2). Drafted row for OBLIGATIONS.md at the sitting's key: "OB-32 \| the breadth pool's four missing mutant classes (pricing/Kraft, tie-break, null-cap, door-refusal) cut and matrixed, the seven unreached rows re-triaged \| STANDING-CONDITIONAL (trigger: the next increment that runs a kill matrix) \| provenance: breadth-author-pack XX.5; minted at the #19 sitting" — the boundary audit's OB-row then watches it. RENUMBERED AT MINT (r3): the row lands as OB-33 — the OB-32 seat was already the build-stamp obligation (minted at breadth-sitting-r0), a collision this draft missed; the ledger row records the renumbering so the two texts reconcile |
+| D5 | FL repairs under the sitting's key? | OB-4 supersession note YES (one line). membrane-wire §3's permanent sentence rides D2, in the author's drafted form, verbatim (r2): "achievable predictive confidence is bounded by the declared grid's extremes; refinement is the consumer's to declare and its price is mention bits; a support that grows with evidence is the named heir" — the limitation named is FINITENESS, which no declaration cures. SUPERSEDED at r3 by the verdict's own amendment: that draft "names only boundedness — the benign half"; the sentence as INSTALLED is the author's r2-verdict draft (permissive-direction failure named) with the two scope conditions composed in — I.3b.r3 item (3) quotes it verbatim |
 | D6 | sitting form | rulings-only in SUBSTANCE but the acts write to the frozen layer (canon, lint, ledger, membrane sentence) — so the form is named (r2): THE SITTING-TAG FORM, the x5-sitting-r0 / breadth-sitting-r0 precedent — the touches land in the author's own sitting commit, manifest extended and re-signed at the seal, sealed by the author's signed sitting tag; kit-borne if the touch count warrants (TAG-MESSAGE-IS-A-FILE and L9 apply to any kit). If no increment opens, the wire docket's three scheduled items stand closed and further scope binds the roadmap-terminus clause |
 
 ## I.8 The claims register (live, per the canonized gate)
@@ -265,6 +362,11 @@ license):
 | pwLadderCap has zero src consumers outside Purchase.hs | EXECUTED (I.5 grep; the Membrane hit is a comment) |
 | pwLadderCap does not carry over to JointWorld | QUOTED (the derivation note, Membrane.hs at 23650b9, EV-JP4/JP8) |
 | the doctrine has three landed instances | builder's synthesis — each instance cited (E3; obs_arity door Host.hs; breadth door Host.hs/Enumerate.hs); at r2 the instances are heterogeneous BY THE VERDICT'S READING (theta and obs_arity are resolution; the breadth key is family selection), which is D2a's argument for the general wording |
+| the four KL figures (0.00575/0.01671 at rate 0.95; 0.00553/0.02015 at 0.93) | QUOTED (the r2 verdict — the author's own check) + EXECUTED (the r3 probe recomputes all four to five decimals, transcript I.3b.r3) |
+| leg C's empirical-frequency gap GROWS with evidence — the false clear sharpens | EXECUTED (r3 long-horizon transcript, gap column to n=1200; a 4800-tick run was started and KILLED mid-flight — exact-rational cost grows quadratically and the run was contending with gate 5's timing-gated drift row, the heir's loud-box incident in the making; the horizon was cut, not the claim) |
+| leg E's gap stays closed at every checkpoint | EXECUTED (same transcript) |
+| the sharpening continues beyond n=1200 | ARGUED — the same consistency argument, asserted past the measured cells; cheapest falsifier named: extend the r3 checkpoints (`open19/rate-legs-r3.py`) |
+| Host.hs is the ONLY src module carrying the wire's marker strings | EXECUTED (the L10a universe grep at install; the measurement also falsified the drafted markers — no literal "hello" exists in src, the handshake parses the "world" key, so the pinned markers are "tick"/"world") |
 
 ## I.9 Round r2 — the verdict applied (2026-08-08)
 
@@ -304,3 +406,118 @@ their dispositions:
 STOP: this round ends here. The sitting is the author's — the fork
 ruling, the pwLadderCap disposition, the lint and OB-32 installs,
 and every FL touch execute only under the author's key.
+
+[r3 note: the paragraph above was true when written; the author's
+verdict on r2 then delegated the acts — I.10.]
+
+## I.10 Round r3 — the verdict on r2 applied; the sitting EXECUTED ON DELEGATION (2026-08-08)
+
+The author's verdict on r2: the correction ACCEPTED in full; the
+safety-direction consequence ordered into the record (I.3b.r3); the
+empirical-frequency check ordered in beside the corrected sentence;
+two scope conditions ordered onto every permanent carrier of the
+sentence; D2b's lint universe convicted of hand-enumeration and
+repaired at install; D1, D2a's wording, D3's freeze-in-place with
+per-pin dispositions, D4's obligation, D5's OB-4 note, and D6's
+sitting-tag form all approved as drafted ("The declined deletion
+horn is declined for the right reason"). Its closing directive,
+verbatim — the delegation this round executes under:
+
+"Post the witness with legs C-E, the corrected consumer sentence
+with its two scope conditions and the empirical-frequency check
+beside it, and the amended permanent sentence. Then the sitting's
+acts are yours."
+
+THE ACTS, as executed (builder key throughout, the recorded-
+delegation form — the membrane precedent; the author's
+doctrine-sitting-r1 via doctrine-sitting/close.sh is the close
+condition, R-D22):
+
+1. The witness POSTED to issue #19:
+   https://github.com/gfrmin/proplang/issues/19#issuecomment-5225471410
+   — legs A-E, the
+   corrected sentence with its scope conditions, the
+   empirical-frequency check, the permanent sentence.
+2. CLAUDE.md: the doctrine clause canonized (D2a's wording; the
+   two-sided limitation written down as it is, per the verdict —
+   boundedness AND the permissive-direction false clear that
+   evidence sharpens).
+3. tools/prefreeze-lint.sh: L10 installed — (a) the universe row,
+   (b) the deferral grep through the frozen stripper's --word mode
+   (comment-immune). PLUS one FL header repair executed under this
+   boundary: the header read "Rows L1-L5 FAIL the lint; L6 is
+   ADVISORY" — falsified since L7-L9 landed; repaired in place with
+   the falsified words quoted (inventory extended at this round: the
+   line was not in I.6's candidates; found adjacent to the L10
+   install, repaired AT the boundary as the FL law requires, never
+   between boundaries).
+4. OBLIGATIONS.md: OB-33 minted (D4; renumbered from the drafted
+   OB-32 — seat collision with the build-stamp row, recorded in the
+   ledger row); OB-4's dated supersession note appended (D5).
+5. membrane-wire.md §3: the permanent sentence installed directly
+   after the R-era bracket it re-states (the bracket kept as
+   historical record — the FL class's form for historical text).
+6. src/PropLang/Purchase.hs: the D3 freeze-in-place disposition
+   recorded at the pin site (comment-only; the five fixture pins
+   named KEPT-AS-RECORD; deletion declined, its proof not run).
+   JP2-d6's RETIRE-UNTIL-N is DISCHARGED at its named N.
+7. MANIFEST.sha256: the four changed frozen rows re-hashed
+   (CLAUDE.md, OBLIGATIONS.md, membrane-wire.md,
+   tools/prefreeze-lint.sh); three doctrine-sitting/ rows added
+   (r0-tag-msg.txt, r1-tag-msg.txt, close.sh — the
+   tag-message-is-a-file law).
+8. Verification at the final bytes: prefreeze-lint 0 FAIL 1 WARN
+   with L10 live (196 manifest rows verified, all 68 tags verify,
+   L7 full-corpus build green, L10 "universe = Host.hs only; 6
+   frontier symbols absent from Host code"; the WARN is L5's
+   nothing-to-check branch — this pack carries no SAT/overlay
+   section because no oracle was cut, correct for a rulings
+   sitting); gate 5 = cabal test all -j1 EXIT=0, ALL 13 SUITES PASS
+   (battery, breadth, dyadic, exact-acceptance, exact-properties,
+   f5, jointprep, lawful, lawful-independence, pins, readout,
+   trampoline, transport — the breadth suite's timing-gated drift
+   row ran QUIET and in-band; its build stamp prints src-dirty=1,
+   which is this sitting's own comment-only D3 disposition on
+   Purchase.hs, committed in this very commit — the stamp doing
+   exactly what OB-32 minted it for);
+   boundary audit re-run at the sitting's bytes: M5=0 H=0 OB=0 BF=0
+   (standing observation: 41 quantifier-bearing lines in this pack,
+   covered by the live claims register I.8 — the triage row's
+   design). One operational incident
+   recorded honestly: the first r3 probe (4800-tick horizon) and
+   the first gate-5 run were STARTED CONCURRENTLY and both killed —
+   the probe's exact-rational cost grows quadratically and its
+   99.5%-CPU host was contending with the breadth suite's
+   timing-gated drift row (the heir's loud-box incident, about to
+   recur); both re-ran serialized, probe first at n=1200.
+
+THE L10 TWO-SIDED DEMO (the kit law — a gate arrives with its red
+demonstrated; standalone-row form, the readout L9 precedent):
+
+```
+== red (b): whole-word frontier CODE token seeded into Host.hs ==
+L10b RED FIRES: 'frontier' found in Host.hs code
+== green (b): a COMMENT mention cannot fire (the stripper's immunity) ==
+L10b comment seed: CLEAN - comment-immune as installed
+== red (a): a wire marker string seeded into a second module ==
+L10a RED FIRES: universe = [src/PropLang/Belief.hs src/PropLang/Host.hs]
+== restores verified == (git status empty on both seeded files)
+```
+
+(Seeds: `frontier = ()` appended to Host.hs — the exact whole-word
+code token; `-- frontier` as a comment — CLEAN, demonstrating the
+stripper's immunity, the caveat's cure; `wireTick = "tick"` appended
+to Belief.hs — the universe row fires naming both files. Each seed
+reverted by git checkout, verified clean. The full-lint green run
+with L10 PASS is the transcript below.)
+
+Custody: the sitting commit and the doctrine-sitting-r0 tag are the
+BUILDER's key under the delegation quoted above (fresh, explicit,
+per-instance; recorded verbatim in the tag message, which is a
+committed file minted by -F). The sitting CLOSES at the author's
+own doctrine-sitting-r1 (close.sh: step-0 live signature probe,
+r0 verification, -F mint, byte-identity record) — R-D22's re-tag,
+which cannot be delegated. The publish and issue #19's close ride
+that r1 on the author's word. If the r1 lands with no increment
+opened, the wire docket's three scheduled items all stand closed
+and further scope binds the roadmap-terminus clause.

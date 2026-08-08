@@ -57,6 +57,18 @@ data PurchaseWorld = PurchaseWorld
     -- ^ the rung ladder's reach when the clock is free — WORLD
     -- ECONOMICS, declared by the caller (the X.3 repair landed;
     -- the baked kLadder constant is dead)
+    --
+    -- FROZEN-IN-PLACE at the #19 sitting (doctrine-sitting-r0,
+    -- 2026-08-08): JP2-d6's RETIRE-UNTIL-N row returned here as
+    -- scheduled and ruled — no live consumer arrives on any horn
+    -- (zero src consumers outside this module; EV-JP4/JP8
+    -- forecloses the JointWorld carry-over: the cap was the baked
+    -- horizon, and the horizon is the declared stream's length).
+    -- Deletion was DECLINED, not earned: it would owe the
+    -- four-check proof, which was not run. This field and its one
+    -- use (capM below) stay as the myopic face's pins; the five
+    -- frozen fixture pins at 16 (test-dyadic four sites, test-f5
+    -- one) are KEPT-AS-RECORD in the frozen suites.
   }
   deriving (Eq, Show)
 

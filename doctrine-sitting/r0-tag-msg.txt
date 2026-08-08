@@ -1,0 +1,65 @@
+the #19 sitting (1a-or-doctrine) EXECUTED ON RECORDED DELEGATION -
+the wire docket's third and last scheduled item, ruled in the
+author's two written verdicts of 2026-08-08 on opening rounds r1/r2
+and executed by the builder under the author's closing delegation,
+quoted verbatim: "Post the witness with legs C-E, the corrected
+consumer sentence with its two scope conditions and the
+empirical-frequency check beside it, and the amended permanent
+sentence. Then the sitting's acts are yours."
+
+THE RULINGS (the author's verdicts, applied; the register is
+doctrine-author-pack.md I.7, the round records I.9/I.10):
+
+- D1: the hard-wiring half of #19 dissolved at the exact re-founding
+  (thetaPoints zero src occurrences; theta REQUIRED hello data, E3);
+  the ceiling CHANGED OWNER - finiteness remains, no declaration
+  cures it. The witness posted to issue #19 (legs A-E).
+- D2: (ii) - the doctrine canonized, the door deferred, demand-gated.
+  Stated as the ruling must: it canonizes a limitation and defers the
+  only machinery that removes it; the fragment route is the entirety
+  of the filing's complaint. The limitation is TWO-SIDED: boundedness
+  (benign) AND the KL-nearest-rung false clear - a safety-direction
+  defect that evidence SHARPENS rather than repairs (legs C/D/E; the
+  leg-C gap rises to 0.0200 at 1200 ticks while leg E's closes to
+  0.00002).
+- D2a: the doctrine at the general level, canonized in CLAUDE.md:
+  DECLARED STRUCTURE IS WORLD DATA, PRICED BY MENTION BITS;
+  HARD-WIRED STRUCTURE IS A LIMITATION WITH A NAMED HEIR.
+- D2b: the deferral is lint L10, not a note - (a) the universe row
+  (Host.hs pinned as the only wire-door module by its marker strings
+  "tick"/"world"; the verdict's hand-enumeration conviction repaired,
+  and the drafted "hello" marker found not to exist in src), (b) the
+  frontier-symbol grep through the frozen stripper's --word mode
+  (comment-immune). Two-sided demo in the pack; the door boundary
+  retires the row.
+- D3: pwLadderCap FROZEN-IN-PLACE with pins dispositioned (deletion
+  declined - its proof not run); JP2-d6's RETIRE-UNTIL-N discharged
+  at its named N, the disposition recorded at the pin site.
+- D4: the breadth-pool obligation minted as OB-33,
+  STANDING-CONDITIONAL (trigger: the next kill-matrix increment);
+  drafted as OB-32 and renumbered at mint - the seat was the
+  build-stamp row's (collision recorded in the ledger row).
+- D5: OB-4's dated supersession note; membrane-wire section 3's
+  permanent sentence installed - the author's amended draft with the
+  two scope conditions composed in (in the limit; exchangeable
+  stream against a const family).
+- D6: the sitting-tag form, delegated: THIS TAG is the BUILDER's key
+  under the delegation above; the author's doctrine-sitting-r1
+  (doctrine-sitting/close.sh) is the close condition per R-D22, and
+  the publish plus issue #19's close ride that r1.
+
+THE RECORD: the author's drafted consumer example was executed
+before installation and falsified by leg C; the author's verdict on
+r2 accepted the correction in full ("my drafted sentence was wrong
+and legs C-E are the reason") and ordered the safety-direction
+consequence written down as it is. The corrected sentence rides with
+its scope conditions in every permanent carrier.
+
+Acts in this commit: CLAUDE.md doctrine clause; prefreeze-lint L10 +
+one FL header repair (falsified words quoted in place); OBLIGATIONS
+OB-33 + OB-4 note; membrane-wire section 3 permanent sentence;
+Purchase.hs freeze-in-place comment; MANIFEST re-hashed and extended
+(doctrine-sitting/ rows); doctrine-author-pack round r3. Verified at
+these bytes: prefreeze-lint 0 FAIL with L10 live; gate 5 = cabal
+test all -j1 green, 13 suites; witness posted:
+https://github.com/gfrmin/proplang/issues/19#issuecomment-5225471410

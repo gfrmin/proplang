@@ -549,6 +549,33 @@ Every step-6+ increment follows the recursive two-phase discipline:
    derives-and-asserts: grep the literal from the frozen file, assert
    nonempty, assert the seed took. A hand copy tracking a generated
    value is correct at birth and wrong at the first regeneration.
+   One clause canonized at the #19 sitting (doctrine-sitting-r0,
+   2026-08-08; the 1a-or-doctrine fork's D2 ruling, the wire docket's
+   last scheduled item, executed on the author's recorded delegation
+   with the author's r1 re-tag the close condition): DECLARED
+   STRUCTURE IS WORLD DATA, PRICED BY MENTION BITS; HARD-WIRED
+   STRUCTURE IS A LIMITATION WITH A NAMED HEIR. Three landed
+   instances — the theta codebook (E3), obs_arity, the breadth key —
+   heterogeneous by design (resolution and family selection), which
+   is why the clause says STRUCTURE. The ruling's consequence,
+   written down as it is: canonizing the doctrine CANONIZES A
+   LIMITATION AND DEFERS THE ONLY MACHINERY THAT REMOVES IT. The
+   limitation is two-sided: a finite declared support bounds the
+   achievable predictive by its extremes (the benign half), AND the
+   posterior concentrates on the declared rung KL-nearest the true
+   rate — in the limit, exchangeable stream, const family — which
+   can sit on the PERMISSIVE side of a consumer's threshold: a false
+   clear that evidence SHARPENS rather than repairs, the one error
+   mode in this repo that grows under data (#19's legs C/D/E, the
+   witness record; the consumer's mitigation is declared density
+   near its operating rate, priced by mention mass, and its
+   diagnostic is the empirical-frequency check — a consumer-side
+   comparison, never a data-dependent adjustment to the declared
+   prior). The named heir — a support that grows with evidence —
+   stays demand-gated behind the door deferral, whose scriptable
+   half is lint L10 (the frontier-symbol grep over the pinned
+   wire-door universe); the boundary that lands the door retires
+   the row.
 3. **Author freeze.** The author reviews the oracle and the increment's
    under-determination register, absorbs any spec amendments (frozen
    texts change only at freeze boundaries, only by the author), then
