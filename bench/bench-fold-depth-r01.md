@@ -583,6 +583,18 @@ bounded sufficient statistics and need not carry O(t) bits — is banked as
 measurement only; post-terminus it re-enters through the two-sided gate
 with a consumer's registered demand, exactly as #24 did.)
 
+**The dyadic lever does not touch this** (said plainly here because GD-15
+is scheduled for r46, and the grid should not be expected to buy what only
+the fold representation can): P1 is *already fully dyadic* and still grows
+~19.8 bits/tick. Snapping a declaration to dyadic rationals shrinks the
+**coefficient** — the 81x collapse above; ~101k bits/tick at the real
+declaration versus ~20 on the dyadic profile — but the **linearity
+survives**, because the growth lives in the exact fold's likelihood
+product, not in the grid's number format. No declaration-side change
+rescues the operating point; only a change in how the folded state is
+represented (the bounded-sufficient-statistics observation above) changes
+the class. [Added at the r3 ruling round, 2026-09-02.]
+
 ## r02.5 — status
 
 The band stays blank (now for a measured reason, not an absent input).
