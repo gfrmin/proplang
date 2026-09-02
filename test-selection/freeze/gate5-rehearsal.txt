@@ -1,0 +1,134 @@
+THE GATE-5 REHEARSAL — cabal test all -j1 against the SAT overlay,
+with the drift-a red DISPOSED by a clean-HEAD control
+======================================================================
+Date: 2026-09-02.  Overlay = prophecy.diff + the stanza on a scratch
+copy; run SOLO, serialized (-j1), on the restored (ALL ROWS PASS)
+overlay.
+
+RESULT: 19 of 20 breadth rows OK; every OTHER suite PASS; the ONE red
+is breadth's drift-a — a FROZEN TIMING INSTRUMENT, not a correctness
+row.
+
+  breadth drift-a (overlay): window [6..30] mean 998.7 ms vs frozen
+    band 431.1 +/-15%; all five windows ~2.3x high UNIFORMLY;
+    deep/shallow ratio 1.8072 (frozen 2.0092).
+  every breadth CORRECTNESS row (b1a..b8a, the wire==reference route
+    b5a/b5c, the #21 minority-tie b3a/b3b, the null-face b4a/b4c/b4d,
+    Kraft/pricing b2*, entropy b7a, exchangeability b8a, the ms
+    instrument's own b6a/b6b/b6d): OK.
+
+THE CONTROL (the harness-gate law: a loud-box claim is DEMONSTRATED,
+never asserted).  The same breadth suite, same box, run against the
+CLEAN-HEAD ORACLE TREE (~/git/proplang: the policyPickKS stub present
+but policyPick and Host routing UNCHANGED from HEAD — i.e. the
+overlay's selection change ABSENT):
+
+  breadth drift-a (clean HEAD): window [6..30] mean 1144.7 ms — RED,
+    and HIGHER than the overlay's (the box loaded further between
+    runs); deep/shallow ratio 1.6643.  All 19 correctness rows OK.
+
+READING.  The drift red fires IDENTICALLY (worse, even) with the
+overlay's selection change absent, so it is attributable to BOX LOAD,
+not to the implementation the overlay prophesies.  Corroboration:
+(i) uniform ~2.3x inflation across all five windows is a load
+signature, not an algorithmic one — an O(width) selection change
+cannot uniformly scale a base-route timing that XIII.5 pins as unable
+to move when the wire route changes; (ii) the load-INVARIANT
+deep/shallow ratio sits near frozen in both runs (1.66 / 1.81 vs
+2.01), which an algorithmic slowdown would not preserve; (iii) the
+drift instrument's own case law is a catalog of this exact class (the
+#19 sitting's contention incident; a2d35d9's parallel-suite 1.9060).
+
+DISPOSITION — ALREADY RULED, RIDES THIS INCREMENT'S CLOSE.  drift-a's
+absolute-ms band is licensed for RE-MINT TO RATIO FORM "at the next
+boundary that touches the oracle" (the #24 sitting r1 register R8;
+carried into chooseeu-sitting-r0 clause 6 as "drift-a re-minted to
+RATIO form").  This selection freeze re-signs the MANIFEST that covers
+the breadth oracle, so it IS that boundary; the ratio form is the
+load-invariant measure the control just vindicated.  The real gate 5
+at the implementation phase runs on a QUIET box, serialized, AFTER
+that re-mint — and the re-mint is what makes it green where the frozen
+absolute-ms band cannot be on this hardware.
+
+CONSEQUENCE FOR THIS ORACLE-PHASE COMMIT: NONE.  The oracle's
+correctness is proven (the ten selection rows red at HEAD / green vs
+overlay; the birth pool separated; every breadth CORRECTNESS row green
+vs overlay).  The single red is a frozen instrument's known
+load-fragility with an already-scheduled repair; it convicts the
+hardware and the absolute-ms band, not the prophecy.
+
+RAW: overlay run + control, verbatim, appended below.
+--- OVERLAY RUN (cabal test all -j1, breadth tail) ---
+Test suite breadth: RUNNING...
+BUILD-STAMP exe=/var/tmp/claude/claude-1000/-home-g-git-proplang/40f1e434-c3c6-4fc4-9f8d-de8500e92088/scratchpad/overlay/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/t/breadth/build/breadth/breadth size=8141632 mtime=2026-09-02 10:28:04.889724885 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+BUILD-STAMP sha256=b28751e0bca5184e544fe62290936437bec7a026c62d17608839e84cc671b61d HEAD=99f6b2a src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=2
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 998.7 ms
+  REPORT window [50..80] mean 1543.5 ms
+  REPORT window [100..130] mean 1695.2 ms
+  REPORT window [150..180] mean 2604.2 ms
+  REPORT window [250..280] mean 3102.8 ms
+  REPORT deep/shallow mean ratio 1.8072 (frozen 2.0092)
+FAIL (658.47s)
+      test-breadth/Breadth.hs:601:
+      drift window [6..30]: 998.7 within +/-15% of frozen 431.1
+      Use -p '/drift-a the base route'\''s five windowed means and deep\/shallow mean ratio sit inside the minted bands/' to rerun this test only.
+  b1 untouched route + models closed form
+    b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world):           OK (0.48s)
+    b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null):                 OK (0.01s)
+    b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route:                    OK (0.32s)
+  b2 Kraft and pricing
+    b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass):                            OK
+    b2b the declared-pair mention mass is 1/|S|: same coordinates at |S|=2 weigh HALF of |S|=1 (Rational ==): OK
+    b2c independent pricing: the null face's weight is invariant in the pair declaration (Rational ==):       OK
+  REPORT prices: dpair 14.92 bits, nullconst 7.17 bits, nullguard 15.92 bits
+    b2d prices are finite and positive (REPORT: bits printed):                                                OK
+  b3 the #21 semantics: the minority tie BREAKS
+    b3a declared [(3,2),(2,3)]: minority argmax 3 with P(3) > 1/2; dominant argmax stays 2:                     REPORT minority vec: [6.068404881736037e-2,6.068404881736037e-2,6.068279626622565e-2,0.7572650572816932,6.068404881736037e-2]
+OK  REPORT MAP ("dpair",[3,2,0,7,8]) @ 0.6785
+ (0.38s)
+    b3b the MAP is the declared pair sentence (pack IV P3 D2: dpair [3,2,0,7,8], mass > 1/2):                 OK
+  b4 the null face and the K=2 door
+    b4a null-dominant stream: extended p0 breaks the structural cap (pack IV P2 criteria S1/S2):                REPORT p0 shipped 0.225000 (caps 0.250000 frozen / 0.225000 tight)  extended 0.743928  MAP ("nullconst",[0,6]) @ 0.5503
+OK (2.31s)
+    b4c the door refuses: null at K=2, invalid pairs, a==b, out of range, the null atom, duplicates:          OK
+    b4d an empty declaration IS the absent key: hello replies byte-identical:                                 OK
+  b5 wire == reference route
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        OK (35.05s)
+    b5c the breadth hello survives the pipes (spawned host, the g6 form):                                     OK
+  b7 entropy_bits (OB-31)
+    b7a the wire's entropy_bits == the independent computation from posterior masses (never entropyAgent):      REPORT entropy wire 3.891045235004 independent 3.891045235004 delta 0.000e0
+OK (0.02s)
+  b8 walk-free exchangeability
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (5.30s)
+  b6 the ms/tick instrument
+    b6a population pin: the base route is 8005 sentences (the #21 live curves' operating point):              OK
+--- CLEAN-HEAD CONTROL (cabal test breadth -j1) ---
+breadth oracle (b1-b8 + drift; breadth-sitting-r0)
+  drift (gated diff-vs-frozen)
+    drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands:       REPORT window [6..30] mean 1144.7 ms
+  REPORT window [50..80] mean 1849.3 ms
+  REPORT window [100..130] mean 2534.4 ms
+  REPORT window [150..180] mean 3395.9 ms
+  REPORT window [250..280] mean 2984.1 ms
+  REPORT deep/shallow mean ratio 1.6643 (frozen 2.0092)
+FAIL (815.16s)
+      drift window [6..30]: 1144.7 within +/-15% of frozen 431.1
+      Use -p '/drift-a the base route'\''s five windowed means and deep\/shallow mean ratio sit inside the minted bands/' to rerun this test only.
+    b1a empty breadth IS the shipped route: count and folded minority vec exact == (probe21 world):           OK (0.45s)
+    b1b heir models == the closed form over declared data (consumer world, S=2 pairs + null):                 OK (0.01s)
+    b1c K=2 with empty breadth: count and an 8-tick folded vec exact == the shipped route:                    OK (0.31s)
+    b2a kraft: heir < 1 AND strictly above base (the declaration ADDS prior mass):                            OK
+    b2c independent pricing: the null face's weight is invariant in the pair declaration (Rational ==):       OK  REPORT prices: dpair 14.92 bits, nullconst 7.17 bits, nullguard 15.92 bits
+OK (2.18s)
+    b4d an empty declaration IS the absent key: hello replies byte-identical:                                 OK
+    b5a breadth hello: models the closed form; decide p_codes == the reference vector:                        OK (31.74s)
+    b5c the breadth hello survives the pipes (spawned host, the g6 form):                                     OK (0.01s)
+OK (0.02s)
+    b8a the walk-free heir corpus: forward fold == reversed fold, exact (Rational ==):                        OK (4.70s)
+    b6b the ratio gate at matched depth and window, with the composition record (XIII.5):                       REPORT base ev+ro 749.8 ms/tick, heir ev+ro 1040.0 ms/tick, ratio 1.387 (bar 2.0)
+OK (106.36s)
+1 out of 20 tests failed (961.32s)
+Test suite breadth: FAIL
+EXIT=1

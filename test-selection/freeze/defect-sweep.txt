@@ -1,0 +1,154 @@
+THE SEEDED-DEFECT SWEEP — the six ruled defects + Ge-at-think, each
+patched into the OVERLAY's fold and run against the full suite
+======================================================================
+Date: 2026-09-02.  Base: the SAT overlay (sat-run.txt); each variant =
+clean overlay + ONE defect patch; the clean overlay re-verified ALL
+ROWS PASS after the sweep (the driver's last act, below).
+
+THE DEFECT SPECS (chooseeu-sitting-r0 clause 3's enumeration: the
+env-wiring class both-challenger/both-incumbent/swapped + the
+comparison-operator class Ge/Lt/Le, seeded at the fold's comparison;
+plus Ge at pickWire's THINK comparison — the s9 row's seat):
+  d1 both-challenger : incumbent's Expect wears the CHALLENGER's
+                       assignment (the shipped chooseEU wiring).
+                       RIDER: the rewiring orphans the iFeats binder
+                       under -Werror, so the minimal mutant carries
+                       the _iFeats rename beside it — found when the
+                       first d1 run FAILED TO COMPILE and the sweep
+                       printed nothing for it (the assert-loud driver
+                       refused to record a false kill); repaired and
+                       re-run.  audit/mutants inherits this rider.
+  d2 both-incumbent  : challenger's Expect wears the INCUMBENT's.
+  d3 swapped         : each side wears the OTHER's.
+  d4 Ge (tie-flip)   : challenger displaces on TIES (operands and
+                       mints both flipped: promote iff NOT inc>chal).
+  d5 Lt (inversion)  : challenger displaces iff strictly WORSE.
+  d6 Le              : challenger displaces iff not strictly better.
+  d7 Ge-at-think     : d4's flip at pickWire's think comparison.
+
+THE KILL MATRIX (X = the row FIRES under the defect):
+
+row                                      d1   d2   d3   d4   d5   d6   d7
+s1.wire24-clockless-argmax                X    X    X    .    X    X    .
+s2.lib24-fold-eq-ks                       X    X    X    .    X    X    .
+s3.lib24-tie-head                         .    .    .    X    .    X    .
+s4.lib-w8                                 X    X    X    .    X    X    .
+s5.lib-w16                                X    X    X    .    X    X    .
+s6.lib-guarded-eq                         .    .    X    .    X    X    .
+s7.lib-w32-fold-argmax                    X    X    X    .    X    X    .
+s8.wire24-clock-highprice-argmax          X    X    X    .    X    X    .
+s9.wire24-clock-price0-tie-ext            X    X    X    .    X    X    X
+s10.wire-w32-clock-argmax                 X    X    X    .    X    X    .
+
+READINGS.
+1. EVERY DEFECT IS KILLED (no empty column) — the family SEPARATES
+   the ruled enumeration, the minimal-separating condition met.
+2. EVERY ROW FIRES for at least one defect — red-reachability across
+   the board (with s1's natural red and s2-s6's stub reds besides,
+   red-run.txt).
+3. TWO UNIQUE SEATS PROVEN AT BIRTH: d4 is killed ONLY by s3 (the
+   tie world is the tie-flip's one witness) and d7 ONLY by s9 (the
+   think-tie cell; nothing else touches the think comparison's tie).
+4. SIBLING SHADOWING, RECORDED NOT RESOLVED: s4/s5/s7 (and s8/s10)
+   carry identical kill signatures within this pool — the width
+   ladder's cells separate by CONSTRUCTED ANSWER and by feasibility
+   regime, not by defect signature.  Per the dyadic R7 pre-ruling,
+   sibling shadowing within a new suite is a verdict at the NEXT
+   matrix run (OB-33's, at this increment's close), never a
+   close-blocker.
+5. THE s6 REPAIR THIS SWEEP BOUGHT: profileP2's theta grid is
+   symmetric around 1/2, which made every candidate's EU exactly 0 —
+   a tie cell in disguise; d5 could not fire there and d4/d6 fired
+   for the WRONG reason (the hidden tie).  The frozen s6 carries an
+   asymmetric grid and the departure is documented in the suite's
+   provenance header.  After the repair: d5 and d3 fire s6 through
+   live belief differences; d4 no longer fires it (no ties left).
+6. THE 4a KILL-LAW CONDITION (the r1 verdict: "if that mutant does
+   not go red, the row is not installed"): the identifier-reversion
+   mutant is EXTENSIONALLY d1 at the call site; s1 fires under d1
+   here, and s1's red at HEAD (red-run.txt) IS the reversion red on
+   the shipped tree — while the standing corpus's green at HEAD is
+   the zero-cost proof that NO standing row kills the reversion:
+   s1's kill is unique against the pre-increment corpus by the
+   corpus's own record.
+
+RAW SWEEP OUTPUT (the driver's, verbatim):
+=== DEFECT d1-both-challenger ===
+FAIL s1.wire24-clockless-argmax
+FAIL s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+FAIL s4.lib-w8
+FAIL s5.lib-w16
+PASS s6.lib-guarded-eq
+FAIL s7.lib-w32-fold-argmax
+FAIL s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+FAIL s10.wire-w32-clock-argmax
+=== DEFECT d2-both-incumbent ===
+FAIL s1.wire24-clockless-argmax
+FAIL s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+FAIL s4.lib-w8
+FAIL s5.lib-w16
+PASS s6.lib-guarded-eq
+FAIL s7.lib-w32-fold-argmax
+FAIL s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+FAIL s10.wire-w32-clock-argmax
+=== DEFECT d3-swapped ===
+FAIL s1.wire24-clockless-argmax
+FAIL s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+FAIL s4.lib-w8
+FAIL s5.lib-w16
+FAIL s6.lib-guarded-eq
+FAIL s7.lib-w32-fold-argmax
+FAIL s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+FAIL s10.wire-w32-clock-argmax
+=== DEFECT d4-ge-tieflip ===
+PASS s1.wire24-clockless-argmax
+PASS s2.lib24-fold-eq-ks
+FAIL s3.lib24-tie-head
+PASS s4.lib-w8
+PASS s5.lib-w16
+PASS s6.lib-guarded-eq
+PASS s7.lib-w32-fold-argmax
+PASS s8.wire24-clock-highprice-argmax
+PASS s9.wire24-clock-price0-tie-ext
+PASS s10.wire-w32-clock-argmax
+=== DEFECT d5-lt-inversion ===
+FAIL s1.wire24-clockless-argmax
+FAIL s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+FAIL s4.lib-w8
+FAIL s5.lib-w16
+FAIL s6.lib-guarded-eq
+FAIL s7.lib-w32-fold-argmax
+FAIL s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+FAIL s10.wire-w32-clock-argmax
+=== DEFECT d6-le ===
+FAIL s1.wire24-clockless-argmax
+FAIL s2.lib24-fold-eq-ks
+FAIL s3.lib24-tie-head
+FAIL s4.lib-w8
+FAIL s5.lib-w16
+FAIL s6.lib-guarded-eq
+FAIL s7.lib-w32-fold-argmax
+FAIL s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+FAIL s10.wire-w32-clock-argmax
+=== DEFECT d7-ge-at-think ===
+PASS s1.wire24-clockless-argmax
+PASS s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+PASS s4.lib-w8
+PASS s5.lib-w16
+PASS s6.lib-guarded-eq
+PASS s7.lib-w32-fold-argmax
+PASS s8.wire24-clock-highprice-argmax
+FAIL s9.wire24-clock-price0-tie-ext
+PASS s10.wire-w32-clock-argmax
+=== RESTORED: clean overlay re-run ===
+ALL ROWS PASS

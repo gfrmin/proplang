@@ -1,0 +1,47 @@
+selection-freeze-r0 -- the selection increment's ORACLE FREEZE
+
+This signed tag freezes the selection oracle (test-selection/) as the
+(3) increment's binding red set, under chooseeu-sitting-r0's ruling
+(R-SHAPE rev 2).  From this signature the suite, its transcripts, and
+the prophecy are as frozen as test/ -- the builder implements until
+green and may not touch them.
+
+THE ORACLE: ten rows.  s1 pins the NEW consumer behaviour on issue
+number 24's world through the shipped wire (head loses, the declared
+argmax wins; red at HEAD is the defect itself; its seeded defect is
+the identifier reversion, whose kill is unique against the standing
+corpus by the corpus's own green).  s2-s6 pin the fold to the
+one-sentence reference policyPickKS over the minimal separating
+family (number-24 values, the tie world, widths 8/16, the guarded
+belief-differentiating world), red at HEAD through the oracle-phase
+stub with the live side forced first.  s7/s10 are the
+beyond-the-cliff capability cells (w=32, fold-only; the reference's
+own cost is the printed residual).  s8/s9 pin the clock path's
+outcomes (the prohibitive-price argmax and the price-0 think-tie,
+where strict displacement keeps the external act).
+
+THE BIRTH POOL: seven seeded defects (env-wiring both-challenger /
+both-incumbent / swapped; comparison Ge / Lt / Le; Ge at the think
+comparison), every one killed, every row red-reachable, two unique
+seats proven at birth (the tie world alone kills the tie-flip; the
+think-tie cell alone kills Ge-at-think).  Kill matrix and readings:
+test-selection/freeze/defect-sweep.txt.
+
+THE PROPHECY: freeze/prophecy.diff -- policyPickKS receives
+policyPick's sentence body; policyPick becomes the pairwise-
+substituting fold; Host's clockless arm routes policyPick; pickWire
+folds the externals then the think row as final challenger.  SAT: all
+ten rows green through cabal (flag- and package-faithful), the
+trampoline/pins/f5 suites green against the same overlay, the full
+gate-5 rehearsal transcript beside it.  Applied byte-for-byte at the
+implementation phase; deviation is stop-and-report.
+
+RIDERS DEFERRED TO THE CLOSE (chooseeu-sitting-r0 clause 4): OB-24's
+discharge, OB-33's matrix over d1-d7 landed in audit/mutants/, the
+six mandates, FL-1/FL-2/FL-3, L5 rev 2, the OBLIGATIONS rows, drift-a
+re-minted to ratio form, the close tag.
+
+CUSTODY: oracle built and transcribed by the builder (unsigned
+commits, by design); this tag, the stanza splice, and the MANIFEST
+extension are the author's own acts from the author's shell.  The tag
+message is a FILE.

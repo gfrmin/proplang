@@ -2144,3 +2144,112 @@ make-conferral.sh has none.
 The sitting commit is AMENDED in place (it had not been pushed;
 nothing outward existed to orphan), so one sitting commit still
 carries the whole record, this row included.
+
+---
+
+# PART IV — THE (3) INCREMENT'S ORACLE PHASE (opened at chooseeu-sitting-r0, executed 2026-09-02)
+
+The signature landed (chooseeu-sitting-r0 over 99f6b2a, minted via
+close.sh, published with --follow-tags on the author's "go") and the
+increment opened ORACLE-FIRST the same day.  Everything below is
+builder work on the unfrozen surface; the freeze that makes it binding
+is the author's, per the kit.
+
+## IV.1 — what was built
+
+- **The type surface** (src, unfrozen): `Membrane.policyPickKS` —
+  policyPick's exact signature under the reference's future name,
+  exported, stubbed to a total refusal; the derivation line and the
+  stub's role are in its doc comment.  Nothing else in src moved.
+- **The oracle** (`test-selection/Selection.hs`, 10 rows, plain
+  exitcode main, base+proplang only so the L7 corpus row's standalone
+  `ghc -isrc` build reaches it): s1 the 4a wire row on #24's world;
+  s2-s6 the extensional family (fold vs policyPickKS vs constructed
+  answers — #24's values, the tie world, w8/w16, the guarded
+  belief-differentiating world); s7/s10 the w32 fold-only capability
+  cells; s8/s9 the clock path (prohibitive price; the price-0
+  think-tie).  ONE GENERATOR: each cell's value list generates both
+  its library utility and its wire hello.  Residuals printed by the
+  suite itself (the w16 equality ceiling; minimal-family scope).
+- **The stanza draft** (`test-selection/stanza.cabal.draft`) — the
+  author splices it (proplang.cabal is manifest-covered).
+- **The prophecy** (`test-selection/freeze/prophecy.diff`, 7 hunks,
+  applies clean by dry-run): policyPickKS gets the sentence body,
+  policyPick the pairwise-substituting fold (22-node pick per
+  comparison, challenger-cover env, CL-3 strict), Host's clockless
+  arm routes policyPick, pickWire folds externals then the think row
+  as final challenger; Host's import list cleaned (chooseEU loses its
+  last src consumer — clause 3 realized).
+
+## IV.2 — the four runs (transcripts in test-selection/freeze/)
+
+1. **red-run.txt** — at HEAD + stub, --skip-heavy: s1 red NATURALLY
+   (reply act 1 vs demanded act 2 — the #24 defect verbatim); s2-s6
+   red through the stub with the live side forced and PRINTED in each
+   FAIL line (act 2 / tie-head act 1 / act 5 / act 9 / the guarded
+   pick — attribution by inspection); s7/s10 skipped loudly with the
+   A1/F9 measurement cited; s8/s9 GREEN (capability pins — the clock
+   path already substitutes; their reds are d-sweep rows).
+2. **sat-run.txt** — the overlay through CABAL (flag- and
+   package-faithful): all ten green, w32 cells instant under the
+   fold; trampoline 17/17, pins, f5 green against the same overlay;
+   the full gate-5 rehearsal beside it.
+3. **defect-sweep.txt** — d1-d7, every defect killed, every row
+   fires somewhere, two unique seats at birth (s3 alone kills d4; s9
+   alone kills d7).  The s1 kill-law condition: s1 fires under d1,
+   and the standing corpus's green at HEAD is the zero-cost proof
+   the reversion's kill is s1's alone.
+4. **register.md** — eight under-determination rows for the freeze
+   (the policyPickKS name; the --skip-heavy form; the s6 theta
+   departure; the d1 _iFeats rider; sibling shadowing recorded; the
+   think-side scope reading; generated-not-quoted hellos; the
+   rehearsal concurrency note).
+
+## IV.3 — two incidents, recorded
+
+- **The d1 compile red**: the both-challenger rewiring orphans the
+  iFeats binder under -Werror; the first d1 run failed to build and
+  the sweep driver printed NOTHING for it — the assert-loud patch
+  step refused to record a false kill.  The minimal mutant now
+  carries the _iFeats rename; audit/mutants inherits the rider.
+- **The s6 tie-in-disguise**: profileP2's theta grid is symmetric
+  around 1/2, so the copied guarded world's EUs were all exactly 0 —
+  d5 could not fire and d4/d6 fired through the hidden tie.  Found
+  BY the sweep at the oracle phase (exactly what the birth pool is
+  for); the frozen s6 carries an asymmetric grid with the departure
+  documented at the copy site.  After the repair d3/d5/d6 fire s6
+  through live belief differences and d4 correctly does not.
+
+- **The invalid first gate-5 rehearsal**: the background `cabal test
+  all -j1` shared its dist-newstyle with the defect sweep's cabal
+  runs — mid-run library rebuilds under a walking suite's feet.  It
+  reported breadth 19/20; the failing row's identity was lost to a
+  tail-truncated capture whose EXIT line read the pipe's tail status
+  (the close.sh SIGPIPE class, recommitted same-day in a new coat).
+  Ruled EVIDENCE OF NOTHING; the second rehearsal ran solo on the
+  restored overlay with a pipefail-honest capture and is the one the
+  freeze directory carries.  The serialization law generalizes: a
+  shared dist-newstyle is a shared instrument (register row 8).
+
+- **The gate-5 rehearsal's one red, disposed** (gate5-rehearsal.txt):
+  cabal test all -j1 against the overlay came back 19/20 on breadth
+  with the ONE red being drift-a, the frozen timing instrument
+  (window [6..30] 998.7 ms vs frozen 431.1).  The harness-gate law's
+  demonstration: the SAME suite on the CLEAN-HEAD oracle tree (the
+  overlay's selection change absent) reds drift-a HIGHER (1144.7 ms)
+  on this same loaded box, every correctness row OK in both — so the
+  red is BOX LOAD, exonerating the prophecy.  drift-a's ratio-form
+  re-mint (r1 register R8, clause 6) is the already-scheduled repair
+  and rides this increment's close; the real gate 5 runs quiet,
+  serialized, after it.  NONE of this blocks the oracle-phase commit
+  (correctness proven).  The FIRST rehearsal (shared dist-newstyle,
+  tail-pipe exit) is struck above as evidence of nothing.
+
+## IV.4 — what waits on the author (the freeze)
+
+Per test-selection/freeze/freeze-kit.md: review (register strikeable
+row by row), the stanza splice, the MANIFEST extension + re-sign, the
+selection-freeze-r0 tag by -F over the freeze commit (message drafted
+at freeze/r0-tag-msg-draft.txt).  Then implementation: prophecy.diff
+byte-for-byte, gates 1-7, and the close's riders (clause 6, all
+previously ruled).

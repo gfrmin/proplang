@@ -1,0 +1,13 @@
+-- THE SELECTION ORACLE'S STANZA (to be spliced into proplang.cabal at
+-- this increment's freeze by the author — proplang.cabal is
+-- manifest-covered; the trampoline precedent).  The suite is
+-- dependency-free beyond the library so the L7 corpus row's
+-- standalone `ghc -isrc` build reaches it identically.
+test-suite selection
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Selection.hs
+    hs-source-dirs:   test-selection
+    build-depends:    base
+                    , proplang
+    default-language: GHC2021

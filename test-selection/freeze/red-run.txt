@@ -1,0 +1,21 @@
+THE RED RUN — test-selection at HEAD 99f6b2a + the policyPickKS stub
+(the final suite bytes; flag set: -Wall -Werror -Wincomplete-patterns
+-Wincomplete-uni-patterns, ghc -isrc standalone — the L7 corpus form;
+run 2026-09-02, --skip-heavy per the suite's printed reason)
+
+test-selection — the selection increment's oracle (chooseeu-sitting-r0)
+RESIDUAL: equality cells stop at w=16 — the reference's own cost
+  (probe A1: walked term ~14.5*2^w); w=32 cells are fold-only.
+RESIDUAL: the family is the MINIMAL SEPARATING family (clause 4b);
+  breadth is OB-33's matrix's job, pools are grown.
+FAIL s1.wire24-clockless-argmax — reply {"act": {"act": 1}, "p1": 0.5, "entropy_bits": 2.5361356166885067, "p0": 0.5, "argmax_code": 0, "p_argmax": 0.5, "p_codes": [0.5, 0.5]} lacks "act": {"act": 2}
+FAIL s2.lib24-fold-eq-ks — policyPick vs policyPickKS: Right (Just [("act",2 % 1)]) /= Left "policyPickKS: oracle-phase stub (selection increment)"
+FAIL s3.lib24-tie-head — policyPick vs policyPickKS: Right (Just [("act",1 % 1)]) /= Left "policyPickKS: oracle-phase stub (selection increment)"
+FAIL s4.lib-w8 — policyPick vs policyPickKS: Right (Just [("act",5 % 1)]) /= Left "policyPickKS: oracle-phase stub (selection increment)"
+FAIL s5.lib-w16 — policyPick vs policyPickKS: Right (Just [("act",9 % 1)]) /= Left "policyPickKS: oracle-phase stub (selection increment)"
+FAIL s6.lib-guarded-eq — policyPick vs policyPickKS: Right (Just [("act",0 % 1)]) /= Left "policyPickKS: oracle-phase stub (selection increment)"
+SKIP s7.lib-w32-fold-argmax (--skip-heavy: infeasible at the pre-increment expansion BY MEASUREMENT, A1/F9; its red rides the defect-overlay transcript)
+PASS s8.wire24-clock-highprice-argmax
+PASS s9.wire24-clock-price0-tie-ext
+SKIP s10.wire-w32-clock-argmax (--skip-heavy: infeasible at the pre-increment expansion BY MEASUREMENT, A1/F9; its red rides the defect-overlay transcript)
+EXIT=1

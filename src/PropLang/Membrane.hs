@@ -45,6 +45,7 @@ module PropLang.Membrane
   , runEpisode
   , DelibWorld (..)
   , policyPick
+  , policyPickKS
   , preposteriorV
   , runTrampoline
   , ExtOpt (..)
@@ -321,6 +322,26 @@ policyPick ns feats atomG u cands = case cands of
              case lookup code (zip (gridPoints codeG) cands) of
                Just picked -> Right (Just picked)
                Nothing -> Left "policyPick: off-code dispatch (unreachable)")
+
+-- | THE ONE-SENTENCE REFERENCE SEAT (the selection increment's
+-- type surface; chooseeu-sitting-r0 clause 2, amendment 2: the
+-- reference stays IN THE LIBRARY — exported, zero host consumers,
+-- pinned).  Type derivation (the §8c forward rule): policyPick's
+-- exact signature — this binding is the NORMATIVE one-sentence
+-- chooseKS selection under its own name, so the fold that becomes
+-- policyPick's body can be pinned to it extensionally (the
+-- optimisation law; g2's successor one level up).
+-- ORACLE-PHASE STUB: at the increment's implementation this carries
+-- policyPick's chooseKS sentence body verbatim, and policyPick
+-- becomes the pairwise-substituting fold pinned to it.  Until then
+-- every comparison row in test-selection/ is red through this
+-- refusal — total, attributable, compile-enabling.
+policyPickKS :: Namespace -> Features -> Grid
+             -> Expr '[Rational, Rational] Rational
+             -> [(Features, Belief Int)]
+             -> Either String (Maybe (Features, Belief Int))
+policyPickKS _ _ _ _ _ =
+  Left "policyPickKS: oracle-phase stub (selection increment)"
 
 -- the sayable act-choice value (the vActS shape, evaluated — the
 -- sentence route; the comparison lives in evalx)
