@@ -2190,7 +2190,9 @@ is the author's, per the kit.
    pick — attribution by inspection); s7/s10 skipped loudly with the
    A1/F9 measurement cited; s8/s9 GREEN (capability pins — the clock
    path already substitutes; their reds are d-sweep rows).
-2. **sat-run.txt** — the overlay through CABAL (flag- and
+2. **sat-run.txt** — the overlay through CABAL under the stanza's
+   exact flag set `-Wall -Werror -Wincomplete-patterns
+   -Wincomplete-uni-patterns` (flag- and
    package-faithful): all ten green, w32 cells instant under the
    fold; trampoline 17/17, pins, f5 green against the same overlay;
    the full gate-5 rehearsal beside it.
