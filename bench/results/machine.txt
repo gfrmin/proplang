@@ -1,0 +1,156 @@
+== 2026-08-18T10:56:21Z wave A start
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8771MB avail=6924MB  swap: used=7529MB
+loadavg: 1.10 2.17 2.70
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   5.1 qemu-system-x86
+   4.4 claude
+   3.6 tailscaled
+   3.5 claude
+   3.3 claude
+== 2026-08-18T11:19:48Z wave A end
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8752MB avail=6943MB  swap: used=7518MB
+loadavg: 3.12 3.09 3.06
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.9 qemu-system-x86
+   4.2 claude
+   3.6 tailscaled
+   3.5 claude
+   3.3 claude
+== 2026-08-18T11:19:48Z wave B start
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8770MB avail=6925MB  swap: used=7518MB
+loadavg: 3.12 3.09 3.06
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.9 qemu-system-x86
+   4.2 claude
+   3.6 tailscaled
+   3.5 claude
+   3.3 claude
+== 2026-08-18T13:20:00Z wave B end
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=9538MB avail=6157MB  swap: used=8577MB
+loadavg: 3.70 4.20 4.48
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.3 qemu-system-x86
+   4.0 claude
+   3.6 tailscaled
+   3.4 claude
+   3.3 claude
+== 2026-08-18T13:20:00Z wave C start
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=9534MB avail=6160MB  swap: used=8577MB
+loadavg: 3.70 4.20 4.48
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.3 qemu-system-x86
+   4.0 claude
+   3.6 tailscaled
+   3.4 claude
+   3.3 claude
+== 2026-08-18T14:35:01Z wave C end
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=9019MB avail=6676MB  swap: used=9515MB
+loadavg: 4.64 4.70 6.22
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+  67.6 python3
+   4.2 claude
+   4.1 qemu-system-x86
+   3.6 tailscaled
+   3.5 claude
+== 2026-08-18T14:35:02Z wave D start
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8989MB avail=6705MB  swap: used=9515MB
+loadavg: 4.64 4.70 6.22
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+  67.7 python3
+   4.2 claude
+   4.1 qemu-system-x86
+   3.6 tailscaled
+   3.5 claude
+== 2026-08-18T15:20:07Z wave D end
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8325MB avail=7370MB  swap: used=9353MB
+loadavg: 4.97 4.50 4.51
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+  63.1 pytest
+   4.1 claude
+   3.9 qemu-system-x86
+   3.5 tailscaled
+   3.4 claude
+== 2026-08-18T15:20:54Z wave E start (solo controls)
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8291MB avail=7403MB  swap: used=9350MB
+loadavg: 2.83 4.00 4.34
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.1 claude
+   3.9 qemu-system-x86
+   3.5 tailscaled
+   3.4 claude
+   3.3 claude
+== 2026-08-18T15:22:54Z wave E end
+host=thinkpad kernel=7.1.8-arch1-3 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8299MB avail=7395MB  swap: used=9346MB
+loadavg: 1.46 3.08 3.96
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+   4.1 claude
+   3.9 qemu-system-x86
+   3.5 tailscaled
+   3.4 claude
+   3.3 claude
+== 2026-09-01T05:17:36Z wave R start (P2real, serialized)
+host=thinkpad kernel=7.1.11-arch1-1 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8374MB avail=7321MB  swap: used=5118MB
+loadavg: 4.05 4.03 3.45
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+  97.4 julia
+   9.2 clickhouse-serv
+   6.2 mbsync
+   4.5 claude
+   4.1 claude
+== 2026-09-01T05:19:23Z wave R start (P2real, serialized)
+host=thinkpad kernel=7.1.11-arch1-1 HEAD=94fd4eb src-dirty=0
+cpu=Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz cores=8 governor=powersave
+mem: total=15695MB used=8405MB avail=7290MB  swap: used=5106MB
+loadavg: 2.49 3.48 3.31
+ghc=9.10.3 cabal=3.16.1.0
+top cpu consumers (other than this bench):
+  %CPU COMMAND
+  97.4 julia
+  13.2 mbsync
+   9.2 clickhouse-serv
+   4.5 claude
+   4.1 claude

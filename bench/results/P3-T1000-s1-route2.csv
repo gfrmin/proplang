@@ -1,0 +1,37 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4058736 mtime=2026-08-18 10:55:59.552668507 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=f6fb3722ccca2d2ce72a5c8762312e3f4b04419abea131d002110ab4efc67da9 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=P3-T1000-s1-route2 profile=P3 ticks=1000 seed=1 route=2
+# argv=--profile P3 --ticks 1000 --seed 1 --route 2 --out bench/results --budget-s 2700
+# hello={"membrane": 1, "world": {"namespace": ["x", "act"], "guards": [{"name": "x", "grid": [0.5]}], "menu": [{"name": "act", "grid": [0, 1]}], "obs_arity": 6, "codebooks": {"theta": [0.1, 0.3, 0.5, 0.7, 0.9], "rho": [0.3]}, "utility": {"form": "said@1", "said": ["*", ["get", "act"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]}}}
+# tick-mode=EvidenceAndMenu
+# hello-reply={"ok": true, "proto": 1, "models": 130, "namespace_bits": 1.0}
+# models=130
+# route2 columns: tick,meta_bits_total,meta_bits_max,meta_n,latent_bits_total,latent_n,marginal_bits(num+den)
+# mirror population=130
+0,1725,15,130,100,25,0
+1,14168,338,130,8150,25,346
+2,26676,667,130,16352,25,667
+3,39092,996,130,24482,25,993
+5,63975,1656,130,40753,25,1647
+7,88846,2314,130,57023,25,2305
+10,126221,3303,130,81404,25,3282
+20,250760,6594,130,162809,25,6561
+30,375274,9893,130,244216,25,9831
+50,624035,16479,130,406946,25,16395
+70,873055,23056,130,569718,25,22924
+100,1246414,32933,130,813878,25,32729
+101,1258856,33258,130,822009,25,33057
+102,1271281,33587,130,830157,25,33383
+104,1296165,34250,130,846433,25,34031
+106,1321020,34902,130,862671,25,34687
+109,1358412,35893,130,887133,25,35670
+119,1482786,39181,130,968500,25,38929
+129,1607089,42467,130,1049873,25,42189
+149,1855959,49058,130,1212625,25,48749
+169,2104736,55647,130,1375373,25,55298
+199,2477931,65519,130,1619535,25,65098
+200,2490355,65849,130,1627643,25,65425
+299,3722626,98423,130,2433354,25,97787
+300,3735056,98752,130,2441493,25,98114
+# TRUNCATED at tick 397: wall budget 2700s exceeded (elapsed 2703.8s)
+# summary ticks_done=397 ticks_requested=1000 pins_checked=397 total_wall_s=2703.786

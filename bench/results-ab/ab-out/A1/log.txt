@@ -1,0 +1,5 @@
+# BUILD-STAMP exe=/home/g/.cache/ab/bench-A size=4095000 mtime=2026-09-01 08:52:11.672367159 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=764e7c2e6c96b2d8b0a01e29bbc8a4547d888a09df26a2745fe3f8947bc0fae7 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+  tick 100 reached at 19.5s (window median pending)
+summary ticks_done=100 total_wall_s=19.487 peak_rss_kb=20064
+wrote /home/g/ab-out/A1/P2realNC-T100-s1-route1.csv

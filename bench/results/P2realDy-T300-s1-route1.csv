@@ -1,0 +1,24 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4094600 mtime=2026-09-01 05:56:54.384526334 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=9ac58856be48cc3e6f837e01a083581be974534e5dad3a0005c77b9b0b9003bd HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=P2realDy-T300-s1-route1 profile=P2realDy ticks=300 seed=1 route=1
+# argv=--profile P2realDy --ticks 300 --seed 1 --route 1 --out bench/results --raw /home/g/.cache/proplang-bench/raw --budget-s 2400
+# hello={"membrane": 1, "world": {"namespace": ["t", "n-candidates=0", "n-candidates=1", "n-candidates=2plus", "leader-credence=lt50", "leader-credence=50to70", "leader-credence=70to80", "leader-credence=80to90", "leader-credence=ge90", "p-none=lt20", "p-none=20to50", "p-none=ge50", "n-obs=0", "n-obs=1to2", "n-obs=3plus", "era-split=1", "owner-scoped=1", "grow-pass=1", "act"], "guards": [{"name": "n-candidates=0", "grid": [0.5]}, {"name": "n-candidates=1", "grid": [0.5]}, {"name": "n-candidates=2plus", "grid": [0.5]}, {"name": "leader-credence=lt50", "grid": [0.5]}, {"name": "leader-credence=50to70", "grid": [0.5]}, {"name": "leader-credence=70to80", "grid": [0.5]}, {"name": "leader-credence=80to90", "grid": [0.5]}, {"name": "leader-credence=ge90", "grid": [0.5]}, {"name": "p-none=lt20", "grid": [0.5]}, {"name": "p-none=20to50", "grid": [0.5]}, {"name": "p-none=ge50", "grid": [0.5]}, {"name": "n-obs=0", "grid": [0.5]}, {"name": "n-obs=1to2", "grid": [0.5]}, {"name": "n-obs=3plus", "grid": [0.5]}, {"name": "era-split=1", "grid": [0.5]}, {"name": "owner-scoped=1", "grid": [0.5]}, {"name": "grow-pass=1", "grid": [0.5]}], "menu": [{"name": "act", "grid": [1, 2, 3, 4]}], "codebooks": {"theta": [1.953125e-2, 4.98046875e-2, 0.1796875, 0.3388671875, 0.857421875, 0.8642578125, 0.9501953125, 0.998046875]}, "clock": [{"name": "think", "price": 11, "batch": 1}], "utility": {"form": "said@1", "said": ["if", ["=", ["get", "act"], ["c", 1.0]], ["+", ["c", 0.0], ["*", ["var", 1], ["c", 0.0]]], ["if", ["=", ["get", "act"], ["c", 2.0]], ["+", ["c", -0.02], ["*", ["var", 1], ["c", 1.0]]], ["if", ["=", ["get", "act"], ["c", 3.0]], ["+", ["c", -0.1], ["*", ["var", 1], ["c", 1.0]]], ["+", ["c", -9.0], ["*", ["var", 1], ["c", 10.0]]]]]]}}}
+# tick-mode=EvidenceAndMenu
+# hello-reply={"ok": true, "proto": 1, "models": 960, "namespace_bits": 4.247927513443586}
+# models=960
+# models-assert=OK predicted=960
+# route1 columns: window_start,window_end,median_wall_ns,mean_wall_ns,p90_wall_ns,min_wall_ns,median_cpu_ns,vmrss_kb_at_end
+1,100,395261768,389649952,498631350,221671142,335592131,26336
+2,101,396256416,391227176,498631350,221671142,336926749,26336
+3,102,397473627,393031978,498631350,221671142,338388152,26336
+5,104,402055854,398537730,500939534,262485082,340690872,26336
+7,106,403230985,400902920,505631662,262485082,345803707,26336
+10,109,403682664,402625584,505631662,262485082,350231747,26336
+20,119,406055320,404950436,505489521,262485082,384443834,26336
+30,129,410746694,413067709,518787541,262485082,397128900,26336
+50,149,449656774,474353803,643817441,269785006,436727671,26336
+70,169,513681372,591891485,882685570,298267744,485846962,26336
+100,199,724766624,740797932,1054831526,336949957,632574367,26336
+200,299,1560329366,1605570611,2221076149,807086195,1203980848,26336
+201,300,1560329366,1610768592,2221076149,807086195,1211466106,26336
+# summary ticks_done=300 ticks_requested=300 total_wall_s=274.663 peak_rss_kb=26340

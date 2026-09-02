@@ -1,0 +1,43 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4058736 mtime=2026-08-18 10:55:59.552668507 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=f6fb3722ccca2d2ce72a5c8762312e3f4b04419abea131d002110ab4efc67da9 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=P1-T1000-s2-route2 profile=P1 ticks=1000 seed=2 route=2
+# argv=--profile P1 --ticks 1000 --seed 2 --route 2 --out bench/results
+# hello={"membrane": 1, "world": {"namespace": ["x", "act"], "guards": [{"name": "x", "grid": [0.5]}], "menu": [{"name": "act", "grid": [0, 1]}], "codebooks": {"theta": [0.25, 0.5, 0.75]}, "utility": {"form": "said@1", "said": ["*", ["get", "act"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]}}}
+# tick-mode=EvidenceAndMenu
+# hello-reply={"ok": true, "proto": 1, "models": 9, "namespace_bits": 1.0}
+# models=9
+# route2 columns: tick,meta_bits_total,meta_bits_max,meta_n,latent_bits_total,latent_n,marginal_bits(num+den)
+# mirror population=9
+0,87,12,9,0,0,0
+1,97,14,9,0,0,3
+2,107,14,9,0,0,7
+3,120,16,9,0,0,3
+5,154,22,9,0,0,19
+7,192,29,9,0,0,27
+10,244,38,9,0,0,36
+20,436,66,9,0,0,43
+30,633,97,9,0,0,65
+50,1027,154,9,0,0,111
+70,1423,213,9,0,0,145
+100,2017,304,9,0,0,211
+101,2036,307,9,0,0,211
+102,2056,311,9,0,0,215
+104,2096,316,9,0,0,215
+106,2136,324,9,0,0,220
+109,2196,333,9,0,0,231
+119,2394,369,9,0,0,250
+129,2589,401,9,0,0,280
+149,2984,462,9,0,0,308
+169,3379,522,9,0,0,356
+199,3972,616,9,0,0,418
+200,3991,619,9,0,0,428
+299,5949,949,9,0,0,685
+300,5968,952,9,0,0,690
+399,7922,1274,9,0,0,936
+500,9919,1597,9,0,0,1179
+599,11874,1910,9,0,0,1402
+700,13870,2228,9,0,0,1642
+799,15824,2543,9,0,0,1869
+901,17840,2857,9,0,0,2094
+1000,19794,3189,9,0,0,2364
+# summary ticks_done=1000 ticks_requested=1000 pins_checked=1000 total_wall_s=0.571

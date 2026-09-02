@@ -1,0 +1,11 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4058736 mtime=2026-08-18 10:55:59.552668507 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=f6fb3722ccca2d2ce72a5c8762312e3f4b04419abea131d002110ab4efc67da9 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=P2-T100-s3-route1 profile=P2 ticks=100 seed=3 route=1
+# argv=--profile P2 --ticks 100 --seed 3 --route 1 --out bench/results --raw /home/g/.cache/proplang-bench/raw
+# hello={"membrane": 1, "world": {"namespace": ["s", "c", "act"], "guards": [{"name": "s", "grid": [0.5]}, {"name": "c", "grid": [0.25, 0.5, 0.75]}, {"name": "act", "grid": [0.5, 1.5]}], "menu": [{"name": "act", "grid": [0, 1, 2]}], "codebooks": {"theta": [6.25e-2, 0.1875, 0.3125, 0.4375, 0.5, 0.5625, 0.6875, 0.8125, 0.9375], "rho": [6.25e-2, 0.125, 0.25, 0.5]}, "utility": {"form": "said@1", "said": ["*", ["get", "act"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]}}}
+# tick-mode=EvidenceAndMenu
+# hello-reply={"ok": true, "proto": 1, "models": 445, "namespace_bits": 1.5849625007211563}
+# models=445
+# route1 columns: window_start,window_end,median_wall_ns,mean_wall_ns,p90_wall_ns,min_wall_ns,median_cpu_ns,vmrss_kb_at_end
+1,100,55155568,55246435,65564565,41429423,55029740,13856
+# summary ticks_done=100 ticks_requested=100 total_wall_s=5.529 peak_rss_kb=13856

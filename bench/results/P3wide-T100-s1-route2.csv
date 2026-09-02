@@ -1,0 +1,14 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4058736 mtime=2026-08-18 10:55:59.552668507 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=f6fb3722ccca2d2ce72a5c8762312e3f4b04419abea131d002110ab4efc67da9 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=P3wide-T100-s1-route2 profile=P3wide ticks=100 seed=1 route=2
+# argv=--profile P3wide --ticks 100 --seed 1 --route 2 --out bench/results
+# hello={"membrane": 1, "world": {"namespace": ["x", "act"], "guards": [{"name": "x", "grid": [0.5]}], "menu": [{"name": "act", "grid": [0, 1]}], "obs_arity": 6, "codebooks": {"theta": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], "rho": [0.1, 0.2, 0.3]}, "utility": {"form": "said@1", "said": ["*", ["get", "act"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]}}}
+# tick-mode=EvidenceAndMenu
+# hello-reply={"ok": true, "proto": 1, "models": 420, "namespace_bits": 1.0}
+# models=420
+# route2 columns: tick,meta_bits_total,meta_bits_max,meta_n,latent_bits_total,latent_n,marginal_bits(num+den)
+# mirror population=420
+0,6615,17,420,675,135,0
+1,49282,346,420,44180,135,556
+100,4342563,33079,420,4404827,135,54871
+# summary ticks_done=100 ticks_requested=100 pins_checked=100 total_wall_s=593.765

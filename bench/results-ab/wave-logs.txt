@@ -1,0 +1,13 @@
+== width sweep ticks=100 reps=1 2026-09-01T11:35:21Z
+== box=steel-legend load=0.09 0.14 0.17
+[11:35:21] width 4   arm A rep 1 ... median=167840601 ns
+[11:35:40] width 4   arm B rep 1 ... median=168306774 ns
+[11:35:59] width 8   arm A rep 1 ... median=265141968 ns
+[11:36:30] width 8   arm B rep 1 ... median=274019664 ns
+[11:37:02] width 16  arm A rep 1 ... median=458881845 ns
+[11:37:55] width 16  arm B rep 1 ... median=2876977616 ns
+[11:43:27] width 32  arm A rep 1 ... median=847672186 ns
+[11:45:05] width 32  arm B rep 1 ... == mechanism probe 2026-09-01T12:04:44Z  box=steel-legend load=1.31 1.22 1.04
+[12:04:44] P2realNCDy16 arm A ... median=104161340 ns  wall=total_wall_s=10.577
+[12:04:55] P2realNCDy16 arm B ... median=433548568 ns  wall=total_wall_s=43.847
+== probe done 2026-09-01T12:05:39Z
