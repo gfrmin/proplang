@@ -1,0 +1,63 @@
+=== F5c: THE A/B RESULT -- what the dyadic lever is worth ===
+Executed 2026-09-01, HEAD 94fd4eb, two cells run SERIALIZED, one process
+at a time, on the same box under the same recorded load.
+
+CONTROLLED: identical population (960, both asserted against the engine's
+own hello reply), identical namespace, guards, menu, clock, utility, seed
+and stream.  The ONLY difference is theta's binary representation --
+  P2real   : the consumer's declared decimals   [0.02, ... 0.9977777777777779]
+  P2realDy : the same grid snapped to n/2^10    [1.953125e-2, ... 0.998046875]
+
+  fold depth    P2real ms    dyadic ms   speedup
+        50.5        765.1        395.3     1.94x
+        51.5        782.4        396.3     1.97x
+        52.5        798.7        397.5     2.01x
+        54.5        827.4        402.1     2.06x
+        56.5        904.7        403.2     2.24x
+        59.5        998.1        403.7     2.47x
+        69.5       1242.7        406.1     3.06x
+        79.5       1476.8        410.7     3.60x
+        99.5       1958.7        449.7     4.36x
+       119.5       2689.8        513.7     5.24x
+       149.5       4264.1        724.8     5.88x
+       249.5      14953.9       1560.3     9.58x
+       250.5      14979.5       1560.3     9.60x
+
+  two-point growth exponent   P2real  alpha = 1.857
+                              dyadic  alpha = 0.857
+                              difference    = 1.000
+
+  whole-session wall   P2real 2078.1 s   dyadic 274.7 s   (7.6x)
+  peak RSS             P2real 58.1 MB    dyadic 26.3 MB   (2.2x)
+
+THE READING.  The speedup is not a constant: it GROWS with fold depth, from
+1.9x at depth 50 to 9.6x at depth 250.  That ratio is a direct measurement.
+
+ON THE MECHANISM, CORRECTED AFTER RUNNING bench/analyze.py (r01's own
+estimators, rather than the hand fit these two-point figures came from):
+under alpha_raw the dyadic grid does look like it removes a full power of t
+(1.840 -> 0.861).  Under alpha_3p it does NOT -- it reads slightly steeper
+(2.790 vs 2.440).  Both fit the same curve: alpha_3p separates a constant,
+and the dyadic world's cost is MOSTLY constant (c0 = 378 ms) with a growth
+coefficient 81x smaller (2.44e-4 vs 1.98e-2).  THE DEFENSIBLE STATEMENT IS
+THAT THE GROWTH COEFFICIENT COLLAPSES, NOT THAT THE EXPONENT DROPS BY ONE.
+The consequence is unchanged and measured either way: the gap widens with
+depth, which is the regime the consumer operates in.
+
+WHAT IT COSTS THEM: nothing in the engine, nothing on the wire, no ruling.
+It is a DECLARATION change, and the r01 report already classified this
+lever as 'a decision input, not a language change'.  The two safety checks
+are in f5-dyadic-lever.txt: every rung moves less than their own declared
+_GRID_COLLISION of 5e-4, and the two rungs that carry #19's placement risk
+(0.857 the operating rate, 0.864 the shadow p95) stay DISTINCT at 2^-10.
+
+SCOPE, stated rather than assumed:
+  - Both cells carry the same box load, and this is a RATIO at identical
+    depths on the same hardware, so the load largely cancels here in a way
+    it does not for the absolute ms/tick figures.
+  - alpha is a TWO-POINT estimate over depths 50-250, one seed, one
+    profile.  The difference of 1.00 is clean but it is not claimed as an
+    exact law; the falsifier is a second seed and a deeper cell, neither
+    run (see the coverage residual).
+  - Nothing here reads an acceptance band.  It says what the lever is
+    worth, not whether the result is good enough.

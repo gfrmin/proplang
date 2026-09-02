@@ -1,0 +1,59 @@
+r2 Phase B — the third shape (pairwise AND substituting), PROTOTYPE RUN
+Executed 2026-09-02 at HEAD 94fd4eb; R-D21 throwaway (ProtoPairSub.hs,
+compiled ghc -O1 -Wall -Werror -isrc -ibench, clean; DELETED after this
+transcript).  Total wall for everything below: 2.9 s, thinkpad.
+
+ProtoPairSub (the #24 sitting r2, Phase B) — the third shape, executed
+
+D1 — #24's world (act=1 worth 10, act=2 worth 100, act=3 worth 50):
+  chooseEU   (shipped)   -> [("act",1 % 1)]
+  chooseEUsub (3rd shape)-> [("act",2 % 1)]
+  policyPick (tournament)-> [("act",2 % 1)]
+D2 — the kill-law red (reversion to the challenger-env comparison):
+  REVERTED               -> [("act",1 % 1)]
+D4 — tie convention (all arms worth 10):
+  chooseEU               -> [("act",1 % 1)]
+  chooseEUsub            -> [("act",1 % 1)]
+  policyPick             -> [("act",1 % 1)]
+
+D3 — agreement chooseEUsub == policyPick (per tick-features):
+  P2 (act guarded): sub=[("act",0 % 1)] policyPick=[("act",0 % 1)] [AGREE]  (chooseEU=[("act",0 % 1)])
+  P2 (act guarded): sub=[("act",0 % 1)] policyPick=[("act",0 % 1)] [AGREE]  (chooseEU=[("act",0 % 1)])
+  P2 (act guarded): sub=[("act",0 % 1)] policyPick=[("act",0 % 1)] [AGREE]  (chooseEU=[("act",0 % 1)])
+  P2 (act guarded): sub=[("act",0 % 1)] policyPick=[("act",0 % 1)] [AGREE]  (chooseEU=[("act",0 % 1)])
+  P2 (act guarded): sub=[("act",0 % 1)] policyPick=[("act",0 % 1)] [AGREE]  (chooseEU=[("act",0 % 1)])
+  P2realNC: sub=[("act",4 % 1)] policyPick=[("act",4 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC: sub=[("act",4 % 1)] policyPick=[("act",4 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC: sub=[("act",4 % 1)] policyPick=[("act",4 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC8: sub=[("act",8 % 1)] policyPick=[("act",8 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC8: sub=[("act",8 % 1)] policyPick=[("act",8 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC8: sub=[("act",8 % 1)] policyPick=[("act",8 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC16: sub=[("act",16 % 1)] policyPick=[("act",16 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC16: sub=[("act",16 % 1)] policyPick=[("act",16 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC16: sub=[("act",16 % 1)] policyPick=[("act",16 % 1)] [AGREE]  (chooseEU=[("act",1 % 1)])
+  P2realNC32: policyPick SKIPPED (walked term ~14.5*2^32 nodes
+  worst-case, probe A1); chooseEUsub alone:
+  P2realNC32: chooseEUsub=[("act",32 % 1)]
+  P2realNC32: chooseEUsub=[("act",32 % 1)]
+
+READINGS:
+  D1 reproduces F1's wire results at the library route: the shipped
+  chooseEU returns the head against a declared 10x argmax; the third
+  shape and policyPick both return the argmax.
+  D2 is the future pin row's seeded defect, demonstrated red: reverting
+  the comparison to the challenger-env form flips #24's world back to
+  the head.  (The kill-law correction: the pin row pins the NEW
+  behaviour on #24's world, never equality on the agreeing corpus.)
+  D3: 14/14 AGREE with policyPick, widths 3/4/8/16, act-guarded and
+  act-unguarded worlds; w=32 policyPick SKIPPED (printed, with reason);
+  chooseEUsub at w=32 is instant.  On the real declaration the two
+  substituting routes pick the top-value act while chooseEU picks the
+  head -- the #24 mechanism live on the consumer's own world shape.
+  D4: tie convention identical (first-listed incumbent, strict Gt).
+  D5: env-independence after substW asserted on EVERY substituting
+  comparison (challenger's vs incumbent's cover) -- no violation fired.
+
+NOTE (agreement is also arguable, and the argument matches): chooseKS
+folds first-listed-incumbent with strict-Gt displacement -- the SAME
+fold convention as pairFold; the demonstrations above are the executed
+witness, the shared convention the reason.

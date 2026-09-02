@@ -1,0 +1,20 @@
+=== boundary-audit at the #24 sitting's OPENING ===
+Run 2026-09-01 at HEAD 94fd4eb, clean tree.
+
+=== boundary-audit (screening; first firing = the step-6 boundary) ===
+--- M5-row: ruling citations vs definition sites ---
+M5-row: 0 flagged (IDs cited >=4 with no definition-shaped line)
+--- H-row: wire/membrane doc symbols resolve outside those docs ---
+H-row: 0 flagged (of 68 symbols scanned)
+--- OB-row: obligations ledger vs closed boundaries ---
+OB-row: 0 flagged (open obligations against closed boundaries)
+banked-failure row: alphabet last moved at c2ca82c (2026-07-25T18:44:21+03:00)
+banked-failure row: 0 flagged
+--- standing observations ---
+note: test-writeup/check.sh carries its own G2 RECORD row (run it for the state); cabal test-suite stanzas now: 13
+prose-claim triage: 43 quantifier-bearing line(s) in doctrine-author-pack.md - sweep against its claims register (triage input, not a verdict)
+=== boundary-audit done: M5=0 H=0 OB=0 BF=0 ===
+
+CLEAN at the opening.  Note the banked-failure row's date: the alphabet last
+moved at c2ca82c (2026-07-25, the exact re-founding).  That date is load-bearing
+for F4 -- every disposition on the five standing open issues PREDATES it.

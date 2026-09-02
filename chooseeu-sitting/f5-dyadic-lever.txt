@@ -1,0 +1,57 @@
+=== F5b: the ONE declaration-side lever the consumer has left ===
+Computed 2026-09-01 from the consumer's real theta grid (life-agent
+@ ebc5941, world.py theta_grid), embedded exactly as the door embeds it.
+
+The r01 report names two host-side levers that 'change the constant by an
+order of magnitude and are decision inputs, not language changes':
+  (a) binary-exact grid values (n/2^k) instead of decimals -- worth 100x
+      in bits per fold per weight;
+  (b) the walk family (rho) -- 78% of the reconstruction's tick at t=1000.
+
+THE CONSUMER HAS ALREADY TAKEN (b): they declare NO walk family at all.
+So (a) is the only declaration-side lever they have left -- and nothing in
+the corpus measures it on their world.
+
+--- their eight rungs, as the door embeds them ---
+    0.02                 num  53b  den  59b  = 112b
+    0.05                 num  52b  den  57b  = 109b
+    0.18                 num  52b  den  55b  = 107b
+    0.339                num  53b  den  55b  = 108b
+    0.857                num  52b  den  53b  = 105b
+    0.864                num  53b  den  54b  = 107b
+    0.95                 num  52b  den  53b  = 105b
+    0.9977777777777779   num  51b  den  52b  = 103b
+    SUM                  856 bits over the 8 rungs
+
+--- the same grid snapped to the nearest n/2^k ---
+    2^-8     122 bits  (7.0x fewer)   worst rung shift 0.00168
+    2^-10    142 bits  (6.0x fewer)   worst rung shift 0.00047
+    2^-12    184 bits  (4.7x fewer)   worst rung shift 0.00011
+
+--- does it move the rungs past their OWN tolerance? ---
+Their frozen rule declares _GRID_COLLISION = 5e-4: two rungs closer than
+this are one.  At 2^-10 the worst shift is 0.00047 -- INSIDE that.
+
+--- does it break #19's placement finding? ---
+#19's witness: the posterior concentrates on the declared rung KL-nearest
+the true rate, which can FALSE-CLEAR a consumer threshold, and evidence
+SHARPENS the error rather than repairing it.  The two rungs that carry
+that risk here sit 0.007 apart -- 0.857 (the measured operating rate) and
+0.864 (the shadow p95).  A dyadic grid must keep them DISTINCT:
+    2^-8  : 0.857 -> 0.855469   0.864 -> 0.863281   distinct
+    2^-10 : 0.857 -> 0.857422   0.864 -> 0.864258   distinct
+    2^-12 : 0.857 -> 0.856934   0.864 -> 0.864014   distinct
+
+READING (the builder's, for the sitting and for the consumer):
+a 2^-10 grid costs 6.0x fewer bits per rung, shifts no rung further than
+the consumer's own declared collision tolerance, and keeps the two
+placement-critical rungs distinct.  It is a DECLARATION change: no engine
+work, no wire change, no ruling needed.
+
+STATUS: the bits arithmetic above is EXECUTED.  Its COST consequence is
+ARGUED -- rung denominator bits are not the same quantity as the folded
+belief state's bits, though the r01 report's model makes the growth
+constant a function of exactly these denominators.  Falsifier, and it is
+queued: the P2realDy cell (profileP2realDyadic -- the real declaration
+with theta snapped to 2^-10 and NOTHING else changed) against the P2real
+cell at the same tick count.

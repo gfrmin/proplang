@@ -1,0 +1,55 @@
+=== F5d: AN INCIDENT THE IDENTITY ROW CAUGHT, RECORDED ===
+Found 2026-09-01 by the closing verification, not by inspection.
+
+WHAT HAPPENED.  bench/P2Real.hs was generated from life-agent @ ebc5941 at the
+start of this round.  The closing run of
+
+    python3 bench/gen-p2real.py --check
+
+came back RED:
+
+    IDENTITY FAIL P2Real.hs differs from its generator's output
+    -- own code (@ ebc5941d0ce963a781f85f8b7094e2118da1c5b7, ...
+    ++ own code (@ 6f28bf259f0ade7996cdb36bd97a1166c7661213, ...
+    -p2realProvenance = "ebc5941d0ce963a781f85f8b7094e2118da1c5b7"
+    +p2realProvenance = "6f28bf259f0ade7996cdb36bd97a1166c7661213"
+
+life-agent's HEAD MOVED WHILE THIS ROUND WAS RUNNING (a merge of
+r04-q3-correction, landing GD-15 and doc changes).
+
+WHY IT DOES NOT INVALIDATE THE MEASUREMENT, verified rather than assumed:
+
+    $ git -C ~/git/life-agent diff --stat ebc5941 HEAD -- src/life_agent/membrane/world.py
+    (empty)
+    $ git -C ~/git/life-agent diff --name-only ebc5941 HEAD -- '*.py'
+    (empty)
+
+NO PYTHON CHANGED AT ALL between the two commits -- the merge touched only
+CLAUDE.md, DECISIONS.md, RULINGS.md and r04-stocktake.md.  And the generated
+module is byte-identical apart from the two provenance lines:
+
+    $ diff <(grep -v '<either hash>' P2Real.ebc5941.hs) \
+           <(grep -v '<either hash>' P2Real.hs)
+    (empty)  -- IDENTICAL apart from the two provenance lines
+
+So the DECLARATION the cells were run against is unchanged, every measured
+figure stands, and the only thing that moved is the commit the generator
+stamps.  P2Real.hs has been regenerated to the current hash and the identity
+row is green.
+
+WHY THIS IS WORTH A TRANSCRIPT.  The identity row did exactly the job the
+GENERATOR EXEMPTION gives it: a derived artifact silently drifted from its
+source and a mechanical check caught it at the close, where a human reading
+the file would have seen nothing wrong -- the declaration LOOKED right, and
+was right.  Had world.py actually moved, the same red would have fired for a
+reason that DID invalidate the cells, and the two cases are indistinguishable
+without running the diff.  That is the argument for the row, made by a live
+instance rather than by assertion.
+
+A NOTE ON THE STAMP THAT REMAINS TRUE EITHER WAY: the cells' own build stamps
+record proplang's HEAD and src-tree, not life-agent's.  A consumer-side
+declaration change is therefore NOT visible in a cell's stamp, and this
+identity row is the only thing standing between a moved declaration and a
+measurement quietly attributed to the wrong world.  If the bench series lands,
+that is an argument for running --check as part of the cell runner, not only
+at a close.  Recorded as an observation; not proposed as a row.

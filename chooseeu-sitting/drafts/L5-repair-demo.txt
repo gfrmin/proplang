@@ -1,0 +1,48 @@
+=== L5 repair (option b): the TWO-SIDED DEMO, executed 2026-09-01 ===
+Run against the draft in L5-repair-option-b.txt, in isolation, without
+modifying tools/prefreeze-lint.sh.  Every mutation restored and the restore
+verified (git diff empty) after each.
+
+--- GREEN 1: THE REGRESSION THAT BOUGHT THE REPAIR ---
+The current pack still contains the exact sentence that broke the old row
+(doctrine-author-pack.md:473, "this pack carries no SAT/overlay").  Under the
+repair it is green:
+
+    PASS  L5 doctrine-author-pack.md: no SAT section (derived from the tree;
+          its commit cut no oracle)
+
+The old row returns 4 FAIL on these same bytes.  This is the defect's own
+regression test and it passes.
+
+--- RED 2: an unreadable declaration does not fall through to a green ---
+    $ printf 'SAT-SECTION: maybe\n' >> doctrine-author-pack.md
+    FAIL  L5 doctrine-author-pack.md: unreadable SAT-SECTION declaration
+          'maybe' (want none|present)
+
+--- RED 1: a pack that SHOULD check, and fails ---
+    $ printf 'SAT-SECTION: present\n' >> doctrine-author-pack.md
+    FAIL  L5 doctrine-author-pack.md SAT section lacks -Wall
+    FAIL  L5 doctrine-author-pack.md SAT section lacks -Werror
+    FAIL  L5 doctrine-author-pack.md SAT section lacks -Wincomplete-patterns
+    FAIL  L5 doctrine-author-pack.md SAT section lacks -Wincomplete-uni-patterns
+Both branches fire.  The declaration override works in both directions.
+
+--- THE TREE DERIVATION, checked on three real boundary commits ---
+    a371e17  pack=breadth-author-pack.md   -> present   (cut test-breadth/)
+    0766ebe  pack=readout-author-pack.md   -> present   (cut test-readout/)
+    94fd4eb  pack=doctrine-author-pack.md  -> none      (a rulings sitting)
+Correct on all three, and prose cannot move any of them.
+
+--- THE FLAG LIST, DERIVED rather than hand-listed ---
+    $ sed -n 's/.*ghc-options:[[:space:]]*//p' proplang.cabal \
+        | tr ' ' '\n' | grep '^-W' | sort -u
+    -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns
+
+EXACTLY the four the lint currently hand-lists.  So the repair is
+behaviour-preserving where it should be, and the hand-list -- which would have
+gone stale silently the day a stanza's flags changed -- is retired without any
+change in what is enforced today.
+
+--- RESTORE ---
+    $ git diff --stat -- doctrine-author-pack.md
+    (empty)

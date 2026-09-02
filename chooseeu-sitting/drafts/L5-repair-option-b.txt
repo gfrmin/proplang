@@ -1,0 +1,134 @@
+DRAFT — L5 repair, option (b), the one-generator form.  REV 2, per the
+sitting's verdict of 2026-09-02 (two modifications: "exactly one
+occurrence" on the marker, and flags derived from every TEST STANZA with
+no hand fallback).
+NOT APPLIED.  tools/prefreeze-lint.sh is manifest-covered (row 180), so this
+edit and the MANIFEST re-sign are the author's key.
+
+WHAT IT REPLACES: tools/prefreeze-lint.sh lines 68-85 at 94fd4eb.
+
+WHY: the row decided whether a pack has a satisfiability/overlay section by a
+bare case-insensitive word grep over the WHOLE pack, so prose ABOUT the lint
+was indistinguishable from prose CONSTITUTING a SAT section.  The #19 sitting
+wrote its own WARN into the pack -- "this pack carries no SAT/overlay section"
+-- and those very words flipped the row into its check branch, turning a
+verified "0 FAIL 1 WARN" into 4 FAIL at bytes that had not moved.
+
+Two halves, both DERIVED instead of inferred:
+  (a) SAT-bearing-ness comes from THE TREE -- did the pack's own commit touch
+      test*/ or proplang.cabal?  An increment that cut an oracle did; a rulings
+      sitting did not.  Prose cannot move this.
+  (b) the flag list comes from proplang.cabal's TEST-SUITE STANZAS, read at
+      lint time, NOT from the four flags currently hand-listed inside the
+      lint.  That hand-list is a second latent bug of the same family: it goes
+      stale silently the day a stanza's flags change, and nothing notices.
+      REV 2: the derivation carries NO fallback default -- an empty parse
+      FAILS loudly instead of silently substituting a hand list (a fallback
+      default is the hand-list disease one level down, and a row that can
+      quietly switch to it is a green that cannot fail its own derivation).
+A pack may OVERRIDE (a) with an explicit line-anchored declaration, the
+declared-structure half:  ^SAT-SECTION: none|present
+REV 2: the declaration binds only when it occurs EXACTLY ONCE.  Zero
+occurrences = derive from the tree; more than one (e.g. the real marker plus
+a copy quoted in a code fence, which also matches column 0) = FAIL as
+ambiguous.  This removes option (a)'s recorded weakness -- "the marker's own
+mention in prose re-creates the class" -- structurally and for free.
+
+--------------------------------------------------------------------
+# -- L5: SAT flag-faithfulness in the current author pack --------------------
+# every overlay/satisfiability transcript must record the stanza's exact flag
+# set, -Werror included (the step-5 flag-faithful amendment).
+#
+# Pack selection HARDENED at the heir oracle freeze (OB-28 iii): the old `ls -t`
+# selected by mtime, which in a fresh clone is checkout order -- the current
+# pack now derives from HISTORY.
+#
+# Pack DETECTION repaired at the #24 sitting: the old test was
+# `grep -qi "satisfiability\|overlay" "$pack"`, a bare word grep over the whole
+# file, so PROSE ABOUT THIS LINT entered the check branch.  The #19 sitting's
+# own verification sentence did exactly that and turned a verified
+# "0 FAIL 1 WARN" into 4 FAIL with the tree unmoved.  Both halves now derive:
+# (a) SAT-bearing-ness from the TREE (did the pack's commit touch an oracle?),
+#     overridable by a SAT-SECTION declaration occurring EXACTLY ONCE (two
+#     matches -- e.g. the marker plus a fenced quotation of it -- FAIL as
+#     ambiguous rather than silently picking one);
+# (b) the flag list from proplang.cabal's test-suite stanzas, with NO
+#     hand-coded fallback -- an empty derivation FAILS, never defaults.
+pack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
+if [ -n "${pack:-}" ] && [ -f "$pack" ]; then
+  packcommit=$(git log -1 --format=%H -- "$pack")
+  decls=$(sed -n 's/^SAT-SECTION:[[:space:]]*\([a-z]*\).*/\1/p' "$pack")
+  ndecl=$(printf '%s' "$decls" | grep -c . || true)
+  if [ "$ndecl" -gt 1 ]; then
+    bad "L5 $pack: SAT-SECTION declared $ndecl times (want exactly one; a fenced copy is ambiguous)"
+  else
+    if [ "$ndecl" -eq 1 ]; then
+      decl=$decls
+      src="declared in the pack"
+    else
+      if git show --pretty= --name-only "$packcommit" \
+           | grep -qE '^test[^/]*/|^proplang\.cabal$'; then
+        decl=present
+      else
+        decl=none
+      fi
+      src="derived from the tree"
+    fi
+    case "$decl" in
+      none)
+        ok "L5 $pack: no SAT section ($src; its commit cut no oracle)"
+        ;;
+      present)
+        # every -W flag any TEST-SUITE stanza declares (awk scopes the
+        # union to test-suite blocks; no fallback -- empty = FAIL)
+        flags=$(awk '/^test-suite /{t=1} /^library|^executable /{t=0}
+                     t && /ghc-options:/ {for(i=1;i<=NF;i++) if($i ~ /^-W/) print $i}' \
+                    proplang.cabal | sort -u)
+        if [ -z "$flags" ]; then
+          bad "L5 could not derive any -W flag from proplang.cabal test-suite stanzas (refusing a hand default)"
+        else
+          l5=0
+          for flag in $flags; do
+            grep -qF -- "$flag" "$pack" || { bad "L5 $pack SAT section lacks $flag"; l5=1; }
+          done
+          [ "$l5" -eq 0 ] && ok "L5 $pack records every test-stanza flag ($src): $(echo $flags | tr '\n' ' ')"
+        fi
+        ;;
+      *)
+        bad "L5 $pack: unreadable SAT-SECTION declaration '$decl' (want none|present)"
+        ;;
+    esac
+  fi
+else
+  warn "L5 no author pack found in history (nothing to check)"
+fi
+--------------------------------------------------------------------
+
+THE TWO-SIDED DEMO OWED AT INSTALL (the kit law: a gate arrives with its red
+demonstrated, and the triptych binds harness gates as much as oracle rows):
+
+  RED 1  -- a pack that SHOULD check and fails.  Take any oracle-cutting
+            increment's commit, strip one -W flag from its pack, re-run: the
+            row must FAIL naming that flag.
+  RED 2  -- an unreadable declaration.  Write `SAT-SECTION: maybe` into the
+            current pack: the row must FAIL on the declaration, not fall
+            through to a green.
+  RED 3  -- (REV 2, the verdict's addition) the AMBIGUOUS marker: the real
+            `SAT-SECTION: none` plus the same line quoted inside a code
+            fence.  The row must FAIL naming the count, not silently bind
+            the first match.
+  RED 4  -- (REV 2) the empty derivation: run against a cabal file whose
+            test-suite stanzas carry no -W flags (a scratch copy): the row
+            must FAIL refusing the hand default, not default to one.
+  GREEN 1 -- the CLASS THAT BOUGHT THE REPAIR.  Write the #19 sitting's exact
+            sentence ("this pack carries no SAT/overlay section") into a
+            rulings pack: the row must stay GREEN.  This is the regression
+            test for the defect itself and must be in the demo.
+  GREEN 2 -- an oracle-cutting pack that records every test-stanza flag:
+            GREEN.
+  Restores verified after each.
+
+NOTE ON SCOPE: this repairs the L5 class.  It does NOT discharge OB-30, whose
+principle (reviewed prose never reaches a command through a shell-word parser)
+is broader than one lint row.  See register R6 (the verdict: record the
+second and third instances, do not discharge).

@@ -1,0 +1,126 @@
+=== F4: the five standing open issues, RE-EXECUTED at HEAD ===
+Run 2026-09-01 against the shipped host built from src at HEAD 94fd4eb.
+
+WHY THIS ROW EXISTS.  All five were triaged at ONE sitting, 2026-07-22.  The
+boundary audit's own banked-failure row reports the alphabet last moved at
+c2ca82c, 2026-07-25 -- the exact re-founding, THREE DAYS AFTER every one of
+those dispositions.  CLAUDE.md's canonized clause says a banked negative is a
+HYPOTHESIS at any later boundary whose terms changed underneath it, and must
+be RE-EXECUTED before it is relied upon.  No pack since -- x5, exact, dyadic,
+trampoline, f5, jp, battery, readout, breadth, doctrine -- mentions #15, #16
+or #17 at all.  This is that re-execution.
+
+================================================================
+#16 -- the said@1 form sweep.  THE AUTHOR'S OWN POSTED COMMENT IS NOW FALSE.
+================================================================
+The comment posted to #16 on 2026-07-22 told the filer:
+
+  "the wire now speaks THIRTEEN forms (/, log, exp, neg landed at W4,
+   w4-freeze-r1; your sweep predates it; all four now ACCEPT)"
+
+Executed at HEAD, one hello per form, everything else held identical:
+    ["/",["c",1.0],["c",2.0]]              -> {"error": "bad hello"}
+    ["log",["c",2.0]]                      -> {"error": "bad hello"}
+    ["exp",["c",1.0]]                      -> {"error": "bad hello"}
+    ["neg",["c",1.0]]                      -> {"error": "bad hello"}
+    ["*",["get","act"],["var",1]]          -> {"ok": true, "proto": 1, "models": 9, "namespace_bits": 1.0}
+    ["+",["var",1],["c",1.0]]              -> {"ok": true, "proto": 1, "models": 9, "namespace_bits": 1.0}
+    ["expect",["var",0],["c",1.0]]         -> {"error": "bad hello"}
+    ["cond",["var",0],["c",1.0]]           -> {"error": "bad hello"}
+    ["push",["var",0]]                     -> {"error": "bad hello"}
+    ["argmax",["var",0]]                   -> {"error": "bad hello"}
+    ["var",2]                              -> {"error": "bad hello"}
+    ["var",-1]                             -> {"error": "bad hello"}
+
+  The four W4 forms REFUSE at HEAD.  They left the alphabet at the exact
+  re-founding, three days after that comment was posted -- membrane-wire.md
+  records it: "NINE forms (var c + - * get if > =) ... / log exp neg FAIL
+  CLOSED (they left the alphabet at the exact boundary)".
+
+  A consumer who adopted those four on the strength of the comment is broken
+  at HEAD, and the issue thread still tells them to use them.
+
+  #16's LITERAL claim SURVIVES: no belief-scoped head parses, and ["var",N]
+  is still closed to N in {0,1} (all six candidates refuse above).
+  #16's OPERATIVE conclusion DOES NOT.  Its body enumerates three routes and
+  closes "None of these exist today"; route (c) was "some other wire-level
+  hook that changes how much computation the engine spends per decision based
+  on a declared value".  That is EXACTLY the trampoline clock row, shipped
+  2026-07-27 -- five days after the ruling.  Demonstrated:
+  ATTEMPT 1 -- utility act*y, prices 0.0 and 5.0.  The contrast did NOT
+  fire; both prices act:
+      price 0.0   -> {"act": {"act": 2}, "p1": 0.5,
+      price 5.0   -> {"act": {"act": 2}, "p1": 0.5,
+
+  WHY: under act*y the acts are NOT tied (EU = act * p1, so act=2 wins by
+  0.5 outright).  Information that cannot change the choice has no
+  decision value, so no price makes deliberation worth buying.  A generic
+  world jumps over the margin -- which is R-RED's whole point.
+
+  ATTEMPT 2 -- the margin COMPUTED and the crossing CONSTRUCTED.  Under
+  act*(2y-1) the two acts tie exactly at p1=0.5, so learning y strictly
+  changes the choice and deliberation has value.  Sweeping the price:
+      price 0.0   -> {"internal": "think"}
+      price 0.1   -> {"internal": "think"}
+      price 0.2   -> {"internal": "think"}
+      price 0.21  -> {"internal": "think"}
+      price 0.22  -> {"act": {"act": 2}, "p1": 0.5,
+      price 0.25  -> {"act": {"act": 2}, "p1": 0.5,
+      price 1.0   -> {"act": {"act": 2}, "p1": 0.5,
+
+  THE CROSSING IS BETWEEN 0.21 AND 0.22, measured by bisection.  Below it
+  the engine spends a preposterior; above it, it does not.  A DECLARED
+  VALUE changes how much computation the engine spends per decision --
+  #16's route (c), verbatim, shipped.
+
+  (The trade-off is declared as WORLD DATA -- price, batch -- rather than
+  uttered inside said@1, which is a real distinction and the reason #16's
+  LITERAL claim survives.  But "the reflexive-freeze capability ... is
+  unreachable from a wire client" is no longer true as written.)
+
+================================================================
+#17 -- observe_batch / observe_counts.  STILL TRUE AT HEAD, verbatim.
+================================================================
+    {"ok": true, "proto": 1, "models": 9, "namespace_bits": 1.0}
+    {"error": "expected tick"}
+    {"error": "expected tick"}
+
+  Both verbs refused, exactly as #17 reports and exactly as issue #24 asserts
+  in passing.  Unshipped BY DECISION, not oversight: the transport half was
+  affirmatively declined ("bundling an unruled wire form would be scope
+  creep"), and membrane-wire.md section 6.3 carries an honest UNSHIPPED
+  bracket naming this issue.  Nothing to repair; the row is a re-confirmation.
+
+  ONE THING DID MOVE UNDER IT: the cost model #17 argues from.  observe_counts
+  was justified by engine-dominant per-tick cost measured on the PRE-exact
+  engine; the re-founding changed the enumeration wholesale.  The figure #17
+  cites predates 2026-07-25.
+
+================================================================
+#15 / #14 / #11 -- no new execution needed; the record decides them.
+================================================================
+#15: its own filer withdrew the engine-side ask on 2026-07-22 ("we're treating
+     #15's engine-side ask as closed by this comment"), the repo records it
+     closed ("#15 closed the sitting's loop"), and it is absent from the
+     transport pack's open-registers list -- yet it is still OPEN on GitHub.
+     A bookkeeping divergence, not a technical one.  Separately, every repro
+     recipe in its thread is now REFUSED by the door: evidence-only ticks
+     ("the 0.0-dormancy default is dead") no longer serve.
+
+#11: the 2026-07-22 ruling rested on a stated premise -- "the gate conditions
+     on A's differential corpus ... and that measurement does not exist".
+     THE MEASUREMENT WAS EXECUTED FOUR DAYS LATER: 95k live events, both
+     engines recorded, read at the X.5 sitting as "A STAYS CLOSED (demand not
+     measured); B STAYS OUT (underpowered by measurement, n_inv = 0)".  OB-12
+     is DISCHARGED@dispositions-sitting.  The X.5 sitting further established
+     that B cannot be powered by running the shadow longer -- verdicts exist
+     only via explicit /feedback calls, so a second verdict SOURCE must be
+     deployed first.  None of this was ever posted to #11; its newest comment
+     still says the precondition does not exist.
+
+#14: the ruling was SOLICIT -- a re-statement in behavioural terms.  It never
+     arrived (40+ days) and nobody re-asked.  Meanwhile the engine it was to
+     be re-stated against moved three times, hardest at the re-founding.  The
+     issue's own concession ("the shape may dissolve on translation") applies
+     more strongly now than when it was written, and the roadmap has since
+     demoted the target to post-terminal demand-gated residue.

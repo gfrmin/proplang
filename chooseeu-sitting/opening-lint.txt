@@ -1,0 +1,27 @@
+=== prefreeze-lint at the #24 sitting's OPENING ===
+Run 2026-09-01 at HEAD 94fd4eb, clean tree (git status: only untracked bench/).
+Recorded BEFORE any r1 work, so this is the state the sitting inherits.
+
+=== prefreeze-lint (tools/, unfrozen; first ordered at the step-6 sitting) ===
+PASS  L1 forbidden-tokens-by-glob: 9 src files clean (frozen gate 4 names 5)
+PASS  L2 ASCII test names across test*/
+PASS  L3 MANIFEST.sha256: 196 rows verified
+PASS  L4 all 70 tags verify
+FAIL  L5 doctrine-author-pack.md SAT section lacks -Wall
+FAIL  L5 doctrine-author-pack.md SAT section lacks -Werror
+FAIL  L5 doctrine-author-pack.md SAT section lacks -Wincomplete-patterns
+FAIL  L5 doctrine-author-pack.md SAT section lacks -Wincomplete-uni-patterns
+PASS  L6 no grid re-declaration flags (advisory heuristic)
+PASS  L7 full-corpus overlay build: every test .hs builds against new src
+PASS  L8 recorded repairs: 0 hash(es), 0 (hash,file) pair(s) verified in doctrine-author-pack.md
+PASS  L9 tag-message-is-a-file: every -m/--message tag command sits in an executed kit
+PASS  L10 door deferral: universe = Host.hs only; 6 frontier symbols absent from Host code
+=== prefreeze-lint: 4 FAIL, 0 WARN ===
+
+NOTE: the #19 sitting's own pack records "prefreeze-lint 0 FAIL 1 WARN" AT THESE
+EXACT BYTES (doctrine-author-pack.md, verification item 8).  The tree has not
+moved -- `git diff HEAD` is empty for both tools/prefreeze-lint.sh and
+doctrine-author-pack.md.  See F2.
+
+L4 reads 70 tags here against the 68 recorded at the sitting: doctrine-sitting-r0
+and -r1 are the two new ones, minted at and after that commit.  Expected.

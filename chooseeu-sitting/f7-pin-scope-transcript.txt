@@ -1,0 +1,178 @@
+=== F7: is the frozen chooseEU pin what makes un-deferring boundary-sized? ===
+The filer's sharpened question, #24 verbatim: "If the frozen chooseEU pin
+is what makes that a boundary-sized change rather than a routing change,
+that is exactly the information we are missing."
+Executed 2026-09-01 at HEAD 94fd4eb.
+
+--- (1) The two functions have IDENTICAL type signatures ---
+chooseEU :: Namespace -> Features -> Grid
+         -> Expr '[Rational, Rational] Rational
+         -> [(Features, Belief Int)]
+         -> Either String (Maybe (Features, Belief Int))
+
+policyPick :: Namespace -> Features -> Grid
+           -> Expr '[Rational, Rational] Rational
+           -> [(Features, Belief Int)]
+           -> Either String (Maybe (Features, Belief Int))
+
+  Byte-identical apart from the name.  So at the call site the migration
+  is ONE IDENTIFIER:
+            case swClock w of
+              Nothing -> do
+                picked <- chooseEU (swNs w) feats (swAtom w) u scored
+                Right (Left (maybe o0 fst picked))
+
+--- (2) What g2 actually pins, quoted from the frozen oracle ---
+
+-- The pin's SCOPE is the wire's utility convention (the narrowed
+-- degenerate latent: option code bound to 0; utilities read the
+-- outcome and non-writable world features). A utility reading a
+-- WRITABLE name is a fold artifact under the shipped chooseEU (both
+-- sides of every comparison are served the CHALLENGER's assignment,
+-- so action-dependent utilities degenerate to ties) — the finding,
+-- its demonstration, and the one-sentence route's repair are the
+-- boundary pack's register item, not an oracle row.
+g2 :: TestTree
+g2 = testGroup "g2 policyPick == chooseEU (extensional on the wire convention)"
+
+  g2 pins the TWO FUNCTIONS AGAINST EACH OTHER, directly, by import.
+  It says NOTHING about which one Host.hs calls.  A routing change
+  leaves every g2 row passing unchanged, because g2 never routes.
+  And the pin's own scope note already excludes the case at issue:
+  a utility reading a WRITABLE name is outside it, and is 'the boundary
+  pack's register item, NOT an oracle row'.
+
+--- (3) Does ANY frozen oracle pin the routing fork itself? ---
+$ grep -rn 'swClock' test*/ --include='*.hs'
+  (nothing)
+  No frozen row references the clockless fork.  The three suites that
+  mention chooseEU do so by direct import (Pins, Trampoline) or in a
+  comment (Readout).
+
+--- (4) THE DECISIVE SWEEP: could any frozen WIRE row change? ---
+Universe DERIVED, not enumerated: every test .hs declaring both a menu
+and a utility (only such a world can distinguish the two routes).
+    test-breadth/Breadth.hs
+    test-readout/Readout.hs
+    test-trampoline/Trampoline.hs
+    test-transport/Transport.hs
+
+Every said@1 sentence in that universe:
+    Breadth.hs:501:    ++ "\"utility\": {\"form\": \"said@1\", \"said\": [\"*\", [\"get\", \"skill\"], "
+    Readout.hs:595:    ++ "\"utility\": {\"form\": \"said@1\", \"said\": [\"var\", 1]}, "
+    Trampoline.hs:468:    ++ "\"utility\": {\"form\": \"said@1\", \"said\": [\"*\", [\"get\", \"move\"], "
+    Trampoline.hs:509:            ++ "\"said\": [\"*\", [\"c\", 0.5], [\"var\", 1]], "
+    Transport.hs:74:    ++ "\"utility\": {\"form\": \"said@1\", \"said\": [\"neg\", [\"var\", 1]]}}}"
+
+Only TWO read a writable name via get, and BOTH are immune:
+
+  (a) test-trampoline Trampoline.hs helloClock -- reads writable "move",
+      but DECLARES A CLOCK, so it ALREADY routes through policyPick.
+      Re-routing the CLOCKLESS arm cannot reach it.  Its own comment
+      already carries the mandate-2 sitting flag:
+        -- SITTING FLAG (mandate 2): the utility reads the writable "move" —
+        -- the R4-pending semantics — but every assertion below is
+        -- INSENSITIVE to that ruling (at the uniform first tick both
+        -- readings give the externals EU 0, and think wins strictly).
+        helloClock :: String
+
+  (b) test-breadth Breadth.hs helloB -- reads writable "skill", and IS
+      clockless, but its menu is a SINGLE POINT:
+        498:    ++ "\"menu\": [{\"name\": \"skill\", \"grid\": [1]}], "
+      chooseEU on a singleton never compares anything --
+        chooseEU ns feats atomG u cands = case cands of
+          [] -> Right Nothing
+          (c0 : rest) -> Just <$> foldl' step (Right c0) rest
+      the fold's rest is empty, so no env is built and no comparison
+      happens.  Substitution and non-substitution are indistinguishable
+      on one option.
+
+  Every OTHER clockless wire row's utility reads only the outcome or a
+  NON-writable feature -- exactly g2's pinned scope, where policyPick
+  and chooseEU are EXTENSIONALLY EQUAL by the frozen pin itself.
+
+--- CONCLUSION (the builder's reading, stated as a claim to be ruled) ---
+The frozen chooseEU pin is NOT what makes un-deferring boundary-sized.
+g2 pins the functions, not the routing; nothing frozen pins the fork;
+and no frozen wire row can change outcome under the re-route, because
+each is either inside the pinned scope (equal by the pin) or has a
+one-point menu (no comparison), and the single writable-utility
+multi-option world already declares a clock.
+
+WHAT THIS DOES NOT ESTABLISH: that gate 5 passes after the change (not
+made -- the builder does not implement ahead of an oracle); that the
+kill matrix is unaffected (OB-33 fires if this lands -- register R3);
+or that the change SHOULD be made.  It removes ONE uncertainty, the one
+the filer named, and it is the author's to rule.
+
+--- (5) ADDENDUM: the sweep tightens by one ---
+test-transport/Transport.hs is in the universe (it declares a menu and a
+utility) but its frozen helloLine is REFUSED by the shipped engine:
+
+    $ <Transport.hs helloLine> | proplang-host
+    {"error": "bad hello"}
+
+Two reasons, both post-dating the suite: the utility uses ["neg", ...], one of
+the four forms that left the alphabet at the exact re-founding; and the world
+declares no codebooks.theta, which the door has required since the same
+boundary.
+
+The suite is nonetheless GREEN, correctly, and for a reason worth recording:
+its expectation is DERIVED, not hand-copied --
+
+    expectedReplies = snd (mapAccumL serveLine hostStart requests)
+    -- THE EXPECTATION: the frozen pure core itself, folded over the same
+    -- lines (R-D20 -- never a hand-copied literal)
+
+-- so it asserts that the SUBPROCESS says whatever the LIBRARY says, per line,
+over pipes.  Both refuse identically, the row passes, and the suite goes on
+measuring the thing it exists to measure (per-line request-reply delivery,
+issue #18's fix).  This is the one-generator law paying for itself: a
+hand-copied expected reply would have gone red at the re-founding and sent
+someone hunting a transport bug that did not exist.
+
+CONSEQUENCE FOR THE SWEEP: Transport's world never reaches selection at all,
+so it cannot distinguish the two routes.  The universe of frozen worlds that
+could is THREE, not four -- Readout (utility ["var",1], no writable name, and
+so inside g2's pinned scope), Trampoline (writable, but clocked), Breadth
+(writable, but a one-point menu).  The conclusion is unchanged and its support
+is one world narrower.
+
+NOT A DEFECT, recorded as an observation: the transport suite's world is a
+fossil of the pre-exact wire.  It is harmless because of what the suite
+asserts, and repairing it would change nothing it measures.
+
+--- (6) THE EXACT SIZE OF THE CHANGE IN src/ ---
+policyPick is ALREADY imported by Host.hs -- no import is added:
+
+    import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
+                              mintQ, policyPick, reindexUtility, substW,
+                              weakenE, withRows)
+
+chooseEU occurs FOUR times in Host.hs and only ONE is code:
+
+    26:  --   * selection runs through Membrane.chooseEU -- the SENTENCE route   [comment]
+    58:  import PropLang.Membrane (chooseEU, ...)                                [import]
+    377: -- the SENTENCES (chooseEU when no clock is declared -- byte-identical   [comment]
+    426:                picked <- chooseEU (swNs w) feats (swAtom w) u scored     [THE CALL]
+
+So the migration is:
+    (a) line 426: chooseEU -> policyPick                     [one identifier]
+    (b) line 58: drop chooseEU from the import list          [else -Werror
+                                                              unused-import]
+    (c) lines 26 and 377: two comments go stale              [not compile-
+                                                              blocking, but
+                                                              this repo does
+                                                              not leave those]
+
+AND THEN chooseEU HAS ZERO src CONSUMERS.  It stays exported from Membrane and
+stays pinned -- test-pin's SELECTION row calls it directly by import, and
+test-trampoline's g2 pins it against policyPick.  So it is NOT deleted; it
+becomes an in-library function the frozen oracle pins and the host no longer
+routes through.
+
+THAT DISPOSITION ALREADY HAS A PRECEDENT IN THIS REPO, one boundary old: the
+#19 sitting's D3 ruled pwLadderCap/Purchase.hs FROZEN-IN-PLACE with its pins
+dispositioned at the pin site, deletion DECLINED because its proof was not run
+and not claimed.  The same shape, the same reasoning, and the sitting that set
+it is the one immediately preceding this.

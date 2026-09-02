@@ -1,0 +1,59 @@
+=== F2: the L5 self-falsification, EXECUTED ===
+Run 2026-09-01 at HEAD 94fd4eb.  Every line below is a command and its
+output, re-runnable at these bytes.
+
+--- (a) the tree has NOT moved since the sitting recorded its result ---
+$ git diff HEAD --stat -- tools/prefreeze-lint.sh doctrine-author-pack.md
+(empty: both files are byte-identical to the commit that recorded 0 FAIL 1 WARN)
+
+--- (b) L5's pack selection and its trigger, quoted from the row itself ---
+# -- L5: SAT flag-faithfulness in the current author pack --------------------
+# every overlay/satisfiability transcript must record the stanza's
+# exact flag set, -Werror included (the step-5 flag-faithful amendment).
+# Pack selection HARDENED at the heir oracle freeze (OB-28 iii): the
+# old `ls -t` selected by mtime, which in a fresh clone is checkout
+# order (the r1 rehearsal's L5 line read unify-author-pack.md) — the
+# current pack now derives from HISTORY: the last commit that touched
+# an author pack names it.
+pack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
+if [ -n "${pack:-}" ] && grep -qi "satisfiability\|overlay" "$pack"; then
+  l5=0
+  for flag in -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns; do
+    grep -qF -- "$flag" "$pack" || { bad "L5 $pack SAT section lacks $flag"; l5=1; }
+  done
+  [ "$l5" -eq 0 ] && ok "L5 $pack records the four stanza flags (incl. -Werror)"
+else
+  warn "L5 no author pack with a SAT/overlay section found (nothing to check)"
+fi
+
+--- (c) which pack L5 selects at HEAD ---
+$ git log -1 --pretty= --name-only -- '*author-pack.md' | head -1
+doctrine-author-pack.md
+
+--- (d) THE CHRONOLOGY, proven by git, not inferred ---
+  8096c4b (2026-08-08)  trigger-word hits = 0  -> WARN branch (nothing to check) = the RECORDED result
+  f79d7a4 (2026-08-08)  trigger-word hits = 0  -> WARN branch (nothing to check) = the RECORDED result
+  94fd4eb (2026-08-08)  trigger-word hits = 1  -> CHECK branch -> 4 FAIL
+
+--- (e) the single hit, and it is the sitting describing its own WARN ---
+473:   nothing-to-check branch — this pack carries no SAT/overlay
+
+  in context:
+    8. Verification at the final bytes: prefreeze-lint 0 FAIL 1 WARN
+       with L10 live (196 manifest rows verified, all 68 tags verify,
+       L7 full-corpus build green, L10 "universe = Host.hs only; 6
+       frontier symbols absent from Host code"; the WARN is L5's
+       nothing-to-check branch — this pack carries no SAT/overlay
+       section because no oracle was cut, correct for a rulings
+       sitting); gate 5 = cabal test all -j1 EXIT=0, ALL 13 SUITES PASS
+       (battery, breadth, dyadic, exact-acceptance, exact-properties,
+
+--- (f) the pack carries NO actual SAT section: zero -W flags anywhere ---
+  grep -c -- -Wall                        0
+  grep -c -- -Werror                      0
+  grep -c -- -Wincomplete-patterns        0
+  grep -c -- -Wincomplete-uni-patterns    0
+
+  So all four FAILs are FALSE POSITIVES: the row entered its check branch
+  on a sentence ABOUT the lint, then failed a pack that correctly has no
+  SAT section to check (a rulings sitting cuts no oracle).

@@ -1,0 +1,100 @@
+DRAFTS — the three frozen-layer repairs.  NOT APPLIED.
+FL-1 and FL-2 are manifest-covered (membrane-wire.md, CLAUDE.md), so the edit
+and the MANIFEST re-sign are the author's key.  FL-3 is outside the manifest.
+
+================================================================
+FL-1 — membrane-wire.md section 2, the `menu` bullet
+FORM: in-place, the falsified reading quoted inside its own repair
+      (the normative-prose form the FROZEN-LAYER INVENTORY clause names)
+INSERT: immediately after the bullet's closing sentence, which currently ends
+        "...trampoline g2 pins the composition on the wire's utility
+        convention."
+================================================================
+
+  > [REPAIRED at the #24 sitting, 2026-09-01.  The paragraph above described
+  > `Membrane.policyPick`'s substitution semantics -- "each option's utility
+  > reading the option's OWN assignment by expansion" -- as THE selection
+  > route, unconditionally, and demoted `chooseEU` to "the binary special
+  > case".  That is the reading a consumer plans against, and it is wrong for
+  > a world that declares no clock: life-agent lost a migration checkpoint to
+  > exactly this (issue #24).  The correction did exist, but 27 lines
+  > below -- the bullet ends at line 95, the correction sits at line 122 --
+  > inside the OPTIONAL `clock` bullet, as "ABSENT means the shipped
+  > selection, byte-identically" -- decodable only by a reader who already
+  > knows that "the shipped selection" is the NON-substituting one.  Stated
+  > here, where menus are read:]
+  >
+  > A CLOCKLESS WORLD SELECTS THROUGH `Membrane.chooseEU`, AND ITS COMPARISON
+  > DOES NOT SUBSTITUTE.  `chooseEU` builds ONE environment, from the
+  > CHALLENGER, and evaluates both candidates' utilities in it -- so a `get`
+  > on a menu name reads the challenger's assignment on both sides,
+  > per-action LEVELS cancel, and only BELIEFS differentiate the options.  A
+  > world whose beliefs are act-blind therefore ties every pair and returns
+  > the option space's head.  `policyPick`'s substitution semantics are
+  > reached ONLY when the world declares a `clock` row.
+  > (`src/PropLang/Host.hs` at 94fd4eb, the binding `actOrThink`:
+  > `case swClock w of Nothing -> chooseEU ...; Just (price, d) -> ...
+  > pickWire ...`.)
+
+NOTE: if the sitting rules R1 option (3) -- un-defer and route clockless
+worlds through policyPick -- this repair inverts: the original sentence
+becomes TRUE and this bracket becomes the historical record of when it was
+not.  Draft accordingly at the close; do not install both readings.
+
+[AMENDED 2026-09-02, after the verdict.  R1 IS (3), in the THIRD SHAPE
+(pairwise AND substituting -- the r2 pack).  Under that shape the frozen
+`menu` bullet's original sentence is SIMPLY TRUE as written -- `chooseEU`
+becomes the binary special case of the substituting selection -- so FL-1
+installs as a dated HISTORY bracket recording the period during which the
+sentence was false (2026-07-27 trampoline-freeze to the (3) increment's
+close) and the consumer checkpoint lost to it (#24), NOT as a correction
+of the standing text.  The drafted correction text above becomes the
+BODY of that historical bracket.  Install at the (3) increment's close,
+one reading only.]
+
+================================================================
+FL-2 — CLAUDE.md, the Porting order's last paragraph
+FORM: in-place, falsified sentence quoted inside the repair
+REPLACES: "The roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386):
+          ... each gated as HOSTS_PLAN section 9 records."
+================================================================
+
+     [REPAIRED at the #24 sitting, 2026-09-01.  This paragraph read "The
+     roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386) ... each
+     gated as HOSTS_PLAN section 9 records", and routed the live roadmap
+     through a document that has since been moved to archive/ and that opens
+     by declaring itself HISTORICAL and binding "on nothing current" -- the
+     engine it describes was demolished at the step-3 sentence freeze.  H and
+     D shipped (govhost-freeze, d-freeze/d-close); A's gate was read and did
+     NOT fire (OB-12's differential run, 95k live events, X.5 ruling 7:
+     A STAYS CLOSED, B STAYS OUT at n_inv = 0); A's substance landed anyway
+     under the later architecture (w3-freeze-r1's K-ary arity, the OB-19
+     heir's enumeration breadth).  The falsified pointer is quoted here and
+     replaced:]
+     THE LIVE ROADMAP IS EXACT_PLAN.md section 13.0, THE DESTINATION MAP,
+     installed verbatim from the author's directive of 2026-07-26 "so the
+     roadmap lives in the tree, never in a transcript".  Its steps 1-4 are
+     closed (the X.5 sitting; OB-12's run; the trampoline boundary, the last
+     language increment; the completeness suite).  ONE ITEM REMAINS: step 5,
+     the demonstration tier -- the A-gate reading with OB-12's result in
+     hand, the benchmark, and the paper.  AFTER 5 THE ROADMAP TERMINATES, and
+     everything else is named demand-gated residue re-entering only through
+     the two-sided gate with a measurement.  archive/HOSTS_PLAN.md is
+     retained as historical record only.
+
+================================================================
+FL-3 — EXACT_PLAN.md, the status header
+FORM: a dated supersession note; the superseded words KEPT
+      (the close-date-document form)
+INSERT: immediately after the existing italic status block
+================================================================
+
+  > **[SUPERSEDED 2026-09-01, at the #24 sitting.**  The status line above
+  > reads "Status: PROPOSAL.  It opens nothing by itself", and that was true
+  > when written.  It is not true now: this document was EXECUTED --
+  > exact-freeze-r0 / r0a / r1 -- and grew into the live boundary record.
+  > Section 12 is the Phase-2 work order, section 13 the trampoline boundary
+  > and THE DESTINATION MAP (the live roadmap, installed verbatim from the
+  > author's directive of 2026-07-26), section 14 the completeness suite,
+  > section 15 the wire docket.  The original words are kept above as the
+  > record of what this file was at its writing.**]**

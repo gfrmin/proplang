@@ -1,0 +1,78 @@
+=== F1: issue #24's repro, RE-EXECUTED at HEAD ===
+Run 2026-09-01 against the shipped host built from src at HEAD 94fd4eb.
+
+The world is issue #24's, verbatim from the issue body.  Its utility is
+constant in y (every arm multiplies ["var",1] by 0.0), so the beliefs are
+IDENTICAL across options BY CONSTRUCTION and nothing below depends on
+learning, evidence, or a prior:
+    act=1 (the menu head)      worth  10
+    act=2 (the declared argmax) worth 100
+    act=3                       worth  50
+
+--- ARM 1: NO clock row ---
+{"ok": true, "proto": 1, "models": 25, "namespace_bits": 1.0}
+{"act": {"act": 1}, "p1": 0.5, "entropy_bits": 2.5361356166885067, "p0": 0.5, "argmax_code": 0, "p_argmax": 0.5, "p_codes": [0.5, 0.5]}
+
+--- ARM 2: WITH a clock row priced 1000 -- far above every menu row, so the
+    internal act provably cannot win.  The row is the ONLY difference. ---
+{"ok": true, "proto": 1, "models": 25, "namespace_bits": 1.0}
+{"act": {"act": 2}, "p1": 0.5, "entropy_bits": 2.5361356166885067, "p0": 0.5, "argmax_code": 0, "p_argmax": 0.5, "p_codes": [0.5, 0.5]}
+
+REPRODUCED.  The head wins without the clock; the declared argmax wins with
+it; models: 25 matches the issue's table exactly.
+
+--- and the workaround is not opt-out-able: batch 0 is refused ---
+{"error": "bad hello"}
+    (correctly so per membrane-wire.md section 2's stated shape -- but it
+     means a consumer wanting substitution MUST also buy the preposterior)
+
+--- the mechanism, read at HEAD, not inferred ---
+
+src/PropLang/Host.hs @ 94fd4eb, inside the binding "actOrThink" -- the fork:
+                case swClock w of
+                  Nothing -> do
+                    picked <- chooseEU (swNs w) feats (swAtom w) u scored
+                    Right (Left (maybe o0 fst picked))
+                  Just (price, d) -> do
+                    tv <- thinkValue d (swNs w) feats (swAtom w) u opts ag
+                    r <- pickWire (swNs w) feats (swAtom w) u scored price tv
+                    case r of
+
+src/PropLang/Membrane.hs @ 94fd4eb, "chooseEU"'s "step" -- ONE env, and it is
+built from the CHALLENGER:
+      (c0 : rest) -> Just <$> foldl' step (Right c0) rest
+      where
+        uB :: Expr (Rational ': env) Rational
+        uB = reindexUtility atomG u
+        pick :: Expr '[B Int, B Int] Rational
+        pick =
+          let vC = Expect (Var Z) uB
+              vI = Expect (Var (S Z)) uB
+          in If (Gt vC vI) (reMint atomG 1) (reMint atomG 0)
+        step acc chal@(cFeats, bC) = do
+          inc@(_, bI) <- acc
+          env <- mkEnvIn ns (feats' cFeats) (bC :. bI :. VNil)
+
+Both Expect terms are evaluated in that single env, so a "get" on the menu
+name inside the utility reads the CHALLENGER's assignment on BOTH sides of
+the comparison.  Per-action LEVELS cancel; only beliefs can differ; a world
+whose beliefs are act-blind ties every pair, the incumbent survives every
+step, and the fold returns the option-space head.
+
+This is OB-24's own sentence.  #24 adds no new mechanism to it -- it adds
+measured demand, which is the one input the register cannot derive for itself.
+
+--- AN INCIDENT, RECORDED (the first run of this very transcript) ---
+The first attempt to generate this file wrote the internal act's name inside
+BACKTICKS in a double-quoted shell string.  The shell EXECUTED it:
+
+    /bin/bash: line 21: think: command not found
+
+That is OB-30's disease exactly -- REVIEWED PROSE REACHING A COMMAND THROUGH
+A SHELL-WORD PARSER -- and it is the same shape that hung the readout r0
+sitting for hours, where "git apply --check" cited as prose in a tag register
+ran as a command substitution and read the terminal for a patch.  It cost
+nothing here because the prose was a comment and the failure was loud.  It is
+recorded because OB-30 is STANDING-CONDITIONAL on "a lintable form exists",
+and this is a second live instance in a second consumer (a transcript
+generator, not a tag kit).  See the register, question R6.

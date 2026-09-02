@@ -1,0 +1,111 @@
+=== F7b: GATE 5 AGAINST THE PROTOTYPE -- the falsifier, EXECUTED ===
+Run 2026-09-01 in a throwaway worktree at HEAD 94fd4eb (R-D21: executed once
+against a throwaway prototype realization, prototype discarded).
+
+THE PROTOTYPE DIFF -- two lines, exactly as F7 predicted:
+
+    -import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
+    +import PropLang.Membrane (menuAssignments, predictiveBelief,
+    -                picked <- chooseEU (swNs w) feats (swAtom w) u scored
+    +                picked <- policyPick (swNs w) feats (swAtom w) u scored
+
+THE RESULT: cabal test all -j1  ->  EXIT=1.
+
+  12 of 13 suites PASS: pins, lawful-independence, lawful, jointprep, f5,
+  exact-properties, exact-acceptance, dyadic, battery, transport, trampoline,
+  readout.
+  breadth: 19 of 20 rows pass.  ONE FAILURE.
+
+THE BUILDER'S STATED EXPECTATION WAS FALSIFIED, AND IS RECORDED AS SUCH.
+Claim C24 predicted no frozen row could change under the re-route.  A row did
+go red.  Whether it went red BECAUSE of the change is the attribution question
+below, and it is not answered by wanting the answer.
+
+THE FAILING ROW -- drift-a, an ABSOLUTE timing band:
+
+    drift-a the base route's five windowed means and deep/shallow mean ratio
+            sit inside the minted bands
+    REPORT window [6..30] mean 1532.5 ms
+    FAIL: drift window [6..30]: 1532.5 within +/-15% of frozen 431.1
+
+WHAT POINTS AT THE BOX RATHER THAN THE CHANGE (internal to the same run):
+
+  1. b6b PASSED.  It is the RATIO row -- base vs heir measured on the same box
+     in the same run -- and it read 1.366 against a bar of 2.0.  A ratio is
+     load-invariant in a way an absolute band is not.
+
+  2. b6b's own composition REPORT shows UNIFORM inflation across every column:
+
+         ev      247.6 ms   (frozen  66.2)   = 3.74x
+         walks    90.1 ms   (frozen  23.8)   = 3.79x
+         ev+ro  1554.2 ms   (frozen 434.5)   = 3.58x
+         wire   3266.1 ms   (frozen 832.7)   = 3.92x
+
+     THE DECISIVE ONE IS `ev`.  That column is EVIDENCE FOLDING.  It does not
+     touch selection at all, so the prototype's change cannot reach it -- and
+     it is inflated 3.74x, the same factor as every other column.  A selection
+     change does not uniformly inflate a column it cannot execute.
+
+  3. The box was carrying three processes near 100% CPU during the run (julia
+     plus two dbt) on a 4-core/8-thread machine.
+
+  4. This exact class has bitten this repo twice already and is recorded both
+     times: the a2d35d9 loud-box incident (parallel suites, drift 1.9060 vs
+     1.9960 quiet) and the #19 sitting's contended probe run.
+
+WHAT IS NOT YET ESTABLISHED, AND THE CONTROL THAT SETTLES IT:
+The reasoning above is an argument, and an argument is not a measurement.  The
+control is running as this is written: the SAME drift row, on the UNMODIFIED
+tree, on the SAME box under the SAME load.
+
+    if the control ALSO fails near ~1500 ms  -> load; the change is exonerated
+    if the control PASSES near ~431 ms       -> the change is implicated and
+                                                F7's reading is WRONG
+
+Result appended below.  Until it is appended, the honest statement is:
+GATE 5 DID NOT PASS ON THE PROTOTYPE, one timing row, attribution pending.
+
+=== THE CONTROL, EXECUTED -- attribution SETTLED ===
+Same drift row, UNMODIFIED tree (main worktree, HEAD 94fd4eb, clean), same box,
+same load, run immediately after the prototype run.
+
+    CONTROL (unmodified): FAIL -- drift window [6..30]: 1562.8 vs frozen 431.1
+    PROTOTYPE (2-line):   FAIL -- drift window [6..30]: 1532.5 vs frozen 431.1
+
+THE UNMODIFIED TREE FAILS THE SAME ROW, BY MORE.  Window by window:
+
+    window        prototype    control(unmod)   frozen band centre
+    [6..30]        1532.5        1562.8              431.1
+    [50..80]       1952.5        2074.1
+    [100..130]     2346.4        2458.3
+    [150..180]     3432.8        2759.1
+    [250..280]     5073.9        5000.9
+    deep/shallow    2.1113        1.9110              2.0092
+
+The control is SLOWER in three of five windows and faster in two -- mixed,
+i.e. noise-dominated.  And the frozen deep/shallow ratio 2.0092 sits BETWEEN
+the two runs (2.1113 prototype, 1.9110 control), which is what two draws from
+the same distribution look like.
+
+CONCLUSION: THE RED IS ENVIRONMENTAL.  It reproduces with NO change at all.
+The prototype is EXONERATED: the two-line re-route did not cause it, and gate
+5's only failure is the box, not the diff.
+
+WHAT THIS DOES **NOT** PROVE -- stated because the temptation is to overread a
+clean exoneration:
+
+  It does NOT show that policyPick costs the same as chooseEU on the clockless
+  path.  It shows only that THIS red is not attributable to the change.  Under
+  a load that inflates every column ~3.6x, the drift row has no power to detect
+  a modest cost difference in either direction.  The COST QUESTION F7's
+  falsifier opened remains OPEN and UNMEASURED, and the measurement that would
+  close it is a quiet-box A/B of the two routes at matched depth -- not run.
+
+A STANDING OBSERVATION FOR THE SITTING (not a finding of this increment):
+gate 5 currently CANNOT PASS on this machine under its owner's ordinary
+workload, and that is a property of the row's form, not of the tree.  drift-a
+is an ABSOLUTE band minted on a quiet box; b6b is a RATIO with a bar, and b6b
+passed in BOTH runs (1.366 prototype, bar 2.0).  A ratio cancels a uniform load
+factor; an absolute band cannot.  The repo has now paid for this three times --
+the a2d35d9 loud-box incident, the #19 sitting's contended probe, and today --
+and each time the diagnosis was correct and the row stayed absolute.

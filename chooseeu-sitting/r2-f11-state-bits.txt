@@ -1,0 +1,35 @@
+r2 probe A2 — qbits of the folded state vs t, executed 2026-09-02 at HEAD 94fd4eb
+build: ghc -O1 -Wall -Werror -isrc -ibench bench/ProbeStateBits.hs (clean)
+box: thinkpad.  The fold is BenchTest t5's own (mirror == engine
+metaPosterior, Rational ==, by the frozen t5c row), seed 7.
+
+ProbeStateBits (the #24 sitting r2, A2) — qbits of the folded state vs t
+(the mirror's weights == the engine's metaPosterior, Rational ==, by t5c)
+
+P1        t=100   raw: max=319      total=2015        normalized: max=226      total=1789        ss-control=19
+P1        t=200   raw: max=641      total=3990        normalized: max=470      total=3663        ss-control=22
+P1        t=400   raw: max=1281     total=7944        normalized: max=948      total=7364        ss-control=25
+P1        t=800   raw: max=2544     total=15845       normalized: max=1874     total=14633       ss-control=28
+P1        t=1600  raw: max=5088     total=31648       normalized: max=3764     total=29343       ss-control=31
+
+P2realNC  t=100   raw: max=11222    total=10142238    normalized: max=11438    total=10858575    ss-control=20
+P2realNC  t=200   raw: max=22431    total=20268405    normalized: max=22860    total=21713662    ss-control=22
+
+P2realNC t=400: STOPPED, NOT MEASURED — the builder's choice, printed
+per the no-silent-caps law (the F9 w32 precedent).  The classification
+was decided at the doubling: 20268405/10142238 = 1.999, and P1's five
+checkpoints run the same line through t=1600 with no flattening.  The
+stopped cell had run ~15 min at 97% CPU for its third point — the
+growing per-tick cost of the O(t) state is itself the finding's
+operational face.  (A first run of this probe was killed at 10 min for
+SILENT BUFFERING — no output row had flushed — and repaired to
+line-buffered before this run; recorded as an instrument incident.)
+
+READING: LINEAR on both profiles.  P1 (dyadic 16ths): total qbits
+2015 -> 31648 across t=100 -> 1600, ~19.8 bits/tick, vs the
+sufficient-statistic control 19 -> 31 (O(log t)).  P2realNC (the
+owner's real declaration, decimal grids): 10.1M bits at t=100, 20.3M
+at t=200 — ~101k bits/tick of pure representation growth, control
+20 -> 22.  The folded posterior carries O(t) bits where the decision
+problem needs O(log t); alpha_3p measured the arithmetic
+representation.  The verdict's conditional is now a measurement.

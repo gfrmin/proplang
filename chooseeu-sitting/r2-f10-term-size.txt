@@ -1,0 +1,35 @@
+r2 probe A1 — term size (STATIC), executed 2026-09-02 at HEAD 94fd4eb
+build: ghc -O1 -Wall -Werror -isrc -ibench bench/ProbeTermSize.hs (clean)
+box: thinkpad (static counts are box-independent by construction)
+
+ProbeTermSize (the #24 sitting r2, A1) — STATIC term counts at 94fd4eb
+tree = nodes evalx walks; dag = distinct heap nodes; pick/pairSub rows
+are PER-COMPARISON constants of the two O(width) routes, x(w-1) total.
+
+w=4   tournament tree=180                    dag=50       pick/cmp=22 (x3 cmps=66)  pairSub/cmp=22 (x3 cmps=66)
+w=8   tournament tree=3628                   dag=106      pick/cmp=22 (x7 cmps=154)  pairSub/cmp=22 (x7 cmps=154)
+w=16  tournament tree=950124                 dag=218      pick/cmp=22 (x15 cmps=330)  pairSub/cmp=22 (x15 cmps=330)
+w=32  tournament tree=62277025516            dag=442      pick/cmp=22 (x31 cmps=682)  pairSub/cmp=22 (x31 cmps=682)
+w=64  tournament tree=267477789068788497900  dag=890      pick/cmp=22 (x63 cmps=1386)  pairSub/cmp=22 (x63 cmps=1386)
+
+growth per doubling (tree, then dag):
+  w=4 -> w=8 : tree x20.16, dag x2.12
+  w=8 -> w=16 : tree x261.89, dag x2.06
+  w=16 -> w=32 : tree x65546.21, dag x2.03
+  w=32 -> w=64 : tree x4294967315.03, dag x2.01
+
+reading: tree ~2^w with dag staying polynomial = the cliff is
+EXPRESSION DUPLICATION (an implementation artefact of the chooseKS
+expansion under a tree-walking evalx), not intrinsic to substitution;
+the pairSub row shows the substituting per-comparison term is a
+width-independent constant.
+
+fit: tree(w) = ~14.5 * 2^w exactly (65536*14.5 = 950k at w=16,
+4.29e9*14.5 = 6.2e10 at w=32); dag(w) = ~28*w.
+
+note on F9's measured 6.27x (not ~2900x, the node ratio at w=16):
+evalx's If evaluates ONE branch, so the WALKED subtree is the
+win/loss-pattern-dependent realization of the static tree — the
+static count is the structure, the timing is one path through it.
+Both say the same thing: the growth is the expansion's, not
+substitution's.

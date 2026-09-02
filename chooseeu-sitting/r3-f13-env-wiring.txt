@@ -1,0 +1,92 @@
+F13 — THE ENV-WIRING CLASS ON #24's WORLD ("three mutants, one world")
+======================================================================
+Date: 2026-09-02, the r3 round (the ruling round's order: "the
+half-reversions produce a tie on #24's world ... so #24's world likely
+kills them too, but demonstrate it rather than argue it -- three
+mutants, one world, minutes").
+HEAD: 8d7e1c0.  Nothing frozen touched.  ghc 9.10.3.
+
+PROTOTYPE PROVENANCE (R-D21).  The r2 prototype (ProtoPairSub.hs,
+transcript r2-f12) was deleted per R-D21.  For this run it was
+RECONSTRUCTED FROM THE SESSION RECORD'S OWN WRITE COMMAND -- the
+heredoc that created it plus the one recorded repair (the redundant
+foldl' import drop) -- i.e. derived from the same generator that
+produced the r2 file, not re-written from memory.  Reconstructed base
+sha256 (first 16): d2b965b21ab32527.  (r2-f12 recorded no hash; this
+line is the base's hash going forward.)  The r3 extension patch, in
+full:
+  - CmpMode grows two constructors beside the r2 pair, completing the
+    ruling round's four-member env-wiring class:
+      Substituting          -- correct: each side its OWN assignment
+      RevertedChallengerEnv -- both sides under the CHALLENGER's (shipped)
+      BothIncumbentSub      -- both sides under the INCUMBENT's
+      SwappedSub            -- each side under the OTHER's
+  - their picks, same 22-node shape, wiring only:
+      BothIncumbentSub: If (Gt (Expect (Var Z) (substW iFeats uB))
+                               (Expect (Var (S Z)) (substW iFeats uB))) ...
+      SwappedSub:       If (Gt (Expect (Var Z) (substW iFeats uB))
+                               (Expect (Var (S Z)) (substW cFeats uB))) ...
+  - the env-independence assertion widened from Substituting-only to
+    every substW-based mode (RevertedChallengerEnv alone exempt -- it
+    is env-DEPENDENT by construction, that is the defect)
+  - main: the F13 block (below).
+Patched sha256 (first 16): cc043d89e7d8fd7e.  Compiled under the frozen flag set
+(ghc -O1 -Wall -Werror -isrc -ibench).  DELETED after this transcript.
+
+RESULT (verbatim, the #24 block):
+ProtoPairSub (the #24 sitting r2, Phase B) — the third shape, executed
+
+D1 — #24's world (act=1 worth 10, act=2 worth 100, act=3 worth 50):
+  chooseEU   (shipped)   -> [("act",1 % 1)]
+  chooseEUsub (3rd shape)-> [("act",2 % 1)]
+  policyPick (tournament)-> [("act",2 % 1)]
+D2 — the kill-law red (reversion to the challenger-env comparison):
+  REVERTED               -> [("act",1 % 1)]
+F13 — the full env-wiring class on #24's world (r3; "three mutants, one world"):
+  BOTH-CHALLENGER (=D2)  -> [("act",1 % 1)]
+  BOTH-INCUMBENT         -> [("act",1 % 1)]
+  SWAPPED                -> [("act",1 % 1)]
+  (pin row expects the declared argmax [("act",2)]; anything else is the red)
+D4 — tie convention (all arms worth 10):
+  chooseEU               -> [("act",1 % 1)]
+  chooseEUsub            -> [("act",1 % 1)]
+  policyPick             -> [("act",1 % 1)]
+
+READING.
+1. ALL THREE DEFECTIVE WIRINGS ARE KILLED BY THE 4a ROW.  The pin row
+   expects the declared argmax [("act",2)] (act=2 worth 100); every
+   defective wiring returns the head [("act",1)].  One world, three
+   reds.
+2. TWO MECHANISMS, DISTINGUISHED.  BOTH-CHALLENGER and BOTH-INCUMBENT
+   kill by TIE: both Expect terms read the SAME assignment, and #24's
+   utility is belief-blind (the Mul-by-0 belief term), so the terms
+   are exactly equal, strict Gt never fires, and the incumbent
+   survives every step -- the ruling round's prediction ("incumbent's
+   EU evaluated under the challenger's assignment equals the
+   challenger's -- head survives") confirmed on both half-reversions.
+   SWAPPED kills by INVERSION: the comparison computes
+   u(incumbent's act) > u(challenger's act), so a challenger is
+   promoted only when the incumbent is strictly BETTER; on values
+   10/100/50 the head is the minimum, nothing promotes, head wins.
+   (On a world whose head is neither argmax nor argmin the swapped
+   wiring can land on a third answer -- mechanically distinct -- but
+   the pin row needs no such world: one world kills all three.)
+3. THE ASSERTION STAYED SILENT.  The widened env-independence check
+   (evaluate each pick under both covers, require equality) fired on
+   no cell -- the substW-based wirings, defective or not, are fully
+   substituted, so their defects are WIRING defects, not
+   env-dependence defects; only the identifier reversion is
+   env-dependent.
+4. REGRESSION: the r2 results are unchanged under the extended
+   prototype -- D1 (chooseEU head / third-shape argmax / policyPick
+   argmax), D4 tie convention identical across all three routes, and
+   the D3 agreement sweep 14/14 AGREE, zero refusals, the w=32
+   policyPick cells SKIPPED as at r2 (probe A1's ~14.5*2^32 walked
+   worst case; printed, per no-silent-caps).
+
+CONSEQUENCE FOR THE PIN SUITE (shape-ruling.md clause 4b as amended):
+the env-wiring class is enumerated at birth with its three defective
+members demonstrated red on #24's world -- the amendment-1 obligation
+("demonstrate it rather than argue it") is EXECUTED, and the claim
+"#24's world likely kills them too" is promoted from ARGUED to
+EXECUTED with this transcript as its witness.

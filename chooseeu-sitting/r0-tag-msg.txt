@@ -1,0 +1,68 @@
+chooseeu-sitting-r0 -- the #24 sitting's ruling: R-SHAPE ADOPTED (rev 2)
+
+This signed tag is the author's adoption of the shape ruling at
+chooseeu-sitting/drafts/shape-ruling.md, REV 2, as committed at the
+commit this tag covers -- the ruling round of 2026-09-02 applied in
+full.  The register:
+
+1. R1 = (3) IN THE THIRD SHAPE: the pairwise-substituting fold.  The
+   normative definition stays the one-sentence chooseKS selection
+   (Syntax.hs -- in the library, exported, pinned; the agent
+   criterion).  policyPick keeps its name and signature; its body
+   becomes the fold, pinned extensionally to the sentence route in
+   the same increment (the optimisation law; g2's successor one
+   level up).  Host's clockless arm routes through policyPick;
+   chooseEU goes frozen-in-place, exported, zero src consumers.
+
+2. THE CLAUSE-5 WORD: INCLUDE -- the clock path rides.  pickWire
+   routes through the same fold.  Its pin is clause 4b's family with
+   pickWire routed through it; the trampoline rows staying green is
+   a REGRESSION CHECK, never the pin (the ruling round's correction,
+   installed in the clause).
+
+3. THE SEEDED-DEFECT ENUMERATION SETTLED AT SIX -- two four-member
+   classes, one correct member each, three defects each:
+     env-wiring:  both-challenger / both-incumbent / swapped
+                  (+ correct)
+     comparison:  Ge (tie-flip) / Lt (inversion) / Le
+                  (+ Gt, the shipped strict form)
+   The identifier reversion is clause 4a's PATCH FORM of
+   both-challenger (extensionally equal on every world, a different
+   diff) and seats no seventh.  Amendment 3's minimal separating
+   family quantifies over these six plus one width past the old
+   cliff.  The env-wiring defects are demonstrated red on #24's
+   world (r3-f13); the comparison-class reds are the oracle phase's
+   to construct (R-RED: a red is constructed, never owed -- the tie
+   world for Ge/Le, any distinguishing world for Lt).
+   [AUTHOR: if the round's "six" meant a different enumeration,
+   amend this block before signing -- the signature adopts the
+   enumeration as printed.]
+
+4. RIDERS, AS DRAFTED IN CLAUSE 6: OB-24 discharged at the
+   increment's close; OB-33's kill matrix fires; the six red-team
+   mandates; FL-1 installed as a dated HISTORY bracket, FL-2, FL-3;
+   L5 rev 2 with the four-red demo; OB-30's second and third
+   instances recorded, not discharged; R5's two-arrow
+   published-record row; drift-a re-minted to RATIO form; MANIFEST
+   re-signed by the author; the increment's tag by -F file under
+   the selection-freeze-r* family.
+
+EVIDENCE OF RECORD: probes A1/A2 (r2-f10, r2-f11), the third-shape
+demonstration with the reversion red firing (r2-f12), the env-wiring
+class demonstration (r3-f13: three mutants, one world, all red).
+Pack: chooseeu-author-pack.md parts I-III; the ruling round of
+2026-09-02 quoted verbatim at III.1.
+
+WHAT THIS TAG OPENS: the (3) increment, ORACLE-FIRST, per
+shape-ruling.md's closing section.  Issue #24 stays open until the
+increment's close ships the routing; it closes citing that freeze,
+not this tag.  The brain-seam demand registration is the gate
+owner's separate act (drafted at
+chooseeu-sitting/drafts/brain-seam-demand.md) and rides no part of
+this tag.
+
+CUSTODY: sitting record and this message drafted by the builder at
+the author's "help me close" (2026-09-02); the tag minted by the
+author's own key from the author's shell via
+chooseeu-sitting/close.sh.  The tag message is a FILE, never a
+shell string; its bytes are fixed by the commit this tag covers.
