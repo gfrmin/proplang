@@ -1,0 +1,13 @@
+# MUTANT M92-declmass-zeroed [pricing/Kraft / zero-term] - provenance: the declared-pair family carries ZERO added mass (declMass=CMass 0): the declaration is priced out of existence though the sentences remain enumerated. Targets b2d positivity and b3a/b3b concentration (binding declMass). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -350,7 +350,7 @@ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+         falseE = Gt zero one
+     catB j th = If (eqE (Var Z) (cAt atomG j)) (Mul km1 th) (Sub one th)
+     arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1)))
+-    declMass = CMass (1 / fromIntegral (max 1 (length (breadthPairs br))))
++    declMass = CMass 0
+     unitLatent = mkSpace (thetaPt0 :| [])
+     thetaPt0 = case mkC eg 0 :: Maybe (Expr '[] Rational) of
+       Just (C _ _ v) -> v

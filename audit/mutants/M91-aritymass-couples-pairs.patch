@@ -1,0 +1,13 @@
+# MUTANT M91-aritymass-couples-pairs [pricing/Kraft / couple-independent] - provenance: the null face's arity mass COUPLES to the pair count (arityMass divided by |pairs| too): the null charge is no longer invariant to the pair declaration. Targets b2c's independence law (binding arityMass, breadth route). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -349,7 +349,7 @@ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+         trueE = Gt one zero
+         falseE = Gt zero one
+     catB j th = If (eqE (Var Z) (cAt atomG j)) (Mul km1 th) (Sub one th)
+-    arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1)))
++    arityMass = CMass (1 / fromIntegral (max 1 (kAr - 1) * max 1 (length (breadthPairs br))))
+     declMass = CMass (1 / fromIntegral (max 1 (length (breadthPairs br))))
+     unitLatent = mkSpace (thetaPt0 :| [])
+     thetaPt0 = case mkC eg 0 :: Maybe (Expr '[] Rational) of

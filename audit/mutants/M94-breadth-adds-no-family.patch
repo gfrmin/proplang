@@ -1,0 +1,13 @@
+# MUTANT M94-breadth-adds-no-family [null-cap / zero-term] - provenance: the breadth route appends NO family (dpairs++nulls suppressed via asTypeOf, both still referenced for -Werror): the heir declaration collapses to the arity route. The BROAD suppression - included to answer whether every library breadth row is reachable (a green-that-cannot-fail check), not as a unique killer (composition site, `++ dpairs ++ nulls`). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -332,7 +332,7 @@ enumerateWithBreadth :: Breadth -> Int -> Namespace -> Carrier Int -> Grid
+                      -> [(Name, Grid)] -> Maybe Grid -> [FragProd] -> [Hyp]
+ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+   enumerateWithArity kAr ns obsC eg guardGs mrg allowed
+-    ++ dpairs ++ nulls
++    ++ ([] `asTypeOf` (dpairs ++ nulls))
+   where
+     has t = t `elem` allowed
+     obsSp = carrierSpace obsC

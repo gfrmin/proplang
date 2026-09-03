@@ -1,0 +1,13 @@
+# MUTANT M98-null-k-guard-dropped [door-refusal / weaken-validator] - provenance: the door validator drops the null-at-K=2 guard (not nl || kAr >= 3): a null face is admitted at K=2 where no distinct positive pair exists. Targets b4c's null-at-K=2 refuse case (mkBreadth guard). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -319,7 +319,7 @@ breadthEmpty = Breadth [] False
+ -- law).
+ mkBreadth :: Int -> [(Int, Int)] -> Bool -> Maybe Breadth
+ mkBreadth kAr ps nl
+-  | all okPair ps && length ps == length (nub ps) && (not nl || kAr >= 3) =
++  | all okPair ps && length ps == length (nub ps) =
+       Just (Breadth ps nl)
+   | otherwise = Nothing
+   where

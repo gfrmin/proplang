@@ -1,0 +1,13 @@
+# MUTANT M97-okpair-allows-equal [door-refusal / weaken-validator] - provenance: the door validator drops the a/=b guard (okPair admits a==b): the ONE validator accepts a degenerate pair the exact-duplication law forbids. Targets b4c's a==b refuse case (mkBreadth okPair, binding okPair). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -323,7 +323,7 @@ mkBreadth kAr ps nl
+       Just (Breadth ps nl)
+   | otherwise = Nothing
+   where
+-    okPair (a, b) = a /= b && a >= 1 && a <= kAr - 1 && b >= 1 && b <= kAr - 1
++    okPair (a, b) = a >= 1 && a <= kAr - 1 && b >= 1 && b <= kAr - 1
+ 
+ -- | The declared-breadth enumeration (the heir key's library half).
+ -- Every Breadth is mkBreadth-valid by construction (the type is

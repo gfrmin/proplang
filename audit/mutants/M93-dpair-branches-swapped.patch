@@ -1,0 +1,15 @@
+# MUTANT M93-dpair-branches-swapped [tie-break / flip-guard] - provenance: the declared-pair guard body SWAPS its high/low branches (catB jHi/jLo traded across the Gt): the minority tie breaks the wrong way. Targets b3a's minority argmax and b3b's MAP (dpairs body, binding dpairs). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -361,8 +361,8 @@ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+             unitLatent
+             (Code unitLatent obsSp
+                (If (Gt (Get nm) (cAt tg kt))
+-                   (catB jHi (cAt eg a))
+-                   (catB jLo (cAt eg b))))
++                   (catB jLo (cAt eg b))
++                   (catB jHi (cAt eg a))))
+             Nothing
+       | has FBern, has FIf, has FConst, has FGuardHead
+       , (nm, tg) <- guardGs

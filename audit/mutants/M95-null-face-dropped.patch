@@ -1,0 +1,13 @@
+# MUTANT M95-null-face-dropped [null-cap / drop-null] - provenance: the declared null face is silently dropped (the breadthNull guard forced False; nullConsts/nullGuards stay referenced in the dead guard). Targets b4a's extended-p0 cap break and the null-weight rows (nulls guard, binding nulls). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -370,7 +370,7 @@ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+       , kt <- [0 .. gridSize tg - 1]
+       , a <- [0 .. gridSize eg - 1], b <- [0 .. gridSize eg - 1], a /= b ]
+     nulls
+-      | breadthNull br = nullConsts ++ nullGuards
++      | breadthNull br && False = nullConsts ++ nullGuards
+       | otherwise = []
+     nullConsts =
+       [ Hyp ("nullconst", [0, k])

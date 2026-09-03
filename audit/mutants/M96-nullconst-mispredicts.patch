@@ -1,0 +1,13 @@
+# MUTANT M96-nullconst-mispredicts [null-cap / mis-predict] - provenance: the null-const face predicts atom 1 not the null atom 0 (catB 0 -> catB 1): a WEIGHT-invariant emission defect - the null face still exists and prices identically, but no longer raises p0. Targets b4a alone among the null rows (nullConsts body, binding nullConsts). Cut against the committed r0a baseline (36ca59f); OB-33 breadth half.
+diff --git a/src/PropLang/Enumerate.hs b/src/PropLang/Enumerate.hs
+--- a/src/PropLang/Enumerate.hs
++++ b/src/PropLang/Enumerate.hs
+@@ -376,7 +376,7 @@ enumerateWithBreadth br kAr ns obsC eg guardGs mrg allowed =
+       [ Hyp ("nullconst", [0, k])
+             (chargeMass fragWidth (CMul (constCharge eg) arityMass))
+             unitLatent
+-            (Code unitLatent obsSp (catB 0 (cAt eg k)))
++            (Code unitLatent obsSp (catB 1 (cAt eg k)))
+             Nothing
+       | has FBern, has FConst, k <- [0 .. gridSize eg - 1] ]
+     nullGuards =
