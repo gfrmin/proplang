@@ -1,0 +1,55 @@
+selection-freeze-r0a -- the selection oracle RE-OPENED for runEpisode
+
+This signed tag re-freezes the selection oracle (test-selection/) with
+one row added, under the author's re-open ruling of 2026-09-03.  From
+this signature the amended suite and prophecy-r0a.diff are as frozen as
+test/; the builder implements the one-line migration and may not touch
+these bytes.
+
+WHY THE RE-OPEN: the six red-team mandates over the r0 implementation
+(87f5066) returned five-clean; mandate 5 found the frozen prophecy had
+migrated only the WIRE selection (Host's clockless arm + pickWire),
+leaving runEpisode -- the library's exported episode runner -- still
+calling the act-blind chooseEU at Membrane.hs:460.  Under a PilotEU
+pilot on issue #24's world it returned the head, the behaviour the wire
+just shed, so the increment's own thesis (a bayesian AGENT, not a
+calculator) was false for the library's own agent runner.  The ruling's
+"chooseEU has zero src consumers" (clause 3 + the r0 impl commit) rested
+on that false premise (F7 measured one WIRE call site).  The author
+ruled re-open and complete the repair rather than paper it over.
+
+THE NEW ROW: s11.episode24-runEpisode-argmax.  It calls runEpisode
+under PilotEU (uFromValues vals24) on #24's world -- reusing the family's
+one generator (vals24/uFromValues, the act grid, feats24, the obs
+carrier) and hand-rolling the World/PureWorld/Pilot nothing in the repo
+constructs.  It asserts the single tick's act is the declared argmax
+(act 2).  RED at r0a's HEAD (runEpisode->chooseEU->act 1), GREEN after
+Membrane.hs:460 chooseEU->policyPick.  The belief structure runEpisode
+enumerates differs from the library rows' agent24, but uFromValues is
+belief-blind (Mul (Var (S Z)) (mintQ 0)), so the pick is invariant to
+it -- one generator at the level that drives the selection.
+
+THE TWO-RUN TRIPTYCH: r0a-red-run.txt (s1-s10 PASS, s11 FAIL, EXIT=1;
+the FAIL PRINTS the live runEpisode result Right [[("act",1 % 1)]] --
+attributable to line 460 by inspection) and r0a-sat-run.txt (all 11
+rows PASS via CABAL against the migrated overlay, flag- and package-
+faithful, EXIT=0 -- the R-D21 satisfiability, the overlay form).  s11
+adds no new package dependency.
+
+THE PROPHECY: prophecy-r0a.diff -- Membrane.hs:460 chooseEU->policyPick
+(the load-bearing migration), plus the chooseEU Membrane.hs:159 title
+demotion to "THE ACT-BLIND BINARY PREDECESSOR" (mandate 5's collision
+fix, comment-only).  Applies clean (-p1) on top of 87f5066; chooseEU's
+definition intact.  Applied byte-for-byte at implementation; deviation
+is stop-and-report.
+
+RIDERS TO THE CLOSE (unchanged from r0 clause 4, plus): s11's unique
+kill (a runEpisode-uses-chooseEU mutant, killed only by s11) joins the
+OB-33 matrix beside d1-d7; and after the migration chooseEU reaches
+zero src consumers in truth -- the mandate-5 finding is RESOLVED, no
+record correction owed.
+
+CUSTODY: s11 + prophecy-r0a.diff + the r0a transcripts + this re-freeze
+script written by the builder (unsigned commits, by design); this tag,
+the amended Selection.hs's re-hash, and the MANIFEST extension are the
+author's own acts from the author's shell.  The tag message is a FILE.

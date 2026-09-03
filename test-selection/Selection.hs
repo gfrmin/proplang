@@ -75,10 +75,11 @@ import PropLang.Belief (Belief)
 import PropLang.Enumerate (AgentS, enumerateWith, fragFull, sentenceAgent)
 import PropLang.Eval (Features)
 import PropLang.Host (hostStart, serveLine)
-import PropLang.Membrane (menuAssignments, mintQ, policyPick, policyPickKS,
-                          predictiveBelief)
-import PropLang.Syntax (Expr (..), Grid, Idx (..), Namespace, addM, mkCarrier,
-                        mkGrid, mkNamespace)
+import PropLang.Membrane (Pilot (..), PureWorld (..), TickTrace (..),
+                          menuAssignments, mintQ, policyPick, policyPickKS,
+                          predictiveBelief, runEpisode)
+import PropLang.Syntax (Expr (..), Grid, Idx (..), Namespace, World (..), addM,
+                        mkCarrier, mkGrid, mkNamespace)
 
 -- ---------------------------------------------------------------------
 -- harness: named rows, PASS/FAIL printed, heavy rows skippable LOUDLY
@@ -196,6 +197,27 @@ scoreCands feats ag = mapM (\c -> do
   b <- predictiveBelief (feats ++ c) ag
   Right (c, b))
 
+-- s11's #24 world for the LIBRARY episode runner (runEpisode).
+-- runEpisode routes through `enumerate w` (guards EVERY name, forces
+-- walks), so its agent is NOT agent24 -- but uFromValues is belief-
+-- blind (each arm's Mul (Var (S Z)) (mintQ 0) zeroes the belief), so
+-- the selected act is invariant to the agent, and the utility/menu
+-- reuse the SAME #24 generator (vals24/uFromValues, the act grid,
+-- feats24, the obs carrier) as the library rows -- one generator.
+-- tau/rho are any valid codebooks (selection-irrelevant here).
+world24E :: World
+world24E = World ns24 (mkCarrier "obs" (0 :| [1]))
+                 (grid1 "theta" [1 % 10, 3 % 10, 5 % 10, 7 % 10, 9 % 10])
+                 (grid1 "tau" [1 % 2])
+                 (grid1 "rho" [1 % 2])
+
+pureWorld24 :: PureWorld ()
+pureWorld24 = PureWorld
+  { wFeats    = const feats24
+  , wEvidence = const Nothing
+  , wMenu     = const [("act", grid1 "act" [1, 2, 3])]
+  , wStep     = \s _ -> s }
+
 -- the guarded belief-differentiating world (profileP2's data, copied)
 nsG :: Namespace
 nsG = mkNamespace ("s" :| ["c", "act"])
@@ -295,6 +317,20 @@ rows =
       (helloFor vals24 (Just 0)) "\"act\": {\"act\": 2}"
   , wireRow "s10.wire-w32-clock-argmax" True
       (helloFor (valsW 32 17) (Just 1000)) "\"act\": {\"act\": 17}"
+  , -- s11 — THE RE-OPEN ROW (r0a): the LIBRARY episode runner.
+    -- runEpisode under PilotEU on #24's world.  With runEpisode
+    -- migrated to the substituting fold (Membrane.hs:460
+    -- chooseEU->policyPick) the single tick selects the declared
+    -- argmax (act 2); the act-blind chooseEU returns the head (act 1).
+    -- RED at r0a's HEAD, GREEN after the migration — attribution is
+    -- exactly line 460 (mandate 5: the wire-only #24 repair completed).
+    Row "s11.episode24-runEpisode-argmax" False $ do
+      let got = fmap (map ttAct)
+                  (runEpisode world24E (PilotEU (uFromValues vals24))
+                     pureWorld24 () 1)
+      forceShow got
+      pure (expectEq "runEpisode #24 vs constructed argmax" got
+              (Right [[("act", argmaxSlot vals24)]]))
   ]
   where
     scored24 w = either (error . ("scoring refused: " ++)) id

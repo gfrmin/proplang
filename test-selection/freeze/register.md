@@ -67,3 +67,48 @@ amends the ruling; everything here is strikeable at the freeze.
    law from "same box" to "same build dir": a shared dist-newstyle
    is a shared instrument.  The REAL gate 5 at implementation runs
    serialized alone.
+
+---
+
+## r0a re-open — the runEpisode migration (added 2026-09-03)
+
+The six red-team mandates over the implementation (87f5066) returned
+five-clean; **mandate 5** found the frozen prophecy migrated only the
+WIRE selection, leaving `runEpisode` (the library episode runner,
+exported) on the act-blind `chooseEU` at `Membrane.hs:460`.  The author
+ruled **RE-OPEN**.  These rows are the s11 row's under-determination,
+strikeable at the r0a freeze exactly as 1-8 were at r0.
+
+9. **s11 hand-rolls World/PureWorld/Pilot** — nothing in the repo
+   constructs any of the three (verified by exploration).  s11 builds
+   the FIRST `PureWorld` in the codebase (four functions: `const
+   feats24`, `const Nothing`, `const [("act",[1,2,3])]`, `\s _ -> s`)
+   and a minimal #24 `World`.  The one-generator law is honored at the
+   level that drives the pick: `vals24`/`uFromValues` (utility), the
+   act grid, `feats24`, the obs carrier — all reused verbatim.
+
+10. **The belief-invariance argument (why the World's tau/rho are
+    free)**: runEpisode routes through `enumerate w`, which guards
+    EVERY name and forces walks — so its agent is NOT `agent24`.  But
+    `uFromValues` is belief-blind (each arm's `Mul (Var (S Z)) (mintQ
+    0)` zeroes the belief), so each candidate's EU equals its raw
+    value regardless of the agent, and the selected act is invariant
+    to tau/rho.  Stated in the `world24E` comment; executed both ways
+    (RED act 1 under chooseEU; SAT act 2 under policyPick).
+
+11. **The chooseEU title demotion bundled into prophecy-r0a.diff**:
+    mandate 5's second half — chooseEU's `Membrane.hs:159` "THE
+    SELECTION" title collided with policyPick's.  After r0a chooseEU
+    has zero src consumers; its title is demoted to "THE ACT-BLIND
+    BINARY PREDECESSOR".  A comment-only hunk beside the migration —
+    strikeable if the author wants the one-line migration alone.
+
+12. **s11's unique kill (for OB-33)**: nothing else exercises
+    runEpisode, so a `runEpisode-uses-chooseEU` mutant is killed ONLY
+    by s11 — the seat is earned against the standing pool.  Lands in
+    the close matrix beside d1-d7.
+
+The r0a transcripts: `r0a-red-run.txt` (s1-s10 PASS, s11 FAIL, EXIT=1)
+and `r0a-sat-run.txt` (all 11 PASS via cabal against the migrated
+overlay, EXIT=0; the R-D21 satisfiability is the overlay form, folded
+in — the sat-run precedent).

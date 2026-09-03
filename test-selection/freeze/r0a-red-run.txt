@@ -1,0 +1,26 @@
+THE RED RUN (r0a re-open) — test-selection at HEAD 87f5066 with s11 added
+(runEpisode still calls chooseEU at Membrane.hs:460; flag set: -Wall
+-Werror -Wincomplete-patterns -Wincomplete-uni-patterns, ghc -isrc
+standalone — the L7 corpus form; run 2026-09-03, --skip-heavy per the
+suite's printed reason.  s1-s10 are GREEN (implemented at 87f5066);
+the ONLY red is s11 — the library episode path still act-blind.  The
+FAIL line PRINTS the live runEpisode result (forceShow discipline):
+the red is attributable to line 460 by inspection.)
+
+test-selection — the selection increment's oracle (chooseeu-sitting-r0)
+RESIDUAL: equality cells stop at w=16 — the reference's own cost
+  (probe A1: walked term ~14.5*2^w); w=32 cells are fold-only.
+RESIDUAL: the family is the MINIMAL SEPARATING family (clause 4b);
+  breadth is OB-33's matrix's job, pools are grown.
+PASS s1.wire24-clockless-argmax
+PASS s2.lib24-fold-eq-ks
+PASS s3.lib24-tie-head
+PASS s4.lib-w8
+PASS s5.lib-w16
+PASS s6.lib-guarded-eq
+SKIP s7.lib-w32-fold-argmax (--skip-heavy: infeasible at the pre-increment expansion BY MEASUREMENT, A1/F9; its red rides the defect-overlay transcript)
+PASS s8.wire24-clock-highprice-argmax
+PASS s9.wire24-clock-price0-tie-ext
+SKIP s10.wire-w32-clock-argmax (--skip-heavy: infeasible at the pre-increment expansion BY MEASUREMENT, A1/F9; its red rides the defect-overlay transcript)
+FAIL s11.episode24-runEpisode-argmax — runEpisode #24 vs constructed argmax: Right [[("act",1 % 1)]] /= Right [[("act",2 % 1)]]
+EXIT=1
