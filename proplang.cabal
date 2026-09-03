@@ -268,3 +268,12 @@ test-suite breadth
                     , tasty-hunit
     build-tool-depends: proplang:proplang-host
     default-language: GHC2021
+
+test-suite selection
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Selection.hs
+    hs-source-dirs:   test-selection
+    build-depends:    base
+                    , proplang
+    default-language: GHC2021
