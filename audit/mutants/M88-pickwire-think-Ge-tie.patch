@@ -1,0 +1,18 @@
+# MUTANT M88-pickwire-think-Ge-tie — provenance: d7 Ge-at-think: d4's tie-flip at pickWire's THINK comparison. Killed uniquely by s9 (the price-0 think-tie cell).
+diff --git a/src/PropLang/Host.hs b/src/PropLang/Host.hs
+index 8dd387d..e73c92e 100644
+--- a/src/PropLang/Host.hs
++++ b/src/PropLang/Host.hs
+@@ -513,9 +513,9 @@ pickWire ns feats atomG u cands price tv = do
+       let uB :: forall e. Expr (Rational ': e) Rational
+           uB = reindexUtility atomG u
+           pick :: Expr '[Rational, B Int] Rational
+-          pick = If (Gt (Sub (Var Z) (mintQ price))
+-                        (Expect (Var (S Z)) (substW bAsn uB)))
+-                    (mintQ 1) (mintQ 0)
++          pick = If (Gt (Expect (Var (S Z)) (substW bAsn uB))
++                        (Sub (Var Z) (mintQ price)))
++                    (mintQ 0) (mintQ 1)
+           cover = feats ++ [ p | p <- bAsn, fst p `notElem` map fst feats ]
+       env <- mkEnvIn ns cover (tv :. bB :. VNil)
+       pure (if evalx pick env == 1 then PickThink else PickExt bAsn bB)

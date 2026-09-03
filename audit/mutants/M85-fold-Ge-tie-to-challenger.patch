@@ -1,0 +1,18 @@
+# MUTANT M85-fold-Ge-tie-to-challenger — provenance: d4 Ge (tie-flip): the challenger displaces on TIES (operands and mints both flipped: promote iff NOT inc>chal). Killed uniquely by s3 (the tie world).
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index c656887..c746409 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -321,9 +321,9 @@ policyPick ns feats atomG u cands = case cands of
+     step acc chal@(cFeats, bC) = do
+       inc@(iFeats, bI) <- acc
+       let pick :: Expr '[B Int, B Int] Rational
+-          pick = If (Gt (Expect (Var Z) (substW cFeats uB))
+-                        (Expect (Var (S Z)) (substW iFeats uB)))
+-                    (reMint atomG 1) (reMint atomG 0)
++          pick = If (Gt (Expect (Var (S Z)) (substW iFeats uB))
++                        (Expect (Var Z) (substW cFeats uB)))
++                    (reMint atomG 0) (reMint atomG 1)
+       env <- mkEnvIn ns (feats ++ [ p | p <- cFeats
+                                   , fst p `notElem` map fst feats ])
+                      (bC :. bI :. VNil)

@@ -1,0 +1,18 @@
+# MUTANT M82-fold-incumbent-wears-challenger — provenance: d1 both-challenger: the incumbent's Expect wears the CHALLENGER's assignment (the shipped chooseEU wiring); the rewiring orphans iFeats under -Werror so the minimal mutant carries the _iFeats rename (the register-4 rider).
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index c656887..45b8dea 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -319,10 +319,10 @@ policyPick ns feats atomG u cands = case cands of
+     uB :: forall e. Expr (Rational ': e) Rational
+     uB = reindexUtility atomG u
+     step acc chal@(cFeats, bC) = do
+-      inc@(iFeats, bI) <- acc
++      inc@(_iFeats, bI) <- acc
+       let pick :: Expr '[B Int, B Int] Rational
+           pick = If (Gt (Expect (Var Z) (substW cFeats uB))
+-                        (Expect (Var (S Z)) (substW iFeats uB)))
++                        (Expect (Var (S Z)) (substW cFeats uB)))
+                     (reMint atomG 1) (reMint atomG 0)
+       env <- mkEnvIn ns (feats ++ [ p | p <- cFeats
+                                   , fst p `notElem` map fst feats ])

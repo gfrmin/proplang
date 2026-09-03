@@ -1,0 +1,14 @@
+# MUTANT M83-fold-challenger-wears-incumbent — provenance: d2 both-incumbent: the challenger's Expect wears the INCUMBENT's assignment (the mirror half-reversion).
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index c656887..2567e00 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -321,7 +321,7 @@ policyPick ns feats atomG u cands = case cands of
+     step acc chal@(cFeats, bC) = do
+       inc@(iFeats, bI) <- acc
+       let pick :: Expr '[B Int, B Int] Rational
+-          pick = If (Gt (Expect (Var Z) (substW cFeats uB))
++          pick = If (Gt (Expect (Var Z) (substW iFeats uB))
+                         (Expect (Var (S Z)) (substW iFeats uB)))
+                     (reMint atomG 1) (reMint atomG 0)
+       env <- mkEnvIn ns (feats ++ [ p | p <- cFeats

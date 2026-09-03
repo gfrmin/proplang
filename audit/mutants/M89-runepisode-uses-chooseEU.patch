@@ -1,0 +1,14 @@
+# MUTANT M89-runepisode-uses-chooseEU — provenance: the r0a defect: runEpisode's PilotEU arm reverts to the act-blind chooseEU (the pre-r0a wire-only #24 repair). Killed uniquely by s11 (nothing else exercises runEpisode).
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index c656887..16c7039 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -463,7 +463,7 @@ runEpisode w pilot pw s0 nTicks =
+                       b <- predictiveBelief (feats ++ c) ag
+                       Right (c, b))
+                     cands
+-          picked <- policyPick ns feats atomG u scored
++          picked <- chooseEU ns feats atomG u scored
+           Right (maybe (waitOf menu) fst picked)
+       let full = feats ++ act
+       p1 <- predictMassS full 1 ag

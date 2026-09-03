@@ -1,0 +1,14 @@
+# MUTANT M87-fold-Le-nonstrict — provenance: d6 Le: the challenger displaces iff NOT strictly better (mints swapped, operands kept).
+diff --git a/src/PropLang/Membrane.hs b/src/PropLang/Membrane.hs
+index c656887..b74cec7 100644
+--- a/src/PropLang/Membrane.hs
++++ b/src/PropLang/Membrane.hs
+@@ -323,7 +323,7 @@ policyPick ns feats atomG u cands = case cands of
+       let pick :: Expr '[B Int, B Int] Rational
+           pick = If (Gt (Expect (Var Z) (substW cFeats uB))
+                         (Expect (Var (S Z)) (substW iFeats uB)))
+-                    (reMint atomG 1) (reMint atomG 0)
++                    (reMint atomG 0) (reMint atomG 1)
+       env <- mkEnvIn ns (feats ++ [ p | p <- cFeats
+                                   , fst p `notElem` map fst feats ])
+                      (bC :. bI :. VNil)
