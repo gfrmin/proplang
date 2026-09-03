@@ -1,10 +1,11 @@
-DRAFT -- the brain-seam demand registration.  THE GATE OWNER'S ACT,
-never the builder's (the ruling round of 2026-09-02: "Whether you
-register it is your act, not the builder's ... Register it, date it,
-and let it queue").  NOT FILED.  Suggested venue: a new proplang
-issue filed under the owner hat, so the demand enters the same
-two-sided gate every deferred demand uses (#24's shape: demand +
-measurement, both attached).
+The brain-seam demand registration.  THE GATE OWNER'S ACT, never the
+builder's (the ruling round of 2026-09-02: "Whether you register it
+is your act, not the builder's ... Register it, date it, and let it
+queue").  FILED 2026-09-03 by the owner as gfrmin/proplang#25, under
+the owner account, body byte-identical to the demand below -- the
+same two-sided gate every deferred demand uses (#24's shape: demand +
+measurement, both attached).  This file is now the local record of
+that filing.
 
 ----------------------------------------------------------------
 Title: demand: a bounded representation of the folded state (the
