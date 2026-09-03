@@ -156,7 +156,13 @@ reindexUtility atomG = go
         S (S ix') -> case ix' of {}
       Cond {} -> error "reindexUtility: Cond is not wire-sayable (unreachable)"
 
--- | THE SELECTION: CL-3 as the binary choice sentence, iterated. The
+-- | THE ACT-BLIND BINARY PREDECESSOR of the selection (pre-#24;
+-- superseded as the executable route by policyPick's substituting
+-- fold at the (3) increment, and by runEpisode's r0a migration --
+-- leaving chooseEU with ZERO src consumers, frozen-in-place,
+-- exported, pinned by g2): CL-3 as the binary choice sentence,
+-- iterated, both sides evaluated in ONE env (the challenger's cover)
+-- so per-action levels cancel and only beliefs differentiate. The
 -- door serves the sentence the same features the candidates were
 -- scored under (exact coverage of the declared namespace).
 chooseEU :: Namespace -> Features -> Grid
@@ -457,7 +463,7 @@ runEpisode w pilot pw s0 nTicks =
                       b <- predictiveBelief (feats ++ c) ag
                       Right (c, b))
                     cands
-          picked <- chooseEU ns feats atomG u scored
+          picked <- policyPick ns feats atomG u scored
           Right (maybe (waitOf menu) fst picked)
       let full = feats ++ act
       p1 <- predictMassS full 1 ag
