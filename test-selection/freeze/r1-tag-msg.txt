@@ -1,0 +1,89 @@
+selection-freeze-r1 -- the selection increment CLOSED
+
+This signed tag closes the selection increment (R-SHAPE rev 2, the third
+shape: policyPick = the pairwise-substituting fold, pinned extensionally
+to policyPickKS).  It ratifies the boundary review, the OB-33 kill
+matrices, the frozen-layer installs, and the obligation dispositions
+gathered in selection-close-pack.md.  From this commit the increment's
+oracle-and-audit layer is as frozen as test/.
+
+THE SIX RED-TEAM MANDATES (fresh-context reviewers over 87f5066): five
+CLEAN; mandate 5 found a real gap -- runEpisode, the library's exported
+episode runner, still called the act-blind chooseEU (Membrane.hs:460),
+so "chooseEU has zero src consumers" rested on a false premise (one wire
+call site rounded to zero).  The author RE-OPENED (selection-freeze-r0a);
+r0a migrated runEpisode to policyPick under the s11 oracle row.  chooseEU
+now has zero src consumers IN TRUTH -- the finding is RESOLVED on the
+record, not bracketed.  The three CLEAN-with-nit comment items (M1/M3/M4,
+documentation-locus) ride to disposition.
+
+THE OB-33 KILL MATRICES (both halves, DISCHARGED here):
+ - SELECTION (audit/mutants/M82-M89 + test-selection/close-kill-matrix.txt):
+   d1-d7 re-run against the committed r0a baseline (36ca59f) + M89 the
+   runEpisode mutant.  Every mutant killed; three UNIQUE seats -- s3/M85
+   (tie-flip), s9/M88 (Ge-at-think), s11/M89 (runEpisode-uses-chooseEU,
+   the r0a row earning its seat against the standing pool).
+ - BREADTH (audit/mutants/M90-M98 + the one-generator
+   audit/mutants/breadth_matrix_driver.py + test-breadth/close-kill-matrix.txt):
+   the four missing classes (pricing/Kraft, tie-break, null-cap,
+   door-refusal) cut and matrixed, the seven previously-UNREACHED rows
+   (b2a-d b3a b4a b4c) re-triaged against the grown pool.  ALL SEVEN NOW
+   REACHED, zero UNREACHED -- OB-33's hypothesis (pool class-deficiency,
+   not greens-that-cannot-fail) CONFIRMED.  Four earn a unique seat
+   (b2b/M90, b2c/M91, b4a/M96, b4c/M97+M98); three SHADOWED and each
+   ARGUED per the dyadic R7 pre-ruling (b2a a whole-enumeration Kraft
+   invariant, b2d a positivity conjunction, b3a PROVABLY swap-symmetry
+   robust to the tie-break DIRECTION mutants -- the R-RED honest-decline,
+   M99's minority vec [0.061,0.061,0.061,0.757,0.061] recorded inline).
+   One INSTRUMENT BUG caught and fixed before the trusted run: the naive
+   "<name>: FAIL" parser dropped every REPORT row (b2c/b3a/b4a) until the
+   impossible "M94 kills b2b not its twin b2c" exposed it -- a
+   green-that-cannot-fire in the instrument (the harness-gate law).
+
+THE FROZEN-LAYER INSTALLS (the inventory, under this boundary's key):
+ - FL-1 (membrane-wire.md sec.2 menu bullet): a DATED HISTORY bracket --
+   under the third shape the frozen sentence is TRUE as written, so the
+   bracket records the period it was false (trampoline-freeze -> this
+   close) and the #24 checkpoint lost to it; one reading only.
+ - FL-2 (CLAUDE.md Porting-order last para): repoint the live roadmap
+   from the archived HOSTS_PLAN.md to EXACT_PLAN.md section 13.0, the
+   falsified pointer quoted inside the repair.
+ - FL-3 (EXACT_PLAN.md status header): a dated supersession note, the
+   superseded words kept (the close-date-document form; not manifest).
+
+THE OBLIGATION DISPOSITIONS (OBLIGATIONS.md):
+ - OB-24 (substitution normative) -> DISCHARGED@selection-freeze-r1: the
+   third shape + runEpisode migration make substitution the executable
+   route everywhere the agent selects; chooseEU frozen-in-place, zero
+   consumers, g2 pin retained.
+ - OB-33 (breadth pool classes + 7-row re-triage) -> DISCHARGED@
+   selection-freeze-r1 (both halves; the STANDING-CONDITIONAL trigger
+   "the next increment that runs a kill matrix" fired here).
+ - OB-30 (reviewed prose never through a shell-word parser): stays
+   STANDING-CONDITIONAL; this increment's instances recorded (freeze.sh,
+   freeze-r0a.sh and this close.sh all pass the tag message by -F).
+ - R5 (the tick's two-arrow geometry): the published-record row.
+ - L5 rev 2 (prefreeze-lint.sh): the SAT-section decision derived from
+   the tree with a line-anchored declared-structure override, replacing
+   the bare word-grep the #19 sitting's own prose flipped.
+
+THE DRIFT-A RATIO RE-MINT (test-breadth/Breadth.hs): the frozen
+absolute-ms band false-reds under box load; re-minted to RATIO form from
+a fresh serialized measurement on a quiet box, the value recorded in the
+close commit.  After it, gate 5 (cabal test all -j1) runs quiet+serial
+GREEN for the full close.
+
+MANIFEST: re-hashed over the author's edits (the frozen files above) and
+extended with the OB-33 mutants (M82-M89, M90-M98), the breadth driver,
+the two kill-matrix transcripts, the close pack, and this kit -- the ADD
+set enumerated by glob in close.sh (one generator; sha256sum -c verifies).
+
+CUSTODY: the six mandates, the two matrices, the mutant patches, the
+driver, the close pack, and this kit (close.sh, pre-close-check.sh, this
+message, CLOSE-RUNBOOK.md) were written by the builder (unsigned commits,
+builder key on no box, by design).  The frozen-layer edits, the drift-a
+re-mint, the MANIFEST re-sign, and this tag are the author's own acts
+from the author's shell.  The tag message is a FILE (-F).
+
+The increment is CLOSED.  #24 closes citing this boundary; the docket
+rolls forward per EXACT_PLAN.md section 13.0.
