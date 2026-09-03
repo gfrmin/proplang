@@ -23,7 +23,8 @@
 --   * obs_arity serves ANY K >= 2 through the exact K-ary route
 --     (enumerateWithArity; the SevenSeats Mul-form) — the W3
 --     capability carried, the K=2 coincidence pinned exactly.
---   * selection runs through Membrane.chooseEU — the SENTENCE route
+--   * selection runs through Membrane.policyPick — the pairwise-
+--     substituting fold, pinned to the policyPickKS sentence route
 --     (opening ruling 3); the host fold is dead.
 module PropLang.Host
   ( draw
@@ -55,9 +56,8 @@ import PropLang.Enumerate (AgentS, agentObsPoints, breadthEmpty,
                            enumerateWith, enumerateWithBreadth, fragFull,
                            mkBreadth, observeS, predictMassS, sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
-import PropLang.Membrane (chooseEU, menuAssignments, predictiveBelief,
-                          mintQ, policyPick, reindexUtility, substW,
-                          weakenE, withRows)
+import PropLang.Membrane (menuAssignments, predictiveBelief,
+                          mintQ, policyPick, reindexUtility, substW)
 import PropLang.Report (bitsView, entropyAgent)
 import PropLang.Syntax
 #endif
@@ -374,8 +374,8 @@ atomGridOfC c =
 
 -- One tick under THE DOOR: the tick's features plus its assignment
 -- must cover the declared namespace exactly; the choice runs through
--- the SENTENCES (chooseEU when no clock is declared — byte-identical
--- to the pre-clock wire; pickWire's extended one-sentence tournament
+-- the SENTENCES (policyPick when no clock is declared — the
+-- substituting selection, issue #24's repair; pickWire's think-row
 -- when the world declared its clock, the think row LAST); the
 -- reported predictive reads at feats ++ act (post-choice,
 -- pre-observation — R5's geometry); evidence folds at feats ++ act
@@ -423,7 +423,7 @@ tick w ag t = either (\m -> (HostLive w ag, errLine m)) id $ do
                       opts
             case swClock w of
               Nothing -> do
-                picked <- chooseEU (swNs w) feats (swAtom w) u scored
+                picked <- policyPick (swNs w) feats (swAtom w) u scored
                 Right (Left (maybe o0 fst picked))
               Just (price, d) -> do
                 tv <- thinkValue d (swNs w) feats (swAtom w) u opts ag
@@ -495,37 +495,30 @@ note m = maybe (Left m) Right
 -- the wire policy's outcome: an external assignment or the internal act
 data WirePick = PickExt Features (Belief Int) | PickThink
 
--- the standing wire sentence extended by the think row (bound value
--- minus the declared price), think LAST; ONE evalx, code dispatch
+-- the wire policy at a declared clock: the SAME pairwise-substituting
+-- fold picks the best external row (policyPick — one engine, clause 5
+-- of chooseeu-sitting-r0), then the think row enters as the FINAL
+-- challenger (bound value minus the declared price, think LAST,
+-- displaces iff STRICTLY greater — the chooseKS order's convention,
+-- pinned by the family's price-0 tie cell)
 pickWire :: Namespace -> Features -> Grid
          -> Expr '[Rational, Rational] Rational
          -> [(Features, Belief Int)] -> Rational -> Rational
          -> Either String WirePick
-pickWire ns feats atomG u cands price tv = case cands of
-  [] -> Right PickThink
-  ((asn0, _) : _) ->
-    let n = length cands
-        codeG = mkGrid "options" (0 :| map fromIntegral [1 .. n])
-        codeM :: forall e2. Ix -> Expr e2 Rational
-        codeM i = case mkC codeG i of
-          Just e  -> e
-          Nothing -> error "pickWire: on-codebook index (unreachable)"
-        uB :: forall e. Expr (Rational ': e) Rational
-        uB = reindexUtility atomG u
-        cover = feats ++ [ p | p <- asn0, fst p `notElem` map fst feats ]
-    in withRows uB cands (\vals rows ->
-         let rowsW = map weakenE rows ++ [Sub (Var Z) (mintQ price)]
-         in case zipWith (\i r -> (codeM i, r)) [0 ..] rowsW of
-              [] -> Right PickThink
-              (r0 : rs) -> do
-                env <- mkEnvIn ns cover (tv :. vals)
-                let code = evalx (chooseKS (r0 :| rs)) env
-                if code == fromIntegral n
-                  then Right PickThink
-                  else case lookup code
-                              (zip (map fromIntegral [0 :: Int ..]) cands) of
-                         Just (a, b) -> Right (PickExt a b)
-                         Nothing -> Left "pickWire: off-code (unreachable)")
+pickWire ns feats atomG u cands price tv = do
+  mBest <- policyPick ns feats atomG u cands
+  case mBest of
+    Nothing -> Right PickThink
+    Just (bAsn, bB) -> do
+      let uB :: forall e. Expr (Rational ': e) Rational
+          uB = reindexUtility atomG u
+          pick :: Expr '[Rational, B Int] Rational
+          pick = If (Gt (Sub (Var Z) (mintQ price))
+                        (Expect (Var (S Z)) (substW bAsn uB)))
+                    (mintQ 1) (mintQ 0)
+          cover = feats ++ [ p | p <- bAsn, fst p `notElem` map fst feats ]
+      env <- mkEnvIn ns cover (tv :. bB :. VNil)
+      pure (if evalx pick env == 1 then PickThink else PickExt bAsn bB)
 
 -- the AgentS-level preposterior (the engine lookahead, a fast path;
 -- future folds at feats ++ the wait head — inaction while thinking,

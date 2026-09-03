@@ -287,21 +287,55 @@ withRows uB ((asn, b) : rest) k =
   withRows uB rest (\vals rows ->
     k (b :. vals) (Expect (Var Z) (substW asn uB) : map weakenE rows))
 
--- | The wire-menu ONE-SENTENCE selection (chooseEU's K-ary
--- successor): same signature, same CL-3 semantics, but the whole
--- menu compared inside a single standing sentence (chooseKS) with
--- every candidate's belief bound in one env — the charter's single
--- chooser. The option-code grid is MINTED from the declared
--- candidate list (mkGrid over 0..K-1 — the atomGridOfC precedent:
--- derived at build from declared data, never a baked point-set);
--- the winning code decodes by ==-table against the same list (a
--- tag read — register R3). chooseEU remains the frozen binary
--- special case.
+-- | THE SELECTION (re-homed at the selection increment,
+-- chooseeu-sitting-r0: R1 = (3) in the THIRD SHAPE): the PAIRWISE
+-- AND SUBSTITUTING fold — chooseEU's iterated CL-3 binary choice
+-- sentence, with substW applied PER SIDE, so each candidate's
+-- utility reads its OWN assignment (issue #24's repair: per-action
+-- levels enter the comparison; the head no longer wins by tie on
+-- act-blind beliefs).  One 22-node sentence per comparison, O(width)
+-- total (probe A1) — a FAST PATH under the optimisation law, pinned
+-- extensionally to policyPickKS (the one-sentence chooseKS route,
+-- below) by test-selection/'s frozen family.  Same conventions as
+-- the sentence: first-listed incumbent, a challenger displaces iff
+-- STRICTLY greater (CL-3); each comparison's env is built from the
+-- challenger's cover (env-independence of the substituted sentence
+-- is the pin's C56 rationale, asserted by the family's tie and
+-- guarded cells).
 policyPick :: Namespace -> Features -> Grid
            -> Expr '[Rational, Rational] Rational
            -> [(Features, Belief Int)]
            -> Either String (Maybe (Features, Belief Int))
 policyPick ns feats atomG u cands = case cands of
+  [] -> Right Nothing
+  (c0 : rest) -> Just <$> foldl' step (Right c0) rest
+  where
+    uB :: forall e. Expr (Rational ': e) Rational
+    uB = reindexUtility atomG u
+    step acc chal@(cFeats, bC) = do
+      inc@(iFeats, bI) <- acc
+      let pick :: Expr '[B Int, B Int] Rational
+          pick = If (Gt (Expect (Var Z) (substW cFeats uB))
+                        (Expect (Var (S Z)) (substW iFeats uB)))
+                    (reMint atomG 1) (reMint atomG 0)
+      env <- mkEnvIn ns (feats ++ [ p | p <- cFeats
+                                  , fst p `notElem` map fst feats ])
+                     (bC :. bI :. VNil)
+      pure (if evalx pick env == 1 then chal else inc)
+
+-- | THE ONE-SENTENCE REFERENCE (the selection increment,
+-- chooseeu-sitting-r0 clause 2): policyPick's chooseKS sentence body
+-- under its own exported name — the NORMATIVE selection, the sayable
+-- route the fold is pinned to (the agent criterion; the optimisation
+-- law; g2's successor one level up).  Zero host consumers by design
+-- (the chooseEU disposition, clause 3's symmetry).  Unevaluable past
+-- the old cliff by its own cost (probe A1: walked term ~14.5*2^w) —
+-- the extensional pin's equality cells stop at w=16 and say so.
+policyPickKS :: Namespace -> Features -> Grid
+           -> Expr '[Rational, Rational] Rational
+           -> [(Features, Belief Int)]
+           -> Either String (Maybe (Features, Belief Int))
+policyPickKS ns feats atomG u cands = case cands of
   [] -> Right Nothing
   ((asn0, _) : _) ->
     let n = length cands
@@ -309,7 +343,7 @@ policyPick ns feats atomG u cands = case cands of
         codeM :: forall e2. Ix -> Expr e2 Rational
         codeM i = case mkC codeG i of
           Just e  -> e
-          Nothing -> error "policyPick: on-codebook index (unreachable)"
+          Nothing -> error "policyPickKS: on-codebook index (unreachable)"
         uB :: forall e. Expr (Rational ': e) Rational
         uB = reindexUtility atomG u
         cover = feats ++ [ p | p <- asn0, fst p `notElem` map fst feats ]
@@ -321,27 +355,8 @@ policyPick ns feats atomG u cands = case cands of
              let code = evalx (chooseKS (r0 :| rs)) env
              case lookup code (zip (gridPoints codeG) cands) of
                Just picked -> Right (Just picked)
-               Nothing -> Left "policyPick: off-code dispatch (unreachable)")
+               Nothing -> Left "policyPickKS: off-code dispatch (unreachable)")
 
--- | THE ONE-SENTENCE REFERENCE SEAT (the selection increment's
--- type surface; chooseeu-sitting-r0 clause 2, amendment 2: the
--- reference stays IN THE LIBRARY — exported, zero host consumers,
--- pinned).  Type derivation (the §8c forward rule): policyPick's
--- exact signature — this binding is the NORMATIVE one-sentence
--- chooseKS selection under its own name, so the fold that becomes
--- policyPick's body can be pinned to it extensionally (the
--- optimisation law; g2's successor one level up).
--- ORACLE-PHASE STUB: at the increment's implementation this carries
--- policyPick's chooseKS sentence body verbatim, and policyPick
--- becomes the pairwise-substituting fold pinned to it.  Until then
--- every comparison row in test-selection/ is red through this
--- refusal — total, attributable, compile-enabling.
-policyPickKS :: Namespace -> Features -> Grid
-             -> Expr '[Rational, Rational] Rational
-             -> [(Features, Belief Int)]
-             -> Either String (Maybe (Features, Belief Int))
-policyPickKS _ _ _ _ _ =
-  Left "policyPickKS: oracle-phase stub (selection increment)"
 
 -- the sayable act-choice value (the vActS shape, evaluated — the
 -- sentence route; the comparison lives in evalx)
