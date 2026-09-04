@@ -65,24 +65,86 @@ for t in $(git tag); do
 done
 [ "$l4" -eq 0 ] && ok "L4 all $ntags tags verify"
 
+# L5-BEGIN -- SAT flag-faithfulness (block extracted verbatim by test-selection/freeze/l5-demo.sh)
 # -- L5: SAT flag-faithfulness in the current author pack --------------------
-# every overlay/satisfiability transcript must record the stanza's
-# exact flag set, -Werror included (the step-5 flag-faithful amendment).
-# Pack selection HARDENED at the heir oracle freeze (OB-28 iii): the
-# old `ls -t` selected by mtime, which in a fresh clone is checkout
-# order (the r1 rehearsal's L5 line read unify-author-pack.md) — the
-# current pack now derives from HISTORY: the last commit that touched
-# an author pack names it.
+# every overlay/satisfiability transcript must record the stanza's exact flag
+# set, -Werror included (the step-5 flag-faithful amendment).
+#
+# Pack selection (OB-28 iii): the current pack derives from HISTORY -- the last
+# commit that touched an author pack names it (not `ls -t`, checkout order in a
+# fresh clone).
+#
+# Pack DETECTION repaired at the #24 sitting (selection-freeze-r1): the old
+# `grep -qi "satisfiability\|overlay"` was a bare word grep over the whole file,
+# so PROSE ABOUT THIS LINT entered the check branch -- the #19 sitting's own
+# verification sentence turned a verified "0 FAIL 1 WARN" into 4 FAIL with the
+# tree unmoved.  Both halves now DERIVE, not infer:
+#  (a) SAT-bearing-ness from the TREE -- did the pack's commit cut an ORACLE?
+#      A `.hs` under test*/ or a proplang.cabal change counts; a kit `.sh` does
+#      NOT (a rulings sitting that only touched freeze-kit is `none`).
+#      Overridable by a `^SAT-SECTION: none|present` line occurring EXACTLY
+#      ONCE (two matches -- e.g. a fenced quotation of the marker -- FAIL as
+#      ambiguous rather than silently binding the first).
+#  (b) the flag list from proplang.cabal, resolving `import:` of common stanzas
+#      TRANSITIVELY (reading cabal's own structure, never a hand-list -- the
+#      hand-list goes stale silently the day a stanza's flags change).  An
+#      UNRESOLVABLE import FAILS (a partial derivation is the hand-list wearing
+#      awk's coat); an EMPTY derivation FAILS (never a silent hand default).
 pack=$(git log -1 --pretty= --name-only -- '*author-pack.md' 2>/dev/null | head -1)
-if [ -n "${pack:-}" ] && grep -qi "satisfiability\|overlay" "$pack"; then
-  l5=0
-  for flag in -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns; do
-    grep -qF -- "$flag" "$pack" || { bad "L5 $pack SAT section lacks $flag"; l5=1; }
-  done
-  [ "$l5" -eq 0 ] && ok "L5 $pack records the four stanza flags (incl. -Werror)"
+if [ -n "${pack:-}" ] && [ -f "$pack" ]; then
+  packcommit=$(git log -1 --format=%H -- "$pack")
+  decls=$(sed -n 's/^SAT-SECTION:[[:space:]]*\([a-z][a-z]*\).*/\1/p' "$pack")
+  ndecl=$(printf '%s' "$decls" | grep -c . || true)
+  if [ "$ndecl" -gt 1 ]; then
+    bad "L5 $pack: SAT-SECTION declared $ndecl times (want exactly one; a fenced copy is ambiguous)"
+  else
+    if [ "$ndecl" -eq 1 ]; then
+      decl=$decls; l5src="declared in the pack"
+    elif git show --pretty= --name-only "$packcommit" 2>/dev/null \
+           | grep -qE '^test[^/]*/.*\.hs$|^proplang\.cabal$'; then
+      decl=present; l5src="derived from the tree (its commit cut an oracle)"
+    else
+      decl=none; l5src="derived from the tree (its commit cut no oracle)"
+    fi
+    case "$decl" in
+      none)
+        ok "L5 $pack: no SAT section ($l5src)" ;;
+      present)
+        l5deriv=$(awk '
+          /^common /               { ctx="c"; cur=$2; defined[$2]=1; next }
+          /^test-suite /           { ctx="t"; next }
+          /^(library|executable)/  { ctx="o"; next }
+          /^[^[:space:]]/          { ctx="x"; next }
+          { if ($1=="ghc-options:" && ctx=="c") { for(i=2;i<=NF;i++) if($i ~ /^-W/) cf[cur]=cf[cur]","$i }
+            if ($1=="import:") { for(i=2;i<=NF;i++){ g=$i; gsub(/,/,"",g); if(g=="")continue;
+              if(ctx=="c") ci[cur]=ci[cur]","g; else if(ctx=="t") tset[g]=1 } } }
+          END { n=0; for(g in tset) queue[n++]=g
+            for(i=0;i<n;i++){ name=queue[i]; if(seen[name])continue; seen[name]=1
+              if(!(name in defined)){ print "!UNRESOLVED " name; continue }
+              m=split(cf[name],fa,","); for(j=1;j<=m;j++) if(fa[j]!="") flag[fa[j]]=1
+              m=split(ci[name],ia,","); for(j=1;j<=m;j++) if(ia[j]!="") queue[n++]=ia[j] }
+            for(f in flag) print f }' proplang.cabal)
+        l5unres=$(printf '%s\n' "$l5deriv" | sed -n 's/^!UNRESOLVED //p')
+        l5flags=$(printf '%s\n' "$l5deriv" | grep -E '^-W' | sort -u)
+        if [ -n "$l5unres" ]; then
+          bad "L5 unresolvable cabal import(s): $(echo $l5unres) -- partial derivation refused"
+        elif [ -z "$l5flags" ]; then
+          bad "L5 empty flag derivation from proplang.cabal (refusing a hand default)"
+        else
+          l5=0
+          for flag in $l5flags; do
+            grep -qF -- "$flag" "$pack" || { bad "L5 $pack SAT section lacks $flag"; l5=1; }
+          done
+          [ "$l5" -eq 0 ] && ok "L5 $pack records every derived cabal flag ($l5src): $(echo $l5flags)"
+        fi ;;
+      *)
+        bad "L5 $pack: unreadable SAT-SECTION '$decl' (want none|present)" ;;
+    esac
+  fi
 else
-  warn "L5 no author pack with a SAT/overlay section found (nothing to check)"
+  warn "L5 no author pack found in history (nothing to check)"
 fi
+# L5-END
 
 # -- L6 (ADVISORY): probe re-declaration of importable grid values -----------
 # the tauPoints incident's scriptable half: an oracle/probe file that

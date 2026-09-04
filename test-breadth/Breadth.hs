@@ -140,7 +140,7 @@ driftFrozenMeans :: [Double]
 driftFrozenMeans = [431.1, 598.0, 787.2, 1007.0, 1504.3]  -- mint-run.txt
 
 driftFrozenMeanRatio :: Double
-driftFrozenMeanRatio = 2.0092  -- mint-run.txt
+driftFrozenMeanRatio = 1.9078  -- RATIO-form re-mint, selection-freeze-r1 (box-robust: measure on the gate's own box); was 2.0092 (steel abs-ms mint)
 
 driftMeanBand :: Double
 driftMeanBand = 0.15   -- +/-15%, the sitting's hardware-tolerant band
@@ -988,19 +988,25 @@ gB6 mintMode = testGroup "b6 the ms/tick instrument"
 
 gDrift :: Bool -> TestTree
 gDrift mintMode = testGroup "drift (gated diff-vs-frozen)"
-  [ testCase "drift-a the base route's five windowed means and deep/shallow mean ratio sit inside the minted bands" $ do
+  [ testCase "drift-a the base route's deep/shallow mean ratio sits inside the minted band (absolute means printed as a residual, gated in bench/)" $ do
       msB <- timedFold roStep (sentenceAgent nsC (basePop 6)) (streamC 6 300)
       let means = [ winMean lo hi msB | (lo, hi) <- driftWindows ]
           ratio = winMean 151 300 msB / winMean 6 150 msB
-      forM_ (zip driftWindows means) $ \((lo, hi), m) ->
-        printf "  REPORT window [%d..%d] mean %.1f ms\n" lo hi m
+      -- (ii), selection-freeze-r1 / register R8: re-mint to RATIO form.  The
+      -- absolute-ms band false-reds under box load; the deep/shallow ratio is
+      -- FAR more load-robust -- witnessed in a loaded-box rehearsal, the window
+      -- means inflated ~97% while this ratio moved ~3.6% -- so IT is the sole
+      -- GATE, re-measured on the SAME box gate 5 runs, within driftRatioBand.
+      -- What (ii) surrenders: a ratio cannot see a UNIFORM slowdown, and load
+      -- still nudges it, so measure and gate on ONE quiet/stable box (do-close.sh
+      -- does both in one run).  Absolute-cost regression detection lives in
+      -- bench/ (which records its load), BY DESIGN.  The per-window means PRINT
+      -- as a residual (no silent cap, EXACT_PLAN 14.1), never asserted.
+      forM_ (zip3 driftWindows driftFrozenMeans means) $ \((lo, hi), fz, cur) ->
+        printf "  REPORT window [%d..%d] mean %.1f ms (frozen %.1f, %+.1f%% delta; former gate +/-%.0f%%) -- residual, gated in bench/\n"
+               lo hi cur fz ((cur - fz) / fz * 100) (driftMeanBand * 100)
       printf "  REPORT deep/shallow mean ratio %.4f (frozen %.4f)\n"
              ratio driftFrozenMeanRatio
-      forM_ (zip3 driftWindows driftFrozenMeans means) $ \((lo, hi), fz, cur) ->
-        gateOrMint mintMode
-          (printf "drift window [%d..%d]: %.1f within +/-%.0f%% of frozen %.1f"
-                  lo hi cur (driftMeanBand * 100) fz :: String)
-          (abs (cur - fz) / fz <= driftMeanBand)
       gateOrMint mintMode
         (printf "drift deep/shallow mean ratio %.4f within +/-%.2f of frozen %.4f"
                 ratio driftRatioBand driftFrozenMeanRatio :: String)

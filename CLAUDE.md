@@ -94,14 +94,27 @@ cannot catch; that is why it is written down)
    pointer). The roadmap terminates here; any further scope binds P5's
    single-site alphabet-constant clause and requires a new roadmap
    boundary.
-   The roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386):
-   increment H (the host driver and the single-site alphabet
-   constant), then D (the latent-utility pilot, outcome-grounded,
-   brought before A by the governor's measured demand; D0 subsumed
-   by ruling R-D2), then A (options-as-data observations), then
-   demand-gated B (the reliability channel), and C (arithmetic, the
-   census-bearing change) — each its own oracle-first freeze, each
-   gated as HOSTS_PLAN section 9 records.
+   [REPAIRED at the #24 sitting, 2026-09-04.  This paragraph read "The
+   roadmap re-opens at the hosts boundary (HOSTS_PLAN, c65a386) ... each
+   gated as HOSTS_PLAN section 9 records", and routed the live roadmap
+   through a document since moved to archive/ that opens by declaring itself
+   HISTORICAL and binding "on nothing current" -- the engine it describes was
+   demolished at the step-3 sentence freeze.  H and D shipped (govhost-freeze,
+   d-freeze/d-close); A's gate was read and did NOT fire (OB-12's differential
+   run, 95k live events, X.5 ruling 7: A STAYS CLOSED, B STAYS OUT at
+   n_inv = 0); A's substance landed anyway under the later architecture
+   (w3-freeze-r1's K-ary arity, the OB-19 heir's enumeration breadth).  The
+   falsified pointer is quoted here and replaced:]
+   THE LIVE ROADMAP IS EXACT_PLAN.md section 13.0, THE DESTINATION MAP,
+   installed verbatim from the author's directive of 2026-07-26 "so the
+   roadmap lives in the tree, never in a transcript".  Its steps 1-4 are
+   closed (the X.5 sitting; OB-12's run; the trampoline boundary, the last
+   language increment; the completeness suite).  ONE ITEM REMAINS: step 5,
+   the demonstration tier -- the A-gate reading with OB-12's result in hand,
+   the benchmark, and the paper.  AFTER 5 THE ROADMAP TERMINATES, and
+   everything else is named demand-gated residue re-entering only through the
+   two-sided gate with a measurement.  archive/HOSTS_PLAN.md is retained as
+   historical record only.
 
 ## When to stop and report instead of proceeding
 

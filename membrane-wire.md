@@ -93,6 +93,31 @@ Reply: `{"ok": true, "proto": 1, "models": N, "namespace_bits": B}`.
   the binary special case, retained and pinned (the SELECTION row,
   EARNED, unique kill M7; trampoline g2 pins the composition on the
   wire's utility convention).
+
+  > [HISTORY, installed at the #24 sitting's close (selection-freeze-r1),
+  > 2026-09-04.  Under the THIRD SHAPE (`policyPick` = the pairwise,
+  > substituting fold; the r2 pack) the bullet above is SIMPLY TRUE as
+  > written: `chooseEU` is the binary special case of the substituting
+  > selection, and a clockless world now selects through `policyPick`.  It
+  > was NOT true for the period 2026-07-27 (trampoline-freeze) -> this close,
+  > during which a consumer that planned against this bullet lost a migration
+  > checkpoint (issue #24) to the gap recorded below.  This bracket is the
+  > dated record of that period; the drafted correction is kept as its body.
+  > One reading only.  (Provenance: chooseeu-sitting/drafts/FL-repairs.txt
+  > FL-1, the AMENDED reading.)
+  >
+  > A CLOCKLESS WORLD SELECTS THROUGH `Membrane.chooseEU`, AND ITS COMPARISON
+  > DOES NOT SUBSTITUTE.  `chooseEU` builds ONE environment, from the
+  > CHALLENGER, and evaluates both candidates' utilities in it -- so a `get`
+  > on a menu name reads the challenger's assignment on both sides, per-action
+  > LEVELS cancel, and only BELIEFS differentiate the options.  A world whose
+  > beliefs are act-blind therefore ties every pair and returns the option
+  > space's head.  This was the clockless selection for the period above; at
+  > this close both the wire's clockless arm (r0) and the library's
+  > `runEpisode` (r0a) route through `policyPick`, so the bullet's sentence
+  > holds.  (`src/PropLang/Host.hs` at 94fd4eb, the binding `actOrThink`:
+  > `case swClock w of Nothing -> chooseEU ...; Just (price, d) -> ...
+  > pickWire ...`.)]
 - `clock` (OPTIONAL; the trampoline boundary): the world MAY price
   the agent's internal acts — `"clock": [{"name": "think",
   "price": P, "batch": B}]`, exactly one row, name `think`, P a

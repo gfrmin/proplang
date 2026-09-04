@@ -6,6 +6,16 @@ design material, like AGENT_PLAN / WIRE_PLAN / HOSTS_PLAN. The builder
 touches no frozen file (`test/`, `audit/`, `CLAUDE.md`, `MANIFEST.sha256`)
 in writing or discussing it.*
 
+> **[SUPERSEDED 2026-09-04, at the #24 sitting.**  The status line above reads
+> "Status: PROPOSAL.  It opens nothing by itself", and that was true when
+> written.  It is not true now: this document was EXECUTED --
+> exact-freeze-r0 / r0a / r1 -- and grew into the live boundary record.
+> Section 12 is the Phase-2 work order, section 13 the trampoline boundary and
+> THE DESTINATION MAP (the live roadmap, installed verbatim from the author's
+> directive of 2026-07-26), section 14 the completeness suite, section 15 the
+> wire docket.  The original words are kept above as the record of what this
+> file was at its writing.**]**
+
 ## 0. The one sentence
 
 Make **exactness a belief-state invariant**: every weight the reasoner
