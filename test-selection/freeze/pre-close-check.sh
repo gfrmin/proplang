@@ -38,6 +38,12 @@ ADD=(
   test-selection/freeze/pre-close-check.sh
   test-selection/freeze/r1-tag-msg.txt
   test-selection/freeze/CLOSE-RUNBOOK.md
+  test-selection/freeze/frozen-layer.patch
+  test-selection/freeze/install-close-edits.sh
+  test-selection/freeze/measure-drift.sh
+  test-selection/freeze/do-close.sh
+  test-selection/freeze/l5-demo.sh
+  test-selection/freeze/l5-demo.out
 )
 
 # NB: the manifest RE-HASH set is DERIVED at close time from `sha256sum -c`
@@ -86,7 +92,7 @@ run_checks() {
   local -A why=(
     ["membrane-wire.md"]="FL-1 (history bracket)"
     ["CLAUDE.md"]="FL-2 (roadmap re-point to EXACT_PLAN 13.0)"
-    ["OBLIGATIONS.md"]="OB-24 + OB-33 discharge, OB-30, R5"
+    ["OBLIGATIONS.md"]="OB-24 + OB-33 discharge, OB-30, R5/OB-34"
     ["tools/prefreeze-lint.sh"]="L5 rev 2"
     ["test-breadth/Breadth.hs"]="drift-a ratio re-mint"
   )
@@ -105,9 +111,10 @@ run_checks() {
   grep -qF -- "EXACT_PLAN.md section 13.0" CLAUDE.md && ok "FL-2 marker present (EXACT_PLAN.md section 13.0)" || note "FL-2 marker 'EXACT_PLAN.md section 13.0' not found in CLAUDE.md"
   grep -Eq "\|[[:space:]]*OB-24[[:space:]].*DISCHARGED@selection-freeze-r1" OBLIGATIONS.md && ok "OB-24 discharge string present" || note "OB-24 row lacks 'DISCHARGED@selection-freeze-r1'"
   grep -Eq "\|[[:space:]]*OB-33[[:space:]].*DISCHARGED@selection-freeze-r1" OBLIGATIONS.md && ok "OB-33 discharge string present" || note "OB-33 row lacks 'DISCHARGED@selection-freeze-r1'"
+  grep -Eq "\|[[:space:]]*OB-34[[:space:]]" OBLIGATIONS.md && ok "OB-34 row present (R5 published-record inventory)" || note "OB-34 row not found in OBLIGATIONS.md"
   grep -q 'SAT-SECTION' tools/prefreeze-lint.sh && ok "L5 rev 2 marker present (SAT-SECTION)" || note "L5 rev 2 marker 'SAT-SECTION' not found in tools/prefreeze-lint.sh"
-  grep -qF -- "SUPERSEDED 2026-09-01" EXACT_PLAN.md && ok "FL-3 installed (EXACT_PLAN.md; not manifest-covered)" || note "FL-3 not yet in EXACT_PLAN.md (cheapest, outside the manifest)"
-  note "M1/M3/M4 comment nits (src/PropLang/Membrane.hs): REPAIR or DECLINE per selection-close-pack.md #1"
+  grep -qF -- "SUPERSEDED 2026-09-04" EXACT_PLAN.md && ok "FL-3 installed (EXACT_PLAN.md; not manifest-covered)" || note "FL-3 not yet in EXACT_PLAN.md (cheapest, outside the manifest)"
+  note "M1/M4 comment repairs: DONE in the builder commit (src/PropLang/Membrane.hs). M3 (Selection.hs:319 hardcoded 17, FROZEN oracle): ARGUED-AND-DECLINE recommended, or your frozen edit -- selection-close-pack.md #1"
   local nm; nm=$(printf '%s\n' $ADD_MUTANTS | grep -c . || true)
   ok "$nm this-increment mutants staged (M82-M89 + M90-M98)"
 

@@ -62,7 +62,15 @@ THE OBLIGATION DISPOSITIONS (OBLIGATIONS.md):
  - OB-30 (reviewed prose never through a shell-word parser): stays
    STANDING-CONDITIONAL; this increment's instances recorded (freeze.sh,
    freeze-r0a.sh and this close.sh all pass the tag message by -F).
- - R5 (the tick's two-arrow geometry): the published-record row.
+ - R5 (the FL inventory extends to PUBLISHED RECORD) -> OB-34: our
+   published claims (issue-tracker comments, external records) go stale
+   against HEAD exactly as frozen prose does; ONE standing row, BOTH
+   arrows (our record re-read at HEAD; a filer's repo fetched before any
+   disposition), triage-only.  DISTINCT from OB-30 (that is reviewed
+   prose reaching a shell-word parser; this is published-record
+   staleness -- different diseases, a distinct id, R6's discipline).
+   ("the tick's two-arrow geometry" was a drafting mislabel of R5,
+   corrected on the record in selection-close-pack.md.)
  - L5 rev 2 (prefreeze-lint.sh): the SAT-section decision derived from
    the tree with a line-anchored declared-structure override, replacing
    the bare word-grep the #19 sitting's own prose flipped.
@@ -80,7 +88,9 @@ set enumerated by glob in close.sh (one generator; sha256sum -c verifies).
 
 CUSTODY: the six mandates, the two matrices, the mutant patches, the
 driver, the close pack, and this kit (close.sh, pre-close-check.sh, this
-message, CLOSE-RUNBOOK.md) were written by the builder (unsigned commits,
+message, CLOSE-RUNBOOK.md, do-close.sh, frozen-layer.patch,
+install-close-edits.sh, measure-drift.sh, l5-demo.sh + l5-demo.out) were
+written by the builder (unsigned commits,
 builder key on no box, by design).  The frozen-layer edits, the drift-a
 re-mint, the MANIFEST re-sign, and this tag are the author's own acts
 from the author's shell.  The tag message is a FILE (-F).

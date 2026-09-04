@@ -6,6 +6,8 @@ by this round.** No ruling is taken, no obligation minted, no frozen or
 manifest-covered file edited, no tag minted. Every repair below rides as a
 DRAFT for the author's key. The sitting is the author's.*
 
+SAT-SECTION: none
+
 ---
 
 ## I.1 Why this sitting exists, and the docket it owes

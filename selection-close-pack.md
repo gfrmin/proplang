@@ -184,6 +184,14 @@ NO extra record correction is owed (mandate 5 resolved by migration).
 - **R5** (the tick's two-arrow geometry): the published-record row, per
   clause 6.
 
+  > [CORRECTED 2026-09-04 at the #24 sitting's close.  The label above --
+  > "R5 (the tick's two-arrow geometry)" -- misnames the ruling.  R5 is NOT the
+  > tick's geometry; per chooseeu-sitting/CONFERRAL.md it is the PUBLISHED-RECORD
+  > inventory row: "standing, ONE row, BOTH arrows (our record re-read at HEAD;
+  > the filer's repo fetched before any disposition), triage-only."  It lands as
+  > OB-34, not a note beside OB-30 (R6's discipline).  Appended, not silently
+  > fixed -- this pack is of-record.]
+
 ================================================================
 ## 5. drift-a ratio re-mint (test-breadth — author edit)
 ================================================================

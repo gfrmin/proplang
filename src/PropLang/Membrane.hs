@@ -308,6 +308,10 @@ withRows uB ((asn, b) : rest) k =
 -- challenger's cover (env-independence of the substituted sentence
 -- is the pin's C56 rationale, asserted by the family's tie and
 -- guarded cells).
+-- (C56 -- third shape == policyPick at ALL widths -- is ARGUED with a named
+-- falsifier, not proven: the frozen family pins its finite instances, the
+-- equality cells stopping at w=16; "pinned" above means AT those cells,
+-- ARGUED beyond them.)
 policyPick :: Namespace -> Features -> Grid
            -> Expr '[Rational, Rational] Rational
            -> [(Features, Belief Int)]
@@ -337,6 +341,8 @@ policyPick ns feats atomG u cands = case cands of
 -- (the chooseEU disposition, clause 3's symmetry).  Unevaluable past
 -- the old cliff by its own cost (probe A1: walked term ~14.5*2^w) —
 -- the extensional pin's equality cells stop at w=16 and say so.
+-- Its type is policyPick's signature, derived by the §8c forward rule (the
+-- type-derivation audit) and audited there; identical by construction.
 policyPickKS :: Namespace -> Features -> Grid
            -> Expr '[Rational, Rational] Rational
            -> [(Features, Belief Int)]

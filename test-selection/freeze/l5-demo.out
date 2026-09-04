@@ -1,0 +1,9 @@
+== L5 rev 2 two-sided demo (block extracted from tools/prefreeze-lint.sh) ==
+  [ pass ] GREEN1    -> OK: L5 demo-author-pack.md: no SAT section (derived from the tree (its commit cut no oracle))
+  [ pass ] GREEN2    -> OK: L5 demo-author-pack.md records every derived cabal flag (derived from the tree (its commit cut an oracle)): -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns
+  [ pass ] RED1      -> FAIL: L5 demo-author-pack.md SAT section lacks -Werror
+  [ pass ] RED2      -> FAIL: L5 demo-author-pack.md: unreadable SAT-SECTION 'maybe' (want none|present)
+  [ pass ] RED3      -> FAIL: L5 demo-author-pack.md: SAT-SECTION declared 2 times (want exactly one; a fenced copy is ambiguous)
+  [ pass ] RED4      -> FAIL: L5 empty flag derivation from proplang.cabal (refusing a hand default)
+  [ pass ] RED5      -> FAIL: L5 unresolvable cabal import(s): ghost-common -- partial derivation refused
+== demo result: 7 passed, 0 failed ==
