@@ -216,11 +216,35 @@ Claude sessions), two consecutive runs of the SAME cell on the SAME box gave:
     run 2   ratio 2.3020     window means +101% over frozen
     frozen  1.9078           gate band +/-0.03
 
-A spread of ~0.81 against a band of 0.06, STRADDLING the frozen value. The r0
-observation that bought the construction argument (ratio moving ~3.6% while
-means inflated ~97%) held at ITS load; it does not hold at this one, because
-scheduling noise at saturation is not multiplicative across the deep and
-shallow windows and so does not divide out.
+    run 3   ratio 2.1128     window means +103% over frozen
+    frozen  1.9078           gate band +/-0.03
+
+A spread of ~0.81 against a band of 0.06. Note that run 3 makes the picture
+TWO ABOVE AND ONE BELOW, not the clean straddle the first two suggested; the
+builder's earlier "straddles, so noise not regression" was a two-sample
+reading and is withdrawn as premature. Which it is — noise about a correct
+centre, or a STALE MINT whose box no longer exists — is being MEASURED, not
+argued: test-paper/sitting/drift-distribution.sh takes k samples of the cell
+alone and reports median, mean, spread and stdev against the frozen value and
+band, all read FROM the frozen file rather than re-typed. Its transcript rides
+to the sitting.
+
+THE MECHANISM, SHARPENED. `timedFold` measures CPU time (`getCPUTime`), not
+wall clock, and a timed run shows `user` ~= `real` (9m49s of 9m53s) — so the
+process is NOT being starved of a core, and the inflation is not scheduling
+wait, which CPU time excludes by construction. What inflates it is CACHE AND
+MEMORY-BANDWIDTH CONTENTION: co-resident jobs evict working sets, so the same
+logical work costs more real cycles. That is also WHY it does not divide out
+of a ratio — a deep fold has a larger working set than a shallow one, so
+contention hits the two windows DIFFERENTLY and the effect is depth-dependent
+by construction. The r0 observation that bought the construction argument
+(ratio moving ~3.6% while means inflated ~97%) held at ITS contention level
+and does not hold at this one.
+
+This also refines the residual: a precondition keyed on LOAD AVERAGE would be
+the wrong instrument, because load average does not measure memory
+contention. A cell whose gate depends on cache behaviour must either measure
+a statistic the box can resolve, or decline to report.
 
 THE HONEST STATEMENT: the ratio is LESS box-sensitive than the absolute-ms
 band, not box-invariant. The construction argument was too strong; the

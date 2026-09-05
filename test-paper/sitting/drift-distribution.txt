@@ -1,0 +1,7 @@
+=== breadth drift-a: the ratio's DISTRIBUTION on this box ===
+generated 2026-09-05T10:08Z at HEAD 5db0b01
+frozen ratio 1.9078, gate band +/-0.03 (both READ from the frozen
+file, never re-typed here -- the one-generator law)
+load at start: load average: 15.27, 14.48, 14.57
+cores: 8
+

@@ -90,15 +90,25 @@ bash test-paper/freeze/pre-close-check.sh    # now expect READY
 bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 ```
 
-> **Gate 5 needs a genuinely quiet box, and this one was not.** Measured
-> 2026-09-05 while preparing this kit: `breadth`'s `drift-a` cell failed twice
-> with ratios **1.4956** and **2.3020** against a frozen **1.9078** and a gate
-> band of **±0.03** — bracketing the frozen value from *both* sides, which is
-> noise and not regression (a regression moves one way). The absolute window
-> means ran +95% to +200% over frozen, and `uptime` showed load average ~13.5 on
-> 8 cores, with a `julia` process pinning a core for 4d21h alongside
-> `clickhouse`, `uvicorn` and two other Claude sessions. Every other row of
-> `breadth` passed in both runs, and all thirteen other suites passed.
+> **Gate 5's `drift-a` cell cannot be resolved on this box, and the box cannot
+> be quieted.** Measured 2026-09-05 while preparing this kit: three samples gave
+> **1.4956**, **2.3020**, **2.1128** against a frozen **1.9078** and a band of
+> **±0.03** — two above, one below. Absolute window means ran +95% to +200% over
+> frozen, at load average ~13.5 on 8 cores. Every other `breadth` row passed in
+> every run, and all thirteen other suites passed.
+>
+> The mechanism is **not** scheduling starvation: `timedFold` uses `getCPUTime`,
+> and a timed run shows `user` ≈ `real` (9m49s of 9m53s), so the process gets its
+> core. It is **cache and memory-bandwidth contention**, which inflates real
+> cycles — and which hits a deep fold's larger working set differently from a
+> shallow one, so it does not divide out of a ratio. A precondition keyed on
+> *load average* would therefore be the wrong instrument.
+>
+> Rather than argue, **measure**: `sh test-paper/sitting/drift-distribution.sh k`
+> samples the cell alone k times and reports median/mean/spread/stdev against the
+> frozen value and band (both read from the frozen file). Its transcript settles
+> whether this is noise about a correct centre or a **stale mint**. Those need
+> different acts, and neither is licence to re-mint inside this freeze.
 >
 > `drift-a` is not attributable to the wire increment: it builds its agent from
 > `sentenceAgent` directly and never calls `serveLine`, where the whole repair

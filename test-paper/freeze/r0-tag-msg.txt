@@ -267,23 +267,40 @@ drafted in test-paper/terminus-inventory.md, applied by the author):
 GATE 5, AND A CONSTRUCTION ARGUMENT MEASUREMENT HAS FALSIFIED (Q3).
 Thirteen of fifteen suites green, selection PASS, every other breadth
 row green; breadth's drift-a TIMING CELL red on a box at load ~13.5/8
-cores (a julia job pinning a core for 4d21h, plus clickhouse, uvicorn
-and two Claude sessions).  Two runs gave ratios 1.4956 and 2.3020
-against frozen 1.9078 with a +/-0.03 band -- a spread of ~0.81 against
-a band of 0.06, STRADDLING the frozen value, which is noise's signature
-and not a regression's.  Not attributable either: drift-a builds its
-agent from sentenceAgent and never calls serveLine, where the whole
-repair lives.
+cores (a long-running job owning a core, plus clickhouse, uvicorn and
+two Claude sessions).  Three samples so far: 1.4956, 2.3020, 2.1128
+against frozen 1.9078 with a +/-0.03 band.  NOT ATTRIBUTABLE to this
+increment: drift-a builds its agent from sentenceAgent and never calls
+serveLine, where the whole repair lives.
 
-THE Q3 RULING: that argument is sound and is still not good enough for a
-TERMINUS.  A tag whose gate-5 line rests on "we believe it was noise"
-converts this programme's proudest law -- no claim without a transcript
--- into an attestation at the exact moment of maximum ceremony.  So the
-box is quieted and gate 5 runs LIVE; RUN_GATE5=0 is reserved for a box
-that genuinely cannot be quieted, and close.sh now REFUSES it without a
-GATE5_ATTEST quoting both straddling ratios and the load average and
-recording a quiet-box re-run as OWED (enforced, never trusted; the
-attestation lands in the close commit).
+THE Q3 RULING: that non-attribution is sound and is still not good
+enough for a TERMINUS.  A tag whose gate-5 line rests on "we believe it
+was noise" converts this programme's proudest law -- no claim without a
+transcript -- into an attestation at the exact moment of maximum
+ceremony.  The box CANNOT be quieted (the author's decision; a
+long-running job owns a core), so the quiet-box branch is unavailable
+and the remaining honest route is to MEASURE rather than argue.
+test-paper/sitting/drift-distribution.sh samples the cell alone k times
+and reports median, mean, spread and stdev against the frozen value and
+band -- all read FROM the frozen file, never re-typed.  Its transcript
+rides to the sitting and settles which of two things is true: noise
+about a correct centre, or a STALE MINT whose box no longer exists.
+Those call for different acts, and neither is a licence to re-mint
+inside this freeze.
+
+A WITHDRAWN CLAIM, on the record: the builder wrote "straddles, so noise
+not regression" from TWO samples.  The third landed above the band, so
+the picture is two-above-one-below and the straddle reading was
+premature.  Withdrawn rather than quietly restated -- it is the same
+class of defect the sitting's Q1 convicted twice, committed by the same
+hand a day later, and the measurement above exists because of it.
+
+RUN_GATE5=0 is reserved for a box that genuinely cannot be quieted, and
+close.sh now REFUSES it without a GATE5_ATTEST quoting the observed
+ratios and the load average and recording a re-run as OWED (enforced,
+never trusted; the attestation lands in the close commit).  Note it
+skips ALL of gate 5 to dodge ONE cell, discarding fourteen suites of
+real signal -- so it is the last resort, not the convenient one.
 
 AND THE SECOND-ORDER FINDING, ON THE RECORD (FL-P5).  The
 selection-freeze-r1 ruling installed this gate in RATIO form on the
