@@ -1,0 +1,213 @@
+paper-freeze-r0 -- the demonstration tier CLOSED; THE ROADMAP TERMINATES
+
+This signed tag closes step 5 of EXACT_PLAN.md section 13.0, the
+demonstration tier, and with it the roadmap installed verbatim from the
+author's directive of 2026-07-26.  It ratifies PAPER.md (the capstone),
+test-paper/check.sh (its machine check), test-paper/terminus-inventory.md
+(the frozen-layer inventory brought to this sitting), and the two
+frozen-layer installs the terminus obliges.  From this commit PAPER.md
+and its checker are as frozen as test/.
+
+THIS IS THE TERMINUS.  After it there is no scheduled work: everything
+remaining is named demand-gated residue re-entering only through the
+two-sided gate with a measurement.
+
+STEP 5'S THREE PARTS, AS CLOSED HERE:
+ (a) THE A-GATE READING -- EXECUTED and POSTED.  OB-12's differential run
+     (95k live events) was ruled at the X.5 sitting, ruling 7: A STAYS
+     CLOSED, B STAYS OUT at n_inv = 0.  The gate was read and did NOT
+     fire.  Its one residual act, the posting to the consumer, was made
+     2026-09-02; nothing is owed.
+ (b) THE BENCHMARK -- LANDED, band MEASURED-BLANK.  The sitting-ordered
+     r02.4 falsifier found the folded state carries O(t) bits, so on the
+     real declaration alpha_3p = 2.44 measured an ARITHMETIC
+     REPRESENTATION -- denominator growth in the exact posterior -- and
+     not decision cost.  bench/bench-fold-depth-r01.md therefore rules
+     its own acceptance band blank FOR A MEASURED REASON, NOT AN ABSENT
+     INPUT: a cutover gate read against that exponent reads against the
+     wrong quantity.  THE SEAM-SWAP JUDGEMENT REMAINS THE OWNER'S and is
+     deliberately NOT made by this tag.  The engineering observation that
+     would remove the finding (a const-family fold has bounded sufficient
+     statistics and need not carry O(t) bits) is banked as MEASUREMENT
+     ONLY and re-enters post-terminus through the two-sided gate with a
+     consumer's registered demand.
+ (c) THE PAPER -- PAPER.md, frozen here.
+
+THE SIX CLAIMS AND THEIR WITNESSES (PAPER.md's spine; each closed by an
+executed artifact, no partial credit):
+ - NECESSITY by executed deletion -- audit/ablation.sh,
+   audit/ablation-exact/run.sh, the per-terminal fixtures in
+   test-pin/ablation, and the T4 deletion table.  A code-level ablation
+   per terminal (a GADT constructor behind a CPP flag or a restricted
+   enumeration), never a mock -- the frozen gate 7.
+ - SUFFICIENCY by executed interpolation -- test-battery/Battery.hs walks
+   the family the four acceptance tests corner.  The corners are the
+   tests; the battery is the fill.
+ - SOUNDNESS by four gates -- test/Acceptance.hs anchored in
+   test/Anchors.hs, transcript test_output.txt: T1's change-point
+   sentence and consult window, T2's 1/3/12/12 under a dearer clock,
+   T3's agent-vs-forgetter relations, T4's deletion counts.
+ - EXACTNESS by == -- KERNEL.md's no-tolerance/no-log-space rule and
+   test/Properties.hs.  Correctness is decidable, not thresholded; the
+   deletion count is 1169 and not "about a thousand".
+ - CLOSURE by E4 -- test-trampoline/Trampoline.hs.  Metareasoning is an
+   ordinary sentence of the same grammar, pinned to the one policy rule;
+   sayable, not automatic, not bolted on.
+ - A LIVE HOST -- src/PropLang/Host.hs and the nine-form wire
+   (membrane-wire.md).  Agents in the WORLD, not only oracle worlds.
+
+THE ONE-GENERATOR LAW, ENFORCED ON THE PROSE.  A paper is exactly the
+artefact that goes stale against the oracle it reports, so every number
+PAPER.md states is a PIN: test-paper/check.sh requires the same literal
+to appear in PAPER.md AND in the frozen artifact that generates it
+(test/Anchors.hs, test/ExactReference.hs, test/Streams.hs,
+test_output.txt, membrane-wire.md, KERNEL.md,
+bench/bench-fold-depth-r01.md, and the live-host transcript).
+TWENTY-FIVE pins, N1-N25, plus the thesis quote checked byte-exact
+against brief.md (Q1-Q2), the generator identity row (G1), pointer
+resolution over every cited path (P1), and the claims register's
+completeness (R0-R2): 34 rows, all green.  The paper
+derives-and-asserts; it cannot drift stale in silence.  If a source
+moves, the check reds on the SOURCE side and names the regeneration --
+the failure mode is loud by construction.
+
+The pin set was WIDENED at the author's freeze review (below), and the
+widening is the interesting part: the review found four sentences a
+frozen anchor falsified, and in every case the repair was not merely to
+fix the prose but to PIN THE QUANTITY THE PROSE HAD BEEN FREE TO GET
+WRONG.  N17/N18 pin the tau and theta GRIDS, so "tau index 11 is 60" can
+no longer be prose a regenerated grid silently falsifies.  N19 pins the
+world's true shift.  N20/N21 pin the drift-optimal forgetter AND the row
+where the agent LOSES.  N22/N23 pin the dyadic profile's own
+representation growth.  N24/N25 pin the live transcript.  The class the
+review named -- "prose a frozen anchor falsifies... precisely the
+defects the checker cannot catch" -- is smaller by nine pins than it
+was.
+
+THE TWO-SIDED INSTRUMENT (the harness-gate law, OB-27's widening of the
+two-run triptych to kit gates: a green that cannot fail is the mirror
+image of the red that cannot fire).  The checker's red side is
+DEMONSTRATED, not assumed -- seeded defects, one per check class, each
+firing exactly its own row with no collateral:
+   a corrupted anchor literal       -> N6 alone reds
+   a corrupted grid bridge          -> N17 alone reds
+   a corrupted agent-LOSES row      -> N21 alone reds
+   a corrupted dyadic growth rate   -> N22 alone reds
+   a corrupted live-wire loss       -> N25 alone reds
+   a transcript drifted from its generator -> G1 alone reds
+   a corrupted thesis fragment      -> Q1 alone reds
+   a register row stripped of tag   -> R2 alone reds
+   a cited path that does not exist -> P1 alone reds
+and restore returns 34/34 green.  The close-mode rows (C) carry their
+red inherently: they are red until this tag exists and this MANIFEST
+covers the paper, which is the state every pre-close run observes.
+
+THE UNWITNESSED-ASSERTION LAW (breadth-freeze-r0), APPLIED TO A DOCUMENT
+WHOSE WHOLE CONTENT IS ASSERTION.  PAPER.md carries a delimited CLAIMS
+REGISTER, TWENTY rows, each tagged EXECUTED (a run witnesses it,
+transcript named), ARGUED (no run; cheapest falsifier NAMED), or QUOTED
+(a frozen text's own words).  R2 enforces that every row carries exactly
+one of the three.  Two rows stand ARGUED and say so: sufficiency's
+not-proven-in-general bound, and section 8's unmeasured intrinsic cost
+at bounded state.  Each names its cheapest falsifier.  Claim six is no
+longer among them -- see the next section.
+
+THE LIVE-HOST WITNESS, AND THE DEFECT IT FOUND.  At the author's freeze
+review claim six (a live host) stood ARGUED, and the review ruled that
+limp and needless.  It is now EXECUTED: test-paper/hello9.sh drives the
+SHIPPED proplang-host binary over stdin/stdout and records
+test-paper/hello9-transcript.txt (a generator and its artifact, under
+the generator exemption; G1 is the standing identity row).  A hello
+whose utility uses ALL NINE wire forms is accepted, and the agent then
+ADAPTS OVER THE WIRE: across eight ticks observing 0 the chosen act
+flips from the menu head to move = -1 and stays, p1 falls 0.5 -> 0.162,
+loss_bits falls 1.0 -> 0.255.  The flip is the argmax over a moving
+posterior -- T1 and T2 happening live to a client that is not a test.
+Leg 2 executes the refusals separately (the review's second point: the
+belief-scoped-head falsifier belonged to the REFUSAL claim, not the
+live-host claim, and the register now splits them so neither witnesses
+the other).
+
+** AND LEG 3 IS A STOP-AND-REPORT.  Executing the owed witness found a
+REAL DEFECT in the shipped host, and it rides to this sitting undecided.
+An undeclared name inside a hello's UTILITY is not validated at hello
+time: the hello is ACCEPTED, and the failure surfaces only when the
+utility is evaluated -- as a HOST-PROCESS CRASH at evalx's Get case, not
+as a wire error.  Menu and guard names ARE namespace-checked; the
+utility's Get names are not.  With a one-option menu the utility is
+never evaluated and the defect stays latent; with two or more it fires
+on the first decision tick.  The error site's own comment calls itself
+"door-unreachable"; the wire reaches it, so the comment is falsified
+too.  This is a totality violation of the kind the protocol names
+explicitly, and it bounds -- not refutes -- section 7's refusal claim.
+IT IS REPORTED AND NOT WORKED AROUND: no src file was touched, because
+fixing it moves the language surface and this is a document boundary.
+PAPER.md section 9 carries it as a stated limit, the register carries it
+as its own EXECUTED row (the defect FIRES, which is why the row is
+executed rather than argued), and the transcript's leg 3 is expected to
+stay red -- a green there would mean the defect was fixed without this
+paper being updated.  THE RULING IS THE AUTHOR'S: mint the terminus over
+a known, stated, bounded hole, or re-open for a wire increment first. **
+
+PAPER.md SECTION 9 IS THE HONESTY SECTION, and it is part of the claim:
+the benchmark's band is unfilled BY DESIGN and no pass/fail is claimed
+from it, EVERY measured exponent partly reads the fold representation
+and the intrinsic per-tick cost at bounded state is UNMEASURED;
+sufficiency is witnessed over the completeness suite's WALKED family,
+not proven for every conceivable world, the residual PRINTED not
+absorbed (the no-silent-caps law); THE WIRE IS NOT FULLY FAIL-CLOSED and
+section 7's leg 3 shows exactly where; and the research programme -- the
+quine face, OB-15, OB-19, continuous carriers (foreclosed), the
+bounded-representation demand (#25), brief section 6's self-compression
+-- is NAMED, NOT SCHEDULED.  None is owed; each is a door.
+
+SECTION 8 WAS STRENGTHENED at the review, and the strengthening is
+against our own interest.  The draft exempted the dyadic band: it
+reported 1.43-1.60 as "the cost of never rounding" and invalidated only
+alpha_3p.  But r02.4 measured the DYADIC state growing ~19.8 bits/tick
+as well -- same mechanism, smaller coefficient (the 81x collapse), the
+linearity surviving because the growth lives in the exact fold's
+likelihood product and not in the grid's number format.  So the honest
+statement is the wider one, now written: EVERY measured exponent partly
+reads the fold's representation, the dyadic least and the real most, and
+the intrinsic cost at bounded state is unmeasured -- and THAT is why the
+band is blank, not merely the outlier cell.  The slogan was corrected
+too: dyadic snapping IS rounding at declaration time, so this is not the
+cost of never rounding but THE COST OF NEVER CONSOLIDATING, which points
+straight at the banked door (#25) instead of away from it.
+
+THE FROZEN-LAYER INSTALLS (the inventory, under this boundary's key;
+drafted in test-paper/terminus-inventory.md, applied by the author):
+ - FL-P1 (CLAUDE.md, the Porting-order paragraph): NORMATIVE PROSE, so
+   the repair is IN PLACE with the falsified clause quoted inside its own
+   repair.  The paragraph read "ONE ITEM REMAINS: step 5 ... AFTER 5 THE
+   ROADMAP TERMINATES" and that was true until this freeze; the repair
+   records that the antecedent has now occurred and the consequent has
+   fired.  Manifest-covered: re-hashed here.
+ - FL-P2 (EXACT_PLAN.md section 13.0): HISTORICAL RECORD, so a DATED
+   TERMINUS BRACKET is appended and the charter clause and its draft-time
+   status annotation are both kept VERBATIM.  The clause is the author's
+   own directive and correctly predicted its own terminus; what was stale
+   was the status, not the prescription.  Not manifest-covered (the
+   selection-freeze-r1 FL-3 precedent for this file), so it rides without
+   a re-hash.
+
+MANIFEST: re-hashed over CLAUDE.md (the author's FL-P1 edit, the set
+DERIVED from sha256sum -c and never hand-listed) and extended with
+PAPER.md, test-paper/check.sh, test-paper/terminus-inventory.md,
+test-paper/hello9.sh, test-paper/hello9-transcript.txt and this close kit
+-- twelve rows, the ADD set enumerated in pre-close-check.sh, which
+close.sh SOURCES rather than re-declares (the one-generator law applied
+to the kit itself).
+
+CUSTODY: PAPER.md, test-paper/check.sh, the terminus inventory, the
+live-host generator and its transcript, this kit (close.sh,
+pre-close-check.sh, do-close.sh, install-close-edits.sh,
+frozen-layer.patch, CLOSE-RUNBOOK.md and this message) were written by
+the builder in unsigned commits -- the builder key is on no box, by
+design.  The frozen-layer installs, the MANIFEST re-sign, and this tag
+are the author's own acts from the author's shell.  The tag message is a
+FILE (-F), per OB-30 and the L9 lint row: no shell word-parser stands
+between the reviewed register and the key act.
+
+The demonstration tier is CLOSED.  The roadmap has TERMINATED.

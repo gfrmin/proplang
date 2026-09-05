@@ -96,6 +96,49 @@ pin "N13 the nine wire forms"         "var c + - * get if > ="                  
 pin "N14 exactness — no log-space"    "no log-space"                                    KERNEL.md
 pin "N15 bench cost exponent band"    "1.43–1.60"                                       bench/bench-fold-depth-r01.md
 pin "N16 bench real-declaration alpha" '`alpha_3p` = 2.44'                              bench/bench-fold-depth-r01.md
+# the T1 bridge: the MAP sentence's indices are GRID POSITIONS, so the grids
+# themselves are pinned -- otherwise "tau index 11 is 60" is exactly the kind
+# of prose a regenerated grid would silently falsify.
+pin "N17 t1 tau grid (index 11 = 60)" \
+    "tauG = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]"            test/ExactReference.hs
+pin "N18 t1 theta grid (0 = 0.1, 8 = 0.9)" \
+    "thetaG = [1 % 10, 2 % 10, 3 % 10, 4 % 10, 5 % 10, 6 % 10, 7 % 10, 8 % 10, 9 % 10]" test/ExactReference.hs
+pin "N19 t1 the world's true shift at 60" \
+    "y_t = [rng.random() < (0.9 if t<60 else 0.1)]"                                      test/Streams.hs
+# T3's two honesty rows: the drift-optimal forgetter the agent BEATS, and the
+# stationary row where the agent LOSES.  The loss row is what makes the candour
+# claim true, so it is pinned exactly as the winning row is.
+pin "N20 t3 drift-optimal forgetter g=0.95" \
+    "(19 % 20,340.88263044835253,359.3527535371698)"                                     test/Anchors.hs
+pin "N21 t3 the row the agent LOSES (g=1.0 on flat)" \
+    "(1 % 1,397.92621119190125,350.330276640413)"                                        test/Anchors.hs
+# section 8: the DYADIC profile is representation-contaminated too, not just
+# the real declaration -- the pin that keeps section 8 from over-exempting it.
+pin "N22 bench dyadic state growth"   "19.8 bits/tick"                                   bench/bench-fold-depth-r01.md
+pin "N23 bench dyadic snap coefficient" "81x collapse"                                   bench/bench-fold-depth-r01.md
+# section 7: the live-host transcript is a generated artifact in-tree, so the
+# paper's quotation of it is pinned to it exactly like any frozen anchor.
+pin "N24 live wire: the act flips on evidence" \
+    "0.36666666666666664"                                                                test-paper/hello9-transcript.txt
+pin "N25 live wire: loss falls to 0.25" \
+    "0.2546077860279184"                                                                 test-paper/hello9-transcript.txt
+
+# ---- G: the live-host transcript is the generator's current output ---
+# The generator exemption's standing identity row: hello9.sh lands in-tree
+# WITH the artifact it generates, and regenerating must reproduce it.  A
+# transcript that has drifted from its generator is a hand-maintained copy
+# wearing a generated file's name (the one-generator law).
+if [ -x test-paper/hello9.sh ] && command -v cabal >/dev/null 2>&1 \
+   && cabal list-bin proplang-host >/dev/null 2>&1; then
+    if sh test-paper/hello9.sh 2>&1 | diff -q - test-paper/hello9-transcript.txt >/dev/null 2>&1; then
+        ok "G1 hello9-transcript.txt reproduces from its generator"
+    else
+        bad "G1 hello9-transcript.txt reproduces from its generator" \
+            "regenerate: sh test-paper/hello9.sh > test-paper/hello9-transcript.txt"
+    fi
+else
+    echo "[paper] G1 SKIPPED (proplang-host not built; run: cabal build proplang-host)"
+fi
 
 # ---- P: pointer resolution (cited paths exist or resolve) -----------
 grep -oE '`[A-Za-z0-9_./-]+`' "$DOC" | tr -d '`' | sort -u \

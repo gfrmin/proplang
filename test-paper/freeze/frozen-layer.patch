@@ -1,0 +1,65 @@
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -109,12 +109,27 @@
+    installed verbatim from the author's directive of 2026-07-26 "so the
+    roadmap lives in the tree, never in a transcript".  Its steps 1-4 are
+    closed (the X.5 sitting; OB-12's run; the trampoline boundary, the last
+-   language increment; the completeness suite).  ONE ITEM REMAINS: step 5,
+-   the demonstration tier -- the A-gate reading with OB-12's result in hand,
+-   the benchmark, and the paper.  AFTER 5 THE ROADMAP TERMINATES, and
+-   everything else is named demand-gated residue re-entering only through the
+-   two-sided gate with a measurement.  archive/HOSTS_PLAN.md is retained as
+-   historical record only.
++   language increment; the completeness suite).
++   [ROADMAP TERMINATED at paper-freeze-r0, 2026-09-05.  This paragraph
++   read "ONE ITEM REMAINS: step 5, the demonstration tier -- the A-gate
++   reading with OB-12's result in hand, the benchmark, and the paper.
++   AFTER 5 THE ROADMAP TERMINATES", and that was true until this freeze.
++   Step 5's three parts are now closed.  The A-gate reading was executed
++   and posted: OB-12's differential run, 95k live events, ruled at the X.5
++   sitting (ruling 7: A STAYS CLOSED, B STAYS OUT at n_inv = 0) and posted
++   to its consumer 2026-09-02.  The benchmark landed with its acceptance
++   band MEASURED-BLANK, not absent -- bench/bench-fold-depth-r01.md r02.5,
++   whose own falsifier found the folded state carries O(t) bits, so the
++   real declaration's alpha_3p measured arithmetic representation and not
++   decision cost; the seam-swap judgement remains the owner's.  And the
++   paper is PAPER.md, frozen at this boundary with test-paper/check.sh.
++   THE ROADMAP HAS TERMINATED, exactly as the quoted clause said it
++   would.]  Everything after the terminus is named demand-gated residue,
++   re-entering only through the two-sided gate with a measurement: the
++   quine face, OB-15, OB-19, continuous carriers (foreclosed), and brief
++   section 6's self-compression -- a research programme, named not
++   scheduled.  archive/HOSTS_PLAN.md is retained as historical record
++   only.
+ 
+ ## When to stop and report instead of proceeding
+ 
+--- a/EXACT_PLAN.md
++++ b/EXACT_PLAN.md
+@@ -685,6 +685,26 @@
+ A-gate demand NOT MEASURED on 95k live events, B-gate UNDERPOWERED
+ at n_inv = 0, no engine passes the registered loss bar.)*
+ 
++*[TERMINATED 2026-09-05 at paper-freeze-r0.  Step 5's three parts are
++closed.  (a) The X.5 sitting is SEALED (x5-sitting-r0) and OB-12's
++reading was posted to its consumer 2026-09-02 — ruling 7: A stays
++closed, B stays out at n_inv = 0.  (b) The benchmark landed with its
++acceptance band MEASURED-BLANK, not absent: bench/bench-fold-depth-r01.md
++r02.5, whose own falsifier found the folded state carries O(t) bits, so
++the real declaration's alpha_3p measured an ARITHMETIC REPRESENTATION
++(denominator growth in the exact posterior) rather than decision cost —
++a cutover gate read against that exponent would read against the wrong
++quantity.  The seam-swap judgement remains the owner's.  (c) The
++demonstration paper is PAPER.md, frozen at this boundary with its checker
++test-paper/check.sh.  THE ROADMAP TERMINATES AT THIS LINE, exactly as the
++step-5 clause above prescribes.  The status annotation above is the
++DRAFT-TIME reading ("the X.5 sitting is PREPARED"), superseded by
++x5-sitting-r0; the clause and its annotation are both kept verbatim as
++the record of the charter, per the FL-3 precedent for this file.
++Everything after the terminus is the named demand-gated residue the
++clause itself enumerates — a research programme, named not scheduled,
++re-entering only through the two-sided gate with a measurement.]*
++
+ ### 13.1 The dependency, recorded
+ 
+ This boundary DEPENDS ON X.5 ITEM 3 (the dyadic lattice coordinate).

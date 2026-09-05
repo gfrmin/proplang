@@ -88,14 +88,64 @@ FL-P3 — new-file MANIFEST coverage (the key act, author only)
 ================================================================
 
 Not a prose repair — the close's MANIFEST motion. At paper-freeze-r0 the author
-extends and re-signs MANIFEST.sha256 to cover the two new files:
+extends and re-signs MANIFEST.sha256 to cover the new files. The set is
+ENUMERATED ONCE, in test-paper/freeze/pre-close-check.sh's ADD array, which
+close.sh SOURCES rather than re-declares (the one-generator law applied to the
+kit itself); this list is a reader's copy, not a second generator:
 
-  PAPER.md
-  test-paper/check.sh
+  PAPER.md                              the capstone
+  test-paper/check.sh                   its machine check
+  test-paper/terminus-inventory.md      this file
+  test-paper/hello9.sh                  the live-host generator (section 7)
+  test-paper/hello9-transcript.txt      the artifact it generates
+  test-paper/freeze/*                   the close kit (7 files)
 
 and mints the terminus tag paper-freeze-r0 by -F <file> (the tag-message-is-a-
 file law). `test-paper/check.sh --close` then verifies the coverage, the
 manifest, and the tag. That tag is the attestation and the terminus.
+
+Expected manifest size afterwards: 255 rows (243 + 12 ADD; CLAUDE.md is
+re-hashed in place under FL-P1, not added).
+
+================================================================
+FL-P4 — A STOP-AND-REPORT THAT ARRIVED WITH THE AUTHOR'S REVIEW
+Class: NOT A FROZEN-LAYER REPAIR — a docket item for the sitting's ruling
+================================================================
+
+Recorded here because it reached the increment after the inventory was first
+drafted, and the sitting must see it beside the rest.
+
+Executing the live-host witness the author's freeze review asked for (promote
+claim 6 from ARGUED to EXECUTED) found a REAL DEFECT in the shipped host. An
+undeclared name inside a hello's UTILITY is not validated at hello time: the
+hello is ACCEPTED, and the failure surfaces only when the utility is evaluated
+— as a HOST-PROCESS CRASH at evalx's Get case, not as a wire error. Menu and
+guard names ARE namespace-checked; the utility's Get names are not. A one-option
+menu never evaluates the utility, so the defect stays latent; with two or more
+options it fires on the first decision tick. The error site's own comment calls
+itself "door-unreachable" — the wire reaches it, so that comment is falsified as
+well.
+
+Reproduced in test-paper/hello9-transcript.txt, leg 3.
+
+NOT FIXED HERE, and deliberately so: the repair moves src/, which is a language
+surface motion, and this is a document boundary. Nothing under src/ was touched.
+PAPER.md section 9 states it as a bound on the refusal claim; the claims register
+carries it as its own EXECUTED row (the defect FIRES, so the row is executed, not
+argued); leg 3 is expected to stay red, and a green there would mean the defect
+was fixed without this paper being updated.
+
+THE RULING IS THE AUTHOR'S, and it is a genuine fork:
+  (a) MINT THE TERMINUS as drafted — the hole is known, stated, bounded and
+      witnessed, and the paper is more honest for carrying it than for not; the
+      fix then re-enters as demand-gated residue like everything else past the
+      terminus.
+  (b) RE-OPEN for a wire increment first — validate utility Get names against
+      the declared namespace at hello time, so the terminus is minted over a
+      wire that is fail-closed in fact and not only in most cases.
+
+The builder has no view it is entitled to act on here, and has acted on none:
+both branches are left open and no src file is touched either way.
 
 ================================================================
 CUSTODY
