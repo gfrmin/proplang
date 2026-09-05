@@ -71,6 +71,43 @@ derives-and-asserts; it cannot drift stale in silence.  If a source
 moves, the check reds on the SOURCE side and names the regeneration --
 the failure mode is loud by construction.
 
+THE SITTING'S OWN TWO FINDINGS (Q1), REPAIRED HERE.  The conferral put
+five questions to a reader who did not build the thing; two prose
+defects came back, both the sitting's own disease -- prose a frozen
+anchor falsifies -- and both found by its own method:
+ - T1 CLAIMED EXACT RECOVERY "at the right tick", and the boundary tick
+   convicts it.  The world switches AT 60; the guard is a strict Gt; so
+   the sentence "if t > 60 then 0.1 else 0.9" predicts 0.9 AT t=60,
+   where the world emits 0.1.  A perfect sentence needs tau = 59, which
+   is NOT ON THE DECLARED GRID (55 and 60 are its neighbours; 55 would
+   be wrong at four ticks, 60 at one).  In a paper whose section 5
+   boasts that the count is 1169 and not "about a thousand", an
+   off-by-one wearing a superlative is the wrong sentence to freeze.
+   The honest one is also the better one, and now stands: the agent
+   picks the CLOSEST SAYABLE SENTENCE, and its one tick of residue is
+   declared-grid coarseness meeting a strict >, not an inference error
+   -- which is section 1's point about declared structure and section
+   9's about the limits of a declared support.  The strictness is now
+   PINNED (N28) rather than described, because the whole claim turns on
+   it.
+ - THE TRANSCRIPT SAID "the menu head fires" WHILE SHOWING THE
+   SECOND-LISTED ENTRY ACT.  The reviewer asked for one minute against
+   the host; it bought considerably more than a wording fix.  Measured:
+   under a utility CONSTANT in move every option ties exactly and the
+   FIRST-LISTED entry survives -- the frozen strict-Gt convention is
+   intact, in declared order and not by value.  So tick 0 was never a
+   tie.  The nine declared decimals 0.1..0.9 cross the wire as DOUBLES,
+   so their exact mean is 1/2 + 1/324259173170675712, giving
+   E[2y-1] = 1/162129586585337856, about 6.2e-18: strictly positive,
+   invisible in the Double readout, decisive under exact Gt.  Proven
+   TWO-SIDEDLY in the transcript's new leg 1b by inverting the utility's
+   sign, which flips the act where a tie-break would not move.  A float
+   host would show 0.5, tie, and fall back on a convention; the exact
+   host decides on a quantity eighteen orders of magnitude below what it
+   prints.  SECTION 5 IS NO LONGER A BOAST ABOUT ARITHMETIC HYGIENE IN
+   THIS PAPER -- it decided an act in section 7, live, and the paper now
+   says so.  Both halves pinned (N29, N30).
+
 The pin set was WIDENED at the author's freeze review (below), and the
 widening is the interesting part: the review found four sentences a
 frozen anchor falsified, and in every case the repair was not merely to
@@ -226,6 +263,44 @@ drafted in test-paper/terminus-inventory.md, applied by the author):
    was the status, not the prescription.  Not manifest-covered (the
    selection-freeze-r1 FL-3 precedent for this file), so it rides without
    a re-hash.
+
+GATE 5, AND A CONSTRUCTION ARGUMENT MEASUREMENT HAS FALSIFIED (Q3).
+Thirteen of fifteen suites green, selection PASS, every other breadth
+row green; breadth's drift-a TIMING CELL red on a box at load ~13.5/8
+cores (a julia job pinning a core for 4d21h, plus clickhouse, uvicorn
+and two Claude sessions).  Two runs gave ratios 1.4956 and 2.3020
+against frozen 1.9078 with a +/-0.03 band -- a spread of ~0.81 against
+a band of 0.06, STRADDLING the frozen value, which is noise's signature
+and not a regression's.  Not attributable either: drift-a builds its
+agent from sentenceAgent and never calls serveLine, where the whole
+repair lives.
+
+THE Q3 RULING: that argument is sound and is still not good enough for a
+TERMINUS.  A tag whose gate-5 line rests on "we believe it was noise"
+converts this programme's proudest law -- no claim without a transcript
+-- into an attestation at the exact moment of maximum ceremony.  So the
+box is quieted and gate 5 runs LIVE; RUN_GATE5=0 is reserved for a box
+that genuinely cannot be quieted, and close.sh now REFUSES it without a
+GATE5_ATTEST quoting both straddling ratios and the load average and
+recording a quiet-box re-run as OWED (enforced, never trusted; the
+attestation lands in the close commit).
+
+AND THE SECOND-ORDER FINDING, ON THE RECORD (FL-P5).  The
+selection-freeze-r1 ruling installed this gate in RATIO form on the
+argument that the ratio is BOX-INVARIANT BY CONSTRUCTION.  It is not:
+it is LESS BOX-SENSITIVE.  The r0 observation that bought the argument
+(ratio moving ~3.6% while means inflated ~97%) held at ITS load and does
+not hold at saturation, because scheduling noise there is not
+multiplicative across the deep and shallow windows and so does not
+divide out.  Three manifest-covered texts say "box-invariant" and are
+falsified; they are quoted inside FL-P5 with their repair forms
+(in-place for the two kit lines, a dated bracket for the pack's
+close-date record).  The named residual, demand-gated but NAMED NOW:
+either a QUIET-BOX PRECONDITION THAT REFUSES TO RUN rather than fails --
+the two-sided-instrument law applied to a timing gate, since a cell that
+cannot be measured should decline to report rather than report noise as
+a verdict -- or a band re-minted from measured quiet-box VARIANCE
+instead of the single quiet afternoon that produced +/-0.03.
 
 MANIFEST: re-hashed over CLAUDE.md (the author's FL-P1 edit) AND
 proplang.cabal (the test-wire stanza) -- the re-hash set DERIVED from

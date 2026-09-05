@@ -63,7 +63,30 @@ if [ "$RUN_GATE5" = "1" ]; then
     exit 1
   fi
 else
-  echo "step 2: gate 5 SKIPPED by RUN_GATE5=0 -- you attest it ran green on a quiet box."
+  # THE Q3 RULING (paper-freeze-r0 sitting).  A terminus tag whose gate-5
+  # line rests on "we believe it was noise" converts the programme's
+  # proudest law -- no claim without a transcript -- into an attestation at
+  # the exact moment of maximum ceremony.  So RUN_GATE5=0 is reserved for a
+  # box that genuinely cannot be quieted, and then the attestation must
+  # QUOTE the evidence and record a quiet-box re-run as OWED.  Enforced,
+  # never trusted: the skip refuses without the quoted attestation.
+  if [ -z "${GATE5_ATTEST:-}" ]; then
+    echo "ABORT: RUN_GATE5=0 requires GATE5_ATTEST." >&2
+    echo "       The Q3 ruling: prefer a QUIET BOX and a live gate 5.  Only if the" >&2
+    echo "       box cannot be quieted may you skip, and then the attestation must" >&2
+    echo "       quote the straddling ratios and the load average, and record a" >&2
+    echo "       quiet-box re-run as owed.  For example:" >&2
+    echo "" >&2
+    echo "         RUN_GATE5=0 GATE5_ATTEST='drift-a straddles: 1.4956 and 2.3020 vs" >&2
+    echo "         frozen 1.9078, band +/-0.03, at load 13.5/8 cores (julia 4d21h)." >&2
+    echo "         13/15 suites green, selection PASS, every other breadth row green." >&2
+    echo "         Not attributable: drift-a never calls serveLine.  QUIET-BOX RE-RUN" >&2
+    echo "         OWED.' bash test-paper/freeze/close.sh" >&2
+    exit 1
+  fi
+  echo "step 2: gate 5 SKIPPED by RUN_GATE5=0, under this attestation:"
+  printf '        %s\n' "$GATE5_ATTEST"
+  echo "        (it is recorded in the close commit; the tag register must agree)"
 fi
 
 # ---- step 3: MANIFEST re-sign (re-hash edited rows; add new rows) --
@@ -111,7 +134,8 @@ grep -q "0 FAIL" "$probe_tmp/lint.txt" \
 
 # ---- step 5: the close commit (author identity) --------------------
 git add MANIFEST.sha256
-git commit -q -F - <<'COMMIT_EOF'
+{
+cat <<'COMMIT_EOF'
 paper-freeze-r0: the demonstration tier's CLOSE -- THE TERMINUS (author)
 
 Re-signs MANIFEST.sha256 over the close of step 5, the demonstration
@@ -132,6 +156,10 @@ script.
 THE ROADMAP TERMINATES HERE.  Everything remaining is named demand-gated
 residue re-entering only through the two-sided gate with a measurement.
 COMMIT_EOF
+if [ "$RUN_GATE5" != "1" ]; then
+  printf '\nGATE 5 ATTESTATION (RUN_GATE5=0, the Q3 ruling):\n%s\n' "$GATE5_ATTEST"
+fi
+} | git commit -q -F -
 echo "step 5: close commit $(git rev-parse --short HEAD) made (MANIFEST only)"
 
 # ---- the tag, by -F (the tag-message-is-a-file law) ----------------

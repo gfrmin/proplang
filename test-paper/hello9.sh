@@ -52,11 +52,45 @@ echo
   done
 } | "$HOST" 2>&1
 echo
-echo "    READ IT: tick 0 is the uniform prior -- p1 = 0.5, the menu head"
-echo "    fires.  Every later tick observes 0, p1 falls monotonically and the"
-echo "    chosen act FLIPS to move = -1 and stays there.  loss_bits falls"
-echo "    1.0 -> 0.25 across the run.  The flip is the argmax over a moving"
-echo "    posterior; there is no threshold and no change-detector in it."
+echo "    READ IT: every tick observes 0, p1 falls monotonically, and the"
+echo "    chosen act FLIPS from move = 1 to move = -1 and stays there."
+echo "    loss_bits falls 1.0 -> 0.25 across the run.  The flip is the"
+echo "    argmax over a moving posterior; there is no threshold and no"
+echo "    change-detector in it."
+echo
+echo "--- LEG 1b: WHY move = 1 AT TICK 0, where the readout says p1 = 0.5."
+echo "    It is not a tie-break.  The nine declared decimals 0.1..0.9 cross"
+echo "    the wire as DOUBLES, so exactly they are 1/2 + 1/324259173170675712"
+echo "    on average, not 1/2: E[2y-1] = 1/162129586585337856, about 6.2e-18."
+echo "    Strictly positive, invisible in the Double readout, and decisive"
+echo "    under exact Gt.  Two-sided proof -- inverting the utility's sign"
+echo "    must invert the act, which a tie-break would not do: ---"
+echo
+for pair in \
+  'move*(2y-1)|["*", ["get", "move"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]' \
+  'move*(1-2y)|["*", ["get", "move"], ["-", ["c", 1], ["+", ["var", 1], ["var", 1]]]]' ; do
+  lab="${pair%%|*}"; u="${pair#*|}"
+  printf '  %-14s -> ' "$lab"
+  { echo "{$W, \"utility\": {\"form\": \"said@1\", \"said\": $u}}}"
+    echo '{"tick": {"features": {"t": 0}, "menu": ["move"]}}'
+  } | "$HOST" 2>&1 | sed -n '2p'
+done
+echo
+echo "    And the frozen tie convention is intact and separately visible:"
+echo "    with a utility CONSTANT in move every option ties exactly, and"
+echo "    the FIRST-LISTED grid entry survives (strict Gt, the head), in"
+echo "    declared order and not by value: ---"
+echo
+for g in '[-1, 1]' '[1, -1]' '[7, 3]' '[3, 7]'; do
+  printf '  grid %-10s const utility -> ' "$g"
+  { echo "{\"membrane\": 1, \"world\": {\"namespace\": [\"t\", \"move\"], \"guards\": [], \"menu\": [{\"name\": \"move\", \"grid\": $g}], \"codebooks\": {\"theta\": [0.1, 0.5, 0.9]}, \"utility\": {\"form\": \"said@1\", \"said\": [\"c\", 1]}}}"
+    echo '{"tick": {"features": {"t": 0}, "menu": ["move"]}}'
+  } | "$HOST" 2>&1 | sed -n '2p' | cut -c1-30
+done
+echo
+echo "    So section 5's exactness is not a boast about arithmetic hygiene:"
+echo "    it decided this act.  A float readout shows 0.5 and cannot say"
+echo "    why move = 1 won; the exact fold can, at 6.2e-18."
 echo
 echo "--- LEG 2: the wire's REFUSALS.  Each line is a hello identical to"
 echo "    leg 1 except in its utility; each is FAIL-CLOSED. ---"

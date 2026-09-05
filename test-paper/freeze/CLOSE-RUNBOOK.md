@@ -102,8 +102,24 @@ bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 >
 > `drift-a` is not attributable to the wire increment: it builds its agent from
 > `sentenceAgent` directly and never calls `serveLine`, where the whole repair
-> lives. Re-run it on a quiet box before the close, or set `RUN_GATE5=0` and
-> attest — but do not read a red `drift-a` on a loaded box as a regression.
+> lives.
+>
+> **The Q3 ruling (paper-freeze-r0 sitting): quiet the box and run gate 5 live.**
+> A terminus tag whose gate-5 line rests on "we believe it was noise" converts
+> the programme's proudest law — no claim without a transcript — into an
+> attestation at the exact moment of maximum ceremony. Pause the `julia` job,
+> then run `do-close.sh` normally.
+>
+> `RUN_GATE5=0` is reserved for a box that genuinely cannot be quieted, and
+> `close.sh` now **refuses it without `GATE5_ATTEST`** — which must quote the
+> straddling ratios and the load average and record a quiet-box re-run as owed.
+> The attestation is written into the close commit. Do not read a red `drift-a`
+> on a loaded box as a regression; do not read it as nothing, either.
+>
+> The second-order finding this produced — that the ratio row is **not
+> box-invariant, merely less box-sensitive** — is recorded as **FL-P5** in
+> `test-paper/terminus-inventory.md`, with the falsified texts quoted and a
+> named residual.
 
 It runs, in order: the readiness gate → a **live throwaway signature probe**
 (the key is proven usable *before* the manifest moves — a key act that fails

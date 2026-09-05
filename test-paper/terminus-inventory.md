@@ -177,6 +177,74 @@ proplang.cabal joins CLAUDE.md in the RE-HASH set, since the stanza edits a
 manifest-covered file. Both are derived by close.sh from sha256sum -c.
 
 ================================================================
+FL-P5 — THE DRIFT-A RATIO IS NOT BOX-INVARIANT, MERELY LESS BOX-SENSITIVE
+Class: NORMATIVE + RECORD prose falsified by measurement → repair in place
+       (normative) and bracket (record); AUTHOR INSTALLS, all four are
+       manifest-covered
+================================================================
+
+Raised by the author at the paper-freeze-r0 sitting, on evidence this increment
+produced. Recorded per programme norm: a construction argument that measurement
+has falsified is corrected on the record, at the boundary, under the key.
+
+WHAT WAS CLAIMED. The selection-freeze-r1 ruling installed the drift-a gate in
+RATIO form on the argument that the ratio is box-INVARIANT by construction.
+Current texts (all manifest-covered, so each is a re-hash at whatever boundary
+installs the repair):
+
+  selection-close-pack.md, section 5, "drift-a ratio re-mint":
+    "The frozen drift-a gate's absolute-ms bands false-red under box load
+     (measured at r0 impl: window means ~1.64x inflated, but the box-invariant
+     deep/shallow RATIO 2.0012 vs frozen 2.0092 IN BAND)."
+
+  test-selection/freeze/do-close.sh, the step-1 banner:
+    "# ---- step 1: measure the box-invariant drift ratio ----"
+
+  test-selection/freeze/CLOSE-RUNBOOK.md, step 1:
+    "# 1. measure the box-invariant drift ratio (quiet box; a few min; prints
+       ONE number)"
+
+  test-breadth/Breadth.hs, the drift-a cell's comment, states the weaker and
+  still-true version ("FAR more load-robust ... load still nudges it") and is
+  NOT falsified. It is listed here only so the sweep is complete; no repair.
+
+WHAT MEASUREMENT SAYS. At the paper boundary, load average ~13.5 on 8 cores
+(a julia process pinning a core for 4d21h, plus clickhouse, uvicorn and two
+Claude sessions), two consecutive runs of the SAME cell on the SAME box gave:
+
+    run 1   ratio 1.4956     window means +95% to +200% over frozen
+    run 2   ratio 2.3020     window means +101% over frozen
+    frozen  1.9078           gate band +/-0.03
+
+A spread of ~0.81 against a band of 0.06, STRADDLING the frozen value. The r0
+observation that bought the construction argument (ratio moving ~3.6% while
+means inflated ~97%) held at ITS load; it does not hold at this one, because
+scheduling noise at saturation is not multiplicative across the deep and
+shallow windows and so does not divide out.
+
+THE HONEST STATEMENT: the ratio is LESS box-sensitive than the absolute-ms
+band, not box-invariant. The construction argument was too strong; the
+measurement has now said so.
+
+REPAIR FORM. Normative/instructional prose (the two kit lines) is repaired IN
+PLACE, striking "box-invariant" for "load-robust (not load-invariant -- see
+FL-P5)". The pack's section 5 is CLOSE-DATE RECORD, so it takes a dated
+bracket quoting the falsified clause, not a rewrite.
+
+THE NAMED RESIDUAL (post-terminus, demand-gated, but NAMED HERE so it is not
+lost): either (a) a QUIET-BOX PRECONDITION that REFUSES TO RUN rather than
+fails -- the two-sided-instrument law applied to a timing gate, since a cell
+that cannot be measured should decline to report, not report noise as a
+verdict -- or (b) a band RE-MINTED from measured quiet-box VARIANCE rather
+than from a single quiet afternoon, which is where +/-0.03 came from.
+Whichever is chosen re-enters through the two-sided gate with a measurement.
+
+NOTE ON SCOPE: this row does NOT gate paper-freeze-r0. It records a falsified
+claim at the boundary where the falsifying evidence arrived, which is the
+frozen-layer-inventory law working as intended. The author may install it here
+or route it to whichever boundary next touches those files.
+
+================================================================
 CUSTODY
 ================================================================
 

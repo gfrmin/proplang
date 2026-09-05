@@ -110,8 +110,25 @@ thetaG = [1 % 10, 2 % 10, 3 % 10, 4 % 10, 5 % 10, 6 % 10, 7 % 10, 8 % 10, 9 % 10
 ```
 
 `tau` index 11 is **60**; `theta` indices 0 and 8 are **0.1** and **0.9**. The
-MAP sentence therefore reads *if t > 60 then 0.1 else 0.9* — the generating
-process recovered exactly, at the right tick and with both rates right.
+MAP sentence therefore reads *if t > 60 then 0.1 else 0.9*: both rates exactly
+right, and the change point as close as the grammar permits.
+
+**As close as it permits, not exact — and the residue is worth naming in a paper
+that boasts about `1169` not "about a thousand".** The guard is a strict `Gt`
+(`src/PropLang/Eval.hs`: `Gt a b -> evalx a env > evalx b env`), so the sentence
+predicts 0.9 for `t ≤ τ` and 0.1 for `t > τ`, while the world switches *at* 60.
+A perfect sentence would need `τ = 59` — and 59 is **not on the declared `tau`
+grid**, which offers 55 and 60. So:
+
+- `τ = 60` is wrong at exactly one tick, `t = 60`, where it says 0.9 and the
+  world emits 0.1;
+- `τ = 55` would be wrong at four, `t = 56…59`.
+
+The agent picks the **closest sayable sentence**, and its one tick of residue is
+declared-grid coarseness meeting a strict `>`, not an inference error. That is
+the more interesting claim anyway: what the agent recovers is bounded by what the
+world made sayable, which is §1's whole point about declared structure and §9's
+about the limits of a declared support.
 
 The consult ticks are **not** the ticks around the shift. They are wherever the
 posterior is uncertain, which turns out to be two places:
@@ -300,10 +317,31 @@ across eight ticks observing 0:
 {"act": {"move": -1}, "p1": 0.16178501749598567, ..., "loss_bits": 0.2546077860279184}
 ```
 
-The chosen act **flips** from the menu head to `move = -1` and stays there, and
-the per-tick loss falls from 1.0 to 0.25. The flip is the argmax over a moving
+The chosen act **flips** from `move = 1` to `move = -1` and stays there, and the
+per-tick loss falls from 1.0 to 0.25. The flip is the argmax over a moving
 posterior: no threshold, no detector, no adapt call — §2's T1 and T2, happening
 live to a client that is not a test.
+
+**And tick 0 is where §5 stops being a boast about arithmetic hygiene.** The
+readout says `p1: 0.5`, which invites the reading that the options tie and some
+convention breaks it. They do not tie. The nine declared decimals `0.1 … 0.9`
+cross the wire as **Doubles**, so their exact mean is not `1/2` but
+
+```
+1/2 + 1/324259173170675712
+```
+
+making `E[2y-1] = 1/162129586585337856`, about `6.2e-18` — strictly positive,
+invisible in a float readout, and decisive under an exact `Gt`. Leg 1b proves it
+two-sidedly by inverting the utility's sign, which flips the act; a tie-break
+would have been unmoved. Leg 1b then shows the frozen tie convention *is* intact
+where a genuine tie exists: under a utility constant in `move`, the
+**first-listed** grid entry survives, in declared order and not by value.
+
+So a float host would show `0.5`, tie, and fall back on a convention; the exact
+host decides on a quantity eighteen orders of magnitude below what it prints.
+Correctness by `==` is not fastidiousness here — it is the reason this act is
+determinate at all.
 
 **The refusals are as load-bearing as the acceptances.** Each of these is the
 same hello with a different utility, and each is fail-closed:
@@ -446,7 +484,7 @@ Run from a clean checkout at the repo root; the chain re-verifies every claim
 above from its frozen source.
 
 ```
-sh test-paper/check.sh                 # thesis fidelity, all 27 pins, pointers, register
+sh test-paper/check.sh                 # thesis fidelity, all 30 pins, pointers, register
 cabal test exact-acceptance            # §2  the four gates (T1–T4)
 sh audit/ablation.sh                   # §3  necessity — all ten terminals, both halves
 cabal test battery                     # §4  sufficiency — the interpolation
@@ -485,7 +523,8 @@ unwitnessed.
 | §1 the wire speaks nine forms, two of them derived names | `membrane-wire.md`; `parseSaidWith` in `src/PropLang/Host.hs` | EXECUTED(sh test-paper/hello9.sh, leg 2) |
 | §1 the alphabet is ten `Expr` terminals, each with one ablation seat | `src/PropLang/Syntax.hs`; `test-pin/ablation/`, `audit/ablation-exact/` | EXECUTED(sh audit/ablation.sh) |
 | §1,§2 no `detect`/`forget`/`window`/… token in `src/` | gate 4 over `audit/forbidden.txt` | EXECUTED(sh audit/run-gates.sh — `CLEAN (9 file(s) scanned)`) |
-| §2 T1 the MAP recovers the true change point (tau 60) and both rates | `test_output.txt`; `test/Anchors.hs`; grids in `test/ExactReference.hs` | EXECUTED(cabal test exact-acceptance) |
+| §2 T1 the MAP is the closest SAYABLE change-point sentence, both rates right | `test_output.txt`; `test/Anchors.hs`; grids in `test/ExactReference.hs` | EXECUTED(cabal test exact-acceptance) |
+| §2 T1 it is wrong at exactly one tick (t=60), because tau=59 is off the grid and `Gt` is strict | `test/ExactReference.hs` `tauG`; `test/Streams.hs`; `src/PropLang/Eval.hs` `Gt` | ARGUED(falsifier: a declared tau grid containing 59, on which the residue must vanish) |
 | §2 T1 consultation happens at startup and across the change, and nowhere else | `test/Anchors.hs` `t1ConsultTicksX` | EXECUTED(cabal test exact-acceptance) |
 | §2 T2 a dearer clock buys strictly fewer ticks (1/3/12/12) | `test/Anchors.hs` t2RowsX | EXECUTED(cabal test exact-acceptance) |
 | §2 T3 the agent beats every forgetter on drift, including drift-optimal `g=0.95` | `test/Anchors.hs` t3 rows | EXECUTED(cabal test exact-acceptance) |
@@ -494,6 +533,8 @@ unwitnessed.
 | §4 sufficiency: the agent is Bayes-optimal at each interior point the suite walks | `test-battery/Battery.hs` | EXECUTED(cabal test battery) |
 | §4,§9 sufficiency is NOT proven for every conceivable world | the suite's printed residual | ARGUED(falsifier: a world in the declared family where the walked agent is not the Bayes-optimal sentence) |
 | §5 correctness is decidable by `==`, no tolerance | `KERNEL.md`; `test/Properties.hs` | EXECUTED(cabal test lawful, dyadic) |
+| §5,§7 exactness DECIDES a live act: tick 0 is a strict argmax at ~6.2e-18, not a tie | `test-paper/hello9-transcript.txt` leg 1b (sign inversion flips the act) | EXECUTED(sh test-paper/hello9.sh) |
+| §7 the frozen tie convention is intact: on a genuine tie the FIRST-LISTED entry survives | `test-paper/hello9-transcript.txt` leg 1b (constant utility, four grid orders) | EXECUTED(sh test-paper/hello9.sh) |
 | §6 metareasoning is sayable and pinned to the one policy rule | `test-trampoline/Trampoline.hs` | EXECUTED(cabal test trampoline) |
 | §7 the same reasoner serves a live wire client, and adapts over the wire | `test-paper/hello9-transcript.txt` leg 1 (act flips, loss 1.0 → 0.25) | EXECUTED(sh test-paper/hello9.sh) |
 | §7 the wire refuses retired forms, belief-scoped heads, off-arity `var` | `test-paper/hello9-transcript.txt` leg 2 | EXECUTED(sh test-paper/hello9.sh) |

@@ -130,6 +130,19 @@ pin "N26 live wire: the door's refusal message" \
     '{"error": "names outside namespace"}'                                               test-paper/hello9-transcript.txt
 pin "N27 the wire oracle's session-survival row" \
     "a refused hello leaves a live session, not a dead host"                             test-wire/Wire.hs
+# T1's ONE-TICK RESIDUE turns on the guard being STRICT.  The claim "wrong at
+# exactly t=60, and tau=59 is unsayable" is false the moment Gt stops being >,
+# so the comparison's definition site is pinned rather than described.
+pin "N28 the guard is a STRICT comparison" \
+    "Gt a b -> evalx a env > evalx b env"                                                src/PropLang/Eval.hs
+# Section 7's exactness demonstration: the declared decimals are Doubles, so
+# their exact mean is off 1/2 by this much and the tick-0 act is a STRICT
+# argmax.  Both halves quoted in the paper, so both pinned to the transcript
+# that measured them.
+pin "N29 the Double-decimal offset that decides tick 0" \
+    "1/2 + 1/324259173170675712"                                                         test-paper/hello9-transcript.txt
+pin "N30 the resulting E[2y-1]" \
+    "E[2y-1] = 1/162129586585337856"                                                     test-paper/hello9-transcript.txt
 
 # ---- G: the live-host transcript is the generator's current output ---
 # The generator exemption's standing identity row: hello9.sh lands in-tree
@@ -155,6 +168,23 @@ pmiss=0
 while IFS= read -r p; do
     [ -z "$p" ] && continue
     case "$p" in *.*) : ;; */*) : ;; *) continue ;; esac
+    # A PATH CANDIDATE MUST LOOK LIKE A PATH.  Backticked numerals reach
+    # here too -- `1/2` has a slash, `0.5` and `6.2e-18` have dots -- and
+    # reporting them as missing files is a red that fires for the wrong
+    # reason.  So require a directory separator WITH a letter somewhere,
+    # or a dot-extension that is purely alphabetic.  This TIGHTENS the
+    # row (a candidate must be path-shaped) rather than loosening it:
+    # every real citation in this paper is one or the other, and P1's
+    # seeded-defect red is re-demonstrated against a nonexistent path.
+    case "$p" in
+      *[!0-9./-]*) : ;;                 # has a non-numeric, non-punct char
+      *) continue ;;                    # purely digits and . / - : a number
+    esac
+    case "$p" in
+      */*) : ;;                         # a directory separator: path-shaped
+      *.[A-Za-z][A-Za-z]|*.[A-Za-z][A-Za-z][A-Za-z]|*.[A-Za-z][A-Za-z][A-Za-z][A-Za-z]|*.[A-Za-z]) : ;;
+      *) continue ;;                    # a dot, but not a real extension
+    esac
     if [ -e "$p" ]; then continue; fi
     if [ -e "src/PropLang/$p" ]; then
         echo "[paper]   bare module citation resolves: src/PropLang/$p"; continue

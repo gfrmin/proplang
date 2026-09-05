@@ -19,11 +19,36 @@ utility (all nine of var c + - * get if > =, extensionally move*(2y-1)):
 {"act": {"move": -1}, "p1": 0.17412267925858924, "entropy_bits": 1.701239335217152, "p0": 0.8258773207414107, "argmax_code": 0, "p_argmax": 0.8258773207414107, "p_codes": [0.8258773207414107, 0.17412267925858924], "observed": 0, "loss_bits": 0.27600060126038944}
 {"act": {"move": -1}, "p1": 0.16178501749598567, "entropy_bits": 1.5430024248634806, "p0": 0.8382149825040143, "argmax_code": 0, "p_argmax": 0.8382149825040143, "p_codes": [0.8382149825040143, 0.16178501749598567], "observed": 0, "loss_bits": 0.2546077860279184}
 
-    READ IT: tick 0 is the uniform prior -- p1 = 0.5, the menu head
-    fires.  Every later tick observes 0, p1 falls monotonically and the
-    chosen act FLIPS to move = -1 and stays there.  loss_bits falls
-    1.0 -> 0.25 across the run.  The flip is the argmax over a moving
-    posterior; there is no threshold and no change-detector in it.
+    READ IT: every tick observes 0, p1 falls monotonically, and the
+    chosen act FLIPS from move = 1 to move = -1 and stays there.
+    loss_bits falls 1.0 -> 0.25 across the run.  The flip is the
+    argmax over a moving posterior; there is no threshold and no
+    change-detector in it.
+
+--- LEG 1b: WHY move = 1 AT TICK 0, where the readout says p1 = 0.5.
+    It is not a tie-break.  The nine declared decimals 0.1..0.9 cross
+    the wire as DOUBLES, so exactly they are 1/2 + 1/324259173170675712
+    on average, not 1/2: E[2y-1] = 1/162129586585337856, about 6.2e-18.
+    Strictly positive, invisible in the Double readout, and decisive
+    under exact Gt.  Two-sided proof -- inverting the utility's sign
+    must invert the act, which a tie-break would not do: ---
+
+  move*(2y-1)    -> {"act": {"move": 1}, "p1": 0.5, "entropy_bits": 3.169925001442312, "p0": 0.5, "argmax_code": 1, "p_argmax": 0.5, "p_codes": [0.5, 0.5]}
+  move*(1-2y)    -> {"act": {"move": -1}, "p1": 0.5, "entropy_bits": 3.169925001442312, "p0": 0.5, "argmax_code": 1, "p_argmax": 0.5, "p_codes": [0.5, 0.5]}
+
+    And the frozen tie convention is intact and separately visible:
+    with a utility CONSTANT in move every option ties exactly, and
+    the FIRST-LISTED grid entry survives (strict Gt, the head), in
+    declared order and not by value: ---
+
+  grid [-1, 1]    const utility -> {"act": {"move": -1}, "p1": 0.
+  grid [1, -1]    const utility -> {"act": {"move": 1}, "p1": 0.5
+  grid [7, 3]     const utility -> {"act": {"move": 7}, "p1": 0.5
+  grid [3, 7]     const utility -> {"act": {"move": 3}, "p1": 0.5
+
+    So section 5's exactness is not a boast about arithmetic hygiene:
+    it decided this act.  A float readout shows 0.5 and cannot say
+    why move = 1 won; the exact fold can, at 6.2e-18.
 
 --- LEG 2: the wire's REFUSALS.  Each line is a hello identical to
     leg 1 except in its utility; each is FAIL-CLOSED. ---
