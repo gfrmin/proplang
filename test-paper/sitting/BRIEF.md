@@ -72,13 +72,30 @@ window means ran +95% to +200% over frozen. The box was at load average ~13.5 on
 
 The builder's attribution argument: `drift-a` builds its agent from
 `sentenceAgent` directly and **never calls `serveLine`**, which is where the
-entire repair lives — so the increment cannot reach it. And a regression moves a
-statistic one way; noise straddles.
+entire repair lives — so the increment cannot reach it.
 
-*What to look for:* whether that argument is sound, or whether it is the
-interested party explaining away a red. The honest alternatives are (i) re-run on
-a genuinely quiet box before closing, or (ii) `RUN_GATE5=0` with the author's
-explicit attestation. **The builder has done neither and is not entitled to.**
+**A withdrawn claim, on the record.** The builder also wrote "straddles, so noise
+not regression" from two samples. That was premature and is withdrawn. It was
+replaced by measurement — eight samples of the cell alone:
+
+```
+1.7575 1.8504 1.9204 1.9638 2.0568 2.1121 2.1672 2.2391
+median 2.0103  mean 2.0084  stdev 0.1644   frozen 1.9078, band ±0.03
+inside the band 1 of 8       stdev / half-band 5.5×
+95% CI of the mean [1.8710, 2.1459] — CONTAINS the frozen value
+```
+
+So: **the gate cannot resolve its own band under this load** (decisive), and
+**the centre has not been shown to move** (no regression indicated, no clean bill
+of health claimed).
+
+*What to look for:* note what that measurement does **not** answer. It answers
+"can the gate resolve under load?" — no. It does not answer "must gate 5 be
+skipped?" The honest alternatives remain (i) quiet the box and re-measure, or
+(ii) `RUN_GATE5=0` with an attestation quoting both distributions. Only (ii)
+licenses the skip, and only after (i) has been *attempted and shown insufficient*
+— "the box cannot be quieted" is a premise that must be demonstrated, not
+asserted. **The builder does not rule on which branch is taken.**
 
 ### Q4 — Are the two frozen-layer repairs in the right form?
 

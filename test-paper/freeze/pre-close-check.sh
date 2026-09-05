@@ -39,6 +39,10 @@ ADD=(
   test-paper/hello9.sh
   test-paper/hello9-transcript.txt
   test-wire/Wire.hs
+  test-paper/sitting/BRIEF.md
+  test-paper/sitting/make-conferral.sh
+  test-paper/sitting/drift-distribution.sh
+  test-paper/sitting/drift-distribution.txt
   test-paper/freeze/close.sh
   test-paper/freeze/pre-close-check.sh
   test-paper/freeze/do-close.sh

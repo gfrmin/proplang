@@ -98,14 +98,25 @@ kit itself); this list is a reader's copy, not a second generator:
   test-paper/terminus-inventory.md      this file
   test-paper/hello9.sh                  the live-host generator (section 7)
   test-paper/hello9-transcript.txt      the artifact it generates
+  test-wire/Wire.hs                     the wire oracle
+  test-paper/sitting/*                  the brief, its generator, the drift evidence
   test-paper/freeze/*                   the close kit (7 files)
 
 and mints the terminus tag paper-freeze-r0 by -F <file> (the tag-message-is-a-
 file law). `test-paper/check.sh --close` then verifies the coverage, the
 manifest, and the tag. That tag is the attestation and the terminus.
 
-Expected manifest size afterwards: 255 rows (243 + 12 ADD; CLAUDE.md is
-re-hashed in place under FL-P1, not added).
+Expected manifest size afterwards: 260 rows (243 + 17 ADD). TWO manifest-covered
+files are re-hashed IN PLACE, not added: CLAUDE.md (FL-P1) and proplang.cabal
+(the test-wire stanza).
+
+  [This paragraph is a CROSS-CHECK, not a source. The ADD set's one generator is
+  pre-close-check.sh's array, which close.sh sources; these numbers are here to
+  be compared against it and to fail loudly if they disagree. They already did
+  once: this row read "255 rows (243 + 12 ADD)" while an FL-row below read 13/256,
+  a stale reader's copy inside the very inventory that hunts them. Corrected
+  2026-09-05 at the sitting's finding. If you are reading this and the counts
+  disagree with pre-close-check.sh, THE ARRAY IS RIGHT.]
 
 ================================================================
 FL-P4 — A STOP-AND-REPORT, RULED AND CLOSED
@@ -250,6 +261,29 @@ residual's own arithmetic: a median of k runs has SEM 0.0581 at k = 8, still
 outside a +/-0.03 band, so "gate on a median" would need a far larger k or a
 wider band — the statistic and the band have to be chosen together.
 
+WHAT THIS MEASUREMENT DOES NOT ANSWER (the sitting's correction). It answers
+"can the gate resolve its band UNDER LOAD?" — no. It does NOT answer "must
+gate 5 be skipped?" Those are different questions, and the eight loaded
+samples cannot license the skip on their own. The co-residents suspend
+LOSSLESSLY (kill -STOP, resumed by -CONT: a four-day computation is kept, and
+a stopped process stops touching memory, which is the very contention channel
+this row identifies), so the gate's own design premise — stability between
+mint and re-measure on the same box — is restorable in half an hour. The
+quiet-box attempt is therefore OWED BEFORE the skip, and its result is
+recorded under "THE QUIET-BOX ATTEMPT" below.
+
+CUSTODY OF THE EVIDENCE (the sitting's third finding; silence was the one
+wrong option). The signed attestation quotes drift-distribution.txt, so the
+evidence a tag leans on must have a declared custody. DECLARED: BOTH
+test-paper/sitting/drift-distribution.sh AND test-paper/sitting/
+drift-distribution.txt ENTER THE ADD SET and are manifest-covered at this
+close, alongside the sitting brief and its generator. They are not "sitting
+record riding unfrozen": an attestation in a signed tag citing an unfrozen
+transcript would let the cited evidence change under the signature, which is
+the stale-green class with the tag's own weight behind it. The generator ships
+with the artifact it generates (the generator exemption), and re-running
+--summarise over the recorded runs is its standing identity check.
+
 THE KIT ALREADY KNEW. test-selection/freeze/measure-drift.sh's header says it
 in terms: "load STILL nudges it past the +/-0.03 band, so it is NOT invariant.
 What makes the gate pass is that the frozen value IS this box's own
@@ -288,12 +322,18 @@ FL-P5)". The pack's section 5 is CLOSE-DATE RECORD, so it takes a dated
 bracket quoting the falsified clause, not a rewrite.
 
 THE NAMED RESIDUAL (post-terminus, demand-gated, but NAMED HERE so it is not
-lost): either (a) a QUIET-BOX PRECONDITION that REFUSES TO RUN rather than
-fails -- the two-sided-instrument law applied to a timing gate, since a cell
-that cannot be measured should decline to report, not report noise as a
-verdict -- or (b) a band RE-MINTED from measured quiet-box VARIANCE rather
-than from a single quiet afternoon, which is where +/-0.03 came from.
-Whichever is chosen re-enters through the two-sided gate with a measurement.
+lost). Drafted as two options and MERGED AT THE SITTING into one, because the
+row's own arithmetic already pointed there: a precondition that only refuses
+(option a) still leaves the band unjustified, and a re-minted band (option b)
+still leaves a single sample gating a quantity it cannot resolve. THE ONE
+FORM: at gate time the cell TAKES k QUICK SAMPLES, MEASURES ITS OWN SCATTER,
+and REPORTS ONLY WHEN IT CAN RESOLVE THE BAND, DECLINING OTHERWISE. Statistic
+and band chosen together; resolution MEASURED rather than proxied. That last
+clause retires the load-average idea for the reason this row itself gives --
+load average does not measure memory contention, and the thing to test is
+whether the instrument can see, not whether the box looks busy. It is the
+two-sided-instrument law applied to a timing gate: a cell that cannot measure
+should decline to report, and it should be the one that knows.
 
 NOTE ON SCOPE: this row does NOT gate paper-freeze-r0. It records a falsified
 claim at the boundary where the falsifying evidence arrived, which is the

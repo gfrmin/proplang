@@ -72,16 +72,25 @@ else
   # never trusted: the skip refuses without the quoted attestation.
   if [ -z "${GATE5_ATTEST:-}" ]; then
     echo "ABORT: RUN_GATE5=0 requires GATE5_ATTEST." >&2
-    echo "       The Q3 ruling: prefer a QUIET BOX and a live gate 5.  Only if the" >&2
-    echo "       box cannot be quieted may you skip, and then the attestation must" >&2
-    echo "       quote the straddling ratios and the load average, and record a" >&2
-    echo "       quiet-box re-run as owed.  For example:" >&2
+    echo "       The Q3 ruling, as refined at the sitting: the skip is licensed" >&2
+    echo "       ONLY after a quiet-box attempt has been MADE and shown" >&2
+    echo "       insufficient.  'The box cannot be quieted' is a premise to be" >&2
+    echo "       demonstrated, not asserted -- co-residents suspend losslessly" >&2
+    echo "       with kill -STOP (and resume with -CONT), and a stopped process" >&2
+    echo "       stops touching memory, which is the contention channel." >&2
+    echo "       So: suspend, take three quiet samples of the cell alone, and" >&2
+    echo "         (1) in band  -> run gate 5 LIVE, no attestation needed;" >&2
+    echo "         (2) still unresolvable -> skip, and the attestation quotes" >&2
+    echo "             BOTH distributions plus a full 'cabal test all -j1'" >&2
+    echo "             transcript for the other suites.  For example:" >&2
     echo "" >&2
-    echo "         RUN_GATE5=0 GATE5_ATTEST='drift-a straddles: 1.4956 and 2.3020 vs" >&2
-    echo "         frozen 1.9078, band +/-0.03, at load 13.5/8 cores (julia 4d21h)." >&2
-    echo "         13/15 suites green, selection PASS, every other breadth row green." >&2
-    echo "         Not attributable: drift-a never calls serveLine.  QUIET-BOX RE-RUN" >&2
-    echo "         OWED.' bash test-paper/freeze/close.sh" >&2
+    echo "         RUN_GATE5=0 GATE5_ATTEST='drift-a unresolvable on this box:" >&2
+    echo "         LOADED n=8 median 2.0103 stdev 0.1644, 1/8 in a +/-0.03 band" >&2
+    echo "         (5.5x half-width), 95% CI [1.8710,2.1459] CONTAINS frozen" >&2
+    echo "         1.9078; QUIET n=3 <ratios> at load <L>.  Centre not shown to" >&2
+    echo "         move; no regression indicated, no clean bill claimed.  Not" >&2
+    echo "         attributable: drift-a never calls serveLine.  All other" >&2
+    echo "         suites green, transcript attached.' bash .../close.sh" >&2
     exit 1
   fi
   echo "step 2: gate 5 SKIPPED by RUN_GATE5=0, under this attestation:"
