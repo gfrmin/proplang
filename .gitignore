@@ -5,3 +5,6 @@ __pycache__/
 *.pyc
 *.hi
 *.o
+
+# the conferral bundle is assembled by test-paper/sitting/make-conferral.sh
+test-paper/sitting/CONFERRAL.md
