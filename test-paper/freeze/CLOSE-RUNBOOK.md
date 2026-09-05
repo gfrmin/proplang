@@ -104,11 +104,29 @@ bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 > shallow one, so it does not divide out of a ratio. A precondition keyed on
 > *load average* would therefore be the wrong instrument.
 >
-> Rather than argue, **measure**: `sh test-paper/sitting/drift-distribution.sh k`
-> samples the cell alone k times and reports median/mean/spread/stdev against the
-> frozen value and band (both read from the frozen file). Its transcript settles
-> whether this is noise about a correct centre or a **stale mint**. Those need
-> different acts, and neither is licence to re-mint inside this freeze.
+> **Measured, eight samples** (`test-paper/sitting/drift-distribution.txt`):
+> median 2.0103, mean 2.0084, stdev 0.1644, **1 of 8 inside the band**,
+> stdev/half-band **5.5×**, 95% CI of the mean `[1.8710, 2.1459]` which
+> **contains** the frozen 1.9078.
+>
+> So: **the gate cannot resolve its own band on this box** — decisive, and
+> independent of anything else. And **the centre has not been shown to move** —
+> no regression is indicated, *and no clean bill of health is claimed*. Both
+> readings stay open; what is closed is that this gate cannot tell them apart
+> here. Neither licenses a re-mint, which would bake today's contention into the
+> frozen layer.
+>
+> **So `RUN_GATE5=0` is the operative path**, and it now rests on a transcript
+> rather than a belief — which is what Q3 asked for. Run:
+>
+> ```sh
+> RUN_GATE5=0 GATE5_ATTEST="$(sh test-paper/sitting/drift-distribution.sh --summarise >/dev/null; sed -n '/=== the distribution ===/,$p' test-paper/sitting/drift-distribution.txt | tr '\n' ' ')" \
+>   bash test-paper/freeze/do-close.sh
+> ```
+>
+> Everything except `drift-a` was green in every run, so consider also running
+> the other suites live for the record: `cabal test all -j1` and read past the
+> one known cell.
 >
 > `drift-a` is not attributable to the wire increment: it builds its agent from
 > `sentenceAgent` directly and never calls `serveLine`, where the whole repair

@@ -219,15 +219,47 @@ Claude sessions), two consecutive runs of the SAME cell on the SAME box gave:
     run 3   ratio 2.1128     window means +103% over frozen
     frozen  1.9078           gate band +/-0.03
 
-A spread of ~0.81 against a band of 0.06. Note that run 3 makes the picture
-TWO ABOVE AND ONE BELOW, not the clean straddle the first two suggested; the
-builder's earlier "straddles, so noise not regression" was a two-sample
-reading and is withdrawn as premature. Which it is — noise about a correct
-centre, or a STALE MINT whose box no longer exists — is being MEASURED, not
-argued: test-paper/sitting/drift-distribution.sh takes k samples of the cell
-alone and reports median, mean, spread and stdev against the frozen value and
-band, all read FROM the frozen file rather than re-typed. Its transcript rides
-to the sitting.
+The builder's earlier "straddles, so noise not regression" was a two-sample
+reading and is WITHDRAWN as premature. It was measured instead, eight samples
+of the cell alone (test-paper/sitting/drift-distribution.txt, the transcript;
+the frozen value and band are READ from Breadth.hs, never re-typed):
+
+  samples  1.7575  1.8504  1.9204  1.9638  2.0568  2.1121  2.1672  2.2391
+  median   2.0103   mean 2.0084   stdev 0.1644   spread 0.4816
+  frozen   1.9078   band +/-0.0300
+  inside the band: 1 of 8  (2 below, 5 above)
+  stdev / half-band = 5.5x
+  95% CI of the mean: [1.8710, 2.1459]  -- CONTAINS the frozen value
+
+TWO FINDINGS, and only the first is decisive.
+
+(1) THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX. Run-to-run scatter is
+5.5x the band's half-width and one run in eight lands inside it. A single
+sample of this cell is not a measurement of the quantity the gate names,
+whatever that quantity's true value. This holds independently of (2).
+
+(2) THE CENTRE HAS NOT BEEN SHOWN TO MOVE. The mean sits +0.1006 above frozen
+with SEM 0.0581, and the 95% CI contains 1.9078. So these data do NOT
+establish a stale mint. NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF
+HEALTH IS CLAIMED — both readings stay open, and what is closed is that this
+gate cannot tell them apart here.
+
+NEITHER FINDING LICENSES A RE-MINT. A value re-minted from a box that cannot
+resolve it would bake today's contention into the frozen layer. And note the
+residual's own arithmetic: a median of k runs has SEM 0.0581 at k = 8, still
+outside a +/-0.03 band, so "gate on a median" would need a far larger k or a
+wider band — the statistic and the band have to be chosen together.
+
+THE KIT ALREADY KNEW. test-selection/freeze/measure-drift.sh's header says it
+in terms: "load STILL nudges it past the +/-0.03 band, so it is NOT invariant.
+What makes the gate pass is that the frozen value IS this box's own
+measurement and gate 5 re-measures on the SAME box: keep the box quiet/stable
+between this read and gate 5 and the delta is ~0." So the gate's design
+premise is STABILITY BETWEEN MINT AND RE-MEASURE, the mint was taken
+2026-09-04 (83e29ec), and that premise has since been violated. The
+"box-invariant" claims below were therefore contradicted by a file in their
+own kit at the moment they were written — this row is not new information
+defeating an old argument so much as one half of the kit convicting the other.
 
 THE MECHANISM, SHARPENED. `timedFold` measures CPU time (`getCPUTime`), not
 wall clock, and a timed run shows `user` ~= `real` (9m49s of 9m53s) — so the

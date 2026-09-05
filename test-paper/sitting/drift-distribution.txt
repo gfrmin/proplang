@@ -5,3 +5,46 @@ file, never re-typed here -- the one-generator law)
 load at start: load average: 15.27, 14.48, 14.57
 cores: 8
 
+run 1   ratio 2.1121   load 13.25, 13.32, 13.87
+run 2   ratio 1.8504   load 12.33, 12.63, 13.29
+run 3   ratio 2.2391   load 13.96, 13.35, 13.31
+run 4   ratio 1.9638   load 12.41, 13.04, 13.23
+run 5   ratio 2.0568   load 14.86, 13.54, 13.28
+run 6   ratio 1.7575   load 15.24, 14.24, 13.73
+run 7   ratio 1.9204   load 14.76, 14.50, 14.12
+run 8   ratio 2.1672   load 20.31, 17.11, 15.35
+
+=== the distribution ===
+n         = 8
+samples   = 1.7575, 1.8504, 1.9204, 1.9638, 2.0568, 2.1121, 2.1672, 2.2391
+min/max   = 1.7575 / 2.2391   (spread 0.4816)
+median    = 2.0103   (frozen 1.9078, delta +0.1025)
+mean      = 2.0084   (frozen 1.9078, delta +0.1006)
+stdev     = 0.1644
+band      = +/-0.0300
+
+per-run rows inside the band: 1 of 8  (2 below, 5 above)
+MEDIAN inside the band     : NO
+MEAN   inside the band     : NO
+resolution   : stdev/half-band = 5.5x  (the gate asks for +/-0.0300)
+95% CI (mean): [1.8710, 2.1459]   contains frozen 1.9078? YES
+
+=== the reading these numbers support ===
+* THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX.  Run-to-run
+  scatter is 5.5x the band's half-width and 1 of 8 runs fall
+  inside it.  A single sample of this cell is not a measurement of
+  the quantity the gate names, whatever that quantity's true value.
+  This is the decisive finding and it is independent of the next one.
+* THE CENTRE HAS *NOT* BEEN SHOWN TO MOVE: the 95% CI contains the
+  frozen value, so these data do NOT establish a stale mint -- the
+  mean sits +0.1006 from frozen with SEM 0.0581.
+  So: NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF HEALTH IS
+  CLAIMED.  Both readings remain open; what is closed is that this
+  gate cannot tell them apart here.
+
+Neither branch is a licence to re-mint anything: a value re-minted from
+a box that cannot resolve it would bake today's contention into the
+frozen layer.  This is evidence for FL-P5's named residual -- a cell
+that cannot be measured should DECLINE TO REPORT, or should gate on a
+statistic the box can actually resolve (a median of k runs has SEM
+0.0581 here, still outside the band).

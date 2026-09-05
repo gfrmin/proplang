@@ -279,21 +279,47 @@ was noise" converts this programme's proudest law -- no claim without a
 transcript -- into an attestation at the exact moment of maximum
 ceremony.  The box CANNOT be quieted (the author's decision; a
 long-running job owns a core), so the quiet-box branch is unavailable
-and the remaining honest route is to MEASURE rather than argue.
-test-paper/sitting/drift-distribution.sh samples the cell alone k times
-and reports median, mean, spread and stdev against the frozen value and
-band -- all read FROM the frozen file, never re-typed.  Its transcript
-rides to the sitting and settles which of two things is true: noise
-about a correct centre, or a STALE MINT whose box no longer exists.
-Those call for different acts, and neither is a licence to re-mint
-inside this freeze.
+and the remaining honest route was to MEASURE.  Eight samples of the
+cell alone (test-paper/sitting/drift-distribution.txt; frozen value and
+band READ from Breadth.hs, never re-typed):
+
+  1.7575 1.8504 1.9204 1.9638 2.0568 2.1121 2.1672 2.2391
+  median 2.0103   mean 2.0084   stdev 0.1644   frozen 1.9078, band 0.03
+  inside the band: 1 of 8      stdev / half-band: 5.5x
+  95% CI of the mean [1.8710, 2.1459] -- CONTAINS the frozen value
+
+TWO FINDINGS, AND ONLY THE FIRST IS DECISIVE.
+ (1) THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX: scatter is 5.5x
+     the half-width, one run in eight lands inside.  A single sample of
+     this cell is not a measurement of the quantity the gate names,
+     whatever that quantity's true value.
+ (2) THE CENTRE HAS NOT BEEN SHOWN TO MOVE: mean +0.1006 from frozen,
+     SEM 0.0581, CI containing 1.9078.  NO REGRESSION IS INDICATED AND
+     NO CLEAN BILL OF HEALTH IS CLAIMED.  Both readings stay open; what
+     is closed is that this gate cannot tell them apart here.
+Neither licenses a re-mint: a value re-minted from a box that cannot
+resolve it would bake today's contention into the frozen layer.  And
+the residual's own arithmetic bites -- a median of k runs has SEM 0.0581
+at k=8, still outside 0.03, so statistic and band must be chosen
+together, not one at a time.
 
 A WITHDRAWN CLAIM, on the record: the builder wrote "straddles, so noise
-not regression" from TWO samples.  The third landed above the band, so
-the picture is two-above-one-below and the straddle reading was
-premature.  Withdrawn rather than quietly restated -- it is the same
-class of defect the sitting's Q1 convicted twice, committed by the same
-hand a day later, and the measurement above exists because of it.
+not regression" from TWO samples.  It is withdrawn as premature rather
+than quietly restated -- the same defect class the sitting's Q1
+convicted twice, committed by the same hand a day later.  The eight-run
+measurement exists because of it, and its result is weaker and more
+useful than the claim it replaced.
+
+AND THE KIT ALREADY KNEW.  test-selection/freeze/measure-drift.sh's own
+header reads: "load STILL nudges it past the +/-0.03 band, so it is NOT
+invariant.  What makes the gate pass is that the frozen value IS this
+box's own measurement and gate 5 re-measures on the SAME box: keep the
+box quiet/stable between this read and gate 5 and the delta is ~0."  The
+gate's design premise is STABILITY BETWEEN MINT AND RE-MEASURE; the mint
+was taken 2026-09-04 (83e29ec); the premise has since been violated.  So
+FL-P5 is not new evidence defeating an old argument -- it is one half of
+a kit convicting the other, three files apart, and the "box-invariant"
+claims were already false when written.
 
 RUN_GATE5=0 is reserved for a box that genuinely cannot be quieted, and
 close.sh now REFUSES it without a GATE5_ATTEST quoting the observed
