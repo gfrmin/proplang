@@ -90,6 +90,21 @@ bash test-paper/freeze/pre-close-check.sh    # now expect READY
 bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 ```
 
+> **Gate 5 needs a genuinely quiet box, and this one was not.** Measured
+> 2026-09-05 while preparing this kit: `breadth`'s `drift-a` cell failed twice
+> with ratios **1.4956** and **2.3020** against a frozen **1.9078** and a gate
+> band of **±0.03** — bracketing the frozen value from *both* sides, which is
+> noise and not regression (a regression moves one way). The absolute window
+> means ran +95% to +200% over frozen, and `uptime` showed load average ~13.5 on
+> 8 cores, with a `julia` process pinning a core for 4d21h alongside
+> `clickhouse`, `uvicorn` and two other Claude sessions. Every other row of
+> `breadth` passed in both runs, and all thirteen other suites passed.
+>
+> `drift-a` is not attributable to the wire increment: it builds its agent from
+> `sentenceAgent` directly and never calls `serveLine`, where the whole repair
+> lives. Re-run it on a quiet box before the close, or set `RUN_GATE5=0` and
+> attest — but do not read a red `drift-a` on a loaded box as a regression.
+
 It runs, in order: the readiness gate → a **live throwaway signature probe**
 (the key is proven usable *before* the manifest moves — a key act that fails
 after the rewrite is the worst ordering) → gate 5 (`cabal test all -j1`) →
@@ -100,8 +115,10 @@ hand-listed; the ADD set **sourced** from `pre-close-check.sh`, one generator) �
 message is compared byte-for-byte against the file) → `test-paper/check.sh
 --close`.
 
-Expected manifest size afterwards: **255 rows** (243 + 12 ADD; `CLAUDE.md` is
-re-hashed in place, not added).
+Expected manifest size afterwards: **256 rows** (243 + 13 ADD). Two
+manifest-covered files are **re-hashed in place**, not added: `CLAUDE.md` (the
+FL-P1 repair) and `proplang.cabal` (the `test-wire` stanza the wire increment
+adds). Both are derived by `close.sh` from `sha256sum -c`, never hand-listed.
 
 ### 5. Publish
 

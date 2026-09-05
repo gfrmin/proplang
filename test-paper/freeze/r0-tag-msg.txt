@@ -128,26 +128,61 @@ belief-scoped-head falsifier belonged to the REFUSAL claim, not the
 live-host claim, and the register now splits them so neither witnesses
 the other).
 
-** AND LEG 3 IS A STOP-AND-REPORT.  Executing the owed witness found a
-REAL DEFECT in the shipped host, and it rides to this sitting undecided.
-An undeclared name inside a hello's UTILITY is not validated at hello
-time: the hello is ACCEPTED, and the failure surfaces only when the
-utility is evaluated -- as a HOST-PROCESS CRASH at evalx's Get case, not
-as a wire error.  Menu and guard names ARE namespace-checked; the
-utility's Get names are not.  With a one-option menu the utility is
-never evaluated and the defect stays latent; with two or more it fires
-on the first decision tick.  The error site's own comment calls itself
-"door-unreachable"; the wire reaches it, so the comment is falsified
-too.  This is a totality violation of the kind the protocol names
-explicitly, and it bounds -- not refutes -- section 7's refusal claim.
-IT IS REPORTED AND NOT WORKED AROUND: no src file was touched, because
-fixing it moves the language surface and this is a document boundary.
-PAPER.md section 9 carries it as a stated limit, the register carries it
-as its own EXECUTED row (the defect FIRES, which is why the row is
-executed rather than argued), and the transcript's leg 3 is expected to
-stay red -- a green there would mean the defect was fixed without this
-paper being updated.  THE RULING IS THE AUTHOR'S: mint the terminus over
-a known, stated, bounded hole, or re-open for a wire increment first. **
+AND LEG 3 FOUND A REAL DEFECT, WHICH IS WHY THIS TAG IS NOT THE ONE
+DRAFTED.  Executing the owed witness broke the shipped host.  An
+undeclared name inside a hello's UTILITY was not validated at hello
+time: the hello was ACCEPTED, and the failure surfaced only when the
+utility was evaluated -- as a HOST-PROCESS CRASH at evalx's Get case,
+not as a wire error.  Menu and guard names were namespace-checked; the
+utility's reads were not.  Worse, it was LATENT: laziness spares an
+untaken branch, so one and the same malformed declaration crashed or
+succeeded depending on which way a guard fell at run time -- a hello
+accepted today would crash on the tick the guard flipped.  The error
+site's own comment called itself "door-unreachable"; the wire reached
+it.
+
+The builder reported it and did not work around it: the fork (mint over
+a known bounded hole, or re-open) went to the author, who ruled NEVER
+FREEZE A KNOWN BUG OR HOLE.  So the terminus waited for a wire that is
+fail-closed in fact.
+
+THE test-wire INCREMENT (conformance repair, oracle-first).  It is a
+CONFORMANCE repair and not a language increment: membrane-wire.md
+section 2 already declares "Unparseable or unpriceable declarations are
+validation failures -- FAIL-CLOSED", and src did not honour it on one
+surface.  No constructor, no production, no type on a frozen surface --
+so no primitivity gate and no ablation fixture is owed, because no
+terminal enters or leaves.
+ - ORACLE FIRST, RUNTIME-RED: test-wire/Wire.hs was written and run
+   against the shipped PRE-increment surface before any fix.  Red
+   partition as declared in the suite's own header: w1a/w1b/w1c (an
+   undeclared read bare, nested, and under a guard), w2a/w2b (the LATENT
+   case -- the untaken branch, and the same sentence with the guard
+   flipped) and w5a (the session survives the refusal) -- SIX RED.
+   w3a/w3b and w4a/w4b -- FOUR GREEN -- are the CONTROLS, and they are
+   part of the assertion rather than decoration: a patch that refused
+   every utility would turn the six green and the four red, so only the
+   correct repair is all-green.  w4b is the paper's own all-nine-form
+   hello, so section 7's witness is itself a control on the repair.
+ - THE FIX: the hello door's existing namespace gate -- which always
+   checked guard and menu names -- now checks the utility's reads with
+   THE SAME predicate at THE SAME site (Host.hs), over a new total
+   traversal readNames added beside inCorpus in Enumerate.hs.  The check
+   belongs at the DOOR, where a declaration is well-formed or not
+   independently of the data; in evalx it would only ever have been a
+   better-worded crash, and would never have seen w2 at all.
+ - The wire grew no new error vocabulary: the refusal is the one the
+   sibling names already got, {"error": "names outside namespace"}.
+ - GREEN: cabal test wire 10/10; gate 5 (cabal test all -j1) green
+   across every suite; gates 2, 3 and 4 re-run clean.
+
+PAPER.md section 7 now reports the defect AND its closure, because the
+finding is the point: the claim was ARGUED in draft, and demoting an
+argument to an execution is exactly what turned up the defect the
+argument had been hiding.  Section 9's bound is correspondingly
+narrowed and made honest -- fail-closed is witnessed over a WALKED set
+of wire surfaces, not proven total, and that residual carries its own
+named falsifier.
 
 PAPER.md SECTION 9 IS THE HONESTY SECTION, and it is part of the claim:
 the benchmark's band is unfilled BY DESIGN and no pass/fail is claimed
@@ -192,20 +227,21 @@ drafted in test-paper/terminus-inventory.md, applied by the author):
    selection-freeze-r1 FL-3 precedent for this file), so it rides without
    a re-hash.
 
-MANIFEST: re-hashed over CLAUDE.md (the author's FL-P1 edit, the set
-DERIVED from sha256sum -c and never hand-listed) and extended with
-PAPER.md, test-paper/check.sh, test-paper/terminus-inventory.md,
-test-paper/hello9.sh, test-paper/hello9-transcript.txt and this close kit
--- twelve rows, the ADD set enumerated in pre-close-check.sh, which
-close.sh SOURCES rather than re-declares (the one-generator law applied
-to the kit itself).
+MANIFEST: re-hashed over CLAUDE.md (the author's FL-P1 edit) AND
+proplang.cabal (the test-wire stanza) -- the re-hash set DERIVED from
+sha256sum -c and never hand-listed -- and extended with PAPER.md,
+test-paper/check.sh, test-paper/terminus-inventory.md,
+test-paper/hello9.sh, test-paper/hello9-transcript.txt, test-wire/Wire.hs
+and this close kit: THIRTEEN rows, the ADD set enumerated in
+pre-close-check.sh, which close.sh SOURCES rather than re-declares (the
+one-generator law applied to the kit itself).
 
 CUSTODY: PAPER.md, test-paper/check.sh, the terminus inventory, the
-live-host generator and its transcript, this kit (close.sh,
-pre-close-check.sh, do-close.sh, install-close-edits.sh,
-frozen-layer.patch, CLOSE-RUNBOOK.md and this message) were written by
-the builder in unsigned commits -- the builder key is on no box, by
-design.  The frozen-layer installs, the MANIFEST re-sign, and this tag
+live-host generator and its transcript, the test-wire oracle and the
+conformance repair it gates, this kit (close.sh, pre-close-check.sh,
+do-close.sh, install-close-edits.sh, frozen-layer.patch, CLOSE-RUNBOOK.md
+and this message) were written by the builder in unsigned commits -- the
+builder key is on no box, by design.  The frozen-layer installs, the MANIFEST re-sign, and this tag
 are the author's own acts from the author's shell.  The tag message is a
 FILE (-F), per OB-30 and the L9 lint row: no shell word-parser stands
 between the reviewed register and the key act.

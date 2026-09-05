@@ -312,13 +312,35 @@ same hello with a different utility, and each is fail-closed:
 `<` (no codeword, since `Lt x y` **is** `Gt y x`); `["var", 2]` (off the
 declared arity). Nine forms parse, and only nine.
 
-**And one hole, recorded rather than hidden.** The transcript's third leg shows
-that an *undeclared name inside the utility* is not checked at hello time: the
-hello is accepted, and the failure surfaces only when the utility is actually
-evaluated — as a host-process crash, not a wire error. Menu and guard names
-*are* namespace-checked; the utility's `Get` names are not. §9 carries this as a
-limit on the claim, and the claims register splits the acceptance row from the
-refusal row so the two are not witnessed by each other.
+**And one hole, found by this very witness and closed before the freeze.** The
+transcript's third leg exists because when it was first run, it failed. An
+undeclared name inside a hello's *utility* passed the door and reached the
+partial `Get` case in `evalx` — a host-process crash rather than a wire error,
+and a **latent** one, since Haskell's laziness spares an untaken branch: the same
+malformed declaration was a crash or a success depending on which way a guard
+fell at run time. Menu and guard names had always been namespace-checked; the
+utility's reads had not.
+
+The repair puts the check at the door, where a declaration is well-formed or not
+independently of the data, and applies the *same* predicate the guard and menu
+names already went through — so the refusal is the one those names already got:
+
+```
+{"error": "names outside namespace"}
+```
+
+Its oracle is `test-wire` — ten rows, of which
+`w1`/`w2`/`w5` were red against the shipped pre-increment surface and `w3`/`w4`
+are the controls that keep the repair from over-refusing (a patch that rejected
+every utility would turn the first three green and the controls red). Leg 3 now
+guards it, and `w5` pins the part that matters most on a real wire: a refusal is
+served like any other bad hello, so the session survives it instead of taking
+every other client's decisions down with it.
+
+It is recorded here rather than quietly fixed because the finding is the point:
+the claim in this section was `ARGUED` in draft, and the act of demoting an
+argument to an execution is exactly what turned up a defect that argument had
+been hiding.
 
 `draw` and the polling loop live only in the host; no `IO` reaches the
 reasoner's types, and the host fold routes every decision through the sealed
@@ -390,14 +412,13 @@ not, so the demonstration is not read wider than it is measured.
 - Sufficiency is witnessed over the completeness suite's walked family, not
   proven for every conceivable world; the residual is the suite's, printed not
   absorbed.
-- **The wire is not fully fail-closed, and §7's transcript shows where.** An
-  undeclared name inside a hello's *utility* passes validation and reaches
-  `evalx`, which crashes the host process rather than returning a wire error —
-  and does so only when the utility is evaluated, so a one-option menu leaves it
-  latent. Menu and guard names are checked; utility `Get` names are not. This is
-  a live defect found while executing §7's witness, reported and not worked
-  around; it is filed, not fixed here, because fixing it moves `src/` and this is
-  a document boundary. It bounds the refusal claim, not the acceptance claim.
+- The wire is fail-closed on every surface this paper exercised, but "every
+  surface exercised" is the honest scope. §7's leg 2 walks the retired forms,
+  the belief-scoped heads, `<` and off-arity `var`; leg 3 walks undeclared reads;
+  separate probes cover empty and malformed codebooks, grids, namespaces,
+  `obs_arity`, evidence range and tick menus. That is a walked set, not a proof
+  of totality, and the §7 defect is precisely what a walked set finds and an
+  argument does not.
 - A named research programme remains, *named not scheduled*, re-entering only
   through the two-sided gate with a measurement: the quine face, the two-stream
   polarity demand (`OB-15`, `OB-19`), continuous carriers (foreclosed), the
@@ -425,12 +446,13 @@ Run from a clean checkout at the repo root; the chain re-verifies every claim
 above from its frozen source.
 
 ```
-sh test-paper/check.sh                 # thesis fidelity, all 25 pins, pointers, register
+sh test-paper/check.sh                 # thesis fidelity, all 27 pins, pointers, register
 cabal test exact-acceptance            # §2  the four gates (T1–T4)
 sh audit/ablation.sh                   # §3  necessity — all ten terminals, both halves
 cabal test battery                     # §4  sufficiency — the interpolation
 cabal test lawful && cabal test dyadic # §5  exactness — the == laws
 cabal test trampoline                  # §6  closure — E4
+cabal test wire                        # §7  the wire's fail-closed conformance
 cabal build proplang-host              # §7  a live host: build it, then
 sh test-paper/hello9.sh                #     drive it with the all-nine-form hello
 sh audit/run-gates.sh                  # §1,§2  gate 4's forbidden-token scan, and the rest
@@ -440,9 +462,8 @@ sh test-paper/check.sh --close         # freeze state: manifest covers this pape
 ```
 
 `sh test-paper/hello9.sh` regenerates `test-paper/hello9-transcript.txt`; that
-regeneration is the standing identity row for §7 under the generator exemption.
-Its third leg is expected to show the fail-closed hole §9 records — a green
-there would mean the defect had been fixed without this paper being updated.
+regeneration is the standing identity row for §7 under the generator exemption,
+and `test-paper/check.sh`'s `G1` row enforces it.
 
 `test-paper/check.sh --close` is red until the author's close completes; base
 mode is green the moment this paper's pins agree with the oracle.
@@ -476,7 +497,9 @@ unwitnessed.
 | §6 metareasoning is sayable and pinned to the one policy rule | `test-trampoline/Trampoline.hs` | EXECUTED(cabal test trampoline) |
 | §7 the same reasoner serves a live wire client, and adapts over the wire | `test-paper/hello9-transcript.txt` leg 1 (act flips, loss 1.0 → 0.25) | EXECUTED(sh test-paper/hello9.sh) |
 | §7 the wire refuses retired forms, belief-scoped heads, off-arity `var` | `test-paper/hello9-transcript.txt` leg 2 | EXECUTED(sh test-paper/hello9.sh) |
-| §7,§9 the wire is NOT fully fail-closed: an undeclared utility name crashes the host | `test-paper/hello9-transcript.txt` leg 3 | EXECUTED(sh test-paper/hello9.sh — the defect fires) |
+| §7 an undeclared read in a utility is refused at the door, latent branch included | `test-wire/Wire.hs` w1, w2; transcript leg 3 | EXECUTED(cabal test wire — 10/10, w1/w2/w5 red pre-increment) |
+| §7 a refused hello leaves a live session, not a dead host | `test-wire/Wire.hs` w5 | EXECUTED(cabal test wire) |
+| §7,§9 fail-closed is witnessed over a WALKED set of wire surfaces, not proven total | legs 2–3; the door probes | ARGUED(falsifier: a declaration the door accepts that no `Expr` can evaluate totally) |
 | §8 every measured exponent partly reads the fold representation; dyadic too | `bench/bench-fold-depth-r01.md` r02.4 (19.8 bits/tick, the 81x collapse) | EXECUTED(ProbeStateBits; `chooseeu-sitting/r2-f11-state-bits.txt`) |
 | §8 the intrinsic per-tick cost at bounded state is unmeasured | no cell measures it | ARGUED(falsifier: a fold with bounded sufficient statistics, benchmarked on the same profiles) |
 | §9 the residue is named, not scheduled; nothing owed | `EXACT_PLAN.md` §13.0 | QUOTED(EXACT_PLAN.md) |

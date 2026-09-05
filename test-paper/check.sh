@@ -122,6 +122,14 @@ pin "N24 live wire: the act flips on evidence" \
     "0.36666666666666664"                                                                test-paper/hello9-transcript.txt
 pin "N25 live wire: loss falls to 0.25" \
     "0.2546077860279184"                                                                 test-paper/hello9-transcript.txt
+# section 7 leg 3: the door's refusal of an undeclared utility read, and the
+# oracle row that pins the session surviving it.  Both quoted in the paper,
+# so both pinned -- the defect this section reports is the one place the
+# paper is most tempting to describe rather than witness.
+pin "N26 live wire: the door's refusal message" \
+    '{"error": "names outside namespace"}'                                               test-paper/hello9-transcript.txt
+pin "N27 the wire oracle's session-survival row" \
+    "a refused hello leaves a live session, not a dead host"                             test-wire/Wire.hs
 
 # ---- G: the live-host transcript is the generator's current output ---
 # The generator exemption's standing identity row: hello9.sh lands in-tree

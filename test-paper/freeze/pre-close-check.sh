@@ -38,6 +38,7 @@ ADD=(
   test-paper/terminus-inventory.md
   test-paper/hello9.sh
   test-paper/hello9-transcript.txt
+  test-wire/Wire.hs
   test-paper/freeze/close.sh
   test-paper/freeze/pre-close-check.sh
   test-paper/freeze/do-close.sh
@@ -96,6 +97,16 @@ run_checks() {
     ok "CLAUDE.md changed -> FL-P1 (the ONE ITEM REMAINS repair) installed"
   else
     bad "CLAUDE.md UNCHANGED -- FL-P1 not yet installed and committed (test-paper/freeze/install-close-edits.sh)"
+  fi
+  # proplang.cabal is manifest-covered and the wire increment adds a
+  # stanza to it, so it is EXPECTED in the re-hash set.  Flagged, not
+  # required: it is already committed by the time this runs, and its
+  # absence would only mean the stanza never landed -- which the wire
+  # suite's own existence in `cabal test all` already proves.
+  if printf '%s\n' $edited | grep -qxF -- proplang.cabal; then
+    ok "proplang.cabal changed -> the test-wire stanza (expected in the re-hash set)"
+  else
+    note "proplang.cabal unchanged -- expected if the wire stanza landed in an earlier freeze"
   fi
   if grep -qF -- "ROADMAP TERMINATED at paper-freeze-r0" CLAUDE.md; then
     ok "FL-P1 marker present (ROADMAP TERMINATED at paper-freeze-r0)"

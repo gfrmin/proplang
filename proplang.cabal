@@ -269,6 +269,17 @@ test-suite breadth
     build-tool-depends: proplang:proplang-host
     default-language: GHC2021
 
+test-suite wire
+    import:           warnings
+    type:             exitcode-stdio-1.0
+    main-is:          Wire.hs
+    hs-source-dirs:   test-wire
+    build-depends:    base
+                    , proplang
+                    , tasty
+                    , tasty-hunit
+    default-language: GHC2021
+
 test-suite selection
     import:           warnings
     type:             exitcode-stdio-1.0

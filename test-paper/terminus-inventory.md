@@ -108,9 +108,16 @@ Expected manifest size afterwards: 255 rows (243 + 12 ADD; CLAUDE.md is
 re-hashed in place under FL-P1, not added).
 
 ================================================================
-FL-P4 — A STOP-AND-REPORT THAT ARRIVED WITH THE AUTHOR'S REVIEW
-Class: NOT A FROZEN-LAYER REPAIR — a docket item for the sitting's ruling
+FL-P4 — A STOP-AND-REPORT, RULED AND CLOSED
+Class: NOT A FROZEN-LAYER REPAIR — a docket item, now discharged
 ================================================================
+
+DISPOSITION: the author ruled "never freeze a known bug or hole" — branch (b)
+below. The defect is FIXED, under the test-wire increment, and the terminus now
+waits behind a wire that is fail-closed in fact and not only in most cases. The
+fork below is kept as the record of what was decided and why; the ruling line
+is the last paragraph of this row.
+
 
 Recorded here because it reached the increment after the inventory was first
 drafted, and the sitting must see it beside the rest.
@@ -135,7 +142,7 @@ carries it as its own EXECUTED row (the defect FIRES, so the row is executed, no
 argued); leg 3 is expected to stay red, and a green there would mean the defect
 was fixed without this paper being updated.
 
-THE RULING IS THE AUTHOR'S, and it is a genuine fork:
+THE RULING WAS THE AUTHOR'S, and it was a genuine fork:
   (a) MINT THE TERMINUS as drafted — the hole is known, stated, bounded and
       witnessed, and the paper is more honest for carrying it than for not; the
       fix then re-enters as demand-gated residue like everything else past the
@@ -144,8 +151,30 @@ THE RULING IS THE AUTHOR'S, and it is a genuine fork:
       the declared namespace at hello time, so the terminus is minted over a
       wire that is fail-closed in fact and not only in most cases.
 
-The builder has no view it is entitled to act on here, and has acted on none:
-both branches are left open and no src file is touched either way.
+RULED: (b), on the author's line "never freeze a known bug or hole".
+
+AS EXECUTED (the test-wire increment, oracle-first):
+  - test-wire/Wire.hs, a new cabal test-suite stanza, written and run RED
+    against the shipped pre-increment surface FIRST: w1a/w1b/w1c, w2a/w2b and
+    w5a red (6 rows), w3a/w3b and w4a/w4b green (4 control rows). The controls
+    are part of the assertion: a repair that refused every utility would turn
+    the six green and the four red, so only the correct repair is all-green.
+  - The fix: the hello door's existing namespace gate — which always checked
+    guard and menu names — now checks the utility's reads with THE SAME
+    predicate at THE SAME site (src/PropLang/Host.hs), using a new total
+    traversal readNames in Enumerate.hs beside inCorpus. No constructor, no
+    production, no type on a frozen surface; no primitivity gate and no
+    ablation fixture is owed, because no terminal enters or leaves. This is a
+    CONFORMANCE REPAIR: membrane-wire.md section 2 already declared the
+    behaviour ("Unparseable or unpriceable declarations are validation
+    failures — FAIL-CLOSED"), and src did not honour it for one surface.
+  - Green: cabal test wire 10/10. Gates 2, 3 and 4 re-run clean.
+  - The refusal is the one the sibling names already got, so the wire grew no
+    new error vocabulary: {"error": "names outside namespace"}.
+
+MANIFEST CONSEQUENCE: test-wire/Wire.hs joins the ADD set (13 rows now), and
+proplang.cabal joins CLAUDE.md in the RE-HASH set, since the stanza edits a
+manifest-covered file. Both are derived by close.sh from sha256sum -c.
 
 ================================================================
 CUSTODY

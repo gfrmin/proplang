@@ -54,7 +54,8 @@ import System.IO (BufferMode (LineBuffering), hSetBuffering, isEOF, stdout)
 
 import PropLang.Enumerate (AgentS, agentObsPoints, breadthEmpty,
                            enumerateWith, enumerateWithBreadth, fragFull,
-                           mkBreadth, observeS, predictMassS, sentenceAgent)
+                           mkBreadth, observeS, predictMassS, readNames,
+                           sentenceAgent)
 import PropLang.Eval (Features, Vals (..), evalx, mkEnvIn)
 import PropLang.Membrane (menuAssignments, predictiveBelief,
                           mintQ, policyPick, reindexUtility, substW)
@@ -317,7 +318,19 @@ hello st j = maybe (st, errLine "bad hello") id $ do
       mkBreadth (maybe 2 id arK) ps nl
   n0 : nrest <- pure ns
   let inNs nm = nm `elem` ns
-  if not (all (inNs . fst) gs && all (inNs . fst) menu)
+      -- THE UTILITY'S READS ARE CHECKED HERE TOO (the wire's
+      -- fail-closed law, membrane-wire.md section 2). Guards and menu
+      -- names were always checked; a wire-supplied utility's reads were
+      -- not, so an undeclared name passed this gate and reached evalx's
+      -- partial Get -- a host-process crash rather than a wire error,
+      -- and a LATENT one: laziness spares an untaken branch, so the
+      -- same malformed declaration crashed or succeeded depending on
+      -- which way the guard fell at run time. The check belongs at the
+      -- door, where a declaration is well-formed or not independently
+      -- of the data. Found live at the paper boundary (PAPER.md
+      -- section 7's witness, transcript leg 3); the oracle is test-wire.
+      uReads = maybe [] (readNames . fst) uSaidB
+  if not (all (inNs . fst) gs && all (inNs . fst) menu && all inNs uReads)
     then pure (st, errLine "names outside namespace")
     else do
       do

@@ -81,26 +81,38 @@ echo "    codeword; < has no codeword because Lt x y IS Gt y x by argument"
 echo "    swap (a codeword would be pure prior distortion); var 2 is off the"
 echo "    declared arity.  Nine forms parse, and only nine."
 echo
-echo "--- LEG 3: A KNOWN HOLE in fail-closed, recorded here rather than"
-echo "    hidden.  An undeclared name inside the UTILITY is not checked at"
-echo "    hello time; it is caught only when the utility is EVALUATED, and"
-echo "    then as a host-process crash, not a wire error. ---"
+echo "--- LEG 3: the UTILITY'S READS are namespace-checked at the door."
+echo "    This leg exists because that check did NOT exist when this"
+echo "    generator was first run: an undeclared name inside a hello's"
+echo "    utility passed the gate and reached evalx's partial Get -- a"
+echo "    host-process crash rather than a wire error, and LATENT, since"
+echo "    laziness spares an untaken branch.  Found by running this"
+echo "    witness, closed by the test-wire increment, guarded here. ---"
 echo
-echo "  hello with utility [\"get\", \"zzz\"], zzz NOT in namespace [t, move]:"
-printf '    hello reply -> '
-echo "{$W, \"utility\": {\"form\": \"said@1\", \"said\": [\"get\", \"zzz\"]}}}" | "$HOST" 2>&1 | head -1
-echo "  then one decision tick over a TWO-option menu (so the utility is"
-echo "  actually evaluated):"
+echo "  an undeclared read, zzz NOT in namespace [t, move]:"
+for u in \
+  '["get", "zzz"]' \
+  '["*", ["c", 1], ["-", ["var", 1], ["get", "zzz"]]]' \
+  '["if", [">", ["c", 1], ["c", 0]], ["var", 1], ["get", "zzz"]]' ; do
+  printf '  %-52s -> ' "$u"
+  echo "{$W, \"utility\": {\"form\": \"said@1\", \"said\": $u}}}" | "$HOST" 2>&1 | head -1
+done
+echo
+echo "  the third is the LATENT case -- the guard never takes that branch,"
+echo "  so on the pre-increment surface it was ACCEPTED and served ticks"
+echo "  happily until the day the guard fell the other way.  All three are"
+echo "  now refused identically, at the door, before any tick runs."
+echo
+echo "  and the session SURVIVES the refusal (it is a wire error, not a"
+echo "  dead host): the refused hello's ticks are answered, not fatal."
 {
   echo "{$W, \"utility\": {\"form\": \"said@1\", \"said\": [\"get\", \"zzz\"]}}}"
   echo '{"tick": {"features": {"t": 0}, "menu": ["move"], "evidence": 0}}'
-} | "$HOST" 2>&1 | sed -n '2,3p' | sed 's/^/    /'
+  echo '{"tick": {"features": {"t": 1}, "menu": ["move"], "evidence": 0}}'
+} | "$HOST" 2>&1 | sed 's/^/    /'
 echo
-echo "    The menu and guard names ARE namespace-checked (a menu name"
-echo "    outside the namespace is refused \"names outside namespace\"), but"
-echo "    the utility's Get names are not.  With a ONE-option menu the"
-echo "    utility is never evaluated and the defect stays latent; with two"
-echo "    or more it fires on the first decision tick.  The error site's own"
-echo "    comment calls itself door-unreachable; the wire reaches it."
-echo "    REPORTED, NOT WORKED AROUND -- see PAPER.md section 9 and the"
-echo "    claims register's section 7 rows."
+echo "    Menu and guard names were always namespace-checked; the"
+echo "    utility's reads now are too, by the same predicate at the same"
+echo "    gate.  The oracle is test-wire (10 rows, w1/w2/w5 red on the"
+echo "    pre-increment surface, w3/w4 the controls that keep the repair"
+echo "    from over-refusing)."

@@ -15,6 +15,7 @@ module PropLang.Enumerate
   , enumerateWithBreadth
   , corpusBodies
   , inCorpus
+  , readNames
   , AgentS
   , agentObsPoints
   , atomGridOf
@@ -439,6 +440,38 @@ corpusBodies ns gs budget = genR budget
     splits2 m = [ (i, m - i) | i <- [1 .. m - 1] ]
     splits3 m = [ (i, j, m - i - j)
                 | i <- [1 .. m - 2], j <- [1 .. m - i - 1] ]
+
+-- | The names a sentence READS. Total, and the door's namespace gate
+-- for a wire-supplied utility: guards and menu names are checked
+-- against the declared namespace by name, and a utility's reads must be
+-- checked the same way or an undeclared read reaches the partial Get
+-- case in 'PropLang.Eval.evalx', whose comment claims that case is
+-- door-unreachable.
+--
+-- It is a LIST and not a Bool on purpose: the door already owns the
+-- membership predicate (it applies the same @inNs@ to guards and menu
+-- names), so answering "what does this sentence read" here and "is that
+-- declared" there keeps one predicate at one site instead of a second
+-- copy of the namespace rule.
+--
+-- Two traversals of this shape now exist — this one and 'inCorpus'
+-- below — and that duplication is COMPILER-ENFORCED rather than
+-- hand-maintained: both are exhaustive matches under
+-- @-Wincomplete-patterns -Werror@, so a new 'Expr' constructor breaks
+-- both at compile time and neither can silently drift.
+readNames :: Expr env t -> [Name]
+readNames e = case e of
+  C _ _ _ -> []
+  Get nm -> [nm]
+  Var _ -> []
+  If c t f -> readNames c ++ readNames t ++ readNames f
+  Gt a b -> readNames a ++ readNames b
+  Sub a b -> readNames a ++ readNames b
+  Mul a b -> readNames a ++ readNames b
+  Expect b body -> readNames b ++ readNames body
+  Cond b k y j n ->
+    readNames b ++ readNames k ++ readNames y ++ readNames j ++ readNames n
+  Code _ _ body -> readNames body
 
 -- | Intensional corpus membership: the body is a sentence of the
 -- grammar whose every mention sits on a DECLARED codebook and whose
