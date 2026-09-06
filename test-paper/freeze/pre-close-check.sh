@@ -43,6 +43,10 @@ ADD=(
   test-paper/sitting/make-conferral.sh
   test-paper/sitting/drift-distribution.sh
   test-paper/sitting/drift-distribution.txt
+  test-paper/sitting/quiet-box.sh
+  test-paper/sitting/drift-quiet.txt
+  test-paper/sitting/wire-attribution.sh
+  test-paper/sitting/wire-attribution.txt
   test-paper/freeze/close.sh
   test-paper/freeze/pre-close-check.sh
   test-paper/freeze/do-close.sh
@@ -88,6 +92,17 @@ run_checks() {
   done
   [ "$nmiss" -eq 0 ] && ok "all ${#ADD[@]} new files tracked"
   [ "$ndup" -eq 0 ] && ok "no new file is already a manifest row"
+
+  # THE EXPECTED POST-CLOSE ROW COUNT IS COMPUTED, NEVER TYPED.  It was a
+  # hand copy in two prose files and went stale TWICE (12 ADD -> 17 -> 19)
+  # -- the one-generator law's own provenance shape: "a hand copy tracking
+  # a generated value is correct at birth and wrong at the first
+  # regeneration."  Re-hashed rows do not change the count; only ADDs do.
+  local now_rows exp_rows
+  now_rows=$(wc -l < MANIFEST.sha256)
+  exp_rows=$(( now_rows + ${#ADD[@]} ))
+  note "EXPECTED POST-CLOSE MANIFEST SIZE: $exp_rows rows ($now_rows now + ${#ADD[@]} ADD)"
+  note "  ^ this line is the ONE generator of that number; prose cites it, never a literal"
 
   echo
   echo "-- HARD: the REQUIRED frozen-layer edit actually landed --"

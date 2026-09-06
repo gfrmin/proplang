@@ -14,6 +14,7 @@ run 6   ratio 1.7575   load 15.24, 14.24, 13.73
 run 7   ratio 1.9204   load 14.76, 14.50, 14.12
 run 8   ratio 2.1672   load 20.31, 17.11, 15.35
 
+
 === the distribution ===
 n         = 8
 samples   = 1.7575, 1.8504, 1.9204, 1.9638, 2.0568, 2.1121, 2.1672, 2.2391
@@ -30,21 +31,25 @@ resolution   : stdev/half-band = 5.5x  (the gate asks for +/-0.0300)
 95% CI (mean): [1.8710, 2.1459]   contains frozen 1.9078? YES
 
 === the reading these numbers support ===
-* THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX.  Run-to-run
-  scatter is 5.5x the band's half-width and 1 of 8 runs fall
-  inside it.  A single sample of this cell is not a measurement of
-  the quantity the gate names, whatever that quantity's true value.
-  This is the decisive finding and it is independent of the next one.
-* THE CENTRE HAS *NOT* BEEN SHOWN TO MOVE: the 95% CI contains the
-  frozen value, so these data do NOT establish a stale mint -- the
-  mean sits +0.1006 from frozen with SEM 0.0581.
-  So: NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF HEALTH IS
-  CLAIMED.  Both readings remain open; what is closed is that this
-  gate cannot tell them apart here.
+* RESOLUTION: THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX.
+  Run-to-run scatter is 5.5x the band's half-width and 1 of 8 runs
+  fall inside it.  A single sample of this cell is not a measurement
+  of the quantity the gate names, whatever that quantity's true value.
+* CENTRE: THE CENTRE HAS *NOT* BEEN SHOWN TO MOVE.  The 95%% CI
+  [1.8710, 2.1459] contains the frozen 1.9078, so these data do NOT
+  establish a stale mint -- the mean sits +0.1006 from frozen with SEM
+  0.0581.  NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF HEALTH IS
+  CLAIMED.
 
-Neither branch is a licence to re-mint anything: a value re-minted from
-a box that cannot resolve it would bake today's contention into the
-frozen layer.  This is evidence for FL-P5's named residual -- a cell
-that cannot be measured should DECLINE TO REPORT, or should gate on a
-statistic the box can actually resolve (a median of k runs has SEM
-0.0581 here, still outside the band).
+NO BRANCH ABOVE IS A LICENCE TO RE-MINT.  A re-mint is legitimate only
+under the pre-declared clause in test-breadth/Breadth.hs -- a module
+addition reintroducing a cross-build divergence, remedied at the
+implementation's close and STATED IN THE FREEZE TAG, never a silent
+widening -- and whether that clause applies is a question of CAUSE,
+which this probe does not measure.  Absent that, re-minting from a box
+in an unexamined state would bake that state into the frozen layer.
+
+This run is evidence for FL-P5's named residual: a cell that cannot
+resolve its band should DECLINE TO REPORT rather than emit a number
+the box cannot support.  Here the median of k runs has SEM 0.0581
+against a 0.0300 half-band -- still outside it.

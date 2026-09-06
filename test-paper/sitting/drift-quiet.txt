@@ -1,0 +1,100 @@
+=== drift-a: THE QUIET-BOX ATTEMPT ===
+generated 2026-09-05T22:56Z at HEAD 8f7b52e
+
+-- the box BEFORE quieting --
+load: 1.32, 1.31, 1.73   MemAvailable: 4088 MB
+                 total        used        free      shared  buff/cache   available
+  Mem:            15Gi        11Gi       568Mi       1.5Gi       5.2Gi       4.0Gi
+  Swap:           33Gi        11Gi        22Gi
+
+-- stopping the AUTHORISED co-resident units --
+   (units derived from the julia processes' own cgroups, not hand-listed)
+  answer-brain-daemon.service  VERIFIED STOPPED (state inactive), reclaimed 56 MB
+  rssfeed-sidecar.service      VERIFIED STOPPED (state inactive), reclaimed 533 MB
+  residual check: no julia process survives (verified, not assumed)
+
+-- the box AFTER quieting: what could NOT be quieted --
+load: 1.22, 1.29, 1.72   MemAvailable: 4292 MB
+  The builder may quiet ONLY what the author named.  Everything below is
+  the author's own working set -- browser, database, VM, media server,
+  and other Claude sessions -- and is left running.  So this quieting is
+  PARTIAL, and the residue is recorded rather than assumed:
+      RSS     PID COMMAND
+    759708 3445216 qemu-system-x86
+    625088  13190 clickhouse-serv
+    423080 4014710 WebExtensions
+    402092 1737124 claude
+    360800 3479514 claude
+    359032 1726440 claude
+    310220 238511 claude
+    293440 3665996 claude
+
+-- WHAT THIS RUN CAN AND CANNOT SETTLE (stated before the samples) --
+  CAN: whether the drift-a cell resolves +/-0.03 on the box AS IT NOW
+  STANDS.  That is the only question the gate asks, and the one the
+  close turns on.
+
+  CANNOT: attribute any difference from the n=8 LOADED run.  TWO things
+  changed between them, not one.  The n=8 run records its own conditions
+  -- 'load average: 15.27, 14.48, 14.57' at start, per-run loads 12.33 to
+  20.31 on 8 cores -- and this box now sits near 1.5, which it reached BY
+  ITSELF when two unrelated 99% julia skin servers exited, BEFORE this
+  script ran.  The quieting done here is the SECOND change and, on the
+  measurement above, the smaller one.  A tight in-band result is
+  therefore NOT evidence that this script's quieting worked, and NOT
+  evidence against the contention diagnosis.  This design cannot
+  separate the two and does not claim to.
+
+-- the samples (delegated to drift-distribution.sh; one generator) --
+=== breadth drift-a: the ratio's DISTRIBUTION on this box ===
+generated 2026-09-05T22:56Z at HEAD 8f7b52e
+frozen ratio 1.9078, gate band +/-0.03 (both READ from the frozen
+file, never re-typed here -- the one-generator law)
+load at start: load average: 1.22, 1.29, 1.72
+cores: 8
+
+run 1   ratio 1.9375   load 2.12, 1.81, 1.83
+run 2   ratio 1.9538   load 1.53, 1.85, 1.91
+run 3   ratio 1.9510   load 1.23, 1.52, 1.73
+
+
+=== the distribution ===
+n         = 3
+samples   = 1.9375, 1.9510, 1.9538
+min/max   = 1.9375 / 1.9538   (spread 0.0163)
+median    = 1.9510   (frozen 1.9078, delta +0.0432)
+mean      = 1.9474   (frozen 1.9078, delta +0.0396)
+stdev     = 0.0087
+band      = +/-0.0300
+
+per-run rows inside the band: 1 of 3  (0 below, 2 above)
+MEDIAN inside the band     : NO
+MEAN   inside the band     : NO
+resolution   : stdev/half-band = 0.3x  (the gate asks for +/-0.0300)
+95% CI (mean): [1.9258, 1.9691]   contains frozen 1.9078? NO
+
+=== the reading these numbers support ===
+* RESOLUTION: THE GATE *CAN* RESOLVE ITS BAND ON THIS BOX.  Run-to-run
+  scatter is 0.29x the band's half-width (stdev 0.0087 against a 0.0300
+  half-width), so a red from this cell here is INFORMATIVE and cannot
+  be set aside as noise.  Any claim that this cell is unresolvable is
+  falsified by these data for the conditions recorded above.
+* CENTRE: THE CENTRE HAS MOVED.  The 95% CI [1.9258, 1.9691] EXCLUDES the
+  frozen 1.9078, so on these data the frozen value does not describe
+  this box in the state recorded above.  That is a statement about
+  agreement, NOT about cause: what moved -- the code, the box, or the
+  build -- is a separate question these data do not answer.
+
+NO BRANCH ABOVE IS A LICENCE TO RE-MINT.  A re-mint is legitimate only
+under the pre-declared clause in test-breadth/Breadth.hs -- a module
+addition reintroducing a cross-build divergence, remedied at the
+implementation's close and STATED IN THE FREEZE TAG, never a silent
+widening -- and whether that clause applies is a question of CAUSE,
+which this probe does not measure.  Absent that, re-minting from a box
+in an unexamined state would bake that state into the frozen layer.
+
+FL-P5's residual is NOT exercised by this run: the cell resolved its
+band here (SEM 0.0050 against a 0.0300 half-band).  The residual stands
+on the OTHER run's evidence, not on this one's, and the honest
+summary of the pair is that this cell's resolution is a function of
+box state -- which is FL-P5's finding stated exactly, no wider.

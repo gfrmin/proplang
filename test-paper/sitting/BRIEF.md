@@ -97,6 +97,19 @@ licenses the skip, and only after (i) has been *attempted and shown insufficient
 — "the box cannot be quieted" is a premise that must be demonstrated, not
 asserted. **The builder does not rule on which branch is taken.**
 
+> **[BRACKET ADDED 2026-09-06 — BOTH BRANCHES ABOVE ARE NOW DEAD.]** This
+> brief is the record of what was put to the sitting and is not rewritten. But
+> the quiet-box attempt it calls for was executed, and it falsified the fork:
+> quiet (units stopped and verified, load ~1.5, n=3) gives stdev **0.0087** =
+> **0.29×** the half-band, so **the cell resolves its band fine** — branch (ii)'s
+> "unresolvable" wording is now a false statement. And its 95% CI
+> `[1.9258, 1.9691]` **excludes** frozen `1.9078`, so branch (i) fails the gate.
+> A re-mint is not licensed either: the attribution run decomposes the shift
+> into **(A)** the wire increment's real but band-inward `-0.0241` and **(B)** an
+> unexplained `+0.0737` that survives without it, and Breadth.hs's pre-declared
+> clause covers only (A). The close is **blocked** pending the author's ruling
+> on (B). Transcripts: `drift-quiet.txt`, `wire-attribution.txt`.
+
 ### Q4 — Are the two frozen-layer repairs in the right form?
 
 - **FL-P1** (`CLAUDE.md`) is *normative prose*, so the repair is **in place with
@@ -240,11 +253,19 @@ Everything in this sitting was written by the builder in **unsigned** commits;
 the builder key is on no box, by design. Still owed, and the author's alone:
 
 1. install FL-P1 and FL-P2 under the author's key;
-2. extend and re-sign `MANIFEST.sha256` — **13 ADD rows**, and **two** re-hash
-   rows (`CLAUDE.md` for FL-P1, `proplang.cabal` for the `test-wire` stanza),
-   both *derived* by `close.sh` from `sha256sum -c`, never hand-listed;
+2. extend and re-sign `MANIFEST.sha256` — the ADD count is **not written here**;
+   `pre-close-check.sh` prints it (`EXPECTED POST-CLOSE MANIFEST SIZE`), computed
+   from its own array. *[This line read "**13 ADD rows**" when the brief was
+   sent; that was the third hand copy of a generated number and it went stale
+   twice more (17, then 21) as the sitting's evidence files entered custody. The
+   literal is retired here rather than corrected, per the one-generator law.]*
+   Two rows are re-hashed, not added (`CLAUDE.md` for FL-P1, `proplang.cabal`
+   for the `test-wire` stanza), both *derived* by `close.sh` from
+   `sha256sum -c`, never hand-listed;
 3. mint `paper-freeze-r0` by `-F <file>` (the tag-message-is-a-file law);
-4. resolve Q3 — a quiet-box gate 5, or `RUN_GATE5=0` with an attestation.
+4. ~~resolve Q3 — a quiet-box gate 5, or `RUN_GATE5=0` with an attestation.~~
+   *[2026-09-06: both branches falsified — see the bracket at Q3. What is owed
+   instead is a ruling on (B), the unexplained baseline shift.]*
 
 The turnkey path is `bash test-paper/freeze/do-close.sh`, which stops at a review
 gate and waits for the author to type `reviewed`. **The tag, not any commit

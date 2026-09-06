@@ -106,9 +106,11 @@ and mints the terminus tag paper-freeze-r0 by -F <file> (the tag-message-is-a-
 file law). `test-paper/check.sh --close` then verifies the coverage, the
 manifest, and the tag. That tag is the attestation and the terminus.
 
-Expected manifest size afterwards: 260 rows (243 + 17 ADD). TWO manifest-covered
-files are re-hashed IN PLACE, not added: CLAUDE.md (FL-P1) and proplang.cabal
-(the test-wire stanza).
+Expected manifest size afterwards: NO NUMBER IS WRITTEN HERE. pre-close-check.sh
+prints it ("EXPECTED POST-CLOSE MANIFEST SIZE: N rows"), computed from the live
+manifest plus its own ADD array. TWO manifest-covered files are re-hashed IN
+PLACE, not added: CLAUDE.md (FL-P1) and proplang.cabal (the test-wire stanza);
+re-hashes do not move the count, only ADDs do.
 
   [This paragraph is a CROSS-CHECK, not a source. The ADD set's one generator is
   pre-close-check.sh's array, which close.sh sources; these numbers are here to
@@ -339,6 +341,72 @@ NOTE ON SCOPE: this row does NOT gate paper-freeze-r0. It records a falsified
 claim at the boundary where the falsifying evidence arrived, which is the
 frozen-layer-inventory law working as intended. The author may install it here
 or route it to whichever boundary next touches those files.
+
+  [BRACKET ADDED 2026-09-06, after the quiet-box attempt this row itself
+  declared OWED was executed. THREE clauses above are falsified by it, and
+  each is quoted inside its own repair rather than edited away.
+
+  FALSIFIED: "(1) THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX." True
+  UNDER LOAD, and false as an unconditional claim about the box. Quiet (both
+  co-resident units stopped and verified, load ~1.5, n=3,
+  test-paper/sitting/drift-quiet.txt): stdev 0.0087, which is 0.29x the
+  half-band, against 5.48x loaded. THE CELL RESOLVES ITS BAND FINE ON A QUIET
+  BOX. The repaired statement: the cell's RESOLUTION is a function of box
+  state, and this row's decisive finding holds for the loaded state it
+  measured, not for the box as such.
+
+  FALSIFIED: "(2) THE CENTRE HAS NOT BEEN SHOWN TO MOVE." It has now. Quiet
+  n=3: mean 1.9474, 95% CI [1.9258, 1.9691], which EXCLUDES the frozen
+  1.9078. The loaded CI contained it only because the loaded scatter was too
+  wide to exclude anything -- the earlier reading was an artifact of the very
+  unresolvability finding (1) reports.
+
+  FALSIFIED, AND THE MOST IMPORTANT OF THE THREE: "this row does NOT gate
+  paper-freeze-r0." IT NOW DOES. Gate 5 reds on drift-a, the cell resolves,
+  and the red is therefore informative -- so under the author's standing law,
+  NEVER FREEZE A KNOWN BUG OR HOLE, the close is BLOCKED here.
+
+  ATTRIBUTION, MEASURED RATHER THAN ARGUED
+  (test-paper/sitting/wire-attribution.txt). Breadth.hs pre-declares a
+  LICENSED RE-MINT for "a module addition reintroduc[ing] a cross-build
+  divergence ... never a silent widening". Exactly one commit touched src/
+  since the mint (54e7884, the wire repair), so its parent 113d29a was built
+  and the arms interleaved:
+
+    PRE  (no wire repair)  n=3  mean 1.9815  stdev 0.0012  vs frozen +0.0737
+    HEAD (wire repair)     n=2  mean 1.9573  stdev 0.0074  vs frozen +0.0495
+
+  DECOMPOSED, because a bare verdict hides half of this:
+    (A) the increment's own shift, -0.0241: REAL (4.5x the pooled within-arm
+        scatter, 80% of the band), and precisely the clause's case -- but it
+        moves TOWARD frozen, not away.
+    (B) a baseline gap of +0.0737 that survives WITHOUT the increment.
+  The clause licenses absorbing (A). A re-mint would silently absorb (B) as
+  well, and (B) is the larger term and the unexplained one. SO NO RE-MINT IS
+  LICENSED HERE.
+
+  AND THE MINT IS NOT STALE-FROM-ELSEWHERE: 1.9078 was minted on THIS box on
+  2026-09-04 (83e29ec, "box-robust: measure on the gate's own box"), and
+  test-breadth/freeze/2-freeze.sh aborts if gate 5 ran in mint mode, so mint
+  and gate were separate runs. (B) is a real change in this box across two
+  days. WHAT changed is NOT answered by these data, and the builder has not
+  guessed at it. That question is the open item the close now waits on.
+
+  ONE BUILDER CLAIM WITHDRAWN. The runbook and the conferral both said the
+  shift was "not attributable to this increment" because drift-a "never calls
+  serveLine". That reasoning is about the CALL GRAPH and does not cover a
+  codegen shift across the whole library, which is the mechanism Breadth.hs's
+  own clause names. The conclusion survives -- (A) does not explain the gap --
+  but it survives BY MEASUREMENT, not by that argument, and the argument
+  should not have been stated as settled.
+
+  THE RESIDUAL NAMED ABOVE IS UNCHANGED AND STRENGTHENED. "At gate time the
+  cell takes k quick samples, measures its own scatter, and reports only when
+  it can resolve the band, declining otherwise" now has a second demonstration:
+  the same cell that could not resolve at load 14 resolves at 0.29x when
+  quiet, so a cell that measured its own scatter would have DECLINED in the
+  first case and REPORTED in the second -- exactly the discrimination the gate
+  currently cannot make.]
 
 ================================================================
 CUSTODY

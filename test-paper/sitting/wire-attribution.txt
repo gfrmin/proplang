@@ -1,0 +1,47 @@
+=== drift-a: IS THE SHIFT THE WIRE INCREMENT'S? ===
+generated 2026-09-05T23:25Z
+  arm HEAD = 8f7b52e   (wire repair present)
+  arm PRE  = 113d29a   (54e7884^, the parent of the ONLY commit
+             touching src/ since the 1.9078 mint at 83e29ec)
+  frozen   = 1.9078, band +/-0.03  [read from test-breadth/Breadth.hs below]
+  co-residents stopped: answer-brain-daemon.service rssfeed-sidecar.service
+  load at start: 1.95, 1.75, 1.79
+
+  READ from the frozen file: frozen=1.9078 band=0.03
+  verified: test-breadth/Breadth.hs is byte-identical in both arms
+
+-- building the control arm --
+   built
+
+PRE   run 1  ratio 1.9807    load 1.59, 1.67, 1.72
+HEAD  run 1  ratio 1.9521    load 1.42, 1.50, 1.62
+PRE   run 2  ratio 1.9828    load 1.56, 1.61, 1.62
+HEAD  run 2  ratio 1.9626    load 1.80, 1.56, 1.58
+PRE   run 3  ratio 1.9809    load 1.49, 1.66, 1.62
+
+
+=== the arms ===
+PRE   n=3  mean 1.9815  stdev 0.0012  (frozen 1.9078, delta +0.0737)
+HEAD  n=2  mean 1.9573  stdev 0.0074  (frozen 1.9078, delta +0.0495)
+
+=== the reading ===
+arm difference HEAD-PRE = -0.0241   pooled within-arm stdev = 0.0053
+DECOMPOSITION -- two separate quantities, both reported:
+  (A) the increment's own shift : -0.0241  (4.5x the pooled within-arm
+      scatter of 0.0053, so it is a REAL cross-build shift, not noise;
+      it is 80% of the 0.0300 band width)
+  (B) the baseline gap, WITHOUT the increment : +0.0737
+      (the control arm against frozen -- what the increment cannot explain)
+
+* NOT ATTRIBUTABLE -- but read (A) above before reading that as 'the
+  increment did nothing'.  It did: -0.0241, well clear of the scatter.
+  The verdict is that (A) CANNOT EXPLAIN THE GAP, because BOTH arms
+  sit outside the band: the frozen 1.9078 fails to describe this box
+  REGARDLESS of the increment, by +0.0737 even without it.
+  The licensed-re-mint clause is therefore NOT on point: re-minting
+  here would bake two days of box drift into the frozen layer under a
+  terminus signature, which is the act the sitting forbade.  The
+  clause licenses absorbing (A); a re-mint here would silently absorb
+  (B) as well, and (B) is the larger term and the unexplained one.
+  What moved between the 2026-09-04 mint and now is the open
+  question, and these data do NOT answer it.

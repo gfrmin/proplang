@@ -72,25 +72,43 @@ else
   # never trusted: the skip refuses without the quoted attestation.
   if [ -z "${GATE5_ATTEST:-}" ]; then
     echo "ABORT: RUN_GATE5=0 requires GATE5_ATTEST." >&2
-    echo "       The Q3 ruling, as refined at the sitting: the skip is licensed" >&2
-    echo "       ONLY after a quiet-box attempt has been MADE and shown" >&2
-    echo "       insufficient.  'The box cannot be quieted' is a premise to be" >&2
-    echo "       demonstrated, not asserted -- co-residents suspend losslessly" >&2
-    echo "       with kill -STOP (and resume with -CONT), and a stopped process" >&2
-    echo "       stops touching memory, which is the contention channel." >&2
-    echo "       So: suspend, take three quiet samples of the cell alone, and" >&2
-    echo "         (1) in band  -> run gate 5 LIVE, no attestation needed;" >&2
-    echo "         (2) still unresolvable -> skip, and the attestation quotes" >&2
-    echo "             BOTH distributions plus a full 'cabal test all -j1'" >&2
-    echo "             transcript for the other suites.  For example:" >&2
     echo "" >&2
-    echo "         RUN_GATE5=0 GATE5_ATTEST='drift-a unresolvable on this box:" >&2
-    echo "         LOADED n=8 median 2.0103 stdev 0.1644, 1/8 in a +/-0.03 band" >&2
-    echo "         (5.5x half-width), 95% CI [1.8710,2.1459] CONTAINS frozen" >&2
-    echo "         1.9078; QUIET n=3 <ratios> at load <L>.  Centre not shown to" >&2
-    echo "         move; no regression indicated, no clean bill claimed.  Not" >&2
-    echo "         attributable: drift-a never calls serveLine.  All other" >&2
-    echo "         suites green, transcript attached.' bash .../close.sh" >&2
+    echo "       AND READ THIS BEFORE WRITING ONE.  The two-branch protocol this" >&2
+    echo "       block used to teach was FALSIFIED BY MEASUREMENT on 2026-09-06." >&2
+    echo "       It said: attempt a quiet box; if drift-a still cannot resolve" >&2
+    echo "       +/-0.03, the skip is demonstrated.  The quiet-box attempt was" >&2
+    echo "       made (test-paper/sitting/drift-quiet.txt) and it came out the" >&2
+    echo "       OTHER WAY:" >&2
+    echo "" >&2
+    echo "         quiet n=3: stdev 0.0087 = 0.29x the half-band (loaded: 5.48x)" >&2
+    echo "         -> THE CELL RESOLVES ITS BAND FINE on a quiet box." >&2
+    echo "         mean 1.9474, 95% CI [1.9258, 1.9691] EXCLUDES frozen 1.9078" >&2
+    echo "         -> and it reds for a REAL disagreement, not for noise." >&2
+    echo "" >&2
+    echo "       So an attestation of the form 'drift-a unresolvable' is now a" >&2
+    echo "       FALSE STATEMENT, and RUN_GATE5=0 would put it under the terminus" >&2
+    echo "       signature -- the exact act the Q3 ruling forbids.  There is no" >&2
+    echo "       longer a licensed skip on drift-a's account." >&2
+    echo "" >&2
+    echo "       NOR is a re-mint licensed.  Breadth.hs pre-declares one for a" >&2
+    echo "       module addition causing a cross-build divergence; the attribution" >&2
+    echo "       run (test-paper/sitting/wire-attribution.txt) decomposed it:" >&2
+    echo "         (A) the wire increment's own shift -0.0241 (4.5x scatter) --" >&2
+    echo "             real, and the clause's case; but it moves TOWARD frozen;" >&2
+    echo "         (B) a baseline gap of +0.0737 WITHOUT the increment, on the" >&2
+    echo "             control build -- larger, and unexplained." >&2
+    echo "       The clause licenses absorbing (A).  A re-mint would silently" >&2
+    echo "       absorb (B) too, baking an unexamined box change into the frozen" >&2
+    echo "       layer under the terminus tag." >&2
+    echo "" >&2
+    echo "       THE CLOSE IS THEREFORE BLOCKED on the author's ruling about (B)," >&2
+    echo "       under the author's own standing law: never freeze a known bug or" >&2
+    echo "       hole.  If you are overriding that deliberately, the attestation" >&2
+    echo "       must say what is actually true -- that gate 5 reds on drift-a," >&2
+    echo "       that the cell resolves and the red is informative, and that the" >&2
+    echo "       disagreement is being closed over knowingly.  Do not reuse any" >&2
+    echo "       'unresolvable' wording; it is falsified and quoting it here would" >&2
+    echo "       teach the falsified text at the key act." >&2
     exit 1
   fi
   echo "step 2: gate 5 SKIPPED by RUN_GATE5=0, under this attestation:"

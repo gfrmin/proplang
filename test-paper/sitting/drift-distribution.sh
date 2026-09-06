@@ -32,7 +32,10 @@
 set -u
 cd "$(git rev-parse --show-toplevel)" || exit 2
 K="${1:-7}"
-OUT=test-paper/sitting/drift-distribution.txt
+# The transcript path is overridable so a DIFFERENT run condition (the
+# quiet-box attempt) reuses THIS generator rather than growing a second copy
+# of the parse and the summary -- the one-generator law.  Default unchanged.
+OUT="${DRIFT_OUT:-test-paper/sitting/drift-distribution.txt}"
 SUMMARISE_ONLY=0
 [ "$K" = "--summarise" ] && { SUMMARISE_ONLY=1; K=0; }
 
@@ -52,12 +55,17 @@ if [ "$SUMMARISE_ONLY" = 0 ]; then
 } > "$OUT"
 else
   [ -f "$OUT" ] || { echo "ABORT: --summarise needs an existing $OUT" >&2; exit 1; }
-  # keep the header and the run rows; drop any previous summary
-  sed -n '1,/^run /p' "$OUT" > "$OUT.hdr" 2>/dev/null || true
-  grep '^run ' "$OUT" > "$OUT.runs"
-  sed -n '/^=== breadth/,/^$/p' "$OUT" > "$OUT.new"
-  cat "$OUT.runs" >> "$OUT.new"
-  mv "$OUT.new" "$OUT"; rm -f "$OUT.hdr" "$OUT.runs"
+  # Keep EVERYTHING before the summary marker and drop only the old summary.
+  # The first cut kept just the "=== breadth" header block and the run rows,
+  # which SILENTLY DESTROYED any other prose in the transcript -- fatal for
+  # drift-quiet.txt, whose quieting record and pre-stated scope live above the
+  # run rows.  A re-summarise must be able to run on any transcript this
+  # generator wrote without eating part of it.
+  if grep -q '^=== the distribution ===$' "$OUT"; then
+    sed '/^=== the distribution ===$/,$d' "$OUT" > "$OUT.new"
+    mv "$OUT.new" "$OUT"
+  fi
+  grep -q '^run ' "$OUT" || { echo "ABORT: no run rows survive in $OUT" >&2; exit 1; }
 fi
 
 i=1
@@ -113,31 +121,67 @@ print()
 print("=== the reading these numbers support ===")
 unresolvable = sd > band
 centre_moved = not (lo <= frozen <= hi)
+# RESOLUTION and CENTRE are independent questions and are reported as two
+# separate rows, ALWAYS BOTH, each stating its own finding in full.  An earlier
+# cut printed the centre row opening with "AND", which presupposed the
+# resolution row had fired; on the quiet run it had not, and the transcript
+# carried a dangling conjunction under a bold claim -- prose presupposing a
+# branch, the very defect this file's --summarise mode exists to make cheap
+# to fix.
 if unresolvable:
-    print("* THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX.  Run-to-run")
-    print("  scatter is %.1fx the band's half-width and %d of %d runs fall"
+    print("* RESOLUTION: THE GATE CANNOT RESOLVE ITS OWN BAND ON THIS BOX.")
+    print("  Run-to-run scatter is %.1fx the band's half-width and %d of %d runs"
           % (sd/band, inband, len(rs)))
-    print("  inside it.  A single sample of this cell is not a measurement of")
-    print("  the quantity the gate names, whatever that quantity's true value.")
-    print("  This is the decisive finding and it is independent of the next one.")
-if centre_moved:
-    print("* AND THE CENTRE HAS MOVED: the 95% CI excludes the frozen value, so")
-    print("  the mint is stale for this box's current state, not merely noisy.")
+    print("  fall inside it.  A single sample of this cell is not a measurement")
+    print("  of the quantity the gate names, whatever that quantity's true value.")
 else:
-    print("* THE CENTRE HAS *NOT* BEEN SHOWN TO MOVE: the 95% CI contains the")
-    print("  frozen value, so these data do NOT establish a stale mint -- the")
-    print("  mean sits %+.4f from frozen with SEM %.4f." % (mean-frozen, sem))
-    print("  So: NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF HEALTH IS")
-    print("  CLAIMED.  Both readings remain open; what is closed is that this")
-    print("  gate cannot tell them apart here.")
+    print("* RESOLUTION: THE GATE *CAN* RESOLVE ITS BAND ON THIS BOX.  Run-to-run")
+    print("  scatter is %.2fx the band's half-width (stdev %.4f against a %.4f"
+          % (sd/band, sd, band))
+    print("  half-width), so a red from this cell here is INFORMATIVE and cannot")
+    print("  be set aside as noise.  Any claim that this cell is unresolvable is")
+    print("  falsified by these data for the conditions recorded above.")
+if centre_moved:
+    print("* CENTRE: THE CENTRE HAS MOVED.  The 95%% CI [%.4f, %.4f] EXCLUDES the"
+          % (lo, hi))
+    print("  frozen %.4f, so on these data the frozen value does not describe" % frozen)
+    print("  this box in the state recorded above.  That is a statement about")
+    print("  agreement, NOT about cause: what moved -- the code, the box, or the")
+    print("  build -- is a separate question these data do not answer.")
+else:
+    print("* CENTRE: THE CENTRE HAS *NOT* BEEN SHOWN TO MOVE.  The 95%% CI")
+    print("  [%.4f, %.4f] contains the frozen %.4f, so these data do NOT" % (lo, hi, frozen))
+    print("  establish a stale mint -- the mean sits %+.4f from frozen with SEM"
+          % (mean-frozen))
+    print("  %.4f.  NO REGRESSION IS INDICATED, AND NO CLEAN BILL OF HEALTH IS"
+          % sem)
+    print("  CLAIMED.")
 print()
-print("Neither branch is a licence to re-mint anything: a value re-minted from")
-print("a box that cannot resolve it would bake today's contention into the")
-print("frozen layer.  This is evidence for FL-P5's named residual -- a cell")
-print("that cannot be measured should DECLINE TO REPORT, or should gate on a")
-print("statistic the box can actually resolve (a median of k runs has SEM")
-print("%.4f here, still %s the band)."
-      % (sem, "outside" if sem > band else "within"))
+# The closing paragraph must not assert a condition the rows above may have
+# just denied.  An earlier cut said flatly "a box that cannot resolve it" and
+# "a cell that cannot be measured", and then printed a SEM INSIDE the band in
+# the same sentence -- self-contradicting on any quiet run.
+print("NO BRANCH ABOVE IS A LICENCE TO RE-MINT.  A re-mint is legitimate only")
+print("under the pre-declared clause in test-breadth/Breadth.hs -- a module")
+print("addition reintroducing a cross-build divergence, remedied at the")
+print("implementation's close and STATED IN THE FREEZE TAG, never a silent")
+print("widening -- and whether that clause applies is a question of CAUSE,")
+print("which this probe does not measure.  Absent that, re-minting from a box")
+print("in an unexamined state would bake that state into the frozen layer.")
+print()
+if unresolvable:
+    print("This run is evidence for FL-P5's named residual: a cell that cannot")
+    print("resolve its band should DECLINE TO REPORT rather than emit a number")
+    print("the box cannot support.  Here the median of k runs has SEM %.4f"
+          % sem)
+    print("against a %.4f half-band -- %s." % (band, "still outside it" if sem > band else "inside it, so a k-run median IS a route worth ruling on"))
+else:
+    print("FL-P5's residual is NOT exercised by this run: the cell resolved its")
+    print("band here (SEM %.4f against a %.4f half-band).  The residual stands"
+          % (sem, band))
+    print("on the OTHER run's evidence, not on this one's, and the honest")
+    print("summary of the pair is that this cell's resolution is a function of")
+    print("box state -- which is FL-P5's finding stated exactly, no wider.")
 PY
 
 echo "wrote $OUT"

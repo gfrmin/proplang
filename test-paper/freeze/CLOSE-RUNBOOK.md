@@ -90,71 +90,68 @@ bash test-paper/freeze/pre-close-check.sh    # now expect READY
 bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 ```
 
-> ### Gate 5 and the `drift-a` cell — read this before choosing a path
+> ### Gate 5 and the `drift-a` cell — THE CLOSE IS CURRENTLY BLOCKED HERE
 >
-> **The fact.** `breadth`'s `drift-a` timing cell reds under load. Measured
-> n=8, the cell alone (`test-paper/sitting/drift-distribution.txt`):
-> median 2.0103, mean 2.0084, stdev 0.1644, **1 of 8 inside the ±0.03 band**,
-> stdev/half-band **5.5×**, 95% CI of the mean `[1.8710, 2.1459]` — which
-> **contains** the frozen 1.9078.
+> **Read this before choosing a path. The two-branch protocol that stood in
+> this block until 2026-09-06 was falsified by its own measurement, and both
+> of its branches are now dead.**
 >
-> So **the gate cannot resolve its own band under this load** (decisive), and
-> **the centre has not been shown to move** — no regression indicated, *no clean
-> bill of health claimed*. Neither licenses a re-mint, which would bake today's
-> contention into the frozen layer.
+> **What was measured.** The sitting licensed `RUN_GATE5=0` only after a
+> quiet-box attempt had been *made* and shown insufficient. The attempt was
+> made — `test-paper/sitting/drift-quiet.txt`, co-resident units verified
+> stopped and verified restarted — and it came out the other way:
 >
-> **The mechanism.** Not scheduling starvation: `timedFold` uses `getCPUTime`
-> and a timed run shows `user` ≈ `real` (9m49s of 9m53s), so the process gets
-> its core. It is **cache and memory-bandwidth contention**, which inflates real
-> cycles and hits a deep fold's larger working set differently from a shallow
-> one — so it does not divide out of a ratio. A precondition keyed on *load
-> average* would be the wrong instrument.
+> | condition | n | stdev | vs half-band | mean | in band |
+> |---|---|---|---|---|---|
+> | loaded (load 12–20 on 8 cores) | 8 | 0.1644 | **5.48×** | 2.0084 | 1/8 |
+> | quiet (load ~1.5, units stopped) | 3 | **0.0087** | **0.29×** | 1.9474 | 1/3 |
 >
-> **Not attributable to this increment:** `drift-a` builds its agent from
-> `sentenceAgent` and never calls `serveLine`, where the whole repair lives.
+> So **the cell resolves its band fine on a quiet box** — a red from it here is
+> informative and cannot be set aside as noise — and its 95% CI
+> `[1.9258, 1.9691]` **excludes** the frozen `1.9078`. Gate 5 will red on
+> `drift-a`, legitimately.
 >
-> **What n=8 does NOT settle.** It answers *"can the gate resolve under load?"* —
-> no. It does **not** answer *"must gate 5 be skipped?"* Those are different
-> questions, and "the box cannot be quieted" is a premise to be **demonstrated,
-> not asserted**. Co-residents suspend losslessly:
+> **Branch 1 (run it live, close clean) fails the gate. Branch 2 (skip with an
+> attestation) is now a false statement** — any wording of the form "drift-a
+> unresolvable" is falsified, and putting it under the terminus signature is
+> the precise act the Q3 ruling forbids.
 >
-> ```sh
-> kill -STOP <pid>     # suspends; days of computation are kept
-> kill -CONT <pid>     # resumes exactly where it was
-> ```
+> **And a re-mint is not licensed either.** `test-breadth/Breadth.hs`
+> pre-declares one for "a module addition reintroduc[ing] a cross-build
+> divergence … never a silent widening". Exactly one commit touched `src/`
+> since the `1.9078` mint (`54e7884`, the wire repair), so the clause was
+> tested directly by building its parent and interleaving the arms
+> (`test-paper/sitting/wire-attribution.txt`):
 >
-> A stopped process stops touching memory, which is the contention channel named
-> above. The gate's own design premise — per `measure-drift.sh`'s header,
-> *stability between mint and re-measure on the same box* — is restorable in half
-> an hour.
+> | arm | n | mean | stdev | vs frozen |
+> |---|---|---|---|---|
+> | PRE (`113d29a`, no wire repair) | 3 | 1.9815 | 0.0012 | **+0.0737** |
+> | HEAD (wire repair present) | 2 | 1.9573 | 0.0074 | +0.0495 |
 >
-> ### So: two branches, and only one licenses the skip
+> Decomposed: **(A)** the increment's own shift is `-0.0241`, 4.5× the pooled
+> within-arm scatter and 80% of the band — *real*, and the clause's case, but
+> it moves **toward** frozen; **(B)** a baseline gap of `+0.0737` survives
+> **without** the increment. The clause licenses absorbing (A). A re-mint
+> would silently absorb (B) as well, and (B) is the larger term and the
+> unexplained one.
 >
-> **(1) Quiet-box attempt (do this first).** Suspend the co-residents, then take
-> three samples of the cell alone:
+> **The mint is not stale-from-elsewhere.** `1.9078` was minted on *this* box
+> on 2026-09-04 (`83e29ec`, selection-freeze-r1, "box-robust: measure on the
+> gate's own box"), and `2-freeze.sh` aborts if gate 5 ran in mint mode, so
+> mint and gate were separate runs. (B) is a real change in this box over two
+> days, not an artifact of how the value was taken.
 >
-> ```sh
-> sh test-paper/sitting/drift-distribution.sh 3
-> ```
+> ### So: the close does not proceed until the author rules on (B)
 >
-> **In band → run gate 5 LIVE and close clean.** No attestation needed.
+> Under the author's own standing law — **never freeze a known bug or hole** —
+> a red gate 5 is a hole, and this one is not noise. The open question is what
+> moved on this box between 2026-09-04 and 2026-09-06. These data do not answer
+> it; the builder has not guessed at it.
 >
-> **(2) Still unresolvable → the skip is now *demonstrated*, not assumed.** The
-> attestation quotes **both** distributions, and a full `cabal test all -j1`
-> transcript for the other suites is **mandatory**, not optional:
->
-> ```sh
-> cabal test all -j1 2>&1 | tee /tmp/gate5.txt      # the record for the attestation
-> RUN_GATE5=0 GATE5_ATTEST="drift-a unresolvable: LOADED n=8 median 2.0103 stdev 0.1644, 1/8 in band, CI [1.8710,2.1459] contains 1.9078; QUIET n=3 <ratios> at load <L>. Centre not shown to move. Not attributable (never calls serveLine). All other suites green, /tmp/gate5.txt." \
->   bash test-paper/freeze/do-close.sh
-> ```
->
-> `close.sh` refuses the skip without `GATE5_ATTEST`, and writes it into the
-> close commit.
->
-> The second-order finding — the ratio row is **not box-invariant, merely less
-> box-sensitive** — is **FL-P5** in `test-paper/terminus-inventory.md`, with the
-> falsified texts quoted and the residual named.
+> The second-order finding stands and is sharpened: the ratio row is **not
+> box-invariant, merely less box-sensitive** (FL-P5 in
+> `test-paper/terminus-inventory.md`), and this episode is its demonstration —
+> the cell's *resolution* and its *centre* are both functions of box state.
 
 It runs, in order: the readiness gate → a **live throwaway signature probe**
 (the key is proven usable *before* the manifest moves — a key act that fails
@@ -166,10 +163,19 @@ hand-listed; the ADD set **sourced** from `pre-close-check.sh`, one generator) �
 message is compared byte-for-byte against the file) → `test-paper/check.sh
 --close`.
 
-Expected manifest size afterwards: **260 rows** (243 + 17 ADD). Two
-manifest-covered files are **re-hashed in place**, not added: `CLAUDE.md` (the
-FL-P1 repair) and `proplang.cabal` (the `test-wire` stanza the wire increment
-adds). Both are derived by `close.sh` from `sha256sum -c`, never hand-listed.
+Expected manifest size afterwards: **no number is written here.**
+`pre-close-check.sh` PRINTS it (`EXPECTED POST-CLOSE MANIFEST SIZE: N rows`),
+computed from the live manifest plus its own ADD array — read it off the
+dashboard you have just run. A literal stood in this paragraph until
+2026-09-06 and went stale **twice** (12 ADD, then 17, now 19) as the close
+absorbed the sitting's evidence files; the one-generator law's own words are
+that a hand copy tracking a generated value is correct at birth and wrong at
+the first regeneration, and this sentence was the third paid instance.
+
+Two manifest-covered files are **re-hashed in place**, not added: `CLAUDE.md`
+(the FL-P1 repair) and `proplang.cabal` (the `test-wire` stanza the wire
+increment adds). Re-hashes do not change the row count; only ADDs do. Both are
+derived by `close.sh` from `sha256sum -c`, never hand-listed.
 
 ### 5. Publish
 
