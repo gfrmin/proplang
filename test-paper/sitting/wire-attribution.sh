@@ -28,6 +28,19 @@
 # 0.0009 to 0.0057 -- so a fresh worktree build contributes at most ~0.006 of
 # noise, against a 0.0396 shift.  The experiment can see the effect it is after.
 #
+# WHY IT MUTES THE WATCHDOG (added 2026-09-06).  Same reason and same shape as
+# quiet-box.sh, whose header carries the measurement: the units it stops are
+# the two the box's watchdog expects to be active, and this morning's stops
+# paged a deliberate act as an outage.  This script's own run (07:24:49 ->
+# 08:05:59) went unpaged only because it fell inside the 1h quiet window the
+# 07:11 page had opened.  So before the first stop it mutes the watchdog's
+# MAIL for 90m -- a control build plus five arm runs measured 41 min today, so
+# that is a 2.2x margin, and the tool caps at 4h regardless -- BOUNDED and
+# SELF-EXPIRING, mail only: the checks still run and are still logged.
+# restore() clears it UNCONDITIONALLY, whether or not every unit came back: a
+# unit that did not is a genuine outage and the next tick must page.
+# --summarise stops nothing and mutes nothing.
+#
 # It touches no frozen file, re-mints nothing, and decides nothing: it produces
 # the measurement the author's ruling needs.
 set -u
@@ -68,8 +81,26 @@ restore() {
     systemctl --user start "$u" 2>/dev/null
     echo "  $u: $(systemctl --user is-active "$u" 2>/dev/null)"
   done
+  # Un-mute UNCONDITIONALLY -- restarted or not, and that is deliberate: a
+  # unit that did not come back is a GENUINE outage and the next tick MUST
+  # page; a mute that outlived a failed restore would hide exactly that.
+  # Gated only the way the set is (something was stopped; the tool exists).
+  if [ "${#UNITS[@]}" -gt 0 ] && command -v watchdog-silence >/dev/null 2>&1; then
+    echo "  $(watchdog-silence off)"
+  fi
 }
 trap restore EXIT INT TERM
+
+# ---- mute the watchdog's MAIL before the first stop (see the header). -------
+# The tool's own report is captured here and written into the transcript by
+# the header block below, which truncates $OUT -- recorded, not assumed.
+if [ "${#UNITS[@]}" -eq 0 ]; then
+  WD_MUTE="nothing to stop, so nothing muted"
+elif command -v watchdog-silence >/dev/null 2>&1; then
+  WD_MUTE=$(watchdog-silence 90m 2>&1 | tr '\n' ' ')
+else
+  WD_MUTE="no watchdog-silence on PATH -- a tick during the run WILL page"
+fi
 
 for u in "${UNITS[@]:-}"; do
   [ -n "$u" ] || continue
@@ -86,6 +117,7 @@ done
   echo "             touching src/ since the 1.9078 mint at 83e29ec)"
   echo "  frozen   = 1.9078, band +/-0.03  [read from test-breadth/Breadth.hs below]"
   echo "  co-residents stopped: ${UNITS[*]:-none}"
+  echo "  watchdog: $WD_MUTE"
   echo "  load at start: $(uptime | sed 's/.*load average: //')"
   echo
 } > "$OUT"

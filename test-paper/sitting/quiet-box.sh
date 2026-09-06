@@ -26,6 +26,24 @@
 # units reclaims that; SIGSTOP on a swapped-out child never could.  The author
 # authorised stopping these services; nothing else on the box is touched.
 #
+# WHY IT MUTES THE WATCHDOG (added 2026-09-06).  The box runs an alert-only
+# watchdog (ops/watchdog, every 10 min) that expects rssfeed-sidecar and
+# answer-brain-daemon to be active and mails when they are not.  It cannot tell
+# a stop a human chose from a stop nobody did, and this morning it did not: the
+# stop this script made at 06:56 paged a deliberate, authorised act as an
+# outage -- the 07:11 tick mailed "4 problems on thinkpad", both units and the
+# two probes that front them -- and the 07:24 and 08:12 stops (its sibling
+# wire-attribution.sh) escaped a second mail only because they happened to fall
+# inside the watchdog's 1h quiet window and one-tick hold.  "Page genuine
+# alerts, don't page false alarms."  So before the first stop the script sets
+# `watchdog-silence` for a window DERIVED from K (below): BOUNDED and
+# SELF-EXPIRING, capped at 4h by the tool, and it holds the MAIL ONLY -- the
+# checks still run, the findings are still logged, the dead-man is still pinged
+# clean.  restore() clears it UNCONDITIONALLY, whether or not every unit came
+# back: a unit that did not is a genuine outage and the next tick must page.  A
+# box without the tool runs unchanged, and the transcript says which case it
+# was in.
+#
 # WHAT IT DOES NOT DO.  It does not re-mint, does not touch the frozen
 # test-breadth/Breadth.hs, does not decide whether the close proceeds, and does
 # not re-implement the sampler: measurement AND summary are delegated to
@@ -59,6 +77,16 @@ restore() {
     else echo "  $u: *** NOT ACTIVE after start (state $st) -- INTERVENE ***"; fi
   done
   [ "${#UNITS[@]}" -eq 0 ] && echo "  (nothing was stopped)"
+  # Un-mute UNCONDITIONALLY -- including when a unit did NOT come back, and
+  # that is deliberate.  If the units are back there is nothing to page about;
+  # if one is not, that is a GENUINE outage and the next tick MUST page.  A
+  # mute that survived a failed restore would hide exactly the failure the
+  # line above prints INTERVENE for.  Gated only the way the set is gated (this
+  # run stopped something; the tool exists), so an empty run cannot clear a
+  # mute it never set.
+  if [ "${#UNITS[@]}" -gt 0 ] && command -v watchdog-silence >/dev/null 2>&1; then
+    echo "  $(watchdog-silence off)"
+  fi
 }
 trap restore EXIT INT TERM
 
@@ -77,6 +105,25 @@ trap restore EXIT INT TERM
   echo "-- stopping the AUTHORISED co-resident units --"
   echo "   (units derived from the julia processes' own cgroups, not hand-listed)"
 } >> "$OUT"
+
+# ---- mute the watchdog's MAIL for the run, and RECORD which case we are in. -
+# The window is DERIVED from K, not hand-picked.  A sample took ~8 min on this
+# box quieted (3 in 24.7 min: journal 06:56:45 -> 07:21:28, 2026-09-06) and
+# ~9.5 min loaded (8 in 76 min, 2026-09-05), so 15 min per sample is a
+# 1.6-1.8x margin, plus 15 min flat for the stop, the residual check and the
+# restore -- one and a half watchdog ticks.  K=3 gives 60m.  The tool caps at
+# 4h and says so, and the transcript records what the tool REPORTED, not what
+# this arithmetic asked for.  A run that outlives its window will page, which
+# is right: a 1.6x overrun is worth a mail.
+if [ "${#UNITS[@]}" -gt 0 ]; then
+  if command -v watchdog-silence >/dev/null 2>&1; then
+    { echo "  watchdog: mail muted for the run (bounded, self-expiring; cleared at restore):"
+      watchdog-silence "$(( 15 * K + 15 ))m" 2>&1 | sed 's/^/    /'
+    } >> "$OUT"
+  else
+    echo "  watchdog: no watchdog-silence on PATH -- a tick during the run WILL page" >> "$OUT"
+  fi
+fi
 
 failed=0
 for u in "${UNITS[@]:-}"; do
