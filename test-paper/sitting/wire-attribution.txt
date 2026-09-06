@@ -20,6 +20,23 @@ HEAD  run 2  ratio 1.9626    load 1.80, 1.56, 1.58
 PRE   run 3  ratio 1.9809    load 1.49, 1.66, 1.62
 
 
+   HEADFRESH n=2  mean 1.9533  stdev 0.0029
+   HEAD (incremental, above) n=2  mean 1.9573
+   PRE  (fresh worktree)     n=3  mean 1.9815  stdev 0.0012
+
+   THE CONFOUND IS EXCLUDED.  HEAD built fresh (1.9533) agrees with HEAD built
+   incrementally (1.9573) to within 0.0041 -- inside the within-arm scatter -- and
+   both are far from PRE's fresh build (1.9815).  So the arm difference is NOT
+   build provenance: it is the wire increment's real code effect.  Pooling all
+   HEAD samples across both build routes and the quiet run gives mean 1.9553
+   against PRE's 1.9815, a shift of -0.0262.
+
+   THIS SHARPENS (A) AND LEAVES (B) EXACTLY WHERE IT WAS.  (A) is confirmed as
+   a genuine cross-build divergence caused by a module addition -- precisely the
+   phenomenon Breadth.hs's licensed-re-mint clause names.  (B), the +0.0737 the
+   control arm carries WITHOUT the increment, is untouched by this control and
+   remains the unexplained term and the reason no re-mint is licensed here.
+
 === the arms ===
 PRE   n=3  mean 1.9815  stdev 0.0012  (frozen 1.9078, delta +0.0737)
 HEAD  n=2  mean 1.9573  stdev 0.0074  (frozen 1.9078, delta +0.0495)
@@ -45,3 +62,11 @@ DECOMPOSITION -- two separate quantities, both reported:
   (B) as well, and (B) is the larger term and the unexplained one.
   What moved between the 2026-09-04 mint and now is the open
   question, and these data do NOT answer it.
+
+-- CONFOUND CONTROL, added 2026-09-06: HEAD built FRESH in a worktree --
+   The PRE arm above was a fresh worktree build; the HEAD arm was the
+   existing incremental dist-newstyle.  The interleave controlled for a
+   trend in box state but NOT for build provenance, so the -0.0241 arm
+   difference had two candidate causes.  This arm separates them.
+HEADFRESH run 1  ratio 1.9553    load 1.51, 1.67, 1.70
+HEADFRESH run 2  ratio 1.9512    load 2.33, 1.86, 1.75

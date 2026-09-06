@@ -380,6 +380,15 @@ or route it to whichever boundary next touches those files.
     (A) the increment's own shift, -0.0241: REAL (4.5x the pooled within-arm
         scatter, 80% of the band), and precisely the clause's case -- but it
         moves TOWARD frozen, not away.
+        [CONFOUND TESTED AND EXCLUDED, same day. The PRE arm was a FRESH
+        worktree build while the HEAD arm was the existing incremental
+        dist-newstyle, so (A) had a second candidate cause the interleave did
+        not control: build provenance. A third arm built HEAD fresh and
+        measured 1.9533, agreeing with HEAD-incremental's 1.9573 to within
+        0.0041 -- inside the within-arm scatter -- against PRE-fresh's 1.9815.
+        Pooling every HEAD sample across both build routes gives 1.9553 vs
+        PRE 1.9815, a shift of -0.0262. (A) is a real code effect. This
+        SHARPENS (A) and leaves (B) untouched.]
     (B) a baseline gap of +0.0737 that survives WITHOUT the increment.
   The clause licenses absorbing (A). A re-mint would silently absorb (B) as
   well, and (B) is the larger term and the unexplained one. SO NO RE-MINT IS

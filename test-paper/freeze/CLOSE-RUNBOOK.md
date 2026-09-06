@@ -125,8 +125,14 @@ bash test-paper/freeze/close.sh              # RUN_GATE5=0 to skip gate 5
 >
 > | arm | n | mean | stdev | vs frozen |
 > |---|---|---|---|---|
-> | PRE (`113d29a`, no wire repair) | 3 | 1.9815 | 0.0012 | **+0.0737** |
-> | HEAD (wire repair present) | 2 | 1.9573 | 0.0074 | +0.0495 |
+> | PRE (`113d29a`, no wire repair), fresh build | 3 | 1.9815 | 0.0012 | **+0.0737** |
+> | HEAD (wire repair present), incremental build | 2 | 1.9573 | 0.0074 | +0.0495 |
+> | HEAD, **fresh build** — the confound control | 2 | 1.9533 | 0.0029 | +0.0455 |
+>
+> The third row exists because the first two differed in build provenance as
+> well as in code, which the interleave did not control. HEAD-fresh agrees with
+> HEAD-incremental to within 0.0041 and both are far from PRE-fresh, so **the
+> confound is excluded**: (A) is a real code effect, not a build artifact.
 >
 > Decomposed: **(A)** the increment's own shift is `-0.0241`, 4.5× the pooled
 > within-arm scatter and 80% of the band — *real*, and the clause's case, but
