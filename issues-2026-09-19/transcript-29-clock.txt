@@ -1,0 +1,33 @@
+=== #29 ask 3 falsifier transcript -- run 2026-09-19T15:24:22Z, proplang tree 571b58979d462efffca9a0516382a6a35745cdee
+engine /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/x/proplang-host/build/proplang-host/proplang-host
+engine sha256 7f7463d8aa650ac56a1e6c50f7fb3d743cfc8dd830c4c5c0350708d31dcc9dbd
+life-agent 4cf71612ac35947588923a14b6931dcba2381ed5  CLOCK_BATCH=1  clock price 7.130990272278651  CLK_TCK=100  loadavg ['9.38', '7.02', '5.27']
+ k  K models arm       ev cpu ms/tick  decide cpu ms episode cpu s episode wall s  choice
+ 1  2    344 clock               45.0           50.0         0.410          0.423  gather
+ 1  2    344 no clock            20.0           20.0         0.140          0.154  gather
+             ratio               2.25           2.50          2.93           2.74  (prediction K+1 = 3)
+ 2  3    688 clock              260.0          290.0         2.410          2.427  gather
+ 2  3    688 no clock            90.0           80.0         0.890          0.913  gather
+             ratio               2.89           3.63          2.71           2.66  (prediction K+1 = 4)
+ 3  4   1032 clock             1060.0         1110.0        10.490         11.093  gather
+ 3  4   1032 no clock           240.0          250.0         2.150          2.170  gather
+             ratio               4.42           4.44          4.88           5.11  (prediction K+1 = 5)
+ 4  5   1376 clock             3270.0         3760.0        29.220         30.552  gather
+ 4  5   1376 no clock           540.0          550.0         4.970          5.033  gather
+             ratio               6.06           6.84          5.88           6.07  (prediction K+1 = 6)
+ 5  6   1720 clock             8385.0        10590.0        79.000         85.054  gather
+ 5  6   1720 no clock          1310.0         1590.0        12.290         13.608  gather
+             ratio               6.40           6.66          6.43           6.25  (prediction K+1 = 7)
+exit 0
+
+=== binary-world arm, added after the categorical run -- run 2026-09-19T15:33:52Z, same tree, same binary
+engine /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/x/proplang-host/build/proplang-host/proplang-host
+engine sha256 7f7463d8aa650ac56a1e6c50f7fb3d743cfc8dd830c4c5c0350708d31dcc9dbd
+life-agent 4cf71612ac35947588923a14b6931dcba2381ed5  CLOCK_BATCH=1  clock price 7.130990272278651  CLK_TCK=100  loadavg ['7.64', '8.45', '7.02']
+ k  K models arm       ev cpu ms/tick  decide cpu ms episode cpu s episode wall s  choice
+
+binary world (world.handshake_decl, K = 2), 20 evidence ticks + 1 decide, same Ū:
+   clock    models 960  evidence tick cpu ms    170.0   episode cpu s   3.440
+   no clock models 960  evidence tick cpu ms     70.0   episode cpu s   1.310
+   ratio  evidence tick 2.43   episode 2.63   (prediction K+1 = 3)
+exit 0

@@ -1,0 +1,249 @@
+=== #26 witness transcript -- run 2026-09-19T15:20:59Z
+[$SCRATCH = the session scratchpad: the release asset, the probe-mass binary and the stream dumps lived there, outside the tree.  The probes and this transcript are the record (R-D21).]
+proplang tree 571b58979d462efffca9a0516382a6a35745cdee (uncommitted: the probes themselves, ?? issues-2026-09-19/ )
+life-agent tree 4cf71612ac35947588923a14b6931dcba2381ed5
+release asset doctrine-sitting-r1/proplang-host, expected sha256 71998f6556f53314affd089a41eff5eb2b5cd749e56661f702989f744b8cf3c6
+probe-mass built: ghc -isrc -Wall -Werror -Wincomplete-patterns -Wincomplete-uni-patterns -XGHC2021 -hide-all-packages -package base -package containers
+probe-mass sha256 8738c04e9d1362ea70dbbb70a26c22e85a1ce6b0c7dc90e84892824685b0d31b
+
+################ WIRE, release binary ################
+engine $SCRATCH/rel/proplang-host
+engine sha256 71998f6556f53314affd089a41eff5eb2b5cd749e56661f702989f744b8cf3c6
+life-agent world @ Ū {'u_wrong': -5.130990272278651, 'u_abstain': 0.0, 'u_correct': 1.0, 'kappa_att': 0.048057099794822}
+theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742] (asserted == r49)
+stream: 238 evidence ticks; cells (leader, p-none, n, correct): [('lt50', 'ge50', 12, 2), ('lt50', 'lt20', 34, 30), ('50to70', 'ge50', 8, 2), ('50to70', 'lt20', 60, 42), ('70to80', 'lt20', 15, 12), ('80to90', 'lt20', 40, 32), ('ge90', 'lt20', 69, 69)]
+window (declared-rung arithmetic, best arm per side):
+  best constant: rung 0.8570 on 189/238 (0.7941)
+  cut leader-credence=ge90     on  69/ 69 -> 0.9906   off 120/169 -> 0.8570   gain  14.42 bits
+  cut p-none=ge50              on   4/ 20 -> 0.1800   off 185/218 -> 0.8570   gain  31.31 bits
+  cut leader-credence=lt50     on  32/ 46 -> 0.8570   off 157/192 -> 0.8570   gain   0.00 bits
+  cut leader-credence=50to70   on  44/ 68 -> 0.8570   off 145/170 -> 0.8570   gain   0.00 bits
+
+--- leg A: families ['leader-credence']  |ns|=7  |guards|=5  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 288, 'namespace_bits': 2.8073549220576046}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.85832472  True
+    lt50     lt20    34  0.882   0.85832472  True
+    50to70   ge50     8  0.250   0.85832403  True
+    50to70   lt20    60  0.700   0.85832403  True
+    70to80   lt20    15  0.800   0.85832546  True
+    80to90   lt20    40  0.800   0.85832485  True
+    ge90     lt20    69  1.000   0.98300957  True
+
+--- leg B: families ['leader-credence', 'p-none']  |ns|=10  |guards|=8  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 456, 'namespace_bits': 3.321928094887362}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.21171003  False
+    lt50     lt20    34  0.882   0.86023604  True
+    50to70   ge50     8  0.250   0.21171003  False
+    50to70   lt20    60  0.700   0.86023604  True
+    70to80   lt20    15  0.800   0.86023604  True
+    80to90   lt20    40  0.800   0.86023604  True
+    ge90     lt20    69  1.000   0.86023629  True
+
+--- leg Bp: families ['n-candidates', 'leader-credence', 'p-none', 'n-obs', 'flags']  |ns|=19  |guards|=17  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 960, 'namespace_bits': 4.247927513443586}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.21171011  False
+    lt50     lt20    34  0.882   0.86023604  True
+    50to70   ge50     8  0.250   0.21171011  False
+    50to70   lt20    60  0.700   0.86023604  True
+    70to80   lt20    15  0.800   0.86023604  True
+    80to90   lt20    40  0.800   0.86023604  True
+    ge90     lt20    69  1.000   0.86023629  True
+
+--- leg D: families ['leader-credence']  |ns|=7  |guards|=5  |theta|=9  hello -> {'ok': True, 'proto': 1, 'models': 369, 'namespace_bits': 2.8073549220576046}
+    theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.7100591659545898, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742]
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.71006069  False
+    lt50     lt20    34  0.882   0.71006069  False
+    50to70   ge50     8  0.250   0.71006027  False
+    50to70   lt20    60  0.700   0.71006027  False
+    70to80   lt20    15  0.800   0.71006070  False
+    80to90   lt20    40  0.800   0.71006070  False
+    ge90     lt20    69  1.000   0.98847897  True
+
+--- leg Dp: families ['n-candidates', 'leader-credence', 'p-none', 'n-obs', 'flags']  |ns|=19  |guards|=17  |theta|=9  hello -> {'ok': True, 'proto': 1, 'models': 1233, 'namespace_bits': 4.247927513443586}
+    theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.7100591659545898, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742]
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.31715566  False
+    lt50     lt20    34  0.882   0.82846074  False
+    50to70   ge50     8  0.250   0.31715557  False
+    50to70   lt20    60  0.700   0.82846065  False
+    70to80   lt20    15  0.800   0.82846074  False
+    80to90   lt20    40  0.800   0.82846074  False
+    ge90     lt20    69  1.000   0.88736947  True
+
+################ IN-PROCESS, stream dumped from the release run ################
+
+=== in-process leg B: |pop| = 456, Kraft = 0.2609375
+  probe p1 in-process == wire p1 (bit-for-bit as Double):
+    lt50/ge50  0.21171003209551875  ok
+    lt50/lt20  0.8602360382627093  ok
+    50to70/ge50  0.21171003209414158  ok
+    50to70/lt20  0.8602360382613322  ok
+    70to80/lt20  0.8602360382641734  ok
+    80to90/lt20  0.8602360382629576  ok
+    ge90/lt20  0.8602362852844853  ok
+  posterior mass by cut (the guard name each single-cut family reads):
+    p-none=lt20               0.49999899121490815
+    p-none=ge50               0.49999899121490815
+    leader-credence=ge90      1.8973834585890868e-6
+    const (all rungs)         1.1916420739232571e-7
+    p-none=20to50             6.516792591767813e-10
+    leader-credence=70to80    1.0530428828376052e-10
+  MAP model: p-none=ge50  arms (on, off) = (0.18000030517578125,0.8570003509521484)  mass 0.17714145498019268
+
+=== in-process leg Bp: |pop| = 960, Kraft = 0.2622327302631579
+  probe p1 in-process == wire p1 (bit-for-bit as Double):
+    lt50/ge50  0.21171010531150328  ok
+    lt50/lt20  0.8602360381220449  ok
+    50to70/ge50  0.21171010531012607  ok
+    50to70/lt20  0.8602360381206677  ok
+    70to80/lt20  0.8602360381235089  ok
+    80to90/lt20  0.8602360381222931  ok
+    ge90/lt20  0.8602362851437928  ok
+  posterior mass by cut (the guard name each single-cut family reads):
+    p-none=lt20               0.4999989346585787
+    p-none=ge50               0.4999989346585787
+    leader-credence=ge90      1.8973832439705656e-6
+    const (all rungs)         2.2641196843530452e-7
+    n-candidates=0            6.516791854634587e-10
+    n-candidates=1            6.516791854634587e-10
+  MAP model: p-none=ge50  arms (on, off) = (0.18000030517578125,0.8570003509521484)  mass 0.17714143494321127
+
+=== leg C (in-process; |ns| = 19)
+  copy of the single-cut kernel == shipped ge90 family: 56 members, weightIn and every probe prediction identical
+  inCorpus: all 1016 bodies True
+  C-g grammar weight (weightIn), bits: const 34.3594000115385 | single cut 80.5545050528488 | two-cut 126.7496100941591
+  C-x selector charges, bits: const 5.0 | single cut 16.24792751344359 | two-cut (BUILDER'S EXTENSION) 27.49585502688717
+  -- C-g depth 1 (consts + single cuts on g1, g2; weightIn), 120 models
+     mass: const=0.9999333356430959 cut:leader-credence=ge90=2.5297524654752884e-10 cut:p-none=ge50=6.666410392876743e-5 cut2:leader-credence=ge90>p-none=ge50=0.0 cut2:p-none=ge50>leader-credence=ge90=0.0
+     lt50/ge50  real 2/12  p1 0.8589493116536552
+     lt50/lt20  real 30/34  p1 0.8589925451459574
+     50to70/ge50  real 2/8  p1 0.8589493116536552
+     50to70/lt20  real 42/60  p1 0.8589925451459574
+     70to80/lt20  real 12/15  p1 0.8589925451459574
+     80to90/lt20  real 32/40  p1 0.8589925451459574
+     ge90/lt20  real 69/69  p1 0.8589925451788925
+  -- C-g depth 2 (C-g depth 1 + two-cuts; weightIn), 1016 models
+     mass: const=0.9999333356430652 cut:leader-credence=ge90=2.5297524654752103e-10 cut:p-none=ge50=6.666410392876538e-5 cut2:leader-credence=ge90>p-none=ge50=1.540003741354586e-14 cut2:p-none=ge50>leader-credence=ge90=1.5399209894253388e-14
+     lt50/ge50  real 2/12  p1 0.8589493116536352
+     lt50/lt20  real 30/34  p1 0.8589925451459574
+     50to70/ge50  real 2/8  p1 0.8589493116536352
+     50to70/lt20  real 42/60  p1 0.8589925451459574
+     70to80/lt20  real 12/15  p1 0.8589925451459574
+     80to90/lt20  real 32/40  p1 0.8589925451459574
+     ge90/lt20  real 69/69  p1 0.8589925451788964
+  -- C-x (shipped population + two-cuts at the extension price), 1856 models
+     mass: const=2.6169229776949747e-8 guard=0.11558233441798187 cut2:leader-credence=ge90>p-none=ge50=0.4422207010464137 cut2:p-none=ge50>leader-credence=ge90=0.4421969383663747
+     lt50/ge50  real 2/12  p1 0.21170888677958305
+     lt50/lt20  real 30/34  p1 0.8594112467423043
+     50to70/ge50  real 2/8  p1 0.21170888677942387
+     50to70/lt20  real 42/60  p1 0.8594112467421452
+     70to80/lt20  real 12/15  p1 0.8594112467424736
+     80to90/lt20  real 32/40  p1 0.859411246742333
+     ge90/lt20  real 69/69  p1 0.9736598119016465
+
+################ WIRE, head binary ################
+engine /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/x/proplang-host/build/proplang-host/proplang-host
+engine sha256 7f7463d8aa650ac56a1e6c50f7fb3d743cfc8dd830c4c5c0350708d31dcc9dbd
+life-agent world @ Ū {'u_wrong': -5.130990272278651, 'u_abstain': 0.0, 'u_correct': 1.0, 'kappa_att': 0.048057099794822}
+theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742] (asserted == r49)
+stream: 238 evidence ticks; cells (leader, p-none, n, correct): [('lt50', 'ge50', 12, 2), ('lt50', 'lt20', 34, 30), ('50to70', 'ge50', 8, 2), ('50to70', 'lt20', 60, 42), ('70to80', 'lt20', 15, 12), ('80to90', 'lt20', 40, 32), ('ge90', 'lt20', 69, 69)]
+window (declared-rung arithmetic, best arm per side):
+  best constant: rung 0.8570 on 189/238 (0.7941)
+  cut leader-credence=ge90     on  69/ 69 -> 0.9906   off 120/169 -> 0.8570   gain  14.42 bits
+  cut p-none=ge50              on   4/ 20 -> 0.1800   off 185/218 -> 0.8570   gain  31.31 bits
+  cut leader-credence=lt50     on  32/ 46 -> 0.8570   off 157/192 -> 0.8570   gain   0.00 bits
+  cut leader-credence=50to70   on  44/ 68 -> 0.8570   off 145/170 -> 0.8570   gain   0.00 bits
+
+--- leg A: families ['leader-credence']  |ns|=7  |guards|=5  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 288, 'namespace_bits': 2.8073549220576046}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.85832472  True
+    lt50     lt20    34  0.882   0.85832472  True
+    50to70   ge50     8  0.250   0.85832403  True
+    50to70   lt20    60  0.700   0.85832403  True
+    70to80   lt20    15  0.800   0.85832546  True
+    80to90   lt20    40  0.800   0.85832485  True
+    ge90     lt20    69  1.000   0.98300957  True
+
+--- leg B: families ['leader-credence', 'p-none']  |ns|=10  |guards|=8  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 456, 'namespace_bits': 3.321928094887362}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.21171003  False
+    lt50     lt20    34  0.882   0.86023604  True
+    50to70   ge50     8  0.250   0.21171003  False
+    50to70   lt20    60  0.700   0.86023604  True
+    70to80   lt20    15  0.800   0.86023604  True
+    80to90   lt20    40  0.800   0.86023604  True
+    ge90     lt20    69  1.000   0.86023629  True
+
+--- leg Bp: families ['n-candidates', 'leader-credence', 'p-none', 'n-obs', 'flags']  |ns|=19  |guards|=17  |theta|=8  hello -> {'ok': True, 'proto': 1, 'models': 960, 'namespace_bits': 4.247927513443586}
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.21171011  False
+    lt50     lt20    34  0.882   0.86023604  True
+    50to70   ge50     8  0.250   0.21171011  False
+    50to70   lt20    60  0.700   0.86023604  True
+    70to80   lt20    15  0.800   0.86023604  True
+    80to90   lt20    40  0.800   0.86023604  True
+    ge90     lt20    69  1.000   0.86023629  True
+
+--- leg D: families ['leader-credence']  |ns|=7  |guards|=5  |theta|=9  hello -> {'ok': True, 'proto': 1, 'models': 369, 'namespace_bits': 2.8073549220576046}
+    theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.7100591659545898, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742]
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.71006069  False
+    lt50     lt20    34  0.882   0.71006069  False
+    50to70   ge50     8  0.250   0.71006027  False
+    50to70   lt20    60  0.700   0.71006027  False
+    70to80   lt20    15  0.800   0.71006070  False
+    80to90   lt20    40  0.800   0.71006070  False
+    ge90     lt20    69  1.000   0.98847897  True
+
+--- leg Dp: families ['n-candidates', 'leader-credence', 'p-none', 'n-obs', 'flags']  |ns|=19  |guards|=17  |theta|=9  hello -> {'ok': True, 'proto': 1, 'models': 1233, 'namespace_bits': 4.247927513443586}
+    theta [0.04805755615234375, 0.05000019073486328, 0.18000030517578125, 0.33899974822998047, 0.7100591659545898, 0.8570003509521484, 0.8640003204345703, 0.9499998092651367, 0.9906339645385742]
+    leader   p-none   n   real  held-out p1  p1 > bar 0.836894
+    lt50     ge50    12  0.167   0.31715566  False
+    lt50     lt20    34  0.882   0.82846074  False
+    50to70   ge50     8  0.250   0.31715557  False
+    50to70   lt20    60  0.700   0.82846065  False
+    70to80   lt20    15  0.800   0.82846074  False
+    80to90   lt20    40  0.800   0.82846074  False
+    ge90     lt20    69  1.000   0.88736947  True
+
+################ IN-PROCESS, stream dumped from the head run ################
+
+=== in-process leg B: |pop| = 456, Kraft = 0.2609375
+  probe p1 in-process == wire p1 (bit-for-bit as Double):
+    lt50/ge50  0.21171003209551875  ok
+    lt50/lt20  0.8602360382627093  ok
+    50to70/ge50  0.21171003209414158  ok
+    50to70/lt20  0.8602360382613322  ok
+    70to80/lt20  0.8602360382641734  ok
+    80to90/lt20  0.8602360382629576  ok
+    ge90/lt20  0.8602362852844853  ok
+  posterior mass by cut (the guard name each single-cut family reads):
+    p-none=lt20               0.49999899121490815
+    p-none=ge50               0.49999899121490815
+    leader-credence=ge90      1.8973834585890868e-6
+    const (all rungs)         1.1916420739232571e-7
+    p-none=20to50             6.516792591767813e-10
+    leader-credence=70to80    1.0530428828376052e-10
+  MAP model: p-none=ge50  arms (on, off) = (0.18000030517578125,0.8570003509521484)  mass 0.17714145498019268
+
+=== in-process leg Bp: |pop| = 960, Kraft = 0.2622327302631579
+  probe p1 in-process == wire p1 (bit-for-bit as Double):
+    lt50/ge50  0.21171010531150328  ok
+    lt50/lt20  0.8602360381220449  ok
+    50to70/ge50  0.21171010531012607  ok
+    50to70/lt20  0.8602360381206677  ok
+    70to80/lt20  0.8602360381235089  ok
+    80to90/lt20  0.8602360381222931  ok
+    ge90/lt20  0.8602362851437928  ok
+  posterior mass by cut (the guard name each single-cut family reads):
+    p-none=lt20               0.4999989346585787
+    p-none=ge50               0.4999989346585787
+    leader-credence=ge90      1.8973832439705656e-6
+    const (all rungs)         2.2641196843530452e-7
+    n-candidates=0            6.516791854634587e-10
+    n-candidates=1            6.516791854634587e-10
+  MAP model: p-none=ge50  arms (on, off) = (0.18000030517578125,0.8570003509521484)  mass 0.17714143494321127
+
+(leg C not run on this dump: it reads src only, run once)
+exit 0

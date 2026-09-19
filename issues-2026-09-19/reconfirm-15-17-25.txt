@@ -1,0 +1,39 @@
+=== re-confirmations, run 2026-09-19T15:24:46Z, proplang tree 571b58979d462efffca9a0516382a6a35745cdee
+engine /home/g/git/proplang/dist-newstyle/build/x86_64-linux/ghc-9.10.3/proplang-0.1.0.0/x/proplang-host/build/proplang-host/proplang-host
+engine sha256 7f7463d8aa650ac56a1e6c50f7fb3d743cfc8dd830c4c5c0350708d31dcc9dbd
+
+#17  observe_batch / observe_counts (the warm channel): still refused?
+
+-- hello, observe_batch, observe_counts
+   < {"ok": true, "proto": 1, "models": 4, "namespace_bits": 1.0}
+   < {"error": "expected tick"}
+   < {"error": "expected tick"}
+
+#15  recorded act replayed AS A FEATURE (the engine-side ask): still refused?
+
+-- hello, evidence tick with act published as a feature + menu
+   < {"ok": true, "proto": 1, "models": 4, "namespace_bits": 1.0}
+   < {"error": "feature/assignment collision"}
+
+-- hello, evidence tick with act as a feature, no menu
+   < {"ok": true, "proto": 1, "models": 4, "namespace_bits": 1.0}
+   < {"error": "feature/assignment collision"}
+
+-- hello, evidence tick with no act and no menu
+   < {"ok": true, "proto": 1, "models": 4, "namespace_bits": 1.0}
+   < {"error": "tick refused: missing declared ["act"]"}
+
+-- hello, evidence tick with the menu (the one shape that folds)
+   < {"ok": true, "proto": 1, "models": 4, "namespace_bits": 1.0}
+   < {"act": {"act": 2}, "p1": 0.5, "entropy_bits": 1.1146755053361468, "p0": 0.5, "argmax_code": 0, "p_argmax": 0.5, "p_codes": [0.5, 0.5], "observed": 1, "loss_bits": 1.0}
+
+#25  bounded folded state: has the fold changed since F11 (r2-f11-state-bits.txt, @94fd4eb)?
+   git diff --stat 94fd4eb HEAD -- src:
+    src/PropLang/Enumerate.hs | 33 ++++++++++++++++++++
+    src/PropLang/Host.hs      | 78 +++++++++++++++++++++++++----------------------
+    src/PropLang/Membrane.hs  | 76 ++++++++++++++++++++++++++++++++++++---------
+    3 files changed, 137 insertions(+), 50 deletions(-)
+   lines of the observeS binding changed since 94fd4eb:
+   0
+   AgentS at HEAD (the state F11 measured):
+   524:data AgentS = AgentS Namespace Int [Rational] [HypLive]
