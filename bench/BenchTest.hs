@@ -90,9 +90,18 @@ main = do
   -- report means by it: a SMALL power-of-two denominator (the sixteenths the
   -- reconstruction used) versus the ~2^-55 embedding a decimal needs.  The
   -- lever is denominator SIZE, and that is what this row measures.
-  check "t8 P2real: theta is 8 points, none small-dyadic (the 2^-55 lever applies)"
+  -- The consumer PULLED the lever: life-agent r46 leg B snapped every rung to
+  -- 2^-20.  This row read "none small-dyadic (the 2^-55 lever applies)" until
+  -- the P2Real regeneration of 2026-09-19 (gen-p2real.py --check RED against
+  -- life-agent 4cf7161) made it false; it now records the pulled lever, and the
+  -- control beneath it keeps the predicate two-sided.
+  -- (stated as the denominator bound itself: the consumer's lattice is 2^-20,
+  -- life-agent world._GRID_LATTICE_BITS, and ibits counts 2^20 as 21 bits)
+  check "t8 P2real: theta is 8 points, every denominator <= 2^20 (the consumer pulled the lever)"
     (length p2realTheta == 8
-     && all ((> 20) . denomBits) p2realTheta)
+     && all ((<= 2 ^ (20 :: Int)) . denominator . toRational) p2realTheta)
+  check "t8 control: a pre-snap decimal rung (0.339, P2Real before the regeneration) exceeds 2^20"
+    ((denominator . toRational) (0.339 :: Double) > 2 ^ (20 :: Int))
   check "t8 control: the reconstruction's theta IS small-dyadic"
     (all ((<= 20) . denomBits) (pTheta profileP2))
   check "t8 P2real: no walk family declared"

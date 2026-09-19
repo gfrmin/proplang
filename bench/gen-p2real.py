@@ -80,6 +80,18 @@ def render(decl, head, W) -> str:
     ns_lit = hs_list_s(ns)
     guards_lit = "\n  , ".join(f"({hs_str(nm)}, {hs_list_d(g)})" for nm, g in guards)
     theta_lit = hs_list_d(theta)
+    # The denominator claim is DERIVED from the rungs, never written as prose: the
+    # comment below said "NOT dyadic ... 2^-55" until life-agent r46 leg B snapped every
+    # rung to 2^-20 and the regeneration of 2026-09-19 made that sentence false.
+    from fractions import Fraction
+    dbits = max(Fraction(float(x)).denominator.bit_length() - 1 for x in theta)
+    theta_denom = (
+        f"SMALL-DYADIC: every rung's power-of-two denominator is at most 2^-{dbits} --\n"
+        "--   the consumer snapped its rungs (life-agent r46 leg B, world._snap_to_lattice),\n"
+        "--   pulling the bench's own highest-ranked cost lever (denominator SIZE)."
+        if dbits <= 20 else
+        f"NOT small-dyadic: the widest rung embeds as a 2^-{dbits}-denominator\n"
+        "--   rational, which is the bench's own highest-ranked cost lever.")
     rho_lit = ("Just " + hs_list_d(rho)) if rho else "Nothing"
     arity_lit = f"Just {arity}" if arity else "Nothing"
     arity_note = "declared" if arity else "ABSENT (K = 2 by default)"
@@ -159,9 +171,7 @@ p2realMenu = {menu_lit}
 
 -- | codebooks.theta -- {n} points from the consumer's FROZEN RULE (the union
 --   of the measured operating rate, every argmax crossing, the recorded
---   shadow's p05/median/p95, and the endpoints).  NOT dyadic: every rung
---   embeds as a 2^-55-denominator rational, which is the bench's own
---   highest-ranked cost lever -- and the reconstruction had it backwards.
+--   shadow's p05/median/p95, and the endpoints).  {theta_denom}
 p2realTheta :: [Double]
 p2realTheta = {theta_lit}
 
