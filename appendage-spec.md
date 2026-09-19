@@ -1,10 +1,15 @@
 # Appendage spec — external reach as a host declaration
 
 **Status:** specification. No implementation. Companion to `membrane-wire.md`.
-**Provenance:** this document records decisions D-1 … D-4 of
-`../life-agent/docs/SESSION-RECORD-2026-09-05.md` — the host/language division, the
+**Provenance:** this document records decisions D-1 … D-4 of life-agent's
+`archive/docs/SESSION-RECORD-2026-09-05.md` — the host/language division, the
 withdrawal of the oracle primitive, the 0h re-estimate, and universality as a separate
 goal. That record also carries the corrections and open questions this spec depends on.
+Cited by permalink, not by relative path (the file moved once already, at life-agent's
+J0 reset):
+<https://github.com/gfrmin/life-agent/blob/cab7d32/archive/docs/SESSION-RECORD-2026-09-05.md>.
+Since that reset the record is **archived and no longer governs life-agent**; read D-1 … D-4
+as a historical record of the division being built to, not as a live ruling.
 
 [CLASS AND CUSTODY, declared 2026-09-06 at the paper-freeze-r0 close. This file is
 **not manifest-covered**, and is not normative. Its covered siblings — `design.md`,
