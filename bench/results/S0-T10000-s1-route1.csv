@@ -1,0 +1,31 @@
+# BUILD-STAMP exe=/home/g/.cache/proplang-bench/bench-fold-depth size=4058736 mtime=2026-08-18 10:55:59.552668507 UTC ghc-Version {versionBranch = [9,10,3], versionTags = []} linux-x86_64
+# BUILD-STAMP sha256=f6fb3722ccca2d2ce72a5c8762312e3f4b04419abea131d002110ab4efc67da9 HEAD=94fd4eb src-tree=5d869512f5d4d2a0176986363b03e6f3dd2f18c0 src-dirty=0
+# cell=S0-T10000-s1-route1 profile=S0 ticks=10000 seed=1 route=1
+# argv=--profile S0 --ticks 10000 --seed 1 --route 1 --out bench/results --raw /home/g/.cache/proplang-bench/raw
+# hello={"membrane": 1, "world": {"namespace": ["x", "act"], "guards": [{"name": "x", "grid": [0.5]}], "menu": [{"name": "act", "grid": [0, 1]}], "codebooks": {"theta": [0.25, 0.5, 0.75]}, "utility": {"form": "said@1", "said": ["*", ["get", "act"], ["-", ["+", ["var", 1], ["var", 1]], ["c", 1]]]}}}
+# tick-mode=PureServe
+# hello-reply={"ok": true, "proto": 1, "models": 9, "namespace_bits": 1.0}
+# models=9
+# route1 columns: window_start,window_end,median_wall_ns,mean_wall_ns,p90_wall_ns,min_wall_ns,median_cpu_ns,vmrss_kb_at_end
+1,100,5848,6461,8529,5461,6266,13320
+2,101,5848,6431,8529,5461,6266,13324
+3,102,5848,6411,8299,5461,6266,13328
+5,104,5848,6364,8120,5461,6266,14100
+7,106,5848,6366,8120,5461,6266,14104
+10,109,5848,6299,7993,5461,6266,14108
+20,119,5817,6488,8021,5461,6244,14112
+30,129,5824,6535,8170,4580,6238,14116
+50,149,5724,6134,8152,3533,6170,14120
+70,169,5649,5653,8021,3478,6062,14124
+100,199,3819,4966,7252,3299,4220,14128
+200,299,3661,4065,4240,3291,4038,14132
+300,399,3609,3852,3974,3288,3962,14132
+500,599,3512,3651,3833,3188,3897,14132
+700,799,3605,4031,5434,3247,3994,14132
+1000,1099,3568,3764,3946,3334,3938,14136
+2000,2099,3438,3657,3800,3236,3812,15156
+3000,3099,3646,3842,4008,3244,4031,15156
+5000,5099,5618,5979,6145,5064,6174,15156
+7000,7099,4313,4708,5445,3542,4713,15156
+9901,10000,3857,4572,6267,3436,4244,15156
+# summary ticks_done=10000 ticks_requested=10000 total_wall_s=0.130 peak_rss_kb=15156

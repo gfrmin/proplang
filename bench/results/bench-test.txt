@@ -1,0 +1,49 @@
+ok   t1 prefix-stable: 100-tick stream is the head of the 1000-tick stream
+ok   t1 deterministic: regenerating gives the same stream
+ok   t1 seeds differ
+ok   t2 windows for n=100: in range, increasing, last ends at n
+ok   t2 windows for n=300: in range, increasing, last ends at n
+ok   t2 windows for n=1000: in range, increasing, last ends at n
+ok   t2 windows for n=10000: in range, increasing, last ends at n
+ok   t2 windows for n=100000: in range, increasing, last ends at n
+ok   t8 P2real: python-side and haskell-side population derivations agree
+ok   t8 P2real: 960 models
+ok   t8 P2real: 19-name namespace, 17 guard rows, t and act unguarded
+ok   t8 P2real: theta is 8 points, none small-dyadic (the 2^-55 lever applies)
+ok   t8 control: the reconstruction's theta IS small-dyadic
+ok   t8 P2real: no walk family declared
+ok   t8 population assertion holds for P1 (predicted 9)
+ok   t8 population assertion holds for P2 (predicted 445)
+ok   t8 population assertion holds for P2nw (predicted 441)
+ok   t8 population assertion holds for P2real (predicted 960)
+ok   t8 population assertion holds for P3 (predicted 130)
+ok   t8 population assertion holds for P3wide (predicted 420)
+ok   t8 population assertion holds for S1 (predicted 9)
+ok   t8 population assertion holds for S0 (predicted 9)
+ok   t3 ibits
+ok   t3 qbits 3/8 = 2 + 4
+ok   P1 t5a hello accepted
+ok   P1 t5a mirror population == models (9)
+ok   P1 t7 every declared value round-trips through the wire's reads
+ok   P1 t5b every tick pinned (40 of 40)
+ok   P1 t5c mirror normalized meta == engine metaPosterior (Rational ==)
+ok   P2 t5a hello accepted
+ok   P2 t5a mirror population == models (445)
+ok   P2 t7 every declared value round-trips through the wire's reads
+ok   P2 t5b every tick pinned (40 of 40)
+ok   P2 t5c mirror normalized meta == engine metaPosterior (Rational ==)
+ok   P3 t5a hello accepted
+ok   P3 t5a mirror population == models (130)
+ok   P3 t7 every declared value round-trips through the wire's reads
+ok   P3 t5b every tick pinned (40 of 40)
+ok   P3 t5c mirror normalized meta == engine metaPosterior (Rational ==)
+ok   P2nw t5a hello accepted
+ok   P2nw t5a mirror population == models (441)
+ok   P2nw t7 every declared value round-trips through the wire's reads
+ok   P2nw t5b every tick pinned (40 of 40)
+ok   P2nw t5c mirror normalized meta == engine metaPosterior (Rational ==)
+ok   t6 S1 ticks carry the menu, no evidence
+ok   t6 S0 ticks are features only
+ok   t4 scalarField reads a field
+ok   t4 actField reads the act object
+ALL BENCH TESTS PASSED
